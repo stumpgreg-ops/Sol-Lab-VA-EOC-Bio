@@ -1,0 +1,11198 @@
+{
+ "v": 2,
+ "sceneW": 1120,
+ "sceneH": 630,
+ "drawScale": 0.8,
+ "lots": [
+  {
+   "k": 2,
+   "u": 1,
+   "v": 0,
+   "kind": "side"
+  },
+  {
+   "k": 3,
+   "u": 0,
+   "v": 1,
+   "kind": "side"
+  },
+  {
+   "k": 4,
+   "u": -1,
+   "v": 0,
+   "kind": "back"
+  },
+  {
+   "k": 5,
+   "u": 0,
+   "v": -1,
+   "kind": "back"
+  },
+  {
+   "k": 6,
+   "u": 1,
+   "v": -1,
+   "kind": "side"
+  },
+  {
+   "k": 7,
+   "u": -1,
+   "v": 1,
+   "kind": "side"
+  },
+  {
+   "k": 8,
+   "u": 1,
+   "v": 1,
+   "kind": "front"
+  },
+  {
+   "k": 9,
+   "u": -1,
+   "v": -1,
+   "kind": "far"
+  },
+  {
+   "k": 10,
+   "u": 2,
+   "v": 0,
+   "kind": "side"
+  },
+  {
+   "k": 11,
+   "u": 0,
+   "v": 2,
+   "kind": "side"
+  },
+  {
+   "k": 12,
+   "u": -2,
+   "v": 0,
+   "kind": "back"
+  },
+  {
+   "k": 13,
+   "u": 0,
+   "v": -2,
+   "kind": "back"
+  },
+  {
+   "k": 14,
+   "u": 2,
+   "v": -1,
+   "kind": "side"
+  },
+  {
+   "k": 15,
+   "u": -1,
+   "v": 2,
+   "kind": "side"
+  },
+  {
+   "k": 16,
+   "u": -2,
+   "v": 1,
+   "kind": "back"
+  },
+  {
+   "k": 17,
+   "u": 1,
+   "v": -2,
+   "kind": "back"
+  },
+  {
+   "k": 18,
+   "u": 2,
+   "v": 1,
+   "kind": "front"
+  },
+  {
+   "k": 19,
+   "u": 1,
+   "v": 2,
+   "kind": "front"
+  },
+  {
+   "k": 20,
+   "u": -2,
+   "v": -2,
+   "kind": "far"
+  },
+  {
+   "k": 21,
+   "u": 3,
+   "v": 0,
+   "kind": "side"
+  },
+  {
+   "k": 22,
+   "u": 0,
+   "v": 3,
+   "kind": "side"
+  },
+  {
+   "k": 23,
+   "u": -3,
+   "v": 0,
+   "kind": "back"
+  },
+  {
+   "k": 24,
+   "u": 0,
+   "v": -3,
+   "kind": "back"
+  },
+  {
+   "k": 25,
+   "u": 3,
+   "v": -1,
+   "kind": "side"
+  },
+  {
+   "k": 26,
+   "u": -1,
+   "v": 3,
+   "kind": "side"
+  },
+  {
+   "k": 27,
+   "u": -3,
+   "v": 1,
+   "kind": "back"
+  },
+  {
+   "k": 28,
+   "u": 1,
+   "v": -3,
+   "kind": "back"
+  },
+  {
+   "k": 29,
+   "u": 3,
+   "v": 1,
+   "kind": "front"
+  },
+  {
+   "k": 30,
+   "u": 1,
+   "v": 3,
+   "kind": "front"
+  },
+  {
+   "k": 31,
+   "u": -3,
+   "v": -1,
+   "kind": "far"
+  },
+  {
+   "k": 32,
+   "u": -1,
+   "v": -3,
+   "kind": "far"
+  },
+  {
+   "k": 33,
+   "u": 3,
+   "v": -2,
+   "kind": "side"
+  },
+  {
+   "k": 34,
+   "u": -2,
+   "v": 3,
+   "kind": "side"
+  },
+  {
+   "k": 35,
+   "u": -3,
+   "v": 2,
+   "kind": "back"
+  },
+  {
+   "k": 36,
+   "u": 2,
+   "v": -3,
+   "kind": "back"
+  },
+  {
+   "k": 37,
+   "u": 3,
+   "v": 2,
+   "kind": "front"
+  },
+  {
+   "k": 38,
+   "u": 2,
+   "v": 3,
+   "kind": "front"
+  },
+  {
+   "k": 39,
+   "u": -3,
+   "v": -2,
+   "kind": "far"
+  },
+  {
+   "k": 40,
+   "u": -2,
+   "v": -3,
+   "kind": "far"
+  }
+ ],
+ "themes": {
+  "village": {
+   "name": "Town",
+   "desc": "A cottage that grows into a whole town: wings, a bakery, mills and a market.",
+   "drawScale": 0.8,
+   "pitch": 150,
+   "wallLevel": 8,
+   "styles": [
+    {
+     "id": "tile",
+     "name": "Red Tile",
+     "desc": "Stucco walls and a red tile roof.",
+     "dir": "",
+     "pairs": [
+      "thatch"
+     ]
+    },
+    {
+     "id": "slate",
+     "name": "Slate",
+     "desc": "White plaster and a blue slate roof.",
+     "dir": "styles/slate/",
+     "pairs": [
+      "tile"
+     ]
+    },
+    {
+     "id": "thatch",
+     "name": "Thatch",
+     "desc": "Warm timber walls and a golden straw roof.",
+     "dir": "styles/thatch/",
+     "pairs": [
+      "slate"
+     ]
+    }
+   ],
+   "ring": {
+    "seg": "fence",
+    "corner": null,
+    "gate": null,
+    "extent": 3.75
+   },
+   "cell": 40,
+   "unitPx": 30
+  },
+  "castle": {
+   "name": "Castle",
+   "desc": "A modest keep that grows into a grand castle: towers and gates first, walls that turn corners, flags in your colour.",
+   "kit": true,
+   "cell": 151,
+   "cellH": 87.2,
+   "unitPx": 1,
+   "drawScale": 1,
+   "wallLevel": 8,
+   "growAt": [
+    1,
+    4,
+    8,
+    13
+   ],
+   "tabs": [
+    [
+     "core",
+     "Keep"
+    ],
+    [
+     "tower",
+     "Towers"
+    ],
+    [
+     "wall",
+     "Walls & gates"
+    ],
+    [
+     "house",
+     "Buildings"
+    ],
+    [
+     "nature",
+     "Nature"
+    ],
+    [
+     "statue",
+     "Statues"
+    ],
+    [
+     "village",
+     "Village"
+    ],
+    [
+     "animal",
+     "Animals"
+    ],
+    [
+     "people",
+     "People & siege"
+    ],
+    [
+     "flag",
+     "Flags"
+    ]
+   ],
+   "styles": [
+    {
+     "id": "blue",
+     "name": "Royal Blue",
+     "desc": "Blue roofs, flags and bands.",
+     "dir": "",
+     "pairs": [
+      "gold"
+     ]
+    },
+    {
+     "id": "red",
+     "name": "Crimson",
+     "desc": "Red roofs, flags and bands.",
+     "dir": "red/",
+     "pairs": [
+      "gold"
+     ]
+    },
+    {
+     "id": "green",
+     "name": "Forest",
+     "desc": "Green roofs, flags and bands.",
+     "dir": "green/",
+     "pairs": [
+      "blue"
+     ]
+    },
+    {
+     "id": "gold",
+     "name": "Gold",
+     "desc": "Gold roofs, flags and bands.",
+     "dir": "gold/",
+     "pairs": [
+      "red"
+     ]
+    }
+   ],
+   "ranks": [
+    [
+     0,
+     "Camp"
+    ],
+    [
+     120,
+     "Fort"
+    ],
+    [
+     300,
+     "Stronghold"
+    ],
+    [
+     600,
+     "Castle"
+    ],
+    [
+     1000,
+     "Fortress"
+    ],
+    [
+     1600,
+     "Citadel"
+    ],
+    [
+     2400,
+     "Royal Seat"
+    ]
+   ],
+   "packs": [
+    {
+     "id": "walls",
+     "name": "Wall pack",
+     "desc": "Four lengths of curtain wall, 25% off. They turn corners by themselves.",
+     "items": [
+      "wall",
+      "wall",
+      "wall",
+      "wall"
+     ],
+     "discount": 0.25
+    },
+    {
+     "id": "gatehouse",
+     "name": "Gatehouse pack",
+     "desc": "A gate with a square tower either side, 15% off.",
+     "items": [
+      "square-tower",
+      "gate",
+      "square-tower"
+     ],
+     "discount": 0.15
+    },
+    {
+     "id": "tower",
+     "name": "Tower pack",
+     "desc": "A round tower with a flag on top, 15% off.",
+     "items": [
+      "round-tower",
+      "flag"
+     ],
+     "discount": 0.15
+    },
+    {
+     "id": "siege",
+     "name": "Siege pack",
+     "desc": "A catapult and a ballista for the courtyard, 20% off.",
+     "items": [
+      "catapult",
+      "ballista"
+     ],
+     "discount": 0.2
+    },
+    {
+     "id": "garden",
+     "name": "Garden pack",
+     "desc": "Flowers, an oak, bushes and a hedge, 25% off.",
+     "items": [
+      "flowers-mixed",
+      "flowers-red",
+      "oak",
+      "bushes",
+      "hedge"
+     ],
+     "discount": 0.25
+    },
+    {
+     "id": "farm",
+     "name": "Farm pack",
+     "desc": "A stable, a rail fence, a cow, a horse and a chicken, 20% off.",
+     "items": [
+      "stable",
+      "rail-fence",
+      "cow",
+      "horse",
+      "chicken"
+     ],
+     "discount": 0.2
+    },
+    {
+     "id": "village",
+     "name": "Village pack",
+     "desc": "A cottage, a market stall, a cart, a lantern and a bench, 20% off.",
+     "items": [
+      "c-cottage",
+      "stall-red",
+      "cart",
+      "lantern",
+      "bench"
+     ],
+     "discount": 0.2
+    },
+    {
+     "id": "monuments",
+     "name": "Monument pack",
+     "desc": "A fountain, an obelisk, a column and a knight statue, 20% off.",
+     "items": [
+      "fountain",
+      "obelisk",
+      "column",
+      "knight-statue"
+     ],
+     "discount": 0.2
+    }
+   ]
+  }
+ },
+ "pieces": [
+  {
+   "id": "cottage",
+   "theme": "village",
+   "name": "Cottage",
+   "role": "core",
+   "tier": 1,
+   "desc": "A snug one-room home to start from.",
+   "img": "assets/build/village-cottage.png",
+   "w": 106,
+   "h": 149,
+   "ax": 0.4978,
+   "ay": 0.769,
+   "unitPx": 30,
+   "price": 40,
+   "cells": 2
+  },
+  {
+   "id": "stone-cottage",
+   "theme": "village",
+   "name": "Stone cottage",
+   "role": "core",
+   "tier": 1,
+   "desc": "Thick stone walls, one storey, warm inside.",
+   "img": "assets/build/village-stone-cottage.png",
+   "w": 113,
+   "h": 153,
+   "ax": 0.4998,
+   "ay": 0.763,
+   "unitPx": 30,
+   "price": 40,
+   "cells": 3
+  },
+  {
+   "id": "house",
+   "theme": "village",
+   "name": "Two-storey house",
+   "role": "core",
+   "tier": 1,
+   "desc": "Windows upstairs and a chimney.",
+   "img": "assets/build/village-house.png",
+   "w": 148,
+   "h": 193,
+   "ax": 0.4999,
+   "ay": 0.7588,
+   "unitPx": 30,
+   "price": 40,
+   "cells": 3
+  },
+  {
+   "id": "stall",
+   "theme": "village",
+   "name": "Market stall",
+   "role": "module",
+   "tier": 1,
+   "desc": "A canopy, crates and goods to sell.",
+   "img": "assets/build/village-stall.png",
+   "w": 98,
+   "h": 118,
+   "ax": 0.4953,
+   "ay": 0.726,
+   "fits": [
+    "front",
+    "side"
+   ],
+   "unitPx": 30,
+   "price": 40,
+   "cells": 2
+  },
+  {
+   "id": "steps",
+   "theme": "village",
+   "name": "Stone steps",
+   "role": "module",
+   "tier": 1,
+   "desc": "Steps with a railing up to the door.",
+   "img": "assets/build/village-steps.png",
+   "w": 85,
+   "h": 85,
+   "ax": 0.4997,
+   "ay": 0.6601,
+   "fits": [
+    "front",
+    "side"
+   ],
+   "unitPx": 30,
+   "price": 40,
+   "cells": 2
+  },
+  {
+   "id": "cottage-wing",
+   "theme": "village",
+   "name": "Cottage wing",
+   "role": "module",
+   "tier": 1,
+   "desc": "A second cottage joined to the first.",
+   "img": "assets/build/village-cottage.png",
+   "w": 106,
+   "h": 149,
+   "ax": 0.4978,
+   "ay": 0.769,
+   "fits": [
+    "side",
+    "back"
+   ],
+   "unitPx": 30,
+   "price": 40,
+   "cells": 2
+  },
+  {
+   "id": "stone-wing",
+   "theme": "village",
+   "name": "Stone wing",
+   "role": "module",
+   "tier": 1,
+   "desc": "A stone room added on.",
+   "img": "assets/build/village-stone-cottage.png",
+   "w": 113,
+   "h": 153,
+   "ax": 0.4998,
+   "ay": 0.763,
+   "fits": [
+    "side",
+    "back"
+   ],
+   "unitPx": 30,
+   "price": 40,
+   "cells": 3
+  },
+  {
+   "id": "lamp-path",
+   "theme": "village",
+   "name": "Lamp-lit lane",
+   "role": "module",
+   "tier": 2,
+   "desc": "Cobbles and two lamps to the door.",
+   "img": "assets/build/village-lamp-path.png",
+   "w": 144,
+   "h": 131,
+   "ax": 0.4975,
+   "ay": 0.6509,
+   "fits": [
+    "front"
+   ],
+   "unitPx": 30,
+   "price": 80,
+   "cells": 3
+  },
+  {
+   "id": "house-wing",
+   "theme": "village",
+   "name": "House wing",
+   "role": "module",
+   "tier": 2,
+   "desc": "A two-storey wing with its own chimney.",
+   "img": "assets/build/village-house.png",
+   "w": 148,
+   "h": 193,
+   "ax": 0.4999,
+   "ay": 0.7588,
+   "fits": [
+    "side",
+    "back"
+   ],
+   "unitPx": 30,
+   "price": 80,
+   "cells": 3
+  },
+  {
+   "id": "bakery",
+   "theme": "village",
+   "name": "Bakery",
+   "role": "module",
+   "tier": 2,
+   "desc": "Round windows, big chimney, fresh bread.",
+   "img": "assets/build/village-bakery.png",
+   "w": 157,
+   "h": 198,
+   "ax": 0.4981,
+   "ay": 0.752,
+   "fits": [
+    "side",
+    "back"
+   ],
+   "unitPx": 30,
+   "price": 80,
+   "cells": 4
+  },
+  {
+   "id": "dock",
+   "theme": "village",
+   "name": "Boat dock",
+   "role": "module",
+   "tier": 2,
+   "desc": "A wooden pier with a rowing boat.",
+   "img": "assets/build/village-dock.png",
+   "w": 162,
+   "h": 125,
+   "ax": 0.4974,
+   "ay": 0.5959,
+   "fits": [
+    "front",
+    "side"
+   ],
+   "unitPx": 30,
+   "price": 80,
+   "cells": 4
+  },
+  {
+   "id": "chapel",
+   "theme": "village",
+   "name": "Chapel",
+   "role": "module",
+   "tier": 2,
+   "desc": "A bell over the door.",
+   "img": "assets/build/village-chapel.png",
+   "w": 113,
+   "h": 178,
+   "ax": 0.4998,
+   "ay": 0.7962,
+   "fits": [
+    "side",
+    "back",
+    "far"
+   ],
+   "unitPx": 30,
+   "price": 80,
+   "cells": 3
+  },
+  {
+   "id": "arch",
+   "theme": "village",
+   "name": "Stone arch",
+   "role": "module",
+   "tier": 2,
+   "desc": "A grand gate into the yard.",
+   "img": "assets/build/village-arch.png",
+   "w": 112,
+   "h": 146,
+   "ax": 0.4976,
+   "ay": 0.7548,
+   "fits": [
+    "front"
+   ],
+   "unitPx": 30,
+   "price": 80,
+   "cells": 3
+  },
+  {
+   "id": "tavern",
+   "theme": "village",
+   "name": "Tavern",
+   "role": "module",
+   "tier": 3,
+   "desc": "A sign, a lamp and a warm door.",
+   "img": "assets/build/village-tavern.png",
+   "w": 171,
+   "h": 187,
+   "ax": 0.4987,
+   "ay": 0.7137,
+   "fits": [
+    "side",
+    "back"
+   ],
+   "unitPx": 30,
+   "price": 140,
+   "cells": 4
+  },
+  {
+   "id": "windmill",
+   "theme": "village",
+   "name": "Windmill",
+   "role": "module",
+   "tier": 3,
+   "desc": "Sails turning over the fields.",
+   "img": "assets/build/village-windmill.png",
+   "w": 129,
+   "h": 212,
+   "ax": 0.4978,
+   "ay": 0.8051,
+   "fits": [
+    "back",
+    "far"
+   ],
+   "unitPx": 30,
+   "price": 140,
+   "cells": 3
+  },
+  {
+   "id": "watermill",
+   "theme": "village",
+   "name": "Watermill",
+   "role": "module",
+   "tier": 3,
+   "desc": "A wheel turned by the stream.",
+   "img": "assets/build/village-watermill.png",
+   "w": 190,
+   "h": 229,
+   "ax": 0.4983,
+   "ay": 0.7413,
+   "fits": [
+    "side",
+    "far"
+   ],
+   "unitPx": 30,
+   "price": 140,
+   "cells": 5
+  },
+  {
+   "id": "square",
+   "theme": "village",
+   "name": "Market square",
+   "role": "module",
+   "tier": 3,
+   "desc": "Cobbles, two stalls and the old well.",
+   "img": "assets/build/village-square.png",
+   "w": 222,
+   "h": 197,
+   "ax": 0.4986,
+   "ay": 0.6548,
+   "fits": [
+    "front"
+   ],
+   "unitPx": 30,
+   "price": 140,
+   "cells": 5
+  },
+  {
+   "id": "harbour",
+   "theme": "village",
+   "name": "Harbour",
+   "role": "module",
+   "tier": 3,
+   "desc": "Two boats, a long pier and a lamp.",
+   "img": "assets/build/village-harbour.png",
+   "w": 216,
+   "h": 180,
+   "ax": 0.4989,
+   "ay": 0.6289,
+   "fits": [
+    "front",
+    "side"
+   ],
+   "unitPx": 30,
+   "price": 140,
+   "cells": 5
+  },
+  {
+   "id": "manor",
+   "theme": "village",
+   "name": "Manor house",
+   "role": "module",
+   "tier": 4,
+   "desc": "Three storeys of stucco and red tile.",
+   "img": "assets/build/village-manor.png",
+   "w": 199,
+   "h": 247,
+   "ax": 0.4996,
+   "ay": 0.7516,
+   "fits": [
+    "side",
+    "back"
+   ],
+   "unitPx": 30,
+   "price": 220,
+   "cells": 5
+  },
+  {
+   "id": "town-hall",
+   "theme": "village",
+   "name": "Town hall",
+   "role": "module",
+   "tier": 4,
+   "desc": "Steps, a bell and an ornate door.",
+   "img": "assets/build/village-town-hall.png",
+   "w": 183,
+   "h": 224,
+   "ax": 0.4992,
+   "ay": 0.745,
+   "fits": [
+    "back",
+    "far"
+   ],
+   "unitPx": 30,
+   "price": 220,
+   "cells": 4
+  },
+  {
+   "id": "bell-tower",
+   "theme": "village",
+   "name": "Bell tower",
+   "role": "module",
+   "tier": 4,
+   "desc": "The tallest thing in town.",
+   "img": "assets/build/village-bell-tower.png",
+   "w": 99,
+   "h": 220,
+   "ax": 0.4966,
+   "ay": 0.8531,
+   "fits": [
+    "back",
+    "far"
+   ],
+   "unitPx": 30,
+   "price": 220,
+   "cells": 2
+  },
+  {
+   "id": "grand-mill",
+   "theme": "village",
+   "name": "Grand windmill",
+   "role": "module",
+   "tier": 4,
+   "desc": "A stone mill with huge sails.",
+   "img": "assets/build/village-grand-mill.png",
+   "w": 174,
+   "h": 289,
+   "ax": 0.4992,
+   "ay": 0.8114,
+   "fits": [
+    "back",
+    "far"
+   ],
+   "unitPx": 30,
+   "price": 220,
+   "cells": 4
+  },
+  {
+   "id": "fence",
+   "theme": "village",
+   "name": "Wooden fence",
+   "role": "wall",
+   "tier": 0,
+   "desc": "Posts and rails around the estate.",
+   "img": "assets/build/village-fence.png",
+   "w": 87,
+   "h": 82,
+   "ax": 0.4999,
+   "ay": 0.6456,
+   "unitPx": 30,
+   "cells": 2
+  },
+  {
+   "id": "well",
+   "theme": "village",
+   "name": "Village well",
+   "role": "deco",
+   "tier": 0,
+   "price": 30,
+   "desc": "Fresh water in the yard.",
+   "img": "assets/build/village-well.png",
+   "w": 69,
+   "h": 84,
+   "ax": 0.4928,
+   "ay": 0.7153,
+   "unitPx": 30,
+   "nostyle": true,
+   "cells": 1
+  },
+  {
+   "id": "lamp",
+   "theme": "village",
+   "name": "Street lamp",
+   "role": "deco",
+   "tier": 0,
+   "price": 15,
+   "desc": "A little light for the path.",
+   "img": "assets/build/village-lamp.png",
+   "w": 43,
+   "h": 62,
+   "ax": 0.4895,
+   "ay": 0.7436,
+   "unitPx": 30,
+   "nostyle": true,
+   "cells": 1
+  },
+  {
+   "id": "barrels",
+   "theme": "village",
+   "name": "Barrel stack",
+   "role": "deco",
+   "tier": 0,
+   "price": 15,
+   "desc": "Three barrels by the door.",
+   "img": "assets/build/village-barrels.png",
+   "w": 51,
+   "h": 61,
+   "ax": 0.4929,
+   "ay": 0.6947,
+   "unitPx": 30,
+   "nostyle": true,
+   "cells": 1
+  },
+  {
+   "id": "crates",
+   "theme": "village",
+   "name": "Crates and hay",
+   "role": "deco",
+   "tier": 0,
+   "price": 20,
+   "desc": "Supplies for the household.",
+   "img": "assets/build/village-crates.png",
+   "w": 95,
+   "h": 112,
+   "ax": 0.4983,
+   "ay": 0.7226,
+   "unitPx": 30,
+   "nostyle": true,
+   "cells": 2
+  },
+  {
+   "id": "hay-cart",
+   "theme": "village",
+   "name": "Hay cart",
+   "role": "deco",
+   "tier": 0,
+   "price": 25,
+   "desc": "A farmer's cart full of hay.",
+   "img": "assets/build/village-hay-cart.png",
+   "w": 126,
+   "h": 112,
+   "ax": 0.4983,
+   "ay": 0.6397,
+   "unitPx": 30,
+   "nostyle": true,
+   "cells": 3
+  },
+  {
+   "id": "barrel-cart",
+   "theme": "village",
+   "name": "Merchant cart",
+   "role": "deco",
+   "tier": 0,
+   "price": 25,
+   "desc": "Barrels bound for market.",
+   "img": "assets/build/village-barrel-cart.png",
+   "w": 126,
+   "h": 112,
+   "ax": 0.4983,
+   "ay": 0.6397,
+   "unitPx": 30,
+   "nostyle": true,
+   "cells": 3
+  },
+  {
+   "id": "haystacks",
+   "theme": "village",
+   "name": "Haystacks",
+   "role": "deco",
+   "tier": 0,
+   "price": 20,
+   "desc": "Harvest piled high.",
+   "img": "assets/build/village-haystacks.png",
+   "w": 85,
+   "h": 84,
+   "ax": 0.4957,
+   "ay": 0.661,
+   "unitPx": 30,
+   "nostyle": true,
+   "cells": 2
+  },
+  {
+   "id": "cobbles",
+   "theme": "village",
+   "name": "Cobbled corner",
+   "role": "deco",
+   "tier": 0,
+   "price": 20,
+   "desc": "A paved patch of yard.",
+   "img": "assets/build/village-cobbles.png",
+   "w": 103,
+   "h": 91,
+   "ax": 0.4999,
+   "ay": 0.6339,
+   "unitPx": 30,
+   "nostyle": true,
+   "cells": 2
+  },
+  {
+   "id": "signpost",
+   "theme": "village",
+   "name": "Sign post",
+   "role": "deco",
+   "tier": 0,
+   "price": 15,
+   "desc": "Which way to the market?",
+   "img": "assets/build/village-signpost.png",
+   "w": 71,
+   "h": 104,
+   "ax": 0.4979,
+   "ay": 0.7671,
+   "unitPx": 30,
+   "nostyle": true,
+   "cells": 2
+  },
+  {
+   "id": "keep",
+   "theme": "castle",
+   "name": "Keep",
+   "desc": "A modest square keep with a tiled roof. It grows taller as your castle grows.",
+   "role": "core",
+   "kind": "core",
+   "tier": 1,
+   "price": 80,
+   "score": 40,
+   "cells": 1,
+   "cat": "core",
+   "parts": [
+    "towerSquareBase_NE",
+    "towerSquareTopRoof_NE"
+   ],
+   "grow": [
+    [
+     "towerSquareBase_NE",
+     "towerSquareTopRoof_NE"
+    ],
+    [
+     "towerSquareBase_NE",
+     "towerSquareMidWindows_NE",
+     "towerSquareTopRoof_NE"
+    ],
+    [
+     "towerSquareBaseColor_NE",
+     "towerSquareMidWindows_NE",
+     "towerSquareMidColor_NE",
+     "towerSquareTopRoofHigh_NE"
+    ],
+    [
+     "towerSquareBaseColor_NE",
+     "towerSquareMidWindows_NE",
+     "towerSquareMidColor_NE",
+     "towerSquareMidWindows_NE",
+     "towerSquareTopRoofHigh_NE"
+    ]
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "round-keep",
+   "theme": "castle",
+   "name": "Round keep",
+   "desc": "A small round keep with a pointed roof. It grows taller as your castle grows.",
+   "role": "core",
+   "kind": "core",
+   "tier": 1,
+   "price": 80,
+   "score": 40,
+   "cells": 1,
+   "cat": "core",
+   "parts": [
+    "towerBase_NE",
+    "towerTopRoof_NE"
+   ],
+   "grow": [
+    [
+     "towerBase_NE",
+     "towerTopRoof_NE"
+    ],
+    [
+     "towerBase_NE",
+     "towerTop_NE",
+     "towerTopRoof_NE"
+    ],
+    [
+     "towerBase_NE",
+     "towerBase_NE",
+     "towerBalcony_NE",
+     "towerTopRoof_NE"
+    ],
+    [
+     "towerBase_NE",
+     "towerBase_NE",
+     "towerBalcony_NE",
+     "towerTop_NE",
+     "towerTopRoof_NE"
+    ]
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "watch-keep",
+   "theme": "castle",
+   "name": "Watch keep",
+   "desc": "A squat keep with battlements. It grows a lookout as your castle grows.",
+   "role": "core",
+   "kind": "core",
+   "tier": 1,
+   "price": 80,
+   "score": 38,
+   "cells": 1,
+   "cat": "core",
+   "parts": [
+    "towerSquareBase_NE",
+    "towerSquareTop_NE"
+   ],
+   "grow": [
+    [
+     "towerSquareBase_NE",
+     "towerSquareTop_NE"
+    ],
+    [
+     "towerSquareBase_NE",
+     "towerSquareMidOpen_NE",
+     "towerSquareTop_NE"
+    ],
+    [
+     "towerSquareBase_NE",
+     "towerSquareMid_NE",
+     "towerSquareMidOpen_NE",
+     "towerSquareTop_NE",
+     "towerSquarePoles_NE"
+    ],
+    [
+     "towerSquareBaseColor_NE",
+     "towerSquareMidColor_NE",
+     "towerSquareMidOpen_NE",
+     "towerSquareMidWindows_NE",
+     "towerSquareTop_NE",
+     "towerSquarePoles_NE"
+    ]
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "wall",
+   "theme": "castle",
+   "name": "Wall",
+   "desc": "One length of curtain wall. It turns corners by itself.",
+   "role": "module",
+   "kind": "wall",
+   "tier": 2,
+   "price": 15,
+   "score": 8,
+   "cells": 1,
+   "cat": "wall",
+   "auto": {
+    "u": "wall_NE",
+    "v": "wall_NW",
+    "corner": {
+     "-u+v": "wallCorner_NE",
+     "-u-v": "wallCorner_SE",
+     "+u-v": "wallCorner_SW",
+     "+u+v": "wallCorner_NW"
+    }
+   },
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "gate",
+   "theme": "castle",
+   "name": "Portcullis gate",
+   "desc": "A wall with an iron portcullis.",
+   "role": "module",
+   "kind": "wall",
+   "tier": 1,
+   "price": 30,
+   "score": 14,
+   "cells": 1,
+   "cat": "wall",
+   "auto": {
+    "u": [
+     "wallDoor_NE",
+     "metalGate_NE"
+    ],
+    "v": [
+     "wallDoor_NW",
+     "metalGate_NW"
+    ]
+   },
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "doorway",
+   "theme": "castle",
+   "name": "Open gate",
+   "desc": "A wall with an open archway through it.",
+   "role": "module",
+   "kind": "wall",
+   "tier": 1,
+   "price": 25,
+   "score": 12,
+   "cells": 1,
+   "cat": "wall",
+   "auto": {
+    "u": "wallDoor_NE",
+    "v": "wallDoor_NW"
+   },
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stairs-wall",
+   "theme": "castle",
+   "name": "Wall stairs",
+   "desc": "A wall with steps up to the walkway.",
+   "role": "module",
+   "kind": "wall",
+   "tier": 2,
+   "price": 25,
+   "score": 10,
+   "cells": 1,
+   "cat": "wall",
+   "auto": {
+    "u": "wallNarrowStairs_NE",
+    "v": "wallNarrowStairs_NW"
+   },
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "corner-tower",
+   "theme": "castle",
+   "name": "Corner turret",
+   "desc": "A turret built into a corner of the wall.",
+   "role": "module",
+   "kind": "wall",
+   "tier": 2,
+   "price": 40,
+   "score": 18,
+   "cells": 1,
+   "cat": "wall",
+   "auto": {
+    "u": "wallCornerHalfTower_NE",
+    "v": "wallCornerHalfTower_NW",
+    "corner": {
+     "-u+v": "wallCornerHalfTower_NE",
+     "-u-v": "wallCornerHalfTower_SE",
+     "+u-v": "wallCornerHalfTower_SW",
+     "+u+v": "wallCornerHalfTower_NW"
+    }
+   },
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "round-tower",
+   "theme": "castle",
+   "name": "Round tower",
+   "desc": "A round tower with a pointed roof.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 1,
+   "price": 45,
+   "score": 25,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "towerBase_NE",
+    "towerTop_NE",
+    "towerTopRoof_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "square-tower",
+   "theme": "castle",
+   "name": "Square tower",
+   "desc": "A square tower with battlements.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 1,
+   "price": 45,
+   "score": 25,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "towerSquareBase_NE",
+    "towerSquareTop_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "gate-tower",
+   "theme": "castle",
+   "name": "Gate tower",
+   "desc": "A tower with an archway through its foot \u2014 a gate with battlements.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 1,
+   "price": 50,
+   "score": 28,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "towerSquareArch_NE",
+    "towerSquareTop_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "roof-tower",
+   "theme": "castle",
+   "name": "Roofed tower",
+   "desc": "A square tower with a tiled roof.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 2,
+   "price": 70,
+   "score": 35,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "towerSquareBase_NE",
+    "towerSquareMid_NE",
+    "towerSquareTopRoof_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "balcony-tower",
+   "theme": "castle",
+   "name": "Balcony tower",
+   "desc": "A round tower with a balcony under the roof.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 2,
+   "price": 70,
+   "score": 35,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "towerBase_NE",
+    "towerBalcony_NE",
+    "towerTopRoof_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "watchtower",
+   "theme": "castle",
+   "name": "Watchtower",
+   "desc": "A tall open tower with a lookout deck.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 2,
+   "price": 75,
+   "score": 38,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "towerSquareBase_NE",
+    "towerSquareMid_NE",
+    "towerSquareTop_NE",
+    "towerSquarePoles_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "grand-tower",
+   "theme": "castle",
+   "name": "Grand tower",
+   "desc": "Three storeys with coloured bands and a high roof.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 3,
+   "price": 120,
+   "score": 60,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "towerSquareBaseColor_NE",
+    "towerSquareMidColor_NE",
+    "towerSquareMidWindows_NE",
+    "towerSquareTopRoofHigh_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "arch-tower",
+   "theme": "castle",
+   "name": "Gatehouse tower",
+   "desc": "A tall gate tower with an open gallery above the archway.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 2,
+   "price": 110,
+   "score": 55,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "towerSquareArch_NE",
+    "towerSquareMidOpen_NE",
+    "towerSquareTopColor_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "great-tower",
+   "theme": "castle",
+   "name": "Great round tower",
+   "desc": "The tallest round tower, four storeys high.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 4,
+   "price": 160,
+   "score": 80,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "towerBase_NE",
+    "towerBase_NE",
+    "towerBalcony_NE",
+    "towerTop_NE",
+    "towerTopRoof_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "royal-tower",
+   "theme": "castle",
+   "name": "Royal tower",
+   "desc": "Five storeys with a roof to see for miles.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 4,
+   "price": 180,
+   "score": 90,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "towerSquareBaseColor_NE",
+    "towerSquareMidWindows_NE",
+    "towerSquareMidColor_NE",
+    "towerSquareMidWindows_NE",
+    "towerSquareTopRoofHigh_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "flag",
+   "theme": "castle",
+   "name": "Flag",
+   "desc": "A flag in your colour on top of a tower.",
+   "role": "deco",
+   "kind": "topper",
+   "tier": 1,
+   "price": 12,
+   "score": 6,
+   "cells": 1,
+   "cat": "flag",
+   "parts": [
+    "flagBlue_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "flag-wide",
+   "theme": "castle",
+   "name": "Wide flag",
+   "desc": "A big banner flag for the tallest tower.",
+   "role": "deco",
+   "kind": "topper",
+   "tier": 2,
+   "price": 18,
+   "score": 8,
+   "cells": 1,
+   "cat": "flag",
+   "parts": [
+    "flagBlueWide_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "banner-long",
+   "theme": "castle",
+   "name": "Long banner",
+   "desc": "A long hanging banner.",
+   "role": "deco",
+   "kind": "topper",
+   "tier": 2,
+   "price": 18,
+   "score": 8,
+   "cells": 1,
+   "cat": "flag",
+   "parts": [
+    "flagBannerLong_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "banner-short",
+   "theme": "castle",
+   "name": "Short banner",
+   "desc": "A short hanging banner.",
+   "role": "deco",
+   "kind": "topper",
+   "tier": 1,
+   "price": 12,
+   "score": 6,
+   "cells": 1,
+   "cat": "flag",
+   "parts": [
+    "flagBannerShort_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "bridge",
+   "theme": "castle",
+   "name": "Bridge",
+   "desc": "A wooden bridge over the moat.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 25,
+   "score": 10,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "bridge_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stone-stairs",
+   "theme": "castle",
+   "name": "Stone stairs",
+   "desc": "Stone steps up to a doorway.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 6,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "stairsStone_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "knight",
+   "theme": "castle",
+   "name": "Knight",
+   "desc": "A knight of your colour standing guard.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 20,
+   "score": 8,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "knightBlue_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "knight-red",
+   "theme": "castle",
+   "name": "Red knight",
+   "desc": "A knight in red on patrol.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 20,
+   "score": 8,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "knightRed_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "king",
+   "theme": "castle",
+   "name": "The king",
+   "desc": "The king himself, come to inspect the castle.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 3,
+   "price": 60,
+   "score": 25,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "king_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "ballista",
+   "theme": "castle",
+   "name": "Ballista",
+   "desc": "A giant crossbow on the walls.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 45,
+   "score": 18,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "siegeBallista_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "catapult",
+   "theme": "castle",
+   "name": "Catapult",
+   "desc": "A catapult in the courtyard.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 55,
+   "score": 22,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "siegeCatapult_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "ram",
+   "theme": "castle",
+   "name": "Battering ram",
+   "desc": "A covered battering ram.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 3,
+   "price": 60,
+   "score": 24,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "siegeRam_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "trebuchet",
+   "theme": "castle",
+   "name": "Trebuchet",
+   "desc": "The biggest siege engine of all.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 3,
+   "price": 90,
+   "score": 40,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "siegeTrebuchet_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "siege-tower",
+   "theme": "castle",
+   "name": "Siege tower",
+   "desc": "A rolling tower for storming walls.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 4,
+   "price": 110,
+   "score": 45,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "siegeTower_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "c-cottage",
+   "theme": "castle",
+   "name": "Cottage",
+   "desc": "A stone cottage with a gabled roof.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 60,
+   "score": 30,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallBlock_NE",
+    "t_roofGable_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "hut",
+   "theme": "castle",
+   "name": "Wooden hut",
+   "desc": "A small timber hut with a pointed roof.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 50,
+   "score": 26,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallWoodBlock_NE",
+    "t_roofPoint_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stable",
+   "theme": "castle",
+   "name": "Stable",
+   "desc": "A timber stable with a wide roof.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 65,
+   "score": 30,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallWoodBlock_NE",
+    "t_roof_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "barn",
+   "theme": "castle",
+   "name": "Barn",
+   "desc": "A tall barn for hay and horses.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 90,
+   "score": 40,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallWoodBlock_NE",
+    "t_roofHigh_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "c-tavern",
+   "theme": "castle",
+   "name": "Tavern",
+   "desc": "A timber tavern with a high gabled roof.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 95,
+   "score": 42,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallWoodBlock_NE",
+    "t_roofHighGable_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stone-hall",
+   "theme": "castle",
+   "name": "Stone hall",
+   "desc": "Two storeys of stone under a steep roof.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 110,
+   "score": 48,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallBlock_NE",
+    "t_wallBlock_NE",
+    "t_roofHigh_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "c-chapel",
+   "theme": "castle",
+   "name": "Chapel",
+   "desc": "A tall chapel with a pointed roof.",
+   "role": "module",
+   "kind": "house",
+   "tier": 3,
+   "price": 130,
+   "score": 55,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallBlock_NE",
+    "t_wallBlock_NE",
+    "t_roofHighPoint_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "c-manor",
+   "theme": "castle",
+   "name": "Manor",
+   "desc": "A grand stone house with a windowed roof.",
+   "role": "module",
+   "kind": "house",
+   "tier": 3,
+   "price": 150,
+   "score": 60,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallBlock_NE",
+    "t_wallBlock_NE",
+    "t_roofHighWindow_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "c-windmill",
+   "theme": "castle",
+   "name": "Windmill",
+   "desc": "A windmill on a stone tower.",
+   "role": "module",
+   "kind": "house",
+   "tier": 3,
+   "price": 140,
+   "score": 55,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallBlock_NE",
+    "t_wallBlock_NE",
+    "t_windmill_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stall-red",
+   "theme": "castle",
+   "name": "Market stall",
+   "desc": "A red market stall.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 30,
+   "score": 12,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "t_stallRed_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stall-green",
+   "theme": "castle",
+   "name": "Green stall",
+   "desc": "A green market stall.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 30,
+   "score": 12,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "t_stallGreen_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "cart",
+   "theme": "castle",
+   "name": "Cart",
+   "desc": "A wooden cart.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 20,
+   "score": 8,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "t_cart_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "c-hay-cart",
+   "theme": "castle",
+   "name": "Hay cart",
+   "desc": "A cart piled with hay.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 25,
+   "score": 10,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "t_cartHigh_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "lantern",
+   "theme": "castle",
+   "name": "Lantern post",
+   "desc": "A lantern on a post.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 6,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "t_lantern_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "lamp-post",
+   "theme": "castle",
+   "name": "Lamp post",
+   "desc": "An iron lamp post.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 20,
+   "score": 8,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "g_lightpostSingle_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "lamp-double",
+   "theme": "castle",
+   "name": "Double lamp",
+   "desc": "A lamp post with two lanterns.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 25,
+   "score": 10,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "g_lightpostDouble_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "bench",
+   "theme": "castle",
+   "name": "Bench",
+   "desc": "A wooden bench.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 6,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "g_bench_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "fountain",
+   "theme": "castle",
+   "name": "Fountain",
+   "desc": "A round stone fountain.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 70,
+   "score": 30,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "t_fountainRound_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "pool",
+   "theme": "castle",
+   "name": "Pool",
+   "desc": "A square pool of water.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 80,
+   "score": 32,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "t_fountainSquare_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "waterwheel",
+   "theme": "castle",
+   "name": "Water wheel",
+   "desc": "A big wooden water wheel.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 60,
+   "score": 24,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "t_watermill_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "planks",
+   "theme": "castle",
+   "name": "Wooden deck",
+   "desc": "A deck of planks.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 4,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "t_planks_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stone-path",
+   "theme": "castle",
+   "name": "Stone path",
+   "desc": "Flat stones to walk on.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "n_path_stone_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "well-sign",
+   "theme": "castle",
+   "name": "Signpost",
+   "desc": "A wooden signpost.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "n_sign_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "campfire",
+   "theme": "castle",
+   "name": "Campfire",
+   "desc": "A ring of stones with a fire.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 6,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "n_campfire_stones_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "tent",
+   "theme": "castle",
+   "name": "Tent",
+   "desc": "A red camp tent.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 25,
+   "score": 10,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "n_tent_detailedOpen_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "log-pile",
+   "theme": "castle",
+   "name": "Log pile",
+   "desc": "A stack of logs.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 4,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "n_log_stack_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "wheat",
+   "theme": "castle",
+   "name": "Wheat",
+   "desc": "A patch of wheat.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 5,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_crops_wheatStageB_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "pumpkins",
+   "theme": "castle",
+   "name": "Pumpkin patch",
+   "desc": "Pumpkins on the vine.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 5,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_crop_pumpkin_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "pot",
+   "theme": "castle",
+   "name": "Clay pot",
+   "desc": "A big clay pot.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "n_pot_large_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "urn",
+   "theme": "castle",
+   "name": "Stone urn",
+   "desc": "A carved stone urn.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 20,
+   "score": 8,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "g_urn_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "wood-bridge",
+   "theme": "castle",
+   "name": "Wooden bridge",
+   "desc": "A little wooden bridge.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 25,
+   "score": 10,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "n_bridge_wood_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "hedge",
+   "theme": "castle",
+   "name": "Hedge",
+   "desc": "A trimmed hedge. It turns corners by itself.",
+   "role": "deco",
+   "kind": "wall",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "nature",
+   "auto": {
+    "u": "t_hedge_NE",
+    "v": "t_hedge_NW",
+    "corner": {
+     "-u+v": "t_hedgeCurved_NE",
+     "-u-v": "t_hedgeCurved_SE",
+     "+u-v": "t_hedgeCurved_SW",
+     "+u+v": "t_hedgeCurved_NW"
+    }
+   },
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "hedge-gate",
+   "theme": "castle",
+   "name": "Hedge gate",
+   "desc": "A gap in the hedge.",
+   "role": "deco",
+   "kind": "wall",
+   "tier": 1,
+   "price": 12,
+   "score": 4,
+   "cells": 1,
+   "cat": "nature",
+   "auto": {
+    "u": "t_hedgeGate_NE",
+    "v": "t_hedgeGate_NW"
+   },
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "c-fence",
+   "theme": "castle",
+   "name": "Wooden fence",
+   "desc": "A wooden fence. It turns corners by itself.",
+   "role": "deco",
+   "kind": "wall",
+   "tier": 1,
+   "price": 8,
+   "score": 3,
+   "cells": 1,
+   "cat": "village",
+   "auto": {
+    "u": "t_fence_NE",
+    "v": "t_fence_NW",
+    "corner": {
+     "-u+v": "t_fenceCurved_NE",
+     "-u-v": "t_fenceCurved_SE",
+     "+u-v": "t_fenceCurved_SW",
+     "+u+v": "t_fenceCurved_NW"
+    }
+   },
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "fence-gate",
+   "theme": "castle",
+   "name": "Fence gate",
+   "desc": "A gate in the fence.",
+   "role": "deco",
+   "kind": "wall",
+   "tier": 1,
+   "price": 10,
+   "score": 3,
+   "cells": 1,
+   "cat": "village",
+   "auto": {
+    "u": "t_fenceGate_NE",
+    "v": "t_fenceGate_NW"
+   },
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "rail-fence",
+   "theme": "castle",
+   "name": "Rail fence",
+   "desc": "A simple rail fence for the animals.",
+   "role": "deco",
+   "kind": "wall",
+   "tier": 1,
+   "price": 8,
+   "score": 3,
+   "cells": 1,
+   "cat": "village",
+   "auto": {
+    "u": "n_fence_simple_NE",
+    "v": "n_fence_simple_NW",
+    "corner": {
+     "-u+v": "n_fence_corner_NE",
+     "-u-v": "n_fence_corner_SE",
+     "+u-v": "n_fence_corner_SW",
+     "+u+v": "n_fence_corner_NW"
+    }
+   },
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "oak",
+   "theme": "castle",
+   "name": "Oak tree",
+   "desc": "A round oak.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 8,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_tree_oak_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "pine",
+   "theme": "castle",
+   "name": "Pine tree",
+   "desc": "A tall pine.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 8,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_tree_pineDefaultA_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "round-pine",
+   "theme": "castle",
+   "name": "Round pine",
+   "desc": "A bushy pine.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 8,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_tree_pineRoundA_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "autumn-tree",
+   "theme": "castle",
+   "name": "Autumn tree",
+   "desc": "A tree in orange autumn leaves.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 18,
+   "score": 8,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_tree_default_fall_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "tall-tree",
+   "theme": "castle",
+   "name": "Tall tree",
+   "desc": "A tall leafy tree.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 8,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_tree_tall_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "small-tree",
+   "theme": "castle",
+   "name": "Small tree",
+   "desc": "A young tree.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 5,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_tree_small_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "fir",
+   "theme": "castle",
+   "name": "Fir tree",
+   "desc": "A dark green fir.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 8,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "t_tree_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "tall-fir",
+   "theme": "castle",
+   "name": "Tall fir",
+   "desc": "A very tall fir.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 18,
+   "score": 9,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "t_treeHigh_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "poplar",
+   "theme": "castle",
+   "name": "Poplar",
+   "desc": "A tall rounded tree.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 18,
+   "score": 9,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "t_treeHighRound_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "bush",
+   "theme": "castle",
+   "name": "Bush",
+   "desc": "A leafy bush.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 8,
+   "score": 3,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_plant_bushLarge_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "bushes",
+   "theme": "castle",
+   "name": "Bushes",
+   "desc": "A clump of bushes.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 5,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_bushes"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "flowers-red",
+   "theme": "castle",
+   "name": "Red flowers",
+   "desc": "A bed of red flowers.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 5,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_flowerbed_red"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "flowers-yellow",
+   "theme": "castle",
+   "name": "Yellow flowers",
+   "desc": "A bed of yellow flowers.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 5,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_flowerbed_yellow"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "flowers-purple",
+   "theme": "castle",
+   "name": "Purple flowers",
+   "desc": "A bed of purple flowers.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 5,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_flowerbed_purple"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "flowers-mixed",
+   "theme": "castle",
+   "name": "Mixed flowers",
+   "desc": "A bed of every colour.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 6,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_flowerbed_mixed"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "mushrooms",
+   "theme": "castle",
+   "name": "Red mushrooms",
+   "desc": "A group of red mushrooms.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 8,
+   "score": 3,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_mushroom_redGroup_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "tan-mushrooms",
+   "theme": "castle",
+   "name": "Tan mushrooms",
+   "desc": "A group of tan mushrooms.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 8,
+   "score": 3,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_mushroom_tanGroup_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "boulder",
+   "theme": "castle",
+   "name": "Boulder",
+   "desc": "A big grey boulder.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_rock_largeA_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "rocks",
+   "theme": "castle",
+   "name": "Rocks",
+   "desc": "A few small rocks.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 6,
+   "score": 2,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_rock_smallA_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "tall-rock",
+   "theme": "castle",
+   "name": "Tall rock",
+   "desc": "A tall standing rock.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_rock_tallA_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "crag",
+   "theme": "castle",
+   "name": "Crag",
+   "desc": "A jagged outcrop of rock.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 20,
+   "score": 8,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "t_rockLarge_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stump",
+   "theme": "castle",
+   "name": "Tree stump",
+   "desc": "An old stump.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 5,
+   "score": 2,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_stump_round_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "lily-pads",
+   "theme": "castle",
+   "name": "Lily pads",
+   "desc": "Lily pads for a pond.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 6,
+   "score": 2,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_lily_large_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "obelisk",
+   "theme": "castle",
+   "name": "Obelisk",
+   "desc": "A tall stone obelisk.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 40,
+   "score": 18,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_obelisk_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "column",
+   "theme": "castle",
+   "name": "Stone column",
+   "desc": "A carved stone column.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 40,
+   "score": 18,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_column_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "great-column",
+   "theme": "castle",
+   "name": "Great column",
+   "desc": "A towering column.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 3,
+   "price": 60,
+   "score": 26,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "g_columnLarge_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stone-head",
+   "theme": "castle",
+   "name": "Stone head",
+   "desc": "A giant carved head.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 3,
+   "price": 60,
+   "score": 26,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_head_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stone-ring",
+   "theme": "castle",
+   "name": "Stone ring",
+   "desc": "A ring of carved stone.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 3,
+   "price": 55,
+   "score": 24,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_ring_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "pedestal",
+   "theme": "castle",
+   "name": "Pedestal",
+   "desc": "A stone pedestal.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 6,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "knight-statue",
+   "theme": "castle",
+   "name": "Knight statue",
+   "desc": "A stone knight on a pedestal.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 50,
+   "score": 22,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE",
+    "s_knight_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "king-statue",
+   "theme": "castle",
+   "name": "King statue",
+   "desc": "A stone king on a pedestal.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 3,
+   "price": 80,
+   "score": 34,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE",
+    "s_king_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stone-pillar",
+   "theme": "castle",
+   "name": "Stone pillar",
+   "desc": "A slim stone pillar.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 6,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "t_pillarStone_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "small-obelisk",
+   "theme": "castle",
+   "name": "Small obelisk",
+   "desc": "A small pointed pillar.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 30,
+   "score": 12,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "g_pillarObelisk_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "glass-lantern",
+   "theme": "castle",
+   "name": "Glass lantern",
+   "desc": "A lantern in a glass case.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 5,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "g_lanternGlass_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "cow",
+   "theme": "castle",
+   "name": "Cow",
+   "desc": "A cow for the meadow.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 20,
+   "score": 6,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_cow"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "horse",
+   "theme": "castle",
+   "name": "Horse",
+   "desc": "A horse for the stable.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 25,
+   "score": 8,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_horse"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "pig",
+   "theme": "castle",
+   "name": "Pig",
+   "desc": "A pink pig.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 5,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_pig"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "goat",
+   "theme": "castle",
+   "name": "Goat",
+   "desc": "A goat with horns.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 5,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_goat"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "chicken",
+   "theme": "castle",
+   "name": "Chicken",
+   "desc": "A hen for the yard.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_chicken"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "dog",
+   "theme": "castle",
+   "name": "Dog",
+   "desc": "A loyal hound.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 5,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_dog"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "rabbit",
+   "theme": "castle",
+   "name": "Rabbit",
+   "desc": "A rabbit in the grass.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_rabbit"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "duck",
+   "theme": "castle",
+   "name": "Duck",
+   "desc": "A duck for the pond.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_duck"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "owl",
+   "theme": "castle",
+   "name": "Owl",
+   "desc": "An owl for the tower.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 15,
+   "score": 5,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_owl"
+   ],
+   "img": "",
+   "nostyle": false
+  }
+ ],
+ "decoLots": [
+  {
+   "k": 1,
+   "u": 0.5,
+   "v": 0.5
+  },
+  {
+   "k": 2,
+   "u": 1.5,
+   "v": 0.5
+  },
+  {
+   "k": 3,
+   "u": 0.5,
+   "v": 1.5
+  },
+  {
+   "k": 4,
+   "u": -0.5,
+   "v": 0.5
+  },
+  {
+   "k": 5,
+   "u": 0.5,
+   "v": -0.5
+  },
+  {
+   "k": 6,
+   "u": 1.5,
+   "v": -0.5
+  },
+  {
+   "k": 7,
+   "u": -0.5,
+   "v": 1.5
+  },
+  {
+   "k": 8,
+   "u": 1.5,
+   "v": 1.5
+  },
+  {
+   "k": 9,
+   "u": -0.5,
+   "v": -0.5
+  },
+  {
+   "k": 10,
+   "u": 2.5,
+   "v": 0.5
+  },
+  {
+   "k": 11,
+   "u": 0.5,
+   "v": 2.5
+  },
+  {
+   "k": 12,
+   "u": -1.5,
+   "v": 0.5
+  },
+  {
+   "k": 13,
+   "u": 0.5,
+   "v": -1.5
+  },
+  {
+   "k": 14,
+   "u": 2.5,
+   "v": -0.5
+  },
+  {
+   "k": 15,
+   "u": -0.5,
+   "v": 2.5
+  },
+  {
+   "k": 16,
+   "u": -1.5,
+   "v": 1.5
+  },
+  {
+   "k": 17,
+   "u": 1.5,
+   "v": -1.5
+  },
+  {
+   "k": 18,
+   "u": 2.5,
+   "v": 1.5
+  },
+  {
+   "k": 19,
+   "u": 1.5,
+   "v": 2.5
+  },
+  {
+   "k": 20,
+   "u": -1.5,
+   "v": -1.5
+  },
+  {
+   "k": 21,
+   "u": 3.5,
+   "v": 0.5
+  },
+  {
+   "k": 22,
+   "u": 0.5,
+   "v": 3.5
+  },
+  {
+   "k": 23,
+   "u": -2.5,
+   "v": 0.5
+  },
+  {
+   "k": 24,
+   "u": 0.5,
+   "v": -2.5
+  },
+  {
+   "k": 25,
+   "u": 3.5,
+   "v": -0.5
+  },
+  {
+   "k": 26,
+   "u": -0.5,
+   "v": 3.5
+  },
+  {
+   "k": 27,
+   "u": -2.5,
+   "v": 1.5
+  },
+  {
+   "k": 28,
+   "u": 1.5,
+   "v": -2.5
+  },
+  {
+   "k": 29,
+   "u": 3.5,
+   "v": 1.5
+  },
+  {
+   "k": 30,
+   "u": 1.5,
+   "v": 3.5
+  },
+  {
+   "k": 31,
+   "u": -2.5,
+   "v": -0.5
+  },
+  {
+   "k": 32,
+   "u": -0.5,
+   "v": -2.5
+  },
+  {
+   "k": 33,
+   "u": 3.5,
+   "v": -1.5
+  },
+  {
+   "k": 34,
+   "u": -1.5,
+   "v": 3.5
+  },
+  {
+   "k": 35,
+   "u": -2.5,
+   "v": 2.5
+  },
+  {
+   "k": 36,
+   "u": 2.5,
+   "v": -2.5
+  },
+  {
+   "k": 37,
+   "u": 3.5,
+   "v": 2.5
+  },
+  {
+   "k": 38,
+   "u": 2.5,
+   "v": 3.5
+  },
+  {
+   "k": 39,
+   "u": -2.5,
+   "v": -1.5
+  },
+  {
+   "k": 40,
+   "u": -1.5,
+   "v": -2.5
+  }
+ ],
+ "packs": [
+  {
+   "id": "yard",
+   "name": "Yard pack",
+   "desc": "Three decorations picked for you, 25% off.",
+   "kind": "deco",
+   "count": 3,
+   "discount": 0.25
+  },
+  {
+   "id": "builder",
+   "name": "Builder pack",
+   "desc": "One building for your next lot plus a decoration, 15% off.",
+   "kind": "build",
+   "count": 1,
+   "decos": 1,
+   "discount": 0.15
+  },
+  {
+   "id": "grand",
+   "name": "Grand pack",
+   "desc": "Two buildings and two decorations, 20% off.",
+   "kind": "build",
+   "count": 2,
+   "decos": 2,
+   "discount": 0.2
+  }
+ ],
+ "economy": {
+  "answer": 10,
+  "perfectNight": 25,
+  "bonusMin": 3,
+  "bonusMax": 12,
+  "bonusPer": 500
+ },
+ "kit": {
+  "dir": "assets/build/kit/",
+  "cellW": 151,
+  "cellH": 87.2,
+  "sprites": {
+   "wall_NE": {
+    "w": 151,
+    "h": 206,
+    "lift": 119,
+    "coloured": true
+   },
+   "wall_NW": {
+    "w": 151,
+    "h": 206,
+    "lift": 119,
+    "coloured": true
+   },
+   "wall_SE": {
+    "w": 151,
+    "h": 202,
+    "lift": 115,
+    "coloured": true
+   },
+   "wall_SW": {
+    "w": 151,
+    "h": 203,
+    "lift": 116,
+    "coloured": true
+   },
+   "wallCorner_NE": {
+    "w": 151,
+    "h": 202,
+    "lift": 115,
+    "coloured": true
+   },
+   "wallCorner_NW": {
+    "w": 151,
+    "h": 206,
+    "lift": 119,
+    "coloured": true
+   },
+   "wallCorner_SE": {
+    "w": 151,
+    "h": 202,
+    "lift": 115,
+    "coloured": true
+   },
+   "wallCorner_SW": {
+    "w": 151,
+    "h": 206,
+    "lift": 119,
+    "coloured": true
+   },
+   "wallDoor_NE": {
+    "w": 113,
+    "h": 169,
+    "lift": 104,
+    "coloured": true
+   },
+   "wallDoor_NW": {
+    "w": 114,
+    "h": 179,
+    "lift": 113,
+    "coloured": true
+   },
+   "wallDoor_SE": {
+    "w": 114,
+    "h": 175,
+    "lift": 109,
+    "coloured": true
+   },
+   "wallDoor_SW": {
+    "w": 113,
+    "h": 170,
+    "lift": 105,
+    "coloured": true
+   },
+   "metalGate_NE": {
+    "w": 55,
+    "h": 91,
+    "lift": 59,
+    "coloured": true
+   },
+   "metalGate_NW": {
+    "w": 55,
+    "h": 92,
+    "lift": 60,
+    "coloured": true
+   },
+   "metalGate_SE": {
+    "w": 56,
+    "h": 91,
+    "lift": 59,
+    "coloured": true
+   },
+   "metalGate_SW": {
+    "w": 56,
+    "h": 91,
+    "lift": 59,
+    "coloured": true
+   },
+   "wallNarrowStairs_NE": {
+    "w": 148,
+    "h": 169,
+    "lift": 84,
+    "coloured": true
+   },
+   "wallNarrowStairs_NW": {
+    "w": 149,
+    "h": 204,
+    "lift": 118,
+    "coloured": true
+   },
+   "wallNarrowStairs_SE": {
+    "w": 149,
+    "h": 200,
+    "lift": 114,
+    "coloured": true
+   },
+   "wallNarrowStairs_SW": {
+    "w": 148,
+    "h": 182,
+    "lift": 97,
+    "coloured": true
+   },
+   "wallCornerHalfTower_NE": {
+    "w": 205,
+    "h": 206,
+    "lift": 88,
+    "coloured": true
+   },
+   "wallCornerHalfTower_NW": {
+    "w": 151,
+    "h": 234,
+    "lift": 147,
+    "coloured": true
+   },
+   "wallCornerHalfTower_SE": {
+    "w": 204,
+    "h": 206,
+    "lift": 88,
+    "coloured": true
+   },
+   "wallCornerHalfTower_SW": {
+    "w": 151,
+    "h": 243,
+    "lift": 156,
+    "coloured": true
+   },
+   "wallHalf_NE": {
+    "w": 151,
+    "h": 196,
+    "lift": 109,
+    "coloured": true
+   },
+   "wallHalf_NW": {
+    "w": 151,
+    "h": 206,
+    "lift": 119,
+    "coloured": true
+   },
+   "wallHalf_SE": {
+    "w": 151,
+    "h": 202,
+    "lift": 115,
+    "coloured": true
+   },
+   "wallHalf_SW": {
+    "w": 151,
+    "h": 196,
+    "lift": 109,
+    "coloured": true
+   },
+   "towerBase_NE": {
+    "w": 107,
+    "h": 174,
+    "lift": 112,
+    "coloured": true
+   },
+   "towerBase_NW": {
+    "w": 107,
+    "h": 175,
+    "lift": 113,
+    "coloured": true
+   },
+   "towerBase_SE": {
+    "w": 107,
+    "h": 175,
+    "lift": 113,
+    "coloured": true
+   },
+   "towerBase_SW": {
+    "w": 107,
+    "h": 175,
+    "lift": 113,
+    "coloured": true
+   },
+   "towerTop_NE": {
+    "w": 107,
+    "h": 85,
+    "lift": 23,
+    "coloured": true
+   },
+   "towerTop_NW": {
+    "w": 107,
+    "h": 86,
+    "lift": 24,
+    "coloured": true
+   },
+   "towerTop_SE": {
+    "w": 107,
+    "h": 86,
+    "lift": 24,
+    "coloured": true
+   },
+   "towerTop_SW": {
+    "w": 107,
+    "h": 86,
+    "lift": 24,
+    "coloured": true
+   },
+   "towerTopRoof_NE": {
+    "w": 120,
+    "h": 116,
+    "lift": 47,
+    "coloured": true
+   },
+   "towerTopRoof_NW": {
+    "w": 120,
+    "h": 116,
+    "lift": 47,
+    "coloured": true
+   },
+   "towerTopRoof_SE": {
+    "w": 120,
+    "h": 115,
+    "lift": 46,
+    "coloured": true
+   },
+   "towerTopRoof_SW": {
+    "w": 120,
+    "h": 116,
+    "lift": 47,
+    "coloured": true
+   },
+   "towerBalcony_NE": {
+    "w": 142,
+    "h": 174,
+    "lift": 92,
+    "coloured": true
+   },
+   "towerBalcony_NW": {
+    "w": 142,
+    "h": 175,
+    "lift": 93,
+    "coloured": true
+   },
+   "towerBalcony_SE": {
+    "w": 142,
+    "h": 175,
+    "lift": 93,
+    "coloured": true
+   },
+   "towerBalcony_SW": {
+    "w": 142,
+    "h": 175,
+    "lift": 93,
+    "coloured": true
+   },
+   "towerSquareBase_NE": {
+    "w": 151,
+    "h": 180,
+    "lift": 93,
+    "coloured": true
+   },
+   "towerSquareBase_NW": {
+    "w": 151,
+    "h": 180,
+    "lift": 93,
+    "coloured": true
+   },
+   "towerSquareBase_SE": {
+    "w": 151,
+    "h": 179,
+    "lift": 92,
+    "coloured": true
+   },
+   "towerSquareBase_SW": {
+    "w": 151,
+    "h": 180,
+    "lift": 93,
+    "coloured": true
+   },
+   "towerSquareBaseColor_NE": {
+    "w": 151,
+    "h": 180,
+    "lift": 93,
+    "coloured": true
+   },
+   "towerSquareBaseColor_NW": {
+    "w": 151,
+    "h": 180,
+    "lift": 93,
+    "coloured": true
+   },
+   "towerSquareBaseColor_SE": {
+    "w": 151,
+    "h": 179,
+    "lift": 92,
+    "coloured": true
+   },
+   "towerSquareBaseColor_SW": {
+    "w": 151,
+    "h": 180,
+    "lift": 93,
+    "coloured": true
+   },
+   "towerSquareMid_NE": {
+    "w": 140,
+    "h": 175,
+    "lift": 94,
+    "coloured": true
+   },
+   "towerSquareMid_NW": {
+    "w": 140,
+    "h": 176,
+    "lift": 95,
+    "coloured": true
+   },
+   "towerSquareMid_SE": {
+    "w": 141,
+    "h": 175,
+    "lift": 94,
+    "coloured": true
+   },
+   "towerSquareMid_SW": {
+    "w": 141,
+    "h": 175,
+    "lift": 94,
+    "coloured": true
+   },
+   "towerSquareMidWindows_NE": {
+    "w": 140,
+    "h": 175,
+    "lift": 94,
+    "coloured": true
+   },
+   "towerSquareMidWindows_NW": {
+    "w": 140,
+    "h": 176,
+    "lift": 95,
+    "coloured": true
+   },
+   "towerSquareMidWindows_SE": {
+    "w": 141,
+    "h": 175,
+    "lift": 94,
+    "coloured": true
+   },
+   "towerSquareMidWindows_SW": {
+    "w": 141,
+    "h": 175,
+    "lift": 94,
+    "coloured": true
+   },
+   "towerSquareMidOpen_NE": {
+    "w": 140,
+    "h": 175,
+    "lift": 94,
+    "coloured": true
+   },
+   "towerSquareMidOpen_NW": {
+    "w": 140,
+    "h": 176,
+    "lift": 95,
+    "coloured": true
+   },
+   "towerSquareMidOpen_SE": {
+    "w": 141,
+    "h": 175,
+    "lift": 94,
+    "coloured": true
+   },
+   "towerSquareMidOpen_SW": {
+    "w": 141,
+    "h": 175,
+    "lift": 94,
+    "coloured": true
+   },
+   "towerSquareMidColor_NE": {
+    "w": 141,
+    "h": 115,
+    "lift": 34,
+    "coloured": true
+   },
+   "towerSquareMidColor_NW": {
+    "w": 141,
+    "h": 115,
+    "lift": 34,
+    "coloured": true
+   },
+   "towerSquareMidColor_SE": {
+    "w": 141,
+    "h": 115,
+    "lift": 34,
+    "coloured": true
+   },
+   "towerSquareMidColor_SW": {
+    "w": 141,
+    "h": 115,
+    "lift": 34,
+    "coloured": true
+   },
+   "towerSquareArch_NE": {
+    "w": 140,
+    "h": 175,
+    "lift": 94,
+    "coloured": true
+   },
+   "towerSquareArch_NW": {
+    "w": 140,
+    "h": 176,
+    "lift": 95,
+    "coloured": true
+   },
+   "towerSquareArch_SE": {
+    "w": 141,
+    "h": 175,
+    "lift": 94,
+    "coloured": true
+   },
+   "towerSquareArch_SW": {
+    "w": 141,
+    "h": 175,
+    "lift": 94,
+    "coloured": true
+   },
+   "towerSquareTop_NE": {
+    "w": 151,
+    "h": 126,
+    "lift": 39,
+    "coloured": true
+   },
+   "towerSquareTop_NW": {
+    "w": 151,
+    "h": 126,
+    "lift": 39,
+    "coloured": true
+   },
+   "towerSquareTop_SE": {
+    "w": 151,
+    "h": 126,
+    "lift": 39,
+    "coloured": true
+   },
+   "towerSquareTop_SW": {
+    "w": 151,
+    "h": 126,
+    "lift": 39,
+    "coloured": true
+   },
+   "towerSquareTopRoof_NE": {
+    "w": 151,
+    "h": 129,
+    "lift": 42,
+    "coloured": true
+   },
+   "towerSquareTopRoof_NW": {
+    "w": 151,
+    "h": 129,
+    "lift": 42,
+    "coloured": true
+   },
+   "towerSquareTopRoof_SE": {
+    "w": 151,
+    "h": 130,
+    "lift": 43,
+    "coloured": true
+   },
+   "towerSquareTopRoof_SW": {
+    "w": 151,
+    "h": 129,
+    "lift": 42,
+    "coloured": true
+   },
+   "towerSquareTopRoofHigh_NE": {
+    "w": 151,
+    "h": 155,
+    "lift": 68,
+    "coloured": true
+   },
+   "towerSquareTopRoofHigh_NW": {
+    "w": 151,
+    "h": 156,
+    "lift": 69,
+    "coloured": true
+   },
+   "towerSquareTopRoofHigh_SE": {
+    "w": 151,
+    "h": 156,
+    "lift": 69,
+    "coloured": true
+   },
+   "towerSquareTopRoofHigh_SW": {
+    "w": 151,
+    "h": 155,
+    "lift": 68,
+    "coloured": true
+   },
+   "towerSquareTopColor_NE": {
+    "w": 151,
+    "h": 132,
+    "lift": 45,
+    "coloured": true
+   },
+   "towerSquareTopColor_NW": {
+    "w": 151,
+    "h": 132,
+    "lift": 45,
+    "coloured": true
+   },
+   "towerSquareTopColor_SE": {
+    "w": 151,
+    "h": 132,
+    "lift": 45,
+    "coloured": true
+   },
+   "towerSquareTopColor_SW": {
+    "w": 151,
+    "h": 132,
+    "lift": 45,
+    "coloured": true
+   },
+   "towerSquareRoof_NE": {
+    "w": 151,
+    "h": 209,
+    "lift": 122,
+    "coloured": true
+   },
+   "towerSquareRoof_NW": {
+    "w": 151,
+    "h": 209,
+    "lift": 122,
+    "coloured": true
+   },
+   "towerSquareRoof_SE": {
+    "w": 151,
+    "h": 209,
+    "lift": 122,
+    "coloured": true
+   },
+   "towerSquareRoof_SW": {
+    "w": 151,
+    "h": 209,
+    "lift": 122,
+    "coloured": true
+   },
+   "towerSquarePoles_NE": {
+    "w": 140,
+    "h": 175,
+    "lift": 94,
+    "coloured": true
+   },
+   "towerSquarePoles_NW": {
+    "w": 140,
+    "h": 176,
+    "lift": 95,
+    "coloured": true
+   },
+   "towerSquarePoles_SE": {
+    "w": 141,
+    "h": 175,
+    "lift": 94,
+    "coloured": true
+   },
+   "towerSquarePoles_SW": {
+    "w": 141,
+    "h": 175,
+    "lift": 94,
+    "coloured": true
+   },
+   "flagBlue_NE": {
+    "w": 42,
+    "h": 79,
+    "lift": 55,
+    "coloured": true
+   },
+   "flagBlue_NW": {
+    "w": 41,
+    "h": 80,
+    "lift": 56,
+    "coloured": true
+   },
+   "flagBlue_SE": {
+    "w": 42,
+    "h": 63,
+    "lift": 39,
+    "coloured": true
+   },
+   "flagBlue_SW": {
+    "w": 42,
+    "h": 63,
+    "lift": 39,
+    "coloured": true
+   },
+   "flagBlueWide_NE": {
+    "w": 31,
+    "h": 76,
+    "lift": 58,
+    "coloured": true
+   },
+   "flagBlueWide_NW": {
+    "w": 31,
+    "h": 76,
+    "lift": 58,
+    "coloured": true
+   },
+   "flagBlueWide_SE": {
+    "w": 31,
+    "h": 63,
+    "lift": 45,
+    "coloured": true
+   },
+   "flagBlueWide_SW": {
+    "w": 31,
+    "h": 63,
+    "lift": 45,
+    "coloured": true
+   },
+   "flagBannerLong_NE": {
+    "w": 51,
+    "h": 183,
+    "lift": 154,
+    "coloured": true
+   },
+   "flagBannerLong_NW": {
+    "w": 51,
+    "h": 183,
+    "lift": 154,
+    "coloured": true
+   },
+   "flagBannerLong_SE": {
+    "w": 51,
+    "h": 182,
+    "lift": 153,
+    "coloured": true
+   },
+   "flagBannerLong_SW": {
+    "w": 51,
+    "h": 183,
+    "lift": 154,
+    "coloured": true
+   },
+   "flagBannerShort_NE": {
+    "w": 51,
+    "h": 78,
+    "lift": 49,
+    "coloured": true
+   },
+   "flagBannerShort_NW": {
+    "w": 51,
+    "h": 79,
+    "lift": 50,
+    "coloured": true
+   },
+   "flagBannerShort_SE": {
+    "w": 51,
+    "h": 77,
+    "lift": 48,
+    "coloured": true
+   },
+   "flagBannerShort_SW": {
+    "w": 51,
+    "h": 78,
+    "lift": 49,
+    "coloured": true
+   },
+   "shieldBlue_NE": {
+    "w": 23,
+    "h": 27,
+    "lift": 14,
+    "coloured": true
+   },
+   "shieldBlue_NW": {
+    "w": 23,
+    "h": 28,
+    "lift": 15,
+    "coloured": true
+   },
+   "shieldBlue_SE": {
+    "w": 23,
+    "h": 28,
+    "lift": 15,
+    "coloured": true
+   },
+   "shieldBlue_SW": {
+    "w": 23,
+    "h": 27,
+    "lift": 14,
+    "coloured": true
+   },
+   "bridge_NE": {
+    "w": 138,
+    "h": 101,
+    "lift": 21,
+    "coloured": true
+   },
+   "bridge_NW": {
+    "w": 138,
+    "h": 102,
+    "lift": 22,
+    "coloured": true
+   },
+   "bridge_SE": {
+    "w": 139,
+    "h": 102,
+    "lift": 22,
+    "coloured": true
+   },
+   "bridge_SW": {
+    "w": 139,
+    "h": 101,
+    "lift": 21,
+    "coloured": true
+   },
+   "stairsStone_NE": {
+    "w": 80,
+    "h": 67,
+    "lift": 21,
+    "coloured": true
+   },
+   "stairsStone_NW": {
+    "w": 79,
+    "h": 67,
+    "lift": 21,
+    "coloured": true
+   },
+   "stairsStone_SE": {
+    "w": 80,
+    "h": 107,
+    "lift": 61,
+    "coloured": true
+   },
+   "stairsStone_SW": {
+    "w": 80,
+    "h": 108,
+    "lift": 62,
+    "coloured": true
+   },
+   "king_NE": {
+    "w": 45,
+    "h": 67,
+    "lift": 41,
+    "coloured": true
+   },
+   "king_NW": {
+    "w": 45,
+    "h": 67,
+    "lift": 41,
+    "coloured": true
+   },
+   "king_SE": {
+    "w": 45,
+    "h": 67,
+    "lift": 41,
+    "coloured": true
+   },
+   "king_SW": {
+    "w": 45,
+    "h": 67,
+    "lift": 41,
+    "coloured": true
+   },
+   "knightBlue_NE": {
+    "w": 45,
+    "h": 67,
+    "lift": 41,
+    "coloured": true
+   },
+   "knightBlue_NW": {
+    "w": 45,
+    "h": 67,
+    "lift": 41,
+    "coloured": true
+   },
+   "knightBlue_SE": {
+    "w": 45,
+    "h": 67,
+    "lift": 41,
+    "coloured": true
+   },
+   "knightBlue_SW": {
+    "w": 45,
+    "h": 67,
+    "lift": 41,
+    "coloured": true
+   },
+   "knightRed_NE": {
+    "w": 45,
+    "h": 67,
+    "lift": 41,
+    "coloured": true
+   },
+   "knightRed_NW": {
+    "w": 45,
+    "h": 67,
+    "lift": 41,
+    "coloured": true
+   },
+   "knightRed_SE": {
+    "w": 45,
+    "h": 67,
+    "lift": 41,
+    "coloured": true
+   },
+   "knightRed_SW": {
+    "w": 45,
+    "h": 67,
+    "lift": 41,
+    "coloured": true
+   },
+   "siegeBallista_NE": {
+    "w": 135,
+    "h": 129,
+    "lift": 51,
+    "coloured": true
+   },
+   "siegeBallista_NW": {
+    "w": 135,
+    "h": 132,
+    "lift": 54,
+    "coloured": true
+   },
+   "siegeBallista_SE": {
+    "w": 136,
+    "h": 129,
+    "lift": 50,
+    "coloured": true
+   },
+   "siegeBallista_SW": {
+    "w": 136,
+    "h": 132,
+    "lift": 53,
+    "coloured": true
+   },
+   "siegeCatapult_NE": {
+    "w": 182,
+    "h": 186,
+    "lift": 81,
+    "coloured": true
+   },
+   "siegeCatapult_NW": {
+    "w": 182,
+    "h": 186,
+    "lift": 81,
+    "coloured": true
+   },
+   "siegeCatapult_SE": {
+    "w": 182,
+    "h": 185,
+    "lift": 80,
+    "coloured": true
+   },
+   "siegeCatapult_SW": {
+    "w": 182,
+    "h": 185,
+    "lift": 80,
+    "coloured": true
+   },
+   "siegeRam_NE": {
+    "w": 173,
+    "h": 169,
+    "lift": 69,
+    "coloured": true
+   },
+   "siegeRam_NW": {
+    "w": 173,
+    "h": 169,
+    "lift": 69,
+    "coloured": true
+   },
+   "siegeRam_SE": {
+    "w": 174,
+    "h": 169,
+    "lift": 69,
+    "coloured": true
+   },
+   "siegeRam_SW": {
+    "w": 174,
+    "h": 169,
+    "lift": 69,
+    "coloured": true
+   },
+   "siegeTower_NE": {
+    "w": 202,
+    "h": 277,
+    "lift": 160,
+    "coloured": true
+   },
+   "siegeTower_NW": {
+    "w": 202,
+    "h": 298,
+    "lift": 181,
+    "coloured": true
+   },
+   "siegeTower_SE": {
+    "w": 202,
+    "h": 276,
+    "lift": 159,
+    "coloured": true
+   },
+   "siegeTower_SW": {
+    "w": 202,
+    "h": 298,
+    "lift": 181,
+    "coloured": true
+   },
+   "siegeTrebuchet_NE": {
+    "w": 199,
+    "h": 245,
+    "lift": 130,
+    "coloured": true
+   },
+   "siegeTrebuchet_NW": {
+    "w": 199,
+    "h": 228,
+    "lift": 113,
+    "coloured": true
+   },
+   "siegeTrebuchet_SE": {
+    "w": 198,
+    "h": 244,
+    "lift": 130,
+    "coloured": true
+   },
+   "siegeTrebuchet_SW": {
+    "w": 198,
+    "h": 228,
+    "lift": 114,
+    "coloured": true
+   },
+   "t_wallBlock_NE": {
+    "w": 151,
+    "h": 168,
+    "lift": 81,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_wallBlock_NW": {
+    "w": 151,
+    "h": 168,
+    "lift": 81,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_wallBlock_SE": {
+    "w": 151,
+    "h": 168,
+    "lift": 81,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_wallBlock_SW": {
+    "w": 151,
+    "h": 168,
+    "lift": 81,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_wallWoodBlock_NE": {
+    "w": 151,
+    "h": 168,
+    "lift": 81,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_wallWoodBlock_NW": {
+    "w": 151,
+    "h": 168,
+    "lift": 81,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_wallWoodBlock_SE": {
+    "w": 151,
+    "h": 168,
+    "lift": 81,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_wallWoodBlock_SW": {
+    "w": 151,
+    "h": 168,
+    "lift": 81,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_roofGable_NE": {
+    "w": 165,
+    "h": 114,
+    "lift": 27,
+    "oy": 2,
+    "coloured": false
+   },
+   "t_roofGable_NW": {
+    "w": 165,
+    "h": 114,
+    "lift": 27,
+    "oy": 2,
+    "coloured": false
+   },
+   "t_roofGable_SE": {
+    "w": 165,
+    "h": 114,
+    "lift": 27,
+    "oy": 2,
+    "coloured": false
+   },
+   "t_roofGable_SW": {
+    "w": 165,
+    "h": 114,
+    "lift": 27,
+    "oy": 2,
+    "coloured": false
+   },
+   "t_roofHigh_NE": {
+    "w": 163,
+    "h": 186,
+    "lift": 99,
+    "oy": 5,
+    "coloured": false
+   },
+   "t_roofHigh_NW": {
+    "w": 163,
+    "h": 186,
+    "lift": 99,
+    "oy": 5,
+    "coloured": false
+   },
+   "t_roofHigh_SE": {
+    "w": 163,
+    "h": 143,
+    "lift": 56,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_roofHigh_SW": {
+    "w": 163,
+    "h": 143,
+    "lift": 56,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_roofHighPoint_NE": {
+    "w": 158,
+    "h": 143,
+    "lift": 56,
+    "oy": 2,
+    "coloured": false
+   },
+   "t_roofHighPoint_NW": {
+    "w": 158,
+    "h": 143,
+    "lift": 56,
+    "oy": 2,
+    "coloured": false
+   },
+   "t_roofHighPoint_SE": {
+    "w": 158,
+    "h": 143,
+    "lift": 56,
+    "oy": 2,
+    "coloured": false
+   },
+   "t_roofHighPoint_SW": {
+    "w": 158,
+    "h": 143,
+    "lift": 56,
+    "oy": 2,
+    "coloured": false
+   },
+   "t_roofPoint_NE": {
+    "w": 158,
+    "h": 98,
+    "lift": 11,
+    "oy": 2,
+    "coloured": false
+   },
+   "t_roofPoint_NW": {
+    "w": 158,
+    "h": 98,
+    "lift": 11,
+    "oy": 2,
+    "coloured": false
+   },
+   "t_roofPoint_SE": {
+    "w": 158,
+    "h": 98,
+    "lift": 11,
+    "oy": 2,
+    "coloured": false
+   },
+   "t_roofPoint_SW": {
+    "w": 158,
+    "h": 98,
+    "lift": 11,
+    "oy": 2,
+    "coloured": false
+   },
+   "t_roofHighGable_NE": {
+    "w": 170,
+    "h": 168,
+    "lift": 81,
+    "oy": 7,
+    "coloured": false
+   },
+   "t_roofHighGable_NW": {
+    "w": 170,
+    "h": 168,
+    "lift": 81,
+    "oy": 7,
+    "coloured": false
+   },
+   "t_roofHighGable_SE": {
+    "w": 170,
+    "h": 168,
+    "lift": 81,
+    "oy": 7,
+    "coloured": false
+   },
+   "t_roofHighGable_SW": {
+    "w": 170,
+    "h": 168,
+    "lift": 81,
+    "oy": 7,
+    "coloured": false
+   },
+   "t_roof_NE": {
+    "w": 160,
+    "h": 137,
+    "lift": 50,
+    "oy": 3,
+    "coloured": false
+   },
+   "t_roof_NW": {
+    "w": 160,
+    "h": 137,
+    "lift": 50,
+    "oy": 3,
+    "coloured": false
+   },
+   "t_roof_SE": {
+    "w": 160,
+    "h": 96,
+    "lift": 9,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_roof_SW": {
+    "w": 160,
+    "h": 96,
+    "lift": 9,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_roofHighWindow_NE": {
+    "w": 163,
+    "h": 186,
+    "lift": 99,
+    "oy": 5,
+    "coloured": false
+   },
+   "t_roofHighWindow_NW": {
+    "w": 163,
+    "h": 186,
+    "lift": 99,
+    "oy": 5,
+    "coloured": false
+   },
+   "t_roofHighWindow_SE": {
+    "w": 163,
+    "h": 144,
+    "lift": 57,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_roofHighWindow_SW": {
+    "w": 163,
+    "h": 144,
+    "lift": 57,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_stallRed_NE": {
+    "w": 151,
+    "h": 172,
+    "lift": 85,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_stallRed_NW": {
+    "w": 151,
+    "h": 172,
+    "lift": 85,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_stallRed_SE": {
+    "w": 151,
+    "h": 172,
+    "lift": 85,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_stallRed_SW": {
+    "w": 151,
+    "h": 172,
+    "lift": 85,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_stallGreen_NE": {
+    "w": 151,
+    "h": 172,
+    "lift": 85,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_stallGreen_NW": {
+    "w": 151,
+    "h": 172,
+    "lift": 85,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_stallGreen_SE": {
+    "w": 151,
+    "h": 172,
+    "lift": 85,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_stallGreen_SW": {
+    "w": 151,
+    "h": 172,
+    "lift": 85,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_cart_NE": {
+    "w": 153,
+    "h": 112,
+    "lift": 25,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_cart_NW": {
+    "w": 153,
+    "h": 125,
+    "lift": 38,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_cart_SE": {
+    "w": 153,
+    "h": 112,
+    "lift": 25,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_cart_SW": {
+    "w": 153,
+    "h": 125,
+    "lift": 38,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_cartHigh_NE": {
+    "w": 153,
+    "h": 132,
+    "lift": 45,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_cartHigh_NW": {
+    "w": 153,
+    "h": 148,
+    "lift": 61,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_cartHigh_SE": {
+    "w": 153,
+    "h": 132,
+    "lift": 45,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_cartHigh_SW": {
+    "w": 153,
+    "h": 148,
+    "lift": 61,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_lantern_NE": {
+    "w": 26,
+    "h": 185,
+    "lift": 98,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_lantern_NW": {
+    "w": 26,
+    "h": 185,
+    "lift": 98,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_lantern_SE": {
+    "w": 26,
+    "h": 185,
+    "lift": 98,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_lantern_SW": {
+    "w": 26,
+    "h": 185,
+    "lift": 98,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_fountainRound_NE": {
+    "w": 214,
+    "h": 134,
+    "lift": 47,
+    "oy": 16,
+    "coloured": false
+   },
+   "t_fountainRound_NW": {
+    "w": 214,
+    "h": 134,
+    "lift": 47,
+    "oy": 16,
+    "coloured": false
+   },
+   "t_fountainRound_SE": {
+    "w": 214,
+    "h": 134,
+    "lift": 47,
+    "oy": 16,
+    "coloured": false
+   },
+   "t_fountainRound_SW": {
+    "w": 214,
+    "h": 134,
+    "lift": 47,
+    "oy": 16,
+    "coloured": false
+   },
+   "t_fountainSquare_NE": {
+    "w": 302,
+    "h": 175,
+    "lift": 88,
+    "oy": 37,
+    "coloured": false
+   },
+   "t_fountainSquare_NW": {
+    "w": 302,
+    "h": 175,
+    "lift": 88,
+    "oy": 37,
+    "coloured": false
+   },
+   "t_fountainSquare_SE": {
+    "w": 302,
+    "h": 175,
+    "lift": 88,
+    "oy": 37,
+    "coloured": false
+   },
+   "t_fountainSquare_SW": {
+    "w": 302,
+    "h": 175,
+    "lift": 88,
+    "oy": 37,
+    "coloured": false
+   },
+   "t_tree_NE": {
+    "w": 109,
+    "h": 260,
+    "lift": 173,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_tree_NW": {
+    "w": 109,
+    "h": 260,
+    "lift": 173,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_tree_SE": {
+    "w": 109,
+    "h": 260,
+    "lift": 173,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_tree_SW": {
+    "w": 109,
+    "h": 260,
+    "lift": 173,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_treeHigh_NE": {
+    "w": 109,
+    "h": 311,
+    "lift": 224,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_treeHigh_NW": {
+    "w": 109,
+    "h": 311,
+    "lift": 224,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_treeHigh_SE": {
+    "w": 109,
+    "h": 311,
+    "lift": 224,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_treeHigh_SW": {
+    "w": 109,
+    "h": 311,
+    "lift": 224,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_treeHighRound_NE": {
+    "w": 109,
+    "h": 296,
+    "lift": 209,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_treeHighRound_NW": {
+    "w": 109,
+    "h": 296,
+    "lift": 209,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_treeHighRound_SE": {
+    "w": 109,
+    "h": 296,
+    "lift": 209,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_treeHighRound_SW": {
+    "w": 109,
+    "h": 296,
+    "lift": 209,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_rockLarge_NE": {
+    "w": 181,
+    "h": 167,
+    "lift": 80,
+    "oy": 7,
+    "coloured": false
+   },
+   "t_rockLarge_NW": {
+    "w": 184,
+    "h": 163,
+    "lift": 76,
+    "oy": 8,
+    "coloured": false
+   },
+   "t_rockLarge_SE": {
+    "w": 184,
+    "h": 163,
+    "lift": 76,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_rockLarge_SW": {
+    "w": 181,
+    "h": 164,
+    "lift": 77,
+    "oy": 8,
+    "coloured": false
+   },
+   "t_pillarStone_NE": {
+    "w": 21,
+    "h": 135,
+    "lift": 48,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_pillarStone_NW": {
+    "w": 21,
+    "h": 135,
+    "lift": 48,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_pillarStone_SE": {
+    "w": 21,
+    "h": 135,
+    "lift": 48,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_pillarStone_SW": {
+    "w": 21,
+    "h": 135,
+    "lift": 48,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_planks_NE": {
+    "w": 151,
+    "h": 81,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_planks_NW": {
+    "w": 151,
+    "h": 81,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_planks_SE": {
+    "w": 151,
+    "h": 81,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_planks_SW": {
+    "w": 151,
+    "h": 81,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_hedge_NE": {
+    "w": 151,
+    "h": 95,
+    "lift": 8,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_hedge_NW": {
+    "w": 151,
+    "h": 95,
+    "lift": 8,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_hedge_SE": {
+    "w": 151,
+    "h": 67,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_hedge_SW": {
+    "w": 151,
+    "h": 67,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_hedgeGate_NE": {
+    "w": 151,
+    "h": 95,
+    "lift": 8,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_hedgeGate_NW": {
+    "w": 151,
+    "h": 95,
+    "lift": 8,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_hedgeGate_SE": {
+    "w": 151,
+    "h": 67,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_hedgeGate_SW": {
+    "w": 151,
+    "h": 67,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_fence_NE": {
+    "w": 151,
+    "h": 110,
+    "lift": 23,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_fence_NW": {
+    "w": 151,
+    "h": 110,
+    "lift": 23,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_fence_SE": {
+    "w": 151,
+    "h": 77,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_fence_SW": {
+    "w": 151,
+    "h": 77,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_fenceGate_NE": {
+    "w": 151,
+    "h": 110,
+    "lift": 23,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_fenceGate_NW": {
+    "w": 151,
+    "h": 110,
+    "lift": 23,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_fenceGate_SE": {
+    "w": 151,
+    "h": 77,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_fenceGate_SW": {
+    "w": 151,
+    "h": 77,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_hedgeCurved_NE": {
+    "w": 151,
+    "h": 84,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_hedgeCurved_NW": {
+    "w": 107,
+    "h": 95,
+    "lift": 8,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_hedgeCurved_SE": {
+    "w": 107,
+    "h": 95,
+    "lift": 8,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_hedgeCurved_SW": {
+    "w": 151,
+    "h": 67,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_fenceCurved_NE": {
+    "w": 151,
+    "h": 100,
+    "lift": 13,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_fenceCurved_NW": {
+    "w": 107,
+    "h": 110,
+    "lift": 23,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_fenceCurved_SE": {
+    "w": 107,
+    "h": 110,
+    "lift": 23,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_fenceCurved_SW": {
+    "w": 151,
+    "h": 77,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_windmill_NE": {
+    "w": 235,
+    "h": 360,
+    "lift": 273,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_watermill_NE": {
+    "w": 186,
+    "h": 215,
+    "lift": 128,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_windmill_NW": {
+    "w": 235,
+    "h": 340,
+    "lift": 253,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_watermill_NW": {
+    "w": 186,
+    "h": 215,
+    "lift": 128,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_windmill_SE": {
+    "w": 235,
+    "h": 361,
+    "lift": 274,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_watermill_SE": {
+    "w": 186,
+    "h": 215,
+    "lift": 128,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_windmill_SW": {
+    "w": 235,
+    "h": 340,
+    "lift": 253,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_watermill_SW": {
+    "w": 186,
+    "h": 215,
+    "lift": 128,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_oak_NE": {
+    "w": 77,
+    "h": 159,
+    "lift": 72,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_oak_NW": {
+    "w": 77,
+    "h": 159,
+    "lift": 72,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_oak_SE": {
+    "w": 77,
+    "h": 159,
+    "lift": 72,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_oak_SW": {
+    "w": 77,
+    "h": 159,
+    "lift": 72,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_pineDefaultA_NE": {
+    "w": 58,
+    "h": 180,
+    "lift": 93,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_pineDefaultA_NW": {
+    "w": 58,
+    "h": 180,
+    "lift": 93,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_pineDefaultA_SE": {
+    "w": 58,
+    "h": 180,
+    "lift": 93,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_pineDefaultA_SW": {
+    "w": 58,
+    "h": 180,
+    "lift": 93,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_default_fall_NE": {
+    "w": 79,
+    "h": 195,
+    "lift": 108,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_default_fall_NW": {
+    "w": 79,
+    "h": 195,
+    "lift": 108,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_default_fall_SE": {
+    "w": 79,
+    "h": 195,
+    "lift": 108,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_default_fall_SW": {
+    "w": 79,
+    "h": 195,
+    "lift": 108,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_detailed_NE": {
+    "w": 88,
+    "h": 173,
+    "lift": 86,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_detailed_NW": {
+    "w": 93,
+    "h": 173,
+    "lift": 86,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_detailed_SE": {
+    "w": 93,
+    "h": 173,
+    "lift": 86,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_detailed_SW": {
+    "w": 88,
+    "h": 173,
+    "lift": 86,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_small_NE": {
+    "w": 44,
+    "h": 141,
+    "lift": 54,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_small_NW": {
+    "w": 44,
+    "h": 141,
+    "lift": 54,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_small_SE": {
+    "w": 44,
+    "h": 141,
+    "lift": 54,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_small_SW": {
+    "w": 44,
+    "h": 141,
+    "lift": 54,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_tall_NE": {
+    "w": 49,
+    "h": 197,
+    "lift": 110,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_tall_NW": {
+    "w": 49,
+    "h": 197,
+    "lift": 110,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_tall_SE": {
+    "w": 49,
+    "h": 197,
+    "lift": 110,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_tall_SW": {
+    "w": 49,
+    "h": 197,
+    "lift": 110,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_pineRoundA_NE": {
+    "w": 74,
+    "h": 166,
+    "lift": 79,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_pineRoundA_NW": {
+    "w": 74,
+    "h": 166,
+    "lift": 79,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_pineRoundA_SE": {
+    "w": 74,
+    "h": 166,
+    "lift": 79,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_pineRoundA_SW": {
+    "w": 74,
+    "h": 166,
+    "lift": 79,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_plant_bush_NE": {
+    "w": 33,
+    "h": 69,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_plant_bush_NW": {
+    "w": 33,
+    "h": 69,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_plant_bush_SE": {
+    "w": 33,
+    "h": 69,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_plant_bush_SW": {
+    "w": 33,
+    "h": 69,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_plant_bushLarge_NE": {
+    "w": 39,
+    "h": 67,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_plant_bushLarge_NW": {
+    "w": 39,
+    "h": 71,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_plant_bushLarge_SE": {
+    "w": 39,
+    "h": 67,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_plant_bushLarge_SW": {
+    "w": 39,
+    "h": 70,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_mushroom_redGroup_NE": {
+    "w": 35,
+    "h": 64,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_mushroom_redGroup_NW": {
+    "w": 37,
+    "h": 64,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_mushroom_redGroup_SE": {
+    "w": 37,
+    "h": 60,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_mushroom_redGroup_SW": {
+    "w": 35,
+    "h": 60,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_mushroom_tanGroup_NE": {
+    "w": 35,
+    "h": 64,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_mushroom_tanGroup_NW": {
+    "w": 37,
+    "h": 64,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_mushroom_tanGroup_SE": {
+    "w": 37,
+    "h": 60,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_mushroom_tanGroup_SW": {
+    "w": 35,
+    "h": 60,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_rock_largeA_NE": {
+    "w": 100,
+    "h": 80,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_rock_largeA_NW": {
+    "w": 125,
+    "h": 79,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_rock_largeA_SE": {
+    "w": 125,
+    "h": 71,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_rock_largeA_SW": {
+    "w": 100,
+    "h": 84,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_rock_smallA_NE": {
+    "w": 46,
+    "h": 60,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_rock_smallA_NW": {
+    "w": 44,
+    "h": 60,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_rock_smallA_SE": {
+    "w": 44,
+    "h": 59,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_rock_smallA_SW": {
+    "w": 46,
+    "h": 57,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_rock_tallA_NE": {
+    "w": 102,
+    "h": 135,
+    "lift": 48,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_rock_tallA_NW": {
+    "w": 98,
+    "h": 128,
+    "lift": 41,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_rock_tallA_SE": {
+    "w": 98,
+    "h": 144,
+    "lift": 57,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_rock_tallA_SW": {
+    "w": 102,
+    "h": 138,
+    "lift": 51,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_statue_column_NE": {
+    "w": 46,
+    "h": 138,
+    "lift": 51,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_statue_column_NW": {
+    "w": 46,
+    "h": 138,
+    "lift": 51,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_statue_column_SE": {
+    "w": 46,
+    "h": 138,
+    "lift": 51,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_statue_column_SW": {
+    "w": 46,
+    "h": 138,
+    "lift": 51,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_statue_obelisk_NE": {
+    "w": 46,
+    "h": 118,
+    "lift": 31,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_statue_obelisk_NW": {
+    "w": 46,
+    "h": 118,
+    "lift": 31,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_statue_obelisk_SE": {
+    "w": 46,
+    "h": 118,
+    "lift": 31,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_statue_obelisk_SW": {
+    "w": 46,
+    "h": 118,
+    "lift": 31,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_statue_head_NE": {
+    "w": 72,
+    "h": 137,
+    "lift": 50,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_statue_head_NW": {
+    "w": 72,
+    "h": 137,
+    "lift": 50,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_statue_head_SE": {
+    "w": 72,
+    "h": 142,
+    "lift": 55,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_statue_head_SW": {
+    "w": 72,
+    "h": 142,
+    "lift": 55,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_statue_ring_NE": {
+    "w": 77,
+    "h": 115,
+    "lift": 28,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_statue_ring_NW": {
+    "w": 77,
+    "h": 115,
+    "lift": 28,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_statue_ring_SE": {
+    "w": 77,
+    "h": 115,
+    "lift": 28,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_statue_ring_SW": {
+    "w": 77,
+    "h": 115,
+    "lift": 28,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_log_stack_NE": {
+    "w": 84,
+    "h": 87,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_log_stack_NW": {
+    "w": 84,
+    "h": 82,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_log_stack_SE": {
+    "w": 84,
+    "h": 82,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_log_stack_SW": {
+    "w": 84,
+    "h": 87,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_campfire_stones_NE": {
+    "w": 63,
+    "h": 55,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_campfire_stones_NW": {
+    "w": 58,
+    "h": 58,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_campfire_stones_SE": {
+    "w": 58,
+    "h": 55,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_campfire_stones_SW": {
+    "w": 63,
+    "h": 58,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tent_detailedOpen_NE": {
+    "w": 109,
+    "h": 101,
+    "lift": 14,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tent_detailedOpen_NW": {
+    "w": 109,
+    "h": 101,
+    "lift": 14,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tent_detailedOpen_SE": {
+    "w": 109,
+    "h": 101,
+    "lift": 14,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tent_detailedOpen_SW": {
+    "w": 109,
+    "h": 101,
+    "lift": 14,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_sign_NE": {
+    "w": 33,
+    "h": 81,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_sign_NW": {
+    "w": 33,
+    "h": 81,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_sign_SE": {
+    "w": 33,
+    "h": 78,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_sign_SW": {
+    "w": 33,
+    "h": 78,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_pot_large_NE": {
+    "w": 58,
+    "h": 71,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_pot_large_NW": {
+    "w": 58,
+    "h": 71,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_pot_large_SE": {
+    "w": 58,
+    "h": 71,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_pot_large_SW": {
+    "w": 58,
+    "h": 71,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_crops_wheatStageB_NE": {
+    "w": 65,
+    "h": 92,
+    "lift": 5,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_crops_wheatStageB_NW": {
+    "w": 58,
+    "h": 96,
+    "lift": 9,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_crops_wheatStageB_SE": {
+    "w": 58,
+    "h": 94,
+    "lift": 7,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_crops_wheatStageB_SW": {
+    "w": 65,
+    "h": 95,
+    "lift": 8,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_crop_pumpkin_NE": {
+    "w": 51,
+    "h": 71,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_crop_pumpkin_NW": {
+    "w": 51,
+    "h": 71,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_crop_pumpkin_SE": {
+    "w": 51,
+    "h": 71,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_crop_pumpkin_SW": {
+    "w": 51,
+    "h": 71,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_bridge_wood_NE": {
+    "w": 158,
+    "h": 114,
+    "lift": 27,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_bridge_wood_NW": {
+    "w": 158,
+    "h": 114,
+    "lift": 27,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_bridge_wood_SE": {
+    "w": 158,
+    "h": 114,
+    "lift": 27,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_bridge_wood_SW": {
+    "w": 158,
+    "h": 114,
+    "lift": 27,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_path_stone_NE": {
+    "w": 95,
+    "h": 69,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_path_stone_NW": {
+    "w": 112,
+    "h": 66,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_path_stone_SE": {
+    "w": 112,
+    "h": 67,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_path_stone_SW": {
+    "w": 95,
+    "h": 66,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_lily_large_NE": {
+    "w": 33,
+    "h": 50,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_lily_large_NW": {
+    "w": 33,
+    "h": 50,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_lily_large_SE": {
+    "w": 33,
+    "h": 50,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_lily_large_SW": {
+    "w": 33,
+    "h": 50,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_stump_round_NE": {
+    "w": 39,
+    "h": 64,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_stump_round_NW": {
+    "w": 39,
+    "h": 64,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_stump_round_SE": {
+    "w": 39,
+    "h": 64,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_stump_round_SW": {
+    "w": 39,
+    "h": 64,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_fence_simple_NE": {
+    "w": 151,
+    "h": 108,
+    "lift": 21,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_fence_simple_NW": {
+    "w": 151,
+    "h": 108,
+    "lift": 21,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_fence_simple_SE": {
+    "w": 151,
+    "h": 73,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_fence_simple_SW": {
+    "w": 151,
+    "h": 73,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_fence_gate_NE": {
+    "w": 151,
+    "h": 108,
+    "lift": 21,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_fence_gate_NW": {
+    "w": 151,
+    "h": 108,
+    "lift": 21,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_fence_gate_SE": {
+    "w": 151,
+    "h": 73,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_fence_gate_SW": {
+    "w": 151,
+    "h": 73,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_fence_corner_NE": {
+    "w": 151,
+    "h": 108,
+    "lift": 21,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_fence_corner_NW": {
+    "w": 151,
+    "h": 108,
+    "lift": 21,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_fence_corner_SE": {
+    "w": 151,
+    "h": 73,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_fence_corner_SW": {
+    "w": 151,
+    "h": 108,
+    "lift": 21,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_statue_block_NE": {
+    "w": 53,
+    "h": 86,
+    "lift": 34,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_statue_block_NW": {
+    "w": 53,
+    "h": 86,
+    "lift": 34,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_statue_block_SE": {
+    "w": 53,
+    "h": 86,
+    "lift": 34,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_statue_block_SW": {
+    "w": 53,
+    "h": 86,
+    "lift": 34,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_flowerbed_red": {
+    "w": 114,
+    "h": 112,
+    "lift": 25,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_flowerbed_purple": {
+    "w": 114,
+    "h": 103,
+    "lift": 16,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_flowerbed_yellow": {
+    "w": 114,
+    "h": 96,
+    "lift": 9,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_flowerbed_mixed": {
+    "w": 114,
+    "h": 112,
+    "lift": 25,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_bushes": {
+    "w": 114,
+    "h": 89,
+    "lift": 2,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_bench_NE": {
+    "w": 147,
+    "h": 139,
+    "lift": 52,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_bench_NW": {
+    "w": 147,
+    "h": 139,
+    "lift": 52,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_bench_SE": {
+    "w": 147,
+    "h": 159,
+    "lift": 72,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_bench_SW": {
+    "w": 147,
+    "h": 159,
+    "lift": 72,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_lightpostSingle_NE": {
+    "w": 97,
+    "h": 257,
+    "lift": 170,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_lightpostSingle_NW": {
+    "w": 97,
+    "h": 257,
+    "lift": 170,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_lightpostSingle_SE": {
+    "w": 97,
+    "h": 246,
+    "lift": 159,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_lightpostSingle_SW": {
+    "w": 97,
+    "h": 246,
+    "lift": 159,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_lightpostDouble_NE": {
+    "w": 97,
+    "h": 257,
+    "lift": 170,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_lightpostDouble_NW": {
+    "w": 97,
+    "h": 257,
+    "lift": 170,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_lightpostDouble_SE": {
+    "w": 97,
+    "h": 257,
+    "lift": 170,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_lightpostDouble_SW": {
+    "w": 97,
+    "h": 257,
+    "lift": 170,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_urn_NE": {
+    "w": 46,
+    "h": 103,
+    "lift": 16,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_urn_NW": {
+    "w": 46,
+    "h": 103,
+    "lift": 16,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_urn_SE": {
+    "w": 46,
+    "h": 103,
+    "lift": 16,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_urn_SW": {
+    "w": 46,
+    "h": 103,
+    "lift": 16,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_columnLarge_NE": {
+    "w": 97,
+    "h": 226,
+    "lift": 139,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_columnLarge_NW": {
+    "w": 97,
+    "h": 226,
+    "lift": 139,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_columnLarge_SE": {
+    "w": 97,
+    "h": 226,
+    "lift": 139,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_columnLarge_SW": {
+    "w": 97,
+    "h": 226,
+    "lift": 139,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_lanternGlass_NE": {
+    "w": 39,
+    "h": 87,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_lanternGlass_NW": {
+    "w": 39,
+    "h": 87,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_lanternGlass_SE": {
+    "w": 39,
+    "h": 87,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_lanternGlass_SW": {
+    "w": 39,
+    "h": 87,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_pillarObelisk_NE": {
+    "w": 54,
+    "h": 188,
+    "lift": 101,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_pillarObelisk_NW": {
+    "w": 105,
+    "h": 201,
+    "lift": 114,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_pillarObelisk_SE": {
+    "w": 105,
+    "h": 201,
+    "lift": 114,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_pillarObelisk_SW": {
+    "w": 54,
+    "h": 215,
+    "lift": 128,
+    "oy": 0,
+    "coloured": false
+   },
+   "a_cow": {
+    "w": 78,
+    "h": 70,
+    "lift": 0,
+    "oy": -28,
+    "coloured": false
+   },
+   "a_horse": {
+    "w": 78,
+    "h": 84,
+    "lift": 0,
+    "oy": -28,
+    "coloured": false
+   },
+   "a_pig": {
+    "w": 78,
+    "h": 71,
+    "lift": 0,
+    "oy": -28,
+    "coloured": false
+   },
+   "a_goat": {
+    "w": 78,
+    "h": 73,
+    "lift": 0,
+    "oy": -28,
+    "coloured": false
+   },
+   "a_chicken": {
+    "w": 78,
+    "h": 87,
+    "lift": 0,
+    "oy": -28,
+    "coloured": false
+   },
+   "a_dog": {
+    "w": 78,
+    "h": 92,
+    "lift": 0,
+    "oy": -28,
+    "coloured": false
+   },
+   "a_rabbit": {
+    "w": 78,
+    "h": 102,
+    "lift": 0,
+    "oy": -28,
+    "coloured": false
+   },
+   "a_duck": {
+    "w": 78,
+    "h": 77,
+    "lift": 0,
+    "oy": -28,
+    "coloured": false
+   },
+   "a_owl": {
+    "w": 78,
+    "h": 78,
+    "lift": 0,
+    "oy": -28,
+    "coloured": false
+   },
+   "s_knight_NE": {
+    "w": 45,
+    "h": 67,
+    "lift": 41,
+    "coloured": false
+   },
+   "s_knight_NW": {
+    "w": 45,
+    "h": 67,
+    "lift": 41,
+    "coloured": false
+   },
+   "s_knight_SE": {
+    "w": 45,
+    "h": 67,
+    "lift": 41,
+    "coloured": false
+   },
+   "s_knight_SW": {
+    "w": 45,
+    "h": 67,
+    "lift": 41,
+    "coloured": false
+   },
+   "s_king_NE": {
+    "w": 45,
+    "h": 67,
+    "lift": 41,
+    "coloured": false
+   },
+   "s_king_NW": {
+    "w": 45,
+    "h": 67,
+    "lift": 41,
+    "coloured": false
+   },
+   "s_king_SE": {
+    "w": 45,
+    "h": 67,
+    "lift": 41,
+    "coloured": false
+   },
+   "s_king_SW": {
+    "w": 45,
+    "h": 67,
+    "lift": 41,
+    "coloured": false
+   }
+  },
+  "atlas": {
+   "": {
+    "t_windmill_SE": [
+     0,
+     0,
+     0
+    ],
+    "t_windmill_NE": [
+     0,
+     237,
+     0
+    ],
+    "t_windmill_NW": [
+     0,
+     474,
+     0
+    ],
+    "t_windmill_SW": [
+     0,
+     711,
+     0
+    ],
+    "t_treeHigh_NE": [
+     0,
+     948,
+     0
+    ],
+    "t_treeHigh_NW": [
+     0,
+     1059,
+     0
+    ],
+    "t_treeHigh_SE": [
+     0,
+     1170,
+     0
+    ],
+    "t_treeHigh_SW": [
+     0,
+     1281,
+     0
+    ],
+    "siegeTower_NW": [
+     0,
+     1392,
+     0
+    ],
+    "siegeTower_SW": [
+     0,
+     1596,
+     0
+    ],
+    "t_treeHighRound_NE": [
+     0,
+     1800,
+     0
+    ],
+    "t_treeHighRound_NW": [
+     0,
+     1911,
+     0
+    ],
+    "t_treeHighRound_SE": [
+     0,
+     0,
+     363
+    ],
+    "t_treeHighRound_SW": [
+     0,
+     111,
+     363
+    ],
+    "siegeTower_NE": [
+     0,
+     222,
+     363
+    ],
+    "siegeTower_SE": [
+     0,
+     426,
+     363
+    ],
+    "t_tree_NE": [
+     0,
+     630,
+     363
+    ],
+    "t_tree_NW": [
+     0,
+     741,
+     363
+    ],
+    "t_tree_SE": [
+     0,
+     852,
+     363
+    ],
+    "t_tree_SW": [
+     0,
+     963,
+     363
+    ],
+    "g_lightpostDouble_NE": [
+     0,
+     1074,
+     363
+    ],
+    "g_lightpostDouble_NW": [
+     0,
+     1173,
+     363
+    ],
+    "g_lightpostDouble_SE": [
+     0,
+     1272,
+     363
+    ],
+    "g_lightpostDouble_SW": [
+     0,
+     1371,
+     363
+    ],
+    "g_lightpostSingle_NE": [
+     0,
+     1470,
+     363
+    ],
+    "g_lightpostSingle_NW": [
+     0,
+     1569,
+     363
+    ],
+    "g_lightpostSingle_SE": [
+     0,
+     1668,
+     363
+    ],
+    "g_lightpostSingle_SW": [
+     0,
+     1767,
+     363
+    ],
+    "siegeTrebuchet_NE": [
+     0,
+     0,
+     661
+    ],
+    "siegeTrebuchet_SE": [
+     0,
+     201,
+     661
+    ],
+    "wallCornerHalfTower_SW": [
+     0,
+     1866,
+     363
+    ],
+    "wallCornerHalfTower_NW": [
+     0,
+     401,
+     661
+    ],
+    "siegeTrebuchet_NW": [
+     0,
+     554,
+     661
+    ],
+    "siegeTrebuchet_SW": [
+     0,
+     755,
+     661
+    ],
+    "g_columnLarge_NE": [
+     0,
+     955,
+     661
+    ],
+    "g_columnLarge_NW": [
+     0,
+     1054,
+     661
+    ],
+    "g_columnLarge_SE": [
+     0,
+     1153,
+     661
+    ],
+    "g_columnLarge_SW": [
+     0,
+     1252,
+     661
+    ],
+    "t_watermill_NE": [
+     0,
+     1351,
+     661
+    ],
+    "t_watermill_NW": [
+     0,
+     1539,
+     661
+    ],
+    "t_watermill_SE": [
+     0,
+     1727,
+     661
+    ],
+    "t_watermill_SW": [
+     0,
+     0,
+     908
+    ],
+    "g_pillarObelisk_SW": [
+     0,
+     1915,
+     661
+    ],
+    "towerSquareRoof_NE": [
+     0,
+     188,
+     908
+    ],
+    "towerSquareRoof_NW": [
+     0,
+     341,
+     908
+    ],
+    "towerSquareRoof_SE": [
+     0,
+     494,
+     908
+    ],
+    "towerSquareRoof_SW": [
+     0,
+     647,
+     908
+    ],
+    "wallCornerHalfTower_NE": [
+     0,
+     800,
+     908
+    ],
+    "wallCornerHalfTower_SE": [
+     0,
+     1007,
+     908
+    ],
+    "wallCorner_NW": [
+     0,
+     1213,
+     908
+    ],
+    "wallCorner_SW": [
+     0,
+     1366,
+     908
+    ],
+    "wallHalf_NW": [
+     0,
+     1519,
+     908
+    ],
+    "wall_NE": [
+     0,
+     1672,
+     908
+    ],
+    "wall_NW": [
+     0,
+     1825,
+     908
+    ],
+    "wallNarrowStairs_NW": [
+     0,
+     0,
+     1125
+    ],
+    "wall_SW": [
+     0,
+     151,
+     1125
+    ],
+    "wallCorner_NE": [
+     0,
+     304,
+     1125
+    ],
+    "wallCorner_SE": [
+     0,
+     457,
+     1125
+    ],
+    "wallHalf_SE": [
+     0,
+     610,
+     1125
+    ],
+    "wall_SE": [
+     0,
+     763,
+     1125
+    ],
+    "g_pillarObelisk_NW": [
+     0,
+     916,
+     1125
+    ],
+    "g_pillarObelisk_SE": [
+     0,
+     1023,
+     1125
+    ],
+    "wallNarrowStairs_SE": [
+     0,
+     1130,
+     1125
+    ],
+    "n_tree_tall_NE": [
+     0,
+     1971,
+     661
+    ],
+    "n_tree_tall_NW": [
+     0,
+     1978,
+     908
+    ],
+    "n_tree_tall_SE": [
+     0,
+     1281,
+     1125
+    ],
+    "n_tree_tall_SW": [
+     0,
+     1332,
+     1125
+    ],
+    "wallHalf_NE": [
+     0,
+     1383,
+     1125
+    ],
+    "wallHalf_SW": [
+     0,
+     1536,
+     1125
+    ],
+    "n_tree_default_fall_NE": [
+     0,
+     1689,
+     1125
+    ],
+    "n_tree_default_fall_NW": [
+     0,
+     1770,
+     1125
+    ],
+    "n_tree_default_fall_SE": [
+     0,
+     1851,
+     1125
+    ],
+    "n_tree_default_fall_SW": [
+     0,
+     1932,
+     1125
+    ],
+    "g_pillarObelisk_NE": [
+     0,
+     0,
+     1331
+    ],
+    "siegeCatapult_NE": [
+     0,
+     56,
+     1331
+    ],
+    "siegeCatapult_NW": [
+     0,
+     240,
+     1331
+    ],
+    "t_roofHighWindow_NE": [
+     0,
+     424,
+     1331
+    ],
+    "t_roofHighWindow_NW": [
+     0,
+     589,
+     1331
+    ],
+    "t_roofHigh_NE": [
+     0,
+     754,
+     1331
+    ],
+    "t_roofHigh_NW": [
+     0,
+     919,
+     1331
+    ],
+    "siegeCatapult_SE": [
+     0,
+     1084,
+     1331
+    ],
+    "siegeCatapult_SW": [
+     0,
+     1268,
+     1331
+    ],
+    "t_lantern_NE": [
+     0,
+     2019,
+     363
+    ],
+    "t_lantern_NW": [
+     0,
+     2013,
+     1125
+    ],
+    "t_lantern_SE": [
+     0,
+     1452,
+     1331
+    ],
+    "t_lantern_SW": [
+     0,
+     1480,
+     1331
+    ],
+    "flagBannerLong_NE": [
+     0,
+     1508,
+     1331
+    ],
+    "flagBannerLong_NW": [
+     0,
+     1561,
+     1331
+    ],
+    "flagBannerLong_SW": [
+     0,
+     1614,
+     1331
+    ],
+    "wallNarrowStairs_SW": [
+     0,
+     1667,
+     1331
+    ],
+    "flagBannerLong_SE": [
+     0,
+     1817,
+     1331
+    ],
+    "towerSquareBaseColor_NE": [
+     0,
+     1870,
+     1331
+    ],
+    "towerSquareBaseColor_NW": [
+     0,
+     0,
+     1521
+    ],
+    "towerSquareBaseColor_SW": [
+     0,
+     153,
+     1521
+    ],
+    "towerSquareBase_NE": [
+     0,
+     306,
+     1521
+    ],
+    "towerSquareBase_NW": [
+     0,
+     459,
+     1521
+    ],
+    "towerSquareBase_SW": [
+     0,
+     612,
+     1521
+    ],
+    "n_tree_pineDefaultA_NE": [
+     0,
+     765,
+     1521
+    ],
+    "n_tree_pineDefaultA_NW": [
+     0,
+     825,
+     1521
+    ],
+    "n_tree_pineDefaultA_SE": [
+     0,
+     885,
+     1521
+    ],
+    "n_tree_pineDefaultA_SW": [
+     0,
+     945,
+     1521
+    ],
+    "towerSquareBaseColor_SE": [
+     0,
+     1005,
+     1521
+    ],
+    "towerSquareBase_SE": [
+     0,
+     1158,
+     1521
+    ],
+    "wallDoor_NW": [
+     0,
+     1311,
+     1521
+    ],
+    "towerSquareArch_NW": [
+     0,
+     1427,
+     1521
+    ],
+    "towerSquareMidOpen_NW": [
+     0,
+     1569,
+     1521
+    ],
+    "towerSquareMidWindows_NW": [
+     0,
+     1711,
+     1521
+    ],
+    "towerSquareMid_NW": [
+     0,
+     1853,
+     1521
+    ],
+    "towerSquarePoles_NW": [
+     0,
+     0,
+     1703
+    ],
+    "t_fountainSquare_NE": [
+     0,
+     142,
+     1703
+    ],
+    "t_fountainSquare_NW": [
+     0,
+     446,
+     1703
+    ],
+    "t_fountainSquare_SE": [
+     0,
+     750,
+     1703
+    ],
+    "t_fountainSquare_SW": [
+     0,
+     1054,
+     1703
+    ],
+    "towerBalcony_NW": [
+     0,
+     1358,
+     1703
+    ],
+    "towerBalcony_SE": [
+     0,
+     1502,
+     1703
+    ],
+    "towerBalcony_SW": [
+     0,
+     1646,
+     1703
+    ],
+    "towerSquareArch_SE": [
+     0,
+     1790,
+     1703
+    ],
+    "towerSquareArch_SW": [
+     1,
+     0,
+     0
+    ],
+    "towerSquareMidOpen_SE": [
+     1,
+     143,
+     0
+    ],
+    "towerSquareMidOpen_SW": [
+     1,
+     286,
+     0
+    ],
+    "towerSquareMidWindows_SE": [
+     1,
+     429,
+     0
+    ],
+    "towerSquareMidWindows_SW": [
+     1,
+     572,
+     0
+    ],
+    "towerSquareMid_SE": [
+     1,
+     715,
+     0
+    ],
+    "towerSquareMid_SW": [
+     1,
+     858,
+     0
+    ],
+    "towerSquarePoles_SE": [
+     1,
+     1001,
+     0
+    ],
+    "towerSquarePoles_SW": [
+     1,
+     1144,
+     0
+    ],
+    "towerSquareArch_NE": [
+     1,
+     1287,
+     0
+    ],
+    "towerSquareMidOpen_NE": [
+     1,
+     1429,
+     0
+    ],
+    "towerSquareMidWindows_NE": [
+     1,
+     1571,
+     0
+    ],
+    "towerSquareMid_NE": [
+     1,
+     1713,
+     0
+    ],
+    "towerSquarePoles_NE": [
+     1,
+     1855,
+     0
+    ],
+    "wallDoor_SE": [
+     1,
+     0,
+     177
+    ],
+    "towerBase_NW": [
+     0,
+     1933,
+     1703
+    ],
+    "towerBase_SE": [
+     1,
+     116,
+     177
+    ],
+    "towerBase_SW": [
+     1,
+     225,
+     177
+    ],
+    "towerBalcony_NE": [
+     1,
+     334,
+     177
+    ],
+    "towerBase_NE": [
+     1,
+     478,
+     177
+    ],
+    "n_tree_detailed_NW": [
+     1,
+     587,
+     177
+    ],
+    "n_tree_detailed_SE": [
+     1,
+     682,
+     177
+    ],
+    "n_tree_detailed_NE": [
+     1,
+     777,
+     177
+    ],
+    "n_tree_detailed_SW": [
+     1,
+     867,
+     177
+    ],
+    "t_stallGreen_NE": [
+     1,
+     957,
+     177
+    ],
+    "t_stallGreen_NW": [
+     1,
+     1110,
+     177
+    ],
+    "t_stallGreen_SE": [
+     1,
+     1263,
+     177
+    ],
+    "t_stallGreen_SW": [
+     1,
+     1416,
+     177
+    ],
+    "t_stallRed_NE": [
+     1,
+     1569,
+     177
+    ],
+    "t_stallRed_NW": [
+     1,
+     1722,
+     177
+    ],
+    "t_stallRed_SE": [
+     1,
+     1875,
+     177
+    ],
+    "t_stallRed_SW": [
+     1,
+     0,
+     354
+    ],
+    "wallDoor_SW": [
+     1,
+     153,
+     354
+    ],
+    "siegeRam_SE": [
+     1,
+     268,
+     354
+    ],
+    "siegeRam_SW": [
+     1,
+     444,
+     354
+    ],
+    "siegeRam_NE": [
+     1,
+     620,
+     354
+    ],
+    "siegeRam_NW": [
+     1,
+     795,
+     354
+    ],
+    "wallNarrowStairs_NE": [
+     1,
+     970,
+     354
+    ],
+    "wallDoor_NE": [
+     1,
+     1120,
+     354
+    ],
+    "t_roofHighGable_NE": [
+     1,
+     1235,
+     354
+    ],
+    "t_roofHighGable_NW": [
+     1,
+     1407,
+     354
+    ],
+    "t_roofHighGable_SE": [
+     1,
+     1579,
+     354
+    ],
+    "t_roofHighGable_SW": [
+     1,
+     1751,
+     354
+    ],
+    "t_wallBlock_NE": [
+     1,
+     0,
+     528
+    ],
+    "t_wallBlock_NW": [
+     1,
+     153,
+     528
+    ],
+    "t_wallBlock_SE": [
+     1,
+     306,
+     528
+    ],
+    "t_wallBlock_SW": [
+     1,
+     459,
+     528
+    ],
+    "t_wallWoodBlock_NE": [
+     1,
+     612,
+     528
+    ],
+    "t_wallWoodBlock_NW": [
+     1,
+     765,
+     528
+    ],
+    "t_wallWoodBlock_SE": [
+     1,
+     918,
+     528
+    ],
+    "t_wallWoodBlock_SW": [
+     1,
+     1071,
+     528
+    ],
+    "t_rockLarge_NE": [
+     1,
+     1224,
+     528
+    ],
+    "n_tree_pineRoundA_NE": [
+     1,
+     1923,
+     354
+    ],
+    "n_tree_pineRoundA_NW": [
+     1,
+     1407,
+     528
+    ],
+    "n_tree_pineRoundA_SE": [
+     1,
+     1483,
+     528
+    ],
+    "n_tree_pineRoundA_SW": [
+     1,
+     1559,
+     528
+    ],
+    "t_rockLarge_SW": [
+     0,
+     0,
+     1881
+    ],
+    "t_rockLarge_NW": [
+     0,
+     183,
+     1881
+    ],
+    "t_rockLarge_SE": [
+     0,
+     369,
+     1881
+    ],
+    "g_bench_SE": [
+     0,
+     555,
+     1881
+    ],
+    "g_bench_SW": [
+     0,
+     704,
+     1881
+    ],
+    "n_tree_oak_NE": [
+     0,
+     853,
+     1881
+    ],
+    "n_tree_oak_NW": [
+     0,
+     932,
+     1881
+    ],
+    "n_tree_oak_SE": [
+     0,
+     1011,
+     1881
+    ],
+    "n_tree_oak_SW": [
+     0,
+     1090,
+     1881
+    ],
+    "towerSquareTopRoofHigh_NW": [
+     0,
+     1169,
+     1881
+    ],
+    "towerSquareTopRoofHigh_SE": [
+     0,
+     1322,
+     1881
+    ],
+    "towerSquareTopRoofHigh_NE": [
+     0,
+     1475,
+     1881
+    ],
+    "towerSquareTopRoofHigh_SW": [
+     0,
+     1628,
+     1881
+    ],
+    "t_cartHigh_NW": [
+     0,
+     1781,
+     1881
+    ],
+    "t_cartHigh_SW": [
+     1,
+     1635,
+     528
+    ],
+    "t_roofHighWindow_SE": [
+     1,
+     1790,
+     528
+    ],
+    "t_roofHighWindow_SW": [
+     1,
+     0,
+     698
+    ],
+    "n_rock_tallA_SE": [
+     0,
+     1936,
+     1881
+    ],
+    "t_roofHigh_SE": [
+     1,
+     165,
+     698
+    ],
+    "t_roofHigh_SW": [
+     1,
+     330,
+     698
+    ],
+    "t_roofHighPoint_NE": [
+     1,
+     495,
+     698
+    ],
+    "t_roofHighPoint_NW": [
+     1,
+     655,
+     698
+    ],
+    "t_roofHighPoint_SE": [
+     1,
+     815,
+     698
+    ],
+    "t_roofHighPoint_SW": [
+     1,
+     975,
+     698
+    ],
+    "n_statue_head_SE": [
+     1,
+     1955,
+     528
+    ],
+    "n_statue_head_SW": [
+     1,
+     1135,
+     698
+    ],
+    "n_tree_small_NE": [
+     0,
+     1995,
+     1521
+    ],
+    "n_tree_small_NW": [
+     1,
+     1997,
+     0
+    ],
+    "n_tree_small_SE": [
+     1,
+     1999,
+     354
+    ],
+    "n_tree_small_SW": [
+     1,
+     1209,
+     698
+    ],
+    "g_bench_NE": [
+     1,
+     1255,
+     698
+    ],
+    "g_bench_NW": [
+     1,
+     1404,
+     698
+    ],
+    "n_rock_tallA_SW": [
+     1,
+     1553,
+     698
+    ],
+    "n_statue_column_NE": [
+     1,
+     1657,
+     698
+    ],
+    "n_statue_column_NW": [
+     1,
+     1705,
+     698
+    ],
+    "n_statue_column_SE": [
+     1,
+     1753,
+     698
+    ],
+    "n_statue_column_SW": [
+     1,
+     1801,
+     698
+    ],
+    "t_roof_NE": [
+     1,
+     1849,
+     698
+    ],
+    "t_roof_NW": [
+     1,
+     0,
+     844
+    ],
+    "n_statue_head_NE": [
+     1,
+     162,
+     844
+    ],
+    "n_statue_head_NW": [
+     1,
+     236,
+     844
+    ],
+    "n_rock_tallA_NE": [
+     1,
+     310,
+     844
+    ],
+    "t_pillarStone_NE": [
+     0,
+     2022,
+     0
+    ],
+    "t_pillarStone_NW": [
+     0,
+     2022,
+     661
+    ],
+    "t_pillarStone_SE": [
+     0,
+     2023,
+     1331
+    ],
+    "t_pillarStone_SW": [
+     1,
+     2011,
+     698
+    ],
+    "t_fountainRound_NE": [
+     1,
+     414,
+     844
+    ],
+    "t_fountainRound_NW": [
+     1,
+     630,
+     844
+    ],
+    "t_fountainRound_SE": [
+     1,
+     846,
+     844
+    ],
+    "t_fountainRound_SW": [
+     1,
+     1062,
+     844
+    ],
+    "t_cartHigh_NE": [
+     1,
+     1278,
+     844
+    ],
+    "t_cartHigh_SE": [
+     1,
+     1433,
+     844
+    ],
+    "towerSquareTopColor_NE": [
+     1,
+     1588,
+     844
+    ],
+    "towerSquareTopColor_NW": [
+     1,
+     1741,
+     844
+    ],
+    "towerSquareTopColor_SE": [
+     1,
+     1894,
+     844
+    ],
+    "towerSquareTopColor_SW": [
+     1,
+     0,
+     983
+    ],
+    "siegeBallista_SW": [
+     1,
+     153,
+     983
+    ],
+    "siegeBallista_NW": [
+     1,
+     291,
+     983
+    ],
+    "towerSquareTopRoof_SE": [
+     1,
+     428,
+     983
+    ],
+    "towerSquareTopRoof_NE": [
+     1,
+     581,
+     983
+    ],
+    "towerSquareTopRoof_NW": [
+     1,
+     734,
+     983
+    ],
+    "towerSquareTopRoof_SW": [
+     1,
+     887,
+     983
+    ],
+    "siegeBallista_SE": [
+     1,
+     1040,
+     983
+    ],
+    "siegeBallista_NE": [
+     1,
+     1178,
+     983
+    ],
+    "n_rock_tallA_NW": [
+     1,
+     1315,
+     983
+    ],
+    "towerSquareTop_NE": [
+     1,
+     1415,
+     983
+    ],
+    "towerSquareTop_NW": [
+     1,
+     1568,
+     983
+    ],
+    "towerSquareTop_SE": [
+     1,
+     1721,
+     983
+    ],
+    "towerSquareTop_SW": [
+     1,
+     1874,
+     983
+    ],
+    "t_cart_NW": [
+     1,
+     0,
+     1117
+    ],
+    "t_cart_SW": [
+     1,
+     155,
+     1117
+    ],
+    "n_statue_obelisk_NE": [
+     1,
+     310,
+     1117
+    ],
+    "n_statue_obelisk_NW": [
+     1,
+     358,
+     1117
+    ],
+    "n_statue_obelisk_SE": [
+     1,
+     406,
+     1117
+    ],
+    "n_statue_obelisk_SW": [
+     1,
+     454,
+     1117
+    ],
+    "towerTopRoof_NE": [
+     1,
+     502,
+     1117
+    ],
+    "towerTopRoof_NW": [
+     1,
+     624,
+     1117
+    ],
+    "towerTopRoof_SW": [
+     1,
+     746,
+     1117
+    ],
+    "towerSquareMidColor_NE": [
+     1,
+     868,
+     1117
+    ],
+    "towerSquareMidColor_NW": [
+     1,
+     1011,
+     1117
+    ],
+    "towerSquareMidColor_SE": [
+     1,
+     1154,
+     1117
+    ],
+    "towerSquareMidColor_SW": [
+     1,
+     1297,
+     1117
+    ],
+    "towerTopRoof_SE": [
+     1,
+     1440,
+     1117
+    ],
+    "n_statue_ring_NE": [
+     1,
+     1562,
+     1117
+    ],
+    "n_statue_ring_NW": [
+     1,
+     1641,
+     1117
+    ],
+    "n_statue_ring_SE": [
+     1,
+     1720,
+     1117
+    ],
+    "n_statue_ring_SW": [
+     1,
+     1799,
+     1117
+    ],
+    "t_roofGable_NE": [
+     1,
+     1878,
+     1117
+    ],
+    "t_roofGable_NW": [
+     1,
+     0,
+     1244
+    ],
+    "t_roofGable_SE": [
+     1,
+     167,
+     1244
+    ],
+    "t_roofGable_SW": [
+     1,
+     334,
+     1244
+    ],
+    "n_bridge_wood_NE": [
+     1,
+     501,
+     1244
+    ],
+    "n_bridge_wood_NW": [
+     1,
+     661,
+     1244
+    ],
+    "n_bridge_wood_SE": [
+     1,
+     821,
+     1244
+    ],
+    "n_bridge_wood_SW": [
+     1,
+     981,
+     1244
+    ],
+    "t_cart_NE": [
+     1,
+     1141,
+     1244
+    ],
+    "t_cart_SE": [
+     1,
+     1296,
+     1244
+    ],
+    "n_flowerbed_mixed": [
+     1,
+     1451,
+     1244
+    ],
+    "n_flowerbed_red": [
+     1,
+     1567,
+     1244
+    ],
+    "t_fenceGate_NE": [
+     1,
+     1683,
+     1244
+    ],
+    "t_fenceGate_NW": [
+     1,
+     1836,
+     1244
+    ],
+    "t_fence_NE": [
+     1,
+     0,
+     1360
+    ],
+    "t_fence_NW": [
+     1,
+     153,
+     1360
+    ],
+    "t_fenceCurved_NW": [
+     1,
+     306,
+     1360
+    ],
+    "t_fenceCurved_SE": [
+     1,
+     415,
+     1360
+    ],
+    "n_fence_corner_NE": [
+     1,
+     524,
+     1360
+    ],
+    "n_fence_corner_NW": [
+     1,
+     677,
+     1360
+    ],
+    "n_fence_corner_SW": [
+     1,
+     830,
+     1360
+    ],
+    "n_fence_gate_NE": [
+     1,
+     983,
+     1360
+    ],
+    "n_fence_gate_NW": [
+     1,
+     1136,
+     1360
+    ],
+    "n_fence_simple_NE": [
+     1,
+     1289,
+     1360
+    ],
+    "n_fence_simple_NW": [
+     1,
+     1442,
+     1360
+    ],
+    "stairsStone_SW": [
+     1,
+     1595,
+     1360
+    ],
+    "stairsStone_SE": [
+     1,
+     1677,
+     1360
+    ],
+    "n_flowerbed_purple": [
+     1,
+     1759,
+     1360
+    ],
+    "g_urn_NE": [
+     1,
+     1989,
+     1244
+    ],
+    "g_urn_NW": [
+     1,
+     1875,
+     1360
+    ],
+    "g_urn_SE": [
+     1,
+     1923,
+     1360
+    ],
+    "g_urn_SW": [
+     1,
+     1971,
+     1360
+    ],
+    "bridge_SE": [
+     1,
+     0,
+     1472
+    ],
+    "bridge_NW": [
+     1,
+     141,
+     1472
+    ],
+    "a_rabbit": [
+     1,
+     281,
+     1472
+    ],
+    "bridge_SW": [
+     1,
+     361,
+     1472
+    ],
+    "bridge_NE": [
+     1,
+     502,
+     1472
+    ],
+    "n_tent_detailedOpen_NE": [
+     1,
+     642,
+     1472
+    ],
+    "n_tent_detailedOpen_NW": [
+     1,
+     753,
+     1472
+    ],
+    "n_tent_detailedOpen_SE": [
+     1,
+     864,
+     1472
+    ],
+    "n_tent_detailedOpen_SW": [
+     1,
+     975,
+     1472
+    ],
+    "t_fenceCurved_NE": [
+     1,
+     1086,
+     1472
+    ],
+    "t_roofPoint_NE": [
+     1,
+     1239,
+     1472
+    ],
+    "t_roofPoint_NW": [
+     1,
+     1399,
+     1472
+    ],
+    "t_roofPoint_SE": [
+     1,
+     1559,
+     1472
+    ],
+    "t_roofPoint_SW": [
+     1,
+     1719,
+     1472
+    ],
+    "t_roof_SE": [
+     1,
+     1879,
+     1472
+    ],
+    "t_roof_SW": [
+     1,
+     0,
+     1576
+    ],
+    "n_flowerbed_yellow": [
+     1,
+     162,
+     1576
+    ],
+    "n_crops_wheatStageB_NW": [
+     1,
+     278,
+     1576
+    ],
+    "t_hedgeGate_NE": [
+     1,
+     338,
+     1576
+    ],
+    "t_hedgeGate_NW": [
+     1,
+     491,
+     1576
+    ],
+    "t_hedge_NE": [
+     1,
+     644,
+     1576
+    ],
+    "t_hedge_NW": [
+     1,
+     797,
+     1576
+    ],
+    "t_hedgeCurved_NW": [
+     1,
+     950,
+     1576
+    ],
+    "t_hedgeCurved_SE": [
+     1,
+     1059,
+     1576
+    ],
+    "n_crops_wheatStageB_SW": [
+     1,
+     1168,
+     1576
+    ],
+    "n_crops_wheatStageB_SE": [
+     1,
+     1235,
+     1576
+    ],
+    "a_dog": [
+     1,
+     1295,
+     1576
+    ],
+    "n_crops_wheatStageB_NE": [
+     1,
+     1375,
+     1576
+    ],
+    "metalGate_NW": [
+     1,
+     1442,
+     1576
+    ],
+    "metalGate_SE": [
+     1,
+     1499,
+     1576
+    ],
+    "metalGate_SW": [
+     1,
+     1557,
+     1576
+    ],
+    "metalGate_NE": [
+     1,
+     1615,
+     1576
+    ],
+    "n_bushes": [
+     1,
+     1672,
+     1576
+    ],
+    "n_log_stack_NE": [
+     1,
+     1788,
+     1576
+    ],
+    "n_log_stack_SW": [
+     1,
+     1874,
+     1576
+    ],
+    "a_chicken": [
+     1,
+     1960,
+     1576
+    ],
+    "g_lanternGlass_NE": [
+     1,
+     0,
+     1674
+    ],
+    "g_lanternGlass_NW": [
+     1,
+     41,
+     1674
+    ],
+    "g_lanternGlass_SE": [
+     1,
+     82,
+     1674
+    ],
+    "g_lanternGlass_SW": [
+     1,
+     123,
+     1674
+    ],
+    "towerTop_NW": [
+     1,
+     164,
+     1674
+    ],
+    "towerTop_SE": [
+     1,
+     273,
+     1674
+    ],
+    "towerTop_SW": [
+     1,
+     382,
+     1674
+    ],
+    "n_statue_block_NE": [
+     1,
+     491,
+     1674
+    ],
+    "n_statue_block_NW": [
+     1,
+     546,
+     1674
+    ],
+    "n_statue_block_SE": [
+     1,
+     601,
+     1674
+    ],
+    "n_statue_block_SW": [
+     1,
+     656,
+     1674
+    ],
+    "towerTop_NE": [
+     1,
+     711,
+     1674
+    ],
+    "t_hedgeCurved_NE": [
+     1,
+     820,
+     1674
+    ],
+    "n_rock_largeA_SW": [
+     1,
+     973,
+     1674
+    ],
+    "a_horse": [
+     1,
+     1075,
+     1674
+    ],
+    "n_log_stack_NW": [
+     1,
+     1155,
+     1674
+    ],
+    "n_log_stack_SE": [
+     1,
+     1241,
+     1674
+    ],
+    "t_planks_NE": [
+     1,
+     1327,
+     1674
+    ],
+    "t_planks_NW": [
+     1,
+     1480,
+     1674
+    ],
+    "t_planks_SE": [
+     1,
+     1633,
+     1674
+    ],
+    "t_planks_SW": [
+     1,
+     1786,
+     1674
+    ],
+    "n_sign_NE": [
+     1,
+     1939,
+     1674
+    ],
+    "n_sign_NW": [
+     1,
+     1974,
+     1674
+    ],
+    "n_rock_largeA_NE": [
+     1,
+     0,
+     1763
+    ],
+    "flagBlue_NW": [
+     1,
+     102,
+     1763
+    ],
+    "n_rock_largeA_NW": [
+     1,
+     145,
+     1763
+    ],
+    "flagBannerShort_NW": [
+     1,
+     272,
+     1763
+    ],
+    "flagBlue_NE": [
+     1,
+     325,
+     1763
+    ],
+    "a_owl": [
+     1,
+     369,
+     1763
+    ],
+    "flagBannerShort_NE": [
+     1,
+     449,
+     1763
+    ],
+    "flagBannerShort_SW": [
+     1,
+     502,
+     1763
+    ],
+    "n_sign_SE": [
+     1,
+     2009,
+     1674
+    ],
+    "n_sign_SW": [
+     1,
+     555,
+     1763
+    ],
+    "t_fenceCurved_SW": [
+     1,
+     590,
+     1763
+    ],
+    "t_fenceGate_SE": [
+     1,
+     743,
+     1763
+    ],
+    "t_fenceGate_SW": [
+     1,
+     896,
+     1763
+    ],
+    "t_fence_SE": [
+     1,
+     1049,
+     1763
+    ],
+    "t_fence_SW": [
+     1,
+     1202,
+     1763
+    ],
+    "a_duck": [
+     1,
+     1355,
+     1763
+    ],
+    "flagBannerShort_SE": [
+     1,
+     1435,
+     1763
+    ],
+    "flagBlueWide_NE": [
+     1,
+     1488,
+     1763
+    ],
+    "flagBlueWide_NW": [
+     1,
+     1521,
+     1763
+    ],
+    "n_fence_corner_SE": [
+     1,
+     1554,
+     1763
+    ],
+    "n_fence_gate_SE": [
+     1,
+     1707,
+     1763
+    ],
+    "n_fence_gate_SW": [
+     1,
+     1860,
+     1763
+    ],
+    "n_fence_simple_SE": [
+     1,
+     0,
+     1845
+    ],
+    "n_fence_simple_SW": [
+     1,
+     153,
+     1845
+    ],
+    "a_goat": [
+     1,
+     306,
+     1845
+    ],
+    "n_rock_largeA_SE": [
+     1,
+     386,
+     1845
+    ],
+    "a_pig": [
+     1,
+     513,
+     1845
+    ],
+    "n_pot_large_NE": [
+     1,
+     593,
+     1845
+    ],
+    "n_pot_large_NW": [
+     1,
+     653,
+     1845
+    ],
+    "n_pot_large_SE": [
+     1,
+     713,
+     1845
+    ],
+    "n_pot_large_SW": [
+     1,
+     773,
+     1845
+    ],
+    "n_crop_pumpkin_NE": [
+     1,
+     833,
+     1845
+    ],
+    "n_crop_pumpkin_NW": [
+     1,
+     886,
+     1845
+    ],
+    "n_crop_pumpkin_SE": [
+     1,
+     939,
+     1845
+    ],
+    "n_crop_pumpkin_SW": [
+     1,
+     992,
+     1845
+    ],
+    "n_plant_bushLarge_NW": [
+     1,
+     1045,
+     1845
+    ],
+    "a_cow": [
+     1,
+     1086,
+     1845
+    ],
+    "n_plant_bushLarge_SW": [
+     1,
+     1166,
+     1845
+    ],
+    "n_path_stone_NE": [
+     1,
+     1207,
+     1845
+    ],
+    "n_plant_bush_NE": [
+     1,
+     2013,
+     1763
+    ],
+    "n_plant_bush_NW": [
+     1,
+     1304,
+     1845
+    ],
+    "n_plant_bush_SE": [
+     1,
+     1339,
+     1845
+    ],
+    "n_plant_bush_SW": [
+     1,
+     1374,
+     1845
+    ],
+    "t_hedgeCurved_SW": [
+     1,
+     1409,
+     1845
+    ],
+    "t_hedgeGate_SE": [
+     1,
+     1562,
+     1845
+    ],
+    "t_hedgeGate_SW": [
+     1,
+     1715,
+     1845
+    ],
+    "t_hedge_SE": [
+     1,
+     1868,
+     1845
+    ],
+    "t_hedge_SW": [
+     1,
+     0,
+     1920
+    ],
+    "n_path_stone_SE": [
+     1,
+     153,
+     1920
+    ],
+    "stairsStone_NE": [
+     1,
+     267,
+     1920
+    ],
+    "stairsStone_NW": [
+     1,
+     349,
+     1920
+    ],
+    "king_NE": [
+     1,
+     430,
+     1920
+    ],
+    "king_NW": [
+     1,
+     477,
+     1920
+    ],
+    "king_SE": [
+     1,
+     524,
+     1920
+    ],
+    "king_SW": [
+     1,
+     571,
+     1920
+    ],
+    "knightBlue_NE": [
+     1,
+     618,
+     1920
+    ],
+    "knightBlue_NW": [
+     1,
+     665,
+     1920
+    ],
+    "knightBlue_SE": [
+     1,
+     712,
+     1920
+    ],
+    "knightBlue_SW": [
+     1,
+     759,
+     1920
+    ],
+    "knightRed_NE": [
+     1,
+     806,
+     1920
+    ],
+    "knightRed_NW": [
+     1,
+     853,
+     1920
+    ],
+    "knightRed_SE": [
+     1,
+     900,
+     1920
+    ],
+    "knightRed_SW": [
+     1,
+     947,
+     1920
+    ],
+    "s_king_NE": [
+     1,
+     994,
+     1920
+    ],
+    "s_king_NW": [
+     1,
+     1041,
+     1920
+    ],
+    "s_king_SE": [
+     1,
+     1088,
+     1920
+    ],
+    "s_king_SW": [
+     1,
+     1135,
+     1920
+    ],
+    "s_knight_NE": [
+     1,
+     1182,
+     1920
+    ],
+    "s_knight_NW": [
+     1,
+     1229,
+     1920
+    ],
+    "s_knight_SE": [
+     1,
+     1276,
+     1920
+    ],
+    "s_knight_SW": [
+     1,
+     1323,
+     1920
+    ],
+    "n_plant_bushLarge_NE": [
+     1,
+     1370,
+     1920
+    ],
+    "n_plant_bushLarge_SE": [
+     1,
+     1411,
+     1920
+    ],
+    "n_path_stone_NW": [
+     1,
+     1452,
+     1920
+    ],
+    "n_path_stone_SW": [
+     1,
+     1566,
+     1920
+    ],
+    "n_stump_round_NE": [
+     1,
+     1663,
+     1920
+    ],
+    "n_stump_round_NW": [
+     1,
+     1704,
+     1920
+    ],
+    "n_stump_round_SE": [
+     1,
+     1745,
+     1920
+    ],
+    "n_stump_round_SW": [
+     1,
+     1786,
+     1920
+    ],
+    "n_mushroom_redGroup_NW": [
+     1,
+     1827,
+     1920
+    ],
+    "n_mushroom_tanGroup_NW": [
+     1,
+     1866,
+     1920
+    ],
+    "n_mushroom_redGroup_NE": [
+     1,
+     1905,
+     1920
+    ],
+    "n_mushroom_tanGroup_NE": [
+     1,
+     1942,
+     1920
+    ],
+    "flagBlue_SE": [
+     1,
+     1979,
+     1920
+    ],
+    "flagBlue_SW": [
+     2,
+     0,
+     0
+    ],
+    "flagBlueWide_SE": [
+     2,
+     44,
+     0
+    ],
+    "flagBlueWide_SW": [
+     2,
+     77,
+     0
+    ],
+    "n_rock_smallA_NE": [
+     2,
+     110,
+     0
+    ],
+    "n_rock_smallA_NW": [
+     2,
+     158,
+     0
+    ],
+    "n_mushroom_redGroup_SE": [
+     2,
+     204,
+     0
+    ],
+    "n_mushroom_tanGroup_SE": [
+     2,
+     243,
+     0
+    ],
+    "n_mushroom_redGroup_SW": [
+     2,
+     282,
+     0
+    ],
+    "n_mushroom_tanGroup_SW": [
+     2,
+     319,
+     0
+    ],
+    "n_rock_smallA_SE": [
+     2,
+     356,
+     0
+    ],
+    "n_campfire_stones_SW": [
+     2,
+     402,
+     0
+    ],
+    "n_campfire_stones_NW": [
+     2,
+     467,
+     0
+    ],
+    "n_rock_smallA_SW": [
+     1,
+     0,
+     1989
+    ],
+    "n_campfire_stones_NE": [
+     1,
+     48,
+     1989
+    ],
+    "n_campfire_stones_SE": [
+     1,
+     113,
+     1989
+    ],
+    "n_lily_large_NE": [
+     1,
+     173,
+     1989
+    ],
+    "n_lily_large_NW": [
+     1,
+     208,
+     1989
+    ],
+    "n_lily_large_SE": [
+     1,
+     243,
+     1989
+    ],
+    "n_lily_large_SW": [
+     1,
+     278,
+     1989
+    ],
+    "shieldBlue_NW": [
+     1,
+     2019,
+     1360
+    ],
+    "shieldBlue_SE": [
+     1,
+     2021,
+     1845
+    ],
+    "shieldBlue_NE": [
+     1,
+     2023,
+     1920
+    ],
+    "shieldBlue_SW": [
+     1,
+     313,
+     1989
+    ]
+   },
+   "red/": {
+    "siegeTower_NW": [
+     0,
+     0,
+     0
+    ],
+    "siegeTower_SW": [
+     0,
+     204,
+     0
+    ],
+    "siegeTower_NE": [
+     0,
+     408,
+     0
+    ],
+    "siegeTower_SE": [
+     0,
+     612,
+     0
+    ],
+    "siegeTrebuchet_NE": [
+     0,
+     816,
+     0
+    ],
+    "siegeTrebuchet_SE": [
+     0,
+     1017,
+     0
+    ],
+    "wallCornerHalfTower_SW": [
+     0,
+     1217,
+     0
+    ],
+    "wallCornerHalfTower_NW": [
+     0,
+     1370,
+     0
+    ],
+    "siegeTrebuchet_NW": [
+     0,
+     1523,
+     0
+    ],
+    "siegeTrebuchet_SW": [
+     0,
+     1724,
+     0
+    ],
+    "towerSquareRoof_NE": [
+     0,
+     0,
+     300
+    ],
+    "towerSquareRoof_NW": [
+     0,
+     153,
+     300
+    ],
+    "towerSquareRoof_SE": [
+     0,
+     306,
+     300
+    ],
+    "towerSquareRoof_SW": [
+     0,
+     459,
+     300
+    ],
+    "wallCornerHalfTower_NE": [
+     0,
+     612,
+     300
+    ],
+    "wallCornerHalfTower_SE": [
+     0,
+     819,
+     300
+    ],
+    "wallCorner_NW": [
+     0,
+     1025,
+     300
+    ],
+    "wallCorner_SW": [
+     0,
+     1178,
+     300
+    ],
+    "wallHalf_NW": [
+     0,
+     1331,
+     300
+    ],
+    "wall_NE": [
+     0,
+     1484,
+     300
+    ],
+    "wall_NW": [
+     0,
+     1637,
+     300
+    ],
+    "wallNarrowStairs_NW": [
+     0,
+     1790,
+     300
+    ],
+    "wall_SW": [
+     0,
+     0,
+     511
+    ],
+    "wallCorner_NE": [
+     0,
+     153,
+     511
+    ],
+    "wallCorner_SE": [
+     0,
+     306,
+     511
+    ],
+    "wallHalf_SE": [
+     0,
+     459,
+     511
+    ],
+    "wall_SE": [
+     0,
+     612,
+     511
+    ],
+    "wallNarrowStairs_SE": [
+     0,
+     765,
+     511
+    ],
+    "wallHalf_NE": [
+     0,
+     916,
+     511
+    ],
+    "wallHalf_SW": [
+     0,
+     1069,
+     511
+    ],
+    "siegeCatapult_NE": [
+     0,
+     1222,
+     511
+    ],
+    "siegeCatapult_NW": [
+     0,
+     1406,
+     511
+    ],
+    "siegeCatapult_SE": [
+     0,
+     1590,
+     511
+    ],
+    "siegeCatapult_SW": [
+     0,
+     1774,
+     511
+    ],
+    "flagBannerLong_NE": [
+     0,
+     1924,
+     0
+    ],
+    "flagBannerLong_NW": [
+     0,
+     1977,
+     0
+    ],
+    "flagBannerLong_SW": [
+     0,
+     1941,
+     300
+    ],
+    "wallNarrowStairs_SW": [
+     0,
+     0,
+     716
+    ],
+    "flagBannerLong_SE": [
+     0,
+     1994,
+     300
+    ],
+    "towerSquareBaseColor_NE": [
+     0,
+     150,
+     716
+    ],
+    "towerSquareBaseColor_NW": [
+     0,
+     303,
+     716
+    ],
+    "towerSquareBaseColor_SW": [
+     0,
+     456,
+     716
+    ],
+    "towerSquareBase_NE": [
+     0,
+     609,
+     716
+    ],
+    "towerSquareBase_NW": [
+     0,
+     762,
+     716
+    ],
+    "towerSquareBase_SW": [
+     0,
+     915,
+     716
+    ],
+    "towerSquareBaseColor_SE": [
+     0,
+     1068,
+     716
+    ],
+    "towerSquareBase_SE": [
+     0,
+     1221,
+     716
+    ],
+    "wallDoor_NW": [
+     0,
+     1374,
+     716
+    ],
+    "towerSquareArch_NW": [
+     0,
+     1490,
+     716
+    ],
+    "towerSquareMidOpen_NW": [
+     0,
+     1632,
+     716
+    ],
+    "towerSquareMidWindows_NW": [
+     0,
+     1774,
+     716
+    ],
+    "towerSquareMid_NW": [
+     0,
+     0,
+     900
+    ],
+    "towerSquarePoles_NW": [
+     0,
+     142,
+     900
+    ],
+    "towerBalcony_NW": [
+     0,
+     284,
+     900
+    ],
+    "towerBalcony_SE": [
+     0,
+     428,
+     900
+    ],
+    "towerBalcony_SW": [
+     0,
+     572,
+     900
+    ],
+    "towerSquareArch_SE": [
+     0,
+     716,
+     900
+    ],
+    "towerSquareArch_SW": [
+     0,
+     859,
+     900
+    ],
+    "towerSquareMidOpen_SE": [
+     0,
+     1002,
+     900
+    ],
+    "towerSquareMidOpen_SW": [
+     0,
+     1145,
+     900
+    ],
+    "towerSquareMidWindows_SE": [
+     0,
+     1288,
+     900
+    ],
+    "towerSquareMidWindows_SW": [
+     0,
+     1431,
+     900
+    ],
+    "towerSquareMid_SE": [
+     0,
+     1574,
+     900
+    ],
+    "towerSquareMid_SW": [
+     0,
+     1717,
+     900
+    ],
+    "towerSquarePoles_SE": [
+     0,
+     1860,
+     900
+    ],
+    "towerSquarePoles_SW": [
+     0,
+     0,
+     1078
+    ],
+    "towerSquareArch_NE": [
+     0,
+     143,
+     1078
+    ],
+    "towerSquareMidOpen_NE": [
+     0,
+     285,
+     1078
+    ],
+    "towerSquareMidWindows_NE": [
+     0,
+     427,
+     1078
+    ],
+    "towerSquareMid_NE": [
+     0,
+     569,
+     1078
+    ],
+    "towerSquarePoles_NE": [
+     0,
+     711,
+     1078
+    ],
+    "wallDoor_SE": [
+     0,
+     1916,
+     716
+    ],
+    "towerBase_NW": [
+     0,
+     853,
+     1078
+    ],
+    "towerBase_SE": [
+     0,
+     962,
+     1078
+    ],
+    "towerBase_SW": [
+     0,
+     1071,
+     1078
+    ],
+    "towerBalcony_NE": [
+     0,
+     1180,
+     1078
+    ],
+    "towerBase_NE": [
+     0,
+     1324,
+     1078
+    ],
+    "wallDoor_SW": [
+     0,
+     1433,
+     1078
+    ],
+    "siegeRam_SE": [
+     0,
+     1548,
+     1078
+    ],
+    "siegeRam_SW": [
+     0,
+     1724,
+     1078
+    ],
+    "siegeRam_NE": [
+     0,
+     0,
+     1255
+    ],
+    "siegeRam_NW": [
+     0,
+     175,
+     1255
+    ],
+    "wallNarrowStairs_NE": [
+     0,
+     350,
+     1255
+    ],
+    "wallDoor_NE": [
+     0,
+     1900,
+     1078
+    ],
+    "towerSquareTopRoofHigh_NW": [
+     0,
+     500,
+     1255
+    ],
+    "towerSquareTopRoofHigh_SE": [
+     0,
+     653,
+     1255
+    ],
+    "towerSquareTopRoofHigh_NE": [
+     0,
+     806,
+     1255
+    ],
+    "towerSquareTopRoofHigh_SW": [
+     0,
+     959,
+     1255
+    ],
+    "towerSquareTopColor_NE": [
+     0,
+     1112,
+     1255
+    ],
+    "towerSquareTopColor_NW": [
+     0,
+     1265,
+     1255
+    ],
+    "towerSquareTopColor_SE": [
+     0,
+     1418,
+     1255
+    ],
+    "towerSquareTopColor_SW": [
+     0,
+     1571,
+     1255
+    ],
+    "siegeBallista_SW": [
+     0,
+     1724,
+     1255
+    ],
+    "siegeBallista_NW": [
+     0,
+     1862,
+     1255
+    ],
+    "towerSquareTopRoof_SE": [
+     0,
+     0,
+     1426
+    ],
+    "towerSquareTopRoof_NE": [
+     0,
+     153,
+     1426
+    ],
+    "towerSquareTopRoof_NW": [
+     0,
+     306,
+     1426
+    ],
+    "towerSquareTopRoof_SW": [
+     0,
+     459,
+     1426
+    ],
+    "siegeBallista_SE": [
+     0,
+     612,
+     1426
+    ],
+    "siegeBallista_NE": [
+     0,
+     750,
+     1426
+    ],
+    "towerSquareTop_NE": [
+     0,
+     887,
+     1426
+    ],
+    "towerSquareTop_NW": [
+     0,
+     1040,
+     1426
+    ],
+    "towerSquareTop_SE": [
+     0,
+     1193,
+     1426
+    ],
+    "towerSquareTop_SW": [
+     0,
+     1346,
+     1426
+    ],
+    "towerTopRoof_NE": [
+     0,
+     1499,
+     1426
+    ],
+    "towerTopRoof_NW": [
+     0,
+     1621,
+     1426
+    ],
+    "towerTopRoof_SW": [
+     0,
+     1743,
+     1426
+    ],
+    "towerSquareMidColor_NE": [
+     0,
+     1865,
+     1426
+    ],
+    "towerSquareMidColor_NW": [
+     0,
+     0,
+     1558
+    ],
+    "towerSquareMidColor_SE": [
+     0,
+     143,
+     1558
+    ],
+    "towerSquareMidColor_SW": [
+     0,
+     286,
+     1558
+    ],
+    "towerTopRoof_SE": [
+     0,
+     429,
+     1558
+    ],
+    "stairsStone_SW": [
+     0,
+     1958,
+     511
+    ],
+    "stairsStone_SE": [
+     0,
+     551,
+     1558
+    ],
+    "bridge_SE": [
+     0,
+     633,
+     1558
+    ],
+    "bridge_NW": [
+     0,
+     774,
+     1558
+    ],
+    "bridge_SW": [
+     0,
+     914,
+     1558
+    ],
+    "bridge_NE": [
+     0,
+     1055,
+     1558
+    ],
+    "metalGate_NW": [
+     0,
+     1195,
+     1558
+    ],
+    "metalGate_SE": [
+     0,
+     1252,
+     1558
+    ],
+    "metalGate_SW": [
+     0,
+     1310,
+     1558
+    ],
+    "metalGate_NE": [
+     0,
+     1368,
+     1558
+    ],
+    "towerTop_NW": [
+     0,
+     1425,
+     1558
+    ],
+    "towerTop_SE": [
+     0,
+     1534,
+     1558
+    ],
+    "towerTop_SW": [
+     0,
+     1643,
+     1558
+    ],
+    "towerTop_NE": [
+     0,
+     1752,
+     1558
+    ],
+    "flagBlue_NW": [
+     0,
+     2003,
+     900
+    ],
+    "flagBannerShort_NW": [
+     0,
+     1861,
+     1558
+    ],
+    "flagBlue_NE": [
+     0,
+     1999,
+     1255
+    ],
+    "flagBannerShort_NE": [
+     0,
+     1914,
+     1558
+    ],
+    "flagBannerShort_SW": [
+     0,
+     1967,
+     1558
+    ],
+    "flagBannerShort_SE": [
+     0,
+     0,
+     1675
+    ],
+    "flagBlueWide_NE": [
+     0,
+     2015,
+     1078
+    ],
+    "flagBlueWide_NW": [
+     0,
+     2008,
+     1426
+    ],
+    "stairsStone_NE": [
+     0,
+     53,
+     1675
+    ],
+    "stairsStone_NW": [
+     0,
+     135,
+     1675
+    ],
+    "king_NE": [
+     0,
+     216,
+     1675
+    ],
+    "king_NW": [
+     0,
+     263,
+     1675
+    ],
+    "king_SE": [
+     0,
+     310,
+     1675
+    ],
+    "king_SW": [
+     0,
+     357,
+     1675
+    ],
+    "knightBlue_NE": [
+     0,
+     404,
+     1675
+    ],
+    "knightBlue_NW": [
+     0,
+     451,
+     1675
+    ],
+    "knightBlue_SE": [
+     0,
+     498,
+     1675
+    ],
+    "knightBlue_SW": [
+     0,
+     545,
+     1675
+    ],
+    "knightRed_NE": [
+     0,
+     592,
+     1675
+    ],
+    "knightRed_NW": [
+     0,
+     639,
+     1675
+    ],
+    "knightRed_SE": [
+     0,
+     686,
+     1675
+    ],
+    "knightRed_SW": [
+     0,
+     733,
+     1675
+    ],
+    "flagBlue_SE": [
+     0,
+     780,
+     1675
+    ],
+    "flagBlue_SW": [
+     0,
+     824,
+     1675
+    ],
+    "flagBlueWide_SE": [
+     0,
+     868,
+     1675
+    ],
+    "flagBlueWide_SW": [
+     0,
+     901,
+     1675
+    ],
+    "shieldBlue_NW": [
+     0,
+     2020,
+     1558
+    ],
+    "shieldBlue_SE": [
+     0,
+     934,
+     1675
+    ],
+    "shieldBlue_NE": [
+     0,
+     959,
+     1675
+    ],
+    "shieldBlue_SW": [
+     0,
+     984,
+     1675
+    ]
+   },
+   "green/": {
+    "siegeTower_NW": [
+     0,
+     0,
+     0
+    ],
+    "siegeTower_SW": [
+     0,
+     204,
+     0
+    ],
+    "siegeTower_NE": [
+     0,
+     408,
+     0
+    ],
+    "siegeTower_SE": [
+     0,
+     612,
+     0
+    ],
+    "siegeTrebuchet_NE": [
+     0,
+     816,
+     0
+    ],
+    "siegeTrebuchet_SE": [
+     0,
+     1017,
+     0
+    ],
+    "wallCornerHalfTower_SW": [
+     0,
+     1217,
+     0
+    ],
+    "wallCornerHalfTower_NW": [
+     0,
+     1370,
+     0
+    ],
+    "siegeTrebuchet_NW": [
+     0,
+     1523,
+     0
+    ],
+    "siegeTrebuchet_SW": [
+     0,
+     1724,
+     0
+    ],
+    "towerSquareRoof_NE": [
+     0,
+     0,
+     300
+    ],
+    "towerSquareRoof_NW": [
+     0,
+     153,
+     300
+    ],
+    "towerSquareRoof_SE": [
+     0,
+     306,
+     300
+    ],
+    "towerSquareRoof_SW": [
+     0,
+     459,
+     300
+    ],
+    "wallCornerHalfTower_NE": [
+     0,
+     612,
+     300
+    ],
+    "wallCornerHalfTower_SE": [
+     0,
+     819,
+     300
+    ],
+    "wallCorner_NW": [
+     0,
+     1025,
+     300
+    ],
+    "wallCorner_SW": [
+     0,
+     1178,
+     300
+    ],
+    "wallHalf_NW": [
+     0,
+     1331,
+     300
+    ],
+    "wall_NE": [
+     0,
+     1484,
+     300
+    ],
+    "wall_NW": [
+     0,
+     1637,
+     300
+    ],
+    "wallNarrowStairs_NW": [
+     0,
+     1790,
+     300
+    ],
+    "wall_SW": [
+     0,
+     0,
+     511
+    ],
+    "wallCorner_NE": [
+     0,
+     153,
+     511
+    ],
+    "wallCorner_SE": [
+     0,
+     306,
+     511
+    ],
+    "wallHalf_SE": [
+     0,
+     459,
+     511
+    ],
+    "wall_SE": [
+     0,
+     612,
+     511
+    ],
+    "wallNarrowStairs_SE": [
+     0,
+     765,
+     511
+    ],
+    "wallHalf_NE": [
+     0,
+     916,
+     511
+    ],
+    "wallHalf_SW": [
+     0,
+     1069,
+     511
+    ],
+    "siegeCatapult_NE": [
+     0,
+     1222,
+     511
+    ],
+    "siegeCatapult_NW": [
+     0,
+     1406,
+     511
+    ],
+    "siegeCatapult_SE": [
+     0,
+     1590,
+     511
+    ],
+    "siegeCatapult_SW": [
+     0,
+     1774,
+     511
+    ],
+    "flagBannerLong_NE": [
+     0,
+     1924,
+     0
+    ],
+    "flagBannerLong_NW": [
+     0,
+     1977,
+     0
+    ],
+    "flagBannerLong_SW": [
+     0,
+     1941,
+     300
+    ],
+    "wallNarrowStairs_SW": [
+     0,
+     0,
+     716
+    ],
+    "flagBannerLong_SE": [
+     0,
+     1994,
+     300
+    ],
+    "towerSquareBaseColor_NE": [
+     0,
+     150,
+     716
+    ],
+    "towerSquareBaseColor_NW": [
+     0,
+     303,
+     716
+    ],
+    "towerSquareBaseColor_SW": [
+     0,
+     456,
+     716
+    ],
+    "towerSquareBase_NE": [
+     0,
+     609,
+     716
+    ],
+    "towerSquareBase_NW": [
+     0,
+     762,
+     716
+    ],
+    "towerSquareBase_SW": [
+     0,
+     915,
+     716
+    ],
+    "towerSquareBaseColor_SE": [
+     0,
+     1068,
+     716
+    ],
+    "towerSquareBase_SE": [
+     0,
+     1221,
+     716
+    ],
+    "wallDoor_NW": [
+     0,
+     1374,
+     716
+    ],
+    "towerSquareArch_NW": [
+     0,
+     1490,
+     716
+    ],
+    "towerSquareMidOpen_NW": [
+     0,
+     1632,
+     716
+    ],
+    "towerSquareMidWindows_NW": [
+     0,
+     1774,
+     716
+    ],
+    "towerSquareMid_NW": [
+     0,
+     0,
+     900
+    ],
+    "towerSquarePoles_NW": [
+     0,
+     142,
+     900
+    ],
+    "towerBalcony_NW": [
+     0,
+     284,
+     900
+    ],
+    "towerBalcony_SE": [
+     0,
+     428,
+     900
+    ],
+    "towerBalcony_SW": [
+     0,
+     572,
+     900
+    ],
+    "towerSquareArch_SE": [
+     0,
+     716,
+     900
+    ],
+    "towerSquareArch_SW": [
+     0,
+     859,
+     900
+    ],
+    "towerSquareMidOpen_SE": [
+     0,
+     1002,
+     900
+    ],
+    "towerSquareMidOpen_SW": [
+     0,
+     1145,
+     900
+    ],
+    "towerSquareMidWindows_SE": [
+     0,
+     1288,
+     900
+    ],
+    "towerSquareMidWindows_SW": [
+     0,
+     1431,
+     900
+    ],
+    "towerSquareMid_SE": [
+     0,
+     1574,
+     900
+    ],
+    "towerSquareMid_SW": [
+     0,
+     1717,
+     900
+    ],
+    "towerSquarePoles_SE": [
+     0,
+     1860,
+     900
+    ],
+    "towerSquarePoles_SW": [
+     0,
+     0,
+     1078
+    ],
+    "towerSquareArch_NE": [
+     0,
+     143,
+     1078
+    ],
+    "towerSquareMidOpen_NE": [
+     0,
+     285,
+     1078
+    ],
+    "towerSquareMidWindows_NE": [
+     0,
+     427,
+     1078
+    ],
+    "towerSquareMid_NE": [
+     0,
+     569,
+     1078
+    ],
+    "towerSquarePoles_NE": [
+     0,
+     711,
+     1078
+    ],
+    "wallDoor_SE": [
+     0,
+     1916,
+     716
+    ],
+    "towerBase_NW": [
+     0,
+     853,
+     1078
+    ],
+    "towerBase_SE": [
+     0,
+     962,
+     1078
+    ],
+    "towerBase_SW": [
+     0,
+     1071,
+     1078
+    ],
+    "towerBalcony_NE": [
+     0,
+     1180,
+     1078
+    ],
+    "towerBase_NE": [
+     0,
+     1324,
+     1078
+    ],
+    "wallDoor_SW": [
+     0,
+     1433,
+     1078
+    ],
+    "siegeRam_SE": [
+     0,
+     1548,
+     1078
+    ],
+    "siegeRam_SW": [
+     0,
+     1724,
+     1078
+    ],
+    "siegeRam_NE": [
+     0,
+     0,
+     1255
+    ],
+    "siegeRam_NW": [
+     0,
+     175,
+     1255
+    ],
+    "wallNarrowStairs_NE": [
+     0,
+     350,
+     1255
+    ],
+    "wallDoor_NE": [
+     0,
+     1900,
+     1078
+    ],
+    "towerSquareTopRoofHigh_NW": [
+     0,
+     500,
+     1255
+    ],
+    "towerSquareTopRoofHigh_SE": [
+     0,
+     653,
+     1255
+    ],
+    "towerSquareTopRoofHigh_NE": [
+     0,
+     806,
+     1255
+    ],
+    "towerSquareTopRoofHigh_SW": [
+     0,
+     959,
+     1255
+    ],
+    "towerSquareTopColor_NE": [
+     0,
+     1112,
+     1255
+    ],
+    "towerSquareTopColor_NW": [
+     0,
+     1265,
+     1255
+    ],
+    "towerSquareTopColor_SE": [
+     0,
+     1418,
+     1255
+    ],
+    "towerSquareTopColor_SW": [
+     0,
+     1571,
+     1255
+    ],
+    "siegeBallista_SW": [
+     0,
+     1724,
+     1255
+    ],
+    "siegeBallista_NW": [
+     0,
+     1862,
+     1255
+    ],
+    "towerSquareTopRoof_SE": [
+     0,
+     0,
+     1426
+    ],
+    "towerSquareTopRoof_NE": [
+     0,
+     153,
+     1426
+    ],
+    "towerSquareTopRoof_NW": [
+     0,
+     306,
+     1426
+    ],
+    "towerSquareTopRoof_SW": [
+     0,
+     459,
+     1426
+    ],
+    "siegeBallista_SE": [
+     0,
+     612,
+     1426
+    ],
+    "siegeBallista_NE": [
+     0,
+     750,
+     1426
+    ],
+    "towerSquareTop_NE": [
+     0,
+     887,
+     1426
+    ],
+    "towerSquareTop_NW": [
+     0,
+     1040,
+     1426
+    ],
+    "towerSquareTop_SE": [
+     0,
+     1193,
+     1426
+    ],
+    "towerSquareTop_SW": [
+     0,
+     1346,
+     1426
+    ],
+    "towerTopRoof_NE": [
+     0,
+     1499,
+     1426
+    ],
+    "towerTopRoof_NW": [
+     0,
+     1621,
+     1426
+    ],
+    "towerTopRoof_SW": [
+     0,
+     1743,
+     1426
+    ],
+    "towerSquareMidColor_NE": [
+     0,
+     1865,
+     1426
+    ],
+    "towerSquareMidColor_NW": [
+     0,
+     0,
+     1558
+    ],
+    "towerSquareMidColor_SE": [
+     0,
+     143,
+     1558
+    ],
+    "towerSquareMidColor_SW": [
+     0,
+     286,
+     1558
+    ],
+    "towerTopRoof_SE": [
+     0,
+     429,
+     1558
+    ],
+    "stairsStone_SW": [
+     0,
+     1958,
+     511
+    ],
+    "stairsStone_SE": [
+     0,
+     551,
+     1558
+    ],
+    "bridge_SE": [
+     0,
+     633,
+     1558
+    ],
+    "bridge_NW": [
+     0,
+     774,
+     1558
+    ],
+    "bridge_SW": [
+     0,
+     914,
+     1558
+    ],
+    "bridge_NE": [
+     0,
+     1055,
+     1558
+    ],
+    "metalGate_NW": [
+     0,
+     1195,
+     1558
+    ],
+    "metalGate_SE": [
+     0,
+     1252,
+     1558
+    ],
+    "metalGate_SW": [
+     0,
+     1310,
+     1558
+    ],
+    "metalGate_NE": [
+     0,
+     1368,
+     1558
+    ],
+    "towerTop_NW": [
+     0,
+     1425,
+     1558
+    ],
+    "towerTop_SE": [
+     0,
+     1534,
+     1558
+    ],
+    "towerTop_SW": [
+     0,
+     1643,
+     1558
+    ],
+    "towerTop_NE": [
+     0,
+     1752,
+     1558
+    ],
+    "flagBlue_NW": [
+     0,
+     2003,
+     900
+    ],
+    "flagBannerShort_NW": [
+     0,
+     1861,
+     1558
+    ],
+    "flagBlue_NE": [
+     0,
+     1999,
+     1255
+    ],
+    "flagBannerShort_NE": [
+     0,
+     1914,
+     1558
+    ],
+    "flagBannerShort_SW": [
+     0,
+     1967,
+     1558
+    ],
+    "flagBannerShort_SE": [
+     0,
+     0,
+     1675
+    ],
+    "flagBlueWide_NE": [
+     0,
+     2015,
+     1078
+    ],
+    "flagBlueWide_NW": [
+     0,
+     2008,
+     1426
+    ],
+    "stairsStone_NE": [
+     0,
+     53,
+     1675
+    ],
+    "stairsStone_NW": [
+     0,
+     135,
+     1675
+    ],
+    "king_NE": [
+     0,
+     216,
+     1675
+    ],
+    "king_NW": [
+     0,
+     263,
+     1675
+    ],
+    "king_SE": [
+     0,
+     310,
+     1675
+    ],
+    "king_SW": [
+     0,
+     357,
+     1675
+    ],
+    "knightBlue_NE": [
+     0,
+     404,
+     1675
+    ],
+    "knightBlue_NW": [
+     0,
+     451,
+     1675
+    ],
+    "knightBlue_SE": [
+     0,
+     498,
+     1675
+    ],
+    "knightBlue_SW": [
+     0,
+     545,
+     1675
+    ],
+    "knightRed_NE": [
+     0,
+     592,
+     1675
+    ],
+    "knightRed_NW": [
+     0,
+     639,
+     1675
+    ],
+    "knightRed_SE": [
+     0,
+     686,
+     1675
+    ],
+    "knightRed_SW": [
+     0,
+     733,
+     1675
+    ],
+    "flagBlue_SE": [
+     0,
+     780,
+     1675
+    ],
+    "flagBlue_SW": [
+     0,
+     824,
+     1675
+    ],
+    "flagBlueWide_SE": [
+     0,
+     868,
+     1675
+    ],
+    "flagBlueWide_SW": [
+     0,
+     901,
+     1675
+    ],
+    "shieldBlue_NW": [
+     0,
+     2020,
+     1558
+    ],
+    "shieldBlue_SE": [
+     0,
+     934,
+     1675
+    ],
+    "shieldBlue_NE": [
+     0,
+     959,
+     1675
+    ],
+    "shieldBlue_SW": [
+     0,
+     984,
+     1675
+    ]
+   },
+   "gold/": {
+    "siegeTower_NW": [
+     0,
+     0,
+     0
+    ],
+    "siegeTower_SW": [
+     0,
+     204,
+     0
+    ],
+    "siegeTower_NE": [
+     0,
+     408,
+     0
+    ],
+    "siegeTower_SE": [
+     0,
+     612,
+     0
+    ],
+    "siegeTrebuchet_NE": [
+     0,
+     816,
+     0
+    ],
+    "siegeTrebuchet_SE": [
+     0,
+     1017,
+     0
+    ],
+    "wallCornerHalfTower_SW": [
+     0,
+     1217,
+     0
+    ],
+    "wallCornerHalfTower_NW": [
+     0,
+     1370,
+     0
+    ],
+    "siegeTrebuchet_NW": [
+     0,
+     1523,
+     0
+    ],
+    "siegeTrebuchet_SW": [
+     0,
+     1724,
+     0
+    ],
+    "towerSquareRoof_NE": [
+     0,
+     0,
+     300
+    ],
+    "towerSquareRoof_NW": [
+     0,
+     153,
+     300
+    ],
+    "towerSquareRoof_SE": [
+     0,
+     306,
+     300
+    ],
+    "towerSquareRoof_SW": [
+     0,
+     459,
+     300
+    ],
+    "wallCornerHalfTower_NE": [
+     0,
+     612,
+     300
+    ],
+    "wallCornerHalfTower_SE": [
+     0,
+     819,
+     300
+    ],
+    "wallCorner_NW": [
+     0,
+     1025,
+     300
+    ],
+    "wallCorner_SW": [
+     0,
+     1178,
+     300
+    ],
+    "wallHalf_NW": [
+     0,
+     1331,
+     300
+    ],
+    "wall_NE": [
+     0,
+     1484,
+     300
+    ],
+    "wall_NW": [
+     0,
+     1637,
+     300
+    ],
+    "wallNarrowStairs_NW": [
+     0,
+     1790,
+     300
+    ],
+    "wall_SW": [
+     0,
+     0,
+     511
+    ],
+    "wallCorner_NE": [
+     0,
+     153,
+     511
+    ],
+    "wallCorner_SE": [
+     0,
+     306,
+     511
+    ],
+    "wallHalf_SE": [
+     0,
+     459,
+     511
+    ],
+    "wall_SE": [
+     0,
+     612,
+     511
+    ],
+    "wallNarrowStairs_SE": [
+     0,
+     765,
+     511
+    ],
+    "wallHalf_NE": [
+     0,
+     916,
+     511
+    ],
+    "wallHalf_SW": [
+     0,
+     1069,
+     511
+    ],
+    "siegeCatapult_NE": [
+     0,
+     1222,
+     511
+    ],
+    "siegeCatapult_NW": [
+     0,
+     1406,
+     511
+    ],
+    "siegeCatapult_SE": [
+     0,
+     1590,
+     511
+    ],
+    "siegeCatapult_SW": [
+     0,
+     1774,
+     511
+    ],
+    "flagBannerLong_NE": [
+     0,
+     1924,
+     0
+    ],
+    "flagBannerLong_NW": [
+     0,
+     1977,
+     0
+    ],
+    "flagBannerLong_SW": [
+     0,
+     1941,
+     300
+    ],
+    "wallNarrowStairs_SW": [
+     0,
+     0,
+     716
+    ],
+    "flagBannerLong_SE": [
+     0,
+     1994,
+     300
+    ],
+    "towerSquareBaseColor_NE": [
+     0,
+     150,
+     716
+    ],
+    "towerSquareBaseColor_NW": [
+     0,
+     303,
+     716
+    ],
+    "towerSquareBaseColor_SW": [
+     0,
+     456,
+     716
+    ],
+    "towerSquareBase_NE": [
+     0,
+     609,
+     716
+    ],
+    "towerSquareBase_NW": [
+     0,
+     762,
+     716
+    ],
+    "towerSquareBase_SW": [
+     0,
+     915,
+     716
+    ],
+    "towerSquareBaseColor_SE": [
+     0,
+     1068,
+     716
+    ],
+    "towerSquareBase_SE": [
+     0,
+     1221,
+     716
+    ],
+    "wallDoor_NW": [
+     0,
+     1374,
+     716
+    ],
+    "towerSquareArch_NW": [
+     0,
+     1490,
+     716
+    ],
+    "towerSquareMidOpen_NW": [
+     0,
+     1632,
+     716
+    ],
+    "towerSquareMidWindows_NW": [
+     0,
+     1774,
+     716
+    ],
+    "towerSquareMid_NW": [
+     0,
+     0,
+     900
+    ],
+    "towerSquarePoles_NW": [
+     0,
+     142,
+     900
+    ],
+    "towerBalcony_NW": [
+     0,
+     284,
+     900
+    ],
+    "towerBalcony_SE": [
+     0,
+     428,
+     900
+    ],
+    "towerBalcony_SW": [
+     0,
+     572,
+     900
+    ],
+    "towerSquareArch_SE": [
+     0,
+     716,
+     900
+    ],
+    "towerSquareArch_SW": [
+     0,
+     859,
+     900
+    ],
+    "towerSquareMidOpen_SE": [
+     0,
+     1002,
+     900
+    ],
+    "towerSquareMidOpen_SW": [
+     0,
+     1145,
+     900
+    ],
+    "towerSquareMidWindows_SE": [
+     0,
+     1288,
+     900
+    ],
+    "towerSquareMidWindows_SW": [
+     0,
+     1431,
+     900
+    ],
+    "towerSquareMid_SE": [
+     0,
+     1574,
+     900
+    ],
+    "towerSquareMid_SW": [
+     0,
+     1717,
+     900
+    ],
+    "towerSquarePoles_SE": [
+     0,
+     1860,
+     900
+    ],
+    "towerSquarePoles_SW": [
+     0,
+     0,
+     1078
+    ],
+    "towerSquareArch_NE": [
+     0,
+     143,
+     1078
+    ],
+    "towerSquareMidOpen_NE": [
+     0,
+     285,
+     1078
+    ],
+    "towerSquareMidWindows_NE": [
+     0,
+     427,
+     1078
+    ],
+    "towerSquareMid_NE": [
+     0,
+     569,
+     1078
+    ],
+    "towerSquarePoles_NE": [
+     0,
+     711,
+     1078
+    ],
+    "wallDoor_SE": [
+     0,
+     1916,
+     716
+    ],
+    "towerBase_NW": [
+     0,
+     853,
+     1078
+    ],
+    "towerBase_SE": [
+     0,
+     962,
+     1078
+    ],
+    "towerBase_SW": [
+     0,
+     1071,
+     1078
+    ],
+    "towerBalcony_NE": [
+     0,
+     1180,
+     1078
+    ],
+    "towerBase_NE": [
+     0,
+     1324,
+     1078
+    ],
+    "wallDoor_SW": [
+     0,
+     1433,
+     1078
+    ],
+    "siegeRam_SE": [
+     0,
+     1548,
+     1078
+    ],
+    "siegeRam_SW": [
+     0,
+     1724,
+     1078
+    ],
+    "siegeRam_NE": [
+     0,
+     0,
+     1255
+    ],
+    "siegeRam_NW": [
+     0,
+     175,
+     1255
+    ],
+    "wallNarrowStairs_NE": [
+     0,
+     350,
+     1255
+    ],
+    "wallDoor_NE": [
+     0,
+     1900,
+     1078
+    ],
+    "towerSquareTopRoofHigh_NW": [
+     0,
+     500,
+     1255
+    ],
+    "towerSquareTopRoofHigh_SE": [
+     0,
+     653,
+     1255
+    ],
+    "towerSquareTopRoofHigh_NE": [
+     0,
+     806,
+     1255
+    ],
+    "towerSquareTopRoofHigh_SW": [
+     0,
+     959,
+     1255
+    ],
+    "towerSquareTopColor_NE": [
+     0,
+     1112,
+     1255
+    ],
+    "towerSquareTopColor_NW": [
+     0,
+     1265,
+     1255
+    ],
+    "towerSquareTopColor_SE": [
+     0,
+     1418,
+     1255
+    ],
+    "towerSquareTopColor_SW": [
+     0,
+     1571,
+     1255
+    ],
+    "siegeBallista_SW": [
+     0,
+     1724,
+     1255
+    ],
+    "siegeBallista_NW": [
+     0,
+     1862,
+     1255
+    ],
+    "towerSquareTopRoof_SE": [
+     0,
+     0,
+     1426
+    ],
+    "towerSquareTopRoof_NE": [
+     0,
+     153,
+     1426
+    ],
+    "towerSquareTopRoof_NW": [
+     0,
+     306,
+     1426
+    ],
+    "towerSquareTopRoof_SW": [
+     0,
+     459,
+     1426
+    ],
+    "siegeBallista_SE": [
+     0,
+     612,
+     1426
+    ],
+    "siegeBallista_NE": [
+     0,
+     750,
+     1426
+    ],
+    "towerSquareTop_NE": [
+     0,
+     887,
+     1426
+    ],
+    "towerSquareTop_NW": [
+     0,
+     1040,
+     1426
+    ],
+    "towerSquareTop_SE": [
+     0,
+     1193,
+     1426
+    ],
+    "towerSquareTop_SW": [
+     0,
+     1346,
+     1426
+    ],
+    "towerTopRoof_NE": [
+     0,
+     1499,
+     1426
+    ],
+    "towerTopRoof_NW": [
+     0,
+     1621,
+     1426
+    ],
+    "towerTopRoof_SW": [
+     0,
+     1743,
+     1426
+    ],
+    "towerSquareMidColor_NE": [
+     0,
+     1865,
+     1426
+    ],
+    "towerSquareMidColor_NW": [
+     0,
+     0,
+     1558
+    ],
+    "towerSquareMidColor_SE": [
+     0,
+     143,
+     1558
+    ],
+    "towerSquareMidColor_SW": [
+     0,
+     286,
+     1558
+    ],
+    "towerTopRoof_SE": [
+     0,
+     429,
+     1558
+    ],
+    "stairsStone_SW": [
+     0,
+     1958,
+     511
+    ],
+    "stairsStone_SE": [
+     0,
+     551,
+     1558
+    ],
+    "bridge_SE": [
+     0,
+     633,
+     1558
+    ],
+    "bridge_NW": [
+     0,
+     774,
+     1558
+    ],
+    "bridge_SW": [
+     0,
+     914,
+     1558
+    ],
+    "bridge_NE": [
+     0,
+     1055,
+     1558
+    ],
+    "metalGate_NW": [
+     0,
+     1195,
+     1558
+    ],
+    "metalGate_SE": [
+     0,
+     1252,
+     1558
+    ],
+    "metalGate_SW": [
+     0,
+     1310,
+     1558
+    ],
+    "metalGate_NE": [
+     0,
+     1368,
+     1558
+    ],
+    "towerTop_NW": [
+     0,
+     1425,
+     1558
+    ],
+    "towerTop_SE": [
+     0,
+     1534,
+     1558
+    ],
+    "towerTop_SW": [
+     0,
+     1643,
+     1558
+    ],
+    "towerTop_NE": [
+     0,
+     1752,
+     1558
+    ],
+    "flagBlue_NW": [
+     0,
+     2003,
+     900
+    ],
+    "flagBannerShort_NW": [
+     0,
+     1861,
+     1558
+    ],
+    "flagBlue_NE": [
+     0,
+     1999,
+     1255
+    ],
+    "flagBannerShort_NE": [
+     0,
+     1914,
+     1558
+    ],
+    "flagBannerShort_SW": [
+     0,
+     1967,
+     1558
+    ],
+    "flagBannerShort_SE": [
+     0,
+     0,
+     1675
+    ],
+    "flagBlueWide_NE": [
+     0,
+     2015,
+     1078
+    ],
+    "flagBlueWide_NW": [
+     0,
+     2008,
+     1426
+    ],
+    "stairsStone_NE": [
+     0,
+     53,
+     1675
+    ],
+    "stairsStone_NW": [
+     0,
+     135,
+     1675
+    ],
+    "king_NE": [
+     0,
+     216,
+     1675
+    ],
+    "king_NW": [
+     0,
+     263,
+     1675
+    ],
+    "king_SE": [
+     0,
+     310,
+     1675
+    ],
+    "king_SW": [
+     0,
+     357,
+     1675
+    ],
+    "knightBlue_NE": [
+     0,
+     404,
+     1675
+    ],
+    "knightBlue_NW": [
+     0,
+     451,
+     1675
+    ],
+    "knightBlue_SE": [
+     0,
+     498,
+     1675
+    ],
+    "knightBlue_SW": [
+     0,
+     545,
+     1675
+    ],
+    "knightRed_NE": [
+     0,
+     592,
+     1675
+    ],
+    "knightRed_NW": [
+     0,
+     639,
+     1675
+    ],
+    "knightRed_SE": [
+     0,
+     686,
+     1675
+    ],
+    "knightRed_SW": [
+     0,
+     733,
+     1675
+    ],
+    "flagBlue_SE": [
+     0,
+     780,
+     1675
+    ],
+    "flagBlue_SW": [
+     0,
+     824,
+     1675
+    ],
+    "flagBlueWide_SE": [
+     0,
+     868,
+     1675
+    ],
+    "flagBlueWide_SW": [
+     0,
+     901,
+     1675
+    ],
+    "shieldBlue_NW": [
+     0,
+     2020,
+     1558
+    ],
+    "shieldBlue_SE": [
+     0,
+     934,
+     1675
+    ],
+    "shieldBlue_NE": [
+     0,
+     959,
+     1675
+    ],
+    "shieldBlue_SW": [
+     0,
+     984,
+     1675
+    ]
+   }
+  },
+  "sheets": {
+   "": 3,
+   "red/": 1,
+   "green/": 1,
+   "gold/": 1
+  }
+ }
+}

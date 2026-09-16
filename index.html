@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <title>SOL Lab · Virginia EOC Biology</title>
+  <link rel="stylesheet" href="css/after-hours.css?v=6.0.0" />
+  <link rel="stylesheet" href="css/build.css?v=6.0.0" />
+</head>
+<body>
+  <div id="app">
+    <section id="title-screen" class="screen">
+      <p class="kicker" id="title-kicker">Virginia EOC Biology SOL · 100 levels</p>
+      <h1>SOL Lab</h1>
+      <p class="tag">Tap a unit to pick your skill focus. Read the lab notes in the side panel. Grab the matching letter. Walk it to EXIT · SAFE. The wolves do not know the answer — only you do.</p>
+      <p id="save-line" class="save-line">No level saved on this Chromebook yet.</p>
+
+      <div class="packs unit-packs">
+        <button type="button" class="card selected" data-family="ALL">
+          <span class="kind">All units</span>
+          <span class="name">Full review</span>
+          <span class="meta">Every unit mixed, leaning toward the standards you miss most. Best in the last weeks before the test.</span>
+        </button>
+        <button type="button" class="card" data-family="INV">
+          <span class="kind">BIO.1</span>
+          <span class="name">Scientific Investigation</span>
+          <span class="meta">Variables, controls, data tables, graphs, conclusions and models.</span>
+        </button>
+        <button type="button" class="card" data-family="CHEM">
+          <span class="kind">BIO.2</span>
+          <span class="name">Biochemistry</span>
+          <span class="meta">Water, macromolecules, enzymes, photosynthesis and cellular respiration.</span>
+        </button>
+        <button type="button" class="card" data-family="CELL">
+          <span class="kind">BIO.3</span>
+          <span class="name">Cell Structure &amp; Function</span>
+          <span class="meta">Cell theory, organelles, the membrane and transport, specialization.</span>
+        </button>
+        <button type="button" class="card" data-family="MICRO">
+          <span class="kind">BIO.4</span>
+          <span class="name">Bacteria &amp; Viruses</span>
+          <span class="meta">Structure, replication, roles in ecosystems and the germ theory of disease.</span>
+        </button>
+        <button type="button" class="card" data-family="GEN">
+          <span class="kind">BIO.5</span>
+          <span class="name">Genetics &amp; Heredity</span>
+          <span class="meta">Meiosis, Mendel, Punnett squares, pedigrees, mutations and biotechnology.</span>
+        </button>
+        <button type="button" class="card" data-family="DNA">
+          <span class="kind">BIO.2 · BIO.5</span>
+          <span class="name">DNA &amp; Protein Synthesis</span>
+          <span class="meta">DNA structure and replication, transcription, translation and the history of the DNA model.</span>
+        </button>
+        <button type="button" class="card" data-family="EVO">
+          <span class="kind">BIO.6 · BIO.7</span>
+          <span class="name">Evolution &amp; Classification</span>
+          <span class="meta">Cladograms, domains and kingdoms, fossils, natural selection and speciation.</span>
+        </button>
+        <button type="button" class="card" data-family="ECO">
+          <span class="kind">BIO.8</span>
+          <span class="name">Ecology</span>
+          <span class="meta">Populations, food webs, nutrient cycles, succession, human impact and Virginia ecosystems.</span>
+        </button>
+      </div>
+
+      <div class="row title-tools">
+        <button type="button" class="btn" id="btn-town" title="See the town or castle you have built">My Town</button>
+        <button type="button" class="btn" id="btn-music" aria-pressed="true" title="Background music on/off">♪ Music on</button>
+      </div>
+
+      <div class="join-row">
+        <label>Class code (optional)
+          <input id="join-code" maxlength="4" placeholder="ABCD" autocomplete="off" spellcheck="false" />
+        </label>
+        <label>Nickname (optional)
+          <input id="join-nick" maxlength="16" placeholder="nickname, not legal name" autocomplete="off" spellcheck="false" />
+        </label>
+      </div>
+
+      <p class="howto">
+        <strong>100 levels of stealth extract — not a quiz skin.</strong>
+        Tap a unit — then choose a skill (or All) and start. Questions follow the Virginia Biology Standards of Learning (BIO.1–BIO.8).
+        Move quiet, grab the right letter on the map, extract at EXIT · SAFE. Correct letters call Sol's CHARIOT.
+        START · SAFE is where you spawn; EXIT · SAFE is where you extract and read. Hati cannot see you in either booth.
+        Catches and wrong letters both cost a life; three (then two) end a level. Win to unlock the next level on this Chromebook.
+        Itch login does not store progress. Solo works without a class code.
+      </p>
+    </section>
+
+    <section id="skill-screen" class="screen hidden">
+      <p class="kicker" id="skill-kicker">Selection · skill focus</p>
+      <h1>Pick a skill</h1>
+      <p class="tag">Choose a standard to focus on for this level, or play with the whole unit mixed.</p>
+      <p id="skill-save-line" class="save-line">No level saved on this Chromebook yet.</p>
+
+      <div class="packs" id="skill-packs">
+        <!-- filled by game.js -->
+      </div>
+
+      <div class="music-pick" id="music-pick">
+        <p class="music-pick-label">Background music <span class="dim">— tap to hear it; chases switch to the boss track</span></p>
+        <div class="chips" id="music-chips"><!-- filled by game.js --></div>
+        <label class="music-vol-row">Volume
+          <input type="range" id="music-vol" class="music-vol" min="0" max="100" step="5" value="55" aria-label="Music volume" />
+          <span class="music-vol-val" id="music-vol-val">55%</span>
+        </label>
+      </div>
+
+      <div class="row">
+        <button type="button" class="btn" id="btn-skill-back">Back</button>
+        <button type="button" class="btn primary" id="btn-skill-start">New game (Level 1)</button>
+        <button type="button" class="btn primary hidden" id="btn-skill-continue">Continue</button>
+      </div>
+    </section>
+
+    <div id="play" class="hidden">
+      <aside id="hud">
+        <div class="eoc">
+          <div class="eoc-bar">
+            <p class="sol" id="job-sol">SOL · BIO.1.c</p>
+            <p class="round" id="round-flag">Level 1 / 100</p>
+            <div class="scores">
+              <span class="pip gold" id="score-pip">Extracts 0 / 5</span>
+              <span class="pip strike" id="strike-pip">Strikes 0 / 3</span>
+              <span class="pip bonus" id="bonus-pip">Coins 0</span>
+              <span class="pip" id="token-pip">Token N001E0S0</span>
+            </div>
+          </div>
+          <div class="eoc-body">
+            <div id="eoc-passage-wrap">
+              <div id="eoc-passage" class="passage"></div>
+            </div>
+            <div class="eoc-item">
+              <p class="stem" id="eoc-stem"></p>
+              <ol id="eoc-choices" class="choices"></ol>
+              <p class="evidence hidden" id="evidence">2 evidence</p>
+            </div>
+          </div>
+          <p class="carry-flag" id="carry-flag" aria-live="polite"></p>
+        </div>
+      </aside>
+      <div id="stage">
+        <div id="game-root"></div>
+        <div id="flash"></div>
+        <button type="button" id="btn-char" class="btn">Look</button>
+        <button type="button" id="btn-music-hud" class="btn" aria-pressed="true" title="Background music on/off">♪</button>
+        <input type="range" id="music-vol-hud" class="music-vol" min="0" max="100" step="5" value="55" title="Music volume" aria-label="Music volume" />
+        <button type="button" id="btn-fs" class="btn hidden">Exit full screen</button>
+        <canvas id="minimap" width="200" height="112" aria-label="Minimap"></canvas>
+        <div id="controls">
+          <div class="dpad" aria-label="Move">
+            <button type="button" class="n" data-dir="n">▲</button>
+            <button type="button" class="w" data-dir="w">◀</button>
+            <button type="button" class="e" data-dir="e">▶</button>
+            <button type="button" class="s" data-dir="s">▼</button>
+          </div>
+          <div class="action-pads" aria-label="Actions">
+            <button type="button" id="btn-shutter">LOCK</button>
+            <button type="button" id="btn-action">SPRINT</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="overlay" class="hidden">
+      <div class="box">
+        <h2 id="win-title">Set</h2>
+        <p id="win-msg"></p>
+        <div class="row">
+          <button type="button" class="btn primary hidden" id="btn-next">Next level</button>
+          <button type="button" class="btn primary hidden" id="btn-retry">Retry this level</button>
+          <button type="button" class="btn hidden" id="btn-shop" data-night="1">Shop</button>
+          <button type="button" class="btn" id="btn-again">Title</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="char-overlay" class="hidden" aria-hidden="true">
+    <div class="char-panel" id="char-panel">
+      <p class="tut-kicker">School look</p>
+      <h2>Pick your look</h2>
+      <p class="char-tag">School outfits only. Tap a student, then Play.</p>
+      <div id="char-grid" class="char-grid" role="listbox" aria-label="Character presets"></div>
+      <div class="row">
+        <button type="button" class="btn" id="btn-char-back">Back</button>
+        <button type="button" class="btn primary" id="btn-char-confirm">Play</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="tut-overlay" class="hidden" aria-hidden="true">
+    <div class="tut-card" id="tut-card">
+      <p class="tut-kicker" id="tut-kicker">How to play · 1 of 9</p>
+      <h2 id="tut-title">You are Sol</h2>
+      <p id="tut-body">You are in the school after dark. Move with the arrow keys, WASD, or the pad on screen.</p>
+      <p class="tut-hint" id="tut-hint">Tap to continue</p>
+      <button type="button" id="tut-skip" class="btn">Skip intro</button>
+    </div>
+  </div>
+
+  <div id="codex-overlay" class="hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Field guide">
+    <div class="codex-card" id="codex-card">
+      <div class="codex-head">
+        <div>
+          <p class="tut-kicker">Field guide</p>
+          <h2 id="codex-title">Traps &amp; Buffs</h2>
+        </div>
+        <button type="button" id="codex-close" class="btn">Close (TAB)</button>
+      </div>
+      <p class="codex-sub" id="codex-sub">Everything you have unlocked so far. The game is paused while this is open.</p>
+      <div class="codex-legend" id="codex-legend"></div>
+      <div class="codex-scroll">
+        <div id="codex-list" class="codex-list"></div>
+        <h3 class="codex-lockhead" id="codex-lockhead">Not unlocked yet</h3>
+        <div id="codex-locked" class="codex-list locked"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="read-overlay" class="hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Read the lab notes">
+    <div class="read-card" id="read-card">
+      <div class="read-head">
+        <div>
+          <p class="tut-kicker" id="read-kicker">Read first</p>
+          <h2 id="read-title">Lab notes</h2>
+        </div>
+        <span class="read-pause">GAME PAUSED</span>
+      </div>
+      <div class="read-scroll" id="read-scroll">
+        <div id="read-passage" class="passage"></div>
+        <p class="stem" id="read-stem"></p>
+        <ol id="read-choices" class="choices"></ol>
+      </div>
+      <p class="read-hint" id="read-hint">Find the matching letter in the maze and carry it to EXIT · SAFE. The notes stay in the side panel while you play.</p>
+      <div class="row">
+        <button type="button" id="read-go" class="btn primary">Got it — play</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="trap-overlay" class="hidden" aria-hidden="true">
+    <div class="tut-card trap-card" id="trap-card">
+      <p class="tut-kicker" id="trap-kicker">New on the map</p>
+      <h2 id="trap-title">Wet floor</h2>
+      <p id="trap-body">Blue floor is wet. Walking is slow. Sprint can slip.</p>
+      <div class="row">
+        <button type="button" id="trap-ok" class="btn primary">OK</button>
+        <button type="button" id="trap-skip" class="btn">Skip</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  /* Any error that escapes the game loop is logged, never shown to a student. */
+  window.addEventListener("error", function (e) {
+    try { console.error("[SOL]", (e && e.message) || "error", e && e.error && e.error.stack ? e.error.stack : ""); } catch (x) {}
+  });
+  </script>
+  <script src="js/vendor/phaser.min.js?v=6.0.0"></script>
+  <script src="js/vendor/peerjs.min.js?v=6.0.0"></script>
+  <script src="js/content.js?v=6.0.0"></script>
+  <script src="js/content2.js?v=6.0.0"></script>
+  <script src="js/content3.js?v=6.0.0"></script>
+  <script src="js/content4.js?v=6.0.0"></script>
+  <script src="js/content5.js?v=6.0.0"></script>
+  <script src="js/content6.js?v=6.0.0"></script>
+  <script src="js/content7.js?v=6.0.0"></script>
+  <script src="js/content8.js?v=6.0.0"></script>
+  <script src="js/content9.js?v=6.0.0"></script>
+  <script src="js/audio.js?v=6.0.0"></script>
+  <script src="js/music.js?v=6.0.0"></script>
+  <script src="js/net.js?v=6.0.0"></script>
+  <script src="js/build.js?v=6.0.0"></script>
+  <script src="js/game.js?v=6.0.0"></script>
+</body>
+</html>
