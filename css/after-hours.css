@@ -561,6 +561,9 @@ h1 { font-size: clamp(36px, 6vw, 64px); margin: 0; letter-spacing: .02em; }
   border-radius: 999px; padding: 8px 12px; font: inherit; font-size: 13px; cursor: pointer; min-height: 40px;
 }
 .chip.selected { border-color: var(--gold); color: var(--gold); box-shadow: 0 0 0 2px rgba(245,200,66,.2); }
+/* v6.1: course tabs (Biology / Algebra I) above the unit cards */
+.course-tabs { margin: 0 0 12px; }
+.course-tabs .chip { font-size: 15px; font-weight: 700; padding: 10px 18px; min-width: 150px; }
 #btn-fs { right: 450px; }
 @media (max-width: 700px) {
   #btn-char { right: 12px; top: 128px; }

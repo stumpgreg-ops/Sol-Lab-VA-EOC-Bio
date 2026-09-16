@@ -1,8 +1,9 @@
-# Writing question packs for SOL Lab (Virginia EOC Biology)
+# Writing question packs for SOL Lab (Virginia EOC Biology and Algebra I)
 
-Every pack is one **stimulus** (a short lab note, scenario, data table or model description)
-plus 4–6 multiple-choice questions ("claims"). Packs live in `js/content*.js`, one file per
-unit. Each file is an IIFE that pushes into the live `HEIST_PACKS` array:
+Every pack is one **stimulus** (a short lab note, scenario, data table or model description —
+or, for Algebra I, a short problem set) plus 4–6 multiple-choice questions ("claims"). Packs
+live in `js/content*.js`, one file per unit. Each file is an IIFE that pushes into the live
+`HEIST_PACKS` array:
 
 ```js
 /* SOL Lab — <unit>. Original text only. */
@@ -28,7 +29,8 @@ Fix warnings too where you can (spread answer keys, keep the correct choice from
 ```js
 {
   id: "eco-deer-count",            // unique, lowercase, unit-slug
-  family: "ECO",                   // INV | CHEM | CELL | MICRO | GEN | DNA | EVO | ECO
+  family: "ECO",                   // Biology: INV | CHEM | CELL | MICRO | GEN | DNA | EVO | ECO
+                                   // Algebra I: EO | EI | FN | ST
   title: "Deer on Bull Run Mountain",
   kind: "Ecology · BIO.8",         // unit name · standard(s)
   blurb: "One line shown on the pack card.",
@@ -37,7 +39,7 @@ Fix warnings too where you can (spread answer keys, keep the correct choice from
   claims: [
     {
       id: "carry",                 // unique within the pack
-      sol: "BIO.8.a",              // standard code from the map below (lower-case letter)
+      sol: "BIO.8.a",              // standard code from the map below (lower-case letter); Algebra: "A.EI.2.b"
       stem: "Which statement best explains why the deer count levelled off after 2019?",
       choices: [
         { letter: "A", text: "..." },
@@ -97,6 +99,40 @@ The Virginia test embeds the BIO.1 practices in every unit: a Biochemistry pack 
 should) include a question about the control group or the trend in the table, but tag it
 with the unit's own code (`BIO.2.c`) when it is really about enzymes, and with `BIO.1.x`
 **only in the INV unit**. Every unit file should still read like a lab: data, trials, variables.
+
+## Algebra I packs
+
+Algebra packs sit under the four families below and use the **2023 Virginia Algebra I
+Standards of Learning** codes (`A.EO.1.a` … `A.ST.1.h`). The validator rejects a Biology code in
+an Algebra unit and vice versa.
+
+| family | unit                      | codes allowed | key ideas |
+|--------|---------------------------|---------------|-----------|
+| EO     | Expressions & Operations  | A.EO.1–4      | 1 translate & evaluate expressions · 2 polynomial sums, products, factoring, quotients, equivalent forms · 3 laws of exponents · 4 square and cube roots, radical arithmetic, rational exponents ½ and ⅓ |
+| EI     | Equations & Inequalities  | A.EI.1–3      | 1 multistep equations and inequalities in one variable, number lines, literal equations, how many solutions · 2 systems of two equations, inequalities in two variables, systems of inequalities · 3 quadratic equations, number of real solutions, solutions in context |
+| FN     | Functions                 | A.F.1–2       | 1 linear functions: domain/range/zeros/intercepts/slope, forms of a line, parallel and perpendicular, function notation, direct variation, meaning in context, comparing, modeling · 2 is-it-a-function, quadratic and exponential characteristics, factored form and zeros, growth and decay, comparing families, modeling |
+| ST     | Statistics                | A.ST.1        | a–d the data cycle: investigative questions, variables, representative samples, scatterplots · e–h line or quadratic curve of best fit, meaning of slope and intercept, direction/strength/outliers, predictions and their limits, correlation vs causation |
+
+Rules that differ from Biology:
+
+- **The stimulus is a problem set**: a scenario with the numbers the items need (a fare, a
+  price list, a table of heights, a scatterplot described in words, a list of equations to
+  solve). Keep it to 30–120 words; the math stamina curve tops out near 160 words. Tables and
+  `<ol>` lists of equations count as words. Every unit still needs a spread of tiny (30–50),
+  short (50–80) and medium/long (80–160) packs.
+- **Math notation is plain Unicode in stems and choices**: x², x³, √50, ∛54, −, ×, ÷, ≤, ≥, ≠,
+  ½, and fractions as `2/3`. Rational exponents are written `8^(1/3)` (say so in the stimulus).
+  The stimulus may use `<sup>`/`<sub>`. Stems render as HTML too, but keep them plain so the
+  same text reads correctly everywhere.
+- **Every number must be worked by hand** before the pack is committed, and the distractors
+  should be the errors students actually make: a sign slip, forgetting to reverse an
+  inequality, adding exponents where they multiply, distributing to only one term, reading the
+  wrong table row, extrapolating a best-fit line past the data.
+- **Explanation items** ("why is this correct", "what does the slope mean") are welcome and
+  are how the test asks A.EI.1 f, A.EI.2 h, A.EI.3 c and most of A.ST.1, but keep the four
+  choices near the same length — the validator warns when the key is the longest.
+- **Contexts**: school clubs, phone plans, gyms, taxis, fundraisers, science labs, sports, and
+  Virginia where it fits (an oyster reef, a Blue Ridge stream). No real people or brands.
 
 ## Writing rules
 
