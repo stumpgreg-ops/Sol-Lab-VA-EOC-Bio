@@ -211,10 +211,11 @@
     p._words = text.split(/\s+/).filter(Boolean).length;
     return p._words;
   }
-  /* Stamina schedule: the stimulus length the picker aims for on a given level.
-     Level 1 targets ~50 words (a short lab note); every 3 levels the target grows
-     by 5 words, reaching ~210 words by level 99. Tune in STAMINA. */
-  var STAMINA = { start: 50, step: 5, every: 3, max: 220 };
+  /* Stamina schedule: the stimulus length the picker aims for on a given level. Word counts
+     include table cells, so a "tiny" 60-word note with a data table measures 80-100.
+     Level 1 targets ~65 words; every 3 levels the target grows by 5 words, reaching ~225
+     words by level 99. Tune in STAMINA. */
+  var STAMINA = { start: 65, step: 5, every: 3, max: 240 };
   function targetWords(night) {
     night = Math.max(1, parseInt(night, 10) || 1);
     return Math.min(STAMINA.max, STAMINA.start + STAMINA.step * Math.floor((night - 1) / STAMINA.every));

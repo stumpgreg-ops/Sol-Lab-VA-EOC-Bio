@@ -6893,25 +6893,30 @@
         for (i = 0; i < claims.length; i++) if (claims[i].id === this.claim.partB && unused(claims[i])) { pick = i; break; }
       }
       if (pick < 0) {
-        var pool = [];
-        for (i = 0; i < claims.length; i++) if (!claims[i].isPartB && unused(claims[i]) && this.nightPacks.indexOf(claims[i].packId) === -1) pool.push(i);
-        if (!pool.length) for (i = 0; i < claims.length; i++) if (!claims[i].isPartB && unused(claims[i])) pool.push(i);   /* same passage again is better than none */
+        var pool = [], fresh = [];
+        for (i = 0; i < claims.length; i++) if (!claims[i].isPartB && unused(claims[i])) { pool.push(i); if (this.nightPacks.indexOf(claims[i].packId) === -1) fresh.push(i); }
         if (!pool.length) {
           /* Pool spent: start over, but keep the most recent 20 out so the same items never come straight back. */
           this.usedClaims = this.usedClaims.slice(-20);
           saveUsedClaims(this.family, this.strand, this.usedClaims);
           for (i = 0; i < claims.length; i++) if (!claims[i].isPartB && unused(claims[i])) pool.push(i);
           if (!pool.length) for (i = 0; i < claims.length; i++) if (!claims[i].isPartB) pool.push(i);
+          fresh = pool.slice();
         }
         /* Adaptive weighting: items near the student's level, and (on All-skills nights) weaker strands. */
         var a = this.adapt, target = a ? a.ability : 1.6, allStrands = String(this.strand || "ALL").toUpperCase() === "ALL";
         /* v4.9.2 stamina: prefer passages near tonight's target length (short early, longer every couple of nights) */
         var wantWords = (typeof heistTargetWords === "function") ? heistTargetWords(this.night) : 250;
-        /* v4.9.6: when the pool has enough passages inside the night's length band (60%–160% of the
-           target) only those are drawn, so night 90 never serves a 250-word text; thin pools fall back. */
-        var band = [], loW = wantWords * 0.6, hiW = wantWords * 1.6;
-        for (i = 0; i < pool.length; i++) { var cw = claims[pool[i]].words; if (!cw || (cw >= loW && cw <= hiW)) band.push(pool[i]); }
-        if (band.length >= 12) pool = band;
+        /* v4.9.6: when the pool has enough stimuli inside the level's length band (60%–160% of the
+           target) only those are drawn, so level 90 never serves a 60-word note; thin pools fall back.
+           v6 (Biology): a unit pool is far smaller than the old grade pools, and a science item set
+           normally asks several questions on one set of lab notes, so a level prefers notes it has not
+           used yet but may come back to a stimulus when that keeps the length band honest. */
+        var inBand = function (idx) { var cw = claims[idx].words; return !cw || (cw >= wantWords * 0.6 && cw <= wantWords * 1.6); };
+        var bandFresh = fresh.filter(inBand), bandAll = pool.filter(inBand), BAND_MIN = 8;
+        if (bandFresh.length >= BAND_MIN) pool = bandFresh;
+        else if (bandAll.length >= BAND_MIN) pool = bandAll;
+        else if (fresh.length) pool = fresh;
         var weights = [], total = 0, w, rec, acc;
         for (i = 0; i < pool.length; i++) {
           var c = claims[pool[i]];

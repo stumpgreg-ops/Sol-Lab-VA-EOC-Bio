@@ -20,7 +20,7 @@
         {
           id: "drops-trend",
           sol: "BIO.2.a",
-          stem: "Which conclusion is best supported by the table?",
+          stem: "Which conclusion do the drop counts in the table best support?",
           choices: [
             { letter: "A", text: "Soap makes water molecules heavier, so fewer drops fit on the penny." },
             { letter: "B", text: "Weakening the hydrogen bonds lowered the number of drops the penny held." },

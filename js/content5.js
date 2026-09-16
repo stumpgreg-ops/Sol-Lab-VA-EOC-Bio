@@ -103,7 +103,7 @@
         {
           id: "acid-thickens",
           sol: "BIO.4.d",
-          stem: "Which conclusion is best supported by the data in the table?",
+          stem: "Which conclusion do the pH readings in the table best support?",
           choices: [
             { letter: "A", text: "The bacteria raise the pH of the milk as they grow." },
             { letter: "B", text: "Milk thickens on its own if it is kept warm long enough." },
@@ -317,7 +317,7 @@
         {
           id: "disc-result",
           sol: "BIO.4.e",
-          stem: "Which conclusion is best supported by the results in the table?",
+          stem: "Which conclusion do the clear-ring results in the table best support?",
           choices: [
             { letter: "A", text: "The antibiotic stopped the virus but not the bacterium." },
             { letter: "B", text: "The antibiotic stopped the bacterium but not the virus." },

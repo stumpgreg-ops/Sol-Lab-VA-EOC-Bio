@@ -26,9 +26,10 @@ Progress saves in this browser profile (`afterHours.v1.night`). Itch login does 
 
 - **Skill screen = standards.** Each unit's skill cards are the key ideas of its standard (for Ecology: Populations BIO.8 a, Energy & cycles BIO.8 b, Succession BIO.8 c, Human impact & Virginia BIO.8 d, All). Full review's skill cards are the eight standards themselves. The filter matches on the question's `sol` code prefix, so a card such as "Natural selection (BIO.7 b · c)" keeps both key ideas.
 - **Lab notes instead of passages.** Every question pack is a short stimulus — a lab write-up, a field study, a data table, a model described in words — with 4–6 test-style items. Data tables render in the side panel and the read-first pop-up. The adaptive picker still keeps a level (1–3) per unit and leans toward weaker standards on All-skills levels; the HUD reads `SOL · BIO.8.a · Level 2`.
-- **Stamina retuned for science.** Level 1 aims for ~50-word notes; the target grows 5 words every 3 levels to ~210 by level 99 (`STAMINA` in `js/content.js`). Pools are written in four length tiers so every level has notes near its target.
+- **Stamina retuned for science.** Level 1 aims for ~65-word notes (counts include table cells); the target grows 5 words every 3 levels to ~225 by level 99 (`STAMINA` in `js/content.js`). Pools are written in four length tiers so every level has notes near its target.
 - **All English content removed.** The 25 Reading pack files (`js/content2.js`–`content25.js`, Virginia grades 9–11 and New Jersey grade 5) are gone. The eight Biology unit files replace them; every item is original and keyed to a 2018 Virginia Biology SOL key idea.
-- Engine, maze, wolves, traps, music, coins, shop, Town & Castle builder, teacher monitor: unchanged from SOL Labyrinth v5.1.1.
+- **Picker tuned for unit pools.** A level prefers lab notes it has not used yet, but may ask a second question on the same notes when that keeps the length band honest (science item sets normally share a stimulus). The band threshold is 8 items instead of 12.
+- Engine, maze, wolves, traps, music, coins, shop, Town & Castle builder, teacher monitor: otherwise unchanged from SOL Labyrinth v5.1.1.
 
 ## Files
 

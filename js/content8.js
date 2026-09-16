@@ -646,7 +646,7 @@
         {
           id: "cost",
           sol: "BIO.7.b",
-          stem: "Which statement best explains the observation in sentence 5?",
+          stem: "Which statement best explains the pattern described in sentence 5?",
           choices: [
             { letter: "A", text: "the plants developed large fruit because they needed to" },
             { letter: "B", text: "selecting for one trait can bring costs to reproduction" },
