@@ -40,11 +40,23 @@
   var LS_CHAR = "afterHours.v1.charPreset";
   var LS_STATE = "afterHours.v1.state";
   var LS_ADAPT = "afterHours.v1.adapt.";
-  /* v6 (Biology): one course. The unit cards on the title screen are the families defined in
-     js/content.js (HEIST_FAMILIES); the old New Jersey / Virginia gateway is gone. */
-  var STATE_DEFS = {
-    VA: { name: "Virginia", kicker: "Virginia EOC Biology SOL · 100 levels", families: (window.HEIST_FAMILIES || []).map(function (f) { return f.id; }), def: "ALL", hud: "SOL" }
-  };
+  /* v6.1: two courses (Biology, Algebra I) share the engine. Each course is a "state" here: the
+     title screen shows a tab per course and hides the other course's unit cards. The unit cards
+     are the families defined in js/content.js (HEIST_FAMILIES); progress (saved level, adaptive
+     records, used items) is kept per course. */
+  var STATE_DEFS = {};
+  (function () {
+    var C = window.HEIST_COURSES || {}, F = window.HEIST_FAMILIES || [];
+    Object.keys(C).forEach(function (id) {
+      STATE_DEFS[id] = { name: C[id].name, kicker: C[id].kicker, notes: C[id].notes, families: F.filter(function (f) { return f.course === id; }).map(function (f) { return f.id; }), def: C[id].def, hud: "SOL" };
+    });
+    if (!STATE_DEFS.BIO) STATE_DEFS.BIO = { name: "Biology", kicker: "Virginia EOC Biology SOL · 100 levels", notes: "Lab notes", families: F.map(function (f) { return f.id; }), def: "ALL", hud: "SOL" };
+  })();
+  var DEFAULT_STATE = "BIO";
+  function courseId() { return STATE_DEFS[cfg.state] ? cfg.state : DEFAULT_STATE; }
+  function courseNotes() { return (STATE_DEFS[courseId()] && STATE_DEFS[courseId()].notes) || "Lab notes"; }
+  /* Saved level per course: Biology keeps the legacy key so existing saves carry over. */
+  function nightKey() { var c = courseId(); return c === DEFAULT_STATE ? LS_NIGHT : LS_NIGHT + "." + c.toLowerCase(); }
 
   var Input = { ax: 0, ay: 0, act: false, actEdge: false, sprint: false, shutterEdge: false };
   var keysHeld = { n: 0, s: 0, w: 0, e: 0 };
@@ -3361,7 +3373,7 @@
       },
       {
         title: "Read the question",
-        body: "The lab notes and the question are in the panel on the left. Read them before you move — the answer is the only thing that gets you out."
+        body: "The notes and the question are in the panel on the left. Read them before you move — the answer is the only thing that gets you out."
       },
       {
         title: "Go get your answer",
@@ -3887,13 +3899,13 @@
   }
 
   function readSavedNight() {
-    var v = parseInt(localStorage.getItem(LS_NIGHT) || "1", 10);
+    var v = parseInt(localStorage.getItem(nightKey()) || "1", 10);
     if (!(v >= 1 && v <= 100)) v = 1;
     return v;
   }
   function writeSavedNight(n) {
     n = clamp(n, 1, 100);
-    try { localStorage.setItem(LS_NIGHT, String(n)); } catch (e) {}
+    try { localStorage.setItem(nightKey(), String(n)); } catch (e) {}
   }
 
   function texRect(scene, key, w, h, fill, stroke, sw) {
@@ -6906,7 +6918,7 @@
         /* Adaptive weighting: items near the student's level, and (on All-skills nights) weaker strands. */
         var a = this.adapt, target = a ? a.ability : 1.6, allStrands = String(this.strand || "ALL").toUpperCase() === "ALL";
         /* v4.9.2 stamina: prefer passages near tonight's target length (short early, longer every couple of nights) */
-        var wantWords = (typeof heistTargetWords === "function") ? heistTargetWords(this.night) : 250;
+        var wantWords = (typeof heistTargetWords === "function") ? heistTargetWords(this.night, this.family) : 250;
         /* v4.9.6: when the pool has enough stimuli inside the level's length band (60%–160% of the
            target) only those are drawn, so level 90 never serves a 60-word note; thin pools fall back.
            v6 (Biology): a unit pool is far smaller than the old grade pools, and a science item set
@@ -7325,7 +7337,7 @@
         document.getElementById("eoc-passage").innerHTML = c.passage || "";
         var wrap = document.getElementById("eoc-passage-wrap");
         if (wrap) wrap.scrollTop = 0;
-        document.getElementById("eoc-stem").textContent = c.stem || c.doThis || "";
+        document.getElementById("eoc-stem").innerHTML = c.stem || c.doThis || "";
         var ol = document.getElementById("eoc-choices");
         ol.innerHTML = "";
         (c.choices || []).forEach(function (ch) {
@@ -25795,9 +25807,9 @@
         var hint = document.getElementById("read-hint");
         var scroll = document.getElementById("read-scroll");
         if (kick) kick.textContent = (reason === "start" ? "Read first · Level " : "Next question · Level ") + this.night + " · " + (c.sol || "") + (c.isPartB ? " · Part B (evidence)" : c.partB ? " · Part A" : "") + (c.words ? " · " + c.words + " words" : "");
-        if (title) title.textContent = c.packTitle || "Lab notes";
+        if (title) title.textContent = c.packTitle || courseNotes();
         if (pass) pass.innerHTML = c.passage || "";
-        if (stem) stem.textContent = c.stem || c.doThis || "";
+        if (stem) stem.innerHTML = c.stem || c.doThis || "";
         if (ol) {
           ol.innerHTML = "";
           (c.choices || []).forEach(function (ch) {
@@ -26671,7 +26683,8 @@
 
   /* v6: a single course (Virginia Biology). applyState keeps the family cards in sync and shows the title screen. */
   function applyState(st, silent) {
-    if (!STATE_DEFS[st]) st = "VA";
+    if (st === "VA") st = DEFAULT_STATE;                 /* v6.0 saves */
+    if (!STATE_DEFS[st]) st = DEFAULT_STATE;
     cfg.state = st;
     try { localStorage.setItem(LS_STATE, st); } catch (e) {}
     var def = STATE_DEFS[st], any = false;
@@ -26687,8 +26700,11 @@
     }
     var kick = document.getElementById("title-kicker");
     if (kick) kick.textContent = def.kicker;
-    var sw = document.getElementById("btn-state");
-    if (sw) sw.textContent = def.name + " · change";
+    document.querySelectorAll("#course-tabs [data-course]").forEach(function (b) {
+      var on = b.getAttribute("data-course") === st;
+      b.classList.toggle("selected", on);
+      b.setAttribute("aria-selected", on ? "true" : "false");
+    });
     var stateScreen = document.getElementById("state-screen"), title = document.getElementById("title-screen");
     if (!silent) {
       if (stateScreen) stateScreen.classList.add("hidden");
@@ -26696,10 +26712,12 @@
     }
   }
   function showStateScreen() {
-    /* v6: no gateway — go straight to the title screen with the unit cards. */
+    /* v6: no gateway — go straight to the title screen with the unit cards of the last course played. */
     var skill = document.getElementById("skill-screen");
     if (skill) skill.classList.add("hidden");
-    applyState("VA");
+    var saved = null;
+    try { saved = localStorage.getItem(LS_STATE); } catch (e) {}
+    applyState(saved || DEFAULT_STATE);
   }
 
   function selectedStrand() {
@@ -26712,14 +26730,14 @@
     var line = document.getElementById("skill-save-line");
     var cont = document.getElementById("btn-skill-continue");
     if (!line || !cont) return;
-    if (!localStorage.getItem(LS_NIGHT)) {
+    if (!localStorage.getItem(nightKey())) {
       line.textContent = "No level saved on this Chromebook yet. Start Level 1.";
       cont.classList.add("hidden");
       return;
     }
     line.textContent = "Level " + n + " saved on this Chromebook. Itch login does not store progress.";
     cont.textContent = n > 1 ? ("Continue Level " + n) : "Continue";
-    cont.classList.toggle("hidden", n <= 1 && !localStorage.getItem(LS_NIGHT));
+    cont.classList.toggle("hidden", n <= 1 && !localStorage.getItem(nightKey()));
   }
 
   function renderSkillCards(family) {
@@ -27170,7 +27188,7 @@
     var line = document.getElementById("save-line");
     var cont = document.getElementById("btn-continue");
     if (!line) return;
-    if (!localStorage.getItem(LS_NIGHT)) {
+    if (!localStorage.getItem(nightKey())) {
       line.textContent = "No level saved on this Chromebook yet. Tap a unit to start Level 1. Itch login does not store progress.";
       if (cont) cont.classList.add("hidden");
       return;
@@ -27178,7 +27196,7 @@
     line.textContent = "Level " + n + " saved on this Chromebook. Tap a unit, then Continue on the skill screen. Itch login does not store progress.";
     if (cont) {
       cont.textContent = n > 1 ? ("Continue Level " + n) : "Continue";
-      cont.classList.toggle("hidden", n <= 1 && !localStorage.getItem(LS_NIGHT));
+      cont.classList.toggle("hidden", n <= 1 && !localStorage.getItem(nightKey()));
     }
   }
 
@@ -27356,6 +27374,13 @@
 
   /* Title Start/Continue removed — grade card opens skill screen. */
   bindTap(document.getElementById("btn-skill-back"), function () { hideSkillScreen(); });
+  /* v6.1: course tabs (Biology / Algebra I) swap the unit cards and the saved-level line. */
+  document.querySelectorAll("#course-tabs [data-course]").forEach(function (tab) {
+    bindTap(tab, function () {
+      applyState(tab.getAttribute("data-course"));
+      refreshSaveLine();
+    });
+  });
   document.querySelectorAll("#title-screen .card[data-family]").forEach(function (card) {
     bindTap(card, function () {
       document.querySelectorAll("#title-screen .card[data-family]").forEach(function (c) { c.classList.remove("selected"); });

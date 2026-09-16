@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-/* Validates the question packs in js/content*.js.
+/* Validates the question packs in js/content*.js (Biology and Algebra I).
    Usage: node tools/validate-content.js            (all files)
           node tools/validate-content.js js/content3.js
-   Loads content.js first (it defines HEIST_PACKS, the units and the standards map), then
-   every other content file, and checks structure, uniqueness, answer keys, standard codes
-   and stimulus length. Exit 1 on any error. */
+   Loads content.js first (it defines HEIST_PACKS, the courses, the units and the standards
+   map), then every other content file, and checks structure, uniqueness, answer keys,
+   standard codes and stimulus length. Exit 1 on any error. */
 var fs = require("fs"), path = require("path"), vm = require("vm");
 var root = path.join(__dirname, "..");
 var args = process.argv.slice(2);
@@ -46,8 +46,8 @@ packs.forEach(function (p, pi) {
   if (!p.title) errors.push(where + ": missing title");
   if (!p.kind) errors.push(where + ": missing kind");
   if (!p.passage || typeof p.passage !== "string") { errors.push(where + ": missing passage (the stimulus)"); return; }
-  var wc = words(p.passage);
-  if (wc < 35 || wc > 260) warnings.push(where + ": stimulus is " + wc + " words (expected 40-220)");
+  var wc = words(p.passage), math = !!(fam && fam.course === "MATH");
+  if (wc < (math ? 25 : 35) || wc > 260) warnings.push(where + ": stimulus is " + wc + " words (expected " + (math ? "30-170" : "40-220") + ")");
   if (/<img|<script|<style|<iframe/i.test(p.passage)) errors.push(where + ": stimulus may not contain img/script/style/iframe");
   var key = p.passage.replace(/<[^>]+>/g, "").slice(0, 120);
   if (passages[key]) errors.push(where + ": stimulus text duplicates " + passages[key]); passages[key] = where;
@@ -59,11 +59,12 @@ packs.forEach(function (p, pi) {
     if (!c.id) errors.push(w + ": missing claim id");
     if (p.claims.filter(function (x) { return x.id === c.id; }).length > 1) errors.push(w + ": duplicate claim id in pack");
     var sol = String(c.sol || "");
-    var m = /^(BIO\.[1-8])\.([a-f])$/.exec(sol);
-    if (!m) errors.push(w + ": sol code should look like BIO.8.a, got " + sol);
+    var m = /^([A-Z]+(?:\.[A-Z]+)?\.\d)\.([a-l])$/.exec(sol);
+    if (!m) errors.push(w + ": sol code should look like BIO.8.a or A.EO.1.b, got " + sol);
     else {
       var std = STANDARDS[m[1]];
       if (!std || !std.keys[m[2]]) errors.push(w + ": " + sol + " is not a key idea in the standards map");
+      else if (fam && fam.course && std.course !== fam.course) errors.push(w + ": " + sol + " belongs to course " + std.course + " but unit " + p.family + " is " + fam.course);
       if (fam && fam.stds && !fam.stds.some(function (s) { return sol.toUpperCase() === s.toUpperCase() || sol.toUpperCase().indexOf(s.toUpperCase() + ".") === 0; }))
         errors.push(w + ": " + sol + " is outside unit " + p.family + " (" + fam.stds.join(", ") + ")");
       stats[m[1]] = (stats[m[1]] || 0) + 1;

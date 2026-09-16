@@ -5,17 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="dark" />
   <meta http-equiv="Cache-Control" content="no-cache" />
-  <title>SOL Lab · Virginia EOC Biology</title>
-  <link rel="stylesheet" href="css/after-hours.css?v=6.0.0" />
-  <link rel="stylesheet" href="css/build.css?v=6.0.0" />
+  <title>SOL Lab · Virginia EOC Biology &amp; Algebra I</title>
+  <link rel="stylesheet" href="css/after-hours.css?v=6.1.0" />
+  <link rel="stylesheet" href="css/build.css?v=6.1.0" />
 </head>
 <body>
   <div id="app">
     <section id="title-screen" class="screen">
       <p class="kicker" id="title-kicker">Virginia EOC Biology SOL · 100 levels</p>
       <h1>SOL Lab</h1>
-      <p class="tag">Tap a unit to pick your skill focus. Read the lab notes in the side panel. Grab the matching letter. Walk it to EXIT · SAFE. The wolves do not know the answer — only you do.</p>
+      <p class="tag">Pick a course, then tap a unit to choose your skill focus. Read the lab notes or the problem set in the side panel. Grab the matching letter. Walk it to EXIT · SAFE. The wolves do not know the answer — only you do.</p>
       <p id="save-line" class="save-line">No level saved on this Chromebook yet.</p>
+
+      <div class="chips course-tabs" id="course-tabs" role="tablist" aria-label="Course">
+        <button type="button" class="chip selected" role="tab" aria-selected="true" data-course="BIO">Biology · EOC</button>
+        <button type="button" class="chip" role="tab" aria-selected="false" data-course="MATH">Algebra I · EOC</button>
+      </div>
 
       <div class="packs unit-packs">
         <button type="button" class="card selected" data-family="ALL">
@@ -63,6 +68,32 @@
           <span class="name">Ecology</span>
           <span class="meta">Populations, food webs, nutrient cycles, succession, human impact and Virginia ecosystems.</span>
         </button>
+        <!-- Algebra I (hidden until the Algebra I tab is picked) -->
+        <button type="button" class="card hidden" data-family="ALG">
+          <span class="kind">All strands</span>
+          <span class="name">Full review</span>
+          <span class="meta">Every Algebra I strand mixed, leaning toward the standards you miss most. Best in the last weeks before the test.</span>
+        </button>
+        <button type="button" class="card hidden" data-family="EO">
+          <span class="kind">A.EO</span>
+          <span class="name">Expressions &amp; Operations</span>
+          <span class="meta">Writing and evaluating expressions, polynomials and factoring, laws of exponents, radicals.</span>
+        </button>
+        <button type="button" class="card hidden" data-family="EI">
+          <span class="kind">A.EI</span>
+          <span class="name">Equations &amp; Inequalities</span>
+          <span class="meta">Multistep equations and inequalities, literal equations, systems, quadratic equations.</span>
+        </button>
+        <button type="button" class="card hidden" data-family="FN">
+          <span class="kind">A.F</span>
+          <span class="name">Functions</span>
+          <span class="meta">Linear functions, slope and intercepts, function notation, quadratic and exponential functions.</span>
+        </button>
+        <button type="button" class="card hidden" data-family="ST">
+          <span class="kind">A.ST</span>
+          <span class="name">Statistics</span>
+          <span class="meta">The data cycle, scatterplots, lines and curves of best fit, predictions and their limits.</span>
+        </button>
       </div>
 
       <div class="row title-tools">
@@ -81,7 +112,7 @@
 
       <p class="howto">
         <strong>100 levels of stealth extract — not a quiz skin.</strong>
-        Tap a unit — then choose a skill (or All) and start. Questions follow the Virginia Biology Standards of Learning (BIO.1–BIO.8).
+        Pick Biology or Algebra I, tap a unit, then choose a skill (or All) and start. Questions follow the Virginia Biology (BIO.1–BIO.8) or Algebra I (A.EO, A.EI, A.F, A.ST) Standards of Learning.
         Move quiet, grab the right letter on the map, extract at EXIT · SAFE. Correct letters call Sol's CHARIOT.
         START · SAFE is where you spawn; EXIT · SAFE is where you extract and read. Hati cannot see you in either booth.
         Catches and wrong letters both cost a life; three (then two) end a level. Win to unlock the next level on this Chromebook.
@@ -221,7 +252,7 @@
     </div>
   </div>
 
-  <div id="read-overlay" class="hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Read the lab notes">
+  <div id="read-overlay" class="hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Read the notes">
     <div class="read-card" id="read-card">
       <div class="read-head">
         <div>
@@ -260,21 +291,25 @@
     try { console.error("[SOL]", (e && e.message) || "error", e && e.error && e.error.stack ? e.error.stack : ""); } catch (x) {}
   });
   </script>
-  <script src="js/vendor/phaser.min.js?v=6.0.0"></script>
-  <script src="js/vendor/peerjs.min.js?v=6.0.0"></script>
-  <script src="js/content.js?v=6.0.0"></script>
-  <script src="js/content2.js?v=6.0.0"></script>
-  <script src="js/content3.js?v=6.0.0"></script>
-  <script src="js/content4.js?v=6.0.0"></script>
-  <script src="js/content5.js?v=6.0.0"></script>
-  <script src="js/content6.js?v=6.0.0"></script>
-  <script src="js/content7.js?v=6.0.0"></script>
-  <script src="js/content8.js?v=6.0.0"></script>
-  <script src="js/content9.js?v=6.0.0"></script>
-  <script src="js/audio.js?v=6.0.0"></script>
-  <script src="js/music.js?v=6.0.0"></script>
-  <script src="js/net.js?v=6.0.0"></script>
-  <script src="js/build.js?v=6.0.0"></script>
-  <script src="js/game.js?v=6.0.0"></script>
+  <script src="js/vendor/phaser.min.js?v=6.1.0"></script>
+  <script src="js/vendor/peerjs.min.js?v=6.1.0"></script>
+  <script src="js/content.js?v=6.1.0"></script>
+  <script src="js/content2.js?v=6.1.0"></script>
+  <script src="js/content3.js?v=6.1.0"></script>
+  <script src="js/content4.js?v=6.1.0"></script>
+  <script src="js/content5.js?v=6.1.0"></script>
+  <script src="js/content6.js?v=6.1.0"></script>
+  <script src="js/content7.js?v=6.1.0"></script>
+  <script src="js/content8.js?v=6.1.0"></script>
+  <script src="js/content9.js?v=6.1.0"></script>
+  <script src="js/content10.js?v=6.1.0"></script>
+  <script src="js/content11.js?v=6.1.0"></script>
+  <script src="js/content12.js?v=6.1.0"></script>
+  <script src="js/content13.js?v=6.1.0"></script>
+  <script src="js/audio.js?v=6.1.0"></script>
+  <script src="js/music.js?v=6.1.0"></script>
+  <script src="js/net.js?v=6.1.0"></script>
+  <script src="js/build.js?v=6.1.0"></script>
+  <script src="js/game.js?v=6.1.0"></script>
 </body>
 </html>

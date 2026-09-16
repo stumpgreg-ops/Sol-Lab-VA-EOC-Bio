@@ -1,6 +1,7 @@
 /* Headless smoke test: node tools/smoke.js
-   Serves the game, drives the title screen, the reward builder over 20 rewards,
-   the coin shop and the start of a level, and saves screenshots to tools/shots/. */
+   Serves the game, drives the title screen (both courses), the reward builder over 20 rewards,
+   the coin shop, the start of a Biology level and of an Algebra I level, and saves screenshots
+   to tools/shots/. */
 var path = require("path"), fs = require("fs"), http = require("http"), url = require("url");
 var { chromium } = require("/opt/node22/lib/node_modules/playwright");
 var root = path.join(__dirname, ".."), shots = path.join(__dirname, "shots");
@@ -30,7 +31,8 @@ var srv = http.createServer(function (req, res) {
   await page.goto(base + "index.html", { waitUntil: "load" });
   await page.waitForTimeout(800);
   check(await page.isVisible("#title-screen") && !(await page.isVisible("#state-screen")), "title screen shows first (no state gateway)");
-  check((await page.$$eval("#title-screen .card[data-family]", function (l) { return l.length; })) === 9, "nine unit cards (Full review + 8 units)");
+  check((await page.$$eval("#title-screen .card[data-family]:not(.hidden)", function (l) { return l.length; })) === 9, "nine Biology unit cards (Full review + 8 units)");
+  check((await page.$$eval("#course-tabs [data-course]", function (l) { return l.length; })) === 2 && await page.isVisible('#course-tabs .chip.selected[data-course="BIO"]'), "two course tabs, Biology selected");
   check(await page.isVisible('#title-screen .card.selected[data-family="ALL"]'), "Full review is selected by default");
   check((await page.textContent("#title-kicker")).indexOf("Biology") !== -1, "kicker names Biology");
   await shot("01-title");
@@ -53,7 +55,8 @@ var srv = http.createServer(function (req, res) {
     return out;
   });
   console.log("pools", JSON.stringify(pools));
-  check(pools.units.ALL.all > 400 && Object.keys(pools.units).every(function (k) { return k === "ALL" || pools.units[k].all >= 40; }), "every unit has at least 40 questions and Full review has 400+");
+  check(pools.units.ALL.all > 400 && pools.units.ALG.all > 200 && Object.keys(pools.units).every(function (k) { return k === "ALL" || k === "ALG" || pools.units[k].all >= 40; }), "every unit has at least 40 questions; Biology Full review has 400+, Algebra I Full review 200+");
+  check(pools.units.ALL.all === ["INV", "CHEM", "CELL", "MICRO", "GEN", "DNA", "EVO", "ECO"].reduce(function (a, k) { return a + pools.units[k].all; }, 0) && pools.units.ALG.all === ["EO", "EI", "FN", "ST"].reduce(function (a, k) { return a + pools.units[k].all; }, 0), "each Full review pool is exactly its own course's units");
   check(pools.empty.length === 0, "every skill card has questions: " + (pools.empty.join(", ") || "none empty"));
 
   /* v4.9.7: the shop is open from night 1 — with no build yet it asks Town or Castle first, and a wall
@@ -363,6 +366,46 @@ var srv = http.createServer(function (req, res) {
     var sc = null; try { sc = window.__scene || null; } catch (e) {}
     return sc ? "scene" : "no";
   });
+  /* v6.1: the Algebra I course — the tab swaps the unit cards, a level runs on math items, progress saves per course */
+  await page.evaluate(function () { localStorage.setItem("afterHours.v1.night", "7"); localStorage.removeItem("afterHours.v1.night.math"); });
+  await page.reload({ waitUntil: "load" }); await page.waitForTimeout(800);
+  check(await page.isVisible('#title-screen .card[data-family="ALL"]') && !(await page.isVisible('#title-screen .card[data-family="ALG"]')), "reload keeps the Biology course");
+  await page.click('#course-tabs [data-course="MATH"]');
+  await page.waitForTimeout(200);
+  var mathCards = await page.$$eval("#title-screen .card[data-family]:not(.hidden)", function (l) { return l.map(function (c) { return c.getAttribute("data-family"); }); });
+  check(mathCards.join(",") === "ALG,EO,EI,FN,ST", "Algebra I tab shows Full review + 4 strand cards: " + mathCards.join(","));
+  check(await page.isVisible('#title-screen .card.selected[data-family="ALG"]'), "Algebra I Full review is selected by default");
+  check(/Algebra I/.test(await page.textContent("#title-kicker")), "kicker names Algebra I");
+  check(/No level saved/.test(await page.textContent("#save-line")), "Algebra I progress is separate from the Biology save");
+  await shot("14-title-math");
+  await page.click('#title-screen .card[data-family="FN"]');
+  await page.waitForSelector("#skill-screen:not(.hidden)");
+  check((await page.$$eval("#skill-packs .card", function (l) { return l.length; })) === 3, "three Functions skill cards (A.F.1, A.F.2 + All)");
+  check(/Functions/.test(await page.textContent("#skill-kicker")), "skill kicker names the Algebra unit");
+  await shot("15-skills-fn");
+  await page.click("#btn-skill-start");
+  await page.waitForTimeout(300);
+  if (await page.isVisible("#btn-char-confirm")) await page.click("#btn-char-confirm");
+  await page.waitForTimeout(3000);
+  for (var mi = 0; mi < 12; mi++) { if (await page.isVisible("#tut-skip")) { await page.click("#tut-skip"); break; } await page.waitForTimeout(300); }
+  await page.waitForTimeout(1500);
+  var mhud = await page.evaluate(function () { return { sol: document.getElementById("job-sol").textContent, title: document.getElementById("read-title") && document.getElementById("read-title").textContent, stem: document.getElementById("eoc-stem").textContent, saved: localStorage.getItem("afterHours.v1.night.math"), bio: localStorage.getItem("afterHours.v1.night"), family: window.SolScene && SolScene.family, state: localStorage.getItem("afterHours.v1.state") }; });
+  console.log("math hud", JSON.stringify(mhud));
+  check(/^SOL · A\.F\.[12]\.[a-l] · Level [123]/.test(mhud.sol) && mhud.family === "FN", "HUD shows an Algebra I code on a Functions level: " + mhud.sol);
+  check(mhud.saved === "1" && mhud.bio === "7" && mhud.state === "MATH", "Algebra I level saves under its own key and leaves the Biology save alone");
+  check(mhud.stem.length > 10 && mhud.stem.indexOf("<") === -1, "a math question is loaded and its stem renders without raw tags");
+  await shot("16-math-read");
+  var mathStamina = await page.evaluate(function () {
+    var sc = window.SolScene, out = { t1: heistTargetWords(1, "FN"), t90: heistTargetWords(90, "FN"), n1: [], n90: [] };
+    for (var i = 0; i < 5; i++) { sc.nextClaim(); out.n1.push(sc.claim.words); }
+    sc.night = 90; sc.nightPacks = [];
+    for (var j = 0; j < 5; j++) { sc.nextClaim(); out.n90.push(sc.claim.words); }
+    sc.night = 1;
+    return out;
+  });
+  console.log("math stamina", JSON.stringify(mathStamina));
+  check(mathStamina.t1 < mathStamina.t90 && avg(mathStamina.n90) > avg(mathStamina.n1), "Algebra I problem sets get longer with the level (course stamina)");
+
   console.log("errors:", errors.length ? errors : "none");
   check(errors.length === 0, "no page errors");
   await browser.close(); srv.close();
