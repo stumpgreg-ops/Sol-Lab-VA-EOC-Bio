@@ -57,6 +57,7 @@ Progress saves in this browser profile, one saved level per course (`afterHours.
 - Algebra I: `js/content10.js` Expressions & Operations · `content11.js` Equations & Inequalities · `content12.js` Functions · `content13.js` Statistics.
 - `tools/CONTENT-GUIDE.md` — pack format, the standards table and the writing rules. `node tools/validate-content.js` checks every file (codes, units, keys, lengths, duplicates); `node tools/validate-content.js js/content9.js` checks one.
 - `tools/smoke.js` — headless Playwright run of the title screen (both courses), the pools, the builder, the shop, a Biology level and an Algebra I level (screenshots in `tools/shots/`).
+- `tools/make-itch-zip.sh` — builds the itch.io HTML5 upload (`sh tools/make-itch-zip.sh`): index.html at the zip root, about 290 files and 24 MB, well under itch.io's 1,000-file limit. Upload it to https://gstump.itch.io/sols-labyrinth-va-bio as an HTML project with "This file will be played in the browser" ticked.
 
 ## Standards note
 
