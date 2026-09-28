@@ -2,10 +2,13 @@
   /* v4.9.6: the state gateway is the first thing on screen on every visit. It is shown
      before anything else in this file runs, so a slow load or an error further down can
      never leave the title screen up first. index.html also ships with the gateway visible. */
+  /* v5.2: a build made for one state (tools/build-games.js sets window.SOL_STATE) has no
+     gateway at all — the title screen for that state is the first thing on screen. */
   try {
     var _gw = document.getElementById("state-screen"), _ts = document.getElementById("title-screen"), _ss = document.getElementById("skill-screen");
-    if (_gw) _gw.classList.remove("hidden");
-    if (_ts) _ts.classList.add("hidden");
+    var _locked = !!(typeof window !== "undefined" && window.SOL_STATE);
+    if (_gw) _gw.classList.toggle("hidden", _locked);
+    if (_ts) _ts.classList.toggle("hidden", !_locked);
     if (_ss) _ss.classList.add("hidden");
   } catch (eGw) {}
   var WORLD_W = 2400;
@@ -45,8 +48,23 @@
   var STATE_DEFS = {
     VA: { name: "Virginia", kicker: "Virginia EOC Biology SOL · 100 levels", families: (window.HEIST_FAMILIES || []).map(function (f) { return f.id; }), def: "ALL", hud: "SOL" }
   };
+  /* v5.2: the New Jersey and Virginia games are separate builds. tools/build-games.js writes
+     window.SOL_STATE into each build's index.html; that build never shows the gateway, never
+     offers the other state, and drops the other state's packs from the pool (the per-state
+     content files are left out of the build, and content.js is pruned here). */
+  var LOCKED_STATE = (typeof window !== "undefined" && window.SOL_STATE && STATE_DEFS[window.SOL_STATE]) ? String(window.SOL_STATE) : null;
+  if (LOCKED_STATE) {
+    try {
+      var _lockFams = STATE_DEFS[LOCKED_STATE].families, _lockPacks = window.HEIST_PACKS;
+      if (_lockPacks && _lockPacks.length) {
+        for (var _lp = _lockPacks.length - 1; _lp >= 0; _lp--) {
+          if (_lockFams.indexOf(_lockPacks[_lp].family) === -1) _lockPacks.splice(_lp, 1);
+        }
+      }
+    } catch (eLock) {}
+  }
 
-  var Input = { ax: 0, ay: 0, act: false, actEdge: false, sprint: false, shutterEdge: false };
+  var Input = { ax: 0, ay: 0, act: false, actEdge: false, sprint: false, shutterEdge: false, shutterHeld: false };
   var keysHeld = { n: 0, s: 0, w: 0, e: 0 };
   var gameRef = null;
   var playScene = null;
@@ -4329,7 +4347,7 @@
   }
 
   class NightScene extends Phaser.Scene {
-    constructor() { super("night"); }
+    constructor(key) { super(key || "night"); }   /* v5.7: js/modes.js subclasses this as the "mode" scene */
 
     init(data) {
       /* BUGFIX — "game locks up after Retry / Next level once I leave the safe zone".
@@ -5444,6 +5462,8 @@
       this.scale.on("resize", this.onResize, this);
       this.onResize();
 
+      /* v5.6: realm look, creatures, Fenrir and castle perks (js/realms.js) */
+      if (this.setupRealm) { try { this.setupRealm(); } catch (eRealm) { if (window.console) console.warn("[realms] setup", eRealm); } }
       this.claim = null;
       this.nextClaim();
       pingTeacher(this, "playing");
@@ -5482,8 +5502,8 @@
       this.flickerFloorSprites = [];
       var g = this.add.graphics().setDepth(0);
       this.schoolFloorGfx = g;
-      /* SOL Labyrinth: dark void outside, Flicker corridor floors inside */
-      g.fillStyle(0x05070c, 1);
+      /* SOL Labyrinth: dark void outside, Flicker corridor floors inside (v5.6: in the realm's colour) */
+      g.fillStyle(nightTheme(this.night || (this.level && this.level.n) || 1).void || 0x05070c, 1);
       g.fillRect(0, 0, WORLD_W, WORLD_H);
 
       var TS = 32;
@@ -6049,6 +6069,8 @@
       rx.globalCompositeOperation = "destination-out";
       rx.save(); rx.translate(-3, -3); rx.fillStyle = "#000"; rx.fill(path, "nonzero"); rx.restore();
       ctx.drawImage(rim, 0, 0);
+      /* v5.6: realm touches on the walls (frost, moss, embers ...) */
+      if (this.decorateWallCanvas) { try { this.decorateWallCanvas(ctx, path, theme); } catch (eDw) {} }
       try {
         this.textures.addCanvas(key, cv);
         this.wallUnionImg = this.add.image(0, 0, key).setOrigin(0, 0).setDepth(2);
@@ -26158,6 +26180,8 @@
       for (i = 0; i < this.puddles.length; i++) {
         if (this.playerInBox(this.puddles[i])) wet = true;
       }
+      /* v5.6: the Sure footing castle perk (a well) ignores wet floors */
+      if (wet && this.perks && this.perks.surefoot) wet = false;
       if (wet !== this.wetNow) {
         this.wetNow = wet;
         this.paintHud();
@@ -26372,6 +26396,8 @@
       if ((this.superPacMs || 0) > 0 && this.player && this.player.setTint) {
         try { this.player.setTint(0xa5d6a7); this._superTintOn = true; } catch (eSu) {}
       }
+      /* v5.6: castle perks (Swift feet, Iron boots) */
+      if (this.realmSpeed) spd = this.realmSpeed(spd, carrying, sprinting);
       if (ax || ay) this.player.setVelocity((ax / len) * spd, (ay / len) * spd);
       else this.player.setVelocity(0, 0);
       this.tickPlayerCharAnim(ax, ay, sprinting);
@@ -26578,6 +26604,8 @@
       for (i = 0; i < this.janitors.length; i++) this.updateJanitor(this.janitors[i], dt);
       this.tickHatiReturns(playStep(dt));
       this.tickCatchContacts();
+      /* v5.6: realm creatures, Fenrir, dazzle, ambience (js/realms.js) */
+      if (this.tickRealm) this.tickRealm(dt);
       if (!railGraph()) this.destackJanitors();
       for (i = 0; i < this.janitors.length; i++) {
         if ((this.janitors[i].trogFreezeMs || 0) > 0 || (this.iceWorldFreezeMs || 0) > 0 ||
@@ -26611,6 +26639,46 @@
     }
   }
 
+  /* v5.6: the realms, their creatures, Fenrir and the castle perks live in
+     js/realms.js; it wraps a few NightScene methods and needs these internals. */
+  if (window.SolRealms && SolRealms.install) {
+    try {
+      SolRealms.install(NightScene, {
+        maze: function () { return MAZE; },
+        railGraph: railGraph, railPath: railPath, nearestMazeNode: nearestMazeNode,
+        losBlocked: losBlocked, hitsSolid: hitsSolid, inSafeZone: inSafeZone, playStep: playStep,
+        exitPos: function () { return { x: EXIT_X, y: EXIT_Y }; },
+        startPos: function () { return { x: START_X, y: START_Y }; },
+        WALK: WALK, SPRINT: SPRINT, CARRY_WALK: CARRY_WALK, CARRY_SPRINT: CARRY_SPRINT,
+        WORLD_W: WORLD_W, WORLD_H: WORLD_H,
+        NIGHT_THEMES: NIGHT_THEMES, nightTheme: nightTheme
+      });
+    } catch (eInstall) { if (window.console) console.warn("[realms] install failed", eInstall); }
+  }
+
+  /* v5.7: the shooter levels (every other level: 2, 4, 6 and 8 of each realm) live in
+     js/modes.js. Its ModeScene subclasses NightScene, so coins, the reading pop-up, the HUD
+     and the end-of-level screens are shared; it needs these internals. */
+  var ModeScene = null;
+  if (window.SolModes && SolModes.install) {
+    try {
+      ModeScene = SolModes.install(NightScene, {
+        Input: Input,
+        setPlayScene: function (sc) { playScene = sc; },
+        adaptEvent: adaptEvent, pingTeacher: function (sc, st) { pingTeacher(sc, st); },
+        loadUsedClaims: loadUsedClaims, loadAdapt: loadAdapt,
+        readingIsVisible: readingIsVisible, hideReading: hideReading,
+        hideTut: function () { try { hideTut(); } catch (e) {} },
+        hideTrapIntro: function () { try { hideTrapIntro(); } catch (e) {} },
+        installSafeCamFlash: installSafeCamFlash
+      });
+    } catch (eModes) { ModeScene = null; if (window.console) console.warn("[modes] install failed", eModes); }
+  }
+  function sceneKeyFor(n) {
+    try { if (ModeScene && window.SolModes && SolModes.modeFor(n)) return "mode"; } catch (e) {}
+    return "night";
+  }
+
   function pingTeacher(scene, status) {
     var tokenEl = document.getElementById("token-pip");
     var tok = makeToken(scene.night, scene.score, scene.strikes);
@@ -26634,9 +26702,10 @@
     if (skill) skill.classList.add("hidden");
     var stateScreen = document.getElementById("state-screen");
     if (stateScreen) {
-      if (!on && !cfg.state) { stateScreen.classList.remove("hidden"); document.getElementById("title-screen").classList.add("hidden"); }
+      if (!on && !cfg.state && !LOCKED_STATE) { stateScreen.classList.remove("hidden"); document.getElementById("title-screen").classList.add("hidden"); }
       else stateScreen.classList.add("hidden");
     }
+    if (!on && LOCKED_STATE && !cfg.state) applyState(LOCKED_STATE);
     hideCharOverlay();
     document.getElementById("play").classList.toggle("hidden", !on);
     document.getElementById("overlay").classList.add("hidden");
@@ -26671,6 +26740,7 @@
 
   /* v6: a single course (Virginia Biology). applyState keeps the family cards in sync and shows the title screen. */
   function applyState(st, silent) {
+    if (LOCKED_STATE) st = LOCKED_STATE;
     if (!STATE_DEFS[st]) st = "VA";
     cfg.state = st;
     try { localStorage.setItem(LS_STATE, st); } catch (e) {}
@@ -26688,7 +26758,7 @@
     var kick = document.getElementById("title-kicker");
     if (kick) kick.textContent = def.kicker;
     var sw = document.getElementById("btn-state");
-    if (sw) sw.textContent = def.name + " · change";
+    if (sw) { sw.textContent = def.name + " · change"; sw.classList.toggle("hidden", !!LOCKED_STATE); }
     var stateScreen = document.getElementById("state-screen"), title = document.getElementById("title-screen");
     if (!silent) {
       if (stateScreen) stateScreen.classList.add("hidden");
@@ -26792,7 +26862,8 @@
         width: w,
         height: h
       },
-      scene: NightScene,
+      /* v5.7: the first scene in the list starts; the other waits for restartNight() */
+      scene: ModeScene ? (sceneKeyFor(cfg.night) === "mode" ? [ModeScene, NightScene] : [NightScene, ModeScene]) : NightScene,
       input: { keyboard: true }
     });
     window.setTimeout(function () {
@@ -26844,7 +26915,14 @@
       playScene.tutDone = tutClosed;
       playScene.tutOpen = false;
       playScene.tutLockUntil = Date.now() + TUT_LOCK_MS;
-      playScene.scene.restart({ family: cfg.family, strand: cfg.strand, night: cfg.night });
+      var lvData = { family: cfg.family, strand: cfg.strand, night: cfg.night };
+      var wantKey = sceneKeyFor(cfg.night), curKey = (playScene.sys && playScene.sys.settings && playScene.sys.settings.key) || "night";
+      if (wantKey === curKey || !gameRef) playScene.scene.restart(lvData);
+      else {
+        /* v5.7: maze level <-> shooter level */
+        try { gameRef.scene.stop(curKey); } catch (eSt) {}
+        gameRef.scene.start(wantKey, lvData);
+      }
     } else {
       bootPhaser();
     }
@@ -27101,7 +27179,7 @@
          opening it again — outside a night, the state gateway comes first. */
       try {
         var playEl = document.getElementById("play");
-        if (ev && ev.persisted && (!playEl || playEl.classList.contains("hidden"))) { cfg.state = null; showStateScreen(); }
+        if (ev && ev.persisted && !LOCKED_STATE && (!playEl || playEl.classList.contains("hidden"))) { cfg.state = null; showStateScreen(); }
       } catch (ePs) {}
     });
   }
@@ -27152,11 +27230,13 @@
         e.preventDefault();
         shut.classList.add("held");
         Input.shutterEdge = true;
+        Input.shutterHeld = true;
         if (window.AfterHoursAudio) AfterHoursAudio.unlock();
       }
       function shutOff(e) {
         e.preventDefault();
         shut.classList.remove("held");
+        Input.shutterHeld = false;
       }
       shut.addEventListener("pointerdown", shutOn);
       shut.addEventListener("pointerup", shutOff);
@@ -27387,6 +27467,7 @@
     wantNight1Tut = false;
     tutClosed = true;
     hideTut();
+    if (window.SolRealms && SolRealms.stopAmbience) SolRealms.stopAmbience();
     if (gameRef) { gameRef.destroy(true); gameRef = null; }
     refreshSaveLine();
   });
@@ -27416,6 +27497,7 @@
     if (strand) cfg.strand = strand;
   } catch (e) {}
   showStateScreen();
+  if (LOCKED_STATE) { try { document.title = "SOL Labyrinth · " + STATE_DEFS[LOCKED_STATE].name; } catch (eT) {} }
 
   bindPads();
   bindVisibilityResume();
@@ -27459,7 +27541,7 @@
   (function buildMusicPicker() {
     var wrap = document.getElementById("music-chips");
     if (!wrap || !window.SolMusic || !SolMusic.TRACKS || !SolMusic.setPick) return;
-    var opts = [{ key: "auto", name: "Surprise me (suspense)" }];
+    var opts = [{ key: "auto", name: "Surprise me (a track for each realm)" }];
     Object.keys(SolMusic.TRACKS).forEach(function (k) { opts.push({ key: k, name: SolMusic.TRACKS[k].name }); });
     opts.push({ key: "off", name: "No music" });
     var cur = SolMusic.getPick ? SolMusic.getPick() : "auto";

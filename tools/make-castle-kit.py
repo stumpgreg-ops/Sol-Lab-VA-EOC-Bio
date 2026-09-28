@@ -18,6 +18,11 @@ import numpy as np
 from PIL import Image
 
 ARG = sys.argv[1] if len(sys.argv) > 1 else "kenney-mirror"
+# v5.3: --kaykit <dir> = the canvases written by tools/render-kaykit.js (KayKit Medieval Hexagon Pack, CC0); without it the
+# KayKit pieces are left out.
+KAYKIT = None
+for _i, _a in enumerate(sys.argv):
+    if _a == "--kaykit" and _i + 1 < len(sys.argv): KAYKIT = sys.argv[_i + 1]
 # v5: pass the Kenney mirror root (ETdoFresh/kenney.nl checkout). A path ending in castle-kit-1.0/Isometric still works.
 if ARG.rstrip("/").endswith("Isometric"):
     MIRROR = os.path.dirname(os.path.dirname(ARG.rstrip("/")))
@@ -30,6 +35,11 @@ EXTRA = {   # other CC0 Kenney kits rendered on 512 px canvases with a 130 px fl
     "n": (os.path.join(MIRROR, "kenney_natureKit_2.1", "Isometric"), "ground_grass", {"NE": "NE", "NW": "NW", "SW": "SW", "SE": "SE"}),
     "g": (os.path.join(MIRROR, "kenney_graveyardkit_3", "Isometric"), "road", {"NE": "NE", "NW": "NW", "SW": "SW", "SE": "SE"}),
 }
+if KAYKIT:
+    _same = {"NE": "NE", "NW": "NW", "SW": "SW", "SE": "SE"}
+    EXTRA["k"] = (os.path.join(KAYKIT, "base"), "floor1", _same)      # 1-cell pieces: the front apex of one cell
+    EXTRA["k2"] = (os.path.join(KAYKIT, "base"), "floor2", _same, 2)  # 2×2 pieces: the front apex of the 2×2 block
+    EXTRA["k3"] = (os.path.join(KAYKIT, "base"), "floor3", _same, 3)  # 3×3 pieces (the great castle)
 ANIMALS = os.path.join(MIRROR, "kenney_animalpackredux", "PNG", "Round")
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 OUT = os.path.join(ROOT, "assets", "build", "kit")
@@ -41,6 +51,10 @@ COLORS = {          # hue in degrees for the blue accents (flags, roofs, colour 
     "gold":  (44, 1.1, 1.08),
 }
 ORIENTS = ["NE", "NW", "SE", "SW"]
+# v5.5: --ne-only packs each sprite facing one way. The builder draws pieces in 3D (js/build3d.js) and the sprites only serve the
+# palette and shop thumbnails, the upright stand-ins for pieces without a model, and the 2D drawing on a Chromebook with no WebGL
+# (which then shows every piece facing front). The atlases shrink to a quarter.
+if "--ne-only" in sys.argv: ORIENTS = ["NE"]
 
 # sprites we ship (name -> orientations)
 SPRITES = {  # v5.1: every sprite in all four orientations so pieces can be turned
@@ -103,6 +117,18 @@ def recolour(img, hue, sgain, vgain):
     a[m, :3] = out
     return Image.fromarray((a * 255).round().astype(np.uint8), "RGBA")
 
+def greystone(img):
+    """v5.3: Kenney's beige wall and tower tiles tinted to grey stone, so they sit with the KayKit buildings (blue accents untouched)."""
+    a = np.array(img.convert("RGBA")).astype(float) / 255.0
+    m = a[..., 3] > 0.02
+    rgb = a[m][:, :3]
+    hsv = np.array([colorsys.rgb_to_hsv(*p) for p in rgb])
+    sel = (hsv[:, 0] > 0.05) & (hsv[:, 0] < 0.19) & (hsv[:, 1] < 0.42) & (hsv[:, 2] > 0.3)
+    hsv[sel, 1] *= 0.3
+    hsv[sel, 2] *= 0.9
+    a[m, :3] = np.array([colorsys.hsv_to_rgb(*p) for p in hsv])
+    return Image.fromarray((a * 255).round().astype(np.uint8), "RGBA")
+
 def geom(path):
     im = Image.open(path)
     w, h = im.size
@@ -117,10 +143,11 @@ _ref = {}
 def kit_ref(key):
     if key in _ref:
         return _ref[key]
-    src, floor, suf = EXTRA[key]
+    src, floor, suf = EXTRA[key][:3]
+    cells = EXTRA[key][3] if len(EXTRA[key]) > 3 else 1         # the reference tile may cover n×n cells (KayKit floor2 / floor3)
     im = Image.open(os.path.join(src, floor + "_" + suf["NE"] + ".png")).convert("RGBA")
     bb = im.getbbox()
-    _ref[key] = {"apexY": bb[3], "cell": bb[2] - bb[0], "scale": CELL_W / float(bb[2] - bb[0])}
+    _ref[key] = {"apexY": bb[3], "cell": (bb[2] - bb[0]) / float(cells), "scale": CELL_W * cells / float(bb[2] - bb[0])}
     return _ref[key]
 
 def scale_about(im, k, ox, oy):
@@ -131,9 +158,12 @@ def scale_about(im, k, ox, oy):
     out.alpha_composite(big, (int(round(ox - ox * k)), int(round(oy - oy * k))))
     return out
 
-def import_canvas(key, name, orient, out_name, k=1.0, lift=None, offsets=None, variants=None, base=False):
-    """Import one render from an extra kit. offsets/variants composite several copies (flower beds)."""
-    src, floor, suf = EXTRA[key]
+def import_canvas(key, name, orient, out_name, k=1.0, lift=None, offsets=None, variants=None, base=False, src_dir=None, out_dir=None, box=None):
+    """Import one render from an extra kit. offsets/variants composite several copies (flower beds).
+    src_dir / out_dir: read a colour variant from another directory and write it beside the base sprite; box: reuse the
+    base sprite's crop so every colour of a sprite has the same size (the atlas draws them with the base geometry)."""
+    src, floor, suf = EXTRA[key][:3]
+    src = src_dir or src
     ref = kit_ref(key)
     if offsets:
         canvas = Image.new("RGBA", (512, 512), (0, 0, 0, 0))
@@ -148,17 +178,20 @@ def import_canvas(key, name, orient, out_name, k=1.0, lift=None, offsets=None, v
         im = Image.open(os.path.join(src, name + "_" + suf[orient] + ".png")).convert("RGBA")
         if k != 1.0:
             im = scale_about(im, k, 256, ref["apexY"] - ref["cell"] * 0.25)
-    bb = im.getbbox()
-    hw = max(256 - bb[0], bb[2] - 256)
-    apex = bb[3] if base else ref["apexY"]           # base=True: the render's own bottom is its ground line (windmill, water wheel)
-    y1 = max(bb[3], apex)
-    crop = im.crop((256 - hw, bb[1], 256 + hw, y1))
+    if box:
+        hw, top, y1, apex = box
+    else:
+        bb = im.getbbox()
+        hw = max(256 - bb[0], bb[2] - 256)
+        apex = bb[3] if base else ref["apexY"]           # base=True: the render's own bottom is its ground line (windmill, water wheel)
+        y1 = max(bb[3], apex); top = bb[1]
+    crop = im.crop((256 - hw, top, 256 + hw, y1))
     sc = ref["scale"]
     crop = crop.resize((max(1, int(round(crop.width * sc))), max(1, int(round(crop.height * sc)))), Image.LANCZOS)
-    dst = os.path.join(OUT, out_name + ".png")
+    dst = os.path.join(out_dir or OUT, out_name + ".png")
     crop.save(dst, optimize=True)
     g = {"w": crop.width, "h": crop.height, "lift": lift if lift is not None else max(0, round(crop.height - CELL_H)),
-         "oy": int(round((y1 - apex) * sc))}
+         "oy": int(round((y1 - apex) * sc)), "_box": (hw, top, y1, apex)}
     return g
 
 def import_animal(name, width=66):
@@ -198,9 +231,11 @@ def main():
             if not os.path.exists(src):
                 print("missing", src); continue
             dst = os.path.join(OUT, "%s_%s.png" % (name, o))
-            shutil.copyfile(src, dst); n_files += 1
+            img = Image.open(src).convert("RGBA")
+            if name.startswith("wall") or name.startswith("tower"):
+                img = greystone(img)
+            img.save(dst, optimize=True); n_files += 1
             sprites["%s_%s" % (name, o)] = geom(dst)
-            img = Image.open(src)
             for c, (hue, sg, vg) in COLORS.items():
                 r = recolour(img, hue, sg, vg)
                 if r is not None:
@@ -215,8 +250,24 @@ def main():
     def X(key, name, orient="NE", out=None, **kw):
         out = out or (key + "_" + name + "_" + orient)
         sprites[out] = import_canvas(key, name, orient, out, **kw)
+        sprites[out].pop("_box", None)
         sprites[out]["coloured"] = False
         return out
+    # KayKit renders (tools/render-kaykit.js): k_<name>_<orient>; a coloured piece has red/green/gold variants cropped with the base box
+    def K(name, cells=1, coloured=False):
+        key = {2: "k2", 3: "k3"}.get(cells, "k")
+        for o in ORIENTS:
+            out = "k_%s_%s" % (name, o)
+            g = import_canvas(key, name, o, out)
+            box = g.pop("_box")
+            if coloured:
+                for c in COLORS:
+                    import_canvas(key, name, o, out, src_dir=os.path.join(KAYKIT, c), out_dir=os.path.join(OUT, c), box=box)
+            g["coloured"] = bool(coloured)
+            sprites[out] = g
+    have_kaykit = bool(KAYKIT) and os.path.isdir(os.path.join(KAYKIT, "base"))
+    if KAYKIT and not have_kaykit:
+        print("KayKit renders not found at", KAYKIT)
     if have_extra:
         # town kit: house blocks and roofs (stackable), village props, hedges and fences (all four orientations)
         for nm in ["wallBlock", "wallWoodBlock", "roofGable", "roofHigh", "roofHighPoint", "roofPoint", "roofHighGable", "roof", "roofHighWindow",
@@ -252,6 +303,18 @@ def main():
                 nm = base_name + "_" + o
                 sprites[nm] = to_stone(os.path.join(OUT, src_name + "_" + o + ".png"), nm); sprites[nm]["coloured"] = False
         print("wrote extra sprites:", sum(1 for k in sprites if k[:2] in ("t_", "n_", "g_", "a_", "s_")))
+    KK_COLOURED = ["castle", "townhall", "barracks", "archeryrange", "market", "mine", "shipyard", "stables", "tent", "workshop", "blacksmith", "church",
+                   "home_A", "home_B", "lumbermill", "shrine", "tavern", "tower_A", "tower_B", "tower_base", "tower_cannon", "tower_catapult", "watchtower",
+                   "watermill", "well", "windmill", "soldier", "banner", "flag"]
+    KK_THREE = ["castle"]
+    KK_TWO = ["townhall", "barracks", "archeryrange", "market", "mine", "shipyard", "stables", "tent", "workshop", "grain", "scaffolding", "destroyed", "grove_A", "grove_B"]
+    KK_NEUTRAL = ["grain", "scaffolding", "destroyed", "stage_A", "stage_C", "barrels", "crates", "supplies", "haybales", "wheelbarrow", "target", "weaponrack", "trough",
+                  "cannonballs", "small_tent", "bucket", "pallet", "cart", "merchant_cart", "catapult", "cannon", "horse", "tree_A", "tree_B", "grove_A", "grove_B", "rock", "rocks"]
+    if have_kaykit:
+        cells_of = lambda nm: 3 if nm in KK_THREE else (2 if nm in KK_TWO else 1)
+        for nm in KK_COLOURED: K(nm, cells_of(nm), True)
+        for nm in KK_NEUTRAL: K(nm, cells_of(nm), False)
+        print("wrote KayKit sprites:", sum(1 for k in sprites if k.startswith("k_")))
 
     # ── modules ──────────────────────────────────────────────────────────────
     def M(id, name, desc, kind, tier, price, score, parts=None, fits=None, extra=None, cat=None):
@@ -416,6 +479,74 @@ def main():
             P("duck", "Duck", "A duck for the pond.", "a_duck", 1, 10, 4, "animal"),
             P("owl", "Owl", "An owl for the tower.", "a_owl", 2, 15, 5, "animal"),
         ]
+    if have_kaykit:
+        KS = lambda name: "k_" + name + "_NE"
+        def KB(id, name, desc, nm, tier, price, score, kind="house", cat="house"):        # a KayKit building (coloured, 1 or 2 cells)
+            return M(id, name, desc, kind, tier, price, score, [KS(nm)], None, {"cells": cells_of(nm)}, cat)
+        def KP(id, name, desc, nm, tier, price, score, cat):                               # a KayKit ground piece (neutral or coloured)
+            return M(id, name, desc, "prop", tier, price, score, [KS(nm)], None, {"cells": cells_of(nm)}, cat)
+        modules += [
+            # KayKit buildings: the base of a base-builder castle, roofs in your colour
+            KB("k-castle", "Great castle", "A grand stone castle with a tower at every corner and roofs in your colour. Three cells wide.", "castle", 4, 260, 120),
+            KB("k-townhall", "Town hall", "A tall timbered hall for the town council. Two cells wide.", "townhall", 3, 160, 70),
+            KB("k-barracks", "Barracks", "Where the soldiers sleep and drill. Two cells wide.", "barracks", 2, 120, 50),
+            KB("k-archery", "Archery range", "Targets and a shelter for the archers. Two cells wide.", "archeryrange", 2, 100, 44),
+            KB("k-market", "Market hall", "A covered market with stalls all round. Two cells wide.", "market", 2, 100, 44),
+            KB("k-mine", "Mine", "A mine shaft with its winch and carts. Two cells wide.", "mine", 2, 110, 46),
+            KB("k-shipyard", "Shipyard", "A boat under construction on the slipway. Two cells wide.", "shipyard", 3, 130, 56),
+            KB("k-stables", "Stables", "Long stables with stalls for the horses. Two cells wide.", "stables", 2, 90, 38),
+            KB("k-tent", "Army tent", "A big army tent in your colour. Two cells wide.", "tent", 2, 45, 18),
+            KB("k-workshop", "Workshop", "A carpenter's workshop with a lumber yard. Two cells wide.", "workshop", 2, 100, 44),
+            KB("k-blacksmith", "Blacksmith", "A forge with a chimney and an anvil.", "blacksmith", 2, 80, 36),
+            KB("k-church", "Church", "A stone church with a steeple.", "church", 3, 120, 52),
+            KB("k-home-a", "Small house", "A snug house with a chimney.", "home_A", 2, 45, 20),
+            KB("k-home-b", "Tall house", "A two-storey timbered house.", "home_B", 2, 55, 26),
+            KB("k-lumbermill", "Lumber mill", "A saw mill with a stack of logs.", "lumbermill", 2, 90, 40),
+            KB("k-shrine", "Shrine", "A small shrine with a bell.", "shrine", 2, 70, 30),
+            KB("k-inn", "Inn", "A timbered inn with a sign over the door.", "tavern", 2, 90, 40),
+            KB("k-watermill", "Water mill", "A mill with a big wooden wheel.", "watermill", 2, 90, 40),
+            KB("k-windmill", "Stone windmill", "A stone windmill with cloth sails.", "windmill", 2, 95, 42),
+            # KayKit towers (flags and banners can sit on the flat-topped ones)
+            KB("k-tower-a", "Stone tower", "A round stone tower with a pointed roof in your colour.", "tower_A", 1, 60, 30, "tower", "tower"),
+            KB("k-tower-b", "Grand stone tower", "A taller stone tower with a wide roof.", "tower_B", 2, 85, 40, "tower", "tower"),
+            KB("k-tower-base", "Squat tower", "A short stone tower with an open top.", "tower_base", 1, 45, 22, "tower", "tower"),
+            KB("k-tower-cannon", "Cannon tower", "A stone tower with a cannon on top.", "tower_cannon", 3, 110, 48, "tower", "tower"),
+            KB("k-tower-catapult", "Catapult tower", "A stone tower with a catapult on top.", "tower_catapult", 3, 110, 48, "tower", "tower"),
+            KB("k-watchtower", "Wooden watchtower", "A timber lookout tower.", "watchtower", 1, 40, 18, "tower", "tower"),
+            # KayKit ground pieces
+            KP("k-well", "Stone well", "A well with a roof in your colour.", "well", 1, 30, 12, "village"),
+            KP("k-grain", "Grain field", "A field of ripe grain. Two cells wide.", "grain", 1, 25, 10, "nature"),
+            KP("k-site", "Building site", "Scaffolding round a building going up. Two cells wide.", "scaffolding", 1, 30, 10, "village"),
+            KP("k-ruins", "Ruins", "The broken walls of an old building. Two cells wide.", "destroyed", 1, 25, 8, "village"),
+            KP("k-stage", "Wooden stage", "A low wooden platform.", "stage_A", 1, 20, 6, "village"),
+            KP("k-platform", "Tall stage", "A wooden platform with steps.", "stage_C", 1, 25, 8, "village"),
+            KP("k-barrels", "Barrels", "Three wooden barrels.", "barrels", 1, 12, 5, "village"),
+            KP("k-crates", "Crates", "A few wooden crates.", "crates", 1, 12, 5, "village"),
+            KP("k-supplies", "Supplies", "Lumber, stone and a sack of grain.", "supplies", 1, 14, 6, "village"),
+            KP("k-hay", "Hay bales", "Two bales of hay.", "haybales", 1, 12, 5, "village"),
+            KP("k-wheelbarrow", "Wheelbarrow", "A wooden wheelbarrow.", "wheelbarrow", 1, 12, 4, "village"),
+            KP("k-target", "Archery target", "A straw target for the archers.", "target", 1, 12, 5, "people"),
+            KP("k-weapons", "Weapon rack", "A rack of spears and shields.", "weaponrack", 1, 15, 6, "people"),
+            KP("k-trough", "Water trough", "A long trough for the horses.", "trough", 1, 10, 4, "village"),
+            KP("k-cannonballs", "Cannonballs", "A pallet of cannonballs.", "cannonballs", 1, 15, 6, "people"),
+            KP("k-camp-tent", "Camp tent", "A small canvas tent.", "small_tent", 1, 20, 8, "village"),
+            KP("k-bucket", "Bucket", "A bucket of water.", "bucket", 1, 6, 2, "village"),
+            KP("k-pallet", "Pallet", "An empty wooden pallet.", "pallet", 1, 6, 2, "village"),
+            KP("k-cart", "Farm cart", "A cart with wooden wheels.", "cart", 1, 20, 8, "village"),
+            KP("k-merchant-cart", "Merchant cart", "A covered cart full of goods.", "merchant_cart", 1, 30, 12, "village"),
+            KP("k-catapult", "Wheeled catapult", "A catapult on wheels.", "catapult", 2, 55, 22, "people"),
+            KP("k-cannon", "Cannon", "A bronze cannon on a carriage.", "cannon", 2, 60, 24, "people"),
+            KP("k-warhorse", "Warhorse", "A saddled horse ready to ride.", "horse", 1, 25, 8, "animal"),
+            KP("k-soldier", "Soldier", "A soldier in your colour standing guard.", "soldier", 1, 20, 8, "people"),
+            KP("k-banner", "War banner", "A tall banner in your colour.", "banner", 1, 18, 8, "people"),
+            KP("k-flag", "Ground flag", "A small flag in your colour on a pole.", "flag", 1, 10, 4, "people"),
+            KP("k-tree-a", "Leafy tree", "A tall leafy tree.", "tree_A", 1, 15, 8, "nature"),
+            KP("k-tree-b", "Round tree", "A round bushy tree.", "tree_B", 1, 15, 8, "nature"),
+            KP("k-grove-a", "Grove", "A grove of leafy trees. Two cells wide.", "grove_A", 1, 30, 14, "nature"),
+            KP("k-grove-b", "Pine grove", "A grove of pines. Two cells wide.", "grove_B", 1, 30, 14, "nature"),
+            KP("k-rock", "Rock", "A big grey rock.", "rock", 1, 8, 3, "nature"),
+            KP("k-stones", "Stone pile", "A few stones on the grass.", "rocks", 1, 10, 4, "nature"),
+        ]
     for m in modules:
         m["img"] = "assets/build/kit/" + ((m.get("parts") or [None])[0] or (m.get("auto") or {}).get("u") if not isinstance((m.get("auto") or {}).get("u"), list) else m["auto"]["u"][0]) + ".png" if (m.get("parts") or m.get("auto")) else ""
         m["nostyle"] = False
@@ -446,7 +577,12 @@ def main():
             {"id": "farm", "name": "Farm pack", "desc": "A stable, a rail fence, a cow, a horse and a chicken, 20% off.", "items": ["stable", "rail-fence", "cow", "horse", "chicken"], "discount": 0.2},
             {"id": "village", "name": "Village pack", "desc": "A cottage, a market stall, a cart, a lantern and a bench, 20% off.", "items": ["c-cottage", "stall-red", "cart", "lantern", "bench"], "discount": 0.2},
             {"id": "monuments", "name": "Monument pack", "desc": "A fountain, an obelisk, a column and a knight statue, 20% off.", "items": ["fountain", "obelisk", "column", "knight-statue"], "discount": 0.2},
-        ],
+        ] + ([
+            {"id": "town", "name": "Town pack", "desc": "A town hall, two houses, a well and a market hall, 20% off.", "items": ["k-townhall", "k-home-a", "k-home-b", "k-well", "k-market"], "discount": 0.2},
+            {"id": "garrison", "name": "Garrison pack", "desc": "Barracks, an archery range, a soldier, a banner and a weapon rack, 20% off.", "items": ["k-barracks", "k-archery", "k-soldier", "k-banner", "k-weapons"], "discount": 0.2},
+            {"id": "mills", "name": "Mill pack", "desc": "A lumber mill, a stone windmill and a water mill, 15% off.", "items": ["k-lumbermill", "k-windmill", "k-watermill"], "discount": 0.15},
+            {"id": "stone-towers", "name": "Stone tower pack", "desc": "A stone tower, a squat tower and a wooden watchtower, 15% off.", "items": ["k-tower-a", "k-tower-base", "k-watchtower"], "discount": 0.15},
+        ] if have_kaykit else []),
     }
     d["v"] = 2
     json.dump(d, open(pj, "w"), indent=1)

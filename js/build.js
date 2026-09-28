@@ -114,6 +114,43 @@
   function rewardsTaken() { return Object.keys(save.rewards).filter(function (k) { return !!save.rewards[k]; }).length; }
   function owned(id) { return !!(save.owned && save.owned[id]); }
   function unlock(id) { if (!save.owned) save.owned = {}; save.owned[id] = 1; }
+
+  /* v5.6: castle perks. A building on the field gives its perk in the maze
+     (each perk counts once, however many copies are placed). The maze reads
+     SolBuild.perks() when a level starts; js/realms.js applies them. */
+  var PERKS = [
+    { id: "swift",    name: "Swift feet",    desc: "Sol runs 6% faster.", pieces: ["k-stables", "stable", "bakery"] },
+    { id: "surefoot", name: "Sure footing",  desc: "Wet floors never slow Sol down or trip her.", pieces: ["k-well", "well", "fountain"] },
+    { id: "lookout",  name: "Lookout",       desc: "Ravens, trolls and the other realm creatures show on the map.", pieces: ["k-watchtower", "watchtower", "bell-tower"] },
+    { id: "guard",    name: "Castle guard",  desc: "The first catch in each level bounces off.", pieces: ["k-barracks", "manor"] },
+    { id: "blessing", name: "Blessing",      desc: "Start every level with a 1UP (a spare life).", pieces: ["k-church", "c-chapel", "chapel", "k-shrine"] },
+    { id: "trade",    name: "Trade",         desc: "+2 coins for every correct answer.", pieces: ["k-market", "square"] },
+    { id: "gold",     name: "Gold vein",     desc: "Pickups in the maze pay double coins.", pieces: ["k-mine", "harbour"] },
+    { id: "iron",     name: "Iron boots",    desc: "Slowing floors slow Sol only half as much.", pieces: ["k-blacksmith", "dock"] },
+    { id: "archers",  name: "Archers",       desc: "The Hati wolves run 5% slower.", pieces: ["k-archery"] },
+    { id: "hearth",   name: "Warm hearth",   desc: "One extra second of safety after a catch.", pieces: ["k-inn", "c-tavern", "tavern"] },
+    { id: "tinker",   name: "Tinkerer",      desc: "The chariot power lasts 25% longer.", pieces: ["k-workshop", "k-lumbermill"] },
+    { id: "charter",  name: "Royal charter", desc: "+10 coins for every level you clear.", pieces: ["k-townhall", "town-hall"] },
+    { id: "harvest",  name: "Harvest",       desc: "+5 coins for every level you clear.", pieces: ["k-windmill", "k-watermill", "c-windmill", "windmill", "watermill", "grand-mill", "barn"] },
+    { id: "rune",     name: "Rune of Sol",   desc: "Fenrir's first charge in each boss level misses.", pieces: ["k-castle", "great-tower", "royal-tower"] }
+  ];
+  var PERK_BY_PIECE = {};
+  PERKS.forEach(function (pk) { pk.pieces.forEach(function (id) { PERK_BY_PIECE[id] = pk; }); });
+  function perkOf(pieceId) { return PERK_BY_PIECE[pieceId] || null; }
+  function perkLine(p) { var pk = p && perkOf(p.id); return pk ? "Perk in the maze: " + pk.name + " · " + pk.desc : ""; }
+  function activePerks() {
+    if (!save) save = loadSave();
+    var out = [], seen = {};
+    (save.picks || []).forEach(function (pick) {
+      var pk = perkOf(pick.piece), pc;
+      if (!pk) return;
+      if (!seen[pk.id]) { seen[pk.id] = { id: pk.id, name: pk.name, desc: pk.desc, from: [] }; out.push(seen[pk.id]); }
+      pc = data ? pieceById(pick.piece) : null;
+      var nm = (pc && pc.name) || pick.piece;
+      if (seen[pk.id].from.indexOf(nm) === -1) seen[pk.id].from.push(nm);
+    });
+    return out;
+  }
   /* Once pieces.json is in: old castles map to kit pieces; picks that no longer exist are dropped. */
   function migrateIfNeeded() {
     if (!save || !data) return;
@@ -151,6 +188,7 @@
     ensurePositions();
   }
   function persist() {
+    if (ui && ui.perks && step === "gallery") { try { fillPerks(); } catch (eP) {} }
     save.picks.sort(function (a, b) { return (a.ord || 0) - (b.ord || 0); });
     save.picks.forEach(function (p, i) { p.ord = i; });
     save.code = exportCode();
@@ -593,12 +631,21 @@
     });
     return b;
   }
+  /* v5.5: a stable key per placed piece for the 3D view's cache (picks are plain saved objects, so the key lives beside them) */
+  var pickKeys = typeof WeakMap === "function" ? new WeakMap() : null, keySeq = 0;
+  function keyOf(pk) {
+    if (!pk) return "";
+    if (!pickKeys) { if (!pk._k) pk._k = "p" + (++keySeq); return pk._k; }
+    var k = pickKeys.get(pk); if (!k) { k = "p" + (++keySeq); pickKeys.set(pk, k); } return k;
+  }
   function itemFor(p, pk, cx, cy, style, extra, ignore) {
     var n = cellsOf(p), ctr = rotPt(cx + n / 2, cy + n / 2), c = cellXY(ctr.u, ctr.v), it, k, host, base = 0;
     if (isKit()) {
       /* the sprite's bottom-centre is the cell's front apex: half a diamond below the cell centre */
       if (isTopper(p)) { host = hostFor(cx, cy, pk) || pickAt(cx, cy, pk, function (q) { return isHost(q); }); if (host) base = stackHeight(pieceById(host.piece), cx, cy, host.rot); }
-      it = { p: p, pk: pk, style: style, x: c.x, y: c.y + cellH() / 2, a: 1, depth: ctr.u + ctr.v + (isTopper(p) ? 0.5 : 0), cx: cx, cy: cy, n: 1, kit: true, base: base, parts: partsFor(p, cx, cy, ignore, pk ? pk.rot : 0) };
+      /* v5.3: an n×n piece's sprite hangs from the front apex of the whole footprint, n half-diamonds below its centre */
+      it = { p: p, pk: pk, style: style, x: c.x, y: c.y + n * cellH() / 2, a: 1, depth: ctr.u + ctr.v + n - 1 + (isTopper(p) ? 0.5 : 0), cx: cx, cy: cy, n: n, kit: true, base: base, ign: ignore || null, parts: partsFor(p, cx, cy, ignore, pk ? pk.rot : 0),
+        key: keyOf(pk) || ("g" + cx + "," + cy), prot: pk ? (pk.rot || 0) : 0, run: isRun(p), hostKey: host ? keyOf(host) : "" };
     } else {
       it = { p: p, pk: pk, style: style, x: c.x, y: c.y, a: 1, depth: ctr.u + ctr.v + n, cx: cx, cy: cy, n: n };
     }
@@ -678,8 +725,162 @@
     ctx.fillStyle = it.bad ? "rgba(255,90,90,.35)" : it.sel ? "rgba(120,220,255,.35)" : it.ghost ? "rgba(245,200,66,.35)" : "rgba(245,200,66,.12)"; ctx.fill();
     ctx.lineWidth = Math.max(1, C * 0.04); ctx.strokeStyle = it.bad ? "#ff6b6b" : it.sel ? "#8ee0ff" : "rgba(245,200,66,.85)"; ctx.stroke();
   }
+  /* ── v5.4: walls, gates, hedges and fences are drawn as geometry, not sprites ──────────────
+     A run piece (auto-tiled) is a box, or an L / T / cross of boxes, built from its cell's corners in
+     WORLD space and projected through the view, so a run stays one continuous wall at every view
+     angle. Sprites only exist in four directions, which broke a run into staggered blocks in between
+     the quarter turns. Neighbours are read in world space too (same category, or a solid building). */
+  var RUN_STYLE = {
+    wall: { kind: "stone", t: 0.5, h: 1.15, merlons: true },
+    gate: { kind: "stone", t: 0.5, h: 1.15, merlons: true, arch: true, bars: true },
+    doorway: { kind: "stone", t: 0.5, h: 1.15, merlons: true, arch: true },
+    "stairs-wall": { kind: "stone", t: 0.5, h: 1.15, merlons: true, stairs: true },
+    "corner-tower": { kind: "stone", t: 0.5, h: 1.15, merlons: true, turret: true },
+    hedge: { kind: "hedge", t: 0.56, h: 0.6 },
+    "hedge-gate": { kind: "hedge", t: 0.56, h: 0.6, gap: true },
+    "c-fence": { kind: "wood", t: 0.07, h: 0.55, fence: true, rails: 2 },
+    "fence-gate": { kind: "wood", t: 0.07, h: 0.6, fence: true, rails: 3, gate: true },
+    "rail-fence": { kind: "wood", t: 0.06, h: 0.45, fence: true, rails: 2 }
+  };
+  var RUN_COLS = {
+    stone: { top: "#aeb4bb", light: "#8f969e", dark: "#687079", hole: "#33373b", bar: "#b8bcc0", body: "#8e949c", merlon: "#8e949c" },
+    hedge: { top: "#5cab45", light: "#48943b", dark: "#33712c", body: "#4a9a3c" },
+    wood: { top: "#c39463", light: "#aa7c4f", dark: "#7f5a38", body: "#a57b4e" }
+  };
+  function isRun(p) { return !!(p && p.auto && RUN_STYLE[p.id]); }
+  /* the world directions a run piece at (cx, cy) joins: the same category of run, or a solid building */
+  function runDirs(p, cx, cy, ignore) {
+    var pred = function (q) { return q.auto ? catOf(q) === catOf(p) : isSolid(q); }, out = [];
+    [[1, 0], [-1, 0], [0, 1], [0, -1]].forEach(function (d) { if (pickAt(cx + d[0], cy + d[1], ignore, pred)) out.push(d); });
+    return out;
+  }
+  /* the plan of a run cell: which boxes make it (a straight box for an opposite pair of joins, half boxes for the other arms,
+     a gap in a hedge gate), shared by the 2D drawing here and the 3D view (js/build3d.js) */
+  function runPlan(it) {
+    var p = it.p, st = RUN_STYLE[p.id], cols = RUN_COLS[st.kind], cx = it.cx, cy = it.cy;
+    /* which way the run goes, from WORLD neighbours; a lone piece follows its own turn */
+    var dirs = runDirs(p, cx, cy, it.ign), rot = (it.pk && it.pk.rot) || 0, side = (rot & 1) ? -1 : 1;
+    if (!dirs.length) dirs = (rot & 1) ? [[0, 1], [0, -1]] : [[1, 0], [-1, 0]];
+    else if (dirs.length === 1) dirs.push([-dirs[0][0], -dirs[0][1]]);
+    var has = function (dx, dy) { return dirs.some(function (d) { return d[0] === dx && d[1] === dy; }); };
+    var mx = cx + 0.5, my = cy + 0.5, t = st.t, ht = t / 2, E = 0.02, h = st.h, parts = [];
+    var straightX = has(1, 0) && has(-1, 0), straightY = has(0, 1) && has(0, -1), main = null;
+    if (straightX) { parts.push({ x0: cx - E, x1: cx + 1 + E, y0: my - ht, y1: my + ht, axis: "x" }); main = parts[parts.length - 1]; }
+    if (straightY) { parts.push({ x0: mx - ht, x1: mx + ht, y0: cy - E, y1: cy + 1 + E, axis: "y" }); if (!main) main = parts[parts.length - 1]; }
+    dirs.forEach(function (d) {
+      if ((d[0] && straightX) || (d[1] && straightY)) return;
+      if (d[0]) parts.push({ x0: d[0] > 0 ? mx - ht : cx - E, x1: d[0] > 0 ? cx + 1 + E : mx + ht, y0: my - ht, y1: my + ht, axis: "x" });
+      else parts.push({ x0: mx - ht, x1: mx + ht, y0: d[1] > 0 ? my - ht : cy - E, y1: d[1] > 0 ? cy + 1 + E : my + ht, axis: "y" });
+    });
+    if (!main) main = parts[0];
+    if (st.gap && main) {                              /* a gap in the middle of a hedge */
+      var g = 0.2, keep = [];
+      parts.forEach(function (b) {
+        if (b !== main) { keep.push(b); return; }
+        if (b.axis === "x") { keep.push({ x0: b.x0, x1: mx - g, y0: b.y0, y1: b.y1, axis: "x" }); keep.push({ x0: mx + g, x1: b.x1, y0: b.y0, y1: b.y1, axis: "x" }); }
+        else { keep.push({ x0: b.x0, x1: b.x1, y0: b.y0, y1: my - g, axis: "y" }); keep.push({ x0: b.x0, x1: b.x1, y0: my + g, y1: b.y1, axis: "y" }); }
+      });
+      parts = keep;
+    }
+    return { st: st, cols: cols, parts: parts, main: main, side: side, dirs: dirs, mx: mx, my: my, cx: cx, cy: cy, t: t, ht: ht, h: h, E: E };
+  }
+  function drawRun(ctx, it, fit) {
+    var pl = runPlan(it), st = pl.st, cols = pl.cols, s = fit.s / fit.base, H = cellH();
+    var side = pl.side, mx = pl.mx, my = pl.my, t = pl.t, ht = pl.ht, E = pl.E, h = pl.h, parts = pl.parts, main = pl.main;
+    function P(x, y, z) { var g = worldPx(x, y); return { x: fit.ox + g.x * s, y: fit.oy + (g.y - (z || 0) * H) * s }; }
+    function poly(pts) { ctx.beginPath(); pts.forEach(function (q, i) { if (i) ctx.lineTo(q.x, q.y); else ctx.moveTo(q.x, q.y); }); ctx.closePath(); }
+    /* a box over world [x0,x1]×[y0,y1], from height z0 to z1: the two near side faces, then the top */
+    function box(x0, y0, x1, y1, z0, z1, c, mode) {
+      c = c || cols;
+      var b = [P(x0, y0, z0), P(x1, y0, z0), P(x1, y1, z0), P(x0, y1, z0)], t = [P(x0, y0, z1), P(x1, y0, z1), P(x1, y1, z1), P(x0, y1, z1)];
+      var ctr = P((x0 + x1) / 2, (y0 + y1) / 2, z0), i, j, m;
+      if (mode !== "top") for (i = 0; i < 4; i++) {
+        j = (i + 1) & 3; m = { x: (b[i].x + b[j].x) / 2, y: (b[i].y + b[j].y) / 2 };
+        if (m.y > ctr.y + 0.01) { ctx.fillStyle = m.x < ctr.x ? c.light : c.dark; poly([b[i], b[j], t[j], t[i]]); ctx.fill(); }
+      }
+      if (mode !== "sides") { ctx.fillStyle = c.top; poly(t); ctx.fill(); }
+    }
+    function screenY(x, y) { return P(x, y, 0).y; }
+    ctx.save(); ctx.globalAlpha = it.a;
+    if (st.fence) {
+      /* posts at the cell edges and the centre, rails between them */
+      var posts = [], rails = [], pw = 0.08, i, k, n = st.rails || 2;
+      parts.forEach(function (b) {
+        if (b.axis === "x") { posts.push([b.x0 + E, my]); posts.push([b.x1 - E, my]); for (k = 0; k < n; k++) rails.push({ x0: b.x0, x1: b.x1, y0: my - t / 2, y1: my + t / 2, z0: 0.14 + k * (h - 0.2) / Math.max(1, n - 1), z1: 0.14 + k * (h - 0.2) / Math.max(1, n - 1) + 0.06 }); }
+        else { posts.push([mx, b.y0 + E]); posts.push([mx, b.y1 - E]); for (k = 0; k < n; k++) rails.push({ x0: mx - t / 2, x1: mx + t / 2, y0: b.y0, y1: b.y1, z0: 0.14 + k * (h - 0.2) / Math.max(1, n - 1), z1: 0.14 + k * (h - 0.2) / Math.max(1, n - 1) + 0.06 }); }
+      });
+      if (st.gate) posts.push([mx, my]);
+      var all = rails.map(function (r) { return { kind: "rail", r: r, y: screenY((r.x0 + r.x1) / 2, (r.y0 + r.y1) / 2) }; })
+        .concat(posts.map(function (q) { return { kind: "post", q: q, y: screenY(q[0], q[1]) }; }));
+      all.sort(function (a, b) { return a.y - b.y; });
+      all.forEach(function (o) {
+        if (o.kind === "rail") box(o.r.x0, o.r.y0, o.r.x1, o.r.y1, o.r.z0, o.r.z1);
+        else box(o.q[0] - pw / 2, o.q[1] - pw / 2, o.q[0] + pw / 2, o.q[1] + pw / 2, 0, h);
+      });
+      ctx.restore(); return;
+    }
+    /* solid runs: boxes back to front, then merlons, arches, stairs, turret */
+    /* all the side faces, then all the tops: the boxes share one height, so where arms overlap (a corner, T or cross) no seam shows */
+    parts.forEach(function (b) { box(b.x0, b.y0, b.x1, b.y1, 0, h, null, "sides"); });
+    parts.forEach(function (b) { box(b.x0, b.y0, b.x1, b.y1, 0, h, null, "top"); });
+    if (st.stairs && main) {                            /* three steps up against one long face (turning the piece swaps the side) */
+      var k2, sw = 0.22, sd = 0.24, e0 = side > 0 ? ht : -ht - sd, e1 = e0 + sd;
+      for (k2 = 0; k2 < 3; k2++) {
+        if (main.axis === "x") box(mx - 0.33 + k2 * sw, my + e0, mx - 0.33 + (k2 + 1) * sw, my + e1, 0, 0.3 * (k2 + 1));
+        else box(mx + e0, my - 0.33 + k2 * sw, mx + e1, my - 0.33 + (k2 + 1) * sw, 0, 0.3 * (k2 + 1));
+      }
+    }
+    if (st.arch && main) {                              /* an archway through the near long face (and iron bars for the portcullis) */
+      var face = null, a, pts = [], u0, u1, um, k3, z;
+      if (main.axis === "x") { face = screenY(mx, my + ht) > screenY(mx, my - ht) ? my + ht : my - ht; um = mx; }
+      else { face = screenY(mx + ht, my) > screenY(mx - ht, my) ? mx + ht : mx - ht; um = my; }
+      u0 = um - 0.2; u1 = um + 0.2;
+      var F = function (u, z) { return main.axis === "x" ? P(u, face, z) : P(face, u, z); };
+      pts.push(F(u0, 0)); pts.push(F(u0, 0.55));
+      for (k3 = 0; k3 <= 10; k3++) { a = Math.PI - k3 * Math.PI / 10; pts.push(F(um + 0.2 * Math.cos(a), 0.55 + 0.2 * Math.sin(a))); }
+      pts.push(F(u1, 0));
+      ctx.fillStyle = cols.hole; poly(pts); ctx.fill();
+      if (st.bars) {
+        ctx.strokeStyle = cols.bar; ctx.lineWidth = Math.max(1, 2 * s);
+        for (k3 = -2; k3 <= 2; k3++) { var q0 = F(um + k3 * 0.08, 0), q1 = F(um + k3 * 0.08, 0.72); ctx.beginPath(); ctx.moveTo(q0.x, q0.y); ctx.lineTo(q1.x, q1.y); ctx.stroke(); }
+        for (z = 0.15; z < 0.72; z += 0.18) { var r0 = F(u0 + 0.03, z), r1 = F(u1 - 0.03, z); ctx.beginPath(); ctx.moveTo(r0.x, r0.y); ctx.lineTo(r1.x, r1.y); ctx.stroke(); }
+      }
+    }
+    if (st.merlons) {                                   /* battlements along both long edges of every box */
+      var ms = [], mw = 0.12, md = 0.13, mh = 0.22;
+      parts.forEach(function (b) {
+        var len = b.axis === "x" ? b.x1 - b.x0 : b.y1 - b.y0, n2 = Math.max(1, Math.round(len / 0.25)), k4, u;
+        for (k4 = 0; k4 < n2; k4++) {
+          u = (b.axis === "x" ? b.x0 : b.y0) + (k4 + 0.5) * len / n2 - mw / 2;
+          if (b.axis === "x") { ms.push({ x0: u, x1: u + mw, y0: b.y0, y1: b.y0 + md }); ms.push({ x0: u, x1: u + mw, y0: b.y1 - md, y1: b.y1 }); }
+          else { ms.push({ x0: b.x0, x1: b.x0 + md, y0: u, y1: u + mw }); ms.push({ x0: b.x1 - md, x1: b.x1, y0: u, y1: u + mw }); }
+        }
+      });
+      ms.sort(function (a, b) { return screenY((a.x0 + a.x1) / 2, (a.y0 + a.y1) / 2) - screenY((b.x0 + b.x1) / 2, (b.y0 + b.y1) / 2); });
+      ms.forEach(function (m) { box(m.x0, m.y0, m.x1, m.y1, h, h + mh); });
+    }
+    if (st.turret) {                                    /* a round turret on the corner: shaded cylinder, flat top, a ring of merlons */
+      var r = 0.36, th = h + 0.45, N = 24, ring = [], top = [], k5, ang2, q, c0 = P(mx, my, 0), lo = null, hi = null;
+      for (k5 = 0; k5 < N; k5++) { ang2 = k5 * 2 * Math.PI / N; q = { x: mx + r * Math.cos(ang2), y: my + r * Math.sin(ang2) }; ring.push({ b: P(q.x, q.y, 0), t: P(q.x, q.y, th) }); }
+      /* the near half of the cylinder: from the leftmost to the rightmost silhouette point through the front */
+      ring.forEach(function (o, i) { if (!lo || o.b.x < ring[lo].b.x) lo = i; if (!hi || o.b.x > ring[hi].b.x) hi = i; });
+      var seq = [], i2 = lo, guard = 0;
+      while (guard++ < N + 1) { seq.push(i2); if (i2 === hi) break; i2 = (i2 + 1) % N; }
+      if (seq.length && ring[seq[Math.floor(seq.length / 2)]].b.y < c0.y) { seq = []; i2 = lo; guard = 0; while (guard++ < N + 1) { seq.push(i2); if (i2 === hi) break; i2 = (i2 - 1 + N) % N; } }
+      var bodyPts = seq.map(function (i) { return ring[i].b; }).concat(seq.slice().reverse().map(function (i) { return ring[i].t; }));
+      var gr = ctx.createLinearGradient(ring[lo].b.x, 0, ring[hi].b.x, 0); gr.addColorStop(0, cols.light); gr.addColorStop(0.45, cols.light); gr.addColorStop(1, cols.dark);
+      ctx.fillStyle = gr; poly(bodyPts); ctx.fill();
+      ctx.fillStyle = cols.top; poly(ring.map(function (o) { return o.t; })); ctx.fill();
+      var mer = [];
+      for (k5 = 0; k5 < 8; k5++) { ang2 = k5 * Math.PI / 4; q = { x: mx + (r - 0.07) * Math.cos(ang2), y: my + (r - 0.07) * Math.sin(ang2) }; mer.push({ x0: q.x - 0.06, x1: q.x + 0.06, y0: q.y - 0.06, y1: q.y + 0.06 }); }
+      mer.sort(function (a, b) { return screenY((a.x0 + a.x1) / 2, (a.y0 + a.y1) / 2) - screenY((b.x0 + b.x1) / 2, (b.y0 + b.y1) / 2); });
+      mer.forEach(function (m) { box(m.x0, m.y0, m.x1, m.y1, th, th + 0.18); });
+    }
+    ctx.restore();
+  }
   function drawKitPiece(ctx, it, fit) {
     var s = fit.s / fit.base, x = fit.ox + it.x * s, y0 = fit.oy + it.y * s, i, pt, c, dw, dh, bottom;
+    if (isRun(it.p)) { if (it.ghost || it.sel) { ctx.save(); ctx.globalAlpha = it.a; drawFootprint(ctx, it, fit); ctx.restore(); } drawRun(ctx, it, fit); return; }
     ctx.save(); ctx.globalAlpha = it.a;
     if (it.ghost || it.sel) drawFootprint(ctx, it, fit);
     for (i = 0; i < it.parts.length; i++) {
@@ -722,6 +923,15 @@
     items = sceneItems();
     fit = lastFit = fitScene(items, W, H);
     drawGround(ctx, fit);
+    /* v5.5: a kit theme draws its pieces in 3D when it can (js/build3d.js), so they turn with the map by the degree */
+    var td = window.SolBuild3D, use3d = isKit() && td && td.ready() && !redraw.force2d;
+    if (use3d) {
+      items.forEach(function (it) { if (it.kit && (it.ghost || it.sel)) { ctx.save(); ctx.globalAlpha = it.a; drawFootprint(ctx, it, fit); ctx.restore(); } });
+      var drawn = false;
+      try { drawn = td.render({ canvas: ui.canvas3d, W: W, H: H, dpr: cv._dpr || 1, fit: fit, items: items }); } catch (err) { drawn = false; if (window.console) console.warn("build3d", err); }
+      if (drawn) { ui.canvas3d.style.display = ""; return; }
+    }
+    ui.canvas3d.style.display = "none";
     items.sort(function (a, b) { return (a.depth - b.depth) || (a.y - b.y) || (a.x - b.x); }).forEach(function (it) { drawPiece(ctx, it, fit); });
   }
 
@@ -843,12 +1053,19 @@
     cur.drag = null; cur.pan = null;
     turnPick(pk);
   }
+  /* v5.2: a wall, gate, hedge or fence looks the same from behind, so it only has two ways to face;
+     turning it a half turn looked like nothing happened. Those pieces switch between the two ways. */
+  var TWO_WAY = { wall: 1, gate: 1, doorway: 1, hedge: 1, "hedge-gate": 1, "c-fence": 1, "fence-gate": 1, "rail-fence": 1 };
   function turnPick(pk) {
     if (!pk) return;
-    pk.rot = ((pk.rot || 0) + 1) & 3;
+    var p = pieceById(pk.piece), two = !!(p && p.auto && TWO_WAY[p.id]);
+    pk.rot = two ? ((pk.rot || 0) + 1) & 1 : ((pk.rot || 0) + 1) & 3;
     cur.sel = pk; persist(); fillPieceBar(); redraw();
-    var p = pieceById(pk.piece);
-    ui.note.textContent = (p ? p.name : "Piece") + " turned" + (p && p.auto ? " — walls, hedges and fences still follow their neighbours, this nudges the corner or run" : "") + ". Right-click (or Turn) again for the next quarter turn.";
+    var joined = two && isRun(p) && runDirs(p, pk.cx, pk.cy, pk).length > 0;
+    ui.note.textContent = joined
+      ? (p.name + " follows the pieces it joins, so it keeps its line" + (p.id === "stairs-wall" ? "; its stairs moved to the other side." : ". Move it away from them to run it the other way."))
+      : two ? (p.name + " now runs the other way. A wall or gate looks the same from behind, so it has two ways to face; right-click (or Turn) again to switch back.")
+      : ((p ? p.name : "Piece") + " turned. Right-click (or Turn) again for the next quarter turn.");
   }
   function joinedNote(pk) {
     var p = pieceById(pk.piece), rs = rectsOf(pk), i, n = cellsOf(p), host;
@@ -920,6 +1137,7 @@
     cv.style.width = w + "px"; cv.style.height = h + "px";
     cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
     cv._w = w; cv._h = h; cv._dpr = dpr;
+    if (ui.canvas3d) { ui.canvas3d.style.width = w + "px"; ui.canvas3d.style.height = h + "px"; }
   }
 
   /* ── DOM (built once, appended to body) ──────────────────────────────────── */
@@ -936,6 +1154,7 @@
     ui.kicker = el("p", "tut-kicker"); ui.title = el("h2"); hl.appendChild(ui.kicker); hl.appendChild(ui.title);
     ui.badge = el("span", "build-badge"); head.appendChild(hl); head.appendChild(ui.badge);
     ui.sub = el("p", "build-sub");
+    ui.perks = el("p", "build-perks hidden");
     ui.themes = el("div", "build-themes hidden");
     ui.options = el("div", "build-options hidden");
     ui.styles = el("div", "build-styles hidden");
@@ -944,6 +1163,7 @@
     /* main area: the scene (with view tools and the piece bar floating on it) + the palette */
     ui.main = el("div", "build-main hidden");
     ui.sceneWrap = el("div", "build-scene"); ui.canvas = el("canvas"); ui.sceneWrap.appendChild(ui.canvas);
+    ui.canvas3d = el("canvas", "build-3d"); ui.canvas3d.style.pointerEvents = "none"; ui.sceneWrap.appendChild(ui.canvas3d);   /* v5.5: the WebGL view, over the 2D sky, ground and footprints */
     ui.tools = el("div", "build-tools");
     [["⟲", "Turn left 1° (hold to keep turning; mouse wheel turns faster)", function () { rotateView(-1); }, true], ["⟳", "Turn right 1° (hold to keep turning; mouse wheel turns faster)", function () { rotateView(1); }, true],
      ["−", "Zoom out (Ctrl + wheel)", function () { zoomBy(1 / 1.25); }], ["+", "Zoom in (Ctrl + wheel)", function () { zoomBy(1.25); }], ["⤢", "Fit the whole build and face front", resetView]]
@@ -973,7 +1193,7 @@
     ui.codeMsg = el("p", "build-msg");
     [codeLab, ui.codeOut, ui.copyBtn, loadLab, ui.codeIn, ui.loadBtn, ui.codeMsg].forEach(function (n) { ui.codeWrap.appendChild(n); });
     ui.row = el("div", "row build-row");
-    [head, ui.sub, ui.themes, ui.options, ui.styles, ui.tabs, ui.shop, ui.main, ui.note, ui.codeWrap, ui.row].forEach(function (n) { ui.card.appendChild(n); });
+    [head, ui.sub, ui.perks, ui.themes, ui.options, ui.styles, ui.tabs, ui.shop, ui.main, ui.note, ui.codeWrap, ui.row].forEach(function (n) { ui.card.appendChild(n); });
     ui.overlay.appendChild(ui.card);
     document.body.appendChild(ui.overlay);
 
@@ -1098,7 +1318,8 @@
       var have = owned(p.id), b = btn("build-pitem" + (have ? "" : " locked"));
       b.appendChild(picFor(p, dom)); b.appendChild(el("span", "name", p.name || p.id));
       b.appendChild(el("span", "tag", have ? "Tap to place" : priceOf(p) + " coins"));
-      b.title = p.desc || "";
+      if (perkOf(p.id)) { b.appendChild(el("span", "perkmark", "★ " + perkOf(p.id).name)); b.classList.add("has-perk"); }
+      b.title = (p.desc || "") + (perkOf(p.id) ? " " + perkLine(p) : "");
       b.addEventListener("click", function () {
         if (step !== "gallery") return;
         if (have) { addPiece(p, null, "free"); return; }
@@ -1113,6 +1334,7 @@
     ui.pbar.innerHTML = "";
     if (!pk || !p || !dragStep()) { show(ui.pbar, false); return; }
     ui.pbar.appendChild(el("span", "name", p.name || p.id));
+    if (perkOf(p.id)) ui.pbar.appendChild(el("span", "perk", "★ " + perkOf(p.id).name + ": " + perkOf(p.id).desc));
     if (styleable(p)) stylesOf().forEach(function (st) {
       var c = btn("build-chip" + (pk.style === st.id ? " selected" : ""), "", st.name);
       c.setAttribute("aria-label", st.name); c.setAttribute("data-style", st.id);
@@ -1134,6 +1356,27 @@
     cur.shop = true; cur.night = cur.night || 1; cur.tab = tab || "build"; cur.fromGallery = true; cur.sel = null; mode = "shop";
     showStep(save.theme && themeDef(save.theme) ? "shop" : "theme");
   }
+  /* v5.6: the perks the castle gives in the maze, listed under the gallery summary */
+  function fillPerks() {
+    if (!ui.perks) return;
+    ui.perks.innerHTML = "";
+    if (!save.theme || loadState !== "ok") { show(ui.perks, false); return; }
+    var act = activePerks(), ids = {}, missing = [];
+    act.forEach(function (a) { ids[a.id] = 1; });
+    ui.perks.appendChild(el("span", "lab", act.length ? "Perks in the maze:" : "Perks in the maze: none yet."));
+    act.forEach(function (a) {
+      var chip = el("span", "chip on", "★ " + a.name);
+      chip.title = a.desc + " From: " + a.from.join(", ") + ".";
+      ui.perks.appendChild(chip);
+    });
+    PERKS.forEach(function (pk) {
+      if (ids[pk.id]) return;
+      var names = pk.pieces.map(function (id) { var pc = pieceById(id); return pc && pc.theme === save.theme ? pc.name : null; }).filter(Boolean);
+      if (names.length) missing.push(pk.name + " (" + names[0] + ")");
+    });
+    if (missing.length) ui.perks.appendChild(el("span", "more", (act.length ? "More to earn: " : "Place one of these to earn a perk: ") + missing.slice(0, 5).join(", ") + (missing.length > 5 ? ", …" : ".")));
+    show(ui.perks, true);
+  }
   function fillGallery() {
     var next = nextRewardNight(), n = rewardsTaken();
     ui.kicker.textContent = "My build · full-screen editor"; ui.title.textContent = save.theme ? "My " + themeName(save.theme) : "My build";
@@ -1141,6 +1384,7 @@
       !save.theme ? "Tap Shop to choose a Town or a Castle and start building — or win Level 5 for your first free piece." :
       save.picks.length + " pieces on the field · " + Object.keys(save.owned).length + " kinds unlocked · " + n + " of " + TOTAL + " rewards" +
       (styleSummary() ? " (" + styleSummary() + ")" : "") + " · " + (next ? "next reward after level " + next : "every reward earned!");
+    fillPerks();
     ui.codeOut.value = exportCode(); ui.codeIn.value = ""; ui.codeMsg.textContent = ""; ui.loadBtn.textContent = "Load";
     ui.badge.textContent = galleryBadge();
     var buttons = [{ label: "Close", primary: true, onTap: function () { var cb = cur && cur.onClose; closeOverlay(); if (cb) cb(); } }];
@@ -1165,6 +1409,7 @@
     show(ui.side, s === "gallery" && !!save.theme);
     show(ui.tools, s === "gallery" || s === "shop" || s === "place" || s === "done");
     show(ui.note, s === "place" || s === "done" || s === "shop" || s === "gallery"); show(ui.codeWrap, s === "gallery");
+    if (s !== "gallery") show(ui.perks, false);
     if (cur) { cur.drag = null; cur.pan = null; if (s !== "place" && s !== "done") cur.placedKey = null; if (!dragStep()) cur.sel = null; }
     ui.note.textContent = "";
     fillPieceBar();
@@ -1373,7 +1618,7 @@
       ui.note.textContent = ui.note.textContent || (isKit() ? "Walls, hedges and fences turn corners by themselves. Tap a piece to buy it (once) and choose its colour." : "Tap a building to buy it and choose its style.");
       off.builds.forEach(function (p) {
         if (isKit()) heading(p);
-        card(p, dom, p.name, p.desc, priceOf(p), owned(p.id), function () {
+        card(p, dom, p.name, p.desc + (perkOf(p.id) ? " ★ " + perkOf(p.id).name + ": " + perkOf(p.id).desc : ""), priceOf(p), owned(p.id), function () {
           if (owned(p.id)) { if (addPiece(p, null, "free")) fillShop(true); return; }
           if (save.coins < priceOf(p)) { ui.note.textContent = "Not enough coins for the " + p.name + " (" + priceOf(p) + ")."; return; }
           cur.piece = p; cur.stylePick = dom; if (styleable(p)) showStep("style"); else place();
@@ -1456,7 +1701,14 @@
   }
 
   /* ── public API ──────────────────────────────────────────────────────────── */
-  function init() { if (!save) save = loadSave(); load(); refreshButton(); }
+  function init() {
+    if (!save) save = loadSave(); load(); refreshButton();
+    if (window.SolBuild3D && !init.td) {
+      init.td = true;
+      window.SolBuild3D.init({ modelsUrl: "assets/build/models/models.json", cellPx: cellPx, cellH: cellH, angle: ang, kitSprite: kitSprite, spriteRef: spriteRef, getImg: getImg,
+        styleDef: styleDef, runPlan: runPlan, redraw: scheduleDraw });
+    }
+  }
   function rewardDue(night) {
     night = parseInt(night, 10);
     if (!save) save = loadSave();
@@ -1521,16 +1773,21 @@
     addCoins: addCoins, coins: coins, economy: economy,
     close: closeOverlay, isOpen: function () { return !!mode; },
     exportCode: exportCode, importCode: importCode, state: state,
+    perks: activePerks, perkOf: perkOf, perkTable: function () { return PERKS.slice(); },
     LS_KEY: LS_KEY, version: 5,
     /* test hooks (tools/smoke.js) */
     _offer: function (night) { return offerFor(night, night / EVERY).map(function (p) { return p.id; }); },
     _coreStage: function () { return isKit() ? coreStage() : null; },
+    _reload: function () { save = loadSave(); try { migrateIfNeeded(); } catch (e) {} return state(); },
     _owned: function () { return Object.keys(save.owned || {}).filter(function (k) { return save.owned[k]; }); },
     _place: function (id) { var p = pieceById(id); return p && cur ? !!addPiece(p, null, "free") : false; },
     _select: function (i) { if (!cur) return false; selectPick(save.picks[i] || null); return !!cur.sel; },
     _delete: function () { deleteSelected(); return save.picks.length; },
     _rotate: function (deg) { rotateView(deg); return rot(); },
     _angle: function () { return ang(); },
+    _probe: function (x, y, z) { var f = lastFit, c = worldPx(x, y), td = window.SolBuild3D; if (!f) return null; return { x2: f.ox + (c.x) * f.s / f.base, y2: f.oy + (c.y - (z || 0) * cellH()) * f.s / f.base, p3: td ? td.project(x, y, z || 0) : null, use3d: !!(td && td.ready() && ui.canvas3d.style.display !== "none") }; },
+    _loads3d: function () { return window.SolBuild3D ? window.SolBuild3D._loads() : null; },
+    _force2d: function (on) { redraw.force2d = !!on; redraw(); return !!redraw.force2d; },
     _turn: function () { turnPick(cur && cur.sel); return cur && cur.sel ? cur.sel.rot : null; },
     _zoom: function (k) { zoomBy(k); return view().z; },
     _hitAt: function (clientX, clientY) { var pt = canvasScenePt({ clientX: clientX, clientY: clientY }); var pk = pt && hitPick(pt); return { pt: pt && { x: pt.x, y: pt.y, sx: pt.sx, sy: pt.sy }, cell: pt && pxToCell(pt.x, pt.y), pick: pk ? pk.piece + "@" + pk.cx + "," + pk.cy : null, step: step, draggable: draggable(pk) }; },

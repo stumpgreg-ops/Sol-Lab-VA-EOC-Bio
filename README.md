@@ -8,6 +8,20 @@ Play: `index.html`. Teacher monitor: `admin.html` (PIN lock; FERPA nicknames onl
 
 Progress saves in this browser profile (`afterHours.v1.night`). Itch login does not store progress.
 
+## v6.2 (2026-09-28) — the v5.7.1 engine: realms, Fenrir, shooter levels, the 3D castle
+
+Everything SOL Labyrinth gained between v5.1.1 and v5.7.1 is in the Biology game now, with the questions untouched:
+
+- **Ten realms of ten levels** (`js/realms.js`): Midgard, Niflheim, Jotunheim, Muspelheim, Svartalfheim, Vanaheim, Alfheim, Helheim, Asgard and Ragnarok, each with its own floor, colours, particles, ambient sound, music and creature (ravens, trolls, fire vents, the serpent, golden boars, will-o'-wisps, draugr, valkyries; Ragnarok mixes them). A realm card at the top of the read-first pop-up introduces the realm and its creature.
+- **Fenrir on every tenth level.** The great wolf chains the realm gate with one lock per question; each correct answer banked at EXIT breaks one, a wrong letter makes him charge. Clearing a boss level pays 40 coins.
+- **Shooter levels on 2, 4, 6 and 8 of every realm** (`js/modes.js`): Eagle Swoop (Galaga style), Rune Rocks (Asteroids style), Sun Chariot (side-scrolling flyer) and Wolf Ring (arena). Same lab notes, same questions, same lives and coins; shoot the letter with the right answer. Odd levels stay in the maze.
+- **Castle perks.** Buildings placed in the castle builder give perks in the maze (Swift feet, Sure footing, Lookout, Castle guard, Blessing, Trade, Gold vein, Iron boots, Archers, Warm hearth, Tinkerer, Royal charter, Harvest, Rune of Sol).
+- **The castle in 3D** (`js/build3d.js`, three.js): the KayKit and Kenney pieces turn with the map by the degree; walls, gates, hedges and fences are drawn as geometry; 57 KayKit castle pieces; a 2D fallback on a Chromebook without WebGL.
+- **The Sol's Labyrinth logo** on the title screen and as the favicon, with the build's version under it.
+- **Teacher review copy of every question:** `docs/question-bank.md` (regenerate with `node tools/question-bank.js`) lists all 90 packs and 510 questions by unit and level with keys and standard codes, and explains which items an average student draws.
+- `tools/publish-pages.sh` publishes the game to GitHub Pages (branch `gh-pages`); `tools/make-itch-zip.sh` still builds the itch.io upload.
+- Not carried over: the New Jersey / Virginia two-build script (`tools/build-games.js`); this game is one course.
+
 ## What changed from SOL Labyrinth (v6.0, 2026-09-16)
 
 - **One course, eight units.** The New Jersey / Virginia gateway and the Grade 9 / 10 / 11 cards are gone. The title screen shows **Full review** plus one card per unit, matching the NNPS Biology remediation sequence:
@@ -36,8 +50,10 @@ Progress saves in this browser profile (`afterHours.v1.night`). Itch login does 
 - `js/content.js` — units (`HEIST_FAMILIES`), the standards map (`HEIST_STANDARDS`), the skill cards per unit (`HEIST_SKILLS`), the strand filter, the difficulty estimate and the stamina schedule. No packs.
 - `js/content2.js` Scientific Investigation · `content3.js` Biochemistry · `content4.js` Cells · `content5.js` Bacteria & Viruses · `content6.js` Genetics · `content7.js` DNA & Protein Synthesis · `content8.js` Evolution & Classification · `content9.js` Ecology.
 - `tools/CONTENT-GUIDE.md` — pack format, the standards table and the writing rules. `node tools/validate-content.js` checks every file (codes, units, keys, lengths, duplicates); `node tools/validate-content.js js/content9.js` checks one.
-- `tools/smoke.js` — headless Playwright run of the title screen, the pools, the builder, the shop and a level (screenshots in `tools/shots/`).
-- `tools/make-itch-zip.sh` — builds the itch.io HTML5 upload (`sh tools/make-itch-zip.sh`): index.html at the zip root, about 290 files and 24 MB, well under itch.io's 1,000-file limit. Upload it to https://gstump.itch.io/sols-labyrinth-va-bio as an HTML project with "This file will be played in the browser" ticked.
+- `tools/smoke.js` — headless Playwright run of the title screen, the pools, the builder (2D and 3D), the shop, a level, the ten realms and their creatures, Fenrir, the perks and the four shooter levels (screenshots in `tools/shots/`).
+- `tools/question-bank.js` — writes `docs/question-bank.md`, the teacher review copy of every question.
+- `tools/make-itch-zip.sh` — builds the itch.io HTML5 upload (`sh tools/make-itch-zip.sh`): index.html at the zip root, about 500 files and 33 MB, under itch.io's 1,000-file limit.
+- `tools/publish-pages.sh` — pushes the game to the `gh-pages` branch for GitHub Pages: https://stumpgreg-ops.github.io/Sol-Lab-VA-EOC-Bio/ (turn Pages on once under Settings → Pages, branch `gh-pages`, folder `/`). Upload it to https://gstump.itch.io/sols-labyrinth-va-bio as an HTML project with "This file will be played in the browser" ticked.
 
 ## Standards note
 
@@ -45,4 +61,4 @@ Codes follow the **2018 Virginia Biology Standards of Learning** (BIO.1 scientif
 
 ## Engine history
 
-The SOL Labyrinth changelog (v4 → v5.1.1: maze generator, Hati navigator, reading pop-up, coins, shop, Town & Castle builder, atlas sheets) lives in the SOL Labyrinth repository. Credits for every third-party asset are in `CREDITS.md`.
+The SOL Labyrinth changelog (v4 → v5.7.1: maze generator, Hati navigator, reading pop-up, coins, shop, Town & Castle builder, atlas sheets, realms, Fenrir, shooter levels, the 3D castle) lives in the SOL Labyrinth repository. Credits for every third-party asset are in `CREDITS.md`.

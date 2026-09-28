@@ -34,6 +34,12 @@ The castle in the reward builder is built from **Castle Kit 1.0** by **Kenney** 
 ## Sound effects
 All in-game sound effects (grab, alarm, camera beep, catch, chime…) are synthesised at runtime in `js/audio.js`; no sample files.
 
+## three.js (v5.5)
+The castle builder's 3D view uses **three.js** r160 (MIT licence, © 2010-2024 three.js authors), bundled with its glTF and OBJ loaders into `js/vendor/three.min.js`. https://threejs.org
+
+## KayKit castle (v5.3)
+The Great castle, town hall, barracks, houses, mills, towers, soldiers, carts and the other `k-` pieces are rendered from **KayKit Medieval Hexagon Pack** by **Kay Lousberg** (www.kaylousberg.com), Creative Commons Zero (CC0). "This content is free to use in personal, educational and commercial projects." Rendered to isometric sprites by `tools/render-kaykit.js` and, since v5.5, drawn from the pack's own glTF models in the browser (`tools/pack-models.js`); the four team colours are the game's four house colours. Credited with thanks. https://kaylousberg.itch.io/kaykit-medieval-hexagon
+
 ## Extra castle decorations (v5)
 - **Kenney Fantasy Town Kit** (CC0) — house walls and roofs, market stalls, carts, hedges, fences, fountains, lanterns, windmill, water wheel, trees, rocks. https://kenney.nl/assets/fantasy-town-kit
 - **Kenney Nature Kit** (CC0) — trees, flowers, bushes, mushrooms, rocks, statues, obelisk, column, campfire, tent, crops, bridge. https://kenney.nl/assets/nature-kit
