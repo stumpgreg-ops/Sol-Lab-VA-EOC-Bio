@@ -81,15 +81,15 @@ unit file needs every tier: aim for roughly 4 tiny, 4 short, 3 medium and 2 long
 ## Units and standards
 
 Packs sit under the four families below and use the **2023 Virginia Algebra I Standards of
-Learning** codes (`A.EO.1.a` … `A.ST.1.h`). `family` decides which unit card the pack sits under
+Learning** codes (`A.EO.1.a` … `A.ST.1.i`), with the lettered statements exactly as the map in `js/content.js` lists them. `family` decides which unit card the pack sits under
 and which codes it may use; the validator rejects a code outside the unit.
 
 | family | unit                      | codes allowed | key ideas |
 |--------|---------------------------|---------------|-----------|
 | EO     | Expressions & Operations  | A.EO.1–4      | 1 translate & evaluate expressions · 2 polynomial sums, products, factoring, quotients, equivalent forms · 3 laws of exponents · 4 square and cube roots, radical arithmetic, rational exponents ½ and ⅓ |
-| EI     | Equations & Inequalities  | A.EI.1–3      | 1 multistep equations and inequalities in one variable, number lines, literal equations, how many solutions · 2 systems of two equations, inequalities in two variables, systems of inequalities · 3 quadratic equations, number of real solutions, solutions in context |
-| FN     | Functions                 | A.F.1–2       | 1 linear functions: domain/range/zeros/intercepts/slope, forms of a line, parallel and perpendicular, function notation, direct variation, meaning in context, comparing, modeling · 2 is-it-a-function, quadratic and exponential characteristics, factored form and zeros, growth and decay, comparing families, modeling |
-| ST     | Statistics                | A.ST.1        | a–d the data cycle: investigative questions, variables, representative samples, scatterplots · e–h line or quadratic curve of best fit, meaning of slope and intercept, direction/strength/outliers, predictions and their limits, correlation vs causation |
+| EI     | Equations & Inequalities  | A.EI.1–3      | 1 multistep equations and inequalities in one variable, number lines, literal equations, how many solutions · 2 a–c systems of two equations, d–e a linear inequality in two variables, f–g a system of two inequalities, h verifying and interpreting solutions · 3 quadratic equations, number of real solutions, solutions in context |
+| FN     | Functions                 | A.F.1–2       | 1 linear functions: a characteristics and their meaning in context (slope, intercepts, zeros, domain, range), b transformations of y = x, c forms of a line, d writing the equation (including direct variation and models), e parallel and perpendicular, f graphing, g function notation, h comparing representations · 2 a is-it-a-function, b quadratic characteristics, c graphing quadratics, d standard/factored form and the graph, e exponential characteristics (growth and decay), f graphing exponentials, g function notation, h comparing linear, quadratic and exponential |
+| ST     | Statistics                | A.ST.1        | a–c the data cycle: investigative questions, variables, representative samples · d which model (line or quadratic) and its equation · e regression models and their strengths and weaknesses · f predictions and their validity · g meaning of slope and intercept · h the relationship a scatterplot shows (direction, strength, outliers) · i conclusions and their limits, correlation vs causation |
 
 Rules specific to math packs:
 

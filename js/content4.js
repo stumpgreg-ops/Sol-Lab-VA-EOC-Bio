@@ -19,7 +19,7 @@
       claims: [
         {
           id: "slope",
-          sol: "A.F.1.h",
+          sol: "A.F.1.a",
           stem: "What does the slope 2.5 represent in this situation?",
           choices: [
             { letter: "A", text: "the flat fee charged before the trip starts" },
@@ -31,7 +31,7 @@
         },
         {
           id: "intercept",
-          sol: "A.F.1.h",
+          sol: "A.F.1.a",
           stem: "What does the y-intercept 3 represent?",
           choices: [
             { letter: "A", text: "the flat fee, the fare for a 0-mile trip" },
@@ -43,7 +43,7 @@
         },
         {
           id: "evaluate",
-          sol: "A.F.1.f",
+          sol: "A.F.1.g",
           stem: "What is f(6)?",
           choices: [
             { letter: "A", text: "$15" },
@@ -55,7 +55,7 @@
         },
         {
           id: "inverse",
-          sol: "A.F.1.f",
+          sol: "A.F.1.g",
           stem: "For what value of m does f(m) = 23?",
           choices: [
             { letter: "A", text: "m = 9.2" },
@@ -67,7 +67,7 @@
         },
         {
           id: "table",
-          sol: "A.F.1.i",
+          sol: "A.F.1.h",
           stem: "A rival taxi's fare table shows $8 for 2 miles and $18 for 6 miles. How do the two taxis compare?",
           choices: [
             { letter: "A", text: "The rival charges more per mile, 2.5 versus 2." },
@@ -93,7 +93,7 @@
       claims: [
         {
           id: "slope",
-          sol: "A.F.1.c",
+          sol: "A.F.1.a",
           stem: "What is the slope of the function in the table?",
           choices: [
             { letter: "A", text: "4" },
@@ -117,7 +117,7 @@
         },
         {
           id: "extend",
-          sol: "A.F.1.f",
+          sol: "A.F.1.g",
           stem: "What is the value of y when x = 10?",
           choices: [
             { letter: "A", text: "25" },
@@ -239,7 +239,7 @@
       claims: [
         {
           id: "f-neg3",
-          sol: "A.F.1.f",
+          sol: "A.F.1.g",
           stem: "What is f(−3)?",
           choices: [
             { letter: "A", text: "3" },
@@ -251,7 +251,7 @@
         },
         {
           id: "f-inverse",
-          sol: "A.F.1.f",
+          sol: "A.F.1.g",
           stem: "For what value of x is f(x) = 1?",
           choices: [
             { letter: "A", text: "x = 4" },
@@ -263,7 +263,7 @@
         },
         {
           id: "g-neg2",
-          sol: "A.F.2.c",
+          sol: "A.F.2.g",
           stem: "What is g(−2)?",
           choices: [
             { letter: "A", text: "−3" },
@@ -336,7 +336,7 @@
         },
         {
           id: "standard",
-          sol: "A.F.1.b",
+          sol: "A.F.1.c",
           stem: "Which equation is y = 3x − 2 written in standard form?",
           choices: [
             { letter: "A", text: "3x + y = 2" },
@@ -348,7 +348,7 @@
         },
         {
           id: "point-slope",
-          sol: "A.F.1.b",
+          sol: "A.F.1.c",
           stem: "Which equation is the point-slope form of y = 3x − 2 using the point (2, 4)?",
           choices: [
             { letter: "A", text: "y + 4 = 3(x + 2)" },
@@ -360,7 +360,7 @@
         },
         {
           id: "slope-standard",
-          sol: "A.F.1.c",
+          sol: "A.F.1.a",
           stem: "What is the slope of the line 4x + 2y = 8?",
           choices: [
             { letter: "A", text: "4" },
@@ -385,7 +385,7 @@
       claims: [
         {
           id: "zeros",
-          sol: "A.F.2.f",
+          sol: "A.F.2.d",
           stem: "What are the zeros of f?",
           choices: [
             { letter: "A", text: "x = −5 and x = 1" },
@@ -445,7 +445,7 @@
         },
         {
           id: "evaluate",
-          sol: "A.F.2.c",
+          sol: "A.F.2.g",
           stem: "What is f(3)?",
           choices: [
             { letter: "A", text: "−2" },
@@ -470,7 +470,7 @@
       claims: [
         {
           id: "p3",
-          sol: "A.F.2.c",
+          sol: "A.F.2.g",
           stem: "What is P(3)?",
           choices: [
             { letter: "A", text: "600" },
@@ -482,7 +482,7 @@
         },
         {
           id: "growth",
-          sol: "A.F.2.g",
+          sol: "A.F.2.e",
           stem: "Which feature of P(t) = 100 · 2^t shows that it is exponential growth?",
           choices: [
             { letter: "A", text: "The starting value, 100, is a positive number." },
@@ -494,7 +494,7 @@
         },
         {
           id: "v2",
-          sol: "A.F.2.c",
+          sol: "A.F.2.g",
           stem: "What is the laptop's value after 2 years?",
           choices: [
             { letter: "A", text: "$3,200" },
@@ -506,7 +506,7 @@
         },
         {
           id: "decay",
-          sol: "A.F.2.g",
+          sol: "A.F.2.e",
           stem: "In V(t) = 5000(0.8)^t, what does 0.8 represent?",
           choices: [
             { letter: "A", text: "The laptop loses $0.80 each year." },
@@ -567,7 +567,7 @@
         },
         {
           id: "solve-output",
-          sol: "A.F.1.f",
+          sol: "A.F.1.g",
           stem: "For what value of x is f(x) = 41?",
           choices: [
             { letter: "A", text: "x = 128" },
@@ -579,7 +579,7 @@
         },
         {
           id: "compare",
-          sol: "A.F.1.i",
+          sol: "A.F.1.h",
           stem: "How do f and g compare?",
           choices: [
             { letter: "A", text: "g has the greater rate of change and the greater y-intercept." },
@@ -591,7 +591,7 @@
         },
         {
           id: "direct",
-          sol: "A.F.1.g",
+          sol: "A.F.1.d",
           stem: "In the direct variation where y = 12 when x = 4, what is the constant of variation and the equation?",
           choices: [
             { letter: "A", text: "k = 8; y = x + 8" },
@@ -641,7 +641,7 @@
         },
         {
           id: "rate",
-          sol: "A.F.1.h",
+          sol: "A.F.1.a",
           stem: "What is the rate of change of A(t), and what does it mean?",
           choices: [
             { letter: "A", text: "200 dollars per year: Ava's starting amount" },
@@ -665,7 +665,7 @@
         },
         {
           id: "ratio",
-          sol: "A.F.2.g",
+          sol: "A.F.2.e",
           stem: "Between any two consecutive years, B(t) is multiplied by —",
           choices: [
             { letter: "A", text: "10" },
@@ -677,7 +677,7 @@
         },
         {
           id: "cara",
-          sol: "A.F.2.c",
+          sol: "A.F.2.g",
           stem: "What is C(7)?",
           choices: [
             { letter: "A", text: "298" },
@@ -714,7 +714,7 @@
       claims: [
         {
           id: "factored",
-          sol: "A.F.2.e",
+          sol: "A.F.2.d",
           stem: "Which function has the zeros and y-intercept described?",
           choices: [
             { letter: "A", text: "f(x) = (x + 1)(x − 7)" },
@@ -726,7 +726,7 @@
         },
         {
           id: "standard",
-          sol: "A.F.2.f",
+          sol: "A.F.2.d",
           stem: "Which is the same function written in standard form?",
           choices: [
             { letter: "A", text: "f(x) = −x² + 6x + 7" },
@@ -774,7 +774,7 @@
         },
         {
           id: "context",
-          sol: "A.F.2.i",
+          sol: "A.F.2.g",
           stem: "In the fountain model, what do the x-intercept 7 and the vertex represent?",
           choices: [
             { letter: "A", text: "The jet lands 7 feet from the nozzle; its greatest height is 16 feet, reached 3 feet out." },
@@ -812,7 +812,7 @@
         },
         {
           id: "domain",
-          sol: "A.F.1.k",
+          sol: "A.F.1.a",
           stem: "What is a reasonable domain for V(t) in this situation?",
           choices: [
             { letter: "A", text: "all real numbers" },
@@ -824,7 +824,7 @@
         },
         {
           id: "slope",
-          sol: "A.F.1.h",
+          sol: "A.F.1.a",
           stem: "What does the slope −20 tell you about the graph of V?",
           choices: [
             { letter: "A", text: "The line rises 20 gallons every minute." },
@@ -836,7 +836,7 @@
         },
         {
           id: "evaluate",
-          sol: "A.F.1.f",
+          sol: "A.F.1.g",
           stem: "What is V(12)?",
           choices: [
             { letter: "A", text: "260 gallons" },
@@ -848,7 +848,7 @@
         },
         {
           id: "tank2-slope",
-          sol: "A.F.1.c",
+          sol: "A.F.1.a",
           stem: "What is the rate of change of Tank 2, from the table?",
           choices: [
             { letter: "A", text: "−75 gallons per minute" },
@@ -860,7 +860,7 @@
         },
         {
           id: "which-first",
-          sol: "A.F.1.i",
+          sol: "A.F.1.h",
           stem: "Which tank empties first?",
           choices: [
             { letter: "A", text: "Tank 2, because it starts with less water." },
@@ -886,7 +886,7 @@
       claims: [
         {
           id: "percent",
-          sol: "A.F.2.g",
+          sol: "A.F.2.e",
           stem: "According to V(t), by what percent does the car lose value each year?",
           choices: [
             { letter: "A", text: "85%" },
@@ -898,7 +898,7 @@
         },
         {
           id: "intercept",
-          sol: "A.F.2.b",
+          sol: "A.F.2.e",
           stem: "What is the y-intercept of both models, and what does it represent?",
           choices: [
             { letter: "A", text: "0; the car is worth nothing when it is new" },
@@ -910,7 +910,7 @@
         },
         {
           id: "check",
-          sol: "A.F.2.c",
+          sol: "A.F.2.g",
           stem: "Which calculation confirms the table entry V(2) = 17340?",
           choices: [
             { letter: "A", text: "24000 − 2(0.85) = 23998.3" },
@@ -934,7 +934,7 @@
         },
         {
           id: "long-run",
-          sol: "A.F.2.i",
+          sol: "A.F.2.h",
           stem: "Why does the linear model stop making sense for large t while the exponential model does not?",
           choices: [
             { letter: "A", text: "L(t) becomes negative after 8 years, but V(t) stays positive and approaches 0." },
@@ -946,7 +946,7 @@
         },
         {
           id: "ratio-table",
-          sol: "A.F.2.g",
+          sol: "A.F.2.h",
           stem: "How can Sofia tell from the V(t) column alone that the model is exponential?",
           choices: [
             { letter: "A", text: "The values decrease by the same amount each year." },
@@ -971,7 +971,7 @@
       claims: [
         {
           id: "slope",
-          sol: "A.F.1.c",
+          sol: "A.F.1.a",
           stem: "What is the slope of the line?",
           choices: [
             { letter: "A", text: "2/3" },
@@ -1007,7 +1007,7 @@
         },
         {
           id: "point-slope",
-          sol: "A.F.1.b",
+          sol: "A.F.1.c",
           stem: "Which equation is the point-slope form through (3, −2)?",
           choices: [
             { letter: "A", text: "y − 2 = (2/3)(x + 3)" },
@@ -1044,7 +1044,7 @@
       claims: [
         {
           id: "model",
-          sol: "A.F.1.k",
+          sol: "A.F.1.d",
           stem: "Which equation models the car wash?",
           choices: [
             { letter: "A", text: "M(c) = 60c − 8" },
@@ -1068,7 +1068,7 @@
         },
         {
           id: "y-int",
-          sol: "A.F.1.h",
+          sol: "A.F.1.a",
           stem: "What does the y-intercept of the graph of M represent?",
           choices: [
             { letter: "A", text: "the money earned from the first car" },
@@ -1080,7 +1080,7 @@
         },
         {
           id: "graph",
-          sol: "A.F.1.b",
+          sol: "A.F.1.f",
           stem: "Which description matches the graph of M?",
           choices: [
             { letter: "A", text: "a line starting at (0, 60) and falling 8 for each car" },
@@ -1092,7 +1092,7 @@
         },
         {
           id: "compare",
-          sol: "A.F.1.i",
+          sol: "A.F.1.h",
           stem: "The bake sale model is B(n) = 5n − 20. Which comparison is correct?",
           choices: [
             { letter: "A", text: "The bake sale line is steeper and starts lower." },
@@ -1104,7 +1104,7 @@
         },
         {
           id: "same",
-          sol: "A.F.1.l",
+          sol: "A.F.1.h",
           stem: "For what number of items do the two models give the same amount of money?",
           choices: [
             { letter: "A", text: "13.3 items, because 8c − 60 = 5c − 20 gives 3c = 40" },

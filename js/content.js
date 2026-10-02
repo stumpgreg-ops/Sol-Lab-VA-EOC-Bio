@@ -20,78 +20,75 @@
   FAMILIES.forEach(function (f) { FAMILY_POOL[f.id] = f.id === "ALL" ? FAMILIES.filter(function (x) { return x.id !== "ALL"; }).map(function (x) { return x.id; }) : [f.id]; });
 
   /* Standards map: the 2023 Virginia Mathematics Standards of Learning for Algebra I,
-     A.EO.1–A.ST.1 with their lettered knowledge-and-skills statements. The skill screen shows
+     A.EO.1–A.ST.1 with their lettered knowledge-and-skills statements,
+     checked against the published 2023 standards on 2026-10-02. The skill screen shows
      these as cards; `strand` is the prefix a claim's `sol` code must start with. */
   var STANDARDS = {
     "A.EO.1": { course: "MATH", name: "Expressions: represent and evaluate", keys: {
       a: "translate between verbal quantitative situations and algebraic expressions, including contextual situations",
-      b: "evaluate algebraic expressions, including absolute value, square roots, and cube roots, for given replacement values including rational numbers" } },
+      b: "evaluate algebraic expressions which include absolute value, square roots, and cube roots for given replacement values to include rational numbers, without rationalizing the denominator" } },
     "A.EO.2": { course: "MATH", name: "Polynomials: operations and factoring", keys: {
-      a: "determine sums and differences of polynomial expressions in one variable",
-      b: "determine the product of polynomial expressions in one variable (distributive property, area models)",
-      c: "factor completely first- and second-degree polynomials in one variable with integral coefficients",
-      d: "determine the quotient of polynomials using a monomial or binomial divisor",
-      e: "represent and demonstrate equality of quadratic expressions in different forms" } },
+      a: "determine sums and differences of polynomial expressions in one variable, using a variety of strategies, including concrete objects and their related pictorial and symbolic models",
+      b: "determine the product of polynomial expressions in one variable, using a variety of strategies, including the distributive property and area models; factors limited to five or fewer terms",
+      c: "factor completely first- and second-degree polynomials in one variable with integral coefficients; after factoring out the GCF, leading coefficients have no more than four factors",
+      d: "determine the quotient of polynomials, using a monomial or binomial divisor, or a completely factored divisor",
+      e: "represent and demonstrate equality of quadratic expressions in different forms (concrete, verbal, symbolic, and graphical)" } },
     "A.EO.3": { course: "MATH", name: "Laws of exponents", keys: {
-      a: "derive the laws of exponents through patterns: products, quotients, and powers of bases",
-      b: "simplify multivariable expressions and ratios of monomials with integer exponents using the laws of exponents" } },
+      a: "derive the laws of exponents through explorations of patterns, to include products, quotients, and powers of bases",
+      b: "simplify multivariable expressions and ratios of monomial expressions in which the exponents are integers, using the laws of exponents" } },
     "A.EO.4": { course: "MATH", name: "Radical expressions", keys: {
-      a: "simplify square roots of whole numbers to simplest radical form",
-      b: "simplify cube roots of integers",
-      c: "add, subtract, and multiply numeric square-root and cube-root expressions",
-      d: "generate equivalent expressions using rational exponents of 1/2 and 1/3" } },
+      a: "simplify and determine equivalent radical expressions involving the square root of a whole number in simplest form",
+      b: "simplify and determine equivalent radical expressions involving the cube root of an integer",
+      c: "add, subtract, and multiply radicals, limited to numeric square and cube root expressions",
+      d: "generate equivalent numerical expressions and justify their equivalency for radicals using rational exponents, limited to rational exponents of 1/2 and 1/3" } },
     "A.EI.1": { course: "MATH", name: "Linear equations and inequalities in one variable", keys: {
       a: "write a linear equation or inequality in one variable to represent a contextual situation",
-      b: "solve multistep linear equations in one variable using the properties of real numbers and equality",
-      c: "solve multistep linear inequalities in one variable and graph the solution set on a number line",
-      d: "rearrange a formula or literal equation to solve for a specified variable",
-      e: "determine whether a linear equation in one variable has one, none, or infinitely many solutions",
-      f: "verify solutions and explain the solution method; interpret solutions in context" } },
+      b: "solve multistep linear equations in one variable, including those in contextual situations, by applying the properties of real numbers and/or properties of equality",
+      c: "solve multistep linear inequalities in one variable algebraically and graph the solution set on a number line, including those in contextual situations, by applying the properties of real numbers and/or properties of inequality",
+      d: "rearrange a formula or literal equation to solve for a specified variable by applying the properties of equality",
+      e: "determine if a linear equation in one variable has one solution, no solution, or an infinite number of solutions",
+      f: "verify possible solution(s) to multistep linear equations and inequalities in one variable algebraically, graphically, and with technology to justify the reasonableness of the answer(s); explain the solution method and interpret solutions in context" } },
     "A.EI.2": { course: "MATH", name: "Systems of linear equations and inequalities", keys: {
       a: "create a system of two linear equations in two variables to represent a contextual situation",
-      b: "solve a system of two linear equations in two variables algebraically and graphically",
-      c: "determine whether a system of two linear equations has one, none, or infinitely many solutions",
-      d: "write a system of two linear inequalities in two variables to represent a contextual situation",
-      e: "represent the solution of a linear inequality in two variables graphically",
-      f: "represent the solution set of a system of two linear inequalities graphically",
-      g: "determine whether an ordered pair is a solution to a linear inequality or a system of inequalities",
-      h: "verify solutions to systems and inequalities; explain the method and interpret solutions in context" } },
+      b: "apply the properties of real numbers and/or properties of equality to solve a system of two linear equations in two variables, algebraically and graphically",
+      c: "determine whether a system of two linear equations has one solution, no solution, or an infinite number of solutions",
+      d: "create a linear inequality in two variables to represent a contextual situation",
+      e: "represent the solution of a linear inequality in two variables graphically on a coordinate plane",
+      f: "create a system of two linear inequalities in two variables to represent a contextual situation",
+      g: "represent the solution set of a system of two linear inequalities in two variables graphically on a coordinate plane",
+      h: "verify possible solution(s) to a system of two linear equations, a linear inequality in two variables, or a system of two linear inequalities algebraically, graphically, and with technology to justify the reasonableness of the answer(s); explain the solution method and interpret solutions in context" } },
     "A.EI.3": { course: "MATH", name: "Quadratic equations in one variable", keys: {
-      a: "solve a quadratic equation in one variable over the real numbers, with rational or irrational solutions, including in context",
-      b: "determine and justify whether a quadratic equation has no real solutions, one real solution, or two real solutions",
-      c: "verify solutions to a quadratic equation algebraically, graphically, or with technology; interpret solutions in context" } },
+      a: "solve a quadratic equation in one variable over the set of real numbers with rational or irrational solutions, including those that can be used to solve contextual problems",
+      b: "determine and justify if a quadratic equation in one variable has no real solutions, one real solution, or two real solutions",
+      c: "verify possible solution(s) to a quadratic equation in one variable algebraically, graphically, and with technology to justify the reasonableness of answer(s); explain the solution method and interpret solutions for problems given in context" } },
     "A.F.1": { course: "MATH", name: "Linear functions", keys: {
-      a: "determine the domain, range, zeros, slope, y-intercept, x-intercept, and end behavior of a linear function",
-      b: "graph a linear function from its equation and write it in slope-intercept, standard, and point-slope forms",
-      c: "determine the slope of a line from an equation, a graph, two points, or a table",
-      d: "write the equation of a linear function given slope and y-intercept, slope and a point, two points, a graph, or a table",
+      a: "determine and identify the domain, range, zeros, slope, and intercepts of a linear function, presented algebraically or graphically, including the interpretation of these characteristics in contextual situations",
+      b: "investigate and explain how transformations to the parent function y = x affect the rate of change (slope) and the y-intercept of a linear function",
+      c: "write equivalent algebraic forms of linear functions, including slope-intercept form, standard form, and point-slope form, and analyze and interpret the information revealed by each form",
+      d: "write the equation of a linear function to model a linear relationship between two quantities, including contextual situations: given the graph of a line, two points with integer coordinates, or the slope and a point; vertical lines as x = a and horizontal lines as y = c",
       e: "write the equation of a line parallel or perpendicular to a given line through a given point",
-      f: "use function notation: determine f(x) for a given x, and x for a given f(x)",
-      g: "recognize and model direct variation and its constant of variation",
-      h: "explain the meaning of the slope and the y-intercept of a linear function in context",
-      i: "compare and contrast linear functions represented algebraically, graphically, in tables, and in words",
-      j: "determine the characteristics of a linear function from a graph, table, or set of ordered pairs",
-      k: "model a linear relationship from a contextual situation with an equation, graph, or table",
-      l: "verify and justify characteristics and solutions of linear functions, including with technology" } },
+      f: "graph a linear function in two variables, with and without the use of technology, including those that can represent contextual situations",
+      g: "for any value x in the domain of f, determine f(x), and determine x given any value f(x) in the range of f, given an algebraic or graphical representation of a linear function",
+      h: "compare and contrast the characteristics of linear functions represented algebraically, graphically, in tables, and in contextual situations" } },
     "A.F.2": { course: "MATH", name: "Quadratic and exponential functions", keys: {
-      a: "determine whether a relation given as ordered pairs, a table, a mapping, or a graph is a function",
-      b: "determine domain, range, zeros, intercepts, vertex, axis of symmetry, intervals of increase and decrease, and end behavior of quadratic and exponential functions",
-      c: "use function notation: determine f(x) for a given x, and x for a given f(x), graphically and algebraically",
-      d: "graph a quadratic or exponential function from its equation",
-      e: "write a quadratic function in factored form from its zeros and relate zeros, factors, and x-intercepts",
-      f: "connect the roots of a quadratic equation, the zeros of the function, its x-intercepts, and its factors",
-      g: "recognize and describe exponential growth and decay from an equation, a table, or a graph",
-      h: "compare linear, quadratic, and exponential functions represented in different ways",
-      i: "model quadratic and exponential relationships from contextual situations" } },
+      a: "determine whether a relation, represented by a set of ordered pairs, a table, a mapping, or a graph is a function",
+      b: "given an equation or graph, determine key characteristics of a quadratic function including x-intercepts (zeros), y-intercept, vertex (maximum or minimum), and domain and range (including when restricted by context); interpret key characteristics in contextual situations",
+      c: "graph a quadratic function f(x) in two variables using a variety of strategies, including transformations f(x) + k and kf(x), where k is limited to rational values",
+      d: "make connections between the algebraic (standard and factored forms) and graphical representation of a quadratic function",
+      e: "given an equation or graph of an exponential function in the form y = ab^x (where b is limited to a natural number), interpret key characteristics, including y-intercepts and domain and range; interpret key characteristics in contextual situations",
+      f: "graph an exponential function f(x) in two variables using a variety of strategies, including transformations f(x) + k and kf(x), where k is limited to rational values",
+      g: "for any value x in the domain of f, determine f(x) of a quadratic or exponential function; determine x given any value f(x) in the range of f of a quadratic function; explain the meaning of x and f(x) in context",
+      h: "compare and contrast the key characteristics of linear functions (f(x) = x), quadratic functions (f(x) = x²), and exponential functions (f(x) = bˣ) using tables and graphs" } },
     "A.ST.1": { course: "MATH", name: "The data cycle with bivariate data", keys: {
-      a: "formulate investigative questions that require the collection of bivariate data",
-      b: "determine what variables could be used to explain a given contextual problem or situation",
-      c: "determine an appropriate method to collect a representative sample of bivariate data",
-      d: "represent bivariate data in a scatterplot, with and without technology",
-      e: "determine the linear or quadratic curve of best fit and interpret its parameters in context",
-      f: "analyze the relationship between the variables: direction, strength, outliers, and the equation of best fit",
-      g: "use the curve of best fit to make predictions and evaluate whether they are reasonable",
-      h: "analyze and communicate the results, including the limits of the data and correlation versus causation" } }
+      a: "formulate investigative questions that require the collection or acquisition of bivariate data",
+      b: "determine what variables could be used to explain a given contextual problem or situation or answer investigative questions",
+      c: "determine an appropriate method to collect a representative sample (survey, observation, or experiment) to answer an investigative question",
+      d: "given a table of ordered pairs or a scatterplot representing no more than 30 data points, use available technology to determine whether a linear or quadratic function would represent the relationship, and if so, determine the equation of the curve of best fit",
+      e: "use linear and quadratic regression methods available through technology to write a linear or quadratic function that represents the data where appropriate and describe the strengths and weaknesses of the model",
+      f: "use a linear model to predict outcomes and evaluate the strength and validity of these predictions, including through the use of technology",
+      g: "investigate and explain the meaning of the rate of change (slope) and y-intercept (constant term) of a linear model in context",
+      h: "analyze relationships between two quantitative variables revealed in a scatterplot",
+      i: "make conclusions based on the analysis of a set of bivariate data and communicate the results" } }
   };
   /* Longest code prefixes first so "A.EO.1" is matched before any shorter prefix. */
   var CODE_PREFIXES = Object.keys(STANDARDS).sort(function (a, b) { return b.length - a.length; });
@@ -123,8 +120,8 @@
       { strand: "A.F.2", kind: "A.F.2", name: "Quadratic & exponential", meta: "Is it a function? Vertex, zeros, axis of symmetry, growth and decay, comparing function families." }
     ],
     ST: [
-      { strand: "A.ST.1.A", kind: "A.ST.1 a–d", name: "Data cycle & scatterplots", meta: "Investigative questions, choosing variables, representative samples, plotting bivariate data." },
-      { strand: "A.ST.1.E", kind: "A.ST.1 e–h", name: "Best fit & predictions", meta: "Lines and curves of best fit, slope in context, outliers, predictions and their limits, correlation vs causation." }
+      { strand: "A.ST.1.A", kind: "A.ST.1 a–c, h", name: "Data cycle & scatterplots", meta: "Investigative questions, choosing variables, representative samples, reading the relationship in a scatterplot." },
+      { strand: "A.ST.1.D", kind: "A.ST.1 d–g, i", name: "Best fit & predictions", meta: "Lines and curves of best fit, slope and intercept in context, predictions and their limits, conclusions and correlation vs causation." }
     ]
   };
   /* Full review shows the ten standards themselves as skill cards. */
@@ -135,7 +132,7 @@
     SKILLS[fam].push({ strand: "ALL", kind: "All skills", name: "All", meta: fam === "ALL" ? "Every standard mixed, leaning toward the ones you miss most." : "Everything in this unit mixed, leaning toward the skills you miss most." });
   });
   /* The two Statistics cards each cover several key ideas: extra prefixes the card also keeps. */
-  var STRAND_ALIASES = { "A.ST.1.A": ["A.ST.1.B", "A.ST.1.C", "A.ST.1.D"], "A.ST.1.E": ["A.ST.1.F", "A.ST.1.G", "A.ST.1.H"] };
+  var STRAND_ALIASES = { "A.ST.1.A": ["A.ST.1.B", "A.ST.1.C", "A.ST.1.H"], "A.ST.1.D": ["A.ST.1.E", "A.ST.1.F", "A.ST.1.G", "A.ST.1.I"] };
 
   function wordCount(s) {
     return String(s).replace(/<[^>]+>/g, " ").trim().split(/\s+/).filter(Boolean).length;

@@ -981,7 +981,7 @@ Standards in this unit:
 
 > (1) The student council has $60 for a party. (2) Snack bags cost $3 each and pizzas cost $5 each. (3) Let **s** be the number of snack bags and **p** the number of pizzas. (4) The council also wants at least 8 items in total. (5) Elena graphs the budget inequality 3s + 5p ≤ 60 with s on the horizontal axis and p on the vertical axis.
 
-1. **[A.EI.2.g]** Which order stays within the $60 budget?
+1. **[A.EI.2.h]** Which order stays within the $60 budget?
    - A. 5 snack bags and 10 pizzas
    - B. 12 snack bags and 6 pizzas
    - C. 10 snack bags and 6 pizzas
@@ -995,14 +995,14 @@ Standards in this unit:
    - D. a dashed boundary line, shaded below the line
    - **Key: B**
 
-3. **[A.EI.2.d]** Which system of inequalities represents both council requirements?
+3. **[A.EI.2.f]** Which system of inequalities represents both council requirements?
    - A. 3s + 5p ≤ 60 and s + p ≥ 8
    - B. 3s + 5p ≥ 60 and s + p ≤ 8
    - C. 3s + 5p ≤ 60 and s + p ≤ 8
    - D. s + p ≤ 60 and 3s + 5p ≥ 8
    - **Key: A**
 
-4. **[A.EI.2.g]** Is (s, p) = (4, 4) a solution of the system?
+4. **[A.EI.2.h]** Is (s, p) = (4, 4) a solution of the system?
    - A. No; 4 + 4 = 8 is not at least 8.
    - B. No; 3(4) + 5(4) = 32 is not under 60.
    - C. Yes; 3(4) + 5(4) = 32 ≤ 60 and 4 + 4 = 8 ≥ 8.
@@ -1016,7 +1016,7 @@ Standards in this unit:
    - D. a dashed line through (0, −1) with slope 2, shaded above
    - **Key: D**
 
-6. **[A.EI.2.f]** The solution set of the system in the graph is —
+6. **[A.EI.2.g]** The solution set of the system in the graph is —
    - A. the region where the shadings of the two inequalities overlap
    - B. the single point where the two boundary lines cross
    - C. every point on either boundary line
@@ -1274,35 +1274,35 @@ Standards in this unit:
 
 > (1) An airport taxi charges a flat $3 plus $2.50 per mile. (2) The fare for a trip of m miles is the function **f(m) = 2.5m + 3**. (3) Imani wants to know what a 6-mile trip costs and how far she can ride for $23.
 
-1. **[A.F.1.h]** What does the slope 2.5 represent in this situation?
+1. **[A.F.1.a]** What does the slope 2.5 represent in this situation?
    - A. the flat fee charged before the trip starts
    - B. the cost per mile
    - C. the number of miles in the trip
    - D. the fare for a 1-mile trip
    - **Key: B**
 
-2. **[A.F.1.h]** What does the y-intercept 3 represent?
+2. **[A.F.1.a]** What does the y-intercept 3 represent?
    - A. the flat fee, the fare for a 0-mile trip
    - B. the cost of the third mile
    - C. the number of passengers allowed
    - D. the fare for a 3-mile trip
    - **Key: A**
 
-3. **[A.F.1.f]** What is f(6)?
+3. **[A.F.1.g]** What is f(6)?
    - A. $15
    - B. $11.50
    - C. $18
    - D. $33
    - **Key: C**
 
-4. **[A.F.1.f]** For what value of m does f(m) = 23?
+4. **[A.F.1.g]** For what value of m does f(m) = 23?
    - A. m = 9.2
    - B. m = 10.4
    - C. m = 20
    - D. m = 8
    - **Key: D**
 
-5. **[A.F.1.i]** A rival taxi's fare table shows $8 for 2 miles and $18 for 6 miles. How do the two taxis compare?
+5. **[A.F.1.h]** A rival taxi's fare table shows $8 for 2 miles and $18 for 6 miles. How do the two taxis compare?
    - A. The rival charges more per mile, 2.5 versus 2.
    - B. The rival charges the same per mile but a higher flat fee.
    - C. The rival charges $2.50 per mile with a $3 flat fee, the same as Imani's taxi.
@@ -1318,7 +1318,7 @@ Standards in this unit:
 > |---|---|---|---|---|
 > | y | 5 | 9 | 13 | 17 |
 
-1. **[A.F.1.c]** What is the slope of the function in the table?
+1. **[A.F.1.a]** What is the slope of the function in the table?
    - A. 4
    - B. 2
    - C. 1/2
@@ -1332,7 +1332,7 @@ Standards in this unit:
    - D. y = 2x − 5
    - **Key: C**
 
-3. **[A.F.1.f]** What is the value of y when x = 10?
+3. **[A.F.1.g]** What is the value of y when x = 10?
    - A. 25
    - B. 45
    - C. 21
@@ -1398,21 +1398,21 @@ Standards in this unit:
 
 > (1) Two functions are on the board: **f(x) = −2x + 9** and **g(x) = x² + 1**. (2) The notation f(−3) means "the output of f when the input is −3." (3) A **zero** of a function is an input that makes the output 0.
 
-1. **[A.F.1.f]** What is f(−3)?
+1. **[A.F.1.g]** What is f(−3)?
    - A. 3
    - B. 15
    - C. −15
    - D. 6
    - **Key: B**
 
-2. **[A.F.1.f]** For what value of x is f(x) = 1?
+2. **[A.F.1.g]** For what value of x is f(x) = 1?
    - A. x = 4
    - B. x = −4
    - C. x = 5
    - D. x = 7
    - **Key: A**
 
-3. **[A.F.2.c]** What is g(−2)?
+3. **[A.F.2.g]** What is g(−2)?
    - A. −3
    - B. −5
    - C. 5
@@ -1455,21 +1455,21 @@ Standards in this unit:
    - D. y = 3x − 4
    - **Key: C**
 
-3. **[A.F.1.b]** Which equation is y = 3x − 2 written in standard form?
+3. **[A.F.1.c]** Which equation is y = 3x − 2 written in standard form?
    - A. 3x + y = 2
    - B. 3x − y = 2
    - C. y − 3x = 2
    - D. 3x − y = −2
    - **Key: B**
 
-4. **[A.F.1.b]** Which equation is the point-slope form of y = 3x − 2 using the point (2, 4)?
+4. **[A.F.1.c]** Which equation is the point-slope form of y = 3x − 2 using the point (2, 4)?
    - A. y + 4 = 3(x + 2)
    - B. y − 2 = 3(x − 4)
    - C. y − 4 = −2(x − 2)
    - D. y − 4 = 3(x − 2)
    - **Key: D**
 
-5. **[A.F.1.c]** What is the slope of the line 4x + 2y = 8?
+5. **[A.F.1.a]** What is the slope of the line 4x + 2y = 8?
    - A. 4
    - B. −2
    - C. 2
@@ -1481,7 +1481,7 @@ Standards in this unit:
 
 > (1) The function **f(x) = x² − 4x − 5** factors as (x − 5)(x + 1). (2) Its graph is a parabola that opens upward. (3) Nadia lists its zeros, vertex, axis of symmetry, y-intercept, range and the interval where it is decreasing, then evaluates f(3).
 
-1. **[A.F.2.f]** What are the zeros of f?
+1. **[A.F.2.d]** What are the zeros of f?
    - A. x = −5 and x = 1
    - B. x = 5 and x = −1
    - C. x = 4 and x = −5
@@ -1516,7 +1516,7 @@ Standards in this unit:
    - D. x < −9
    - **Key: A**
 
-6. **[A.F.2.c]** What is f(3)?
+6. **[A.F.2.g]** What is f(3)?
    - A. −2
    - B. −8
    - C. 16
@@ -1528,28 +1528,28 @@ Standards in this unit:
 
 > (1) A biology lab starts with 100 bacteria that double every hour, so the population after t hours is **P(t) = 100 · 2t**. (2) Meanwhile, a used laptop bought for $5,000 loses 20% of its value each year, so its value is **V(t) = 5000(0.8)t**. (3) Both are exponential functions, one growing and one decaying.
 
-1. **[A.F.2.c]** What is P(3)?
+1. **[A.F.2.g]** What is P(3)?
    - A. 600
    - B. 800
    - C. 300
    - D. 106
    - **Key: B**
 
-2. **[A.F.2.g]** Which feature of P(t) = 100 · 2^t shows that it is exponential growth?
+2. **[A.F.2.e]** Which feature of P(t) = 100 · 2^t shows that it is exponential growth?
    - A. The starting value, 100, is a positive number.
    - B. The exponent is the variable t.
    - C. The base, 2, is greater than 1: each hour doubles the count.
    - D. The population increases by 100 each hour.
    - **Key: C**
 
-3. **[A.F.2.c]** What is the laptop's value after 2 years?
+3. **[A.F.2.g]** What is the laptop's value after 2 years?
    - A. $3,200
    - B. $4,000
    - C. $3,000
    - D. $8,000
    - **Key: A**
 
-4. **[A.F.2.g]** In V(t) = 5000(0.8)^t, what does 0.8 represent?
+4. **[A.F.2.e]** In V(t) = 5000(0.8)^t, what does 0.8 represent?
    - A. The laptop loses $0.80 each year.
    - B. The laptop keeps 80% of its value each year.
    - C. The laptop is worth 80 dollars after t years.
@@ -1582,21 +1582,21 @@ Standards in this unit:
    - D. x = 5/3
    - **Key: B**
 
-3. **[A.F.1.f]** For what value of x is f(x) = 41?
+3. **[A.F.1.g]** For what value of x is f(x) = 41?
    - A. x = 128
    - B. x = 15
    - C. x = 12
    - D. x = 46/3
    - **Key: C**
 
-4. **[A.F.1.i]** How do f and g compare?
+4. **[A.F.1.h]** How do f and g compare?
    - A. g has the greater rate of change and the greater y-intercept.
    - B. f has the greater rate of change; g has the greater y-intercept.
    - C. g has the greater rate of change; f has the greater y-intercept.
    - D. f and g have the same rate of change.
    - **Key: C**
 
-5. **[A.F.1.g]** In the direct variation where y = 12 when x = 4, what is the constant of variation and the equation?
+5. **[A.F.1.d]** In the direct variation where y = 12 when x = 4, what is the constant of variation and the equation?
    - A. k = 8; y = x + 8
    - B. k = 3; y = 3x
    - C. k = 48; y = 48 ÷ x
@@ -1626,35 +1626,35 @@ Standards in this unit:
    - D. t = 480; the tank holds 480 gallons after one minute
    - **Key: A**
 
-2. **[A.F.1.k]** What is a reasonable domain for V(t) in this situation?
+2. **[A.F.1.a]** What is a reasonable domain for V(t) in this situation?
    - A. all real numbers
    - B. 0 ≤ t ≤ 500
    - C. 0 ≤ t ≤ 25
    - D. t ≥ 25
    - **Key: C**
 
-3. **[A.F.1.h]** What does the slope −20 tell you about the graph of V?
+3. **[A.F.1.a]** What does the slope −20 tell you about the graph of V?
    - A. The line rises 20 gallons every minute.
    - B. The line falls 20 gallons every minute.
    - C. The line crosses the vertical axis at −20.
    - D. The tank empties after 20 minutes.
    - **Key: B**
 
-4. **[A.F.1.f]** What is V(12)?
+4. **[A.F.1.g]** What is V(12)?
    - A. 260 gallons
    - B. 240 gallons
    - C. 488 gallons
    - D. 280 gallons
    - **Key: A**
 
-5. **[A.F.1.c]** What is the rate of change of Tank 2, from the table?
+5. **[A.F.1.a]** What is the rate of change of Tank 2, from the table?
    - A. −75 gallons per minute
    - B. −15 gallons per minute
    - C. −20 gallons per minute
    - D. −5 gallons per minute
    - **Key: B**
 
-6. **[A.F.1.i]** Which tank empties first?
+6. **[A.F.1.h]** Which tank empties first?
    - A. Tank 2, because it starts with less water.
    - B. Both empty at the same time, 25 minutes.
    - C. Tank 1, at 25 minutes; Tank 2 takes 28 minutes.
@@ -1666,7 +1666,7 @@ Standards in this unit:
 
 > (1) The line **2x − 3y = 12** is written in standard form. (2) Rewriting it in slope-intercept form shows its slope and y-intercept at a glance. (3) Amir also writes it in point-slope form through the point (3, −2), finds the x-intercept, and writes a parallel line through the origin.
 
-1. **[A.F.1.c]** What is the slope of the line?
+1. **[A.F.1.a]** What is the slope of the line?
    - A. 2/3
    - B. −2/3
    - C. 3/2
@@ -1687,7 +1687,7 @@ Standards in this unit:
    - D. −6
    - **Key: B**
 
-4. **[A.F.1.b]** Which equation is the point-slope form through (3, −2)?
+4. **[A.F.1.c]** Which equation is the point-slope form through (3, −2)?
    - A. y − 2 = (2/3)(x + 3)
    - B. y + 2 = (3/2)(x − 3)
    - C. y − 3 = (2/3)(x + 2)
@@ -1706,7 +1706,7 @@ Standards in this unit:
 
 > (1) The soccer team spends $60 on soap, sponges and signs for a car wash. (2) Each car washed brings in $8. (3) Let **c** be the number of cars washed and **M(c)** the team's money after paying for supplies. (4) Coach Reyes asks the team to write the model, graph it, find how many cars it takes to break even, and compare it with last year's bake sale, which raised $5 per item after $20 in supplies. (5) Both graphs are drawn on the same grid, with the number of items sold on the horizontal axis.
 
-1. **[A.F.1.k]** Which equation models the car wash?
+1. **[A.F.1.d]** Which equation models the car wash?
    - A. M(c) = 60c − 8
    - B. M(c) = 8c − 60
    - C. M(c) = 8c + 60
@@ -1720,28 +1720,28 @@ Standards in this unit:
    - D. c = −60; the team starts $60 in debt
    - **Key: A**
 
-3. **[A.F.1.h]** What does the y-intercept of the graph of M represent?
+3. **[A.F.1.a]** What does the y-intercept of the graph of M represent?
    - A. the money earned from the first car
    - B. the price of one car wash
    - C. the team's money before any cars are washed: −$60
    - D. the number of cars washed on the first day
    - **Key: C**
 
-4. **[A.F.1.b]** Which description matches the graph of M?
+4. **[A.F.1.f]** Which description matches the graph of M?
    - A. a line starting at (0, 60) and falling 8 for each car
    - B. a horizontal line at 8
    - C. a line starting at (0, 8) and rising 60 for each car
    - D. a line starting at (0, −60) and rising 8 for each car
    - **Key: D**
 
-5. **[A.F.1.i]** The bake sale model is B(n) = 5n − 20. Which comparison is correct?
+5. **[A.F.1.h]** The bake sale model is B(n) = 5n − 20. Which comparison is correct?
    - A. The bake sale line is steeper and starts lower.
    - B. The car wash line is steeper and starts lower.
    - C. Both lines have the same slope.
    - D. The car wash line is steeper and starts higher.
    - **Key: B**
 
-6. **[A.F.1.l]** For what number of items do the two models give the same amount of money?
+6. **[A.F.1.h]** For what number of items do the two models give the same amount of money?
    - A. 13.3 items, because 8c − 60 = 5c − 20 gives 3c = 40
    - B. 20 items, because 8(20) − 60 = 100 and 5(20) − 20 = 80
    - C. 8 items, because the car wash breaks even there
@@ -1769,7 +1769,7 @@ Standards in this unit:
    - D. A quadratic, B exponential, C linear
    - **Key: A**
 
-2. **[A.F.1.h]** What is the rate of change of A(t), and what does it mean?
+2. **[A.F.1.a]** What is the rate of change of A(t), and what does it mean?
    - A. 200 dollars per year: Ava's starting amount
    - B. 25 dollars per year: the amount Ava adds each year
    - C. 25 years: the time it takes to double
@@ -1783,14 +1783,14 @@ Standards in this unit:
    - D. Their balances are equal at 10 years.
    - **Key: B**
 
-4. **[A.F.2.g]** Between any two consecutive years, B(t) is multiplied by —
+4. **[A.F.2.e]** Between any two consecutive years, B(t) is multiplied by —
    - A. 10
    - B. 0.1
    - C. 1.1
    - D. 200
    - **Key: C**
 
-5. **[A.F.2.c]** What is C(7)?
+5. **[A.F.2.g]** What is C(7)?
    - A. 298
    - B. 214
    - C. 228
@@ -1809,14 +1809,14 @@ Standards in this unit:
 
 > (1) A graph shows a parabola that opens downward. (2) Its **vertex** is (3, 16), its x-intercepts are −1 and 7, and its y-intercept is 7. (3) Tomas wants to write the function in factored form and use it to describe where the graph is above the x-axis and where it is increasing. (4) The graph models the height, in feet, of a water jet x feet from the nozzle of a fountain.
 
-1. **[A.F.2.e]** Which function has the zeros and y-intercept described?
+1. **[A.F.2.d]** Which function has the zeros and y-intercept described?
    - A. f(x) = (x + 1)(x − 7)
    - B. f(x) = −(x + 1)(x − 7)
    - C. f(x) = −(x − 1)(x + 7)
    - D. f(x) = (x − 3)(x − 16)
    - **Key: B**
 
-2. **[A.F.2.f]** Which is the same function written in standard form?
+2. **[A.F.2.d]** Which is the same function written in standard form?
    - A. f(x) = −x² + 6x + 7
    - B. f(x) = −x² − 6x − 7
    - C. f(x) = x² − 6x − 7
@@ -1844,7 +1844,7 @@ Standards in this unit:
    - D. all real numbers
    - **Key: B**
 
-6. **[A.F.2.i]** In the fountain model, what do the x-intercept 7 and the vertex represent?
+6. **[A.F.2.g]** In the fountain model, what do the x-intercept 7 and the vertex represent?
    - A. The jet lands 7 feet from the nozzle; its greatest height is 16 feet, reached 3 feet out.
    - B. The jet lands 16 feet from the nozzle; its greatest height is 7 feet.
    - C. The jet is 7 feet high at the nozzle; it lands 3 feet out.
@@ -1864,21 +1864,21 @@ Standards in this unit:
 > | 3 | 14739 | 15000 |
 > | 4 | 12528 | 12000 |
 
-1. **[A.F.2.g]** According to V(t), by what percent does the car lose value each year?
+1. **[A.F.2.e]** According to V(t), by what percent does the car lose value each year?
    - A. 85%
    - B. 15%
    - C. 0.85%
    - D. 12.5%
    - **Key: B**
 
-2. **[A.F.2.b]** What is the y-intercept of both models, and what does it represent?
+2. **[A.F.2.e]** What is the y-intercept of both models, and what does it represent?
    - A. 0; the car is worth nothing when it is new
    - B. 3000; the car loses $3,000 in its first year
    - C. 24000; the car's value when t = 0, its purchase price
    - D. 0.85; the fraction of value kept each year
    - **Key: C**
 
-3. **[A.F.2.c]** Which calculation confirms the table entry V(2) = 17340?
+3. **[A.F.2.g]** Which calculation confirms the table entry V(2) = 17340?
    - A. 24000 − 2(0.85) = 23998.3
    - B. 24000 × 0.85 × 0.85 = 17340
    - C. 24000 × 0.85 × 2 = 40800
@@ -1892,14 +1892,14 @@ Standards in this unit:
    - D. The exponential model loses the same dollar amount every year.
    - **Key: B**
 
-5. **[A.F.2.i]** Why does the linear model stop making sense for large t while the exponential model does not?
+5. **[A.F.2.h]** Why does the linear model stop making sense for large t while the exponential model does not?
    - A. L(t) becomes negative after 8 years, but V(t) stays positive and approaches 0.
    - B. V(t) becomes negative after 8 years, but L(t) stays positive.
    - C. L(t) grows without bound, but V(t) levels off at 24000.
    - D. Both models become negative after 8 years.
    - **Key: A**
 
-6. **[A.F.2.g]** How can Sofia tell from the V(t) column alone that the model is exponential?
+6. **[A.F.2.h]** How can Sofia tell from the V(t) column alone that the model is exponential?
    - A. The values decrease by the same amount each year.
    - B. The values are all multiples of 1000.
    - C. Each value is the previous one times the same factor, 0.85.
@@ -1926,7 +1926,7 @@ Standards in this unit:
 > |---|---|---|---|---|---|---|
 > | Score | 62 | 72 | 68 | 78 | 80 | 90 |
 
-1. **[A.ST.1.f]** Which statement describes the relationship in the scatterplot?
+1. **[A.ST.1.h]** Which statement describes the relationship in the scatterplot?
    - A. a negative association: more hours, lower scores
    - B. a positive association: more hours, higher scores
    - C. no association between hours and scores
@@ -1940,21 +1940,21 @@ Standards in this unit:
    - D. the line of best fit
    - **Key: C**
 
-3. **[A.ST.1.g]** Using the line of best fit, what score is predicted for a student who studies 4 hours?
+3. **[A.ST.1.f]** Using the line of best fit, what score is predicted for a student who studies 4 hours?
    - A. 82
    - B. 80
    - C. 64
    - D. 88
    - **Key: A**
 
-4. **[A.ST.1.e]** What does the slope 6 mean in context?
+4. **[A.ST.1.g]** What does the slope 6 mean in context?
    - A. Each extra hour of study is associated with about 6 more points.
    - B. Students who do not study score about 6 points.
    - C. Six students took the quiz.
    - D. The highest possible score is 6 points above 58.
    - **Key: A**
 
-5. **[A.ST.1.e]** What does the y-intercept 58 represent?
+5. **[A.ST.1.g]** What does the y-intercept 58 represent?
    - A. the score gained per hour of study
    - B. the number of hours needed to pass
    - C. the average score of the six students
@@ -1987,14 +1987,14 @@ Standards in this unit:
    - D. twenty days chosen at random from the whole summer
    - **Key: D**
 
-4. **[A.ST.1.d]** How should Jaylen set up his scatterplot?
+4. **[A.ST.1.b]** How should Jaylen set up his scatterplot?
    - A. temperature on the horizontal axis, snow cones sold on the vertical axis, one point per day
    - B. snow cones sold on the horizontal axis, temperature on the vertical axis, one bar per week
    - C. days on the horizontal axis and both variables stacked on the vertical axis
    - D. a circle graph showing the share of sales on hot days
    - **Key: A**
 
-5. **[A.ST.1.g]** Jaylen's line of best fit predicts 190 snow cones for a 120°F day. Why is this prediction unreasonable?
+5. **[A.ST.1.f]** Jaylen's line of best fit predicts 190 snow cones for a 120°F day. Why is this prediction unreasonable?
    - A. Lines of best fit cannot be used for predictions.
    - B. 120°F is far outside his data, and the pool would likely be closed.
    - C. The number 190 is not a whole number of snow cones.
@@ -2034,7 +2034,7 @@ Standards in this unit:
    - D. The survey would take too long to hand out.
    - **Key: A**
 
-5. **[A.ST.1.d]** After collecting the data, which display best shows whether the two variables are related?
+5. **[A.ST.1.h]** After collecting the data, which display best shows whether the two variables are related?
    - A. a bar graph of the number of students in each grade
    - B. a scatterplot of bus minutes against sleep hours
    - C. a circle graph of favorite bus routes
@@ -2049,35 +2049,35 @@ Standards in this unit:
 
 > (1) A consumer class collected the age and asking price of 30 used cars of one model from online listings. (2) The line of best fit is y = −1500x + 18000, where x is the age in years and y the price in dollars. (3) Most points lie close to the line, but one 3-year-old car is listed at $4,000. (4) The oldest car in the data is 9 years old.
 
-1. **[A.ST.1.f]** Which statement describes the association between age and price?
+1. **[A.ST.1.h]** Which statement describes the association between age and price?
    - A. positive and strong
    - B. negative and strong
    - C. negative and weak
    - D. no association
    - **Key: B**
 
-2. **[A.ST.1.g]** What price does the line predict for a 5-year-old car?
+2. **[A.ST.1.f]** What price does the line predict for a 5-year-old car?
    - A. $16,500
    - B. $7,500
    - C. $10,500
    - D. $12,000
    - **Key: C**
 
-3. **[A.ST.1.e]** What does the slope −1500 mean?
+3. **[A.ST.1.g]** What does the slope −1500 mean?
    - A. The predicted price drops about $1,500 per year of age.
    - B. A brand-new car of this model costs $1,500.
    - C. The oldest car in the data sells for $1,500.
    - D. Fifteen hundred cars were included in the sample.
    - **Key: A**
 
-4. **[A.ST.1.f]** The 3-year-old car listed at $4,000 is best described as —
+4. **[A.ST.1.h]** The 3-year-old car listed at $4,000 is best described as —
    - A. the y-intercept of the line
    - B. proof that the association is positive
    - C. a typical point, since the line predicts $4,000 at age 3
    - D. an outlier, far below the $13,500 the line predicts
    - **Key: D**
 
-5. **[A.ST.1.g]** The line reaches y = 0 at x = 12. Why should the class not conclude that a 12-year-old car is free?
+5. **[A.ST.1.f]** The line reaches y = 0 at x = 12. Why should the class not conclude that a 12-year-old car is free?
    - A. Twelve years is beyond the oldest car in the data, so this is extrapolation.
    - B. The slope should have been positive.
    - C. The line of best fit is only valid at whole-number ages.
@@ -2093,35 +2093,35 @@ Standards in this unit:
 > |---|---|---|---|---|---|
 > | h (m) | 0.5 | 15.1 | 20.3 | 15.4 | 0.6 |
 
-1. **[A.ST.1.e]** Why is a quadratic curve a better model than a line for these data?
+1. **[A.ST.1.d]** Why is a quadratic curve a better model than a line for these data?
    - A. The points rise and then fall, and a line cannot change direction.
    - B. There are five data points, and a quadratic always fits five points exactly.
    - C. The heights are measured in meters.
    - D. A line would have a negative slope.
    - **Key: A**
 
-2. **[A.ST.1.g]** Using the curve, what height is predicted at t = 2 seconds?
+2. **[A.ST.1.f]** Using the curve, what height is predicted at t = 2 seconds?
    - A. 39.7 m
    - B. 20.1 m
    - C. 10.3 m
    - D. 29.9 m
    - **Key: B**
 
-3. **[A.ST.1.g]** About when does the model say the rocket reaches its greatest height?
+3. **[A.ST.1.f]** About when does the model say the rocket reaches its greatest height?
    - A. t = 4 s, when it lands
    - B. t = 0 s, at launch
    - C. t = 2 s, at the vertex
    - D. t = 19.6 s, from the middle term
    - **Key: C**
 
-4. **[A.ST.1.h]** The curve gives h = −24 at t = 5 seconds. What should the class conclude?
+4. **[A.ST.1.i]** The curve gives h = −24 at t = 5 seconds. What should the class conclude?
    - A. The rocket goes underground after landing.
    - B. The model does not apply after the rocket lands at about t = 4 s.
    - C. The quadratic fit is wrong and a line should be used.
    - D. The rocket was launched from 24 m below the ground.
    - **Key: B**
 
-5. **[A.ST.1.d]** Which variable belongs on the horizontal axis of the scatterplot?
+5. **[A.ST.1.b]** Which variable belongs on the horizontal axis of the scatterplot?
    - A. height, because it is what the class measured
    - B. the number of launches
    - C. the video frame rate
@@ -2137,28 +2137,28 @@ Standards in this unit:
 > |---|---|---|---|---|---|---|---|
 > | h (cm) | 11 | 23 | 27 | 30 | 29 | 21 | 13 |
 
-1. **[A.ST.1.f]** Which description of the relationship fits the data?
+1. **[A.ST.1.h]** Which description of the relationship fits the data?
    - A. a linear positive association: more fertilizer, taller plants at every level
    - B. no association between fertilizer and height
    - C. a quadratic relationship: height rises to a peak near 6 grams and then falls
    - D. a linear negative association: more fertilizer, shorter plants
    - **Key: C**
 
-2. **[A.ST.1.g]** What height does the curve predict for 5 grams of fertilizer?
+2. **[A.ST.1.f]** What height does the curve predict for 5 grams of fertilizer?
    - A. 29.5 cm
    - B. 42 cm
    - C. 24.5 cm
    - D. 54.5 cm
    - **Key: A**
 
-3. **[A.ST.1.g]** According to the model, which amount of fertilizer gives the greatest predicted height?
+3. **[A.ST.1.f]** According to the model, which amount of fertilizer gives the greatest predicted height?
    - A. 12 grams, the most fertilizer
    - B. 6 grams, at the vertex of the curve
    - C. 0 grams, because fertilizer burns roots
    - D. 3 grams, half of 6
    - **Key: B**
 
-4. **[A.ST.1.h]** A student uses the curve to predict the height for 20 grams and gets −68 cm. What is the best response?
+4. **[A.ST.1.i]** A student uses the curve to predict the height for 20 grams and gets −68 cm. What is the best response?
    - A. The plant would grow 68 cm downward.
    - B. The data stop at 12 grams; 20 grams is far outside the model's range.
    - C. The class should have used a line of best fit.
@@ -2184,28 +2184,28 @@ Standards in this unit:
 
 > (1) A health class asked 40 students how many hours they used screens after school and how many hours they slept that night. (2) The scatterplot shows a moderate negative association. (3) The line of best fit is **y = −0.5x + 9.5**, where x is screen hours and y is sleep hours. (4) Screen time in the data ranged from 0 to 6 hours. (5) One student concludes that screens cause students to lose sleep.
 
-1. **[A.ST.1.e]** What does the slope −0.5 mean in context?
+1. **[A.ST.1.g]** What does the slope −0.5 mean in context?
    - A. Each extra hour of screen time is associated with about half an hour less sleep.
    - B. Students sleep half as long as they use screens.
    - C. Half of the students use screens after school.
    - D. Each extra hour of sleep causes half an hour less screen time.
    - **Key: A**
 
-2. **[A.ST.1.g]** How many hours of sleep does the line predict for a student with 3 hours of screen time?
+2. **[A.ST.1.f]** How many hours of sleep does the line predict for a student with 3 hours of screen time?
    - A. 9 hours
    - B. 6.5 hours
    - C. 8 hours
    - D. 11 hours
    - **Key: C**
 
-3. **[A.ST.1.g]** Which prediction from the line is most trustworthy?
+3. **[A.ST.1.f]** Which prediction from the line is most trustworthy?
    - A. sleep for 15 hours of screen time
    - B. sleep for 4 hours of screen time
    - C. sleep for 19 hours of screen time, when the line reaches 0
    - D. screen time for a student who slept 12 hours
    - **Key: B**
 
-4. **[A.ST.1.h]** Why is the student's conclusion in sentence 5 too strong?
+4. **[A.ST.1.i]** Why is the student's conclusion in sentence 5 too strong?
    - A. The slope is negative, which means there is no relationship.
    - B. A survey cannot measure how long students sleep.
    - C. An association shows the variables move together, not that one causes the other.
@@ -2219,7 +2219,7 @@ Standards in this unit:
    - D. the y-intercept
    - **Key: B**
 
-6. **[A.ST.1.e]** What does the y-intercept 9.5 represent?
+6. **[A.ST.1.g]** What does the y-intercept 9.5 represent?
    - A. the most sleep any student reported
    - B. the number of hours of screen time when sleep is 0
    - C. the average screen time of the class
@@ -2231,35 +2231,35 @@ Standards in this unit:
 
 > (1) Four scatterplots are described. (2) Plot 1: shoe size against score on a history test; the points are scattered evenly with no pattern. (3) Plot 2: years of experience against hourly pay for 25 electricians; the points climb steadily from lower left to upper right and lie close to a line. (4) Plot 3: outdoor temperature against heating cost; the points fall from upper left to lower right. (5) Plot 4: seconds after a bounce against a ball's height; the points rise and then fall.
 
-1. **[A.ST.1.f]** Which plot shows no association?
+1. **[A.ST.1.h]** Which plot shows no association?
    - A. Plot 1
    - B. Plot 2
    - C. Plot 3
    - D. Plot 4
    - **Key: A**
 
-2. **[A.ST.1.f]** Which plot shows a strong positive linear association?
+2. **[A.ST.1.h]** Which plot shows a strong positive linear association?
    - A. Plot 1
    - B. Plot 2
    - C. Plot 3
    - D. Plot 4
    - **Key: B**
 
-3. **[A.ST.1.f]** For Plot 3, which line of best fit is possible?
+3. **[A.ST.1.d]** For Plot 3, which line of best fit is possible?
    - A. y = 3x + 40
    - B. y = 3x² + 40
    - C. y = −3x + 240
    - D. y = x² − 40
    - **Key: C**
 
-4. **[A.ST.1.e]** Which plot calls for a quadratic curve of best fit rather than a line?
+4. **[A.ST.1.d]** Which plot calls for a quadratic curve of best fit rather than a line?
    - A. Plot 1
    - B. Plot 2
    - C. Plot 3
    - D. Plot 4
    - **Key: D**
 
-5. **[A.ST.1.h]** What can be concluded from Plot 1?
+5. **[A.ST.1.i]** What can be concluded from Plot 1?
    - A. Larger shoes cause lower history scores.
    - B. Shoe size is not useful for predicting a history score.
    - C. The line of best fit has a steep positive slope.
@@ -2275,28 +2275,28 @@ Standards in this unit:
 > |---|---|---|---|---|---|---|
 > | Avg. bpm | 72 | 84 | 104 | 116 | 136 | 148 |
 
-1. **[A.ST.1.f]** Which statement describes the association?
+1. **[A.ST.1.h]** Which statement describes the association?
    - A. strong positive: heart rate rises steadily with minutes jogged
    - B. strong negative: heart rate falls as minutes increase
    - C. no association between minutes and heart rate
    - D. quadratic: heart rate rises then falls
    - **Key: A**
 
-2. **[A.ST.1.g]** What heart rate does the line predict after 5 minutes?
+2. **[A.ST.1.f]** What heart rate does the line predict after 5 minutes?
    - A. 75 bpm
    - B. 110 bpm
    - C. 120 bpm
    - D. 40 bpm
    - **Key: B**
 
-3. **[A.ST.1.g]** The line predicts 550 bpm after 60 minutes. Why is this prediction not reasonable?
+3. **[A.ST.1.f]** The line predicts 550 bpm after 60 minutes. Why is this prediction not reasonable?
    - A. The slope should be negative for long runs.
    - B. Sixty minutes is far beyond the data; heart rate levels off well below 550.
    - C. Heart rate is not related to exercise.
    - D. The line of best fit only works for even numbers of minutes.
    - **Key: B**
 
-4. **[A.ST.1.e]** What does the y-intercept 70 represent?
+4. **[A.ST.1.g]** What does the y-intercept 70 represent?
    - A. the increase in heart rate each minute
    - B. the number of students measured
    - C. the predicted resting heart rate, before jogging begins
@@ -2329,14 +2329,14 @@ Standards in this unit:
    - D. Do fans prefer hot dogs or nachos at the stand?
    - **Key: B**
 
-2. **[A.ST.1.g]** According to the model, which price maximizes revenue?
+2. **[A.ST.1.f]** According to the model, which price maximizes revenue?
    - A. $8
    - B. $10
    - C. $5
    - D. $2.50
    - **Key: C**
 
-3. **[A.ST.1.g]** What revenue does the model predict at a price of $3?
+3. **[A.ST.1.f]** What revenue does the model predict at a price of $3?
    - A. $420
    - B. $540
    - C. $180
@@ -2350,14 +2350,14 @@ Standards in this unit:
    - D. Prices are whole dollars.
    - **Key: C**
 
-5. **[A.ST.1.h]** The model gives R = 0 at p = 10. What is the most reasonable interpretation?
+5. **[A.ST.1.i]** The model gives R = 0 at p = 10. What is the most reasonable interpretation?
    - A. Few would buy at $10, but $10 is outside the tested prices, so be cautious.
    - B. At $10 the club would earn its greatest revenue of the season.
    - C. The model is wrong, because revenue can never be zero.
    - D. At $10 each fan would buy exactly one hot dog.
    - **Key: A**
 
-6. **[A.ST.1.h]** Which factor most limits the conclusions the club can draw?
+6. **[A.ST.1.i]** Which factor most limits the conclusions the club can draw?
    - A. Each price was tried at one game, so crowd size and weather also varied.
    - B. The prices were listed in dollars instead of cents.
    - C. A quadratic model can only be used for projectiles.
@@ -2387,28 +2387,28 @@ Standards in this unit:
    - D. Ten is the largest number of reefs a boat can visit.
    - **Key: C**
 
-3. **[A.ST.1.e]** What does the slope 12.5 mean in context?
+3. **[A.ST.1.g]** What does the slope 12.5 mean in context?
    - A. The average harvest per reef grew about 12.5 bushels a year.
    - B. Each reef produced 12.5 bushels in 2015.
    - C. The club sampled 12.5 reefs per year.
    - D. The harvest doubled every 12.5 years.
    - **Key: A**
 
-4. **[A.ST.1.g]** What harvest does the line predict for 2025?
+4. **[A.ST.1.f]** What harvest does the line predict for 2025?
    - A. 125 bushels per reef
    - B. 165 bushels per reef
    - C. 290 bushels per reef
    - D. 52.5 bushels per reef
    - **Key: B**
 
-5. **[A.ST.1.f]** How should the club treat the 2018 data point?
+5. **[A.ST.1.h]** How should the club treat the 2018 data point?
    - A. Delete it, because it proves the line is wrong.
    - B. Keep it, and report it as an outlier with a known cause.
    - C. Move it up to the line so the fit looks better.
    - D. Use it as the y-intercept.
    - **Key: B**
 
-6. **[A.ST.1.h]** Which statement best evaluates the 2050 prediction and the causation claim?
+6. **[A.ST.1.i]** Which statement best evaluates the 2050 prediction and the causation claim?
    - A. Both are sound: the line is a good fit, so it works for any year, and the increase proves restoration caused it.
    - B. The 2050 prediction is reliable, but restoration cannot have caused the increase.
    - C. 2050 is too far out to trust; restoration is plausible, but the data show only an association.

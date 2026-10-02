@@ -545,7 +545,7 @@
       claims: [
         {
           id: "point",
-          sol: "A.EI.2.g",
+          sol: "A.EI.2.h",
           stem: "Which order stays within the $60 budget?",
           choices: [
             { letter: "A", text: "5 snack bags and 10 pizzas" },
@@ -569,7 +569,7 @@
         },
         {
           id: "system",
-          sol: "A.EI.2.d",
+          sol: "A.EI.2.f",
           stem: "Which system of inequalities represents both council requirements?",
           choices: [
             { letter: "A", text: "3s + 5p ≤ 60 and s + p ≥ 8" },
@@ -581,7 +581,7 @@
         },
         {
           id: "both",
-          sol: "A.EI.2.g",
+          sol: "A.EI.2.h",
           stem: "Is (s, p) = (4, 4) a solution of the system?",
           choices: [
             { letter: "A", text: "No; 4 + 4 = 8 is not at least 8." },
@@ -605,7 +605,7 @@
         },
         {
           id: "region",
-          sol: "A.EI.2.f",
+          sol: "A.EI.2.g",
           stem: "The solution set of the system in the graph is —",
           choices: [
             { letter: "A", text: "the region where the shadings of the two inequalities overlap" },

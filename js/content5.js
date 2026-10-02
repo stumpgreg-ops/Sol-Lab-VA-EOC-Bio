@@ -20,7 +20,7 @@
       claims: [
         {
           id: "direction",
-          sol: "A.ST.1.f",
+          sol: "A.ST.1.h",
           stem: "Which statement describes the relationship in the scatterplot?",
           choices: [
             { letter: "A", text: "a negative association: more hours, lower scores" },
@@ -44,7 +44,7 @@
         },
         {
           id: "predict",
-          sol: "A.ST.1.g",
+          sol: "A.ST.1.f",
           stem: "Using the line of best fit, what score is predicted for a student who studies 4 hours?",
           choices: [
             { letter: "A", text: "82" },
@@ -56,7 +56,7 @@
         },
         {
           id: "slope",
-          sol: "A.ST.1.e",
+          sol: "A.ST.1.g",
           stem: "What does the slope 6 mean in context?",
           choices: [
             { letter: "A", text: "Each extra hour of study is associated with about 6 more points." },
@@ -68,7 +68,7 @@
         },
         {
           id: "intercept",
-          sol: "A.ST.1.e",
+          sol: "A.ST.1.g",
           stem: "What does the y-intercept 58 represent?",
           choices: [
             { letter: "A", text: "the score gained per hour of study" },
@@ -129,7 +129,7 @@
         },
         {
           id: "plot",
-          sol: "A.ST.1.d",
+          sol: "A.ST.1.b",
           stem: "How should Jaylen set up his scatterplot?",
           choices: [
             { letter: "A", text: "temperature on the horizontal axis, snow cones sold on the vertical axis, one point per day" },
@@ -141,7 +141,7 @@
         },
         {
           id: "extrapolate",
-          sol: "A.ST.1.g",
+          sol: "A.ST.1.f",
           stem: "Jaylen's line of best fit predicts 190 snow cones for a 120°F day. Why is this prediction unreasonable?",
           choices: [
             { letter: "A", text: "Lines of best fit cannot be used for predictions." },
@@ -166,7 +166,7 @@
       claims: [
         {
           id: "direction",
-          sol: "A.ST.1.f",
+          sol: "A.ST.1.h",
           stem: "Which statement describes the association between age and price?",
           choices: [
             { letter: "A", text: "positive and strong" },
@@ -178,7 +178,7 @@
         },
         {
           id: "predict",
-          sol: "A.ST.1.g",
+          sol: "A.ST.1.f",
           stem: "What price does the line predict for a 5-year-old car?",
           choices: [
             { letter: "A", text: "$16,500" },
@@ -190,7 +190,7 @@
         },
         {
           id: "slope",
-          sol: "A.ST.1.e",
+          sol: "A.ST.1.g",
           stem: "What does the slope −1500 mean?",
           choices: [
             { letter: "A", text: "The predicted price drops about $1,500 per year of age." },
@@ -202,7 +202,7 @@
         },
         {
           id: "outlier",
-          sol: "A.ST.1.f",
+          sol: "A.ST.1.h",
           stem: "The 3-year-old car listed at $4,000 is best described as —",
           choices: [
             { letter: "A", text: "the y-intercept of the line" },
@@ -214,7 +214,7 @@
         },
         {
           id: "x-intercept",
-          sol: "A.ST.1.g",
+          sol: "A.ST.1.f",
           stem: "The line reaches y = 0 at x = 12. Why should the class not conclude that a 12-year-old car is free?",
           choices: [
             { letter: "A", text: "Twelve years is beyond the oldest car in the data, so this is extrapolation." },
@@ -240,7 +240,7 @@
       claims: [
         {
           id: "why-quadratic",
-          sol: "A.ST.1.e",
+          sol: "A.ST.1.d",
           stem: "Why is a quadratic curve a better model than a line for these data?",
           choices: [
             { letter: "A", text: "The points rise and then fall, and a line cannot change direction." },
@@ -252,7 +252,7 @@
         },
         {
           id: "predict",
-          sol: "A.ST.1.g",
+          sol: "A.ST.1.f",
           stem: "Using the curve, what height is predicted at t = 2 seconds?",
           choices: [
             { letter: "A", text: "39.7 m" },
@@ -264,7 +264,7 @@
         },
         {
           id: "peak",
-          sol: "A.ST.1.g",
+          sol: "A.ST.1.f",
           stem: "About when does the model say the rocket reaches its greatest height?",
           choices: [
             { letter: "A", text: "t = 4 s, when it lands" },
@@ -276,7 +276,7 @@
         },
         {
           id: "outside",
-          sol: "A.ST.1.h",
+          sol: "A.ST.1.i",
           stem: "The curve gives h = −24 at t = 5 seconds. What should the class conclude?",
           choices: [
             { letter: "A", text: "The rocket goes underground after landing." },
@@ -288,7 +288,7 @@
         },
         {
           id: "collect",
-          sol: "A.ST.1.d",
+          sol: "A.ST.1.b",
           stem: "Which variable belongs on the horizontal axis of the scatterplot?",
           choices: [
             { letter: "A", text: "height, because it is what the class measured" },
@@ -361,7 +361,7 @@
         },
         {
           id: "display",
-          sol: "A.ST.1.d",
+          sol: "A.ST.1.h",
           stem: "After collecting the data, which display best shows whether the two variables are related?",
           choices: [
             { letter: "A", text: "a bar graph of the number of students in each grade" },
@@ -387,7 +387,7 @@
       claims: [
         {
           id: "shape",
-          sol: "A.ST.1.f",
+          sol: "A.ST.1.h",
           stem: "Which description of the relationship fits the data?",
           choices: [
             { letter: "A", text: "a linear positive association: more fertilizer, taller plants at every level" },
@@ -399,7 +399,7 @@
         },
         {
           id: "predict",
-          sol: "A.ST.1.g",
+          sol: "A.ST.1.f",
           stem: "What height does the curve predict for 5 grams of fertilizer?",
           choices: [
             { letter: "A", text: "29.5 cm" },
@@ -411,7 +411,7 @@
         },
         {
           id: "best",
-          sol: "A.ST.1.g",
+          sol: "A.ST.1.f",
           stem: "According to the model, which amount of fertilizer gives the greatest predicted height?",
           choices: [
             { letter: "A", text: "12 grams, the most fertilizer" },
@@ -423,7 +423,7 @@
         },
         {
           id: "extrapolate",
-          sol: "A.ST.1.h",
+          sol: "A.ST.1.i",
           stem: "A student uses the curve to predict the height for 20 grams and gets −68 cm. What is the best response?",
           choices: [
             { letter: "A", text: "The plant would grow 68 cm downward." },
@@ -472,7 +472,7 @@
       claims: [
         {
           id: "slope",
-          sol: "A.ST.1.e",
+          sol: "A.ST.1.g",
           stem: "What does the slope −0.5 mean in context?",
           choices: [
             { letter: "A", text: "Each extra hour of screen time is associated with about half an hour less sleep." },
@@ -484,7 +484,7 @@
         },
         {
           id: "predict",
-          sol: "A.ST.1.g",
+          sol: "A.ST.1.f",
           stem: "How many hours of sleep does the line predict for a student with 3 hours of screen time?",
           choices: [
             { letter: "A", text: "9 hours" },
@@ -496,7 +496,7 @@
         },
         {
           id: "interpolate",
-          sol: "A.ST.1.g",
+          sol: "A.ST.1.f",
           stem: "Which prediction from the line is most trustworthy?",
           choices: [
             { letter: "A", text: "sleep for 15 hours of screen time" },
@@ -508,7 +508,7 @@
         },
         {
           id: "causation",
-          sol: "A.ST.1.h",
+          sol: "A.ST.1.i",
           stem: "Why is the student's conclusion in sentence 5 too strong?",
           choices: [
             { letter: "A", text: "The slope is negative, which means there is no relationship." },
@@ -532,7 +532,7 @@
         },
         {
           id: "y-int",
-          sol: "A.ST.1.e",
+          sol: "A.ST.1.g",
           stem: "What does the y-intercept 9.5 represent?",
           choices: [
             { letter: "A", text: "the most sleep any student reported" },
@@ -557,7 +557,7 @@
       claims: [
         {
           id: "none",
-          sol: "A.ST.1.f",
+          sol: "A.ST.1.h",
           stem: "Which plot shows no association?",
           choices: [
             { letter: "A", text: "Plot 1" },
@@ -569,7 +569,7 @@
         },
         {
           id: "strong-positive",
-          sol: "A.ST.1.f",
+          sol: "A.ST.1.h",
           stem: "Which plot shows a strong positive linear association?",
           choices: [
             { letter: "A", text: "Plot 1" },
@@ -581,7 +581,7 @@
         },
         {
           id: "negative",
-          sol: "A.ST.1.f",
+          sol: "A.ST.1.d",
           stem: "For Plot 3, which line of best fit is possible?",
           choices: [
             { letter: "A", text: "y = 3x + 40" },
@@ -593,7 +593,7 @@
         },
         {
           id: "curve",
-          sol: "A.ST.1.e",
+          sol: "A.ST.1.d",
           stem: "Which plot calls for a quadratic curve of best fit rather than a line?",
           choices: [
             { letter: "A", text: "Plot 1" },
@@ -605,7 +605,7 @@
         },
         {
           id: "meaning",
-          sol: "A.ST.1.h",
+          sol: "A.ST.1.i",
           stem: "What can be concluded from Plot 1?",
           choices: [
             { letter: "A", text: "Larger shoes cause lower history scores." },
@@ -643,7 +643,7 @@
         },
         {
           id: "best-price",
-          sol: "A.ST.1.g",
+          sol: "A.ST.1.f",
           stem: "According to the model, which price maximizes revenue?",
           choices: [
             { letter: "A", text: "$8" },
@@ -655,7 +655,7 @@
         },
         {
           id: "predict",
-          sol: "A.ST.1.g",
+          sol: "A.ST.1.f",
           stem: "What revenue does the model predict at a price of $3?",
           choices: [
             { letter: "A", text: "$420" },
@@ -679,7 +679,7 @@
         },
         {
           id: "zero",
-          sol: "A.ST.1.h",
+          sol: "A.ST.1.i",
           stem: "The model gives R = 0 at p = 10. What is the most reasonable interpretation?",
           choices: [
             { letter: "A", text: "Few would buy at $10, but $10 is outside the tested prices, so be cautious." },
@@ -691,7 +691,7 @@
         },
         {
           id: "limits",
-          sol: "A.ST.1.h",
+          sol: "A.ST.1.i",
           stem: "Which factor most limits the conclusions the club can draw?",
           choices: [
             { letter: "A", text: "Each price was tried at one game, so crowd size and weather also varied." },
@@ -741,7 +741,7 @@
         },
         {
           id: "slope",
-          sol: "A.ST.1.e",
+          sol: "A.ST.1.g",
           stem: "What does the slope 12.5 mean in context?",
           choices: [
             { letter: "A", text: "The average harvest per reef grew about 12.5 bushels a year." },
@@ -753,7 +753,7 @@
         },
         {
           id: "predict",
-          sol: "A.ST.1.g",
+          sol: "A.ST.1.f",
           stem: "What harvest does the line predict for 2025?",
           choices: [
             { letter: "A", text: "125 bushels per reef" },
@@ -765,7 +765,7 @@
         },
         {
           id: "storm",
-          sol: "A.ST.1.f",
+          sol: "A.ST.1.h",
           stem: "How should the club treat the 2018 data point?",
           choices: [
             { letter: "A", text: "Delete it, because it proves the line is wrong." },
@@ -777,7 +777,7 @@
         },
         {
           id: "extrapolate",
-          sol: "A.ST.1.h",
+          sol: "A.ST.1.i",
           stem: "Which statement best evaluates the 2050 prediction and the causation claim?",
           choices: [
             { letter: "A", text: "Both are sound: the line is a good fit, so it works for any year, and the increase proves restoration caused it." },
@@ -803,7 +803,7 @@
       claims: [
         {
           id: "direction",
-          sol: "A.ST.1.f",
+          sol: "A.ST.1.h",
           stem: "Which statement describes the association?",
           choices: [
             { letter: "A", text: "strong positive: heart rate rises steadily with minutes jogged" },
@@ -815,7 +815,7 @@
         },
         {
           id: "predict",
-          sol: "A.ST.1.g",
+          sol: "A.ST.1.f",
           stem: "What heart rate does the line predict after 5 minutes?",
           choices: [
             { letter: "A", text: "75 bpm" },
@@ -827,7 +827,7 @@
         },
         {
           id: "extrapolate",
-          sol: "A.ST.1.g",
+          sol: "A.ST.1.f",
           stem: "The line predicts 550 bpm after 60 minutes. Why is this prediction not reasonable?",
           choices: [
             { letter: "A", text: "The slope should be negative for long runs." },
@@ -839,7 +839,7 @@
         },
         {
           id: "intercept",
-          sol: "A.ST.1.e",
+          sol: "A.ST.1.g",
           stem: "What does the y-intercept 70 represent?",
           choices: [
             { letter: "A", text: "the increase in heart rate each minute" },
