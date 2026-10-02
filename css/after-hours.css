@@ -668,6 +668,8 @@ h1.logo img { width: min(300px, 60vw); height: auto; display: block; margin: 0 a
 .realm-card .boss { color: #ffd0c8; }
 .realm-card .boss b { color: #ff8b7a; }
 .realm-card .perks b { color: #9aefc0; }
+.realm-card.mode-card .new { margin-top: 6px; padding: 4px 8px; border-left: 3px solid #ffd84a; background: rgba(255,216,74,.10); }
+.realm-card.mode-card .new b { color: #ffd84a; }
 .realm-card.boss { border-color: rgba(255,120,100,.6); background: linear-gradient(135deg, rgba(60,14,10,.94), rgba(18,20,28,.94)); }
 .realm-card[data-realm="niflheim"] { border-color: rgba(160,210,255,.5); }
 .realm-card[data-realm="muspelheim"], .realm-card[data-realm="ragnarok"] { border-color: rgba(255,120,60,.55); }
@@ -682,3 +684,26 @@ h1.logo img { width: min(300px, 60vw); height: auto; display: block; margin: 0 a
 #stage.mode-play #btn-shutter { display: none; }
 #stage.mode-play.mode-rocks #btn-shutter { display: inline-block; }
 .realm-card.mode-card { border-color: rgba(255,210,110,.6); background: linear-gradient(135deg, rgba(40,30,8,.94), rgba(18,20,28,.94)); }
+
+/* v5.7.3: Rune Rocks — the one-card "how to pull a rock in" pop-up */
+#beam-help {
+  position: absolute; inset: 0; z-index: 70;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(8, 10, 14, 0.62); padding: 16px;
+}
+#beam-help.hidden { display: none !important; }
+#beam-help .beam-card { max-width: 460px; width: min(460px, 94%); }
+#beam-help svg { display: block; margin: 4px 0 10px; background: #0b0f1a; border-radius: 10px; }
+#beam-help .beam-steps { margin: 0 0 10px; padding-left: 22px; color: var(--ink); font-size: 15px; line-height: 1.4; }
+#beam-help .beam-steps li { margin-bottom: 6px; }
+#beam-help .beam-warn { margin: 0 0 12px; color: #ffb89a; font-size: 14px; }
+#beam-help #beam-help-ok { min-height: 44px; min-width: 120px; }
+
+/* v5.7.6: Fenrir's Fangs on a boss level's win screen */
+.fang-row { margin: 8px 0 10px; text-align: center; }
+.fang-row.hidden { display: none; }
+.fang-row .fang-title { margin: 0 0 6px; color: var(--gold); font-weight: 700; letter-spacing: .06em; font-size: 13px; text-transform: uppercase; }
+.fang-row .fang { display: inline-flex; flex-direction: column; align-items: center; width: 64px; margin: 2px; color: #55606e; font-size: 20px; line-height: 1; }
+.fang-row .fang small { font-size: 10px; margin-top: 3px; color: #7a8594; }
+.fang-row .fang.on { color: #fff3c4; text-shadow: 0 0 8px rgba(255, 216, 74, .7); }
+.fang-row .fang.on small { color: var(--gold); }

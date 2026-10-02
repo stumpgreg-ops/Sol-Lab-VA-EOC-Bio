@@ -1,11 +1,11 @@
-/* SOL Labyrinth v5.7.1 — shooter levels.
+/* SOL Labyrinth v5.8.0 — shooter levels.
  *
  * Every other level of each realm (levels 2, 4, 6 and 8) swaps the maze for a
  * shooter, in rotation:
  *   2  Eagle Swoop   galaga style: eagles carry the letters above a raven guard and dive; shoot the right eagle
  *   4  Rune Rocks    asteroids style: beam in the rock with the right letter, blast the rest
  *   6  Sun Chariot   side-scrolling flyer: shoot the letter orb with the right answer
- *   8  Wolf Ring     arena: Hati circle in; shoot the runestone with the right answer
+ *   8  Wolf Ring     arena: Hati attack; runestones rise one or two at a time; shoot the right one while it is up
  * Odd levels stay in the maze and every tenth level is still Fenrir's boss maze.
  *
  * The questions, the reading pop-up, lives, coins, the adaptive level,
@@ -22,42 +22,83 @@
   var MODES = {
     raid: {
       id: "raid", name: "Eagle Swoop", kind: "galaga-style level",
-      how: "Great eagles sit at the top of the sky, each carrying a letter in its talons, with rows of ravens flying guard below them. Shoot the eagle that carries the right answer. An eagle takes two arrows. Ravens and eagles swoop down at Sol, and an eagle can stop and shine a beam down to catch him.",
-      rules: "A wrong letter costs a life. So does a feather, a bird crashing into you, or getting caught in an eagle's beam.",
+      how: "Great eagles fly in and take the top of the sky, each carrying a letter in its talons, with two guard ravens under each eagle and rows of ravens below. Once the flock has formed, shoot the eagle that carries the right answer — it takes two arrows. Birds are always swooping down at Sol, and an eagle can stop and shine a beam down to catch him.",
+      rules: "A wrong letter costs a life. So does bird poo landing on you, a bird crashing into you, or getting caught in an eagle's beam. You can't shoot until the flock has flown into formation.",
       keys: "◀ ▶ or A / D move · Space, FIRE or a mouse button shoots (clicking does not move Sol).",
-      tip: "EAGLE SWOOP — shoot the eagle with the right letter. Dodge the beams.",
+      tip: "EAGLE SWOOP — shoot the eagle with the right letter. Dodge the poo and the beams.",
       hint1: "Shoot the eagle carrying the right letter — it takes two arrows. The lab notes stay in the side panel.",
-      hint2: "This question has two right letters. Shoot both eagles that carry them."
+      hint2: "This question has two right letters. Shoot both eagles that carry them.",
+      news: ["",
+        "Bird poo now drifts toward where you stand, and every diving bird drops two.",
+        "The eagles trade places in the formation now and then. Keep your eye on the right letter.",
+        "Iron-helmed eagles: an eagle now takes three arrows.",
+        "A third row of ravens guards the eagles.",
+        "A storm cloud drifts across the flock. Arrows can't get through it.",
+        "An eagle's catching beam now follows you.",
+        "Ravens in the formation drop poo too, not just the divers.",
+        "Two storm clouds, and the eagles trade places more often.",
+        "Ragnarok: one more bird dives at a time, on top of everything else."]
     },
     rocks: {
       id: "rocks", name: "Rune Rocks", kind: "asteroids level",
       how: "Rocks drift through space and a few carry letters. Hold your beam on the rock with the right answer to pull it in. Blast the wrong letters and the plain rocks before they hit you.",
-      rules: "Pulling in a wrong letter costs a life. So does blasting the right answer, or a rock hitting your ship.",
-      keys: "◀ ▶ turn · ▲ thrust · Space or FIRE shoots · ▼, Shift or PULL holds the beam. With a mouse, hold the button to turn toward it and fire.",
+      rules: "Pulling in a wrong letter costs a life. So does blasting the right answer, or a rock hitting your ship — including a rock you let go of before it reached you.",
+      keys: "◀ ▶ turn · ▲ thrust · Space, FIRE or the left mouse button shoots · ▼, Shift, PULL or the right mouse button holds the beam. The mouse never steers the ship.",
       tip: "RUNE ROCKS — beam in the right letter, blast the rest. Don't get hit.",
       hint1: "Pull in the rock with the right letter (▼, Shift or PULL). Blast the others. The lab notes stay in the side panel.",
-      hint2: "This question has two right letters. Pull in both rocks that carry them."
+      hint2: "This question has two right letters. Pull in both rocks that carry them.",
+      news: ["",
+        "Comets: a red line flashes where a comet will streak across a second later. Get out of its way.",
+        "Iron rocks: the big grey-blue rocks take two shots.",
+        "Heavy runes: the beam pulls letter rocks in more slowly. Hold it longer.",
+        "Slippery space: your ship drifts further before it stops.",
+        "Guard stones: two small stones circle every letter rock. Shoot them off before the beam can pull it in.",
+        "Comets come twice as often, in pairs.",
+        "A valkyrie flies past and throws spears at your ship. Shoot her for a bonus.",
+        "Rock showers: a wave of small rocks pours in from one side (an arrow shows where first).",
+        "Ragnarok: every rock moves faster, on top of everything else."]
     },
     sky: {
       id: "sky", name: "Sun Chariot", kind: "flying shooter level",
-      how: "Sol drives the sun's chariot across the sky. Letter orbs float past among ravens and will-o'-wisps. Shoot the orb with the right answer. Orbs you miss come round again.",
-      rules: "Shooting a wrong orb costs a life. So does flying into a raven or a wisp.",
-      keys: "Arrow keys or WASD fly · Space or FIRE shoots · or hold the mouse or a finger where you want to fly.",
-      tip: "SUN CHARIOT — shoot the orb with the right letter. Dodge the ravens and wisps.",
-      hint1: "Shoot the orb with the right letter. The lab notes stay in the side panel.",
-      hint2: "This question has two right letters. Shoot both orbs that carry them."
+      how: "Sol drives the sun's chariot across the sky. Letter orbs float past among ravens and will-o'-wisps, each inside a turning golden shield with one gap in it. A sunbolt only gets through when the gap faces you, so time your shot. Shoot the orb with the right answer; orbs you miss come round again. Ravens throw feathers at you (they glow orange first), and in later realms wisps throw sparks and a raven guards some orbs — shoot the guard out of the way.",
+      rules: "Shooting a wrong orb costs a life. So does a feather, a spark, or flying into a raven or a wisp.",
+      keys: "Arrow keys, WASD or the on-screen pad fly · Space, FIRE or a mouse button shoots (clicking does not move the chariot).",
+      tip: "SUN CHARIOT — shoot the right orb through the gap in its shield. Dodge the ravens, wisps and feathers.",
+      hint1: "Shoot the orb with the right letter through the gap in its turning shield. The lab notes stay in the side panel.",
+      hint2: "This question has two right letters. Shoot both orbs that carry them, through the gaps in their shields.",
+      news: ["",
+        "A raven flies in front of one orb to guard it, the orbs weave more, and the shield gaps are narrower.",
+        "Will-o'-wisps throw sparks at you.",
+        "Shields now reverse direction without warning, and two orbs have guards.",
+        "Narrower gaps and faster shields.",
+        "Three orbs have guards.",
+        "Every shield spins at its own speed.",
+        "Four orbs have guards.",
+        "Narrower gaps and faster shields again.",
+        "Ragnarok: the narrowest, fastest shields of all."]
     },
     ring: {
       id: "ring", name: "Wolf Ring", kind: "arena level",
-      how: "Sol stands inside a ring of runestones while the Hati circle in. Shoot the runestone with the right answer. An arrow sends a wolf running.",
+      how: "Sol stands in a stone ring while the Hati attack. The letter runestones are sunk in the ground: after the wolves come, they rise one or two at a time, in any order and anywhere round the ring, and sink again a few seconds later. Shoot the runestone with the right answer while it is up. An arrow sends a wolf running.",
       rules: "Shooting a wrong stone costs a life. So does letting a wolf reach you.",
-      keys: "Arrow keys or WASD move and aim · Space or FIRE shoots · or click or tap to aim and shoot.",
-      tip: "WOLF RING — shoot the runestone with the right letter. Keep the wolves off.",
-      hint1: "Shoot the runestone with the right letter. The lab notes stay in the side panel.",
-      hint2: "This question has two right letters. Shoot both runestones that carry them."
+      keys: "Arrow keys or WASD move and aim · Space or FIRE shoots · or click or tap to aim and shoot (Sol does not move).",
+      tip: "WOLF RING — watch for the right runestone to rise, and shoot it. Keep the wolves off.",
+      hint1: "The runestones rise after the wolves come. Shoot the one with the right letter while it is up. The lab notes stay in the side panel.",
+      hint2: "This question has two right letters. Shoot both runestones that carry them.",
+      news: ["",
+        "Wolf packs: the Hati sometimes come two at a time from the same side.",
+        "The alpha wolf: a big grey wolf that takes three arrows to send away.",
+        "Ravens fly over the ring and drop poo. A shadow shows where it will land.",
+        "The runestones slide round the ring while they are up.",
+        "A quiver of six arrows: each one comes back after a moment, so don't waste them.",
+        "Some wolves zig-zag as they run at you.",
+        "The runestones stay up for less time, and two alpha wolves can come at once.",
+        "Leaping wolves: some crouch, then leap the last stretch.",
+        "Ragnarok: the wolves come faster, on top of everything else."]
     }
   };
   var SLOTS = { 2: "raid", 4: "rocks", 6: "sky", 8: "ring" };
+  var BEAM_KEY = "afterHours.v1.beamLearned";   /* set once a student has pulled a rock in */
 
   function modeFor(n) {
     n = Math.floor(Number(n) || 0);
@@ -116,10 +157,30 @@
     g.addColorStop(0, "rgba(255,255,230,1)"); g.addColorStop(0.35, "rgba(255,220,90,0.95)"); g.addColorStop(1, "rgba(255,150,30,0)");
     c.fillStyle = g; c.beginPath(); c.ellipse(w / 2, h / 2, w / 2, h / 2, 0, 0, Math.PI * 2); c.fill();
   }
+  /* v5.7.7: bird poo — thick and white with a dark outline so it reads on any sky */
+  function drawPoo(c, w, h) {
+    c.fillStyle = "#1a1a22"; c.beginPath(); c.moveTo(w / 2, 1); c.quadraticCurveTo(w - 1, h * 0.55, w / 2, h - 1); c.quadraticCurveTo(1, h * 0.55, w / 2, 1); c.fill();
+    c.fillStyle = "#f7f7ee"; c.beginPath(); c.moveTo(w / 2, 4); c.quadraticCurveTo(w - 4, h * 0.56, w / 2, h - 4); c.quadraticCurveTo(4, h * 0.56, w / 2, 4); c.fill();
+    c.fillStyle = "#b9b9a8"; c.beginPath(); c.arc(w * 0.42, h * 0.66, w * 0.14, 0, Math.PI * 2); c.fill();
+    c.fillStyle = "#ffffff"; c.beginPath(); c.arc(w * 0.6, h * 0.48, w * 0.09, 0, Math.PI * 2); c.fill();
+  }
+  function drawSplat(c, w, h) {
+    var cx = w / 2, cy = h / 2, i, a, r;
+    c.fillStyle = "#1a1a22"; c.beginPath();
+    for (i = 0; i <= 16; i++) { a = i / 16 * Math.PI * 2; r = (i % 2 ? 0.28 : 0.46) * w; c[i ? "lineTo" : "moveTo"](cx + Math.cos(a) * r, cy + Math.sin(a) * r * 0.8); }
+    c.fill();
+    c.fillStyle = "#f7f7ee"; c.beginPath();
+    for (i = 0; i <= 16; i++) { a = i / 16 * Math.PI * 2; r = (i % 2 ? 0.23 : 0.41) * w; c[i ? "lineTo" : "moveTo"](cx + Math.cos(a) * r, cy + Math.sin(a) * r * 0.8); }
+    c.fill();
+    c.fillStyle = "#c8c8b6"; c.beginPath(); c.arc(cx - w * 0.08, cy + h * 0.06, w * 0.1, 0, Math.PI * 2); c.fill();
+  }
   function drawFeather(c, w, h) {
-    c.fillStyle = "#2a2238"; c.beginPath(); c.moveTo(w / 2, 0);
-    c.quadraticCurveTo(w, h * 0.45, w / 2, h - 3); c.quadraticCurveTo(0, h * 0.45, w / 2, 0); c.fill();
-    c.strokeStyle = "#8a80a8"; c.lineWidth = 1.2; c.beginPath(); c.moveTo(w / 2, 2); c.lineTo(w / 2, h); c.stroke();
+    /* v5.7.7: a light outline so a dark feather shows against a dark sky */
+    c.fillStyle = "#f2ecff"; c.beginPath(); c.moveTo(w / 2, 0);
+    c.quadraticCurveTo(w, h * 0.45, w / 2, h - 1); c.quadraticCurveTo(0, h * 0.45, w / 2, 0); c.fill();
+    c.fillStyle = "#2a2238"; c.beginPath(); c.moveTo(w / 2, 3);
+    c.quadraticCurveTo(w - 3, h * 0.45, w / 2, h - 4); c.quadraticCurveTo(3, h * 0.45, w / 2, 3); c.fill();
+    c.strokeStyle = "#c8c0e8"; c.lineWidth = 1.5; c.beginPath(); c.moveTo(w / 2, 3); c.lineTo(w / 2, h); c.stroke();
   }
   function drawEagle(up) {
     return function (c, w, h) {
@@ -142,6 +203,12 @@
       c.strokeStyle = "#f0b030"; c.lineWidth = 3;
       c.beginPath(); c.moveTo(cx - 5, 44); c.lineTo(cx - 8, h - 2); c.moveTo(cx + 5, 44); c.lineTo(cx + 8, h - 2); c.stroke();
     };
+  }
+  function drawCloud(c, w, h) {
+    var puffs = [[0.22, 0.6, 0.2], [0.4, 0.42, 0.26], [0.62, 0.45, 0.24], [0.8, 0.62, 0.18], [0.5, 0.68, 0.26]];
+    c.fillStyle = "#c8d0e0"; puffs.forEach(function (q) { c.beginPath(); c.arc(q[0] * w, q[1] * h, q[2] * w * 0.5 + 3, 0, Math.PI * 2); c.fill(); });
+    c.fillStyle = "#5e6878"; puffs.forEach(function (q) { c.beginPath(); c.arc(q[0] * w, q[1] * h, q[2] * w * 0.5, 0, Math.PI * 2); c.fill(); });
+    c.fillStyle = "rgba(255,255,255,0.18)"; c.beginPath(); c.arc(0.4 * w, 0.36 * h, 0.1 * w, 0, Math.PI * 2); c.fill();
   }
   function drawShield(c, w, h) {
     var r = w / 2 - 2;
@@ -188,6 +255,36 @@
     c.strokeStyle = "#ffd84a"; c.lineWidth = 3; c.beginPath(); c.arc(w * 0.42, h * 0.8, 11, 0, Math.PI * 2); c.stroke();
     c.beginPath(); c.moveTo(w * 0.42 - 11, h * 0.8); c.lineTo(w * 0.42 + 11, h * 0.8); c.moveTo(w * 0.42, h * 0.8 - 11); c.lineTo(w * 0.42, h * 0.8 + 11); c.stroke();
   }
+  /* v5.7.9: the sun chariot with two golden horses pulling it, facing right. The car sits in the left half
+     (its centre at x = TEAM_CAR), the horses in the right; frame 0 and 1 are the two strides of a gallop. */
+  var TEAM_W = 200, TEAM_H = 80, TEAM_CAR = 45;
+  function drawHorse(c, x, y, frame, body, shade) {
+    var ln = function (pts, w, col) { c.strokeStyle = col; c.lineWidth = w; c.lineCap = "round"; c.lineJoin = "round"; c.beginPath(); pts.forEach(function (q, i) { c[i ? "lineTo" : "moveTo"](q[0], q[1]); }); c.stroke(); };
+    var legs = frame ? [[[x + 13, y + 6], [x + 20, y + 14], [x + 14, y + 23]], [[x + 9, y + 6], [x + 12, y + 16], [x + 6, y + 23]], [[x - 12, y + 6], [x - 6, y + 15], [x - 10, y + 23]], [[x - 16, y + 6], [x - 14, y + 16], [x - 18, y + 23]]]
+                     : [[[x + 13, y + 6], [x + 24, y + 12], [x + 32, y + 18]], [[x + 9, y + 6], [x + 18, y + 14], [x + 24, y + 21]], [[x - 12, y + 6], [x - 22, y + 13], [x - 30, y + 19]], [[x - 16, y + 6], [x - 26, y + 12], [x - 34, y + 16]]];
+    legs.forEach(function (L) { ln(L, 5.5, "#5a3c12"); ln(L, 3.4, shade); });
+    /* tail: a golden flame */
+    ln([[x - 20, y - 4], [x - 30, y - 6], [x - 38, y + 2]], 6, "#5a3c12"); ln([[x - 20, y - 4], [x - 30, y - 6], [x - 38, y + 2]], 4, "#ffcf4a");
+    /* body, neck, head */
+    c.fillStyle = body; c.strokeStyle = "#5a3c12"; c.lineWidth = 1.6;
+    c.beginPath(); c.ellipse(x, y, 22, 10.5, 0, 0, Math.PI * 2); c.fill(); c.stroke();
+    c.beginPath(); c.moveTo(x + 12, y - 6); c.lineTo(x + 22, y - 20); c.lineTo(x + 30, y - 17); c.lineTo(x + 21, y + 1); c.closePath(); c.fill(); c.stroke();
+    c.save(); c.translate(x + 32, y - 17); c.rotate(0.55); c.beginPath(); c.ellipse(0, 0, 9.5, 5, 0, 0, Math.PI * 2); c.fill(); c.stroke(); c.restore();
+    c.beginPath(); c.moveTo(x + 24, y - 21); c.lineTo(x + 26, y - 28); c.lineTo(x + 29, y - 20); c.closePath(); c.fill(); c.stroke();
+    c.fillStyle = "#2a1a08"; c.beginPath(); c.arc(x + 31, y - 19, 1.4, 0, Math.PI * 2); c.fill();
+    /* mane */
+    ln([[x + 12, y - 8], [x + 17, y - 16], [x + 23, y - 22]], 4.5, "#ffcf4a");
+  }
+  function drawTeam(frame) {
+    return function (c, w, h) {
+      /* the traces from the car to the horses' chests */
+      c.strokeStyle = "#7a4a10"; c.lineWidth = 2.5;
+      c.beginPath(); c.moveTo(92, 50); c.lineTo(148, 42); c.moveTo(92, 54); c.lineTo(136, 54); c.stroke();
+      drawHorse(c, 150, 38, frame ? 0 : 1, "#e2d4ae", "#cdbb8c");   /* the far horse, a stride apart */
+      c.save(); c.translate(0, 6); drawChariot(c, 100, 72); c.restore();
+      drawHorse(c, 136, 50, frame, "#f7eed6", "#e6d8b2");
+    };
+  }
   function drawOrb(c, w, h) {
     var g = c.createRadialGradient(w * 0.42, h * 0.38, 2, w / 2, h / 2, w / 2);
     g.addColorStop(0, "rgba(255,255,255,0.95)"); g.addColorStop(0.45, "rgba(170,210,255,0.75)"); g.addColorStop(0.85, "rgba(80,120,220,0.55)"); g.addColorStop(1, "rgba(60,90,200,0)");
@@ -214,14 +311,19 @@
   function ensureModeArt(scene, pal) {
     canvasTex(scene, "md-arrow", 12, 34, drawArrow);
     canvasTex(scene, "md-bolt", 34, 12, drawBolt);
-    canvasTex(scene, "md-feather", 12, 26, drawFeather);
+    canvasTex(scene, "md-feather", 16, 32, drawFeather);
+    canvasTex(scene, "md-poo", 22, 28, drawPoo);
+    canvasTex(scene, "md-splat", 54, 44, drawSplat);
     canvasTex(scene, "md-shield", 42, 42, drawShield);
+    canvasTex(scene, "md-cloud", 180, 80, drawCloud);
     canvasTex(scene, "md-eagle-0", 88, 62, drawEagle(true));
     canvasTex(scene, "md-eagle-1", 88, 62, drawEagle(false));
     for (var i = 0; i < 3; i++) canvasTex(scene, "md-rock-" + i, 100, 100, drawRock(i + 1, false));
     canvasTex(scene, "md-rock-l", 100, 100, drawRock(7, true));
     canvasTex(scene, "md-ship", 44, 52, drawShip);
     canvasTex(scene, "md-chariot", 110, 72, drawChariot);
+    canvasTex(scene, "md-team-0", TEAM_W, TEAM_H, drawTeam(0));
+    canvasTex(scene, "md-team-1", TEAM_W, TEAM_H, drawTeam(1));
     canvasTex(scene, "md-orb", 70, 70, drawOrb);
     canvasTex(scene, "md-stone", 58, 72, drawStone);
     if (pal && scene.realm) {
@@ -240,6 +342,8 @@
       init(data) {
         super.init(data);   /* family, strand, level, question pack, realm and perks (realms.js wraps init) */
         this.mode = modeFor(this.night) || MODES.raid;
+        /* v5.7.9: each mode comes round once a realm; every time it comes round it adds something (MODES[id].news) */
+        this.tier = clamp(Math.floor(((this.night || 1) - 1) / 10), 0, 9);
       }
 
       /* ── lifecycle ── */
@@ -270,6 +374,7 @@
         this.nightPacks = []; this.nightWrong = 0; this.nightCoins = 0; this.claimWrong = 0; this.extracted = [];
         this.iframeMs = 0; this.bigTagMs = 0; this.lastStrikeReason = ""; this._lastHitLabel = "";
         this.janitors = []; this.slips = []; this.shutters = [];
+        this._beamHelpDone = false; this.helpOpen = false;
 
         this.pal = (this.realm && this.realm.pal) || { wall: 0x2f3b2c, stroke: 0x5a7050, lip: 0x8aa47a, floorA: 0xdcd4b4, floorB: 0xb9b08e, accent: 0xf5d76e, wash: 0x6aa84a, void: 0x07100a };
         this.W = this.scale.width; this.H = this.scale.height;
@@ -278,10 +383,11 @@
 
         this.keys = this.input.keyboard.addKeys("LEFT,RIGHT,UP,DOWN,W,A,S,D,SPACE,SHIFT");
         this.ptr = { down: false, x: 0, y: 0, t: -9999 };
-        this.input.on("pointerdown", function (p) { self.ptr.down = true; self.ptr.x = p.x; self.ptr.y = p.y; self.ptr.t = self.time.now; });
+        this.input.on("pointerdown", function (p) { self.ptr.down = true; self.ptr.right = !!(p.rightButtonDown && p.rightButtonDown()); self.ptr.x = p.x; self.ptr.y = p.y; self.ptr.t = self.time.now; });
         this.input.on("pointermove", function (p) { self.ptr.x = p.x; self.ptr.y = p.y; if (p.isDown || self.ptr.down) self.ptr.t = self.time.now; });
-        this.input.on("pointerup", function () { self.ptr.down = false; });
-        this.input.on("pointerupoutside", function () { self.ptr.down = false; });
+        this.input.on("pointerup", function () { self.ptr.down = false; self.ptr.right = false; });
+        this.input.on("pointerupoutside", function () { self.ptr.down = false; self.ptr.right = false; });
+        try { if (this.input.mouse) this.input.mouse.disableContextMenu(); } catch (eM) {}   /* the right button is a game button here */
 
         this.sparks = this.add.particles(0, 0, "spark", { speed: { min: 60, max: 260 }, lifespan: 460, scale: { start: 0.9, end: 0 }, emitting: false }).setDepth(30);
         this.dust = this.add.particles(0, 0, this.textures.exists("rf-dot") ? "rf-dot" : "spark", { speed: { min: 40, max: 200 }, lifespan: 560, scale: { start: 0.8, end: 0 }, alpha: { start: 0.9, end: 0 }, emitting: false }).setDepth(29);
@@ -319,6 +425,7 @@
           var card = document.getElementById("mode-card"); if (card) card.classList.add("hidden");
         } catch (e2) {}
         Input.shutterHeld = false;
+        this.hideBeamHelp();
       }
 
       placeSlips() {
@@ -347,7 +454,8 @@
           this._readPending = false;
           this.openReading(this._readReason || "start");
         }
-        if (this.readOpen || this.ended) { Input.actEdge = false; Input.shutterEdge = false; return; }
+        if (!this.readOpen && !this.ended && this.mode.id === "rocks" && !this._beamHelpDone) this.showBeamHelp();
+        if (this.readOpen || this.ended || this.helpOpen) { Input.actEdge = false; Input.shutterEdge = false; return; }
         var inp = this.readInput();
         this.tickTimers(dt);
         if (!this._finishing) {
@@ -364,11 +472,12 @@
         var up = k.UP.isDown || k.W.isDown || Input.ay < 0, down = k.DOWN.isDown || k.S.isDown || Input.ay > 0;
         var locked = Date.now() < (this.tutLockUntil || 0);
         var ptr = this.ptr.down ? this.ptr : null;
+        var rightBeam = this.mode.id === "rocks" && !!ptr && !!ptr.right;   /* Rune Rocks: the right mouse button is the beam */
         return {
           ax: (right ? 1 : 0) - (left ? 1 : 0),
           ay: (down ? 1 : 0) - (up ? 1 : 0),
-          fire: !locked && (k.SPACE.isDown || Input.act || !!ptr),
-          pull: k.SHIFT.isDown || !!Input.shutterHeld || (this.mode.id === "rocks" && down),
+          fire: !locked && (k.SPACE.isDown || Input.act || (!!ptr && !rightBeam)),
+          pull: k.SHIFT.isDown || !!Input.shutterHeld || (this.mode.id === "rocks" && down) || rightBeam,
           ptr: locked ? null : ptr
         };
       }
@@ -397,7 +506,7 @@
       /* The student chose letter L (shot it, beamed it in). */
       answerPick(L, x, y) {
         if (this.ended || this._finishing || this._between) return "ignore";
-        if ((this.need || []).indexOf(L) === -1) { this.answerWrong(L, "WRONG LETTER", x, y); return "wrong"; }
+        if ((this.need || []).indexOf(L) === -1) { this.answerWrong(L, "WRONG LETTER (" + L + ")", x, y); return "wrong"; }
         if (this.extracted.indexOf(L) === -1) this.extracted.push(L);
         this.burst(x, y, 0xffe066, 26);
         if (window.AfterHoursAudio) { try { AfterHoursAudio.extract(); } catch (e) {} }
@@ -430,6 +539,7 @@
       }
 
       answerWrong(L, label, x, y) {
+        if (label !== "YOU BLASTED THE RIGHT ANSWER") this.noteWrongLetter(L);
         this.claimWrong = (this.claimWrong || 0) + 1;
         this.nightWrong = (this.nightWrong || 0) + 1;
         K.adaptEvent(this, "wrong", this.claim);
@@ -563,7 +673,8 @@
             card.innerHTML = '<p class="rk">Level ' + this.night + " · shooter level · " + (this.realm ? this.realm.name : "") + "</p>" +
               "<h3>" + m.name + " <span>· " + m.kind + "</span></h3>" +
               "<p>" + m.how + "</p><p class=\"foe\"><b>Lives:</b> " + m.rules + "</p>" +
-              "<p class=\"perks\"><b>Controls:</b> " + m.keys + "</p>";
+              "<p class=\"perks\"><b>Controls:</b> " + m.keys + "</p>" +
+              (this.tier > 0 && m.news && m.news[this.tier] ? "<p class=\"new\"><b>New this time:</b> " + m.news[this.tier] + "</p>" : "");
             card.classList.remove("hidden");
             card.setAttribute("data-mode", m.id);
           } else card.classList.add("hidden");
@@ -586,11 +697,17 @@
             var nx = modeFor(this.night + 1);
             if (msg && this.night < 100) msg.textContent += " Next: " + (nx ? nx.name + " (" + nx.kind + ")." : ((this.night + 1) % 10 === 0 ? "Fenrir's boss maze." : "back to the maze."));
           } else if (msg) {
-            msg.textContent = (this.lastStrikeReason === "wrong" ? "That wrong letter used your last life. " :
-              (this._lastHitLabel ? "Last hit: " + this._lastHitLabel.toLowerCase() + ". " : "")) +
-              "In " + m.name + ", wrong letters and hits both cost a life. Retry this level — the campaign stays here.";
+            msg.textContent = this.lossReason() + "In " + m.name + ", wrong letters and hits both cost a life. Retry this level — the campaign stays here.";
           }
         } catch (e) {}
+      }
+
+      /* what used the last life, in words (the label is the one the big tag showed) */
+      lossReason() {
+        var lab = this._lastHitLabel || "";
+        if (lab === "YOU BLASTED THE RIGHT ANSWER") return "You blasted the rock with the right answer, and that used your last life. Pull the right letter in with the beam instead of shooting it. ";
+        if (this.lastStrikeReason === "wrong") return "That wrong letter used your last life. " + this.wrongLetterNote();
+        return lab ? "Last hit: " + lab.toLowerCase() + ". " : "";
       }
 
       /* ═══ 1. EAGLE SWOOP — galaga ══════════════════════════════════════════
@@ -605,7 +722,6 @@
         this.makeSol(this.W / 2, this.H - 62, "up");
         this.raid = { arrows: [], feathers: [], ravens: [], ravSlots: [], cd: 0, clock: 0, fcx: this.W / 2, breath: 1, swayAmp: 60, top: 112,
           diveCd: 4000, refillCd: 8000, huginn: null, huginnCd: rnd(12000, 18000), fired: 0, total: 1 };
-        try { if (this.input.mouse) this.input.mouse.disableContextMenu(); } catch (e) {}
       }
       raidGround() {
         if (this.groundG) this.groundG.destroy();
@@ -629,18 +745,21 @@
         var R = this.raid, W = this.W, H = this.H, self = this, i, r, c;
         R.ravens.forEach(kill); R.ravens = []; R.ravSlots = [];
         var letters = shuffle(this.choiceLetters().slice()), n = letters.length;
-        var gapE = 100, gapR = 62, cols = clamp(Math.floor((W * 0.72) / gapR), 6, 11), rows = this.night >= 40 ? 3 : 2;
+        var gapE = 100, gapR = 62, cols = clamp(Math.floor((W * 0.72) / gapR), 6, 11), rows = this.tier >= 4 ? 3 : 2;
         var list = [];
         for (i = 0; i < n; i++) {
-          var eg = { kind: "eagle", letter: letters[i], hp: 2, alive: true, sx: (i - (n - 1) / 2) * gapE, sy: 0, state: "wait", x: -99, y: -99 };
+          var eg = { kind: "eagle", letter: letters[i], hp: this.tier >= 3 ? 3 : 2, alive: true, sx: (i - (n - 1) / 2) * gapE, sy: 0, state: "wait", x: -99, y: -99 };
           eg.spr = this.add.image(-99, -99, "md-eagle-0").setScale(1.12).setDepth(13);
+          if (eg.hp > 2) eg.spr.setTint(0xcfd8e6);   /* an iron helm */
           eg.shield = this.add.image(-99, -99, "md-shield").setDepth(12).setScale(0.95);
           eg.label = this.letterText(-99, -99, eg.letter, 22, "#2a1604", "#fff6d8");
           list.push(eg);
         }
-        for (r = 0; r < rows; r++) for (c = 0; c < cols; c++) R.ravSlots.push({ sx: (c - (cols - 1) / 2) * gapR, sy: 88 + r * 54 });
+        for (r = 0; r < rows; r++) for (c = 0; c < cols; c++) R.ravSlots.push({ sx: (c - (cols - 1) / 2) * gapR, sy: 112 + r * 54 });
         var rav = [];
         R.ravSlots.forEach(function (sl, k) { rav.push(self.raidRaven(k)); });
+        /* v5.7.7: two guard ravens hang just under every eagle's letter; they never dive, and fly back if shot */
+        list.forEach(function (eg2) { [-1, 1].forEach(function (sd) { rav.push(self.raidGuard(eg2, sd)); }); });
         R.total = rav.length;
         /* they fly in by groups from alternating sides: the eagles with the first ravens */
         shuffle(rav);
@@ -651,10 +770,17 @@
           e.delay = g * 750 + k2 * 110; e.side = g % 2 ? 1 : -1; k2++;
         });
         R.ravens = list;
-        R.diveCd = 2500 + (g + 1) * 750 + 2000;
+        R.ready = false; R.readyWarned = false; R.guardCd = 5000;   /* v5.7.7: no arrows until the flock has formed */
+        this.showTag("GET READY — THE FLOCK IS FLYING IN", "#ffe08a");
+        R.diveCd = 600;
         R.refillCd = 9000;
         this.raidSway();
         snd("caw");
+      }
+      raidGuard(eg, sd) {
+        var e = { kind: "raven", guard: true, guardOf: eg, gside: sd, letter: null, hp: 1, alive: true, slot: -1, sx: eg.sx + sd * 23, sy: 74, state: "wait", x: -99, y: -99 };
+        e.spr = this.add.image(-99, -99, "rf-raven-0").setScale(0.66).setTint(0xc8d4ff).setDepth(12);
+        return e;
       }
       raidRaven(k) {
         var sl = this.raid.ravSlots[k];
@@ -702,7 +828,7 @@
           if (o.spr) o.spr.setTint(0xffb08a);
           this.burst(x, y, 0xffb08a, 10);
           snd("pop");
-          this.toast("That eagle is hurt. One more arrow and its letter " + o.letter + " is your answer.", 2600);
+          this.toast(o.hp === 1 ? "That eagle is hurt. One more arrow and its letter " + o.letter + " is your answer." : "That eagle's iron helm took it. " + o.hp + " more arrows for letter " + o.letter + ".", 2600);
           return;
         }
         o.alive = false;
@@ -734,7 +860,11 @@
         this.blink(p);
         /* arrows */
         R.cd -= ms;
-        if (inp.fire && R.cd <= 0 && R.arrows.length < 2) {
+        if (!R.ready && R.ravens.length && R.ravens.every(function (o) { return o.state !== "wait" && o.state !== "enter"; })) {
+          R.ready = true; this.showTag("FIRE!", "#9aefc0"); snd("caw");
+        }
+        if (inp.fire && !R.ready && !R.readyWarned) { R.readyWarned = true; this.toast("Wait for the flock to fly into formation — then fire!", 2200); }
+        if (inp.fire && R.ready && R.cd <= 0 && R.arrows.length < 2) {
           R.arrows.push({ x: p.x, y: p.y - 36, spr: this.add.image(p.x, p.y - 36, "md-arrow").setDepth(18) });
           R.cd = 260; R.fired += 1; snd("shot");
         }
@@ -742,6 +872,8 @@
           var a = R.arrows[i], y0 = a.y, hit = false;
           a.y -= 760 * s; a.spr.y = a.y;
           var tgt = this._finishing ? null : this.raidArrowHit(a.x, y0, a.y);
+          var cl = (R.clouds || []).filter(function (c) { return Math.abs(a.x - c.x) < 78 && y0 >= c.y - 28 && a.y <= c.y + 28; })[0];
+          if (cl && (!tgt || cl.y + 28 >= tgt.y)) { hit = true; tgt = null; this.burst(a.x, cl.y + 20, 0x9aa4b8, 6); }
           if (tgt) { hit = true; this.raidHit(tgt); }
           if (!hit && R.huginn && Math.abs(a.x - R.huginn.x) < 32 && a.y < R.huginn.y + 24 && y0 > R.huginn.y - 24) {
             hit = true;
@@ -775,7 +907,7 @@
             e.path.t += s / e.path.dur;
             var q = this.raidBez(e); e.x = q.x; e.y = q.y;
             if (e.state === "dive" && !e.beamer) {
-              var want = this.night >= 30 ? 2 : 1;
+              var want = this.tier >= 1 ? 2 : 1;
               if (e.drops < want && e.path.t > 0.42 + e.drops * 0.14 && e.y < p.y - 110 && e.y > 0) { e.drops++; this.raidFeather(e.x, e.y + 16); }
             }
             if (e.path.t >= 1) {
@@ -812,18 +944,45 @@
         R.ravens = R.ravens.filter(function (o) { return o.alive; });
         /* who dives next */
         R.diveCd -= ms;
-        var maxDivers = 2 + Math.floor(this.night / 35);
-        if (R.diveCd <= 0 && anyForm && divers < maxDivers) {
+        var maxDivers = 2 + Math.floor(this.night / 25) + (this.tier >= 9 ? 1 : 0);   /* 2 at first, 3 from 25, … 5 at 75+, 6 in Ragnarok */
+        var flying = R.ravens.filter(function (o) { return o.alive && (o.state === "dive" || o.state === "beam" || o.state === "return"); }).length;
+        if (R.ready && anyForm && (flying === 0 || (R.diveCd <= 0 && divers < maxDivers))) {   /* never an empty sky */
           this.raidLaunch();
-          R.diveCd = rnd(1300, 2500) * (1 - Math.min(0.45, this.night / 220));
+          R.diveCd = rnd(700, 1400) * (1 - Math.min(0.4, this.night / 250));
+        }
+        /* v5.7.9 (realm 3 on): two eagles trade places now and then */
+        if (this.tier >= 2 && R.ready) {
+          R.swapCd = (R.swapCd == null ? 6000 : R.swapCd) - ms;
+          if (R.swapCd <= 0) { R.swapCd = this.tier >= 8 ? 4000 : 6500; this.raidSwap(); }
+        }
+        /* (realm 6 on) storm clouds drift across the flock and stop arrows */
+        if (this.tier >= 5) this.raidClouds(s, ms);
+        /* (realm 8 on) ravens in the formation drop poo too */
+        if (this.tier >= 7 && R.ready) {
+          R.fpooCd = (R.fpooCd == null ? 2500 : R.fpooCd) - ms;
+          if (R.fpooCd <= 0) {
+            R.fpooCd = rnd(1800, 3000) * (this.tier >= 9 ? 0.7 : 1);
+            var fr = R.ravens.filter(function (o) { return o.alive && o.kind === "raven" && !o.guard && o.state === "form"; });
+            if (fr.length) { var fe = fr[Math.floor(Math.random() * fr.length)]; this.raidFeather(fe.x, fe.y + 16); }
+          }
+        }
+        /* guards fly back to an eagle that is home in the formation */
+        R.guardCd -= ms;
+        if (R.guardCd <= 0) {
+          R.guardCd = 5000;
+          R.ravens.filter(function (o) { return o.kind === "eagle" && o.alive && o.state === "form"; }).forEach(function (eg) {
+            [-1, 1].forEach(function (sd) {
+              if (!R.ravens.some(function (o) { return o.guard && o.guardOf === eg && o.gside === sd && o.alive; })) { var ng = self.raidGuard(eg, sd); ng.delay = 0; ng.side = sd; R.ravens.push(ng); }
+            });
+          });
         }
         /* when the ravens thin out, more fly in to shield the eagles */
         R.refillCd -= ms;
         if (R.refillCd <= 0) {
-          R.refillCd = 7000;
+          R.refillCd = 5000;
           var used = {}, liveRav = 0;
-          R.ravens.forEach(function (o) { if (o.kind === "raven") { used[o.slot] = 1; liveRav++; } });
-          if (liveRav <= R.total * 0.6 && R.ravens.some(function (o) { return o.kind === "eagle"; })) {
+          R.ravens.forEach(function (o) { if (o.kind === "raven" && !o.guard) { used[o.slot] = 1; liveRav++; } });
+          if (liveRav <= R.total * 0.75 && R.ravens.some(function (o) { return o.kind === "eagle"; })) {
             var empties = R.ravSlots.map(function (x, k) { return k; }).filter(function (k) { return !used[k]; });
             shuffle(empties).slice(0, 4).forEach(function (k, j) {
               var nr = self.raidRaven(k); nr.delay = j * 130; nr.side = Math.random() < 0.5 ? -1 : 1; R.ravens.push(nr);
@@ -833,10 +992,13 @@
         /* falling feathers */
         for (i = R.feathers.length - 1; i >= 0; i--) {
           var f = R.feathers[i], gone = false;
-          f.t += s; f.y += (210 + this.night * 1.1) * s; f.x += ((f.vx || 0) + Math.sin(f.t * 6) * 40) * s;
-          f.spr.setPosition(f.x, f.y).setRotation(Math.sin(f.t * 6) * 0.4);
-          if (dist(f.x, f.y, p.x, p.y - 10) < 24) { gone = true; this.loseLife("hit", "HIT BY A FEATHER"); }
-          if (gone || f.y > H + 20) { f.spr.destroy(); R.feathers.splice(i, 1); }
+          f.t += s; f.y += (230 + this.night * 1.1) * s; f.x += (f.vx || 0) * s;
+          f.spr.setPosition(f.x, f.y).setScale(1, 1 + Math.min(0.25, f.t * 0.3));
+          if (dist(f.x, f.y, p.x, p.y - 10) < 26) {
+            gone = true;
+            if (this.loseLife("hit", "SPLAT! BIRD POO GOT YOU")) this.raidSplat(p.x, p.y - 22, true);
+          } else if (f.y > H - 30) { gone = true; this.raidSplat(f.x, H - 26, false); }
+          if (gone) { f.spr.destroy(); R.feathers.splice(i, 1); }
         }
         /* Huginn, the golden raven, crosses the top now and then */
         if (!R.huginn) {
@@ -852,17 +1014,53 @@
           if (R.huginn.x < -80 || R.huginn.x > W + 80) { kill(R.huginn); R.huginn = null; R.huginnCd = rnd(14000, 22000); }
         }
       }
+      /* two eagles in the formation swap slots (their guards swap with them) */
+      raidSwap() {
+        var R = this.raid, self = this;
+        var eg = shuffle(R.ravens.filter(function (o) { return o.alive && o.kind === "eagle" && o.state === "form"; })).slice(0, 2);
+        if (eg.length < 2) return;
+        var a = eg[0], b = eg[1], t = a.sx; a.sx = b.sx; b.sx = t;
+        R.ravens.forEach(function (o) { if (o.guard) { if (o.guardOf === a) o.guardOf = b; else if (o.guardOf === b) o.guardOf = a; } });
+        [a, b].forEach(function (e) {
+          var to = self.raidSlot(e);
+          e.state = "swap";
+          e.path = { p0: { x: e.x, y: e.y }, p1: { x: e.x, y: e.y + 80 }, p2: { x: to.x, y: to.y + 80 }, p3: null, t: 0, dur: 1.1, next: "form" };
+        });
+        if (!R.toldSwap) { R.toldSwap = true; this.toast("Watch out: the eagles trade places! Follow the right letter.", 2600); }
+      }
+      raidClouds(s, ms) {
+        var R = this.raid, W = this.W, want = this.tier >= 8 ? 2 : 1, i;
+        R.clouds = R.clouds || [];
+        R.cloudCd = (R.cloudCd == null ? 1500 : R.cloudCd) - ms;
+        if (R.clouds.length < want && R.cloudCd <= 0) {
+          var fromL = Math.random() < 0.5, c = { x: fromL ? -110 : W + 110, y: R.top + rnd(20, 100), vx: (fromL ? 1 : -1) * rnd(40, 70) };
+          c.spr = this.add.image(c.x, c.y, "md-cloud").setDepth(16).setAlpha(0.92);
+          R.clouds.push(c); R.cloudCd = 3000;
+        }
+        for (i = R.clouds.length - 1; i >= 0; i--) {
+          var c2 = R.clouds[i];
+          c2.x += c2.vx * s; c2.spr.setPosition(c2.x, c2.y);
+          if ((c2.vx > 0 && c2.x > W + 130) || (c2.vx < 0 && c2.x < -130)) { c2.spr.destroy(); R.clouds.splice(i, 1); }
+        }
+      }
+      /* a white splat on Sol (it rides along and fades) or on the ground */
+      raidSplat(x, y, onSol) {
+        var sp = this.add.image(x, y, "md-splat").setDepth(onSol ? 22 : 3).setScale(onSol ? 1 : 0.7).setAlpha(0.95), self = this, p = this.player;
+        snd("pop");
+        this.tweens.add({ targets: sp, alpha: 0, delay: onSol ? 700 : 500, duration: onSol ? 500 : 700, onComplete: function () { sp.destroy(); },
+          onUpdate: function () { if (onSol && p) sp.setPosition(p.x, p.y - 22); } });
+      }
       raidFeather(x, y) {
         var p = this.player, fall = Math.max(0.4, (p.y - y) / (210 + this.night * 1.1));
-        var vx = clamp((p.x - x) / fall, -140, 140) * (this.night >= 20 ? 1 : 0.6);
-        this.raid.feathers.push({ x: x, y: y, vx: vx, t: 0, spr: this.add.image(x, y, "md-feather").setDepth(17) });
+        var vx = clamp((p.x - x) / fall, -140, 140) * (this.tier >= 1 ? 1 : 0.6);
+        this.raid.feathers.push({ x: x, y: y, vx: vx, t: 0, spr: this.add.image(x, y, "md-poo").setDepth(17) });
       }
       raidLaunch() {
         var R = this.raid, self = this;
         var form = R.ravens.filter(function (o) { return o.alive && o.state === "form"; });
-        var eagles = form.filter(function (o) { return o.kind === "eagle"; }), ravens = form.filter(function (o) { return o.kind === "raven"; });
+        var eagles = form.filter(function (o) { return o.kind === "eagle"; }), ravens = form.filter(function (o) { return o.kind === "raven" && !o.guard; });
         var beaming = R.ravens.some(function (o) { return o.alive && (o.state === "beam" || o.beamer); });
-        if (eagles.length && (Math.random() < 0.4 || !ravens.length)) {
+        if (eagles.length && (Math.random() < 0.5 || !ravens.length)) {
           var eg = eagles[Math.floor(Math.random() * eagles.length)];
           eg.lead = true;
           if (!beaming && Math.random() < 0.55) { this.raidBeamDive(eg); return; }
@@ -882,6 +1080,7 @@
         var p = this.player, g = this.fxG, H = this.H;
         e.beamMs += ms;
         e.x += Math.sin(this.raid.clock * 1.6) * 12 * s;
+        if (this.tier >= 6) e.x += clamp(p.x - e.x, -1, 1) * 60 * s;   /* the beam follows Sol */
         e.y = e.hoverY + Math.sin(this.raid.clock * 3) * 3;
         var ms0 = e.beamMs, grow = ms0 < 600 ? ms0 / 600 : ms0 < 2800 ? 1 : Math.max(0, 1 - (ms0 - 2800) / 400);
         var top = e.y + 66, full = (H - 30) - top, len = full * grow, w0 = 14, w1 = 14 + len * 0.16;
@@ -913,7 +1112,56 @@
         R.ravens.forEach(function (o) { if (o.alive && o.state !== "wait") self.burst(o.x, o.y, o.kind === "eagle" ? 0xc89a5a : 0x5a4a78, 8); kill(o); });
         R.ravens = [];
         R.feathers.forEach(kill); R.feathers = [];
+        (R.clouds || []).forEach(kill); R.clouds = [];
         try { this.fxG.clear(); } catch (e) {}
+      }
+
+      /* ── Rune Rocks: a one-card "how to pull a rock in" pop-up. It shows after the reading pop-up
+         on each Rune Rocks level until the student has pulled a rock in once on this Chromebook. ── */
+      showBeamHelp() {
+        this._beamHelpDone = true;
+        var learned = false;
+        try { learned = localStorage.getItem(BEAM_KEY) === "1"; } catch (e) {}
+        if (learned) return;
+        var self = this, ov = document.getElementById("beam-help");
+        if (!ov) {
+          ov = document.createElement("div");
+          ov.id = "beam-help"; ov.className = "beam-help"; ov.setAttribute("role", "dialog"); ov.setAttribute("aria-modal", "true"); ov.setAttribute("aria-labelledby", "beam-help-title");
+          ov.innerHTML = '<div class="tut-card beam-card">' +
+            '<p class="tut-kicker">Rune Rocks · how to pull a rock in</p>' +
+            '<h2 id="beam-help-title">Use the beam</h2>' +
+            '<svg viewBox="0 0 360 120" width="100%" role="img" aria-label="The ship points at a rock; a gold beam pulls it in">' +
+              '<polygon points="70,60 300,18 300,102" fill="rgba(255,224,122,0.22)"/>' +
+              '<line x1="78" y1="60" x2="252" y2="60" stroke="#ffe07a" stroke-width="5" opacity="0.6"/>' +
+              '<g transform="translate(52,60) rotate(90)"><polygon points="0,-22 16,16 0,8 -16,16" fill="#f0c040" stroke="#7a4a10" stroke-width="2.5"/></g>' +
+              '<circle cx="270" cy="60" r="27" fill="#5a4c34" stroke="#ffd84a" stroke-width="4"/>' +
+              '<text x="270" y="69" text-anchor="middle" font-family="Trebuchet MS, sans-serif" font-weight="bold" font-size="26" fill="#fff6d8">B</text>' +
+              '<path d="M226 88 L150 88" stroke="#fff" stroke-width="3" fill="none" marker-end="url(#bh-arrow)"/>' +
+              '<defs><marker id="bh-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#fff"/></marker></defs>' +
+            '</svg>' +
+            '<ol class="beam-steps">' +
+              '<li><b>Point your ship</b> at the rock with the right letter: ◀ ▶ turn, ▲ moves you closer. (The mouse does not steer.)</li>' +
+              '<li><b>Hold the beam:</b> ▼ or Shift, the <b>PULL</b> button, or the <b>right mouse button</b>. A gold cone shines in front of the ship.</li>' +
+              '<li><b>Keep holding until the rock touches your ship.</b> Then it counts as your answer.</li>' +
+            '</ol>' +
+            '<p class="beam-warn"><b>Don\'t let go early!</b> A rock you let go of keeps flying at you, and a rock hitting your ship costs a life — even the right one. Don\'t shoot the right rock either; shoot the wrong letters and the plain rocks.</p>' +
+            '<button type="button" class="btn primary" id="beam-help-ok">Got it</button>' +
+            '</div>';
+          (document.getElementById("stage") || document.body).appendChild(ov);
+        }
+        ov.classList.remove("hidden");
+        this.helpOpen = true;
+        var close = function () { self.hideBeamHelp(); self.tutLockUntil = Date.now() + 350; };
+        var btn = document.getElementById("beam-help-ok");
+        if (btn) { btn.onclick = close; try { btn.focus(); } catch (e2) {} }
+        this._beamKey = function (ev) { if (ev.key === "Enter" || ev.key === " " || ev.key === "Escape") { ev.preventDefault(); close(); } };
+        document.addEventListener("keydown", this._beamKey, true);
+      }
+      hideBeamHelp() {
+        this.helpOpen = false;
+        if (this._beamKey) { document.removeEventListener("keydown", this._beamKey, true); this._beamKey = null; }
+        var ov = document.getElementById("beam-help");
+        if (ov) ov.classList.add("hidden");
       }
 
       /* ═══ 2. RUNE ROCKS — asteroids ═══════════════════════════════════════ */
@@ -922,7 +1170,8 @@
         var W = this.W, H = this.H;
         var ship = { x: W / 2, y: H / 2, vx: 0, vy: 0, ang: -Math.PI / 2, spr: this.add.image(W / 2, H / 2, "md-ship").setScale(1.2).setDepth(20) };
         this.makeSol(W / 2, H / 2, "up").setVisible(false);   /* Sol flies the ship; the sprite stays for coin pop-ups */
-        this.rk = { ship: ship, rocks: [], bullets: [], cd: 0, spawnCd: 0, target: null, beamSnd: 0, gen: 0 };
+        this.rk = { ship: ship, rocks: [], bullets: [], cd: 0, spawnCd: 0, target: null, beamSnd: 0, gen: 0,
+          warns: [], cometCd: 6000, valk: null, valkCd: 10000, spears: [], showerCd: 11000 };
         var n = 4 + Math.floor(this.night / 22), i;
         for (i = 0; i < n; i++) this.rockFromEdge(3, null);
       }
@@ -932,6 +1181,7 @@
         var o = { x: x, y: y, vx: vx, vy: vy, size: size, r: letter ? 34 : rad, letter: letter || null, rot: rnd(0, 6), spin: rnd(-1.2, 1.2), gen: R.gen };
         o.spr = this.add.image(x, y, letter ? "md-rock-l" : "md-rock-" + Math.floor(rnd(0, 3))).setScale((letter ? 34 : rad) / 46).setDepth(11);
         if (letter) { o.spin *= 0.4; o.label = this.letterText(x, y, letter, 30, "#fff4c8", "#1a1008").setDepth(14); }
+        else if (size === 3 && this.tier >= 2) { o.hp = 2; o.spr.setTint(0xa8b8d0); }   /* an iron rock: two shots */
         R.rocks.push(o);
         return o;
       }
@@ -944,20 +1194,27 @@
           tries++;
         } while (tries < 8 && dist(x, y, S.x, S.y) < 220);
         var tx = rnd(W * 0.2, W * 0.8), ty = rnd(H * 0.2, H * 0.8), a = Math.atan2(ty - y, tx - x);
-        var sp = letter ? rnd(34, 56) + this.night * 0.2 : rnd(40, 80) + this.night * 0.45;
+        var sp = (letter ? rnd(34, 56) + this.night * 0.2 : rnd(40, 80) + this.night * 0.45) * (this.tier >= 9 ? 1.25 : 1);
         return this.rockMake(size, letter, x, y, Math.cos(a) * sp, Math.sin(a) * sp);
       }
+      /* a letter rock; from realm 6 two guard stones circle it and block the beam until they are shot off */
+      letterRock(L) {
+        var o = this.rockFromEdge(2, L), k;
+        if (this.tier >= 5) for (k = 0; k < 2; k++) { var g = this.rockMake(1, null, o.x, o.y, 0, 0); g.orbitOf = o; g.oa = k * Math.PI; g.spr.setTint(0xe8c890); }
+        return o;
+      }
       rockRemove(o) {
-        var R = this.rk, i = R.rocks.indexOf(o);
+        var R = this.rk, i = R.rocks.indexOf(o), self = this;
         if (i >= 0) R.rocks.splice(i, 1);
         if (R.target === o) R.target = null;
         kill(o);
+        R.rocks.filter(function (q) { return q.orbitOf === o; }).forEach(function (q) { self.burst(q.x, q.y, 0xe8c890, 6); self.rockRemove(q); });
       }
       answers_rocks() {
         var R = this.rk, self = this;
         R.gen += 1;
         R.rocks.filter(function (o) { return o.letter; }).forEach(function (o) { self.burst(o.x, o.y, 0xffd84a, 10); self.rockRemove(o); });
-        shuffle(this.choiceLetters().slice()).forEach(function (L) { self.rockFromEdge(2, L); });
+        shuffle(this.choiceLetters().slice()).forEach(function (L) { self.letterRock(L); });
       }
       rockShot(o, noCredit) {
         var self = this;
@@ -968,13 +1225,14 @@
           if ((this.need || []).indexOf(L) !== -1 && this.extracted.indexOf(L) === -1) {
             this.answerWrong(L, "YOU BLASTED THE RIGHT ANSWER");
             /* the right answer comes back so the question can still be answered */
-            this.time.delayedCall(1600, function () { if (!self.ended && !self._finishing && self.rk.gen === gen && self.extracted.indexOf(L) === -1) self.rockFromEdge(2, L); });
+            this.time.delayedCall(1600, function () { if (!self.ended && !self._finishing && self.rk.gen === gen && self.extracted.indexOf(L) === -1) self.letterRock(L); });
           } else {
             this.toast("Letter " + L + " was not the answer. Rock cleared.", 2400);
             this.addKill(o.x, o.y, "Rocks cleared");
           }
           return;
         }
+        if (!noCredit && o.hp > 1) { o.hp -= 1; o.spr.setTint(0xd8e0ec); this.burst(o.x, o.y, 0xc8d4e8, 8); snd("rock"); return; }   /* iron */
         this.burst(o.x, o.y, 0x9a9488, o.size * 6); snd("rock");
         if (o.size > 1) {
           var a = Math.atan2(o.vy, o.vx), sp = Math.sqrt(o.vx * o.vx + o.vy * o.vy) * 1.3 + 20, k;
@@ -984,6 +1242,7 @@
         if (!noCredit) this.addKill(o.x, o.y, "Rocks cleared");
       }
       rockCaught(o) {
+        try { localStorage.setItem(BEAM_KEY, "1"); } catch (eL) {}   /* the beam pop-up has done its job */
         var x = o.x, y = o.y, L = o.letter;
         this.rockRemove(o);
         if (L) this.answerPick(L, x, y);
@@ -998,17 +1257,13 @@
         var R = this.rk, S = R.ship, W = this.W, H = this.H, i, j, self = this, g = this.fxG;
         g.clear();
         /* steering */
+        /* only the keys and the pad steer; a mouse button just fires (left) or holds the beam (right) */
         var thrust = inp.ay < 0;
         S.ang += inp.ax * 3.8 * s;
-        if (inp.ptr) {
-          var want = Math.atan2(inp.ptr.y - S.y, inp.ptr.x - S.x), d = angDiff(want, S.ang);
-          S.ang += clamp(d, -5 * s, 5 * s);
-          if (Math.abs(d) < 0.5 && dist(inp.ptr.x, inp.ptr.y, S.x, S.y) > 140) thrust = true;
-        }
         if (thrust) { S.vx += Math.cos(S.ang) * 420 * s; S.vy += Math.sin(S.ang) * 420 * s; }
         var sp = Math.sqrt(S.vx * S.vx + S.vy * S.vy);
         if (sp > 340) { S.vx *= 340 / sp; S.vy *= 340 / sp; }
-        var damp = Math.pow(0.55, s); S.vx *= damp; S.vy *= damp;
+        var damp = Math.pow(this.tier >= 4 ? 0.8 : 0.55, s); S.vx *= damp; S.vy *= damp;   /* slippery from realm 5 */
         S.x += S.vx * s; S.y += S.vy * s;
         this.wrap(S, 24);
         S.spr.setPosition(S.x, S.y).setRotation(S.ang + Math.PI / 2);
@@ -1023,7 +1278,7 @@
         R.cd -= ms;
         if (inp.fire && R.cd <= 0 && R.bullets.length < 6) {
           R.bullets.push({ x: S.x + nx * 26, y: S.y + ny * 26, vx: nx * 640 + S.vx * 0.5, vy: ny * 640 + S.vy * 0.5, life: 0.9, spr: this.add.image(S.x, S.y, "md-bolt").setDepth(18).setRotation(S.ang) });
-          R.cd = 170; snd("shot");
+          R.cd = 170; R.fired = (R.fired || 0) + 1; snd("shot");
         }
         for (i = R.bullets.length - 1; i >= 0; i--) {
           var b = R.bullets[i], hit = null;
@@ -1031,6 +1286,10 @@
           this.wrap(b, 10);
           b.spr.setPosition(b.x, b.y);
           for (j = 0; j < R.rocks.length; j++) { if (dist(b.x, b.y, R.rocks[j].x, R.rocks[j].y) < R.rocks[j].r + 4) { hit = R.rocks[j]; break; } }
+          if (!hit && R.valk && dist(b.x, b.y, R.valk.x, R.valk.y) < 32) {
+            this.burst(R.valk.x, R.valk.y, 0xe0e8ff, 20); this.awardBonusPoints(1500, "Valkyrie driven off");
+            kill(R.valk); R.valk = null; R.valkCd = rnd(14000, 20000); b.life = 0;
+          }
           if (hit || b.life <= 0) { b.spr.destroy(); R.bullets.splice(i, 1); }
           if (hit) { this.rockShot(hit); if (this._finishing) return; }
         }
@@ -1039,7 +1298,7 @@
         if (inp.pull) {
           var best = null, bd = 1e9;
           R.rocks.forEach(function (o) {
-            if (o.size > 2) return;
+            if (o.size > 2 || o.comet || o.orbitOf) return;
             var dd = dist(o.x, o.y, S.x, S.y);
             if (dd > 270 || dd >= bd) return;
             if (Math.abs(angDiff(Math.atan2(o.y - S.y, o.x - S.x), S.ang)) > 0.45) return;
@@ -1050,13 +1309,20 @@
           g.fillTriangle(S.x + nx * 18, S.y + ny * 18, S.x + Math.cos(S.ang - spread) * len, S.y + Math.sin(S.ang - spread) * len, S.x + Math.cos(S.ang + spread) * len, S.y + Math.sin(S.ang + spread) * len);
           R.beamSnd -= ms;
           if (R.beamSnd <= 0) { snd("beam"); R.beamSnd = 420; }
+          var guarded = best && R.rocks.some(function (q) { return q.orbitOf === best; });
+          if (guarded) {
+            g.lineStyle(4, 0xff6a5a, 0.6); g.lineBetween(S.x + nx * 18, S.y + ny * 18, best.x, best.y);
+            if (!R.toldGuard) { R.toldGuard = true; this.toast("Its guard stones block the beam. Shoot them off first.", 2600); }
+            best = null;
+          }
           if (best) {
-            R.target = best;
+            R.target = best; best.beamT = this.time.now;
             g.lineStyle(5, 0xffe07a, 0.55); g.lineBetween(S.x + nx * 18, S.y + ny * 18, best.x, best.y);
             g.lineStyle(2, 0xffffff, 0.8); g.strokeCircle(best.x, best.y, best.r + 6);
             var tx = S.x - best.x, ty = S.y - best.y, tl = Math.sqrt(tx * tx + ty * ty) || 1;
-            best.vx = best.vx * Math.pow(0.2, s) + tx / tl * 320 * s * 4;
-            best.vy = best.vy * Math.pow(0.2, s) + ty / tl * 320 * s * 4;
+            var pullF = best.letter && this.tier >= 3 ? (this.tier >= 9 ? 0.5 : 0.6) : 1;   /* heavy runes from realm 4 */
+            best.vx = best.vx * Math.pow(0.2, s) + tx / tl * 320 * s * 4 * pullF;
+            best.vy = best.vy * Math.pow(0.2, s) + ty / tl * 320 * s * 4 * pullF;
             if (tl < best.r + 20) { this.rockCaught(best); if (this._finishing) return; }
           }
         }
@@ -1064,12 +1330,17 @@
         for (i = R.rocks.length - 1; i >= 0; i--) {
           var o = R.rocks[i];
           if (!o) continue;
-          o.x += o.vx * s; o.y += o.vy * s; o.rot += o.spin * s;
-          this.wrap(o, o.r + 8);
+          if (o.orbitOf) { o.oa += 1.7 * s; o.x = o.orbitOf.x + Math.cos(o.oa) * 60; o.y = o.orbitOf.y + Math.sin(o.oa) * 60; }
+          else { o.x += o.vx * s; o.y += o.vy * s; }
+          o.rot += o.spin * s;
+          if (o.comet) { if (o.x < -90 || o.x > W + 90 || o.y < -90 || o.y > H + 90) { this.rockRemove(o); continue; } }
+          else if (!o.orbitOf) this.wrap(o, o.r + 8);
           o.spr.setPosition(o.x, o.y).setRotation(o.rot);
           if (o.label) o.label.setPosition(o.x, o.y);
           if (o !== R.target && dist(o.x, o.y, S.x, S.y) < o.r + 17 && this.iframeMs <= 0) {
-            var hurt = this.loseLife("hit", "HIT BY A ROCK");
+            var early = o.beamT && this.time.now - o.beamT < 1600;   /* let go of the beam before it was in */
+            var hurt = this.loseLife("hit", early ? "YOU LET GO OF THE BEAM TOO SOON" : "HIT BY A ROCK");
+            if (hurt && early) this.toast("Keep holding the beam until the rock touches your ship. A rock you let go of keeps coming and hits you.", 4200);
             if (hurt) {
               var ka = Math.atan2(S.y - o.y, S.x - o.x);
               S.vx = Math.cos(ka) * 220; S.vy = Math.sin(ka) * 220;
@@ -1079,10 +1350,76 @@
             if (this._finishing) return;
           }
         }
+        this.rockExtras(s, ms);
+        if (this._finishing) return;
         /* keep the field busy */
         var blanks = R.rocks.filter(function (o) { return !o.letter; }).reduce(function (a, o) { return a + o.size; }, 0);
         R.spawnCd -= ms;
         if (R.spawnCd <= 0 && blanks < 10 + Math.floor(this.night / 12)) { this.rockFromEdge(3, null); R.spawnCd = 2600; }
+      }
+      /* comets (realm 2 on), a valkyrie (realm 8 on) and rock showers (realm 9 on) */
+      rockExtras(s, ms) {
+        var R = this.rk, S = R.ship, W = this.W, H = this.H, g = this.fxG, i, self = this;
+        if (this.tier >= 1) {
+          R.cometCd -= ms;
+          if (R.cometCd <= 0) {
+            R.cometCd = this.tier >= 5 ? rnd(4000, 6000) : rnd(8000, 11000);
+            var n = this.tier >= 5 ? 2 : 1, side = Math.random() < 0.5 ? -1 : 1, ang = rnd(-0.35, 0.35);
+            for (i = 0; i < n; i++) {
+              var cy = clamp(S.y + rnd(-120, 120) + i * 90, 40, H - 40), x0 = side < 0 ? -60 : W + 60;
+              var vx = -side * Math.cos(ang) * 560, vy = Math.sin(ang) * 560;
+              R.warns.push({ kind: "comet", x0: x0, y: cy, vx: vx, vy: vy, t: 0 });
+            }
+          }
+        }
+        for (i = R.warns.length - 1; i >= 0; i--) {
+          var w = R.warns[i]; w.t += ms;
+          if (w.kind === "comet") {
+            g.lineStyle(3, 0xff5a4a, 0.25 + 0.35 * Math.abs(Math.sin(w.t / 90)));
+            g.lineBetween(w.x0, w.y, w.x0 + w.vx * 3, w.y + w.vy * 3);
+            if (w.t >= 1000) { var c = this.rockMake(1, null, w.x0, w.y, w.vx, w.vy); c.comet = true; c.spr.setTint(0xffb070); R.warns.splice(i, 1); snd("rock"); }
+          } else {
+            g.fillStyle(0xff5a4a, 0.35 + 0.35 * Math.abs(Math.sin(w.t / 90)));
+            var ex = w.side === 0 ? 16 : W - 16, k;
+            for (k = 0; k < 3; k++) { var yy = H * (0.3 + k * 0.2); g.fillTriangle(ex, yy - 14, ex, yy + 14, ex + (w.side === 0 ? 24 : -24), yy); }
+            if (w.t >= 1200) {
+              for (k = 0; k < 5; k++) this.rockMake(1, null, w.side === 0 ? -30 : W + 30, H * (0.15 + k * 0.17), (w.side === 0 ? 1 : -1) * rnd(150, 200), rnd(-30, 30));
+              R.warns.splice(i, 1); snd("rock");
+            }
+          }
+        }
+        if (this.tier >= 8) {
+          R.showerCd -= ms;
+          if (R.showerCd <= 0) { R.showerCd = rnd(14000, 18000); R.warns.push({ kind: "shower", side: Math.random() < 0.5 ? 0 : 1, t: 0 }); }
+        }
+        if (this.tier >= 7) {
+          if (!R.valk) {
+            R.valkCd -= ms;
+            if (R.valkCd <= 0) {
+              var fromL = Math.random() < 0.5, vy0 = Math.random() < 0.5 ? rnd(50, H * 0.25) : rnd(H * 0.75, H - 50);
+              R.valk = { x: fromL ? -50 : W + 50, y: vy0, vx: fromL ? 140 : -140, fireCd: 900, t: 0, spr: this.add.image(0, 0, "rf-valk-0").setScale(0.8).setDepth(15).setFlipX(!fromL) };
+            }
+          } else {
+            var V = R.valk; V.t += s; V.x += V.vx * s;
+            V.spr.setPosition(V.x, V.y + Math.sin(V.t * 3) * 6).setTexture("rf-valk-" + (Math.floor(V.t * 4) % 2));
+            V.fireCd -= ms;
+            if (V.fireCd <= 0 && V.x > 0 && V.x < W) {
+              V.fireCd = 1500;
+              var dx = S.x - V.x, dy = S.y - V.y, dl = Math.sqrt(dx * dx + dy * dy) || 1;
+              R.spears.push({ x: V.x, y: V.y, vx: dx / dl * 300, vy: dy / dl * 300, spr: this.add.image(V.x, V.y, "md-arrow").setTint(0xe0e8ff).setDepth(17).setRotation(Math.atan2(dy, dx) + Math.PI / 2) });
+              snd("shot");
+            }
+            if (V.x < -80 || V.x > W + 80) { kill(V); R.valk = null; R.valkCd = rnd(14000, 20000); }
+          }
+        }
+        for (i = R.spears.length - 1; i >= 0; i--) {
+          var sp = R.spears[i], gone = false;
+          sp.x += sp.vx * s; sp.y += sp.vy * s; sp.spr.setPosition(sp.x, sp.y);
+          if (dist(sp.x, sp.y, S.x, S.y) < 22) { gone = true; this.loseLife("hit", "A VALKYRIE'S SPEAR HIT YOU"); }
+          else if (sp.x < -40 || sp.x > W + 40 || sp.y < -40 || sp.y > H + 40) gone = true;
+          if (gone) { sp.spr.destroy(); R.spears.splice(i, 1); }
+          if (this._finishing) return;
+        }
       }
       clear_rocks() {
         var R = this.rk, self = this;
@@ -1090,14 +1427,50 @@
         R.rocks.filter(function (o) { return o.letter; }).forEach(function (o) { self.burst(o.x, o.y, 0xffd84a, 10); self.rockRemove(o); });
       }
 
-      /* ═══ 3. SUN CHARIOT — side-scrolling flyer ═══════════════════════════ */
+      /* ═══ 3. SUN CHARIOT — side-scrolling flyer ═══════════════════════════
+         v5.7.5: harder from the start and climbing faster. The first Sun Chariot
+         (level 6) plays like level 30 used to, and every later one adds more.
+         Ravens throw feathers at Sol (after a short orange wind-up), wisps throw
+         sparks from level 26, and from level 16 the orbs weave more and some are
+         guarded by a raven flying in front of them that has to be shot first. */
+      skyParams(n) {
+        var eff = 30 + Math.max(0, n - 6) * 1.25;          /* 30 at level 6, 42 at 16, 80 at 46, 142 at 96 */
+        var late = Math.max(0, n - 6), tier = clamp(Math.floor((n - 1) / 10), 0, 9);
+        return {
+          eff: eff,
+          spawnMs: Math.max(380, 1200 - eff * 6),
+          ravenSp: 170 + Math.min(130, eff * 0.9),         /* + up to 70 random */
+          wispSp: 110 + Math.min(90, eff * 0.6),
+          wispHome: 60 + Math.min(80, eff * 0.5),
+          wispShare: 0.25 + Math.min(0.2, eff / 600),
+          throwP: clamp(0.35 + eff / 300, 0.35, 0.85),     /* chance a raven throws a feather */
+          featherSp: 230 + Math.min(170, eff * 1.2),
+          sparkP: n >= 26 ? clamp(0.3 + (eff - 55) / 250, 0.3, 0.7) : 0,
+          sparkSp: 180 + Math.min(120, eff),
+          orbSp: 90 + Math.min(100, eff * 0.6),                /* v5.7.9: faster from the start */
+          bob: 34 + Math.min(56, late * 1.1),                  /* and they wobble more from the start */
+          bobFr: 1.8 + Math.min(1.2, late * 0.015),
+          guards: n >= 16 ? 1 + Math.floor((n - 16) / 20) : 0,  /* 1 at 16, 2 at 36, 3 at 56, 4 at 76 */
+          /* v5.7.9: every orb sits in a turning shield with one gap; a bolt only gets through the gap. Each
+             Sun Chariot level (one per realm) narrows the gap and spins it faster; from the fourth the shields
+             reverse now and then, from the seventh they spin at different speeds. Orbs are smaller too. */
+          tier: tier,
+          orbScale: 0.8, coreR: 24, shieldR: 40,
+          gapHalf: Math.max(35, 62 - tier * 3) * Math.PI / 180,  /* half the gap: 62° at level 6, 35° by level 96 */
+          spin: Math.min(2.6, 1.3 + tier * 0.15),               /* radians a second */
+          flip: tier >= 3,                                       /* shields reverse every 2.5–5 s */
+          spinVar: tier >= 6 ? 0.45 : 0.15
+        };
+      }
       setup_sky() {
         this.drawSkyBg(50);
         this.skyHills();
         var x = this.W * 0.2, y = this.H / 2;
-        this.chariot = this.add.image(x, y, "md-chariot").setScale(1.25).setDepth(21);
-        this.makeSol(x - 10, y - 36, "right", 1.6);
-        this.sky = { bolts: [], foes: [], orbs: [], cd: 0, spawnCd: 1800, t: 0, x: x, y: y };
+        /* v5.7.9: two horses pull the chariot; the team is drawn smaller than the old chariot on its own */
+        this.teamS = 0.74; this.teamOff = (TEAM_W / 2 - TEAM_CAR) * this.teamS;
+        this.chariot = this.add.image(x + this.teamOff, y, "md-team-0").setScale(this.teamS).setDepth(21);
+        this.makeSol(x - 4, y - 17, "right", 1.2);
+        this.sky = { bolts: [], foes: [], orbs: [], shots: [], cd: 0, spawnCd: 1800, t: 0, x: x, y: y, P: this.skyParams(this.night) };
       }
       skyHills() {
         var id = this.realm ? this.realm.id : "midgard", W = this.W, H = this.H;
@@ -1108,104 +1481,166 @@
       }
       resize_sky() { this.drawSkyBg(50); this.skyHills(); }
       answers_sky() {
-        var K2 = this.sky, W = this.W, H = this.H, self = this;
+        var K2 = this.sky, W = this.W, H = this.H, self = this, P = K2.P;
         K2.orbs.forEach(kill); K2.orbs = [];
+        K2.foes = K2.foes.filter(function (f) { if (f.kind === "guard") { kill(f); return false; } return true; });
         var letters = shuffle(this.choiceLetters().slice()), n = letters.length;
         var lanes = []; for (var i = 0; i < n; i++) lanes.push(90 + (H - 190) * (n === 1 ? 0.5 : i / (n - 1)));
         shuffle(lanes);
         letters.forEach(function (L, k) {
-          var o = { x: W + 90 + k * 200, by: lanes[k], y: lanes[k], ph: rnd(0, 6), letter: L, vx: -(78 + self.night * 0.45) };
-          o.spr = self.add.image(o.x, o.y, "md-orb").setDepth(13);
-          o.label = self.letterText(o.x, o.y, L, 28, "#1a2a5a", "#ffffff");
+          var o = { x: W + 90 + k * 200, by: lanes[k], y: lanes[k], ph: rnd(0, 6), letter: L, vx: -P.orbSp * rnd(0.9, 1.1),
+            gap: rnd(0, Math.PI * 2), spin: P.spin * rnd(1 - P.spinVar, 1 + P.spinVar) * (Math.random() < 0.5 ? -1 : 1), flipCd: rnd(2500, 5000) };
+          o.spr = self.add.image(o.x, o.y, "md-orb").setScale(P.orbScale).setDepth(13);
+          o.label = self.letterText(o.x, o.y, L, 24, "#1a2a5a", "#ffffff");
           K2.orbs.push(o);
         });
+        /* guards: right and wrong orbs alike, so a guard gives nothing away */
+        shuffle(K2.orbs.slice()).slice(0, Math.min(P.guards, n)).forEach(function (o) { o.guarded = true; self.skyGuard(o); });
+      }
+      skyGuard(o) {
+        var g = { kind: "guard", orb: o, x: o.x - 58, y: o.y, r: 22, t: rnd(0, 3), spr: this.add.image(o.x - 58, o.y, "rf-raven-0").setScale(0.72).setFlipX(true).setTint(0xd8c8ff).setDepth(15) };
+        this.sky.foes.push(g);
+        return g;
+      }
+      skyThrow(x, y, spark) {
+        var K2 = this.sky, P = K2.P, tx = K2.x, ty = K2.y - 8, dx = tx - x, dy = ty - y, dl = Math.sqrt(dx * dx + dy * dy) || 1, sp = spark ? P.sparkSp : P.featherSp;
+        var spr = spark ? this.add.image(x, y, "spark").setTint(0xbfe8ff).setScale(1.1).setDepth(17) : this.add.image(x, y, "md-feather").setDepth(17);
+        K2.shots.push({ x: x, y: y, vx: dx / dl * sp, vy: dy / dl * sp, spark: !!spark, t: 0, spr: spr });
+        snd(spark ? "beam" : "shot");
       }
       tick_sky(s, inp, ms) {
-        var K2 = this.sky, W = this.W, H = this.H, i, j, self = this;
+        var K2 = this.sky, W = this.W, H = this.H, P = K2.P, i, j, self = this;
         K2.t += s;
         if (this.hillFar) this.hillFar.tilePositionX += 30 * s;
         if (this.hillNear) this.hillNear.tilePositionX += 80 * s;
         /* flying */
         var vx = inp.ax * 380, vy = inp.ay * 380;
         if (inp.ay && inp.ax) { vx *= 0.7071; vy *= 0.7071; }
-        if (inp.ptr) {
-          var dx = inp.ptr.x - K2.x, dy = inp.ptr.y - K2.y, dl = Math.sqrt(dx * dx + dy * dy);
-          if (dl > 12) { vx = dx / dl * 380; vy = dy / dl * 380; } else { vx = 0; vy = 0; }
-        }
         K2.x = clamp(K2.x + vx * s, 60, W * 0.55); K2.y = clamp(K2.y + vy * s, 56, H - 44);
-        this.chariot.setPosition(K2.x, K2.y + Math.sin(K2.t * 3) * 2);
-        this.player.setPosition(K2.x - 10, K2.y - 36 + Math.sin(K2.t * 3) * 2);
+        this.chariot.setPosition(K2.x + this.teamOff, K2.y + Math.sin(K2.t * 3) * 2).setTexture("md-team-" + (Math.floor(K2.t * 7) % 2));
+        this.player.setPosition(K2.x - 4, K2.y - 17 + Math.sin(K2.t * 3) * 2);
         this.blink(this.chariot); this.blink(this.player);
-        /* sunbolts */
+        /* sunbolts: the first thing in a bolt's path takes it (a guard shields its orb) */
         K2.cd -= ms;
         if (inp.fire && K2.cd <= 0) {
-          K2.bolts.push({ x: K2.x + 60, y: K2.y - 4, spr: this.add.image(K2.x + 60, K2.y - 4, "md-bolt").setDepth(18) });
-          K2.cd = 200; snd("shot");
+          var bx0 = K2.x + (TEAM_W - TEAM_CAR) * this.teamS;   /* from in front of the horses */
+          K2.bolts.push({ x: bx0, y: K2.y - 4, spr: this.add.image(bx0, K2.y - 4, "md-bolt").setDepth(18) });
+          K2.cd = 200; K2.fired = (K2.fired || 0) + 1; snd("shot");
         }
         for (i = K2.bolts.length - 1; i >= 0; i--) {
-          var b = K2.bolts[i], hit = false;
+          var b = K2.bolts[i], x0 = b.x, best = null, bx = 1e9, isOrb = false, blocked = false;
           b.x += 820 * s; b.spr.x = b.x;
-          for (j = 0; j < K2.foes.length && !hit; j++) {
-            var f = K2.foes[j];
-            if (dist(b.x, b.y, f.x, f.y) < f.r + 6) { hit = true; this.burst(f.x, f.y, f.kind === "wisp" ? 0xbfe8ff : 0x5a4a78, 12); snd("pop"); kill(f); K2.foes.splice(j, 1); this.addKill(f.x, f.y, "Sky cleared"); }
+          K2.foes.forEach(function (f) { if (Math.abs(f.y - b.y) < f.r + 6 && f.x + f.r + 6 >= x0 && f.x - f.r - 6 <= b.x && f.x < bx) { best = f; bx = f.x; isOrb = false; } });
+          /* an orb: the bolt meets its shield where it crosses the circle; the gap lets it through to the orb */
+          K2.orbs.forEach(function (o) {
+            var R = P.shieldR, dy = b.y - o.y;
+            if (Math.abs(dy) >= R) return;
+            var ex = o.x - Math.sqrt(R * R - dy * dy);
+            if (ex < x0 - 2 || ex > b.x + 2 || ex >= bx) return;
+            var open = Math.abs(angDiff(Math.atan2(dy, ex - o.x), o.gap)) < P.gapHalf;
+            if (open && Math.abs(dy) > P.coreR) return;          /* through the gap but past the orb */
+            best = o; bx = ex; isOrb = true; blocked = !open;
+          });
+          if (best && isOrb && blocked) {
+            this.burst(bx, b.y, 0xffd84a, 6); snd("rock");
+            best.hitT = 180;
+            if (!K2.toldShield) { K2.toldShield = true; this.toast("The orb's shield stopped that sunbolt. Shoot when the gap faces you.", 2600); }
+          } else if (best && !isOrb) {
+            this.burst(best.x, best.y, best.kind === "wisp" ? 0xbfe8ff : 0x5a4a78, 12); snd("pop");
+            kill(best); K2.foes.splice(K2.foes.indexOf(best), 1); this.addKill(best.x, best.y, "Sky cleared");
+          } else if (best) {
+            K2.orbs.splice(K2.orbs.indexOf(best), 1);
+            kill(best);
+            this.answerPick(best.letter, best.x, best.y);
           }
-          for (j = 0; j < K2.orbs.length && !hit; j++) {
-            var o = K2.orbs[j];
-            if (dist(b.x, b.y, o.x, o.y) < 32) {
-              hit = true;
-              K2.orbs.splice(j, 1);
-              kill(o);
-              this.answerPick(o.letter, o.x, o.y);
-            }
-          }
-          if (hit || b.x > W + 30) { b.spr.destroy(); K2.bolts.splice(i, 1); }
+          if (best || b.x > W + 30) { b.spr.destroy(); K2.bolts.splice(i, 1); }
           if (this._finishing) return;
         }
-        /* orbs drift past and come round again */
+        /* orbs drift past and come round again (weaving harder from level 16) */
+        var g = this.fxG; g.clear();
         K2.orbs.forEach(function (o) {
-          o.x += o.vx * s; o.y = o.by + Math.sin(K2.t * 1.6 + o.ph) * 26;
-          if (o.x < -60) { o.x = W + 60 + rnd(0, 220); o.by = rnd(90, H - 100); }
+          o.x += o.vx * s; o.y = o.by + Math.sin(K2.t * P.bobFr + o.ph) * P.bob;
+          if (P.flip) { o.flipCd -= ms; if (o.flipCd <= 0) { o.spin = -o.spin; o.flipCd = rnd(2500, 5000); } }
+          o.gap += o.spin * s;
+          if (o.hitT) o.hitT = Math.max(0, o.hitT - ms);
+          /* the shield: a thick gold ring with a dark edge, open where the gap is */
+          var a0 = o.gap + P.gapHalf, a1 = o.gap - P.gapHalf + Math.PI * 2;
+          g.lineStyle(10, 0x3a2608, 0.8); g.beginPath(); g.arc(o.x, o.y, P.shieldR, a0, a1, false); g.strokePath();
+          g.lineStyle(6, o.hitT ? 0xffffff : 0xffd84a, 0.95); g.beginPath(); g.arc(o.x, o.y, P.shieldR, a0, a1, false); g.strokePath();
+          if (o.x < -60) {
+            o.x = W + 60 + rnd(0, 220); o.by = rnd(90, H - 100);
+            if (o.guarded && !K2.foes.some(function (f) { return f.orb === o; })) self.skyGuard(o);   /* a new guard each time round */
+          }
           o.spr.setPosition(o.x, o.y); o.label.setPosition(o.x, o.y);
         });
         /* ravens and wisps */
         K2.spawnCd -= ms;
         if (K2.spawnCd <= 0 && !this._between) {
-          var wisp = Math.random() < 0.3, y0 = rnd(60, H - 60);
+          var wisp = Math.random() < P.wispShare, y0 = rnd(60, H - 60);
           var foe = wisp
-            ? { kind: "wisp", x: W + 40, y: y0, by: y0, r: 20, sp: 110 + this.night * 0.6, spr: this.add.image(W + 40, y0, "rf-wisp").setScale(0.7).setDepth(15) }
-            : { kind: "raven", x: W + 40, y: y0, by: y0, r: 22, sp: rnd(170, 240) + this.night * 0.9, amp: rnd(20, 80), fr: rnd(1.5, 3), t: 0, spr: this.add.image(W + 40, y0, "rf-raven-0").setScale(0.7).setFlipX(true).setDepth(15) };
+            ? { kind: "wisp", x: W + 40, y: y0, by: y0, r: 20, sp: P.wispSp, spr: this.add.image(W + 40, y0, "rf-wisp").setScale(0.7).setDepth(15) }
+            : { kind: "raven", x: W + 40, y: y0, by: y0, r: 22, sp: P.ravenSp + rnd(0, 70), amp: rnd(20, 80), fr: rnd(1.5, 3), t: 0, spr: this.add.image(W + 40, y0, "rf-raven-0").setScale(0.7).setFlipX(true).setDepth(15) };
+          /* will it throw, and from how far along? */
+          var pThrow = wisp ? P.sparkP : P.throwP;
+          if (Math.random() < pThrow) foe.throwX = rnd(K2.x + 220, W - 60);
           K2.foes.push(foe);
-          K2.spawnCd = Math.max(420, 1200 - this.night * 6) * rnd(0.7, 1.3);
+          K2.spawnCd = P.spawnMs * rnd(0.7, 1.3);
         }
         for (i = K2.foes.length - 1; i >= 0; i--) {
           var e = K2.foes[i];
-          if (e.kind === "wisp") {
+          if (e.kind === "guard") {
+            if (K2.orbs.indexOf(e.orb) === -1) { kill(e); K2.foes.splice(i, 1); continue; }
+            e.t += s; e.x = e.orb.x - 58; e.y = e.orb.y + Math.sin(e.t * 5) * 4;
+            e.spr.setPosition(e.x, e.y).setTexture("rf-raven-" + (Math.floor(e.t * 4) % 2));
+          } else if (e.kind === "wisp") {
             e.x -= e.sp * s;
-            e.y += clamp(K2.y - e.y, -1, 1) * 60 * s;
+            e.y += clamp(K2.y - e.y, -1, 1) * P.wispHome * s;
             e.spr.setPosition(e.x, e.y).setAlpha(0.75 + Math.sin(K2.t * 8 + i) * 0.2);
           } else {
             e.t += s; e.x -= e.sp * s; e.y = e.by + Math.sin(e.t * e.fr) * e.amp;
             e.spr.setPosition(e.x, e.y).setTexture("rf-raven-" + (Math.floor(e.t * 4) % 2));
           }
-          if (dist(e.x, e.y, K2.x, K2.y - 8) < e.r + 26) {
+          /* the wind-up (it glows orange for a third of a second), then the throw */
+          if (e.throwX != null && e.x <= e.throwX && !e.thrown) {
+            e.wind = (e.wind || 0) + ms;
+            if (e.kind === "raven") e.spr.setTint(0xffb060);
+            if (e.wind >= 330) { e.thrown = true; e.spr.clearTint(); this.skyThrow(e.x - 16, e.y, e.kind === "wisp"); }
+          }
+          if (dist(e.x, e.y, K2.x, K2.y - 8) < e.r + 20 || dist(e.x, e.y, K2.x + 72 * this.teamS, K2.y) < e.r + 14) {   /* the car or the horses */
             var hurt = this.loseLife("hit", e.kind === "wisp" ? "A WISP HIT YOU" : "A RAVEN HIT YOU");
             if (hurt) { this.burst(e.x, e.y, 0xff9a7a, 12); kill(e); K2.foes.splice(i, 1); }
             if (this._finishing) return;
             continue;
           }
-          if (e.x < -60) { kill(e); K2.foes.splice(i, 1); }
+          if (e.x < -60 && e.kind !== "guard") { kill(e); K2.foes.splice(i, 1); }
+        }
+        /* feathers and sparks */
+        for (i = K2.shots.length - 1; i >= 0; i--) {
+          var sh = K2.shots[i];
+          sh.t += s; sh.x += sh.vx * s; sh.y += sh.vy * s;
+          sh.spr.setPosition(sh.x, sh.y).setRotation(sh.spark ? sh.t * 6 : Math.atan2(sh.vy, sh.vx) + Math.PI / 2 + Math.sin(sh.t * 10) * 0.3);
+          var gone = sh.x < -30 || sh.x > W + 30 || sh.y < -30 || sh.y > H + 30;
+          if (!gone && (dist(sh.x, sh.y, K2.x, K2.y - 8) < 26 || dist(sh.x, sh.y, K2.x + 72 * this.teamS, K2.y) < 18)) {
+            gone = true;
+            this.loseLife("hit", sh.spark ? "A WISP'S SPARK HIT YOU" : "HIT BY A FEATHER");
+            if (this._finishing) { sh.spr.destroy(); K2.shots.splice(i, 1); return; }
+          }
+          if (gone) { sh.spr.destroy(); K2.shots.splice(i, 1); }
         }
       }
       clear_sky() {
         var K2 = this.sky, self = this;
         K2.foes.forEach(function (f) { self.burst(f.x, f.y, 0xffd84a, 6); kill(f); }); K2.foes = [];
         K2.orbs.forEach(function (o) { self.burst(o.x, o.y, 0xbfe8ff, 8); kill(o); }); K2.orbs = [];
+        K2.shots.forEach(kill); K2.shots = [];
         K2.spawnCd = 1800;
+        try { this.fxG.clear(); } catch (e) {}
       }
 
       /* ═══ 4. WOLF RING — arena ════════════════════════════════════════════ */
       setup_ring() {
-        this.rg = { arrows: [], wolves: [], stones: [], cd: 0, spawnCd: 2200, aim: -Math.PI / 2, frameMs: 0 };
+        this.rg = { arrows: [], wolves: [], stones: [], cd: 0, spawnCd: 2200, aim: -Math.PI / 2, frameMs: 0,
+          ammo: 6, ammoMs: 0, alphaCd: 7000, drops: [], rav: null, ravCd: 5000 };
         this.ringLayout();
         this.makeSol(this.rg.cx, this.rg.cy, "up");
       }
@@ -1232,27 +1667,80 @@
         rg.wolves.forEach(function (w) { w.x += dx; w.y += dy; });
         this.ringPlaceStones();
       }
+      /* v5.7.5: the runestones start sunk in the ground. The Hati attack first; after a few seconds
+         the stones rise one or two at a time, in a shuffled order, on random spots round the ring. Each
+         stays up for a few seconds, then sinks and the next rise, so the right answer is only open
+         for a moment and never before the wolves are on the move. */
       answers_ring() {
         var rg = this.rg, self = this;
         rg.stones.forEach(kill); rg.stones = [];
         var letters = shuffle(this.choiceLetters().slice());
-        rg.stoneA0 = -Math.PI / 2 + rnd(-0.4, 0.4);
+        rg.stoneA0 = rnd(0, Math.PI * 2);
+        rg.slotN = 8;
         letters.forEach(function (L) {
-          var o = { letter: L, dead: false };
-          o.spr = self.add.image(0, 0, "md-stone").setDepth(9);
-          o.label = self.letterText(0, 0, L, 30, "#ffe07a", "#1a1008").setDepth(10);
+          var o = { letter: L, dead: false, state: "down", t: 0, slot: 0, x: -999, y: -999 };
+          o.spr = self.add.image(0, 0, "md-stone").setDepth(9).setVisible(false);
+          o.label = self.letterText(0, 0, L, 30, "#ffe07a", "#1a1008").setDepth(10).setVisible(false);
           rg.stones.push(o);
         });
-        this.ringPlaceStones();
+        rg.queue = [];
+        rg.riseCd = 3600;                                   /* the wolves get a head start */
+        rg.spawnCd = Math.min(rg.spawnCd, 600);
+        rg.upMs = Math.max(3800, 6500 - this.night * 25) * (this.tier >= 7 ? 0.75 : 1);   /* how long a stone stays up */
+      }
+      ringSlotPos(k, drift) {
+        var rg = this.rg, a = rg.stoneA0 + k / rg.slotN * Math.PI * 2 + (drift || 0);
+        return { x: rg.cx + Math.cos(a) * (rg.R - 34), y: rg.cy + Math.sin(a) * (rg.R - 34) };
       }
       ringPlaceStones() {
-        var rg = this.rg, n = rg.stones.length;
-        rg.stones.forEach(function (o, k) {
-          var a = rg.stoneA0 + k / n * Math.PI * 2;
-          o.x = rg.cx + Math.cos(a) * (rg.R - 34); o.y = rg.cy + Math.sin(a) * (rg.R - 34);
-          if (o.spr) o.spr.setPosition(o.x, o.y);
-          if (o.label) o.label.setPosition(o.x, o.y - 2);
+        var self = this;
+        this.rg.stones.forEach(function (o) {
+          if (o.state === "down") return;
+          var q = self.ringSlotPos(o.slot, o.drift); o.x = q.x; o.y = q.y;
+          self.ringDrawStone(o);
         });
+      }
+      ringDrawStone(o) {
+        var k = o.state === "rising" ? clamp(o.t / 400, 0, 1) : o.state === "sinking" ? clamp(1 - o.t / 350, 0, 1) : o.state === "up" ? 1 : 0;
+        o.spr.setVisible(k > 0).setScale(1, Math.max(0.01, k)).setPosition(o.x, o.y + (1 - k) * 34);
+        o.label.setVisible(k > 0.6).setAlpha(k).setPosition(o.x, o.y - 2);
+      }
+      /* raise a stone on a free spot, not right beside Sol */
+      ringRaise(o) {
+        var rg = this.rg, p = this.player, self = this, used = {}, free = [], k;
+        rg.stones.forEach(function (q) { if (q !== o && q.state !== "down") used[q.slot] = true; });
+        for (k = 0; k < rg.slotN; k++) if (!used[k]) { var q2 = this.ringSlotPos(k); if (!p || dist(q2.x, q2.y, p.x, p.y) > 130) free.push(k); }
+        if (!free.length) for (k = 0; k < rg.slotN; k++) if (!used[k]) free.push(k);
+        o.slot = free[Math.floor(Math.random() * free.length)] || 0;
+        o.drift = 0; o.dv = this.tier >= 4 ? (Math.random() < 0.5 ? -1 : 1) * rnd(0.22, 0.38) * (this.tier >= 9 ? 1.3 : 1) : 0;   /* sliding stones from realm 5 */
+        var pos = this.ringSlotPos(o.slot); o.x = pos.x; o.y = pos.y;
+        o.state = "rising"; o.t = 0;
+        this.burst(o.x, o.y + 20, 0x9a8a6a, 10);
+        snd("rock");
+        this.ringDrawStone(o);
+      }
+      ringStones(ms) {
+        var rg = this.rg, self = this;
+        rg.stones.forEach(function (o) {
+          if (o.state === "down") return;
+          o.t += ms;
+          if (o.dv && o.state === "up" && !o.dead) { o.drift += o.dv * ms / 1000; var q3 = self.ringSlotPos(o.slot, o.drift); o.x = q3.x; o.y = q3.y; }
+          if (o.state === "rising" && o.t >= 400) { o.state = "up"; o.t = 0; }
+          else if (o.state === "up" && o.t >= (o.dead ? 1000 : rg.upMs)) { o.state = "sinking"; o.t = 0; }
+          else if (o.state === "sinking" && o.t >= 350) { o.state = "down"; o.t = 0; if (!rg.stones.some(function (q) { return q.state !== "down"; })) rg.riseCd = 900; }
+          self.ringDrawStone(o);
+        });
+        if (this._between) return;
+        rg.riseCd -= ms;
+        if (rg.riseCd > 0 || rg.stones.some(function (q) { return q.state !== "down"; })) return;
+        /* next one or two, from a shuffled round of the stones still in play */
+        var live = rg.stones.filter(function (q) { return !q.dead; });
+        if (!live.length) return;
+        rg.queue = rg.queue.filter(function (q) { return !q.dead; });
+        if (!rg.queue.length) rg.queue = shuffle(live.slice());
+        var n = Math.min(rg.queue.length, Math.random() < 0.5 ? 1 : 2);
+        for (var i = 0; i < n; i++) this.ringRaise(rg.queue.shift());
+        rg.riseCd = 99999;
       }
       tick_ring(s, inp, ms) {
         var rg = this.rg, p = this.player, i, j, self = this, g = this.fxG, now = this.time.now;
@@ -1262,7 +1750,9 @@
         p.x += ax / l * 320 * s; p.y += ay / l * 320 * s;
         var dc = dist(p.x, p.y, rg.cx, rg.cy), lim = rg.R - 34;
         if (dc > lim) { p.x = rg.cx + (p.x - rg.cx) / dc * lim; p.y = rg.cy + (p.y - rg.cy) / dc * lim; }
+        this.ringStones(ms);
         rg.stones.forEach(function (o) {
+          if (o.state !== "up") return;
           var d = dist(p.x, p.y, o.x, o.y);
           if (d < 40 && d > 0) { p.x = o.x + (p.x - o.x) / d * 40; p.y = o.y + (p.y - o.y) / d * 40; }
         });
@@ -1277,7 +1767,14 @@
         g.fillStyle(0xffe07a, 0.7); g.fillTriangle(p.x + ca * 66, p.y + sa * 66, p.x + ca * 54 - sa * 7, p.y + sa * 54 + ca * 7, p.x + ca * 54 + sa * 7, p.y + sa * 54 - ca * 7);
         /* arrows */
         rg.cd -= ms;
-        if (inp.fire && rg.cd <= 0 && rg.arrows.length < 5) {
+        var quiver = this.tier >= 5;   /* realm 6 on: six arrows, each comes back after a moment */
+        if (quiver) {
+          if (rg.ammo < 6) { rg.ammoMs += ms; if (rg.ammoMs >= 650) { rg.ammoMs = 0; rg.ammo += 1; } } else rg.ammoMs = 0;
+          for (var qi = 0; qi < 6; qi++) { g.fillStyle(qi < rg.ammo ? 0xffe07a : 0x5a5040, qi < rg.ammo ? 0.95 : 0.6); g.fillRect(p.x - 21 + qi * 7, p.y - 46, 4, 10); }
+          if (inp.fire && rg.cd <= 0 && rg.ammo <= 0 && !rg.toldAmmo) { rg.toldAmmo = true; this.toast("Out of arrows! They come back one at a time.", 2200); }
+        }
+        if (inp.fire && rg.cd <= 0 && rg.arrows.length < 5 && (!quiver || rg.ammo > 0)) {
+          if (quiver) rg.ammo -= 1;
           rg.arrows.push({ x: p.x + ca * 22, y: p.y + sa * 22, vx: ca * 720, vy: sa * 720, spr: this.add.image(p.x, p.y, "md-arrow").setRotation(rg.aim + Math.PI / 2).setDepth(18) });
           rg.cd = 260; snd("shot");
         }
@@ -1286,15 +1783,23 @@
           a.x += a.vx * s; a.y += a.vy * s; a.spr.setPosition(a.x, a.y);
           for (j = 0; j < rg.wolves.length && !hit; j++) {
             var w = rg.wolves[j];
-            if (w.state === "run" && dist(a.x, a.y, w.x, w.y) < 30) { hit = true; this.wolfScare(w); this.addKill(w.x, w.y, "Wolves chased off"); }
+            if (w.state === "run" && dist(a.x, a.y, w.x, w.y) < (w.alpha ? 42 : 30)) {
+              hit = true;
+              if (w.alpha && w.hp > 1) {
+                w.hp -= 1; this.burst(w.x, w.y, 0xd8dce4, 10); snd("yelp");
+                var kb = Math.atan2(w.y - p.y, w.x - p.x); w.x += Math.cos(kb) * 50; w.y += Math.sin(kb) * 50;
+                if (!rg.toldAlpha) { rg.toldAlpha = true; this.toast("The alpha wolf takes three arrows!", 2200); }
+              } else { this.wolfScare(w); this.addKill(w.x, w.y, w.alpha ? "Alpha wolf chased off" : "Wolves chased off"); }
+            }
           }
           for (j = 0; j < rg.stones.length && !hit; j++) {
             var o = rg.stones[j];
-            if (!o.dead && dist(a.x, a.y, o.x, o.y) < 30) {
+            var upEnough = o.state === "up" || (o.state === "rising" && o.t > 200);
+            if (!o.dead && upEnough && dist(a.x, a.y, o.x, o.y) < 30) {
               hit = true;
               var res = this.answerPick(o.letter, o.x, o.y);
-              if (res === "wrong") { o.dead = true; o.spr.setTint(0x555555); o.label.setText("✕").setColor("#8a8a8a"); }
-              else if (res === "partial") { o.dead = true; o.spr.setTint(0xffe07a); }
+              if (res === "wrong") { o.dead = true; o.spr.setTint(0x555555); o.label.setText("✕").setColor("#8a8a8a"); o.state = "up"; o.t = 0; }
+              else if (res === "partial") { o.dead = true; o.spr.setTint(0xffe07a); o.state = "up"; o.t = 0; }
             }
           }
           if (hit || dist(a.x, a.y, rg.cx, rg.cy) > rg.R + 90) { a.spr.destroy(); rg.arrows.splice(i, 1); }
@@ -1303,12 +1808,20 @@
         /* the Hati */
         var running = rg.wolves.filter(function (w) { return w.state === "run"; }).length;
         rg.spawnCd -= ms;
-        if (rg.spawnCd <= 0 && !this._between && running < 3 + Math.floor(this.night / 22)) {
-          var sa2 = rnd(0, Math.PI * 2), wx = rg.cx + Math.cos(sa2) * (rg.R + 70), wy = rg.cy + Math.sin(sa2) * (rg.R + 70);
-          rg.wolves.push({ x: wx, y: wy, state: "run", sp: Math.min(285, 145 + this.night * 1.4) * rnd(0.9, 1.1), spr: this.add.image(wx, wy, "hati1").setScale(0.5).setDepth(16) });
+        var cap = 3 + Math.floor(this.night / 22) + (this.tier >= 9 ? 1 : 0);
+        if (rg.spawnCd <= 0 && !this._between && running < cap) {
+          var sa2 = rnd(0, Math.PI * 2);
+          this.ringWolf(sa2, false);
+          if (this.tier >= 1 && Math.random() < 0.35 && running + 1 < cap + 1) this.ringWolf(sa2 + 0.2, false);   /* a pack of two */
           if (Math.random() < 0.25) snd("howl");
-          rg.spawnCd = Math.max(650, 2100 - this.night * 13) * rnd(0.75, 1.25);
+          rg.spawnCd = Math.max(650, 2100 - this.night * 13) * rnd(0.75, 1.25) * (this.tier >= 9 ? 0.75 : 1);
         }
+        if (this.tier >= 2 && !this._between) {
+          rg.alphaCd -= ms;
+          var alphas = rg.wolves.filter(function (w) { return w.alpha && w.state === "run"; }).length;
+          if (rg.alphaCd <= 0 && alphas < (this.tier >= 7 ? 2 : 1)) { this.ringWolf(rnd(0, Math.PI * 2), true); snd("howl"); rg.alphaCd = rnd(9000, 13000); }
+        }
+        if (this.tier >= 3) this.ringRavens(s, ms);
         rg.frameMs += ms;
         var frame = "hati" + (1 + Math.floor(rg.frameMs / 110) % 3);
         for (i = rg.wolves.length - 1; i >= 0; i--) {
@@ -1316,6 +1829,13 @@
           if (wv.state === "run") { tx = p.x; ty = p.y; }
           else { tx = wv.x + (wv.x - rg.cx); ty = wv.y + (wv.y - rg.cy); }
           var dx = tx - wv.x, dy = ty - wv.y, dl = Math.sqrt(dx * dx + dy * dy) || 1, spd = wv.state === "run" ? wv.sp : 420;
+          if (wv.state === "run") {
+            wv.t = (wv.t || 0) + s;
+            /* leaping wolves crouch (a clear pause), then leap the last stretch */
+            if (wv.leap && !wv.leapt && dl < 190) { wv.crouch = (wv.crouch || 0) + ms; wv.spr.setTint(0xffc080); if (wv.crouch < 380) spd = 0; else { wv.leapt = true; wv.dash = 480; wv.spr.clearTint(); } }
+            if (wv.dash > 0) { wv.dash -= ms; spd *= 2.3; }
+            if (wv.zig && dl > 70) { var zz = Math.sin(wv.t * 6 + wv.ph) * spd * 0.8; wv.x += -dy / dl * zz * s; wv.y += dx / dl * zz * s; }
+          }
           wv.x += dx / dl * spd * s; wv.y += dy / dl * spd * s;
           wv.spr.setPosition(wv.x, wv.y).setTexture(frame).setFlipX(dx < 0);
           if (wv.state === "flee") {
@@ -1323,9 +1843,48 @@
             if (dist(wv.x, wv.y, rg.cx, rg.cy) > rg.R + 160 || wv.spr.alpha <= 0.02) { kill(wv); rg.wolves.splice(i, 1); }
             continue;
           }
-          if (dist(wv.x, wv.y, p.x, p.y) < 36) {
+          if (dist(wv.x, wv.y, p.x, p.y) < (wv.alpha ? 44 : 36)) {
             var hurt = this.loseLife("hit", "A WOLF CAUGHT YOU");
             if (hurt) rg.wolves.forEach(function (o) { if (o.state === "run" && dist(o.x, o.y, p.x, p.y) < 280) self.wolfScare(o, true); });
+            if (this._finishing) return;
+          }
+        }
+      }
+      ringWolf(ang, alpha) {
+        var rg = this.rg, wx = rg.cx + Math.cos(ang) * (rg.R + 70), wy = rg.cy + Math.sin(ang) * (rg.R + 70);
+        var w = { x: wx, y: wy, state: "run", sp: Math.min(285, 145 + this.night * 1.4) * rnd(0.9, 1.1) * (alpha ? 0.85 : 1), ph: rnd(0, 6),
+          alpha: !!alpha, hp: alpha ? 3 : 1, zig: !alpha && this.tier >= 6 && Math.random() < 0.5, leap: !alpha && this.tier >= 8 && Math.random() < 0.4,
+          spr: this.add.image(wx, wy, "hati1").setScale(alpha ? 0.74 : 0.5).setDepth(16) };
+        if (alpha) w.spr.setTint(0xb8c0cc);
+        rg.wolves.push(w);
+        return w;
+      }
+      /* realm 4 on: a raven crosses the ring and drops poo; a shadow grows where it will land */
+      ringRavens(s, ms) {
+        var rg = this.rg, p = this.player, W = this.W, H = this.H, g = this.fxG, i, self = this;
+        if (!rg.rav) {
+          rg.ravCd -= ms;
+          if (rg.ravCd <= 0 && !this._between) {
+            var fromL = Math.random() < 0.5, y0 = rnd(rg.cy - rg.R * 0.6, rg.cy + rg.R * 0.6);
+            rg.rav = { x: fromL ? -40 : W + 40, y: y0, vx: fromL ? 200 : -200, dropped: false, t: 0, spr: this.add.image(0, y0, "rf-raven-0").setScale(0.8).setDepth(20).setFlipX(!fromL) };
+            snd("caw");
+          }
+        } else {
+          var r = rg.rav; r.t += s; r.x += r.vx * s;
+          r.spr.setPosition(r.x, r.y).setTexture("rf-raven-" + (Math.floor(r.t * 4) % 2));
+          if (!r.dropped && Math.abs(r.x - p.x) < 60) { r.dropped = true; rg.drops.push({ x: p.x + rnd(-30, 30), y: p.y + rnd(-30, 30), t: 0 }); }
+          if (r.x < -60 || r.x > W + 60) { kill(r); rg.rav = null; rg.ravCd = rnd(5000, 8000); }
+        }
+        for (i = rg.drops.length - 1; i >= 0; i--) {
+          var d = rg.drops[i]; d.t += ms;
+          var k = clamp(d.t / 1000, 0, 1);
+          g.fillStyle(0x000000, 0.12 + 0.3 * k); g.fillEllipse(d.x, d.y + 8, 20 + 30 * k, 10 + 14 * k);
+          if (d.t >= 1000) {
+            var sp = this.add.image(d.x, d.y, "md-splat").setDepth(8).setScale(0.8);
+            this.tweens.add({ targets: sp, alpha: 0, delay: 500, duration: 700, onComplete: function () { sp.destroy(); } });
+            snd("pop");
+            if (dist(p.x, p.y, d.x, d.y) < 34) this.loseLife("hit", "SPLAT! BIRD POO GOT YOU");
+            rg.drops.splice(i, 1);
             if (this._finishing) return;
           }
         }
@@ -1347,5 +1906,8 @@
     return ModeScene;
   }
 
-  window.SolModes = { MODES: MODES, SLOTS: SLOTS, modeFor: modeFor, install: install };
+  /* v5.7.9: the maze draws Sol riding this chariot while the CHARIOT power lasts */
+  function ensureChariotArt(scene) { canvasTex(scene, "md-team-0", TEAM_W, TEAM_H, drawTeam(0)); canvasTex(scene, "md-team-1", TEAM_W, TEAM_H, drawTeam(1)); }
+  window.SolModes = { MODES: MODES, SLOTS: SLOTS, modeFor: modeFor, install: install, ensureChariotArt: ensureChariotArt,
+    TEAM: { w: TEAM_W, h: TEAM_H, car: TEAM_CAR } };
 })();

@@ -1437,7 +1437,7 @@
    "id": "gate-tower",
    "theme": "castle",
    "name": "Gate tower",
-   "desc": "A tower with an archway through its foot \u2014 a gate with battlements.",
+   "desc": "A tower with an archway through its foot — a gate with battlements.",
    "role": "module",
    "kind": "tower",
    "tier": 1,
@@ -4335,6 +4335,212 @@
    ],
    "img": "",
    "nostyle": false
+  },
+  {
+   "id": "trophy-midgard",
+   "theme": "castle",
+   "name": "Hero of Midgard",
+   "desc": "A knight on a double plinth, raised for beating Fenrir in Midgard. Only beating Fenrir gives it.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 4,
+   "price": 150,
+   "score": 60,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE",
+    "n_statue_block_NE",
+    "s_knight_NE"
+   ],
+   "img": "",
+   "nostyle": true,
+   "boss": "midgard"
+  },
+  {
+   "id": "trophy-niflheim",
+   "theme": "castle",
+   "name": "Frost Obelisk",
+   "desc": "A tall obelisk from the mists of Niflheim, won by beating Fenrir there. Only beating Fenrir gives it.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 4,
+   "price": 150,
+   "score": 60,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE",
+    "g_pillarObelisk_NE"
+   ],
+   "img": "",
+   "nostyle": true,
+   "boss": "niflheim"
+  },
+  {
+   "id": "trophy-jotunheim",
+   "theme": "castle",
+   "name": "Giant's Head",
+   "desc": "A stone giant's head from Jotunheim, won by beating Fenrir there. Only beating Fenrir gives it.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 4,
+   "price": 150,
+   "score": 60,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE",
+    "n_statue_head_NE"
+   ],
+   "img": "",
+   "nostyle": true,
+   "boss": "jotunheim"
+  },
+  {
+   "id": "trophy-muspelheim",
+   "theme": "castle",
+   "name": "Fire Beacon",
+   "desc": "A beacon on a high plinth, lit with fire from Muspelheim. Only beating Fenrir gives it.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 4,
+   "price": 150,
+   "score": 60,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE",
+    "n_statue_block_NE",
+    "t_lantern_NE"
+   ],
+   "img": "",
+   "nostyle": true,
+   "boss": "muspelheim"
+  },
+  {
+   "id": "trophy-svartalfheim",
+   "theme": "castle",
+   "name": "Dwarf-Forged Urn",
+   "desc": "A dwarf-forged urn on a carved column from Svartalfheim. Only beating Fenrir gives it.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 4,
+   "price": 150,
+   "score": 60,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE",
+    "n_statue_column_NE",
+    "g_urn_NE"
+   ],
+   "img": "",
+   "nostyle": true,
+   "boss": "svartalfheim"
+  },
+  {
+   "id": "trophy-vanaheim",
+   "theme": "castle",
+   "name": "Sun Ring",
+   "desc": "A standing ring of stone from Vanaheim, won by beating Fenrir there. Only beating Fenrir gives it.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 4,
+   "price": 150,
+   "score": 60,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE",
+    "n_statue_ring_NE"
+   ],
+   "img": "",
+   "nostyle": true,
+   "boss": "vanaheim"
+  },
+  {
+   "id": "trophy-alfheim",
+   "theme": "castle",
+   "name": "Light Spire",
+   "desc": "A spire of pale stone from Alfheim, the tallest obelisk in the land. Only beating Fenrir gives it.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 4,
+   "price": 150,
+   "score": 60,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE",
+    "n_statue_block_NE",
+    "g_pillarObelisk_NE"
+   ],
+   "img": "",
+   "nostyle": true,
+   "boss": "alfheim"
+  },
+  {
+   "id": "trophy-helheim",
+   "theme": "castle",
+   "name": "Ward Stone",
+   "desc": "A rune-cut ward stone and urn from Helheim, to keep the draugr away. Only beating Fenrir gives it.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 4,
+   "price": 150,
+   "score": 60,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE",
+    "t_pillarStone_NE",
+    "g_urn_NE"
+   ],
+   "img": "",
+   "nostyle": true,
+   "boss": "helheim"
+  },
+  {
+   "id": "trophy-asgard",
+   "theme": "castle",
+   "name": "King of Asgard",
+   "desc": "A king on a double plinth, raised for beating Fenrir in Asgard. Only beating Fenrir gives it.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 4,
+   "price": 150,
+   "score": 60,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE",
+    "n_statue_block_NE",
+    "s_king_NE"
+   ],
+   "img": "",
+   "nostyle": true,
+   "boss": "asgard"
+  },
+  {
+   "id": "trophy-ragnarok",
+   "theme": "castle",
+   "name": "Wolf-Slayer's Column",
+   "desc": "A king atop a great column: the last Fenrir is beaten. Only beating Fenrir gives it.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 4,
+   "price": 150,
+   "score": 60,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "g_columnLarge_NE",
+    "s_king_NE"
+   ],
+   "img": "",
+   "nostyle": true,
+   "boss": "ragnarok"
   }
  ],
  "decoLots": [

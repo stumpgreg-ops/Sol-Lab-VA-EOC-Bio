@@ -541,6 +541,10 @@
       sc.scoreToastMsg = msg;
     }
     function perk(sc, id) { return !!(sc.perks && sc.perks[id]); }
+    /* v5.7.6: Fenrir's Fangs — one per realm whose boss level has been beaten on this Chromebook */
+    var FANG_KEY = "afterHours.v1.fangs";
+    function loadFangs() { try { var a = JSON.parse(localStorage.getItem(FANG_KEY) || "[]"); return Array.isArray(a) ? a : []; } catch (e) { return []; } }
+    function saveFangs(a) { try { localStorage.setItem(FANG_KEY, JSON.stringify(a)); } catch (e) {} }
     function play(sc) { return sc.player && !sc.ended; }
     function node(i) { var G = K.railGraph(); return G && G.nodes[i]; }
     function nodesOk(sc, minStart, minExit) {
@@ -610,10 +614,7 @@
       if (this.perks.archers) {
         this.janPatrol *= 0.95; this.janHurry *= 0.95; this.janChase *= 0.95;
       }
-      /* Boss levels: one Hati fewer, Fenrir is the extra pressure. */
-      if (this.isBossLevel && this.level && this.level.startLanes && this.level.startLanes.length > 2) {
-        this.level = Object.assign({}, this.level, { startLanes: this.level.startLanes.slice(0, this.level.startLanes.length - 1) });
-      }
+      /* v5.7.6: boss levels keep every Hati — Fenrir is extra pressure on top, not instead. */
       return r;
     });
 
@@ -871,7 +872,7 @@
       var sc = this, M = K.maze(), pen = M && M.ghostHouse;
       var x = pen ? pen.cx : K.WORLD_W / 2, y = pen ? pen.cy : K.WORLD_H / 2;
       var f = { kind: "fenrir", x: x, y: y, homeX: x, homeY: y, face: 0, state: "prowl", timer: 0, stunMs: 0, hurts: true, r: 46, h: 120,
-        spd: K.WALK * 0.5, chargeSpd: K.WALK * (1.18 + this.realmIdx * 0.025), replan: 0, nextCharge: 14000, path: null };
+        spd: K.WALK * 0.7, chargeSpd: Math.min(K.SPRINT * 0.96, 390 + this.realmIdx * 10), replan: 0, nextCharge: 7000, path: null };
       var key = sc.textures.exists("hati1") ? "hati1" : "janitor";
       f.spr = sc.add.sprite(x, y - 16, key).setDepth(11.6).setScale(key === "hati1" ? 0.78 : 2.4).setTint(0x8a86a8);
       try { if (sc.anims.exists("hati-move")) f.spr.play("hati-move"); } catch (eA) {}
@@ -913,7 +914,26 @@
         toast(this, "A chain breaks! " + this.chainsLeft + " left on Fenrir's gate.", 2600);
         if (f && f.state !== "stunned") { f.state = "windup"; f.timer = 1100; SFX.howl(); }
       } else toast(this, "The last chain breaks! Fenrir flees.", 3000);
-      if (f) f.nextCharge = Math.max(8000, 16000 - (this.chainsTotal - this.chainsLeft) * 1500);
+      if (f) {
+        f.chargeSpd = Math.min(K.SPRINT * 0.96, f.chargeSpd + 8);   /* angrier with every chain */
+        f.nextCharge = this.fenrirRest();
+      }
+    };
+    /* v5.7.6: time between charges — 10 s at first, 0.8 s less for every chain broken, never under 5.5 s */
+    P.fenrirRest = function () {
+      var broken = (this.chainsTotal || 0) - (this.chainsLeft || 0);
+      return Math.max(5500, 10000 - broken * 800) + Math.random() * 2000;
+    };
+    P.showFangs = function () {
+      try {
+        var box = document.getElementById("fang-row"), card = document.getElementById("win-msg");
+        if (!card) return;
+        if (!box) { box = document.createElement("div"); box.id = "fang-row"; box.className = "fang-row"; card.parentNode.insertBefore(box, card.nextSibling); }
+        var got = loadFangs();
+        box.innerHTML = '<p class="fang-title">Fenrir\'s Fangs · ' + got.length + " of " + REALMS.length + "</p>" +
+          REALMS.map(function (r) { var on = got.indexOf(r.id) !== -1; return '<span class="fang' + (on ? " on" : "") + '" title="' + r.name + (on ? " — freed" : "") + '">' + (on ? "\u25BC" : "\u25BD") + "<small>" + r.name + "</small></span>"; }).join("");
+        box.classList.remove("hidden");
+      } catch (e) {}
     };
     P.fenrirProvoke = function () {
       var f = this.fenrir;
@@ -926,20 +946,24 @@
     P.tickFenrir = function (ms) {
       var f = this.fenrir, sc = this, p = this.player, frozen = (this.iceWorldFreezeMs || 0) > 0;
       if (!f || !p) return;
-      if (f.stunMs > 0) { f.stunMs -= ms; if (f.stunMs <= 0) { f.state = "return"; goTo(sc, f, f.homeX, f.homeY); } }
+      if (f.stunMs > 0) { f.stunMs -= ms; if (f.stunMs <= 0) { f.state = "rest"; f.timer = 800; } }
       else if (!frozen) {
-        if (f.state === "prowl") {
-          f.nextCharge -= ms;
-          if (!f.path || f.pi >= f.path.length) {
-            var M = K.maze(), cand = nodesOk(sc, 200, 250).filter(function (i) { var nd = M.nodes[i]; return dist(nd.x, nd.y, f.homeX, f.homeY) < 420; });
-            var tgt = cand.length ? M.nodes[cand[Math.floor(Math.random() * cand.length)]] : { x: f.homeX, y: f.homeY };
-            goTo(sc, f, tgt.x, tgt.y);
+        if (f.state === "rest") {                           /* v5.7.6: a short pant after a charge or a stun */
+          f.timer -= ms;
+          if (f.timer <= 0) { f.state = "prowl"; f.path = null; f.replan = 0; }
+        } else if (f.state === "prowl") {
+          /* v5.7.6: he stalks Sol through the whole maze (slower than her walk), then charges */
+          f.nextCharge -= ms; f.replan -= ms;
+          if (f.replan <= 0 || !f.path || f.pi >= f.path.length) {
+            if (K.inSafeZone(p.x, p.y)) { var M = K.maze(), cand = nodesOk(sc, 200, 250), nd = cand.length ? M.nodes[cand[Math.floor(Math.random() * cand.length)]] : { x: f.homeX, y: f.homeY }; goTo(sc, f, nd.x, nd.y); }
+            else goTo(sc, f, p.x, p.y);
+            f.replan = 1500;
           }
           walk(f, f.spd, ms);
           if (f.nextCharge <= 0 && !K.inSafeZone(p.x, p.y)) { f.state = "windup"; f.timer = 1100; SFX.howl(); toast(sc, "Fenrir howls. He is coming for you!", 2200); }
         } else if (f.state === "windup") {
           f.timer -= ms;
-          if (f.timer <= 0) { f.state = "charge"; f.timer = 5200; f.replan = 0; f.path = null; }
+          if (f.timer <= 0) { f.state = "charge"; f.timer = 4500; f.replan = 0; f.path = null; }
         } else if (f.state === "charge") {
           f.timer -= ms; f.replan -= ms;
           if (f.replan <= 0) { goTo(sc, f, p.x, p.y); f.replan = 450; }
@@ -949,10 +973,10 @@
             if (!K.hitsSolid(f.x + dx / d * st, f.y + dy / d * st, 20)) { f.x += dx / d * st; f.y += dy / d * st; f.face = Math.atan2(dy, dx); }
           }
           if (f.timer <= 0 || K.inSafeZone(p.x, p.y) || (done && dist(f.x, f.y, p.x, p.y) > 200)) {
-            f.state = "return"; goTo(sc, f, f.homeX, f.homeY);
+            f.state = "rest"; f.timer = 1400; f.nextCharge = this.fenrirRest();
           }
         } else if (f.state === "return") {
-          if (walk(f, f.spd * 1.5, ms)) { f.state = "prowl"; f.path = null; f.nextCharge = Math.max(8000, 16000 - (this.chainsTotal - this.chainsLeft) * 1500) + Math.random() * 4000; }
+          if (walk(f, f.spd * 1.5, ms)) { f.state = "prowl"; f.path = null; f.nextCharge = this.fenrirRest(); }
         }
       }
       /* draw */
@@ -961,7 +985,7 @@
       f.spr.setTint(f.stunMs > 0 ? 0x6a6aa0 : (angry ? 0xb07070 : 0x8a86a8));
       f.shadow.setPosition(f.x, f.y + 26);
       f.eye.setPosition(f.x + (Math.cos(f.face) < 0 ? -30 : 30), f.y - 30).setFillStyle(0xff2a1a, angry ? 0.55 : 0.12);
-      f.tag.setPosition(f.x, f.y - 86).setText(f.stunMs > 0 ? "FENRIR · stunned" : (angry ? "FENRIR!" : "FENRIR"));
+      f.tag.setPosition(f.x, f.y - 86).setText(f.stunMs > 0 ? "FENRIR · stunned" : (angry ? "FENRIR!" : f.state === "rest" ? "FENRIR · panting" : "FENRIR"));
       if (f.stunMs > 0 || !play(this)) return;
       /* contact */
       if (dist(f.x, f.y, p.x, p.y) < f.r && !K.inSafeZone(p.x, p.y)) this.foeContact(f);
@@ -991,7 +1015,7 @@
       }
       this._caughtBy = f.kind;
       this.caught({ x: f.x, y: f.y, setVelocity: function () {} });
-      if (f.kind === "fenrir") { f.state = "return"; goTo(this, f, f.homeX, f.homeY); }
+      if (f.kind === "fenrir") { f.state = "rest"; f.timer = 2200; f.nextCharge = this.fenrirRest(); }
       if (f.kind === "boar") { f.state = "stunned"; f.stunMs = 1200; }
     };
 
@@ -1330,6 +1354,17 @@
       if (this.isBossLevel && (this.score || 0) > before) this.breakChain();
       return r;
     });
+    /* v5.7.6: Fenrir smells a rune the moment Sol picks one up — his next charge comes within 2.5 s */
+    wrap("tryGrab", function (orig, args) {
+      var before = this.carriedSlips ? this.carriedSlips().length : 0;
+      var r = orig.apply(this, args);
+      var f = this.fenrir;
+      if (this.isBossLevel && f && !this.ended && this.carriedSlips && this.carriedSlips().length > before && f.state === "prowl") {
+        f.nextCharge = Math.min(f.nextCharge, 2500);
+        toast(this, "Fenrir smells the rune you picked up. Get it to EXIT before he catches you!", 2600);
+      }
+      return r;
+    });
     wrap("flagWrongAlarm", function (orig, args) {
       var r = orig.apply(this, args);
       if (this.isBossLevel && !this.ended) this.fenrirProvoke();
@@ -1358,13 +1393,14 @@
         try { this.caughtFlashTag.setText(this.caughtFlashTag.text.replace(/^CAUGHT/, "CAUGHT BY " + (FOE_NAMES[this._caughtBy] || "").toUpperCase())); } catch (eT) {}
       }
       this._caughtBy = null;
-      if (happened && this.fenrir && this.fenrir.state === "charge") { this.fenrir.state = "return"; goTo(sc, this.fenrir, this.fenrir.homeX, this.fenrir.homeY); }
+      if (happened && this.fenrir && this.fenrir.state === "charge") { this.fenrir.state = "rest"; this.fenrir.timer = 2200; this.fenrir.nextCharge = this.fenrirRest(); }
       return r;
     });
     wrap("coinEconomy", function (orig, args) {
       var ec = orig.apply(this, args) || {};
-      if (!this.perks) return ec;
-      var out = Object.assign({}, ec);
+      var out = Object.assign({}, ec), nf = loadFangs().length;
+      if (nf) out.answer = (out.answer || 10) + nf;   /* v5.7.6: Fenrir's Fangs, +1 coin an answer per realm freed */
+      if (!this.perks) return out;
       if (this.perks.trade) out.answer = (out.answer || 10) + 2;
       if (this.perks.gold) { out.bonusMin = (out.bonusMin || 3) * 2; out.bonusMax = (out.bonusMax || 12) * 2; }
       return out;
@@ -1386,8 +1422,22 @@
     wrap("endRun", function (orig, args) {
       var win = !!args[0], rm = this.realm || realmOf(this.night), bonus = [];
       stopAmbience();
+      try { var fr = document.getElementById("fang-row"); if (fr) fr.classList.add("hidden"); } catch (eF) {}
       if (win && !this.ended) {
-        if (this.isBossLevel) { this.giveCoins(40, "Realm cleared"); bonus.push("+40 coins for clearing " + rm.name); }
+        if (this.isBossLevel) {
+          var prize = 100 + 25 * (this.realmIdx || 0);
+          this.giveCoins(prize, "Realm cleared");
+          bonus.push("+" + prize + " coins for beating Fenrir in " + rm.name);
+          var fangs = loadFangs(), had = fangs.indexOf(rm.id) !== -1;
+          if (!had) { fangs.push(rm.id); saveFangs(fangs); }
+          this._fangNews = had ? "" : "You won Fenrir's Fang of " + rm.name + ": every correct answer now pays +" + fangs.length + " extra coin" + (fangs.length === 1 ? "" : "s") + ", for good.";
+          /* the realm's monument: a castle piece nobody can buy */
+          var trophy = null;
+          try { if (window.SolBuild && SolBuild.grantTrophy) trophy = SolBuild.grantTrophy(rm.id); } catch (eT) {}
+          this._trophy = trophy;
+          if (trophy) this._fangNews += (this._fangNews ? " " : "") + "Fenrir's treasure: the " + trophy + " now stands in your castle — a monument only a Fenrir-beater can have.";
+          else if (!had) { this.giveCoins(50, "Fenrir's treasure"); this._fangNews += " Fenrir's treasure: +50 coins (choose the Castle in the builder to collect Fenrir's monuments)."; }
+        }
         if (perk(this, "charter")) { this.giveCoins(10, "Royal charter"); bonus.push("+10 from your town hall"); }
         if (perk(this, "harvest")) { this.giveCoins(5, "Harvest"); bonus.push("+5 from your mills"); }
       }
@@ -1396,9 +1446,10 @@
         try {
           var t = document.getElementById("win-title"), m = document.getElementById("win-msg");
           if (this.isBossLevel && t) {
-            t.textContent = rm.name + " cleared!";
+            t.textContent = "Fenrir beaten — " + rm.name + " is free!";
             var nx = REALMS[this.realmIdx + 1];
-            if (m) m.textContent = "Fenrir's chains are broken and the gate is open. " + (nx ? "Next realm: " + nx.name + ", " + nx.title + "." : "You beat Ragnarok!") + " " + m.textContent;
+            if (m) m.textContent = "Fenrir's chains are broken and the gate is open. " + (this._fangNews ? this._fangNews + " " : "") + (nx ? "Next realm: " + nx.name + ", " + nx.title + "." : "You beat Ragnarok!") + " " + m.textContent;
+            this.showFangs();
           }
           if (m && bonus.length) m.textContent += " Castle and realm bonus: " + bonus.join(", ") + ".";
         } catch (e) {}

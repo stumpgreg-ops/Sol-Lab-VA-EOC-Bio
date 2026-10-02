@@ -8,6 +8,20 @@ Play: `index.html`. Teacher monitor: `admin.html` (PIN lock; FERPA nicknames onl
 
 Progress saves in this browser profile (`afterHours.v1.night`). Itch login does not store progress.
 
+## v6.3 (2026-10-02) — the Google Apps Script version, class sessions, and the v5.8.0 engine
+
+**For schools that block GitHub Pages and itch.io.** The teacher pastes one small file into a new project on script.google.com and deploys it as a web app; students open the `/exec` link (or the teacher embeds it in Google Sites). The page only ever talks to script.google.com: the script fetches the game from this repository's `gh-pages` branch on Google's servers, where the school's filter never sees the request. The 3D castle is included; the music is not.
+
+- **Set-up (once):** copy `Code.gs` from https://stumpgreg-ops.github.io/Sol-Lab-VA-EOC-Bio/appsscript/Code.gs (or `dist/appsscript/Code.gs` after `node tools/build-appsscript.js`). At script.google.com → New project, replace the contents of `Code.gs` with it, Save, then Deploy → New deployment → Web app, *Execute as: Me*, *Who has access: Anyone* (or your school's domain), Deploy, and authorize it. The Web app URL is the game's link. New versions of the game arrive by themselves: every page load asks for the newest manifest, and a Chromebook downloads the bundle (8.5 MiB) once per version into IndexedDB.
+- **Class sessions and a teacher page.** The game link with `?admin=1` opens a PIN-locked teacher page (choose the PIN on the first visit). It makes classes; each class's link is the game link with `?class=CODE`, and only students on that link get the class's settings. Per class: question sets on anything you are teaching (lab notes plus multiple-choice questions, each tagged with a Biology SOL code so it counts toward that standard), hide or reword a regular question, play only the class's sets or mix them in, and a progress table (highest level, current level, right and wrong, level, last seen). Students type a first name or nickname once. Everything is stored inside the Apps Script project; nothing goes in Google Drive. A class plays one unit (or Full review).
+- **Where it lives:** `tools/build-appsscript.js` packs the game (503 files, 17 MiB) into one gzip in three parts plus a manifest, `loader.html` and `Code.gs`, under `dist/appsscript/`; `tools/appsscript/` holds the Code.gs template, the loader, the teacher page (`admin.js`, `admin.css`) and a local Apps Script stand-in (`test.html`); `js/classes.js` applies a class to the question bank before `game.js` starts and does nothing without one; `tools/publish-pages.sh` publishes `appsscript/bio/` and `Code.gs` with the game. `node tools/smoke-appsscript.js` checks the whole thing headless: title, a level, every 3D model, cache on revisit, the teacher page, a class session, progress, "only this class's sets", an unknown code, and that no asset ever came from the server.
+- **The v5.7.2–v5.8.0 engine from SOL Labyrinth**, with the questions untouched:
+  - Every shooter adds something each time it comes round (once a realm); the intro card says what is new. Sun Chariot orbs sit in turning shields with one gap; two horses pull the chariot, and Sol rides the horse team in the maze while the CHARIOT power lasts.
+  - Fenrir hunts: he stalks Sol through the whole maze and charges, sooner as chains break. Beating him pays 100 coins plus 25 per realm, Fenrir's Fang (+1 coin on every answer for good) and the realm's monument for the castle (ten pieces that are never sold).
+  - Eagle Swoop: no arrows until the flock forms, a bird always diving, guard ravens, bird poo. Rune Rocks: a one-card beam tutorial, right mouse button holds the beam, clicks only fire. Wolf Ring: the runestones rise one or two at a time after the wolves attack.
+  - A wrong letter names the letter in the banner and on the end screen, with the keyed answer, so a doubtful question can be checked at once.
+  - Town builder: the view holds still while dragging; Turn mirrors a town picture.
+
 ## v6.2.1 (2026-10-02) — clean question stems, Google Docs review copy
 
 - Fourteen Evolution & Classification stems carried literal `<strong>` / `<em>` tags that showed as raw text in the side panel; the tags are gone (the lab notes, which render as HTML, keep their bold terms and italic species names).
@@ -55,10 +69,12 @@ Everything SOL Labyrinth gained between v5.1.1 and v5.7.1 is in the Biology game
 - `js/content.js` — units (`HEIST_FAMILIES`), the standards map (`HEIST_STANDARDS`), the skill cards per unit (`HEIST_SKILLS`), the strand filter, the difficulty estimate and the stamina schedule. No packs.
 - `js/content2.js` Scientific Investigation · `content3.js` Biochemistry · `content4.js` Cells · `content5.js` Bacteria & Viruses · `content6.js` Genetics · `content7.js` DNA & Protein Synthesis · `content8.js` Evolution & Classification · `content9.js` Ecology.
 - `tools/CONTENT-GUIDE.md` — pack format, the standards table and the writing rules. `node tools/validate-content.js` checks every file (codes, units, keys, lengths, duplicates); `node tools/validate-content.js js/content9.js` checks one.
-- `tools/smoke.js` — headless Playwright run of the title screen, the pools, the builder (2D and 3D), the shop, a level, the ten realms and their creatures, Fenrir, the perks and the four shooter levels (screenshots in `tools/shots/`).
+- `tools/smoke.js` — headless Playwright run of the title screen, the pools, the builder (2D and 3D), the shop, a level, the ten realms and their creatures, Fenrir, the perks and the four shooter levels (screenshots in `tools/shots/`). `tools/smoke-appsscript.js` does the same for the Apps Script build.
+- `js/classes.js` — class sessions for the Apps Script version (`?class=CODE`): hides or rewords regular questions and adds the class's own sets. Does nothing without a class.
+- `tools/build-appsscript.js` and `tools/appsscript/` — the Google Apps Script version (see v6.3 above).
 - `tools/question-bank.js` — writes `docs/question-bank.md`, the teacher review copy of every question.
 - `tools/make-itch-zip.sh` — builds the itch.io HTML5 upload (`sh tools/make-itch-zip.sh`): index.html at the zip root, about 500 files and 33 MB, under itch.io's 1,000-file limit.
-- `tools/publish-pages.sh` — pushes the game to the `gh-pages` branch for GitHub Pages: https://stumpgreg-ops.github.io/Sol-Lab-VA-EOC-Bio/ (turn Pages on once under Settings → Pages, branch `gh-pages`, folder `/`). Upload it to https://gstump.itch.io/sols-labyrinth-va-bio as an HTML project with "This file will be played in the browser" ticked.
+- `tools/publish-pages.sh` — pushes the game and the Apps Script bundle to the `gh-pages` branch for GitHub Pages: https://stumpgreg-ops.github.io/Sol-Lab-VA-EOC-Bio/ (turn Pages on once under Settings → Pages, branch `gh-pages`, folder `/`). Upload it to https://gstump.itch.io/sols-labyrinth-va-bio as an HTML project with "This file will be played in the browser" ticked.
 
 ## Standards note
 

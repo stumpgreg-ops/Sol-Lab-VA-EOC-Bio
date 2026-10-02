@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>SOL Lab Biology · Apps Script stand-in</title>
+<style>html, body { margin: 0; height: 100%; background: #000; } iframe { border: 0; width: 100%; height: 100%; display: block; }</style>
+</head>
+<body>
+<!-- A local stand-in for Apps Script (tools/build-appsscript.js copies it to dist/appsscript/test.html).
+     Serve dist/appsscript over http and open test.html?st=bio. Like HtmlService, it puts loader.html in a sandboxed
+     frame and answers google.script.run.solManifest / solPart, here from the local files instead of GitHub. -->
+<iframe id="app" sandbox="allow-downloads allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>
+<script>
+(function () {
+  var st = (/[?&]st=(\w+)/.exec(location.search) || [0, "bio"])[1], base = st + "/";
+  /* like doGet: ?admin=1 opens the teacher page, ?class=CODE a class session */
+  var qs = new URLSearchParams(location.search), klass = (qs.get("class") || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+  var boot = "<script>window.SOL_APP_URL = " + JSON.stringify(location.origin + location.pathname + "?st=" + st) + ";" + (qs.get("admin") != null ? "window.SOL_ADMIN = true;" : "") + (klass ? "window.SOL_CLASS_CODE = " + JSON.stringify(klass) + ";" : "") + "<\/script>";
+  var mock = "<script>(" + function (base) {
+    function b64(buf) { var u = new Uint8Array(buf), s = "", i; for (i = 0; i < u.length; i += 32768) s += String.fromCharCode.apply(null, u.subarray(i, i + 32768)); return btoa(s); }
+    window.__solCalls = [];
+    function runner(ok, bad) {
+      function call(name, work) {
+        window.__solCalls.push(name);
+        setTimeout(function () { work().then(function (v) { ok && ok(v); }, function (e) { bad && bad(e); }); }, 30);
+      }
+      return {
+        withSuccessHandler: function (f) { return runner(f, bad); },
+        withFailureHandler: function (f) { return runner(ok, f); },
+        solManifest: function () { call("solManifest", function () { return fetch(base + "manifest.json", { cache: "no-store" }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); }); }); },
+        solPart: function (n) { call("solPart:" + n, function () { return fetch(base + n).then(function (r) { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); }).then(b64); }); },
+        /* Code.gs's class store, kept in localStorage (the PIN in the clear: this is only a test stand-in) */
+        solClass: function (code) { call("solClass", function () { return Promise.resolve(store("cls:" + code) || ""); }); },
+        solReport: function (code, rec) { call("solReport", function () {
+          if (!store("cls:" + code)) return Promise.resolve(false);
+          var all = JSON.parse(store("rep:" + code) || "{}"), o = all[rec.name] || {};
+          all[rec.name] = { level: Math.max(o.level || 0, rec.night), now: rec.night, right: (o.right || 0) + rec.right, wrong: (o.wrong || 0) + rec.wrong, reading: rec.reading, grade: rec.family, status: rec.status, t: Date.now() };
+          store("rep:" + code, JSON.stringify(all)); window.__solReports = (window.__solReports || 0) + 1; return Promise.resolve(true); }); },
+        solAdmin: function (pin, op, arg) { call("solAdmin:" + op, function () {
+          var stored = store("pin");
+          if (op === "status") return Promise.resolve({ hasPin: !!stored });
+          if (op === "setPin") { if (stored) return Promise.reject(new Error("A PIN is already set.")); store("pin", arg); return Promise.resolve(true); }
+          if (pin !== stored) return Promise.reject(new Error("Wrong PIN."));
+          var idx = JSON.parse(store("classes") || "[]");
+          if (op === "list") return Promise.resolve(idx);
+          if (op === "get") return Promise.resolve(store("cls:" + arg) || "");
+          if (op === "save") { var c = JSON.parse(arg); c.saved = Date.now(); store("cls:" + c.code, JSON.stringify(c)); idx = idx.filter(function (x) { return x.code !== c.code; }); idx.push({ code: c.code, name: c.name, grade: c.grade, sets: (c.sets || []).length, saved: c.saved }); store("classes", JSON.stringify(idx)); return Promise.resolve(true); }
+          if (op === "delete") { store("cls:" + arg, null); store("rep:" + arg, null); store("classes", JSON.stringify(idx.filter(function (x) { return x.code !== arg; }))); return Promise.resolve(true); }
+          if (op === "report") return Promise.resolve(store("rep:" + arg) || "{}");
+          if (op === "clearReport") { store("rep:" + arg, null); return Promise.resolve(true); }
+          if (op === "newPin") { store("pin", arg); return Promise.resolve(true); }
+          return Promise.reject(new Error("Unknown request."));
+        }); }
+      };
+    }
+    function store(k, v) { k = "mockprops." + k; if (v === undefined) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); }
+    window.google = { script: { run: runner(null, null) } };
+  } + ")(" + JSON.stringify(base) + ");<\/script>";
+  fetch(base + "loader.html", { cache: "no-store" }).then(function (r) { return r.text(); }).then(function (h) {
+    document.getElementById("app").srcdoc = h.replace("<head>", "<head>" + boot + mock);
+  });
+})();
+</script>
+</body>
+</html>

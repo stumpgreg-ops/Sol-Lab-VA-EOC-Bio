@@ -254,6 +254,7 @@
 
   /* ── Public: play / back / stop ──────────────────────────────────────── */
   function play(key, opts) {
+    if (global.SOL_NO_MUSIC) return;   /* the Apps Script build ships without the music files */
     var fadeMs = (opts && opts.fade != null) ? Number(opts.fade) : FADE_MS;
     if (key == null || key === "off") { stop(opts); return; }   /* "No music" */
     key = resolve(key);
@@ -292,6 +293,7 @@
   }
   /* Cheap enough to call every frame: same value returns immediately. */
   function setChase(on) {
+    if (global.SOL_NO_MUSIC) return;
     on = !!on;
     if (on === chaseWant) return;
     chaseWant = on;

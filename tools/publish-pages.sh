@@ -4,12 +4,16 @@
 # pushes it to the gh-pages branch as one commit (the branch keeps no history: every publish replaces it).
 #   https://stumpgreg-ops.github.io/Sol-Lab-VA-EOC-Bio/        → the game
 #   https://stumpgreg-ops.github.io/Sol-Lab-VA-EOC-Bio/admin.html → the teacher monitor
+#   …/appsscript/bio/ and …/appsscript/Code.gs → the Google Apps Script version (v6.3, tools/build-appsscript.js):
+#   Code.gs fetches the loader, manifest and parts from this branch through raw.githubusercontent.com.
 # Turn Pages on once: repository Settings → Pages → Source "Deploy from a branch", branch gh-pages, folder / (root).
 set -e
 cd "$(dirname "$0")/.."
+node tools/build-appsscript.js
 site=$(mktemp -d)
 cp index.html admin.html CREDITS.md "$site/"
 cp -r css js assets "$site/"
+mkdir -p "$site/appsscript"; cp -r dist/appsscript/bio "$site/appsscript/bio"; cp dist/appsscript/Code.gs "$site/appsscript/Code.gs"
 find "$site" -name .DS_Store -delete
 touch "$site/.nojekyll"
 idx=$(mktemp -u)
