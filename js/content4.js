@@ -1,945 +1,1116 @@
-/* SOL Lab — Cell Structure & Function (BIO.3). Original text only. */
+/* SOL Lab — Algebra I · Functions (A.F). Original problems only.
+   Stems are plain text (Unicode: x², −, ≤, ≥, →); the stimulus may use HTML. */
 (function (global) {
   var P = global.HEIST_PACKS;
   if (!P || !P.push) return;
   var N = function (i) { return '<span class="n">(' + i + ')</span> '; };   // numbered sentence
 
   var PACKS = [
-    /* ---------- tiny · level 1 · cell theory ---------- */
+
+    /* ---------- tiny · level 1 · A.F.1 ---------- */
     {
-      id: "cell-cork-slice",
-      family: "CELL",
-      title: "A Slice of Cork",
-      kind: "Cells · BIO.3",
-      blurb: "A class repeats the 1665 cork observation and sees where the word cell came from.",
+      id: "fn-taxi-fare",
+      family: "FN",
+      title: "The Airport Taxi",
+      kind: "Functions · A.F.1",
+      blurb: "f(m) = 2.5m + 3. What do the slope and the intercept mean for the rider?",
       level: 1,
-      passage: "<p>" + N(1) + "A biology class shaves a thin slice of cork and views it at 100x. " + N(2) + "They see rows of tiny empty boxes, the walled spaces Robert Hooke named <strong>cells</strong> in 1665. " + N(3) + "Next they view onion skin and a drop of pond water. " + N(4) + "The onion shows box-shaped cells, each with a nucleus; the pond water shows single cells swimming on their own. " + N(5) + "Centuries of such microscope observations built the <strong>cell theory</strong>.</p>",
+      passage: "<p>" + N(1) + "An airport taxi charges a flat $3 plus $2.50 per mile. " + N(2) + "The fare for a trip of m miles is the function <strong>f(m) = 2.5m + 3</strong>. " + N(3) + "Imani wants to know what a 6-mile trip costs and how far she can ride for $23.</p>",
       claims: [
         {
-          id: "vocab",
-          sol: "BIO.3.a",
-          stem: "In sentence 2, the word cells refers to —",
+          id: "slope",
+          sol: "A.F.1.h",
+          stem: "What does the slope 2.5 represent in this situation?",
           choices: [
-            { letter: "A", text: "the living contents that fill each box in the cork" },
-            { letter: "B", text: "the walled compartments that make up the cork tissue" },
-            { letter: "C", text: "the lenses that magnify the slice one hundred times" },
-            { letter: "D", text: "the pond organisms that swim past the onion slide" }
+            { letter: "A", text: "the flat fee charged before the trip starts" },
+            { letter: "B", text: "the cost per mile" },
+            { letter: "C", text: "the number of miles in the trip" },
+            { letter: "D", text: "the fare for a 1-mile trip" }
           ],
           correct: "B"
         },
         {
-          id: "principle",
-          sol: "BIO.3.a",
-          stem: "Which part of the cell theory is best supported by the onion and pond-water observations in sentence 4?",
+          id: "intercept",
+          sol: "A.F.1.h",
+          stem: "What does the y-intercept 3 represent?",
           choices: [
-            { letter: "A", text: "All cells arise from other cells by division." },
-            { letter: "B", text: "Every cell is surrounded by a rigid cell wall." },
-            { letter: "C", text: "All living things are made of one or more cells." },
-            { letter: "D", text: "Cells are the same size in every organism." }
-          ],
-          correct: "C"
-        },
-        {
-          id: "empty",
-          sol: "BIO.3.a",
-          stem: "The boxes in the cork appeared empty because —",
-          choices: [
-            { letter: "A", text: "the cork cells were dead and only their walls remained" },
-            { letter: "B", text: "the microscope was set too low to show any contents" },
-            { letter: "C", text: "cork cells never contain cytoplasm, even while alive" },
-            { letter: "D", text: "shaving the slice pushed the nucleus out of each box" }
+            { letter: "A", text: "the flat fee, the fare for a 0-mile trip" },
+            { letter: "B", text: "the cost of the third mile" },
+            { letter: "C", text: "the number of passengers allowed" },
+            { letter: "D", text: "the fare for a 3-mile trip" }
           ],
           correct: "A"
         },
         {
-          id: "built",
-          sol: "BIO.3.a",
-          stem: "Which statement best explains why sentence 5 says the cell theory was built rather than discovered all at once?",
+          id: "evaluate",
+          sol: "A.F.1.f",
+          stem: "What is f(6)?",
           choices: [
-            { letter: "A", text: "The theory was written before microscopes were invented." },
-            { letter: "B", text: "One observation in 1665 was enough to prove it." },
-            { letter: "C", text: "Each observer worked alone and shared no results." },
-            { letter: "D", text: "Evidence from many observers with better tools added up." }
+            { letter: "A", text: "$15" },
+            { letter: "B", text: "$11.50" },
+            { letter: "C", text: "$18" },
+            { letter: "D", text: "$33" }
+          ],
+          correct: "C"
+        },
+        {
+          id: "inverse",
+          sol: "A.F.1.f",
+          stem: "For what value of m does f(m) = 23?",
+          choices: [
+            { letter: "A", text: "m = 9.2" },
+            { letter: "B", text: "m = 10.4" },
+            { letter: "C", text: "m = 20" },
+            { letter: "D", text: "m = 8" }
           ],
           correct: "D"
         },
-        {
-          id: "euk",
-          sol: "BIO.3.a",
-          stem: "Which structure mentioned in sentence 4 shows that onion skin cells are eukaryotic?",
-          choices: [
-            { letter: "A", text: "a cell wall" },
-            { letter: "B", text: "a nucleus" },
-            { letter: "C", text: "cytoplasm" },
-            { letter: "D", text: "a membrane" }
-          ],
-          correct: "B"
-        }
-      ]
-    },
-
-    /* ---------- tiny · level 1 · prokaryote vs eukaryote ---------- */
-    {
-      id: "cell-two-smears",
-      family: "CELL",
-      title: "Yogurt and Cheek Cells",
-      kind: "Cells · BIO.3",
-      blurb: "Two stained slides, one table: what a bacterium and a cheek cell do and do not share.",
-      level: 1,
-      passage: "<p>" + N(1) + "Students compare two stained slides at 400x: a smear of bacteria from yogurt and a scraping of cheek cells. " + N(2) + "They record which structures they can see in each. " + N(3) + "A <strong>prokaryote</strong> keeps its DNA loose in the cytoplasm; a eukaryote seals its DNA inside a nucleus.</p>" +
-        "<table><tr><th>Structure</th><th>Yogurt bacteria</th><th>Cheek cells</th></tr>" +
-        "<tr><td>Cell membrane</td><td>yes</td><td>yes</td></tr>" +
-        "<tr><td>Nucleus</td><td>no</td><td>yes</td></tr>" +
-        "<tr><td>Ribosomes</td><td>yes</td><td>yes</td></tr>" +
-        "<tr><td>Mitochondria</td><td>no</td><td>yes</td></tr>" +
-        "<tr><td>Cell wall</td><td>yes</td><td>no</td></tr></table>" +
-        "<p>" + N(4) + "The bacteria are about 2 micrometers long; the cheek cells are about 60 micrometers across.</p>",
-      claims: [
         {
           id: "table",
-          sol: "BIO.3.a",
-          stem: "Which row of the table shows a structure found in the bacteria but not in the cheek cells?",
+          sol: "A.F.1.i",
+          stem: "A rival taxi's fare table shows $8 for 2 miles and $18 for 6 miles. How do the two taxis compare?",
           choices: [
-            { letter: "A", text: "Nucleus" },
-            { letter: "B", text: "Ribosomes" },
-            { letter: "C", text: "Mitochondria" },
-            { letter: "D", text: "Cell wall" }
-          ],
-          correct: "D"
-        },
-        {
-          id: "vocab",
-          sol: "BIO.3.a",
-          stem: "According to sentence 3, a cell is a prokaryote because it —",
-          choices: [
-            { letter: "A", text: "lacks a membrane-bound nucleus" },
-            { letter: "B", text: "lacks a cell membrane" },
-            { letter: "C", text: "is too small to have ribosomes" },
-            { letter: "D", text: "cannot make its own proteins" }
-          ],
-          correct: "A"
-        },
-        {
-          id: "ribo",
-          sol: "BIO.3.b",
-          stem: "Ribosomes appear in both cell types because every cell must —",
-          choices: [
-            { letter: "A", text: "store its DNA inside a nucleus" },
-            { letter: "B", text: "build proteins from amino acids" },
-            { letter: "C", text: "release energy in mitochondria" },
-            { letter: "D", text: "hold its shape with a cell wall" }
-          ],
-          correct: "B"
-        },
-        {
-          id: "size",
-          sol: "BIO.3.a",
-          stem: "Which conclusion about cell size is supported by sentence 4?",
-          choices: [
-            { letter: "A", text: "Both cell types are about the same size." },
-            { letter: "B", text: "Prokaryotic cells are larger because of their walls." },
-            { letter: "C", text: "Prokaryotic cells are generally smaller than eukaryotic cells." },
-            { letter: "D", text: "Cheek cells are too small to see at 400x." }
+            { letter: "A", text: "The rival charges more per mile, 2.5 versus 2." },
+            { letter: "B", text: "The rival charges the same per mile but a higher flat fee." },
+            { letter: "C", text: "The rival charges $2.50 per mile with a $3 flat fee, the same as Imani's taxi." },
+            { letter: "D", text: "The rival charges less per mile, 2.5 versus 3." }
           ],
           correct: "C"
-        },
-        {
-          id: "energy",
-          sol: "BIO.3.b",
-          stem: "Which statement best explains how the bacteria stay alive with no mitochondria?",
-          choices: [
-            { letter: "A", text: "They absorb ready-made ATP from the yogurt." },
-            { letter: "B", text: "They release energy using enzymes in their cytoplasm and membrane." },
-            { letter: "C", text: "They borrow mitochondria from nearby cheek cells." },
-            { letter: "D", text: "They are too small to need any energy at all." }
-          ],
-          correct: "B"
         }
       ]
     },
 
-    /* ---------- tiny · level 1 · osmosis with a shell-less egg ---------- */
+    /* ---------- tiny · level 1 · A.F.1 ---------- */
     {
-      id: "cell-naked-egg",
-      family: "CELL",
-      title: "The Naked Egg",
-      kind: "Cells · BIO.3",
-      blurb: "An egg with its shell dissolved swells in water and shrinks in syrup.",
+      id: "fn-table-line",
+      family: "FN",
+      title: "Reading a Function Table",
+      kind: "Functions · A.F.1",
+      blurb: "A table of x and y values. Find the slope, the intercept and the rule.",
       level: 1,
-      passage: "<p>" + N(1) + "A student soaks a raw egg in vinegar until the shell dissolves, leaving only the thin membrane around the egg. " + N(2) + "She rinses it, records its mass, and then moves it into a new liquid each day.</p>" +
-        "<table><tr><th>Day</th><th>Liquid</th><th>Mass (g)</th></tr>" +
-        "<tr><td>0</td><td>after vinegar</td><td>62</td></tr>" +
-        "<tr><td>1</td><td>distilled water</td><td>78</td></tr>" +
-        "<tr><td>2</td><td>corn syrup</td><td>51</td></tr></table>" +
-        "<p>" + N(3) + "In distilled water the egg swelled; in corn syrup it shrank and wrinkled. " + N(4) + "Water crossed the membrane by <strong>osmosis</strong>, moving toward the side with more dissolved solute.</p>",
+      passage: "<p>" + N(1) + "Mr. Diaz shows a table and says it comes from a linear function. " + N(2) + "The class must find the <strong>slope</strong>, the <strong>y-intercept</strong> and an equation, then extend the table.</p>" +
+        "<table><tr><th>x</th><th>0</th><th>2</th><th>4</th><th>6</th></tr><tr><th>y</th><td>5</td><td>9</td><td>13</td><td>17</td></tr></table>",
       claims: [
         {
-          id: "gain",
-          sol: "BIO.3.c",
-          stem: "According to the table, how much mass did the egg gain in distilled water?",
+          id: "slope",
+          sol: "A.F.1.c",
+          stem: "What is the slope of the function in the table?",
           choices: [
-            { letter: "A", text: "11 g" },
-            { letter: "B", text: "16 g" },
-            { letter: "C", text: "27 g" },
-            { letter: "D", text: "78 g" }
+            { letter: "A", text: "4" },
+            { letter: "B", text: "2" },
+            { letter: "C", text: "1/2" },
+            { letter: "D", text: "5" }
           ],
           correct: "B"
         },
         {
-          id: "vocab",
-          sol: "BIO.3.c",
-          stem: "In sentence 4, osmosis is best described as —",
+          id: "equation",
+          sol: "A.F.1.d",
+          stem: "Which equation represents the function?",
           choices: [
-            { letter: "A", text: "the movement of solute across a membrane" },
-            { letter: "B", text: "the diffusion of water across a membrane" },
-            { letter: "C", text: "the pumping of water using energy from ATP" },
-            { letter: "D", text: "the dissolving of a shell in a weak acid" }
-          ],
-          correct: "B"
-        },
-        {
-          id: "shrink",
-          sol: "BIO.3.c",
-          stem: "The egg shrank in corn syrup because —",
-          choices: [
-            { letter: "A", text: "sugar entered the egg and crowded the water out" },
-            { letter: "B", text: "water entered the egg, where solute was lower" },
-            { letter: "C", text: "water left the egg for the syrup, where solute was higher" },
-            { letter: "D", text: "the syrup broke down the proteins in the membrane" }
+            { letter: "A", text: "y = 5x + 2" },
+            { letter: "B", text: "y = 4x + 5" },
+            { letter: "C", text: "y = 2x + 5" },
+            { letter: "D", text: "y = 2x − 5" }
           ],
           correct: "C"
         },
         {
-          id: "tonic",
-          sol: "BIO.3.c",
-          stem: "Compared with the inside of the egg, distilled water is —",
+          id: "extend",
+          sol: "A.F.1.f",
+          stem: "What is the value of y when x = 10?",
           choices: [
-            { letter: "A", text: "hypertonic" },
-            { letter: "B", text: "isotonic" },
-            { letter: "C", text: "saturated" },
-            { letter: "D", text: "hypotonic" }
-          ],
-          correct: "D"
-        },
-        {
-          id: "why-vinegar",
-          sol: "BIO.3.c",
-          stem: "Why did the student dissolve the shell before starting the investigation?",
-          choices: [
-            { letter: "A", text: "so the membrane would be the only barrier between the egg and the liquid" },
-            { letter: "B", text: "so the egg would weigh less and be easier to handle on the balance" },
-            { letter: "C", text: "because vinegar adds water to the egg before the water trial" },
-            { letter: "D", text: "so the egg would sink instead of floating in the corn syrup" }
-          ],
-          correct: "A"
-        }
-      ]
-    },
-
-    /* ---------- short · level 2 · spontaneous generation refuted ---------- */
-    {
-      id: "cell-broth-flasks",
-      family: "CELL",
-      title: "Four Flasks of Broth",
-      kind: "Cells · BIO.3",
-      blurb: "Open, sealed and S-necked flasks test whether life can appear from nonliving broth.",
-      level: 2,
-      passage: "<p>" + N(1) + "For centuries people believed living things could arise from nonliving matter, an idea called <strong>spontaneous generation</strong>. " + N(2) + "A class boils broth in four flasks to kill any cells present. " + N(3) + "Flask A is left open. " + N(4) + "Flask B is sealed with a stopper. " + N(5) + "Flask C has an S-shaped neck that lets air in but traps dust in the bend. " + N(6) + "Flask D is like C, but students tilt it so broth touches the trapped dust, then set it upright. " + N(7) + "After ten days they check for cloudiness, a sign of growth.</p>" +
-        "<table><tr><th>Flask</th><th>Treatment</th><th>Broth after 10 days</th></tr>" +
-        "<tr><td>A</td><td>open</td><td>cloudy</td></tr>" +
-        "<tr><td>B</td><td>sealed</td><td>clear</td></tr>" +
-        "<tr><td>C</td><td>S-neck</td><td>clear</td></tr>" +
-        "<tr><td>D</td><td>S-neck, tilted</td><td>cloudy</td></tr></table>" +
-        "<p>" + N(8) + "They conclude the microbes came from cells on the dust, not from the broth itself.</p>",
-      claims: [
-        {
-          id: "pair",
-          sol: "BIO.3.a",
-          stem: "Which pair of flasks, compared with each other, best shows that the microbes came from dust rather than from the air itself?",
-          choices: [
-            { letter: "A", text: "A and B" },
-            { letter: "B", text: "B and C" },
-            { letter: "C", text: "C and D" },
-            { letter: "D", text: "A and D" }
-          ],
-          correct: "C"
-        },
-        {
-          id: "vocab",
-          sol: "BIO.3.a",
-          stem: "In sentence 1, spontaneous generation means that —",
-          choices: [
-            { letter: "A", text: "cells divide without any signal" },
-            { letter: "B", text: "life arises from nonliving matter" },
-            { letter: "C", text: "microbes grow faster when warm" },
-            { letter: "D", text: "dust carries living cells into broth" }
-          ],
-          correct: "B"
-        },
-        {
-          id: "objection",
-          sol: "BIO.3.a",
-          stem: "Flask B stayed clear. A supporter of spontaneous generation could still argue that —",
-          choices: [
-            { letter: "A", text: "the stopper kept out the air that new life needs" },
-            { letter: "B", text: "the broth in flask B was never boiled" },
-            { letter: "C", text: "flask B was tilted just like flask D" },
-            { letter: "D", text: "sealed flasks always grow microbes" }
+            { letter: "A", text: "25" },
+            { letter: "B", text: "45" },
+            { letter: "C", text: "21" },
+            { letter: "D", text: "15" }
           ],
           correct: "A"
         },
         {
-          id: "single",
-          sol: "BIO.3.b",
-          stem: "Which statement best explains how a single microbe in flask A stayed alive and multiplied?",
+          id: "zero",
+          sol: "A.F.1.a",
+          stem: "What is the zero (x-intercept) of the function?",
           choices: [
-            { letter: "A", text: "It absorbed ATP made by the beef broth as it cooled." },
-            { letter: "B", text: "It joined with other microbes to form one multicellular body." },
-            { letter: "C", text: "It formed a nucleus first and then began to divide." },
-            { letter: "D", text: "Its membrane, ribosomes and DNA together carried out its life processes." }
+            { letter: "A", text: "x = 5" },
+            { letter: "B", text: "x = 2.5" },
+            { letter: "C", text: "x = 0" },
+            { letter: "D", text: "x = −2.5" }
           ],
           correct: "D"
         },
         {
-          id: "entry",
-          sol: "BIO.3.c",
-          stem: "Nutrients from the broth entered each microbe by crossing its —",
+          id: "function",
+          sol: "A.F.2.a",
+          stem: "Why does the table represent a function?",
           choices: [
-            { letter: "A", text: "nuclear envelope" },
-            { letter: "B", text: "ribosome" },
-            { letter: "C", text: "mitochondrion" },
-            { letter: "D", text: "cell membrane" }
-          ],
-          correct: "D"
-        },
-        {
-          id: "principle",
-          sol: "BIO.3.a",
-          stem: "The result in flask C supports which part of the cell theory?",
-          choices: [
-            { letter: "A", text: "All organisms are made of cells." },
-            { letter: "B", text: "All cells come from existing cells." },
-            { letter: "C", text: "The cell is the basic unit of life." },
-            { letter: "D", text: "Cells pass on hereditary information." }
+            { letter: "A", text: "Every y-value in the table is odd." },
+            { letter: "B", text: "Each x-value is paired with exactly one y-value." },
+            { letter: "C", text: "The y-values increase as x increases." },
+            { letter: "D", text: "The x-values are all even numbers." }
           ],
           correct: "B"
         }
       ]
     },
 
-    /* ---------- short · level 1 · organelles as a town ---------- */
+    /* ---------- tiny · level 1 · A.F.2 ---------- */
     {
-      id: "cell-town-analogy",
-      family: "CELL",
-      title: "The Cell as a Town",
-      kind: "Cells · BIO.3",
-      blurb: "Organelles compared to a town hall, workshops, roads and a post office.",
+      id: "fn-is-it-a-function",
+      family: "FN",
+      title: "Is It a Function?",
+      kind: "Functions · A.F.2",
+      blurb: "Ordered pairs, a mapping and two graphs. Which relations are functions?",
       level: 1,
-      passage: "<p>" + N(1) + "A teacher compares a cell to a town. " + N(2) + "The <strong>nucleus</strong> is the town hall that stores the plans and sends out instructions. " + N(3) + "<strong>Ribosomes</strong> are the workshops that build proteins from those instructions. " + N(4) + "The endoplasmic reticulum is the road network carrying new proteins to the Golgi, the post office that sorts and ships them. " + N(5) + "<strong>Mitochondria</strong> are power plants that release energy from food; lysosomes are recycling centers that break down worn-out parts. " + N(6) + "Students then draw two cells. " + N(7) + "The plant cell gets a rigid wall, a large central vacuole and green chloroplasts. " + N(8) + "The animal cell has none of these; both share a membrane, cytoplasm and a cytoskeleton of protein fibers.</p>",
+      passage: "<p>" + N(1) + "A <strong>relation</strong> is any set of ordered pairs; a <strong>function</strong> pairs each input with exactly one output. " + N(2) + "The warm-up shows four relations. " + N(3) + "Relation R: {(1, 3), (2, 5), (3, 3), (4, 7)}. " + N(4) + "Relation S: {(2, 4), (2, 6), (3, 8)}. " + N(5) + "Graph T is a circle. " + N(6) + "Graph U is a parabola opening upward.</p>",
       claims: [
         {
-          id: "vocab",
-          sol: "BIO.3.b",
-          stem: "In sentence 2, the nucleus is compared to a town hall because it —",
+          id: "r",
+          sol: "A.F.2.a",
+          stem: "Is relation R a function?",
           choices: [
-            { letter: "A", text: "breaks down worn-out parts" },
-            { letter: "B", text: "stores the instructions that direct the cell" },
-            { letter: "C", text: "releases usable energy from food" },
-            { letter: "D", text: "builds proteins for export" }
-          ],
-          correct: "B"
-        },
-        {
-          id: "drawing",
-          sol: "BIO.3.b",
-          stem: "A student's animal-cell drawing includes a cell wall. Which correction should the teacher make?",
-          choices: [
-            { letter: "A", text: "Only plant cells have a wall, so remove it." },
-            { letter: "B", text: "Animal cells have a wall but no membrane." },
-            { letter: "C", text: "Cell walls belong only in bacteria." },
-            { letter: "D", text: "The wall should be drawn inside the membrane." }
-          ],
-          correct: "A"
-        },
-        {
-          id: "gland",
-          sol: "BIO.3.d",
-          stem: "A gland cell exports large amounts of protein. Which organelle would you expect it to have in greatest number?",
-          choices: [
-            { letter: "A", text: "chloroplasts" },
-            { letter: "B", text: "vacuoles" },
-            { letter: "C", text: "ribosomes" },
-            { letter: "D", text: "lysosomes" }
+            { letter: "A", text: "No, because the output 3 appears twice." },
+            { letter: "B", text: "No, because the inputs are not all even." },
+            { letter: "C", text: "Yes; each input has one output, even if outputs repeat." },
+            { letter: "D", text: "Yes, because it has four ordered pairs." }
           ],
           correct: "C"
         },
         {
-          id: "post",
-          sol: "BIO.3.b",
-          stem: "In the analogy, a package leaves the post office. In the cell this corresponds to —",
+          id: "s",
+          sol: "A.F.2.a",
+          stem: "Why is relation S not a function?",
           choices: [
-            { letter: "A", text: "a ribosome reading a strand of mRNA" },
-            { letter: "B", text: "a lysosome digesting a captured bacterium" },
-            { letter: "C", text: "the nucleus copying its DNA before division" },
-            { letter: "D", text: "the Golgi packaging a protein into a vesicle" }
+            { letter: "A", text: "The input 2 has two different outputs, 4 and 6." },
+            { letter: "B", text: "It has only three ordered pairs." },
+            { letter: "C", text: "The outputs 4, 6 and 8 are all even." },
+            { letter: "D", text: "The input 3 has only one output." }
           ],
-          correct: "D"
+          correct: "A"
         },
         {
-          id: "membrane",
-          sol: "BIO.3.c",
-          stem: "Both drawings include a cell membrane. The main job of the membrane is to —",
+          id: "vertical",
+          sol: "A.F.2.a",
+          stem: "Which statement about graphs T and U is correct?",
           choices: [
-            { letter: "A", text: "give the cell a rigid box shape" },
-            { letter: "B", text: "control which materials enter and leave" },
-            { letter: "C", text: "store water and dissolved sugars" },
-            { letter: "D", text: "capture light energy for the cell" }
+            { letter: "A", text: "Both are functions because both are smooth curves." },
+            { letter: "B", text: "T is not a function because a vertical line can cross it twice; U is a function." },
+            { letter: "C", text: "U is not a function because a horizontal line can cross it twice; T is a function." },
+            { letter: "D", text: "Neither is a function because neither is a straight line." }
           ],
           correct: "B"
         },
         {
-          id: "town",
-          sol: "BIO.3.b",
-          stem: "Which statement best explains why the analogy calls the whole cell a town rather than a single building?",
+          id: "domain",
+          sol: "A.F.1.a",
+          stem: "What is the domain of relation R?",
           choices: [
-            { letter: "A", text: "A cell has many parts that depend on one another to stay alive." },
-            { letter: "B", text: "A cell is much larger than any one of its organelles." },
-            { letter: "C", text: "Every organelle could survive on its own outside the cell." },
-            { letter: "D", text: "Towns and cells both need a wall around the outside." }
+            { letter: "A", text: "{3, 5, 7}" },
+            { letter: "B", text: "{1, 2, 3, 4}" },
+            { letter: "C", text: "all real numbers" },
+            { letter: "D", text: "{1, 3, 5, 7}" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "range",
+          sol: "A.F.1.a",
+          stem: "What is the range of relation R?",
+          choices: [
+            { letter: "A", text: "{3, 5, 7}" },
+            { letter: "B", text: "{1, 2, 3, 4}" },
+            { letter: "C", text: "{3, 5, 3, 7}" },
+            { letter: "D", text: "all numbers from 3 to 7" }
           ],
           correct: "A"
         }
       ]
     },
 
-    /* ---------- short · level 2 · blood and onion cells in salt water ---------- */
+    /* ---------- tiny · level 1 · A.F.1 ---------- */
     {
-      id: "cell-salt-slides",
-      family: "CELL",
-      title: "Cells in Salt Water",
-      kind: "Cells · BIO.3",
-      blurb: "Red blood cells and onion cells react differently to three salt solutions.",
-      level: 2,
-      passage: "<p>" + N(1) + "A student places drops of blood and thin pieces of red onion skin into three salt solutions and examines them at 400x after five minutes. " + N(2) + "Normal body fluid is about 0.9% salt.</p>" +
-        "<table><tr><th>Solution</th><th>Red blood cells</th><th>Onion cells</th></tr>" +
-        "<tr><td>0.0% salt (distilled)</td><td>swollen, some burst</td><td>plump, membrane pressed to wall</td></tr>" +
-        "<tr><td>0.9% salt</td><td>normal disc shape</td><td>normal</td></tr>" +
-        "<tr><td>3.0% salt</td><td>shrunken, spiky edges</td><td>membrane pulled away from wall</td></tr></table>" +
-        "<p>" + N(3) + "The 0.9% solution is <strong>isotonic</strong> to the cells, so water enters and leaves at equal rates. " + N(4) + "In 3.0% salt the onion membrane shrinks inward while the cell wall keeps its shape, a condition called <strong>plasmolysis</strong>. " + N(5) + "The onion cells in distilled water did not burst even though many red blood cells did.</p>",
+      id: "fn-function-notation",
+      family: "FN",
+      title: "Function Notation Drill",
+      kind: "Functions · A.F.1",
+      blurb: "f(x) = −2x + 9 and g(x) = x² + 1. Inputs, outputs and zeros.",
+      level: 1,
+      passage: "<p>" + N(1) + "Two functions are on the board: <strong>f(x) = −2x + 9</strong> and <strong>g(x) = x² + 1</strong>. " + N(2) + "The notation f(−3) means \"the output of f when the input is −3.\" " + N(3) + "A <strong>zero</strong> of a function is an input that makes the output 0.</p>",
       claims: [
+        {
+          id: "f-neg3",
+          sol: "A.F.1.f",
+          stem: "What is f(−3)?",
+          choices: [
+            { letter: "A", text: "3" },
+            { letter: "B", text: "15" },
+            { letter: "C", text: "−15" },
+            { letter: "D", text: "6" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "f-inverse",
+          sol: "A.F.1.f",
+          stem: "For what value of x is f(x) = 1?",
+          choices: [
+            { letter: "A", text: "x = 4" },
+            { letter: "B", text: "x = −4" },
+            { letter: "C", text: "x = 5" },
+            { letter: "D", text: "x = 7" }
+          ],
+          correct: "A"
+        },
+        {
+          id: "g-neg2",
+          sol: "A.F.2.c",
+          stem: "What is g(−2)?",
+          choices: [
+            { letter: "A", text: "−3" },
+            { letter: "B", text: "−5" },
+            { letter: "C", text: "5" },
+            { letter: "D", text: "3" }
+          ],
+          correct: "C"
+        },
+        {
+          id: "zero",
+          sol: "A.F.1.a",
+          stem: "What is the zero of f?",
+          choices: [
+            { letter: "A", text: "x = 9" },
+            { letter: "B", text: "x = −4.5" },
+            { letter: "C", text: "x = 4.5" },
+            { letter: "D", text: "x = −2" }
+          ],
+          correct: "C"
+        },
+        {
+          id: "g-range",
+          sol: "A.F.2.b",
+          stem: "What is the range of g(x) = x² + 1?",
+          choices: [
+            { letter: "A", text: "all real numbers" },
+            { letter: "B", text: "y ≥ 0" },
+            { letter: "C", text: "y ≤ 1" },
+            { letter: "D", text: "y ≥ 1" }
+          ],
+          correct: "D"
+        }
+      ]
+    },
+
+    /* ---------- short · level 2 · A.F.1 ---------- */
+    {
+      id: "fn-parallel-perpendicular",
+      family: "FN",
+      title: "Lines Around y = 3x − 2",
+      kind: "Functions · A.F.1",
+      blurb: "Parallel, perpendicular, standard form and point-slope form of one line.",
+      level: 2,
+      passage: "<p>" + N(1) + "Start with the line <strong>y = 3x − 2</strong>. " + N(2) + "Parallel lines share a slope; perpendicular lines have slopes whose product is −1. " + N(3) + "The worksheet asks for a parallel line through (1, 4), a perpendicular line through (3, 5), the line's standard form, its point-slope form through (2, 4), and the slope of a second line, 4x + 2y = 8.</p>",
+      claims: [
+        {
+          id: "parallel",
+          sol: "A.F.1.e",
+          stem: "Which equation is the line parallel to y = 3x − 2 through (1, 4)?",
+          choices: [
+            { letter: "A", text: "y = 3x + 1" },
+            { letter: "B", text: "y = 3x + 4" },
+            { letter: "C", text: "y = −3x + 7" },
+            { letter: "D", text: "y = 3x − 2" }
+          ],
+          correct: "A"
+        },
+        {
+          id: "perpendicular",
+          sol: "A.F.1.e",
+          stem: "Which equation is the line perpendicular to y = 3x − 2 through (3, 5)?",
+          choices: [
+            { letter: "A", text: "y = −3x + 14" },
+            { letter: "B", text: "y = (1/3)x + 4" },
+            { letter: "C", text: "y = −(1/3)x + 6" },
+            { letter: "D", text: "y = 3x − 4" }
+          ],
+          correct: "C"
+        },
+        {
+          id: "standard",
+          sol: "A.F.1.b",
+          stem: "Which equation is y = 3x − 2 written in standard form?",
+          choices: [
+            { letter: "A", text: "3x + y = 2" },
+            { letter: "B", text: "3x − y = 2" },
+            { letter: "C", text: "y − 3x = 2" },
+            { letter: "D", text: "3x − y = −2" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "point-slope",
+          sol: "A.F.1.b",
+          stem: "Which equation is the point-slope form of y = 3x − 2 using the point (2, 4)?",
+          choices: [
+            { letter: "A", text: "y + 4 = 3(x + 2)" },
+            { letter: "B", text: "y − 2 = 3(x − 4)" },
+            { letter: "C", text: "y − 4 = −2(x − 2)" },
+            { letter: "D", text: "y − 4 = 3(x − 2)" }
+          ],
+          correct: "D"
+        },
+        {
+          id: "slope-standard",
+          sol: "A.F.1.c",
+          stem: "What is the slope of the line 4x + 2y = 8?",
+          choices: [
+            { letter: "A", text: "4" },
+            { letter: "B", text: "−2" },
+            { letter: "C", text: "2" },
+            { letter: "D", text: "−1/2" }
+          ],
+          correct: "B"
+        }
+      ]
+    },
+
+    /* ---------- short · level 2 · A.F.2 ---------- */
+    {
+      id: "fn-parabola-features",
+      family: "FN",
+      title: "Features of a Parabola",
+      kind: "Functions · A.F.2",
+      blurb: "f(x) = x² − 4x − 5. Zeros, vertex, axis, range and where it decreases.",
+      level: 2,
+      passage: "<p>" + N(1) + "The function <strong>f(x) = x² − 4x − 5</strong> factors as (x − 5)(x + 1). " + N(2) + "Its graph is a parabola that opens upward. " + N(3) + "Nadia lists its zeros, vertex, axis of symmetry, y-intercept, range and the interval where it is decreasing, then evaluates f(3).</p>",
+      claims: [
+        {
+          id: "zeros",
+          sol: "A.F.2.f",
+          stem: "What are the zeros of f?",
+          choices: [
+            { letter: "A", text: "x = −5 and x = 1" },
+            { letter: "B", text: "x = 5 and x = −1" },
+            { letter: "C", text: "x = 4 and x = −5" },
+            { letter: "D", text: "x = 0 and x = −5" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "vertex",
+          sol: "A.F.2.b",
+          stem: "What is the vertex of the parabola?",
+          choices: [
+            { letter: "A", text: "(2, −9)" },
+            { letter: "B", text: "(−2, 7)" },
+            { letter: "C", text: "(2, 9)" },
+            { letter: "D", text: "(0, −5)" }
+          ],
+          correct: "A"
+        },
+        {
+          id: "axis",
+          sol: "A.F.2.b",
+          stem: "What is the axis of symmetry?",
+          choices: [
+            { letter: "A", text: "y = 2" },
+            { letter: "B", text: "x = −9" },
+            { letter: "C", text: "x = 2" },
+            { letter: "D", text: "x = 0" }
+          ],
+          correct: "C"
+        },
+        {
+          id: "range",
+          sol: "A.F.2.b",
+          stem: "What is the range of f?",
+          choices: [
+            { letter: "A", text: "y ≤ −9" },
+            { letter: "B", text: "all real numbers" },
+            { letter: "C", text: "y ≥ −5" },
+            { letter: "D", text: "y ≥ −9" }
+          ],
+          correct: "D"
+        },
+        {
+          id: "decreasing",
+          sol: "A.F.2.b",
+          stem: "On which interval is f decreasing?",
+          choices: [
+            { letter: "A", text: "x < 2" },
+            { letter: "B", text: "x > 2" },
+            { letter: "C", text: "−1 < x < 5" },
+            { letter: "D", text: "x < −9" }
+          ],
+          correct: "A"
+        },
+        {
+          id: "evaluate",
+          sol: "A.F.2.c",
+          stem: "What is f(3)?",
+          choices: [
+            { letter: "A", text: "−2" },
+            { letter: "B", text: "−8" },
+            { letter: "C", text: "16" },
+            { letter: "D", text: "4" }
+          ],
+          correct: "B"
+        }
+      ]
+    },
+
+    /* ---------- short · level 2 · A.F.2 ---------- */
+    {
+      id: "fn-bacteria-doubling",
+      family: "FN",
+      title: "Doubling Bacteria, Shrinking Value",
+      kind: "Functions · A.F.2",
+      blurb: "P(t) = 100 · 2^t grows; V(t) = 5000(0.8)^t decays. Tell them apart.",
+      level: 2,
+      passage: "<p>" + N(1) + "A biology lab starts with 100 bacteria that double every hour, so the population after t hours is <strong>P(t) = 100 · 2<sup>t</sup></strong>. " + N(2) + "Meanwhile, a used laptop bought for $5,000 loses 20% of its value each year, so its value is <strong>V(t) = 5000(0.8)<sup>t</sup></strong>. " + N(3) + "Both are exponential functions, one growing and one decaying.</p>",
+      claims: [
+        {
+          id: "p3",
+          sol: "A.F.2.c",
+          stem: "What is P(3)?",
+          choices: [
+            { letter: "A", text: "600" },
+            { letter: "B", text: "800" },
+            { letter: "C", text: "300" },
+            { letter: "D", text: "106" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "growth",
+          sol: "A.F.2.g",
+          stem: "Which feature of P(t) = 100 · 2^t shows that it is exponential growth?",
+          choices: [
+            { letter: "A", text: "The starting value, 100, is a positive number." },
+            { letter: "B", text: "The exponent is the variable t." },
+            { letter: "C", text: "The base, 2, is greater than 1: each hour doubles the count." },
+            { letter: "D", text: "The population increases by 100 each hour." }
+          ],
+          correct: "C"
+        },
+        {
+          id: "v2",
+          sol: "A.F.2.c",
+          stem: "What is the laptop's value after 2 years?",
+          choices: [
+            { letter: "A", text: "$3,200" },
+            { letter: "B", text: "$4,000" },
+            { letter: "C", text: "$3,000" },
+            { letter: "D", text: "$8,000" }
+          ],
+          correct: "A"
+        },
+        {
+          id: "decay",
+          sol: "A.F.2.g",
+          stem: "In V(t) = 5000(0.8)^t, what does 0.8 represent?",
+          choices: [
+            { letter: "A", text: "The laptop loses $0.80 each year." },
+            { letter: "B", text: "The laptop keeps 80% of its value each year." },
+            { letter: "C", text: "The laptop is worth 80 dollars after t years." },
+            { letter: "D", text: "The laptop loses 80% of its value each year." }
+          ],
+          correct: "B"
+        },
         {
           id: "table",
-          sol: "BIO.3.c",
-          stem: "Based on the table, which solution caused water to leave both kinds of cell?",
+          sol: "A.F.2.h",
+          stem: "A table shows y-values 3, 6, 12, 24 for x = 0, 1, 2, 3. Which kind of function fits the table?",
           choices: [
-            { letter: "A", text: "0.0% salt" },
-            { letter: "B", text: "0.9% salt" },
-            { letter: "C", text: "3.0% salt" },
-            { letter: "D", text: "none of the solutions" }
+            { letter: "A", text: "linear, because y increases each time" },
+            { letter: "B", text: "quadratic, because the differences are 3, 6, 12" },
+            { letter: "C", text: "exponential, because each y-value is 2 times the one before" },
+            { letter: "D", text: "linear, because x increases by 1 each time" }
           ],
           correct: "C"
-        },
-        {
-          id: "vocab",
-          sol: "BIO.3.c",
-          stem: "In sentence 3, isotonic means the solution —",
-          choices: [
-            { letter: "A", text: "has more dissolved solute than the cell" },
-            { letter: "B", text: "has the same solute concentration as the cell" },
-            { letter: "C", text: "has less dissolved solute than the cell" },
-            { letter: "D", text: "contains no dissolved salt at all" }
-          ],
-          correct: "B"
-        },
-        {
-          id: "burst",
-          sol: "BIO.3.c",
-          stem: "Red blood cells burst in distilled water because —",
-          choices: [
-            { letter: "A", text: "water moved into the cells, where solute concentration was higher" },
-            { letter: "B", text: "salt rushed into the cells and split the membrane" },
-            { letter: "C", text: "water moved out of the cells toward the lower solute concentration" },
-            { letter: "D", text: "the membrane dissolved in the pure water" }
-          ],
-          correct: "A"
-        },
-        {
-          id: "wall",
-          sol: "BIO.3.b",
-          stem: "Which statement best explains the observation in sentence 5?",
-          choices: [
-            { letter: "A", text: "Onion cells have no membrane, so no water enters them." },
-            { letter: "B", text: "Plant cells cannot absorb water without roots." },
-            { letter: "C", text: "Distilled water is isotonic to plant cells." },
-            { letter: "D", text: "The rigid cell wall resists the pressure of incoming water." }
-          ],
-          correct: "D"
-        },
-        {
-          id: "disc",
-          sol: "BIO.3.d",
-          stem: "The normal disc shape of a red blood cell in 0.9% salt helps the cell —",
-          choices: [
-            { letter: "A", text: "store extra salt for the body" },
-            { letter: "B", text: "push through the walls of capillaries" },
-            { letter: "C", text: "exchange gases quickly across a large surface" },
-            { letter: "D", text: "divide rapidly while in the bloodstream" }
-          ],
-          correct: "C"
-        },
-        {
-          id: "iv",
-          sol: "BIO.3.c",
-          stem: "A dehydrated patient is given fluid through a vein. Which fluid should be chosen, and why?",
-          choices: [
-            { letter: "A", text: "distilled water, because it hydrates blood cells fastest" },
-            { letter: "B", text: "0.9% salt, because it will not change the volume of blood cells" },
-            { letter: "C", text: "3.0% salt, because it draws water into blood cells" },
-            { letter: "D", text: "any of the three, because blood cells have protective walls" }
-          ],
-          correct: "B"
         }
       ]
     },
 
-    /* ---------- medium · level 2 · potato cores in sucrose ---------- */
+    /* ---------- medium · level 2 · A.F.1 ---------- */
     {
-      id: "cell-potato-cores",
-      family: "CELL",
-      title: "Potato Cores in Sugar",
-      kind: "Cells · BIO.3",
-      blurb: "Percent change in mass across five sucrose concentrations, plus one group's blotting mistake.",
+      id: "fn-two-points",
+      family: "FN",
+      title: "A Line Through Two Points",
+      kind: "Functions · A.F.1",
+      blurb: "(2, 11) and (6, 23) fix a line. Equation, intercepts, end behavior and a rival.",
       level: 2,
-      passage: "<p>" + N(1) + "A class cuts potato cores of equal size with a cork borer, blots them, and records each mass. " + N(2) + "Each core is placed in a cup of sugar solution for 24 hours, then blotted and weighed again. " + N(3) + "The cups hold 0%, 5%, 10%, 20% and 30% sucrose. " + N(4) + "The class calculates the percent change in mass for each core.</p>" +
-        "<table><tr><th>Sucrose (%)</th><th>Start mass (g)</th><th>End mass (g)</th><th>Change (%)</th></tr>" +
-        "<tr><td>0</td><td>10.0</td><td>11.2</td><td>+12</td></tr>" +
-        "<tr><td>5</td><td>10.0</td><td>10.6</td><td>+6</td></tr>" +
-        "<tr><td>10</td><td>10.0</td><td>10.0</td><td>0</td></tr>" +
-        "<tr><td>20</td><td>10.0</td><td>9.2</td><td>-8</td></tr>" +
-        "<tr><td>30</td><td>10.0</td><td>8.5</td><td>-15</td></tr></table>" +
-        "<p>" + N(5) + "Potato cells have no pump for sucrose, and sucrose molecules are too large to pass through the membrane on their own. " + N(6) + "Only water crosses the membrane during the 24 hours, so the change in mass is a measure of <strong>osmosis</strong>. " + N(7) + "The solution in which mass did not change is <strong>isotonic</strong> to the potato cytoplasm. " + N(8) + "The cores from 0% sucrose felt stiff and firm, while those from 30% were limp. " + N(9) + "One group forgot to blot its cores before the final weighing and reported a gain in every cup.</p>",
+      passage: "<p>" + N(1) + "A linear function f passes through the points (2, 11) and (6, 23). " + N(2) + "Owen finds its slope, writes its equation and locates its intercepts. " + N(3) + "He compares f with a second function, <strong>g(x) = 4x − 3</strong>, and with a direct variation in which y = 12 when x = 4. " + N(4) + "Finally he describes the <strong>end behavior</strong> of f: what happens to f(x) as x grows without bound.</p>",
       claims: [
         {
-          id: "conclusion",
-          sol: "BIO.3.c",
-          stem: "Which conclusion is best supported by the data in the table?",
+          id: "equation",
+          sol: "A.F.1.d",
+          stem: "Which equation represents f?",
           choices: [
-            { letter: "A", text: "Potato cells gain water in every sucrose solution." },
-            { letter: "B", text: "The potato cytoplasm is about 10% sucrose." },
-            { letter: "C", text: "Sucrose enters the cores at 20% and 30%." },
-            { letter: "D", text: "Mass loss stops once sucrose reaches 20%." }
-          ],
-          correct: "B"
-        },
-        {
-          id: "vocab",
-          sol: "BIO.3.c",
-          stem: "In sentence 7, isotonic describes a solution that —",
-          choices: [
-            { letter: "A", text: "contains no dissolved sucrose at all" },
-            { letter: "B", text: "causes the potato cells to swell and burst" },
-            { letter: "C", text: "has the same solute concentration as the cell" },
-            { letter: "D", text: "pulls water out of the cell into the cup" }
-          ],
-          correct: "C"
-        },
-        {
-          id: "stiff",
-          sol: "BIO.3.b",
-          stem: "Which structure best explains why the cores in 0% sucrose became stiff rather than bursting (sentence 8)?",
-          choices: [
-            { letter: "A", text: "the central vacuole, which collapsed" },
-            { letter: "B", text: "the membrane, which pumped water out" },
-            { letter: "C", text: "the nucleus, which absorbed the extra water" },
-            { letter: "D", text: "the cell wall, which resisted the pressure of incoming water" }
-          ],
-          correct: "D"
-        },
-        {
-          id: "iv",
-          sol: "BIO.3.c",
-          stem: "The independent variable in this investigation is the —",
-          choices: [
-            { letter: "A", text: "sucrose concentration of the solution" },
-            { letter: "B", text: "percent change in mass of each core" },
-            { letter: "C", text: "starting mass of each core" },
-            { letter: "D", text: "time the cores spent soaking" }
+            { letter: "A", text: "f(x) = 3x + 5" },
+            { letter: "B", text: "f(x) = 3x + 11" },
+            { letter: "C", text: "f(x) = 4x + 3" },
+            { letter: "D", text: "f(x) = 2x + 7" }
           ],
           correct: "A"
         },
         {
-          id: "blot",
-          sol: "BIO.3.c",
-          stem: "Select TWO statements that explain the result reported by the group in sentence 9.",
+          id: "x-intercept",
+          sol: "A.F.1.a",
+          stem: "What is the x-intercept of f?",
           choices: [
-            { letter: "A", text: "Liquid left on the surface of each core added to the measured mass." },
-            { letter: "B", text: "Cores in 30% sucrose actually took in water from the solution." },
-            { letter: "C", text: "The error raised the final mass but not the starting mass." },
-            { letter: "D", text: "Blotting removes water from inside the potato cells." }
-          ],
-          correct: ["A", "C"]
-        },
-        {
-          id: "root",
-          sol: "BIO.3.d",
-          stem: "Root hair cells of a potato plant are long and thin. This shape helps the plant because it —",
-          choices: [
-            { letter: "A", text: "lets the cell move water without using osmosis" },
-            { letter: "B", text: "increases the surface area for water to enter by osmosis" },
-            { letter: "C", text: "prevents water from leaving the cell in dry soil" },
-            { letter: "D", text: "stores sucrose for the growing potato tuber" }
-          ],
-          correct: "B"
-        }
-      ]
-    },
-
-    /* ---------- medium · level 2 · levels of organization and homeostasis ---------- */
-    {
-      id: "cell-hot-runner",
-      family: "CELL",
-      title: "A Runner on a Hot Day",
-      kind: "Cells · BIO.3",
-      blurb: "From muscle cells to organ systems: how a runner's body sheds heat.",
-      level: 2,
-      passage: "<p>" + N(1) + "A cross-country runner trains on a hot afternoon near Harrisonburg. " + N(2) + "Within minutes her skin flushes and she begins to sweat. " + N(3) + "A biology student explains what is happening at each level of organization. " + N(4) + "Muscle <strong>cells</strong> in her legs release energy in their mitochondria, and some of that energy is lost as heat. " + N(5) + "Bundles of these cells form muscle <strong>tissue</strong>, and several tissues, including nerve and connective tissue, make up each leg muscle, an <strong>organ</strong>. " + N(6) + "Sensors in the brain detect the rising blood temperature and signal sweat glands in the skin. " + N(7) + "Sweat glands, skin and blood vessels belong to different organ systems, yet they work together to shed heat. " + N(8) + "As sweat evaporates, blood temperature returns toward 37 °C. " + N(9) + "Keeping internal conditions within a narrow range is called <strong>homeostasis</strong>. " + N(10) + "Muscle cells and sweat-gland cells carry the same DNA yet look and act differently.</p>",
-      claims: [
-        {
-          id: "order",
-          sol: "BIO.3.b",
-          stem: "Which list places the runner's structures in order from smallest to largest?",
-          choices: [
-            { letter: "A", text: "cell, organ, tissue, organ system" },
-            { letter: "B", text: "cell, tissue, organ, organ system" },
-            { letter: "C", text: "tissue, cell, organ, organism" },
-            { letter: "D", text: "organ, tissue, cell, organism" }
+            { letter: "A", text: "x = 5" },
+            { letter: "B", text: "x = −5/3" },
+            { letter: "C", text: "x = −5" },
+            { letter: "D", text: "x = 5/3" }
           ],
           correct: "B"
         },
         {
-          id: "vocab",
-          sol: "BIO.3.b",
-          stem: "In sentence 9, homeostasis refers to —",
+          id: "solve-output",
+          sol: "A.F.1.f",
+          stem: "For what value of x is f(x) = 41?",
           choices: [
-            { letter: "A", text: "the release of heat by muscle cells" },
-            { letter: "B", text: "the flow of extra blood to the skin" },
-            { letter: "C", text: "keeping internal conditions stable" },
-            { letter: "D", text: "the evaporation of sweat from skin" }
+            { letter: "A", text: "x = 128" },
+            { letter: "B", text: "x = 15" },
+            { letter: "C", text: "x = 12" },
+            { letter: "D", text: "x = 46/3" }
           ],
           correct: "C"
         },
         {
-          id: "organ",
-          sol: "BIO.3.b",
-          stem: "Which statement best describes the relationship between a leg muscle and muscle tissue?",
+          id: "compare",
+          sol: "A.F.1.i",
+          stem: "How do f and g compare?",
           choices: [
-            { letter: "A", text: "Muscle tissue is built from several different organs." },
-            { letter: "B", text: "A leg muscle is a single type of tissue." },
-            { letter: "C", text: "Muscle tissue is one level larger than an organ." },
-            { letter: "D", text: "A leg muscle is an organ built from muscle tissue and other tissues." }
-          ],
-          correct: "D"
-        },
-        {
-          id: "systems",
-          sol: "BIO.3.b",
-          stem: "Sentence 7 best illustrates that —",
-          choices: [
-            { letter: "A", text: "organ systems interact to keep the body in balance" },
-            { letter: "B", text: "each organ system works alone, without the others" },
-            { letter: "C", text: "the skin is the only organ that controls temperature" },
-            { letter: "D", text: "sweat glands are a type of muscle tissue" }
-          ],
-          correct: "A"
-        },
-        {
-          id: "sweat",
-          sol: "BIO.3.c",
-          stem: "Sweat forms when water and salt leave gland cells. Which structure controls which substances leave the cell?",
-          choices: [
-            { letter: "A", text: "the cell wall" },
-            { letter: "B", text: "the nucleus" },
-            { letter: "C", text: "the cell membrane" },
-            { letter: "D", text: "the cytoskeleton" }
+            { letter: "A", text: "g has the greater rate of change and the greater y-intercept." },
+            { letter: "B", text: "f has the greater rate of change; g has the greater y-intercept." },
+            { letter: "C", text: "g has the greater rate of change; f has the greater y-intercept." },
+            { letter: "D", text: "f and g have the same rate of change." }
           ],
           correct: "C"
         },
         {
-          id: "differ",
-          sol: "BIO.3.d",
-          stem: "Which statement best explains the observation in sentence 10?",
+          id: "direct",
+          sol: "A.F.1.g",
+          stem: "In the direct variation where y = 12 when x = 4, what is the constant of variation and the equation?",
           choices: [
-            { letter: "A", text: "Each cell type has lost the genes it does not use." },
-            { letter: "B", text: "Muscle cells are prokaryotes and gland cells are not." },
-            { letter: "C", text: "Sweat-gland cells have no nucleus to hold DNA." },
-            { letter: "D", text: "Each cell type switches on a different set of its genes." }
+            { letter: "A", text: "k = 8; y = x + 8" },
+            { letter: "B", text: "k = 3; y = 3x" },
+            { letter: "C", text: "k = 48; y = 48 ÷ x" },
+            { letter: "D", text: "k = 1/3; y = x ÷ 3" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "end",
+          sol: "A.F.1.a",
+          stem: "Which statement describes the end behavior of f?",
+          choices: [
+            { letter: "A", text: "As x increases, f(x) approaches 5." },
+            { letter: "B", text: "As x increases, f(x) decreases without bound." },
+            { letter: "C", text: "As x increases, f(x) levels off at 41." },
+            { letter: "D", text: "As x increases, f(x) increases without bound." }
           ],
           correct: "D"
         }
       ]
     },
 
-    /* ---------- medium · level 3 · membrane model and dialysis tubing ---------- */
+    /* ---------- medium · level 3 · A.F.2 ---------- */
     {
-      id: "cell-membrane-model",
-      family: "CELL",
-      title: "Building a Membrane",
-      kind: "Cells · BIO.3",
-      blurb: "A bilayer model, then dialysis tubing with starch, glucose and iodine.",
+      id: "fn-three-accounts",
+      family: "FN",
+      title: "Three Ways to Grow $200",
+      kind: "Functions · A.F.2",
+      blurb: "Linear, exponential and quadratic growth side by side. Which wins when?",
       level: 3,
-      passage: "<p>" + N(1) + "A class models the cell membrane with foam balls for phospholipid heads and pipe cleaners for tails, arranged as a <strong>phospholipid bilayer</strong> with the tails pointing inward. " + N(2) + "Clay shapes span the bilayer to represent protein channels and pumps. " + N(3) + "Small nonpolar molecules such as oxygen slip between the tails, while ions and large polar molecules need a protein to cross. " + N(4) + "The class then tests dialysis tubing, which has tiny pores but no proteins. " + N(5) + "A bag of starch and glucose solution sits in a beaker of water containing iodine, which turns blue-black with starch. " + N(6) + "After 20 minutes the water outside tests positive for glucose but stays amber, while the contents of the bag are blue-black. " + N(7) + "A student asks why the bag cannot move glucose against its concentration gradient the way a root hair cell takes in minerals. " + N(8) + "The teacher answers that the tubing has no pumps and no ATP, so it allows only <strong>passive transport</strong> down concentration gradients.</p>",
+      passage: "<p>" + N(1) + "Three cousins each start with $200. " + N(2) + "Ava adds $25 every year: <strong>A(t) = 200 + 25t</strong>. " + N(3) + "Ben's account grows 10% a year: <strong>B(t) = 200(1.1)<sup>t</sup></strong>. " + N(4) + "Cara's odd job pays more every year: <strong>C(t) = 200 + 2t²</strong>. " + N(5) + "They compare balances after 5 years and after 10 years.</p>" +
+        "<table><tr><th>t</th><th>A(t)</th><th>B(t)</th><th>C(t)</th></tr><tr><td>0</td><td>200</td><td>200</td><td>200</td></tr><tr><td>5</td><td>325</td><td>322.10</td><td>250</td></tr><tr><td>10</td><td>450</td><td>518.75</td><td>400</td></tr></table>",
       claims: [
         {
-          id: "vocab",
-          sol: "BIO.3.c",
-          stem: "In the phospholipid bilayer of sentence 1, the tails point inward because they are —",
+          id: "types",
+          sol: "A.F.2.h",
+          stem: "Which list correctly names the function types of A, B and C?",
           choices: [
-            { letter: "A", text: "hydrophilic and attract water" },
-            { letter: "B", text: "hydrophobic and avoid water" },
-            { letter: "C", text: "charged and bind to ions" },
-            { letter: "D", text: "rigid and give the membrane strength" }
-          ],
-          correct: "B"
-        },
-        {
-          id: "result",
-          sol: "BIO.3.c",
-          stem: "Which conclusion is best supported by the results in sentence 6?",
-          choices: [
-            { letter: "A", text: "Iodine and glucose crossed the tubing; starch did not." },
-            { letter: "B", text: "Starch and iodine crossed the tubing; glucose did not." },
-            { letter: "C", text: "Only glucose crossed the tubing in either direction." },
-            { letter: "D", text: "Nothing crossed the tubing during the 20 minutes." }
+            { letter: "A", text: "A linear, B exponential, C quadratic" },
+            { letter: "B", text: "A linear, B quadratic, C exponential" },
+            { letter: "C", text: "A exponential, B linear, C quadratic" },
+            { letter: "D", text: "A quadratic, B exponential, C linear" }
           ],
           correct: "A"
         },
         {
-          id: "starch",
-          sol: "BIO.3.c",
-          stem: "The starch stayed inside the bag because —",
+          id: "rate",
+          sol: "A.F.1.h",
+          stem: "What is the rate of change of A(t), and what does it mean?",
           choices: [
-            { letter: "A", text: "starch is nonpolar and stuck to the tubing" },
-            { letter: "B", text: "iodine bound the starch and held it inside" },
-            { letter: "C", text: "starch molecules are too large for the pores" },
-            { letter: "D", text: "the bag pumped any escaping starch back in" }
-          ],
-          correct: "C"
-        },
-        {
-          id: "oxygen",
-          sol: "BIO.3.c",
-          stem: "Which statement best explains why oxygen crosses a cell membrane without a protein but glucose needs one?",
-          choices: [
-            { letter: "A", text: "Oxygen is charged and glucose is not." },
-            { letter: "B", text: "Glucose is used up too quickly to reach the membrane." },
-            { letter: "C", text: "Oxygen is pumped inward by the mitochondria." },
-            { letter: "D", text: "Oxygen is small and nonpolar; glucose is large and polar." }
-          ],
-          correct: "D"
-        },
-        {
-          id: "uptake",
-          sol: "BIO.3.b",
-          stem: "A root hair cell takes in a mineral ion from soil water that holds less of that ion than the cell does. Which pair of structures makes this possible?",
-          choices: [
-            { letter: "A", text: "a protein pump in the membrane and a mitochondrion supplying ATP" },
-            { letter: "B", text: "a channel protein in the membrane and a chloroplast supplying sugar" },
-            { letter: "C", text: "the phospholipid tails and a nucleus that dissolves the ion" },
-            { letter: "D", text: "larger pores in the membrane and ribosomes that carry the ion" }
-          ],
-          correct: "A"
-        },
-        {
-          id: "roothair",
-          sol: "BIO.3.d",
-          stem: "Root hair cells contain far more mitochondria than most other root cells. Which statement best explains this specialization?",
-          choices: [
-            { letter: "A", text: "They need ATP to make water enter by osmosis." },
-            { letter: "B", text: "They need ATP to pump minerals in against the gradient." },
-            { letter: "C", text: "They carry out photosynthesis below the ground." },
-            { letter: "D", text: "They must store glucose for the rest of the plant." }
+            { letter: "A", text: "200 dollars per year: Ava's starting amount" },
+            { letter: "B", text: "25 dollars per year: the amount Ava adds each year" },
+            { letter: "C", text: "25 years: the time it takes to double" },
+            { letter: "D", text: "225 dollars: Ava's balance after one year" }
           ],
           correct: "B"
-        }
-      ]
-    },
-
-    /* ---------- long · level 3 · surface area to volume ---------- */
-    {
-      id: "cell-agar-cubes",
-      family: "CELL",
-      title: "Agar Cubes in Vinegar",
-      kind: "Cells · BIO.3",
-      blurb: "Three sizes of indicator agar show why cells stay small and why some fold their membranes.",
-      level: 3,
-      passage: "<p>" + N(1) + "Students cut blocks of pink agar, which contains a pH indicator, into cubes with sides of 1, 2 and 3 cm. " + N(2) + "They drop the cubes into vinegar and start a timer. " + N(3) + "Wherever the acid diffuses in, the agar turns from pink to clear. " + N(4) + "After 5 minutes they remove the cubes, slice each in half, and measure how deep the clear layer reaches. " + N(5) + "They also calculate the <strong>surface area</strong> (six faces) and <strong>volume</strong> of each cube.</p>" +
-        "<table><tr><th>Side (cm)</th><th>Surface area (cm²)</th><th>Volume (cm³)</th><th>SA : V</th></tr>" +
-        "<tr><td>1</td><td>6</td><td>1</td><td>6.0</td></tr>" +
-        "<tr><td>2</td><td>24</td><td>8</td><td>3.0</td></tr>" +
-        "<tr><td>3</td><td>54</td><td>27</td><td>2.0</td></tr></table>" +
-        "<p>" + N(6) + "The acid reached about 4 mm into every cube. " + N(7) + "The 1-cm cube was clear nearly all the way through, but the 3-cm cube kept a large pink center. " + N(8) + "The teacher relates this to cells: nutrients enter and wastes leave across the membrane, so its surface area must keep up with the volume of cytoplasm it serves. " + N(9) + "As a cell grows, volume rises faster than surface area, and the ratio falls. " + N(10) + "This is one reason cells stay small and divide, and why cells lining the small intestine, which absorb a great deal, have folded membranes. " + N(11) + "A student asks whether a meter-long nerve cell breaks the rule; the teacher notes it is extremely thin, so no cytoplasm is far from the membrane.</p>",
-      claims: [
+        },
+        {
+          id: "overtake",
+          sol: "A.F.2.h",
+          stem: "What does the table show about Ava's and Ben's balances?",
+          choices: [
+            { letter: "A", text: "Ben is always ahead because 10% is more than $25." },
+            { letter: "B", text: "Ava is ahead at 5 years, but Ben's exponential growth passes her by 10 years." },
+            { letter: "C", text: "Ava is always ahead because a linear function grows faster." },
+            { letter: "D", text: "Their balances are equal at 10 years." }
+          ],
+          correct: "B"
+        },
         {
           id: "ratio",
-          sol: "BIO.3.b",
-          stem: "Based on the table, when the side of a cube doubles from 1 cm to 2 cm, the surface-area-to-volume ratio —",
+          sol: "A.F.2.g",
+          stem: "Between any two consecutive years, B(t) is multiplied by —",
           choices: [
-            { letter: "A", text: "doubles" },
-            { letter: "B", text: "stays the same" },
-            { letter: "C", text: "is cut in half" },
-            { letter: "D", text: "increases fourfold" }
+            { letter: "A", text: "10" },
+            { letter: "B", text: "0.1" },
+            { letter: "C", text: "1.1" },
+            { letter: "D", text: "200" }
           ],
           correct: "C"
         },
         {
-          id: "vocab",
-          sol: "BIO.3.b",
-          stem: "In sentence 5, the surface area of a cube refers to —",
+          id: "cara",
+          sol: "A.F.2.c",
+          stem: "What is C(7)?",
           choices: [
-            { letter: "A", text: "the total area of its six faces" },
-            { letter: "B", text: "the amount of space it fills" },
-            { letter: "C", text: "the depth the acid reached" },
-            { letter: "D", text: "the length of one of its sides" }
+            { letter: "A", text: "298" },
+            { letter: "B", text: "214" },
+            { letter: "C", text: "228" },
+            { letter: "D", text: "398" }
           ],
           correct: "A"
         },
         {
-          id: "percent",
-          sol: "BIO.3.b",
-          stem: "Which cube had the smallest share of its volume reached by acid after 5 minutes?",
+          id: "long-run",
+          sol: "A.F.2.h",
+          stem: "In the long run, which account grows fastest, and why?",
           choices: [
-            { letter: "A", text: "the 1-cm cube" },
-            { letter: "B", text: "the 2-cm cube" },
-            { letter: "C", text: "all three equally, since the acid reached 4 mm in each" },
-            { letter: "D", text: "the 3-cm cube" }
+            { letter: "A", text: "Cara's, because a quadratic function eventually beats any exponential function." },
+            { letter: "B", text: "Ava's, because it has the largest balance at 5 years." },
+            { letter: "C", text: "Ben's, because multiplying by 1.1 each year eventually outgrows adding 25 or 2t²." },
+            { letter: "D", text: "All three grow at the same rate after 10 years." }
           ],
-          correct: "D"
-        },
+          correct: "C"
+        }
+      ]
+    },
+
+    /* ---------- medium · level 3 · A.F.2 ---------- */
+    {
+      id: "fn-parabola-from-graph",
+      family: "FN",
+      title: "A Parabola Described in Words",
+      kind: "Functions · A.F.2",
+      blurb: "Vertex (3, 16), x-intercepts −1 and 7, y-intercept 7. Recover the function.",
+      level: 3,
+      passage: "<p>" + N(1) + "A graph shows a parabola that opens downward. " + N(2) + "Its <strong>vertex</strong> is (3, 16), its x-intercepts are −1 and 7, and its y-intercept is 7. " + N(3) + "Tomas wants to write the function in factored form and use it to describe where the graph is above the x-axis and where it is increasing. " + N(4) + "The graph models the height, in feet, of a water jet x feet from the nozzle of a fountain.</p>",
+      claims: [
         {
-          id: "process",
-          sol: "BIO.3.c",
-          stem: "The acid moved into the agar by —",
+          id: "factored",
+          sol: "A.F.2.e",
+          stem: "Which function has the zeros and y-intercept described?",
           choices: [
-            { letter: "A", text: "active transport using ATP" },
-            { letter: "B", text: "diffusion from higher to lower concentration" },
-            { letter: "C", text: "osmosis through channel proteins" },
-            { letter: "D", text: "endocytosis at the agar surface" }
+            { letter: "A", text: "f(x) = (x + 1)(x − 7)" },
+            { letter: "B", text: "f(x) = −(x + 1)(x − 7)" },
+            { letter: "C", text: "f(x) = −(x − 1)(x + 7)" },
+            { letter: "D", text: "f(x) = (x − 3)(x − 16)" }
           ],
           correct: "B"
         },
         {
-          id: "divide",
-          sol: "BIO.3.b",
-          stem: "Which statement best explains why a large cell is more likely to divide than to keep growing?",
+          id: "standard",
+          sol: "A.F.2.f",
+          stem: "Which is the same function written in standard form?",
           choices: [
-            { letter: "A", text: "A larger membrane lets in too much water at once." },
-            { letter: "B", text: "Its membrane cannot exchange materials fast enough for its volume." },
-            { letter: "C", text: "Its volume grows more slowly than its surface area." },
-            { letter: "D", text: "Its cytoskeleton breaks when the cell gets too heavy." }
+            { letter: "A", text: "f(x) = −x² + 6x + 7" },
+            { letter: "B", text: "f(x) = −x² − 6x − 7" },
+            { letter: "C", text: "f(x) = x² − 6x − 7" },
+            { letter: "D", text: "f(x) = −x² + 8x − 7" }
+          ],
+          correct: "A"
+        },
+        {
+          id: "positive",
+          sol: "A.F.2.b",
+          stem: "For which values of x is f(x) > 0?",
+          choices: [
+            { letter: "A", text: "x < −1 or x > 7" },
+            { letter: "B", text: "x > 3" },
+            { letter: "C", text: "−1 < x < 7" },
+            { letter: "D", text: "0 < x < 16" }
+          ],
+          correct: "C"
+        },
+        {
+          id: "increasing",
+          sol: "A.F.2.b",
+          stem: "On which interval is the function increasing?",
+          choices: [
+            { letter: "A", text: "x < 3" },
+            { letter: "B", text: "x > 3" },
+            { letter: "C", text: "−1 < x < 7" },
+            { letter: "D", text: "x > 16" }
+          ],
+          correct: "A"
+        },
+        {
+          id: "range",
+          sol: "A.F.2.b",
+          stem: "What is the range of the function?",
+          choices: [
+            { letter: "A", text: "y ≥ 16" },
+            { letter: "B", text: "y ≤ 16" },
+            { letter: "C", text: "−1 ≤ y ≤ 7" },
+            { letter: "D", text: "all real numbers" }
           ],
           correct: "B"
         },
         {
-          id: "shapes",
-          sol: "BIO.3.d",
-          stem: "How do the two specialized cells in sentences 10 and 11 keep a high surface-area-to-volume ratio?",
+          id: "context",
+          sol: "A.F.2.i",
+          stem: "In the fountain model, what do the x-intercept 7 and the vertex represent?",
           choices: [
-            { letter: "A", text: "Intestinal cells fold their membrane; nerve cells stay very thin." },
-            { letter: "B", text: "Both have thick, rounded shapes with very few folds." },
-            { letter: "C", text: "Both contain far more cytoplasm than membrane." },
-            { letter: "D", text: "Intestinal cells stop dividing; nerve cells grow rounder." }
+            { letter: "A", text: "The jet lands 7 feet from the nozzle; its greatest height is 16 feet, reached 3 feet out." },
+            { letter: "B", text: "The jet lands 16 feet from the nozzle; its greatest height is 7 feet." },
+            { letter: "C", text: "The jet is 7 feet high at the nozzle; it lands 3 feet out." },
+            { letter: "D", text: "The jet reaches 7 feet high 16 feet from the nozzle." }
           ],
           correct: "A"
         }
       ]
     },
 
-    /* ---------- long · level 3 · stem cells and differentiation ---------- */
+    /* ---------- medium · level 2 · A.F.1 ---------- */
     {
-      id: "cell-stem-cells",
-      family: "CELL",
-      title: "One Egg, Two Hundred Cell Types",
-      kind: "Cells · BIO.3",
-      blurb: "How stem cells differentiate, and why a skin cell cannot simply become a nerve cell.",
-      level: 3,
-      passage: "<p>" + N(1) + "A class studies how one fertilized egg becomes the roughly 200 cell types in a human body. " + N(2) + "Early embryonic cells are <strong>stem cells</strong>: unspecialized cells that can divide repeatedly and become many other kinds of cell. " + N(3) + "Every body cell keeps the same full set of genes, but as an embryo develops, chemical signals from neighboring cells switch different genes on or off in each cell. " + N(4) + "This process, <strong>differentiation</strong>, gives each cell type a shape and set of organelles that fit its job. " + N(5) + "The class compiles a table from their microscope work.</p>" +
-        "<table><tr><th>Cell type</th><th>Shape or feature</th><th>Job</th></tr>" +
-        "<tr><td>Nerve cell</td><td>long branching fibers</td><td>carries signals over long distances</td></tr>" +
-        "<tr><td>Muscle cell</td><td>long, packed with protein fibers and mitochondria</td><td>contracts to move the body</td></tr>" +
-        "<tr><td>Red blood cell</td><td>flattened disc, no nucleus</td><td>carries oxygen</td></tr>" +
-        "<tr><td>Root hair cell (plant)</td><td>thin extension into soil</td><td>absorbs water and minerals</td></tr>" +
-        "<tr><td>Guard cell (plant)</td><td>curved pair with a pore between</td><td>swells with water to open the pore</td></tr></table>" +
-        "<p>" + N(6) + "Adult tissues keep a few stem cells, such as those in bone marrow that replace blood cells throughout life. " + N(7) + "A student asks why a skin cell cannot simply be moved to the brain to replace a damaged nerve cell. " + N(8) + "The teacher explains that the skin cell's nerve-related genes are switched off, and that a differentiated cell normally cannot go back. " + N(9) + "Researchers can, however, reprogram some adult cells in the lab by adding signals that reactivate embryonic genes. " + N(10) + "A red blood cell, having lost its nucleus, cannot be reprogrammed at all and lives only about four months before it is replaced.</p>",
+      id: "fn-draining-tank",
+      family: "FN",
+      title: "The Draining Tank",
+      kind: "Functions · A.F.1",
+      blurb: "V(t) = 500 − 20t. Zero, domain in context, and a second tank's table.",
+      level: 2,
+      passage: "<p>" + N(1) + "A 500-gallon tank drains at a steady 20 gallons per minute, so the volume after t minutes is <strong>V(t) = 500 − 20t</strong>. " + N(2) + "A second tank is measured every 5 minutes; its table is below. " + N(3) + "Lin graphs both tanks on one grid to see which empties first.</p>" +
+        "<table><tr><th>t (min)</th><th>0</th><th>5</th><th>10</th><th>15</th></tr><tr><th>Tank 2 (gal)</th><td>420</td><td>345</td><td>270</td><td>195</td></tr></table>",
       claims: [
         {
-          id: "vocab",
-          sol: "BIO.3.d",
-          stem: "In sentence 2, a stem cell is a cell that —",
+          id: "zero",
+          sol: "A.F.1.a",
+          stem: "What is the zero of V, and what does it mean?",
           choices: [
-            { letter: "A", text: "has already developed a specialized shape" },
-            { letter: "B", text: "can divide and become many types of cell" },
-            { letter: "C", text: "has lost its nucleus and cannot divide" },
-            { letter: "D", text: "carries signals over long distances" }
-          ],
-          correct: "B"
-        },
-        {
-          id: "guard",
-          sol: "BIO.3.c",
-          stem: "According to the table, a guard cell opens its pore when water enters. For water to enter by osmosis, the guard cell's cytoplasm must be —",
-          choices: [
-            { letter: "A", text: "hypotonic to the surrounding cells" },
-            { letter: "B", text: "equal in solute to the surrounding cells" },
-            { letter: "C", text: "higher in solute than the surrounding cells" },
-            { letter: "D", text: "free of any dissolved salts" }
-          ],
-          correct: "C"
-        },
-        {
-          id: "muscle",
-          sol: "BIO.3.d",
-          stem: "Which statement best explains why a muscle cell contains many more mitochondria than a skin cell?",
-          choices: [
-            { letter: "A", text: "Muscle cells carry extra genes for building mitochondria." },
-            { letter: "B", text: "Mitochondria contract to pull on the protein fibers." },
-            { letter: "C", text: "Skin cells do not need any energy to function." },
-            { letter: "D", text: "Contraction requires large amounts of ATP." }
-          ],
-          correct: "D"
-        },
-        {
-          id: "two",
-          sol: "BIO.3.d",
-          stem: "Select TWO statements about differentiated cells that are supported by the passage.",
-          choices: [
-            { letter: "A", text: "Their genes are different from those in stem cells." },
-            { letter: "B", text: "Signals from neighboring cells influence which genes are active." },
-            { letter: "C", text: "They normally do not return to an unspecialized state." },
-            { letter: "D", text: "They all keep a nucleus for their entire lives." }
-          ],
-          correct: ["B", "C"]
-        },
-        {
-          id: "rbc",
-          sol: "BIO.3.b",
-          stem: "A red blood cell has no nucleus. Which consequence follows from this?",
-          choices: [
-            { letter: "A", text: "It cannot make new proteins to repair itself and must be replaced." },
-            { letter: "B", text: "It can divide faster than cells that keep a nucleus." },
-            { letter: "C", text: "It stores its DNA in its mitochondria instead." },
-            { letter: "D", text: "It cannot carry oxygen without instructions from DNA." }
+            { letter: "A", text: "t = 25; the tank is empty after 25 minutes" },
+            { letter: "B", text: "t = 500; the tank starts with 500 gallons" },
+            { letter: "C", text: "t = 20; the tank loses 20 gallons each minute" },
+            { letter: "D", text: "t = 480; the tank holds 480 gallons after one minute" }
           ],
           correct: "A"
         },
         {
-          id: "reprogram",
-          sol: "BIO.3.d",
-          stem: "Which claim is best supported by sentence 9?",
+          id: "domain",
+          sol: "A.F.1.k",
+          stem: "What is a reasonable domain for V(t) in this situation?",
           choices: [
-            { letter: "A", text: "Differentiation depends on which genes are active, not which are present." },
-            { letter: "B", text: "Adult cells can never be changed once they have differentiated." },
-            { letter: "C", text: "Reprogramming works by removing unneeded genes from a cell." },
-            { letter: "D", text: "Embryonic genes are destroyed as development goes on." }
+            { letter: "A", text: "all real numbers" },
+            { letter: "B", text: "0 ≤ t ≤ 500" },
+            { letter: "C", text: "0 ≤ t ≤ 25" },
+            { letter: "D", text: "t ≥ 25" }
+          ],
+          correct: "C"
+        },
+        {
+          id: "slope",
+          sol: "A.F.1.h",
+          stem: "What does the slope −20 tell you about the graph of V?",
+          choices: [
+            { letter: "A", text: "The line rises 20 gallons every minute." },
+            { letter: "B", text: "The line falls 20 gallons every minute." },
+            { letter: "C", text: "The line crosses the vertical axis at −20." },
+            { letter: "D", text: "The tank empties after 20 minutes." }
+          ],
+          correct: "B"
+        },
+        {
+          id: "evaluate",
+          sol: "A.F.1.f",
+          stem: "What is V(12)?",
+          choices: [
+            { letter: "A", text: "260 gallons" },
+            { letter: "B", text: "240 gallons" },
+            { letter: "C", text: "488 gallons" },
+            { letter: "D", text: "280 gallons" }
+          ],
+          correct: "A"
+        },
+        {
+          id: "tank2-slope",
+          sol: "A.F.1.c",
+          stem: "What is the rate of change of Tank 2, from the table?",
+          choices: [
+            { letter: "A", text: "−75 gallons per minute" },
+            { letter: "B", text: "−15 gallons per minute" },
+            { letter: "C", text: "−20 gallons per minute" },
+            { letter: "D", text: "−5 gallons per minute" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "which-first",
+          sol: "A.F.1.i",
+          stem: "Which tank empties first?",
+          choices: [
+            { letter: "A", text: "Tank 2, because it starts with less water." },
+            { letter: "B", text: "Both empty at the same time, 25 minutes." },
+            { letter: "C", text: "Tank 1, at 25 minutes; Tank 2 takes 28 minutes." },
+            { letter: "D", text: "Tank 2, at 21 minutes; Tank 1 takes 25 minutes." }
+          ],
+          correct: "C"
+        }
+      ]
+    },
+
+    /* ---------- long · level 3 · A.F.2 ---------- */
+    {
+      id: "fn-car-value",
+      family: "FN",
+      title: "What Is the Car Worth?",
+      kind: "Functions · A.F.2",
+      blurb: "Exponential depreciation versus straight-line depreciation on a $24,000 car.",
+      level: 3,
+      passage: "<p>" + N(1) + "A new car costs $24,000. " + N(2) + "One model of its value after t years is exponential: <strong>V(t) = 24000(0.85)<sup>t</sup></strong>. " + N(3) + "The dealer's simpler model is linear: <strong>L(t) = 24000 − 3000t</strong>. " + N(4) + "Sofia builds a table of both models for the first four years, rounding to the nearest dollar, and notices they agree at t = 0 but drift apart. " + N(5) + "She also wonders which model makes sense for very large values of t.</p>" +
+        "<table><tr><th>t</th><th>V(t)</th><th>L(t)</th></tr><tr><td>0</td><td>24000</td><td>24000</td></tr><tr><td>1</td><td>20400</td><td>21000</td></tr><tr><td>2</td><td>17340</td><td>18000</td></tr><tr><td>3</td><td>14739</td><td>15000</td></tr><tr><td>4</td><td>12528</td><td>12000</td></tr></table>",
+      claims: [
+        {
+          id: "percent",
+          sol: "A.F.2.g",
+          stem: "According to V(t), by what percent does the car lose value each year?",
+          choices: [
+            { letter: "A", text: "85%" },
+            { letter: "B", text: "15%" },
+            { letter: "C", text: "0.85%" },
+            { letter: "D", text: "12.5%" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "intercept",
+          sol: "A.F.2.b",
+          stem: "What is the y-intercept of both models, and what does it represent?",
+          choices: [
+            { letter: "A", text: "0; the car is worth nothing when it is new" },
+            { letter: "B", text: "3000; the car loses $3,000 in its first year" },
+            { letter: "C", text: "24000; the car's value when t = 0, its purchase price" },
+            { letter: "D", text: "0.85; the fraction of value kept each year" }
+          ],
+          correct: "C"
+        },
+        {
+          id: "check",
+          sol: "A.F.2.c",
+          stem: "Which calculation confirms the table entry V(2) = 17340?",
+          choices: [
+            { letter: "A", text: "24000 − 2(0.85) = 23998.3" },
+            { letter: "B", text: "24000 × 0.85 × 0.85 = 17340" },
+            { letter: "C", text: "24000 × 0.85 × 2 = 40800" },
+            { letter: "D", text: "24000 − 0.85 × 2 × 3000 = 18900" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "compare",
+          sol: "A.F.2.h",
+          stem: "Which statement about the two models is supported by the table?",
+          choices: [
+            { letter: "A", text: "The linear model gives a lower value every year." },
+            { letter: "B", text: "The exponential model is lower for years 1 to 3 but higher at year 4." },
+            { letter: "C", text: "The two models give the same value every year." },
+            { letter: "D", text: "The exponential model loses the same dollar amount every year." }
+          ],
+          correct: "B"
+        },
+        {
+          id: "long-run",
+          sol: "A.F.2.i",
+          stem: "Why does the linear model stop making sense for large t while the exponential model does not?",
+          choices: [
+            { letter: "A", text: "L(t) becomes negative after 8 years, but V(t) stays positive and approaches 0." },
+            { letter: "B", text: "V(t) becomes negative after 8 years, but L(t) stays positive." },
+            { letter: "C", text: "L(t) grows without bound, but V(t) levels off at 24000." },
+            { letter: "D", text: "Both models become negative after 8 years." }
+          ],
+          correct: "A"
+        },
+        {
+          id: "ratio-table",
+          sol: "A.F.2.g",
+          stem: "How can Sofia tell from the V(t) column alone that the model is exponential?",
+          choices: [
+            { letter: "A", text: "The values decrease by the same amount each year." },
+            { letter: "B", text: "The values are all multiples of 1000." },
+            { letter: "C", text: "Each value is the previous one times the same factor, 0.85." },
+            { letter: "D", text: "The values reach 0 after exactly 8 years." }
+          ],
+          correct: "C"
+        }
+      ]
+    },
+
+    /* ---------- short · level 2 · A.F.1 ---------- */
+    {
+      id: "fn-forms-of-a-line",
+      family: "FN",
+      title: "One Line, Three Forms",
+      kind: "Functions · A.F.1",
+      blurb: "2x − 3y = 12. Slope, intercepts, point-slope form and a parallel line.",
+      level: 2,
+      passage: "<p>" + N(1) + "The line <strong>2x − 3y = 12</strong> is written in standard form. " + N(2) + "Rewriting it in slope-intercept form shows its slope and y-intercept at a glance. " + N(3) + "Amir also writes it in point-slope form through the point (3, −2), finds the x-intercept, and writes a parallel line through the origin.</p>",
+      claims: [
+        {
+          id: "slope",
+          sol: "A.F.1.c",
+          stem: "What is the slope of the line?",
+          choices: [
+            { letter: "A", text: "2/3" },
+            { letter: "B", text: "−2/3" },
+            { letter: "C", text: "3/2" },
+            { letter: "D", text: "2" }
+          ],
+          correct: "A"
+        },
+        {
+          id: "y-int",
+          sol: "A.F.1.a",
+          stem: "What is the y-intercept of the line?",
+          choices: [
+            { letter: "A", text: "12" },
+            { letter: "B", text: "6" },
+            { letter: "C", text: "−4" },
+            { letter: "D", text: "4" }
+          ],
+          correct: "C"
+        },
+        {
+          id: "x-int",
+          sol: "A.F.1.a",
+          stem: "What is the x-intercept of the line?",
+          choices: [
+            { letter: "A", text: "−4" },
+            { letter: "B", text: "6" },
+            { letter: "C", text: "12" },
+            { letter: "D", text: "−6" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "point-slope",
+          sol: "A.F.1.b",
+          stem: "Which equation is the point-slope form through (3, −2)?",
+          choices: [
+            { letter: "A", text: "y − 2 = (2/3)(x + 3)" },
+            { letter: "B", text: "y + 2 = (3/2)(x − 3)" },
+            { letter: "C", text: "y − 3 = (2/3)(x + 2)" },
+            { letter: "D", text: "y + 2 = (2/3)(x − 3)" }
+          ],
+          correct: "D"
+        },
+        {
+          id: "parallel",
+          sol: "A.F.1.e",
+          stem: "Which equation is the parallel line through the origin?",
+          choices: [
+            { letter: "A", text: "y = −(3/2)x" },
+            { letter: "B", text: "y = (2/3)x" },
+            { letter: "C", text: "y = (2/3)x − 4" },
+            { letter: "D", text: "2x − 3y = 12" }
+          ],
+          correct: "B"
+        }
+      ]
+    },
+
+    /* ---------- long · level 2 · A.F.1 ---------- */
+    {
+      id: "fn-fundraiser-model",
+      family: "FN",
+      title: "Modeling the Car Wash Fundraiser",
+      kind: "Functions · A.F.1",
+      blurb: "Supplies cost $60; each wash earns $8. Build the linear model from words to graph.",
+      level: 2,
+      passage: "<p>" + N(1) + "The soccer team spends $60 on soap, sponges and signs for a car wash. " + N(2) + "Each car washed brings in $8. " + N(3) + "Let <strong>c</strong> be the number of cars washed and <strong>M(c)</strong> the team's money after paying for supplies. " + N(4) + "Coach Reyes asks the team to write the model, graph it, find how many cars it takes to break even, and compare it with last year's bake sale, which raised $5 per item after $20 in supplies. " + N(5) + "Both graphs are drawn on the same grid, with the number of items sold on the horizontal axis.</p>",
+      claims: [
+        {
+          id: "model",
+          sol: "A.F.1.k",
+          stem: "Which equation models the car wash?",
+          choices: [
+            { letter: "A", text: "M(c) = 60c − 8" },
+            { letter: "B", text: "M(c) = 8c − 60" },
+            { letter: "C", text: "M(c) = 8c + 60" },
+            { letter: "D", text: "M(c) = 60 − 8c" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "break-even",
+          sol: "A.F.1.a",
+          stem: "What is the x-intercept of M, and what does it mean?",
+          choices: [
+            { letter: "A", text: "c = 7.5; the 8th car pays back the $60" },
+            { letter: "B", text: "c = 60; the team needs 60 cars" },
+            { letter: "C", text: "c = 8; each car earns $8" },
+            { letter: "D", text: "c = −60; the team starts $60 in debt" }
+          ],
+          correct: "A"
+        },
+        {
+          id: "y-int",
+          sol: "A.F.1.h",
+          stem: "What does the y-intercept of the graph of M represent?",
+          choices: [
+            { letter: "A", text: "the money earned from the first car" },
+            { letter: "B", text: "the price of one car wash" },
+            { letter: "C", text: "the team's money before any cars are washed: −$60" },
+            { letter: "D", text: "the number of cars washed on the first day" }
+          ],
+          correct: "C"
+        },
+        {
+          id: "graph",
+          sol: "A.F.1.b",
+          stem: "Which description matches the graph of M?",
+          choices: [
+            { letter: "A", text: "a line starting at (0, 60) and falling 8 for each car" },
+            { letter: "B", text: "a horizontal line at 8" },
+            { letter: "C", text: "a line starting at (0, 8) and rising 60 for each car" },
+            { letter: "D", text: "a line starting at (0, −60) and rising 8 for each car" }
+          ],
+          correct: "D"
+        },
+        {
+          id: "compare",
+          sol: "A.F.1.i",
+          stem: "The bake sale model is B(n) = 5n − 20. Which comparison is correct?",
+          choices: [
+            { letter: "A", text: "The bake sale line is steeper and starts lower." },
+            { letter: "B", text: "The car wash line is steeper and starts lower." },
+            { letter: "C", text: "Both lines have the same slope." },
+            { letter: "D", text: "The car wash line is steeper and starts higher." }
+          ],
+          correct: "B"
+        },
+        {
+          id: "same",
+          sol: "A.F.1.l",
+          stem: "For what number of items do the two models give the same amount of money?",
+          choices: [
+            { letter: "A", text: "13.3 items, because 8c − 60 = 5c − 20 gives 3c = 40" },
+            { letter: "B", text: "20 items, because 8(20) − 60 = 100 and 5(20) − 20 = 80" },
+            { letter: "C", text: "8 items, because the car wash breaks even there" },
+            { letter: "D", text: "40 items, because 8(40) − 60 = 5(40) − 20 = 260" }
           ],
           correct: "A"
         }

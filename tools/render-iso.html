@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!-- tools/render-kaykit.js drives this page in headless Chromium: renders a glTF/OBJ model in true isometric
+     (30°) onto a 512 × 900 canvas whose ground origin is at (256, 740), 130 px per floor cell (Kenney's canvas
+     convention, so tools/make-castle-kit.py imports the renders like any other extra kit). -->
+<html><head><meta charset="utf-8">
+<script type="importmap">{"imports":{"three":"/three/three.module.js","../utils/BufferGeometryUtils.js":"/three/BufferGeometryUtils.js"}}</script>
+</head><body style="margin:0;background:#000">
+<canvas id="c" width="512" height="900"></canvas>
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from '/three/GLTFLoader.js';
+import { OBJLoader } from '/three/OBJLoader.js';
+import { MTLLoader } from '/three/MTLLoader.js';
+const W = 512, H = 900, PX_PER_CELL = 130, ORIGIN_Y = 740;
+const PPU = PX_PER_CELL / Math.SQRT2;                       /* pixels per world unit, horizontally (a cell's diamond is √2 units wide) */
+const canvas = document.getElementById('c');
+const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, preserveDrawingBuffer: true });
+renderer.setSize(W, H, false); renderer.setClearColor(0x000000, 0); renderer.outputColorSpace = THREE.SRGBColorSpace;
+const loaders = { gltf: new GLTFLoader(), obj: new OBJLoader(), mtl: new MTLLoader() };
+const cache = {};
+async function load(url) {
+  if (cache[url]) return cache[url].clone();
+  let obj;
+  if (/\.obj$/i.test(url)) {
+    const mtl = await loaders.mtl.setResourcePath(url.replace(/[^/]*$/, '')).loadAsync(url.replace(/\.obj$/i, '.mtl'));
+    mtl.preload(); obj = await new OBJLoader().setMaterials(mtl).loadAsync(url);
+  } else obj = (await loaders.gltf.loadAsync(url)).scene;
+  cache[url] = obj; return obj.clone();
+}
+/* spec: { parts: [{ url, dx, dz, scale, rotY }], scale, lift } — several models can be composed on one canvas */
+window.renderIso = async function (spec, dirs) {
+  const scene = new THREE.Scene();
+  scene.add(new THREE.AmbientLight(0xffffff, 1.55));
+  const sun = new THREE.DirectionalLight(0xffffff, 2.3); scene.add(sun);
+  const group = new THREE.Group(); scene.add(group);
+  let maxY = 0, foot = 0;
+  for (const part of spec.parts) {
+    let obj;
+    if (part.floor) {                                          /* a flat n×n cell reference tile, for the importer's apex */
+      obj = new THREE.Mesh(new THREE.PlaneGeometry(part.floor, part.floor).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ color: 0x66aa44 }));
+    } else obj = await load(part.url);
+    const k = (part.scale || 1) * (spec.scale || 1);
+    obj.scale.setScalar(k);
+    if (part.rotY) obj.rotation.y = part.rotY * Math.PI / 180;
+    obj.updateMatrixWorld(true);
+    const box = new THREE.Box3().setFromObject(obj), c = box.getCenter(new THREE.Vector3());
+    /* footprint centred on the origin (plus the part's own offset), base on y = 0 unless the spec says keep the model's own floor */
+    const baseY = spec.keepFloor ? 0 : box.min.y;
+    obj.position.set(-c.x + (part.dx || 0), -baseY + (part.lift || 0), -c.z + (part.dz || 0));
+    obj.updateMatrixWorld(true);
+    const b2 = new THREE.Box3().setFromObject(obj);
+    maxY = Math.max(maxY, b2.max.y); foot = Math.max(foot, b2.max.x - b2.min.x, b2.max.z - b2.min.z);
+    group.add(obj);
+  }
+  const el = Math.atan(Math.SQRT1_2), out = {};
+  const cam = new THREE.OrthographicCamera(-W / 2 / PPU, W / 2 / PPU, H / 2 / PPU, -H / 2 / PPU, -100, 100);
+  for (const d of dirs) {
+    const az = { NE: 45, SE: 135, SW: 225, NW: 315 }[d] * Math.PI / 180;
+    const dir = new THREE.Vector3(Math.sin(az) * Math.cos(el), Math.sin(el), Math.cos(az) * Math.cos(el));   /* from target to camera */
+    const up = new THREE.Vector3(0, 1, 0).sub(dir.clone().multiplyScalar(dir.y)).normalize();                  /* camera up, perpendicular to the view */
+    /* the world origin must land ORIGIN_Y − H/2 px below the canvas centre: shift the target up the camera's up axis */
+    const target = up.clone().multiplyScalar((ORIGIN_Y - H / 2) / PPU);
+    cam.position.copy(target).add(dir.clone().multiplyScalar(30)); cam.up.copy(up); cam.lookAt(target); cam.updateProjectionMatrix();
+    /* light from the front-left of every view, like Kenney's renders */
+    const laz = az - Math.PI / 4 - 0.35;
+    sun.position.set(Math.sin(laz) * 6, 8, Math.cos(laz) * 6);
+    renderer.render(scene, cam);
+    out[d] = canvas.toDataURL('image/png');
+  }
+  return { png: out, height: maxY, foot: foot };
+};
+/* the rendered width in pixels of a spec's NE view (what the fit is measured on: hexagonal footprints are narrower than their box) */
+window.measureIso = async function (spec) {
+  await window.renderIso(spec, ['NE']);
+  const d = canvas.getContext('webgl2') || canvas.getContext('webgl'), w = canvas.width, h = canvas.height, px = new Uint8Array(w * h * 4);
+  d.readPixels(0, 0, w, h, d.RGBA, d.UNSIGNED_BYTE, px);
+  let x0 = w, x1 = -1, y0 = h, y1 = -1;
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) if (px[(y * w + x) * 4 + 3] > 10) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+  return { w: x1 - x0 + 1, h: y1 - y0 + 1 };
+};
+</script></body></html>

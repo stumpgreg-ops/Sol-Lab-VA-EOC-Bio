@@ -1,4 +1,5 @@
-/* SOL Lab — Biochemistry (BIO.2.a water, BIO.2.b macromolecules, BIO.2.c enzymes, BIO.2.e photosynthesis & respiration). Original text only. */
+/* SOL Lab — Algebra I · Equations & Inequalities (A.EI). Original problems only.
+   Stems are plain text (Unicode: x², √, −, ≤, ≥); the stimulus may use HTML. */
 (function (global) {
   var P = global.HEIST_PACKS;
   if (!P || !P.push) return;
@@ -6,910 +7,1027 @@
 
   var PACKS = [
 
-    /* ---------- WATER ---------- */
+    /* ---------- tiny · level 1 · A.EI.1 ---------- */
     {
-      id: "chem-penny-drops",
-      family: "CHEM",
-      title: "Drops on a Penny",
-      kind: "Biochemistry · BIO.2",
-      blurb: "Plain water versus soapy water on a penny, and what hydrogen bonds have to do with it.",
+      id: "ei-gym-pass",
+      family: "EI",
+      title: "The Gym Pass",
+      kind: "Equations & Inequalities · A.EI.1",
+      blurb: "A $25 pass plus $4 a visit. Write the equation, solve it, and turn it around.",
       level: 1,
-      passage: "<p>" + N(1) + "A student added water drop by drop to a clean penny until it spilled over. " + N(2) + "The water formed a dome because of <strong>cohesion</strong>, the attraction between water molecules through hydrogen bonds. " + N(3) + "She then repeated the test with soapy water, which weakens those bonds. " + N(4) + "Each liquid was tested three times and averaged. " + N(5) + "She also saw water cling to the dropper tip, an example of <strong>adhesion</strong>.</p>" +
-        "<table><tr><th>Liquid</th><th>Average drops held</th></tr><tr><td>Plain water</td><td>31</td></tr><tr><td>Soapy water</td><td>14</td></tr></table>",
+      passage: "<p>" + N(1) + "A community gym charges $25 for a monthly pass plus $4 for each visit. " + N(2) + "Let <strong>v</strong> be the number of visits in a month and <strong>C</strong> the total cost. " + N(3) + "Leo spent exactly $65 last month. " + N(4) + "This month he wants to spend no more than $100.</p>",
       claims: [
         {
-          id: "drops-trend",
-          sol: "BIO.2.a",
-          stem: "Which conclusion do the drop counts in the table best support?",
+          id: "equation",
+          sol: "A.EI.1.a",
+          stem: "Which equation can be used to find the number of visits Leo made last month?",
           choices: [
-            { letter: "A", text: "Soap makes water molecules heavier, so fewer drops fit on the penny." },
-            { letter: "B", text: "Weakening the hydrogen bonds lowered the number of drops the penny held." },
-            { letter: "C", text: "Plain water is less polar than soapy water, so it forms a taller dome." },
-            { letter: "D", text: "The penny absorbed more of the soapy water than of the plain water." }
-          ],
-          correct: "B"
-        },
-        {
-          id: "cohesion-vocab",
-          sol: "BIO.2.a",
-          stem: "In sentence 2, cohesion refers to water molecules —",
-          choices: [
-            { letter: "A", text: "sticking to the metal surface of the penny" },
-            { letter: "B", text: "dissolving the soap that was added to them" },
-            { letter: "C", text: "attracting one another and holding together" },
-            { letter: "D", text: "changing temperature more slowly than metal" }
+            { letter: "A", text: "25v + 4 = 65" },
+            { letter: "B", text: "4v − 25 = 65" },
+            { letter: "C", text: "25 + 4v = 65" },
+            { letter: "D", text: "29v = 65" }
           ],
           correct: "C"
         },
         {
-          id: "polarity",
-          sol: "BIO.2.a",
-          stem: "Which statement best explains why water molecules form hydrogen bonds with each other?",
+          id: "solve",
+          sol: "A.EI.1.b",
+          stem: "How many visits did Leo make last month?",
           choices: [
-            { letter: "A", text: "The oxygen end of each molecule is slightly negative and the hydrogen ends are slightly positive." },
-            { letter: "B", text: "Hydrogen and oxygen share their electrons equally, so the molecule has no charged ends." },
-            { letter: "C", text: "Water molecules carry no charge at all, so they slide freely past one another." },
-            { letter: "D", text: "Water is made of separate ions that pull on each other with strong ionic bonds." }
+            { letter: "A", text: "10" },
+            { letter: "B", text: "16" },
+            { letter: "C", text: "22" },
+            { letter: "D", text: "40" }
           ],
           correct: "A"
         },
         {
-          id: "iv",
-          sol: "BIO.2.a",
-          stem: "The independent variable in this investigation is —",
+          id: "inequality",
+          sol: "A.EI.1.c",
+          stem: "Which inequality represents this month's plan, and what is the greatest number of visits it allows?",
           choices: [
-            { letter: "A", text: "the number of drops the penny held" },
-            { letter: "B", text: "the size of the penny used" },
-            { letter: "C", text: "the number of trials per liquid" },
-            { letter: "D", text: "the type of liquid added to the penny" }
+            { letter: "A", text: "25 + 4v ≥ 100; at least 19 visits" },
+            { letter: "B", text: "25 + 4v ≤ 100; at most 18 visits" },
+            { letter: "C", text: "25 + 4v < 100; at most 25 visits" },
+            { letter: "D", text: "4v ≤ 100; at most 25 visits" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "literal",
+          sol: "A.EI.1.d",
+          stem: "Solve C = 25 + 4v for v.",
+          choices: [
+            { letter: "A", text: "v = C − 25 − 4" },
+            { letter: "B", text: "v = (C + 25) ÷ 4" },
+            { letter: "C", text: "v = 4C − 25" },
+            { letter: "D", text: "v = (C − 25) ÷ 4" }
           ],
           correct: "D"
         },
         {
-          id: "adhesion-vocab",
-          sol: "BIO.2.a",
-          stem: "In sentence 5, adhesion describes water molecules being attracted to —",
+          id: "verify",
+          sol: "A.EI.1.f",
+          stem: "Which check confirms the solution to last month's equation?",
           choices: [
-            { letter: "A", text: "other water molecules nearby" },
-            { letter: "B", text: "a different substance, such as the plastic tip" },
-            { letter: "C", text: "the soap molecules mixed into them" },
-            { letter: "D", text: "the warm air above the penny" }
+            { letter: "A", text: "25 + 4(10) = 65, so 10 visits cost exactly $65." },
+            { letter: "B", text: "25(10) + 4 = 254, so 10 visits cost more than $65." },
+            { letter: "C", text: "65 − 25 = 40, so Leo visited 40 times." },
+            { letter: "D", text: "65 ÷ 4 = 16.25, so 16 visits is close enough." }
           ],
-          correct: "B"
+          correct: "A"
         }
       ]
     },
 
+    /* ---------- tiny · level 1 · A.EI.1 ---------- */
     {
-      id: "chem-limestone-stream",
-      family: "CHEM",
-      title: "Two Shenandoah Streams",
-      kind: "Biochemistry · BIO.2",
-      blurb: "A limestone stream and a sandstone stream get the same acid drops but very different pH readings.",
+      id: "ei-number-line",
+      family: "EI",
+      title: "Number Line Gallery",
+      kind: "Equations & Inequalities · A.EI.1",
+      blurb: "Solve each inequality, then match it to the right number-line picture.",
+      level: 1,
+      passage: "<p>" + N(1) + "Each station in the gallery has an inequality and a number line. " + N(2) + "An <strong>open circle</strong> means the endpoint is not included; a <strong>closed circle</strong> means it is. " + N(3) + "Remember to reverse the inequality symbol when you multiply or divide both sides by a negative number.</p>" +
+        "<ol><li>−3x + 7 > 22</li><li>2(x − 4) ≥ 10</li><li>5 − x ≤ 2</li><li>3(x + 2) = 3x + 6</li><li>4x + 1 = 4x − 5</li></ol>",
+      claims: [
+        {
+          id: "flip",
+          sol: "A.EI.1.c",
+          stem: "What is the solution set of −3x + 7 > 22?",
+          choices: [
+            { letter: "A", text: "x > −5" },
+            { letter: "B", text: "x < −5" },
+            { letter: "C", text: "x < 5" },
+            { letter: "D", text: "x > 5" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "graph",
+          sol: "A.EI.1.c",
+          stem: "Which number line shows the solution of 2(x − 4) ≥ 10?",
+          choices: [
+            { letter: "A", text: "open circle at 9, shaded to the right" },
+            { letter: "B", text: "closed circle at 7, shaded to the left" },
+            { letter: "C", text: "closed circle at 9, shaded to the right" },
+            { letter: "D", text: "closed circle at 9, shaded to the left" }
+          ],
+          correct: "C"
+        },
+        {
+          id: "subtract-var",
+          sol: "A.EI.1.c",
+          stem: "What is the solution set of 5 − x ≤ 2?",
+          choices: [
+            { letter: "A", text: "x ≥ 3" },
+            { letter: "B", text: "x ≤ 3" },
+            { letter: "C", text: "x ≤ −3" },
+            { letter: "D", text: "x ≥ 7" }
+          ],
+          correct: "A"
+        },
+        {
+          id: "identity",
+          sol: "A.EI.1.e",
+          stem: "How many solutions does 3(x + 2) = 3x + 6 have?",
+          choices: [
+            { letter: "A", text: "none" },
+            { letter: "B", text: "exactly one, x = 0" },
+            { letter: "C", text: "exactly one, x = 2" },
+            { letter: "D", text: "infinitely many" }
+          ],
+          correct: "D"
+        },
+        {
+          id: "none",
+          sol: "A.EI.1.e",
+          stem: "Why does 4x + 1 = 4x − 5 have no solution?",
+          choices: [
+            { letter: "A", text: "Subtracting 4x from both sides leaves 1 = −5, which is never true." },
+            { letter: "B", text: "Both sides have 4x, so every value of x works." },
+            { letter: "C", text: "The solution is x = −6, but negative solutions are not allowed." },
+            { letter: "D", text: "Dividing by 4 gives x = −1.5, which is not a whole number." }
+          ],
+          correct: "A"
+        }
+      ]
+    },
+
+    /* ---------- tiny · level 1 · A.EI.1 ---------- */
+    {
+      id: "ei-formula-cards",
+      family: "EI",
+      title: "Formula Flash Cards",
+      kind: "Equations & Inequalities · A.EI.1",
+      blurb: "Five formulas from science and geometry. Solve each for the variable named.",
+      level: 1,
+      passage: "<p>" + N(1) + "Geometry and science formulas are <strong>literal equations</strong>: equations with more than one variable. " + N(2) + "Solving one for a different variable uses the same properties of equality as any other equation. " + N(3) + "Each flash card names the variable to isolate.</p>" +
+        "<table><tr><th>Formula</th><th>Solve for</th></tr><tr><td>P = 2l + 2w</td><td>w</td></tr><tr><td>A = ½bh</td><td>h</td></tr><tr><td>d = rt</td><td>t</td></tr><tr><td>y = mx + b</td><td>x</td></tr><tr><td>F = 1.8C + 32</td><td>C</td></tr></table>",
+      claims: [
+        {
+          id: "perimeter",
+          sol: "A.EI.1.d",
+          stem: "Which equation is P = 2l + 2w solved for w?",
+          choices: [
+            { letter: "A", text: "w = P − 2l − 2" },
+            { letter: "B", text: "w = (P − 2l) ÷ 2" },
+            { letter: "C", text: "w = P ÷ 2 − l ÷ 2" },
+            { letter: "D", text: "w = 2P − l" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "triangle",
+          sol: "A.EI.1.d",
+          stem: "Which equation is A = ½bh solved for h?",
+          choices: [
+            { letter: "A", text: "h = 2A ÷ b" },
+            { letter: "B", text: "h = A ÷ 2b" },
+            { letter: "C", text: "h = 2Ab" },
+            { letter: "D", text: "h = A − ½b" }
+          ],
+          correct: "A"
+        },
+        {
+          id: "distance",
+          sol: "A.EI.1.d",
+          stem: "Which equation is d = rt solved for t?",
+          choices: [
+            { letter: "A", text: "t = dr" },
+            { letter: "B", text: "t = r ÷ d" },
+            { letter: "C", text: "t = d − r" },
+            { letter: "D", text: "t = d ÷ r" }
+          ],
+          correct: "D"
+        },
+        {
+          id: "line",
+          sol: "A.EI.1.d",
+          stem: "Which equation is y = mx + b solved for x?",
+          choices: [
+            { letter: "A", text: "x = y − b − m" },
+            { letter: "B", text: "x = (y + b) ÷ m" },
+            { letter: "C", text: "x = (y − b) ÷ m" },
+            { letter: "D", text: "x = my − b" }
+          ],
+          correct: "C"
+        },
+        {
+          id: "temperature",
+          sol: "A.EI.1.d",
+          stem: "Which equation is F = 1.8C + 32 solved for C?",
+          choices: [
+            { letter: "A", text: "C = (F − 32) ÷ 1.8" },
+            { letter: "B", text: "C = F ÷ 1.8 − 32" },
+            { letter: "C", text: "C = 1.8(F − 32)" },
+            { letter: "D", text: "C = (F + 32) ÷ 1.8" }
+          ],
+          correct: "A"
+        }
+      ]
+    },
+
+    /* ---------- short · level 2 · A.EI.2 ---------- */
+    {
+      id: "ei-two-phone-plans",
+      family: "EI",
+      title: "Two Phone Plans",
+      kind: "Equations & Inequalities · A.EI.2",
+      blurb: "Plan A: $20 plus 10 cents a minute. Plan B: $5 plus 25 cents. When do they cost the same?",
       level: 2,
-      passage: "<p>" + N(1) + "A field team compared two small streams in the Shenandoah Valley after a rainstorm. " + N(2) + "Cedar Run flows over limestone, which dissolves slowly and releases bicarbonate ions; Laurel Run flows over sandstone and carries very few dissolved ions. " + N(3) + "Water is an excellent <strong>solvent</strong> because its polar molecules pull ions away from a crystal and surround them. " + N(4) + "Back in the lab, students added dilute acid one drop at a time to 100 mL samples from each stream and recorded the pH.</p>" +
-        "<table><tr><th>Drops of acid</th><th>Cedar Run pH</th><th>Laurel Run pH</th></tr><tr><td>0</td><td>7.8</td><td>6.9</td></tr><tr><td>5</td><td>7.7</td><td>5.6</td></tr><tr><td>10</td><td>7.5</td><td>4.4</td></tr><tr><td>20</td><td>7.2</td><td>3.6</td></tr></table>" +
-        "<p>" + N(5) + "A solution that resists a change in pH when acid or base is added is called a <strong>buffer</strong>. " + N(6) + "The team also logged temperatures over one summer day: the air ranged from 17 °C to 33 °C, while Cedar Run ranged only from 18 °C to 21 °C. " + N(7) + "Brook trout, which need cool water and a pH near neutral, were caught only in Cedar Run.</p>",
+      passage: "<p>" + N(1) + "Plan A costs $20 a month plus $0.10 per minute of calls. " + N(2) + "Plan B costs $5 a month plus $0.25 per minute. " + N(3) + "Let <strong>m</strong> be the minutes used in a month and <strong>C</strong> the monthly cost. " + N(4) + "Rosa graphs both plans on the same axes to see where the lines cross.</p>",
       claims: [
         {
-          id: "buffer-trend",
-          sol: "BIO.2.a",
-          stem: "Which conclusion do the pH readings in the table best support?",
+          id: "system",
+          sol: "A.EI.2.a",
+          stem: "Which system of equations represents the two plans?",
           choices: [
-            { letter: "A", text: "Laurel Run contains more dissolved limestone than Cedar Run does." },
-            { letter: "B", text: "Cedar Run water is buffered, so its pH changed little as acid was added." },
-            { letter: "C", text: "Adding acid raised the pH of both streams by about the same amount." },
-            { letter: "D", text: "Both streams resisted the acid equally well for the first five drops." }
+            { letter: "A", text: "C = 20m + 0.10 and C = 5m + 0.25" },
+            { letter: "B", text: "C = 20 + 0.10m and C = 5 + 0.25m" },
+            { letter: "C", text: "C = 0.10 + 20m and C = 0.25 + 5m" },
+            { letter: "D", text: "m = 20 + 0.10C and m = 5 + 0.25C" }
           ],
           correct: "B"
         },
         {
-          id: "solvent-vocab",
-          sol: "BIO.2.a",
-          stem: "In sentence 3, water acts as a solvent when it —",
+          id: "solve",
+          sol: "A.EI.2.b",
+          stem: "At how many minutes do the two plans cost the same?",
           choices: [
-            { letter: "A", text: "freezes into a layer of ice crystals on the stream" },
-            { letter: "B", text: "forms rounded drops on the surface of a leaf" },
-            { letter: "C", text: "separates and surrounds the ions of a dissolving mineral" },
-            { letter: "D", text: "absorbs a large amount of heat without warming much" }
+            { letter: "A", text: "60" },
+            { letter: "B", text: "75" },
+            { letter: "C", text: "100" },
+            { letter: "D", text: "150" }
           ],
           correct: "C"
         },
         {
-          id: "oxygen-use",
-          sol: "BIO.2.e",
-          stem: "Cool water holds more dissolved oxygen than warm water. Brook trout need that oxygen in order to —",
+          id: "interpret",
+          sol: "A.EI.2.h",
+          stem: "What does the point where the two lines cross represent?",
           choices: [
-            { letter: "A", text: "build glucose inside their chloroplasts" },
-            { letter: "B", text: "dissolve minerals in their blood" },
-            { letter: "C", text: "release energy from food in their mitochondria" },
-            { letter: "D", text: "keep their body temperature above the water's" }
-          ],
-          correct: "C"
-        },
-        {
-          id: "specific-heat",
-          sol: "BIO.2.a",
-          stem: "Which property of water best explains the temperature data in sentence 6?",
-          choices: [
-            { letter: "A", text: "Water's cohesion holds the warmest layer at the surface of the stream." },
-            { letter: "B", text: "Water's low density lets the warm water float downstream and away." },
-            { letter: "C", text: "Water evaporates quickly, releasing all of its stored heat at once." },
-            { letter: "D", text: "Water's high specific heat means it absorbs a lot of heat before it warms." }
+            { letter: "A", text: "the number of minutes where Plan A becomes free" },
+            { letter: "B", text: "the month in which Rosa should switch plans" },
+            { letter: "C", text: "the greatest number of minutes either plan allows" },
+            { letter: "D", text: "the number of minutes at which both plans cost the same amount, $30" }
           ],
           correct: "D"
         },
         {
-          id: "trout-enzymes",
-          sol: "BIO.2.c",
-          stem: "Which statement best explains why brook trout survive only in water that stays cool and near pH 7?",
+          id: "count",
+          sol: "A.EI.2.c",
+          stem: "Without solving, how can Rosa tell that the system has exactly one solution?",
           choices: [
-            { letter: "A", text: "The enzymes in their cells keep their shape only within a narrow range of temperature and pH." },
-            { letter: "B", text: "Their cells contain no buffers, so any acid in the water enters their blood directly." },
-            { letter: "C", text: "Warm water always contains more acid than cool water, which burns their gills." },
-            { letter: "D", text: "Their scales dissolve in water that is even slightly acidic or slightly warm." }
+            { letter: "A", text: "The lines have different slopes, 0.10 and 0.25, so they cross exactly once." },
+            { letter: "B", text: "The lines have different y-intercepts, so they never cross." },
+            { letter: "C", text: "Both equations use the variable C, so they are the same line." },
+            { letter: "D", text: "Both plans have positive slopes, so they must be parallel." }
           ],
           correct: "A"
         },
         {
-          id: "acid-rain",
-          sol: "BIO.2.a",
-          stem: "Based on the data, which is the best prediction if acid rain fell on both streams for several years?",
+          id: "cheaper",
+          sol: "A.EI.1.c",
+          stem: "For which numbers of minutes is Plan A cheaper than Plan B?",
           choices: [
-            { letter: "A", text: "Laurel Run would become too acidic for brook trout much sooner than Cedar Run." },
-            { letter: "B", text: "Cedar Run would drop below pH 4 first because limestone dissolves so easily." },
-            { letter: "C", text: "Both streams would keep their present pH because water is always neutral." },
-            { letter: "D", text: "The trout would move to Laurel Run because acid makes water cooler." }
-          ],
-          correct: "A"
-        }
-      ]
-    },
-
-    /* ---------- MACROMOLECULES ---------- */
-    {
-      id: "chem-benedicts-drinks",
-      family: "CHEM",
-      title: "Sugar in the Drinks",
-      kind: "Biochemistry · BIO.2",
-      blurb: "Four drinks, a hot-water bath and Benedict's solution: which one turns brick red?",
-      level: 1,
-      passage: "<p>" + N(1) + "Students tested four drinks for simple sugars with <strong>Benedict's solution</strong>, which changes from blue to green, orange or brick red as more sugar is present. " + N(2) + "Each sample was heated in a hot-water bath for five minutes. " + N(3) + "A tube of distilled water was heated alongside the drinks. " + N(4) + "The class wanted to know which drink contained the most monosaccharide.</p>" +
-        "<table><tr><th>Sample</th><th>Colour after heating</th></tr><tr><td>Distilled water</td><td>blue</td></tr><tr><td>Diet soda</td><td>blue</td></tr><tr><td>Apple juice</td><td>brick red</td></tr><tr><td>Sports drink</td><td>orange</td></tr></table>",
-      claims: [
-        {
-          id: "most-sugar",
-          sol: "BIO.2.b",
-          stem: "According to the table, which drink contained the most simple sugar?",
-          choices: [
-            { letter: "A", text: "Sports drink" },
-            { letter: "B", text: "Apple juice" },
-            { letter: "C", text: "Diet soda" },
-            { letter: "D", text: "Distilled water" }
-          ],
-          correct: "B"
-        },
-        {
-          id: "water-control",
-          sol: "BIO.2.b",
-          stem: "The tube of distilled water in sentence 3 served as —",
-          choices: [
-            { letter: "A", text: "a negative control showing the colour when no sugar is present" },
-            { letter: "B", text: "a positive control showing the strongest colour change possible" },
-            { letter: "C", text: "the independent variable that the students changed on purpose" },
-            { letter: "D", text: "a repeated trial of the apple juice to check the first result" }
-          ],
-          correct: "A"
-        },
-        {
-          id: "benedict-vocab",
-          sol: "BIO.2.b",
-          stem: "In sentence 1, Benedict's solution is described as an indicator for —",
-          choices: [
-            { letter: "A", text: "proteins such as those in milk" },
-            { letter: "B", text: "lipids such as those in cooking oil" },
-            { letter: "C", text: "starches such as those in bread" },
-            { letter: "D", text: "simple sugars such as glucose" }
-          ],
-          correct: "D"
-        },
-        {
-          id: "diet-soda",
-          sol: "BIO.2.b",
-          stem: "The diet soda stayed blue. Which statement best explains this result?",
-          choices: [
-            { letter: "A", text: "Its tube was not heated long enough for the colour to change." },
-            { letter: "B", text: "Benedict's solution only reacts with solid foods, not liquids." },
-            { letter: "C", text: "Its sweetener is not a simple sugar that the indicator detects." },
-            { letter: "D", text: "The bubbles in the soda blocked the indicator from reacting." }
-          ],
-          correct: "C"
-        },
-        {
-          id: "monomer",
-          sol: "BIO.2.b",
-          stem: "Glucose, the sugar found in apple juice, is the monomer of which group of macromolecules?",
-          choices: [
-            { letter: "A", text: "Lipids" },
-            { letter: "B", text: "Proteins" },
-            { letter: "C", text: "Carbohydrates" },
-            { letter: "D", text: "Nucleic acids" }
-          ],
-          correct: "C"
-        }
-      ]
-    },
-
-    {
-      id: "chem-brown-bag-tests",
-      family: "CHEM",
-      title: "Brown Bag, Iodine and Biuret",
-      kind: "Biochemistry · BIO.2",
-      blurb: "Peanut butter, a cracker, egg white and butter go through three food tests.",
-      level: 1,
-      passage: "<p>" + N(1) + "A class tested four foods for three kinds of macromolecule. " + N(2) + "A drop of each food was rubbed on a <strong>brown paper bag</strong>; a spot that stays translucent after drying shows lipids. " + N(3) + "<strong>Iodine</strong> turns from amber to blue-black when starch is present, and <strong>Biuret</strong> solution turns from blue to violet when protein is present. " + N(4) + "A plus sign in the table means a positive test. " + N(5) + "Every test was also run on distilled water, which gave a negative result each time.</p>" +
-        "<table><tr><th>Food</th><th>Bag</th><th>Iodine</th><th>Biuret</th></tr><tr><td>Peanut butter</td><td>+</td><td>&minus;</td><td>+</td></tr><tr><td>Cracker</td><td>&minus;</td><td>+</td><td>&minus;</td></tr><tr><td>Egg white</td><td>&minus;</td><td>&minus;</td><td>+</td></tr><tr><td>Butter</td><td>+</td><td>&minus;</td><td>&minus;</td></tr></table>" +
-        "<p>" + N(6) + "When one student stirred butter into a glass of water, it floated in blobs and never dissolved. " + N(7) + "Another noticed that the cracker tasted sweeter the longer she chewed it.</p>",
-      claims: [
-        {
-          id: "lipid-protein",
-          sol: "BIO.2.b",
-          stem: "Which food tested positive for both lipid and protein?",
-          choices: [
-            { letter: "A", text: "The cracker" },
-            { letter: "B", text: "The egg white" },
-            { letter: "C", text: "The peanut butter" },
-            { letter: "D", text: "The butter" }
-          ],
-          correct: "C"
-        },
-        {
-          id: "biuret-vocab",
-          sol: "BIO.2.b",
-          stem: "In sentence 3, a violet colour with Biuret solution shows the presence of —",
-          choices: [
-            { letter: "A", text: "amino acids joined into polypeptide chains" },
-            { letter: "B", text: "glucose units joined into long chains" },
-            { letter: "C", text: "fatty acids attached to a glycerol molecule" },
-            { letter: "D", text: "nucleotides joined into a double strand" }
-          ],
-          correct: "A"
-        },
-        {
-          id: "table-conclusion",
-          sol: "BIO.2.b",
-          stem: "Which conclusion is best supported by the results in the table?",
-          choices: [
-            { letter: "A", text: "Butter contains protein because it is made from milk." },
-            { letter: "B", text: "The cracker's main macromolecule is a polysaccharide." },
-            { letter: "C", text: "Egg white contains lipid because it feels slippery." },
-            { letter: "D", text: "Peanut butter contains no carbohydrate of any kind." }
-          ],
-          correct: "B"
-        },
-        {
-          id: "water-tests",
-          sol: "BIO.2.b",
-          stem: "The distilled water tests in sentence 5 were included to —",
-          choices: [
-            { letter: "A", text: "show what a strong positive result looks like for each test" },
-            { letter: "B", text: "dissolve each food sample before it was tested" },
-            { letter: "C", text: "measure how much of each macromolecule each food contained" },
-            { letter: "D", text: "confirm the indicators change only when the macromolecule is present" }
-          ],
-          correct: "D"
-        },
-        {
-          id: "butter-water",
-          sol: "BIO.2.a",
-          stem: "Which statement best explains the observation in sentence 6?",
-          choices: [
-            { letter: "A", text: "Lipids are nonpolar, so polar water molecules cannot pull them apart and surround them." },
-            { letter: "B", text: "Butter is denser than water, so it stays together instead of spreading out." },
-            { letter: "C", text: "Water is nonpolar and butter is polar, so the two repel each other." },
-            { letter: "D", text: "Butter contains protein, and proteins never mix with water." }
-          ],
-          correct: "A"
-        },
-        {
-          id: "sweet-cracker",
-          sol: "BIO.2.c",
-          stem: "Which statement best explains the observation in sentence 7?",
-          choices: [
-            { letter: "A", text: "Chewing warms the cracker, which turns its lipids into sugar." },
-            { letter: "B", text: "An enzyme in saliva breaks the starch into smaller sugars that taste sweet." },
-            { letter: "C", text: "Saliva contains sugar that soaks into the cracker over time." },
-            { letter: "D", text: "The cracker's protein is converted to glucose by the teeth." }
+            { letter: "A", text: "fewer than 100 minutes" },
+            { letter: "B", text: "more than 100 minutes" },
+            { letter: "C", text: "fewer than 30 minutes" },
+            { letter: "D", text: "Plan A is never cheaper" }
           ],
           correct: "B"
         }
       ]
     },
 
+    /* ---------- short · level 2 · A.EI.3 ---------- */
     {
-      id: "chem-lunch-molecules",
-      family: "CHEM",
-      title: "Tracing a Lunch",
-      kind: "Biochemistry · BIO.2",
-      blurb: "A peanut butter sandwich, an apple and milk are followed from polymer to monomer and back again.",
+      id: "ei-ball-toss",
+      family: "EI",
+      title: "The Rooftop Ball Toss",
+      kind: "Equations & Inequalities · A.EI.3",
+      blurb: "h = −16t² + 32t + 48. When does the ball hit the ground?",
+      level: 2,
+      passage: "<p>" + N(1) + "A ball is tossed upward from a roof 48 feet high. " + N(2) + "Its height in feet after t seconds is h = −16t² + 32t + 48. " + N(3) + "Kai wants to know when the ball hits the ground, so he sets h = 0 and factors: −16t² + 32t + 48 = −16(t² − 2t − 3) = −16(t − 3)(t + 1). " + N(4) + "Then he checks a few other quadratic equations from the same worksheet.</p>",
+      claims: [
+        {
+          id: "ground",
+          sol: "A.EI.3.a",
+          stem: "According to Kai's factoring, when does the ball hit the ground?",
+          choices: [
+            { letter: "A", text: "after 1 second" },
+            { letter: "B", text: "after 3 seconds" },
+            { letter: "C", text: "after 4 seconds" },
+            { letter: "D", text: "after 48 seconds" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "reject",
+          sol: "A.EI.3.c",
+          stem: "The factored equation also gives t = −1. Why is this solution not used?",
+          choices: [
+            { letter: "A", text: "It is a mistake; −16(t + 1) should be −16(t − 1)." },
+            { letter: "B", text: "Negative solutions are never correct for a quadratic equation." },
+            { letter: "C", text: "The ball was tossed at t = 0, so a negative time is outside the situation." },
+            { letter: "D", text: "The ball is at 48 feet when t = −1, not on the ground." }
+          ],
+          correct: "C"
+        },
+        {
+          id: "none",
+          sol: "A.EI.3.b",
+          stem: "How many real solutions does x² + 4x + 5 = 0 have?",
+          choices: [
+            { letter: "A", text: "none, because b² − 4ac = 16 − 20 is negative" },
+            { letter: "B", text: "one, because b² − 4ac = 0" },
+            { letter: "C", text: "two, because b² − 4ac = 36" },
+            { letter: "D", text: "two, because every quadratic has two solutions" }
+          ],
+          correct: "A"
+        },
+        {
+          id: "one",
+          sol: "A.EI.3.b",
+          stem: "Which quadratic equation has exactly one real solution?",
+          choices: [
+            { letter: "A", text: "x² − 9 = 0" },
+            { letter: "B", text: "x² − 5x = 0" },
+            { letter: "C", text: "x² + 1 = 0" },
+            { letter: "D", text: "x² − 6x + 9 = 0" }
+          ],
+          correct: "D"
+        },
+        {
+          id: "sqrt",
+          sol: "A.EI.3.a",
+          stem: "What are the solutions of x² = 49?",
+          choices: [
+            { letter: "A", text: "x = 7 only" },
+            { letter: "B", text: "x = 7 or x = −7" },
+            { letter: "C", text: "x = 24.5" },
+            { letter: "D", text: "x = √7 or x = −√7" }
+          ],
+          correct: "B"
+        }
+      ]
+    },
+
+    /* ---------- short · level 2 · A.EI.1 ---------- */
+    {
+      id: "ei-multistep-set",
+      family: "EI",
+      title: "Multistep Equation Set",
+      kind: "Equations & Inequalities · A.EI.1",
+      blurb: "Distribute, combine, isolate. Four equations and a property of equality.",
+      level: 2,
+      passage: "<p>" + N(1) + "Ms. Grant's equation set mixes fractions, decimals and parentheses. " + N(2) + "She asks students to name the <strong>property of equality</strong> they use at each step and to check every answer by substitution.</p>" +
+        "<ol><li>3(2x − 5) + 4 = 2x + 9</li><li>x ÷ 4 − 3 = 7</li><li>0.5(x + 8) = 12</li><li>−4(x − 1) = 3x + 18</li><li>5x − 3 = 2x + 12</li></ol>",
+      claims: [
+        {
+          id: "distribute",
+          sol: "A.EI.1.b",
+          stem: "What is the solution of 3(2x − 5) + 4 = 2x + 9?",
+          choices: [
+            { letter: "A", text: "x = 5" },
+            { letter: "B", text: "x = 2.5" },
+            { letter: "C", text: "x = −5" },
+            { letter: "D", text: "x = 3" }
+          ],
+          correct: "A"
+        },
+        {
+          id: "fraction",
+          sol: "A.EI.1.b",
+          stem: "What is the solution of x ÷ 4 − 3 = 7?",
+          choices: [
+            { letter: "A", text: "x = 1" },
+            { letter: "B", text: "x = 16" },
+            { letter: "C", text: "x = 40" },
+            { letter: "D", text: "x = 2.5" }
+          ],
+          correct: "C"
+        },
+        {
+          id: "decimal",
+          sol: "A.EI.1.b",
+          stem: "What is the solution of 0.5(x + 8) = 12?",
+          choices: [
+            { letter: "A", text: "x = 8" },
+            { letter: "B", text: "x = 16" },
+            { letter: "C", text: "x = 20" },
+            { letter: "D", text: "x = 32" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "negative",
+          sol: "A.EI.1.b",
+          stem: "What is the solution of −4(x − 1) = 3x + 18?",
+          choices: [
+            { letter: "A", text: "x = 2" },
+            { letter: "B", text: "x = 22" },
+            { letter: "C", text: "x = −22" },
+            { letter: "D", text: "x = −2" }
+          ],
+          correct: "D"
+        },
+        {
+          id: "property",
+          sol: "A.EI.1.f",
+          stem: "To solve 5x − 3 = 2x + 12, a student first writes 3x − 3 = 12. Which property justifies this step?",
+          choices: [
+            { letter: "A", text: "the distributive property" },
+            { letter: "B", text: "the addition property of equality, adding 3 to both sides" },
+            { letter: "C", text: "the subtraction property of equality, subtracting 2x from both sides" },
+            { letter: "D", text: "the division property of equality, dividing both sides by 5" }
+          ],
+          correct: "C"
+        }
+      ]
+    },
+
+    /* ---------- medium · level 2 · A.EI.2 ---------- */
+    {
+      id: "ei-concert-tickets",
+      family: "EI",
+      title: "Selling Out the Spring Concert",
+      kind: "Equations & Inequalities · A.EI.2",
+      blurb: "120 tickets, $750 collected. How many of each kind were sold?",
+      level: 2,
+      passage: "<p>" + N(1) + "The spring concert sold 120 tickets and took in $750. " + N(2) + "Adult tickets cost $8 and student tickets cost $5. " + N(3) + "Let <strong>x</strong> be the number of adult tickets and <strong>y</strong> the number of student tickets. " + N(4) + "Theo solves the system by substitution; Mia solves it by graphing and finds where the two lines meet. " + N(5) + "Afterward, the teacher shows a different system, 2x + y = 6 and 4x + 2y = 12, and asks how many solutions it has.</p>",
+      claims: [
+        {
+          id: "system",
+          sol: "A.EI.2.a",
+          stem: "Which system represents the concert ticket sales?",
+          choices: [
+            { letter: "A", text: "x + y = 120 and 8x + 5y = 750" },
+            { letter: "B", text: "x + y = 750 and 8x + 5y = 120" },
+            { letter: "C", text: "8x + 5y = 120 and xy = 750" },
+            { letter: "D", text: "x + y = 120 and 5x + 8y = 750" }
+          ],
+          correct: "A"
+        },
+        {
+          id: "solve",
+          sol: "A.EI.2.b",
+          stem: "How many adult tickets and how many student tickets were sold?",
+          choices: [
+            { letter: "A", text: "70 adult, 50 student" },
+            { letter: "B", text: "60 adult, 60 student" },
+            { letter: "C", text: "50 adult, 70 student" },
+            { letter: "D", text: "40 adult, 80 student" }
+          ],
+          correct: "C"
+        },
+        {
+          id: "substitution",
+          sol: "A.EI.2.b",
+          stem: "Theo replaces y with 120 − x in the money equation. Which equation does he get?",
+          choices: [
+            { letter: "A", text: "8x + 5(120 − x) = 750" },
+            { letter: "B", text: "8(120 − x) + 5x = 750" },
+            { letter: "C", text: "8x + 5x = 750 − 120" },
+            { letter: "D", text: "x + (120 − x) = 750" }
+          ],
+          correct: "A"
+        },
+        {
+          id: "verify",
+          sol: "A.EI.2.h",
+          stem: "Which check verifies the solution in both equations?",
+          choices: [
+            { letter: "A", text: "50 + 70 = 120 and 8(50) + 5(70) = 750" },
+            { letter: "B", text: "50 + 70 = 120 and 8(70) + 5(50) = 810" },
+            { letter: "C", text: "50 × 70 = 3500 and 8 + 5 = 13" },
+            { letter: "D", text: "8(50) = 400 and 5(70) = 350, so 400 − 350 = 50" }
+          ],
+          correct: "A"
+        },
+        {
+          id: "graph",
+          sol: "A.EI.2.b",
+          stem: "On Mia's graph, what does the intersection of the two lines show?",
+          choices: [
+            { letter: "A", text: "the price of one adult ticket and one student ticket" },
+            { letter: "B", text: "the one pair (x, y) that satisfies both equations" },
+            { letter: "C", text: "the total number of tickets, 120" },
+            { letter: "D", text: "the total money collected, $750" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "infinite",
+          sol: "A.EI.2.c",
+          stem: "How many solutions does the system 2x + y = 6 and 4x + 2y = 12 have?",
+          choices: [
+            { letter: "A", text: "none, because the two lines are parallel" },
+            { letter: "B", text: "exactly one, at the point (3, 0)" },
+            { letter: "C", text: "exactly two, because there are two equations" },
+            { letter: "D", text: "infinitely many; the second equation is twice the first" }
+          ],
+          correct: "D"
+        }
+      ]
+    },
+
+    /* ---------- medium · level 2 · A.EI.2 ---------- */
+    {
+      id: "ei-party-budget",
+      family: "EI",
+      title: "Party Budget Inequalities",
+      kind: "Equations & Inequalities · A.EI.2",
+      blurb: "$60 for snacks at $3 and pizzas at $5. Which orders work?",
+      level: 2,
+      passage: "<p>" + N(1) + "The student council has $60 for a party. " + N(2) + "Snack bags cost $3 each and pizzas cost $5 each. " + N(3) + "Let <strong>s</strong> be the number of snack bags and <strong>p</strong> the number of pizzas. " + N(4) + "The council also wants at least 8 items in total. " + N(5) + "Elena graphs the budget inequality 3s + 5p ≤ 60 with s on the horizontal axis and p on the vertical axis.</p>",
+      claims: [
+        {
+          id: "point",
+          sol: "A.EI.2.g",
+          stem: "Which order stays within the $60 budget?",
+          choices: [
+            { letter: "A", text: "5 snack bags and 10 pizzas" },
+            { letter: "B", text: "12 snack bags and 6 pizzas" },
+            { letter: "C", text: "10 snack bags and 6 pizzas" },
+            { letter: "D", text: "8 snack bags and 8 pizzas" }
+          ],
+          correct: "C"
+        },
+        {
+          id: "graph",
+          sol: "A.EI.2.e",
+          stem: "How should Elena draw the graph of 3s + 5p ≤ 60?",
+          choices: [
+            { letter: "A", text: "a dashed boundary line, shaded above the line" },
+            { letter: "B", text: "a solid boundary line, shaded below the line" },
+            { letter: "C", text: "a solid boundary line, shaded above the line" },
+            { letter: "D", text: "a dashed boundary line, shaded below the line" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "system",
+          sol: "A.EI.2.d",
+          stem: "Which system of inequalities represents both council requirements?",
+          choices: [
+            { letter: "A", text: "3s + 5p ≤ 60 and s + p ≥ 8" },
+            { letter: "B", text: "3s + 5p ≥ 60 and s + p ≤ 8" },
+            { letter: "C", text: "3s + 5p ≤ 60 and s + p ≤ 8" },
+            { letter: "D", text: "s + p ≤ 60 and 3s + 5p ≥ 8" }
+          ],
+          correct: "A"
+        },
+        {
+          id: "both",
+          sol: "A.EI.2.g",
+          stem: "Is (s, p) = (4, 4) a solution of the system?",
+          choices: [
+            { letter: "A", text: "No; 4 + 4 = 8 is not at least 8." },
+            { letter: "B", text: "No; 3(4) + 5(4) = 32 is not under 60." },
+            { letter: "C", text: "Yes; 3(4) + 5(4) = 32 ≤ 60 and 4 + 4 = 8 ≥ 8." },
+            { letter: "D", text: "Yes, because any pair of equal numbers works." }
+          ],
+          correct: "C"
+        },
+        {
+          id: "strict",
+          sol: "A.EI.2.e",
+          stem: "A second graph shows y > 2x − 1. Which description fits its graph?",
+          choices: [
+            { letter: "A", text: "a solid line through (0, −1) with slope 2, shaded above" },
+            { letter: "B", text: "a dashed line through (0, −1) with slope 2, shaded below" },
+            { letter: "C", text: "a solid line through (0, 2) with slope −1, shaded above" },
+            { letter: "D", text: "a dashed line through (0, −1) with slope 2, shaded above" }
+          ],
+          correct: "D"
+        },
+        {
+          id: "region",
+          sol: "A.EI.2.f",
+          stem: "The solution set of the system in the graph is —",
+          choices: [
+            { letter: "A", text: "the region where the shadings of the two inequalities overlap" },
+            { letter: "B", text: "the single point where the two boundary lines cross" },
+            { letter: "C", text: "every point on either boundary line" },
+            { letter: "D", text: "the region shaded by either inequality" }
+          ],
+          correct: "A"
+        }
+      ]
+    },
+
+    /* ---------- medium · level 3 · A.EI.3 ---------- */
+    {
+      id: "ei-rectangle-area",
+      family: "EI",
+      title: "A Rectangle with Area 40",
+      kind: "Equations & Inequalities · A.EI.3",
+      blurb: "Length is 3 more than width; area is 40. Which quadratic, and which solution?",
       level: 3,
-      passage: "<p>" + N(1) + "A student ate a lunch of a peanut butter sandwich made with Virginia peanuts, an apple and a glass of milk, then traced what happened to each macromolecule in a lab write-up. " + N(2) + "The bread's starch is a <strong>polymer</strong> of glucose; in the mouth and small intestine, the enzyme amylase breaks the bonds between glucose units by <strong>hydrolysis</strong>, a reaction that adds a water molecule at each break. " + N(3) + "The peanut butter is rich in lipids and protein. " + N(4) + "Proteins are chains of amino acids folded into a specific three-dimensional shape, and that shape determines the protein's function, whether it is an enzyme, a muscle fiber or an antibody. " + N(5) + "Once absorbed, amino acids are rebuilt into new proteins by <strong>dehydration synthesis</strong>, which removes a water molecule as each bond forms. " + N(6) + "To check the lunch's contents, the student ran food tests on a sample of each item.</p>" +
-        "<table><tr><th>Sample</th><th>Iodine</th><th>Biuret</th><th>Benedict's</th></tr><tr><td>Bread</td><td>blue-black</td><td>blue</td><td>blue</td></tr><tr><td>Peanut butter</td><td>amber</td><td>violet</td><td>blue</td></tr><tr><td>Apple</td><td>amber</td><td>blue</td><td>orange</td></tr><tr><td>Milk</td><td>amber</td><td>violet</td><td>green</td></tr></table>" +
-        "<p>" + N(7) + "She noted that milk gave a green Benedict's result, a weaker positive than the apple's orange. " + N(8) + "Her teacher added that the nucleic acids in every cell of the food, DNA and RNA, are polymers of nucleotides but are present in amounts far too small for a classroom test to detect.</p>",
+      passage: "<p>" + N(1) + "A poster is 3 inches longer than it is wide, and its area is 40 square inches. " + N(2) + "Let <strong>w</strong> be the width in inches. " + N(3) + "Jun writes w(w + 3) = 40, rewrites it as w² + 3w − 40 = 0 and factors. " + N(4) + "The same worksheet asks about 2x² − 8 = 0, x² + 2x − 7 = 0, 3x² − 2x + 1 = 0 and x² − 10x + 25 = 0.</p>",
       claims: [
         {
-          id: "hydrolysis-vocab",
-          sol: "BIO.2.b",
-          stem: "In sentence 2, hydrolysis is a reaction that —",
+          id: "factor",
+          sol: "A.EI.3.a",
+          stem: "What are the solutions of w² + 3w − 40 = 0?",
           choices: [
-            { letter: "A", text: "removes water to join monomers into a polymer" },
-            { letter: "B", text: "adds water to split a polymer into its monomers" },
-            { letter: "C", text: "uses light energy to build glucose from carbon dioxide" },
-            { letter: "D", text: "releases carbon dioxide as glucose is broken down" }
-          ],
-          correct: "B"
-        },
-        {
-          id: "glucose-fate",
-          sol: "BIO.2.e",
-          stem: "After the glucose from the bread is absorbed, the student's cells use it mainly to —",
-          choices: [
-            { letter: "A", text: "build starch for long-term storage in the muscles" },
-            { letter: "B", text: "capture light energy inside chloroplasts" },
-            { letter: "C", text: "release energy as ATP through cellular respiration" },
-            { letter: "D", text: "form the active sites of newly made enzymes" }
-          ],
-          correct: "C"
-        },
-        {
-          id: "unfolded-enzyme",
-          sol: "BIO.2.c",
-          stem: "Based on sentence 4, what would most likely happen to an enzyme if its chain of amino acids unfolded?",
-          choices: [
-            { letter: "A", text: "It would work faster because more of the chain would be exposed." },
-            { letter: "B", text: "It would keep working because its amino acid sequence is unchanged." },
-            { letter: "C", text: "It would become a different kind of macromolecule, such as a lipid." },
-            { letter: "D", text: "It would lose its function because its shape no longer matches its substrate." }
-          ],
-          correct: "D"
-        },
-        {
-          id: "dehydration",
-          sol: "BIO.2.b",
-          stem: "When the body builds a muscle protein from absorbed amino acids, each new bond that forms —",
-          choices: [
-            { letter: "A", text: "requires a water molecule to be added" },
-            { letter: "B", text: "releases a water molecule" },
-            { letter: "C", text: "releases a glucose molecule" },
-            { letter: "D", text: "forms between two glucose units" }
-          ],
-          correct: "B"
-        },
-        {
-          id: "lunch-conclusion",
-          sol: "BIO.2.b",
-          stem: "Which conclusion is best supported by the food-test results?",
-          choices: [
-            { letter: "A", text: "The apple contains more simple sugar than the milk." },
-            { letter: "B", text: "The bread contains no carbohydrate of any kind." },
-            { letter: "C", text: "The milk contains lipid but no protein." },
-            { letter: "D", text: "The peanut butter contains a large amount of starch." }
+            { letter: "A", text: "w = 5 or w = −8" },
+            { letter: "B", text: "w = −5 or w = 8" },
+            { letter: "C", text: "w = 4 or w = 10" },
+            { letter: "D", text: "w = 3 or w = 40" }
           ],
           correct: "A"
         },
         {
-          id: "monomer-pairs",
-          sol: "BIO.2.b",
-          stem: "Select TWO statements that correctly pair a macromolecule with its monomer.",
+          id: "context",
+          sol: "A.EI.3.c",
+          stem: "What are the dimensions of the poster?",
           choices: [
-            { letter: "A", text: "Starch is built from glucose." },
-            { letter: "B", text: "Protein is built from fatty acids." },
-            { letter: "C", text: "DNA is built from nucleotides." },
-            { letter: "D", text: "Lipid is built from amino acids." }
+            { letter: "A", text: "8 inches by 11 inches" },
+            { letter: "B", text: "5 inches by 8 inches" },
+            { letter: "C", text: "4 inches by 10 inches" },
+            { letter: "D", text: "−8 inches by −5 inches" }
           ],
-          correct: ["A", "C"]
+          correct: "B"
+        },
+        {
+          id: "sqrt",
+          sol: "A.EI.3.a",
+          stem: "What are the solutions of 2x² − 8 = 0?",
+          choices: [
+            { letter: "A", text: "x = 4 only" },
+            { letter: "B", text: "x = 2 only" },
+            { letter: "C", text: "x = 2 or x = −2" },
+            { letter: "D", text: "x = 4 or x = −4" }
+          ],
+          correct: "C"
+        },
+        {
+          id: "irrational",
+          sol: "A.EI.3.a",
+          stem: "Using the quadratic formula, what are the solutions of x² + 2x − 7 = 0?",
+          choices: [
+            { letter: "A", text: "x = 1 ± √7" },
+            { letter: "B", text: "x = −2 ± 2√2" },
+            { letter: "C", text: "x = −1 ± 2√2" },
+            { letter: "D", text: "x = −1 ± 4" }
+          ],
+          correct: "C"
+        },
+        {
+          id: "discriminant",
+          sol: "A.EI.3.b",
+          stem: "How many real solutions does 3x² − 2x + 1 = 0 have, and why?",
+          choices: [
+            { letter: "A", text: "two, because the equation has three terms" },
+            { letter: "B", text: "one, because the leading coefficient is 3" },
+            { letter: "C", text: "two, because b² − 4ac = 4 + 12 = 16" },
+            { letter: "D", text: "none, because b² − 4ac = 4 − 12 = −8 is negative" }
+          ],
+          correct: "D"
+        },
+        {
+          id: "double",
+          sol: "A.EI.3.b",
+          stem: "Which statement about x² − 10x + 25 = 0 is true?",
+          choices: [
+            { letter: "A", text: "It has two real solutions, 5 and −5." },
+            { letter: "B", text: "It has one real solution, 5, because it factors as (x − 5)²." },
+            { letter: "C", text: "It has no real solutions because 25 is positive." },
+            { letter: "D", text: "It has one real solution, −5, because it factors as (x + 5)²." }
+          ],
+          correct: "B"
         }
       ]
     },
 
-    /* ---------- ENZYMES ---------- */
+    /* ---------- short · level 2 · A.EI.1 ---------- */
     {
-      id: "chem-catalase-foam",
-      family: "CHEM",
-      title: "Potato Catalase and Peroxide",
-      kind: "Biochemistry · BIO.2",
-      blurb: "Foam heights from blended potato at six temperatures show where catalase works best.",
+      id: "ei-lawn-money",
+      family: "EI",
+      title: "Mowing for a Bike",
+      kind: "Equations & Inequalities · A.EI.1",
+      blurb: "$15 a lawn, $45 spent on gas, a $300 bike. How many lawns?",
       level: 2,
-      passage: "<p>" + N(1) + "Catalase is an <strong>enzyme</strong> in potato and liver cells that breaks hydrogen peroxide, a toxic waste of metabolism, into water and oxygen gas. " + N(2) + "A lab group blended raw potato with water, poured 5 mL of the mixture into six tubes and held each tube at a different temperature for ten minutes. " + N(3) + "They then added 5 mL of 3% hydrogen peroxide to each tube and measured the height of the oxygen foam after one minute. " + N(4) + "A seventh tube held peroxide and water with no potato and made no foam at any temperature.</p>" +
-        "<table><tr><th>Temperature (°C)</th><th>Foam height (mm)</th></tr><tr><td>5</td><td>9</td></tr><tr><td>20</td><td>24</td></tr><tr><td>35</td><td>41</td></tr><tr><td>50</td><td>28</td></tr><tr><td>65</td><td>4</td></tr><tr><td>80</td><td>0</td></tr></table>",
+      passage: "<p>" + N(1) + "Dante earns $15 for every lawn he mows. " + N(2) + "He already spent $45 on gas for the mower. " + N(3) + "He wants at least $300 left over to buy a bike. " + N(4) + "Let <strong>n</strong> be the number of lawns he mows this summer.</p>",
       claims: [
         {
-          id: "foam-trend",
-          sol: "BIO.2.c",
-          stem: "Which conclusion do the foam heights best support?",
+          id: "write",
+          sol: "A.EI.1.a",
+          stem: "Which inequality represents Dante's goal?",
           choices: [
-            { letter: "A", text: "Catalase works fastest near 35 °C and stops working at high temperatures." },
-            { letter: "B", text: "Catalase activity keeps rising as the temperature of the tube rises." },
-            { letter: "C", text: "Hydrogen peroxide breaks down on its own faster when the tube is warm." },
-            { letter: "D", text: "Cold temperatures permanently destroy the catalase in potato cells." }
-          ],
-          correct: "A"
-        },
-        {
-          id: "enzyme-vocab",
-          sol: "BIO.2.c",
-          stem: "In sentence 1, an enzyme is best described as —",
-          choices: [
-            { letter: "A", text: "a lipid that stores energy for the cell to use later" },
-            { letter: "B", text: "a protein that speeds up a specific reaction without being used up" },
-            { letter: "C", text: "a sugar that is broken down to release oxygen gas" },
-            { letter: "D", text: "a waste product that the cell must remove quickly" }
+            { letter: "A", text: "15n + 45 ≥ 300" },
+            { letter: "B", text: "15n − 45 ≥ 300" },
+            { letter: "C", text: "15n − 45 ≤ 300" },
+            { letter: "D", text: "45n − 15 ≥ 300" }
           ],
           correct: "B"
         },
         {
-          id: "seventh-tube",
-          sol: "BIO.2.c",
-          stem: "The seventh tube described in sentence 4 shows that —",
+          id: "solve",
+          sol: "A.EI.1.c",
+          stem: "What is the least number of lawns Dante must mow?",
           choices: [
-            { letter: "A", text: "potato cells produce hydrogen peroxide of their own" },
-            { letter: "B", text: "water alone is able to break down hydrogen peroxide" },
-            { letter: "C", text: "the foam depends on the enzyme, not on peroxide breaking down by itself" },
-            { letter: "D", text: "temperature has no effect on how fast the reaction runs" }
+            { letter: "A", text: "17" },
+            { letter: "B", text: "20" },
+            { letter: "C", text: "23" },
+            { letter: "D", text: "24" }
           ],
           correct: "C"
         },
         {
-          id: "eighty-degrees",
-          sol: "BIO.2.c",
-          stem: "Which statement best explains the result at 80 °C?",
+          id: "graph",
+          sol: "A.EI.1.c",
+          stem: "Which number line shows the solution set of 15n − 45 ≥ 300?",
           choices: [
-            { letter: "A", text: "The peroxide evaporated from the tube before it could react." },
-            { letter: "B", text: "The heat changed the shape of the active site, so the substrate no longer fit." },
-            { letter: "C", text: "The enzyme was used up during the ten-minute warm-up period." },
-            { letter: "D", text: "The hot potato mixture absorbed the oxygen gas as it formed." }
-          ],
-          correct: "B"
-        },
-        {
-          id: "catalase-class",
-          sol: "BIO.2.b",
-          stem: "Catalase is made of a folded chain of amino acids. It belongs to which group of macromolecules?",
-          choices: [
-            { letter: "A", text: "Carbohydrates, whose chains store quick energy" },
-            { letter: "B", text: "Lipids, whose chains form the cell membrane" },
-            { letter: "C", text: "Nucleic acids, whose chains carry the genetic code" },
-            { letter: "D", text: "Proteins, whose folded shape forms the active site" }
-          ],
-          correct: "D"
-        },
-        {
-          id: "oxygen-fate",
-          sol: "BIO.2.e",
-          stem: "The oxygen gas trapped in the foam is the same gas that living potato cells use to —",
-          choices: [
-            { letter: "A", text: "release energy from glucose in their mitochondria" },
-            { letter: "B", text: "capture light energy in their chloroplasts" },
-            { letter: "C", text: "link glucose units together into starch" },
-            { letter: "D", text: "dissolve hydrogen peroxide in their cytoplasm" }
+            { letter: "A", text: "closed circle at 23, shaded to the right" },
+            { letter: "B", text: "open circle at 23, shaded to the right" },
+            { letter: "C", text: "closed circle at 23, shaded to the left" },
+            { letter: "D", text: "closed circle at 17, shaded to the right" }
           ],
           correct: "A"
+        },
+        {
+          id: "verify",
+          sol: "A.EI.1.f",
+          stem: "Which statement verifies the solution in context?",
+          choices: [
+            { letter: "A", text: "15(22) − 45 = 285, so 22 lawns is enough." },
+            { letter: "B", text: "15(23) + 45 = 390, so 23 lawns leaves $390 for the bike." },
+            { letter: "C", text: "15(23) − 45 = 300, so 23 lawns leaves exactly $300 for the bike." },
+            { letter: "D", text: "300 ÷ 15 = 20, so 20 lawns is enough." }
+          ],
+          correct: "C"
+        },
+        {
+          id: "other",
+          sol: "A.EI.1.c",
+          stem: "What is the solution set of 7 − 2(x + 1) < 15?",
+          choices: [
+            { letter: "A", text: "x < −5" },
+            { letter: "B", text: "x > −5" },
+            { letter: "C", text: "x > 5" },
+            { letter: "D", text: "x < 5" }
+          ],
+          correct: "B"
         }
       ]
     },
 
+    /* ---------- long · level 3 · A.EI.2 ---------- */
     {
-      id: "chem-lactase-ph",
-      family: "CHEM",
-      title: "Lactase Tablets and pH",
-      kind: "Biochemistry · BIO.2",
-      blurb: "A crushed lactase tablet meets milk at six pH values; glucose strips tell how much lactose was split.",
+      id: "ei-acid-mixture",
+      family: "EI",
+      title: "Mixing Two Acid Solutions",
+      kind: "Equations & Inequalities · A.EI.2",
+      blurb: "10% and 30% solutions, 20 liters at 25%. A system with a twist.",
       level: 3,
-      passage: "<p>" + N(1) + "Lactose, the sugar in milk, is a disaccharide that the enzyme <strong>lactase</strong> splits into glucose and galactose. " + N(2) + "People who make little lactase cannot digest milk well, and chewable lactase tablets are sold to help. " + N(3) + "A student crushed one tablet, dissolved it in water and added equal amounts to tubes of milk that had been adjusted to different pH values with dilute acid or base. " + N(4) + "After ten minutes at 37 °C she dipped a glucose test strip into each tube. " + N(5) + "The strips respond only to glucose, not to lactose, so a reading near zero means almost no lactose was broken down. " + N(6) + "A tube of milk at pH 7 with no enzyme also read zero.</p>" +
-        "<table><tr><th>pH of milk</th><th>Glucose (mg/dL)</th></tr><tr><td>2</td><td>45</td></tr><tr><td>4</td><td>210</td></tr><tr><td>6</td><td>480</td></tr><tr><td>7</td><td>520</td></tr><tr><td>9</td><td>300</td></tr><tr><td>11</td><td>30</td></tr></table>" +
-        "<p>" + N(7) + "Human lactase works in the small intestine, where the pH is near 6, while pepsin, a stomach enzyme, works best near pH 2.</p>",
+      passage: "<p>" + N(1) + "A chemistry teacher needs 20 liters of a 25% acid solution. " + N(2) + "The stockroom has a 10% solution and a 30% solution. " + N(3) + "Let <strong>x</strong> be the liters of the 10% solution and <strong>y</strong> the liters of the 30% solution. " + N(4) + "The total volume gives x + y = 20. " + N(5) + "The amount of pure acid gives 0.10x + 0.30y = 0.25(20), which is 0.10x + 0.30y = 5. " + N(6) + "Two students disagree: Ana says the answer is 5 liters of the 10% solution, and Ben says it is 15 liters of the 10% solution. " + N(7) + "For homework, the class also studies the system y = 2x + 1 and y = 2x − 3.</p>",
       claims: [
         {
-          id: "ph-trend",
-          sol: "BIO.2.c",
-          stem: "Which conclusion do the glucose readings best support?",
+          id: "system",
+          sol: "A.EI.2.a",
+          stem: "Why does the second equation use 0.10x + 0.30y instead of x + y?",
           choices: [
-            { letter: "A", text: "Lactase works at every pH but is fastest in strongly acidic milk." },
-            { letter: "B", text: "Lactase activity is highest near neutral pH and falls off in strong acid or base." },
-            { letter: "C", text: "Lactase is permanently destroyed at any pH below 7." },
-            { letter: "D", text: "Glucose forms in milk on its own whenever the pH is changed." }
+            { letter: "A", text: "It counts only the pure acid, not the total liquid." },
+            { letter: "B", text: "Decimals make the equation easier to graph." },
+            { letter: "C", text: "It counts the water in each solution." },
+            { letter: "D", text: "The percents must add up to 40%." }
           ],
-          correct: "B"
+          correct: "A"
         },
         {
-          id: "lactase-vocab",
-          sol: "BIO.2.c",
-          stem: "In sentence 1, lactase is —",
+          id: "solve",
+          sol: "A.EI.2.b",
+          stem: "How many liters of each solution should the teacher mix?",
           choices: [
-            { letter: "A", text: "the substrate that is broken down in the reaction" },
-            { letter: "B", text: "one of the products released by the reaction" },
-            { letter: "C", text: "the enzyme that catalyzes the reaction" },
-            { letter: "D", text: "the monosaccharide that the strips detect" }
+            { letter: "A", text: "15 liters of 10% and 5 liters of 30%" },
+            { letter: "B", text: "10 liters of each" },
+            { letter: "C", text: "5 liters of 10% and 15 liters of 30%" },
+            { letter: "D", text: "2 liters of 10% and 18 liters of 30%" }
           ],
           correct: "C"
         },
         {
-          id: "ph-ions",
-          sol: "BIO.2.a",
-          stem: "Compared with the tube at pH 6, the tube of milk at pH 2 contains —",
+          id: "who",
+          sol: "A.EI.2.h",
+          stem: "Who is correct, Ana or Ben, and how can you tell?",
           choices: [
-            { letter: "A", text: "fewer hydrogen ions and is more basic" },
-            { letter: "B", text: "fewer hydrogen ions and is more acidic" },
-            { letter: "C", text: "more hydrogen ions and is more basic" },
-            { letter: "D", text: "more hydrogen ions and is more acidic" }
+            { letter: "A", text: "Ben, because 15 + 5 = 20 liters." },
+            { letter: "B", text: "Ana, because 0.10(5) + 0.30(15) = 5 liters of acid and 5 + 15 = 20." },
+            { letter: "C", text: "Ben, because 0.10(15) + 0.30(5) = 3 liters of acid." },
+            { letter: "D", text: "Both, because a system always has two solutions." }
           ],
-          correct: "D"
+          correct: "B"
         },
         {
-          id: "ph-eleven",
-          sol: "BIO.2.c",
-          stem: "Which statement best explains the low reading at pH 11?",
+          id: "elimination",
+          sol: "A.EI.2.b",
+          stem: "To solve by elimination, a student multiplies x + y = 20 by −0.10 and adds it to the acid equation. Which equation results?",
           choices: [
-            { letter: "A", text: "The strongly basic milk changed the shape of the enzyme's active site, so lactose no longer fit." },
-            { letter: "B", text: "The base broke the lactose apart into glucose before the enzyme could reach it." },
-            { letter: "C", text: "At high pH the glucose that formed was converted back into lactose." },
-            { letter: "D", text: "The crushed tablet dissolved too slowly in the basic milk to be measured." }
+            { letter: "A", text: "0.40y = 7" },
+            { letter: "B", text: "0.20x = 3" },
+            { letter: "C", text: "0.20y = 3" },
+            { letter: "D", text: "0.30y = 5" }
+          ],
+          correct: "C"
+        },
+        {
+          id: "parallel",
+          sol: "A.EI.2.c",
+          stem: "How many solutions does the system y = 2x + 1 and y = 2x − 3 have?",
+          choices: [
+            { letter: "A", text: "none, because the lines have the same slope and different y-intercepts" },
+            { letter: "B", text: "exactly one, because the y-intercepts are different" },
+            { letter: "C", text: "infinitely many, because the slopes are equal" },
+            { letter: "D", text: "exactly one, at the point (2, 5) where they cross" }
           ],
           correct: "A"
         },
         {
-          id: "stomach-claim",
-          sol: "BIO.2.c",
-          stem: "A classmate claims that swallowing a lactase tablet with milk is useless because the stomach is at pH 2. Which statement best evaluates this claim using the data and sentence 7?",
+          id: "sense",
+          sol: "A.EI.2.h",
+          stem: "Suppose the teacher needed a 35% solution instead. What would happen to the system?",
           choices: [
-            { letter: "A", text: "The claim ignores that the enzyme also reaches the small intestine, where the pH is near its optimum." },
-            { letter: "B", text: "The claim is correct because the data show that no glucose at all forms at pH 2." },
-            { letter: "C", text: "The claim is correct because an enzyme is used up after it catalyzes a single reaction." },
-            { letter: "D", text: "The claim ignores that milk neutralizes stomach acid so the tablet works at pH 7." }
-          ],
-          correct: "A"
-        },
-        {
-          id: "reaction-type",
-          sol: "BIO.2.b",
-          stem: "The reaction that lactase catalyzes is best described as —",
-          choices: [
-            { letter: "A", text: "dehydration synthesis, which removes water to join two sugars" },
-            { letter: "B", text: "hydrolysis, which adds water to split a disaccharide" },
-            { letter: "C", text: "fermentation, which converts a sugar into alcohol" },
-            { letter: "D", text: "denaturation, which unfolds the sugar molecule" }
+            { letter: "A", text: "It would have infinitely many solutions, one for each mixture." },
+            { letter: "B", text: "One amount would come out negative, since 35% is stronger than both stock solutions." },
+            { letter: "C", text: "The solution would be exactly 10 liters of each solution." },
+            { letter: "D", text: "Only the total-volume equation would change, not the acid one." }
           ],
           correct: "B"
         }
       ]
     },
 
+    /* ---------- long · level 3 · A.EI.3 ---------- */
     {
-      id: "chem-amylase-model",
-      family: "CHEM",
-      title: "Foam Enzymes and Real Amylase",
-      kind: "Biochemistry · BIO.2",
-      blurb: "A foam-shape model of enzyme action, then real amylase timed against five starch concentrations.",
+      id: "ei-model-rocket",
+      family: "EI",
+      title: "Model Rocket Height Table",
+      kind: "Equations & Inequalities · A.EI.3",
+      blurb: "h = −5t² + 40t. Use the table and the equation to answer height questions.",
       level: 3,
-      passage: "<p>" + N(1) + "A biology class built a model of enzyme action out of foam shapes. " + N(2) + "Each enzyme piece had a notch called the <strong>active site</strong> that matched only one substrate shape, and students timed how long it took to \"react\" by pressing a two-piece substrate into the notch until it snapped apart. " + N(3) + "The teacher explained that in a real cell the enzyme lowers the <strong>activation energy</strong>, the energy needed to start a reaction, and is released unchanged to be used again. " + N(4) + "To connect the model to real data, the class then measured amylase, an enzyme in saliva that breaks starch into maltose. " + N(5) + "They mixed 1 mL of diluted saliva with starch solutions of five concentrations at 37 °C and used iodine to find the time until the starch disappeared. " + N(6) + "A shorter time means a faster reaction.</p>" +
-        "<table><tr><th>Starch concentration (%)</th><th>Time to clear (s)</th></tr><tr><td>0.5</td><td>190</td></tr><tr><td>1.0</td><td>96</td></tr><tr><td>2.0</td><td>50</td></tr><tr><td>4.0</td><td>32</td></tr><tr><td>8.0</td><td>30</td></tr></table>" +
-        "<p>" + N(7) + "One student noted that doubling the starch from 4% to 8% barely changed the time. " + N(8) + "Another predicted that adding a few drops of vinegar to the 2% tube would make the reaction faster because \"acid dissolves things.\"</p>",
+      passage: "<p>" + N(1) + "A model rocket's height in meters after t seconds is h = −5t² + 40t. " + N(2) + "The launch team records the height each second in the table. " + N(3) + "They want to know when the rocket is at 60 meters, whether it ever reaches 100 meters, and when it lands. " + N(4) + "Setting h = 60 gives −5t² + 40t = 60, and dividing by −5 gives t² − 8t + 12 = 0.</p>" +
+        "<table><tr><th>t (s)</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr><tr><th>h (m)</th><td>0</td><td>35</td><td>60</td><td>75</td><td>80</td><td>75</td><td>60</td><td>35</td><td>0</td></tr></table>",
       claims: [
         {
-          id: "active-site-vocab",
-          sol: "BIO.2.c",
-          stem: "In sentence 2, the active site is —",
+          id: "land",
+          sol: "A.EI.3.a",
+          stem: "Solving −5t² + 40t = 0 by factoring gives −5t(t − 8) = 0. When does the rocket land?",
           choices: [
-            { letter: "A", text: "the region of the enzyme where the substrate binds" },
-            { letter: "B", text: "the product released when the substrate breaks apart" },
-            { letter: "C", text: "the energy that is needed to start the reaction" },
-            { letter: "D", text: "the part of the substrate that is broken in two" }
-          ],
-          correct: "A"
-        },
-        {
-          id: "starch-trend",
-          sol: "BIO.2.c",
-          stem: "Which conclusion do the clearing times best support?",
-          choices: [
-            { letter: "A", text: "The reaction rate doubles every time the starch concentration is doubled." },
-            { letter: "B", text: "High starch concentrations denature amylase and slow the reaction." },
-            { letter: "C", text: "The rate rises with substrate concentration until the enzyme molecules are all occupied." },
-            { letter: "D", text: "Amylase works only on starch solutions stronger than 4%." }
-          ],
-          correct: "C"
-        },
-        {
-          id: "vinegar-claim",
-          sol: "BIO.2.c",
-          stem: "Which statement best evaluates the prediction in sentence 8?",
-          choices: [
-            { letter: "A", text: "It is supported, because acids lower the activation energy of every reaction." },
-            { letter: "B", text: "It is supported, because vinegar is a second substrate for amylase." },
-            { letter: "C", text: "It is not supported, because amylase works only inside the stomach." },
-            { letter: "D", text: "It is not supported, because a change in pH can alter the active site and slow the reaction." }
-          ],
-          correct: "D"
-        },
-        {
-          id: "starch-maltose",
-          sol: "BIO.2.b",
-          stem: "Amylase breaks starch into maltose. Which statement correctly describes these two molecules?",
-          choices: [
-            { letter: "A", text: "Starch is a protein and maltose is a single amino acid." },
-            { letter: "B", text: "Starch is a polymer of glucose and maltose is two glucose units." },
-            { letter: "C", text: "Starch is a lipid and maltose is a single fatty acid." },
-            { letter: "D", text: "Starch is a single sugar and maltose is a long polymer." }
+            { letter: "A", text: "after 5 seconds" },
+            { letter: "B", text: "after 8 seconds" },
+            { letter: "C", text: "after 40 seconds" },
+            { letter: "D", text: "after 4 seconds" }
           ],
           correct: "B"
         },
         {
-          id: "maltose-energy",
-          sol: "BIO.2.e",
-          stem: "The maltose produced is later split into glucose. Cells use that glucose to —",
+          id: "sixty",
+          sol: "A.EI.3.a",
+          stem: "What are the solutions of t² − 8t + 12 = 0?",
           choices: [
-            { letter: "A", text: "capture light energy in chloroplasts" },
-            { letter: "B", text: "build the active sites of enzymes" },
-            { letter: "C", text: "lower the activation energy of reactions" },
-            { letter: "D", text: "release energy as ATP in mitochondria" }
+            { letter: "A", text: "t = 3 or t = 4" },
+            { letter: "B", text: "t = −2 or t = −6" },
+            { letter: "C", text: "t = 2 or t = 6" },
+            { letter: "D", text: "t = 4 only" }
           ],
-          correct: "D"
+          correct: "C"
         },
         {
-          id: "slow-it-down",
-          sol: "BIO.2.c",
-          stem: "Select TWO changes that would most likely slow the amylase reaction in the 2% tube.",
+          id: "two-times",
+          sol: "A.EI.3.c",
+          stem: "Why does the equation for h = 60 have two solutions, and how does the table confirm them?",
           choices: [
-            { letter: "A", text: "Heating the saliva to 80 °C before adding it to the starch" },
-            { letter: "B", text: "Adding a second millilitre of diluted saliva to the tube" },
-            { letter: "C", text: "Keeping the tube in an ice bath at 4 °C during the trial" },
-            { letter: "D", text: "Stirring the mixture gently as the trial runs" }
-          ],
-          correct: ["A", "C"]
-        }
-      ]
-    },
-
-    /* ---------- PHOTOSYNTHESIS & RESPIRATION ---------- */
-    {
-      id: "chem-hydrilla-bubbles",
-      family: "CHEM",
-      title: "Hydrilla Under the Lamp",
-      kind: "Biochemistry · BIO.2",
-      blurb: "Bubble counts from an invasive water plant as a lamp is moved farther away.",
-      level: 1,
-      passage: "<p>" + N(1) + "A group placed a sprig of hydrilla, an invasive water plant pulled from a Chesapeake Bay creek, under water in a test tube. " + N(2) + "They set a lamp at four distances and counted the gas bubbles rising from the cut stem in one minute. " + N(3) + "The bubbles are <strong>oxygen</strong>, a product of photosynthesis. " + N(4) + "The room lights were off during every trial.</p>" +
-        "<table><tr><th>Lamp distance (cm)</th><th>Bubbles per minute</th></tr><tr><td>10</td><td>22</td></tr><tr><td>20</td><td>14</td></tr><tr><td>40</td><td>6</td></tr><tr><td>80</td><td>1</td></tr></table>",
-      claims: [
-        {
-          id: "bubble-trend",
-          sol: "BIO.2.e",
-          stem: "Which conclusion do the bubble counts best support?",
-          choices: [
-            { letter: "A", text: "Moving the lamp closer increased the rate of photosynthesis." },
-            { letter: "B", text: "Moving the lamp closer increased the rate of cellular respiration." },
-            { letter: "C", text: "The plant made the same gas at every distance, so light had no effect." },
-            { letter: "D", text: "The plant stopped photosynthesizing at 10 cm because the lamp was too hot." }
+            { letter: "A", text: "The rocket passes 60 m going up and again coming down; the table shows h = 60 at t = 2 and t = 6." },
+            { letter: "B", text: "Every quadratic has two solutions; the table shows h = 60 at t = 3 and t = 5." },
+            { letter: "C", text: "One solution is an error; the table shows h = 60 only at t = 2." },
+            { letter: "D", text: "The rocket is launched twice; the table shows h = 0 at t = 0 and t = 8." }
           ],
           correct: "A"
         },
         {
-          id: "oxygen-vocab",
-          sol: "BIO.2.e",
-          stem: "In sentence 3, the oxygen is released when the plant —",
+          id: "hundred",
+          sol: "A.EI.3.b",
+          stem: "Does the rocket ever reach 100 meters? Setting h = 100 gives t² − 8t + 20 = 0.",
           choices: [
-            { letter: "A", text: "breaks down glucose inside its mitochondria" },
-            { letter: "B", text: "absorbs carbon dioxide through its roots" },
-            { letter: "C", text: "splits water molecules using light energy" },
-            { letter: "D", text: "converts stored starch back into sugar" }
+            { letter: "A", text: "Yes, at t = 10, because 100 ÷ 10 = 10." },
+            { letter: "B", text: "Yes, at t = 4 and again at t = 5, on the way down." },
+            { letter: "C", text: "No; b² − 4ac = 64 − 80 < 0, so there is no real solution." },
+            { letter: "D", text: "No, because the table stops at t = 8." }
           ],
           correct: "C"
         },
         {
-          id: "reactants",
-          sol: "BIO.2.e",
-          stem: "Inside the hydrilla's chloroplasts, the reactants used to make glucose are —",
+          id: "eighty",
+          sol: "A.EI.3.b",
+          stem: "Setting h = 80 gives t² − 8t + 16 = 0. What does the number of solutions tell the launch team?",
           choices: [
-            { letter: "A", text: "oxygen and glucose" },
-            { letter: "B", text: "glucose and water" },
-            { letter: "C", text: "carbon dioxide and oxygen" },
-            { letter: "D", text: "carbon dioxide and water" }
-          ],
-          correct: "D"
-        },
-        {
-          id: "lights-off",
-          sol: "BIO.2.e",
-          stem: "Why were the room lights turned off during the trials?",
-          choices: [
-            { letter: "A", text: "To keep the water in the tube from warming up" },
-            { letter: "B", text: "So the lamp was the only light source and its distance was the only change" },
-            { letter: "C", text: "To make the rising bubbles easier to see and count" },
-            { letter: "D", text: "So the plant would switch from photosynthesis to respiration" }
+            { letter: "A", text: "Two solutions: the rocket is at 80 m twice." },
+            { letter: "B", text: "One solution, t = 4: the rocket reaches 80 m once, at its peak." },
+            { letter: "C", text: "No solutions: the rocket never reaches 80 m." },
+            { letter: "D", text: "One solution, t = 16: the rocket reaches 80 m after landing." }
           ],
           correct: "B"
         },
         {
-          id: "in-the-dark",
-          sol: "BIO.2.e",
-          stem: "Which statement about the hydrilla when the lamp is turned off is correct?",
+          id: "verify",
+          sol: "A.EI.3.c",
+          stem: "Which substitution verifies that t = 6 is a solution of −5t² + 40t = 60?",
           choices: [
-            { letter: "A", text: "It stops all gas exchange until the light returns." },
-            { letter: "B", text: "It keeps releasing oxygen from its stored starch." },
-            { letter: "C", text: "It uses oxygen in cellular respiration to make ATP." },
-            { letter: "D", text: "It makes glucose from carbon dioxide without light." }
+            { letter: "A", text: "−5(36) + 40(6) = −180 + 240 = 60" },
+            { letter: "B", text: "−5(12) + 40(6) = −60 + 240 = 180" },
+            { letter: "C", text: "−5(6) + 40(6) = 210" },
+            { letter: "D", text: "(−5 · 6)² + 40 = 940" }
           ],
-          correct: "C"
+          correct: "A"
         }
       ]
     },
 
+    /* ---------- medium · level 2 · A.EI.1 ---------- */
     {
-      id: "chem-btb-tubes",
-      family: "CHEM",
-      title: "Elodea, Snails and BTB",
-      kind: "Biochemistry · BIO.2",
-      blurb: "Sealed tubes of indicator with a plant, a snail, both or neither, in the light and in foil.",
+      id: "ei-field-trip-bus",
+      family: "EI",
+      title: "Field Trip Bus Math",
+      kind: "Equations & Inequalities · A.EI.1",
+      blurb: "Bus rental, museum tickets and a per-student price. Equations from a real budget.",
       level: 2,
-      passage: "<p>" + N(1) + "<strong>Bromothymol blue</strong> (BTB) is an indicator that turns from blue to yellow when carbon dioxide dissolves in water and makes it more acidic. " + N(2) + "A class set up four sealed tubes of blue BTB solution: one with a sprig of elodea, one with a pond snail, one with both, and one with nothing. " + N(3) + "A second set of four identical tubes was wrapped in foil. " + N(4) + "After 24 hours in bright light, only the snail-only tube had turned yellow. " + N(5) + "In the foil set, every tube that held a living thing turned yellow, including the elodea-only tube.</p>",
+      passage: "<p>" + N(1) + "A field trip costs $240 for the bus plus $6 per student for museum tickets. " + N(2) + "The school collects $10 from each student. " + N(3) + "Let <strong>n</strong> be the number of students. " + N(4) + "Ms. Ortiz asks: how many students make the trip break even, how many are needed to raise at least $100 extra for lunch, and what happens if the bus company raises its price to $396 while the museum drops tickets to $4? " + N(5) + "She also writes the formula T = 240 + 6n for the trip cost and asks students to solve it for n.</p>",
       claims: [
         {
-          id: "btb-vocab",
-          sol: "BIO.2.a",
-          stem: "In sentence 1, the BTB turns yellow because dissolved carbon dioxide —",
+          id: "break-even",
+          sol: "A.EI.1.b",
+          stem: "How many students make the money collected equal to the trip cost?",
           choices: [
-            { letter: "A", text: "raises the pH of the water" },
-            { letter: "B", text: "lowers the pH of the water" },
-            { letter: "C", text: "removes oxygen from the water" },
-            { letter: "D", text: "makes the water more basic" }
-          ],
-          correct: "B"
-        },
-        {
-          id: "elodea-foil",
-          sol: "BIO.2.e",
-          stem: "Which statement best explains why the elodea-only tube in foil turned yellow?",
-          choices: [
-            { letter: "A", text: "Plants only photosynthesize, so the carbon dioxide must have leaked in from the air." },
-            { letter: "B", text: "The foil trapped heat, and warm water makes the indicator turn yellow." },
-            { letter: "C", text: "The elodea died as soon as the light was removed and began to decay." },
-            { letter: "D", text: "The plant kept respiring but stopped photosynthesizing, so carbon dioxide built up." }
-          ],
-          correct: "D"
-        },
-        {
-          id: "both-tube",
-          sol: "BIO.2.e",
-          stem: "Which statement best explains why the tube with both elodea and a snail stayed blue in the light?",
-          choices: [
-            { letter: "A", text: "The snail stopped respiring while the plant was present." },
-            { letter: "B", text: "The plant released oxygen, which turned the indicator blue." },
-            { letter: "C", text: "The plant used the carbon dioxide the snail released, so it did not build up." },
-            { letter: "D", text: "The snail ate the elodea, which absorbed the acid from the water." }
+            { letter: "A", text: "24" },
+            { letter: "B", text: "40" },
+            { letter: "C", text: "60" },
+            { letter: "D", text: "15" }
           ],
           correct: "C"
         },
         {
-          id: "empty-tube",
-          sol: "BIO.2.e",
-          stem: "The tube with nothing in it was included to show —",
+          id: "write",
+          sol: "A.EI.1.a",
+          stem: "Which equation represents the break-even question?",
           choices: [
-            { letter: "A", text: "that light alone can change the colour of BTB" },
-            { letter: "B", text: "that a colour change requires a living organism" },
-            { letter: "C", text: "how much carbon dioxide one snail produces" },
-            { letter: "D", text: "the effect of foil on the water temperature" }
+            { letter: "A", text: "10n = 240 + 6n" },
+            { letter: "B", text: "10n + 240 = 6n" },
+            { letter: "C", text: "10 + 6n = 240" },
+            { letter: "D", text: "240n = 10 + 6" }
+          ],
+          correct: "A"
+        },
+        {
+          id: "lunch",
+          sol: "A.EI.1.c",
+          stem: "Which inequality and solution show how many students are needed to raise at least $100 extra?",
+          choices: [
+            { letter: "A", text: "10n − (240 + 6n) ≤ 100; n ≤ 85" },
+            { letter: "B", text: "10n − (240 + 6n) ≥ 100; n ≥ 85" },
+            { letter: "C", text: "10n − 240 ≥ 100; n ≥ 34" },
+            { letter: "D", text: "4n ≥ 100; n ≥ 25" }
           ],
           correct: "B"
         },
         {
-          id: "starch-class",
-          sol: "BIO.2.b",
-          stem: "In the light, the elodea makes glucose and stores some of it as starch. Glucose and starch are both —",
+          id: "literal",
+          sol: "A.EI.1.d",
+          stem: "Which equation is T = 240 + 6n solved for n?",
           choices: [
-            { letter: "A", text: "carbohydrates made of carbon, hydrogen and oxygen" },
-            { letter: "B", text: "proteins made of chains of amino acids" },
-            { letter: "C", text: "lipids made of fatty acids and glycerol" },
-            { letter: "D", text: "nucleic acids made of chains of nucleotides" }
-          ],
-          correct: "A"
-        },
-        {
-          id: "relationship",
-          sol: "BIO.2.e",
-          stem: "Which statement best describes the relationship between photosynthesis and cellular respiration shown by the tubes?",
-          choices: [
-            { letter: "A", text: "The products of one process are the reactants of the other." },
-            { letter: "B", text: "Both processes take place only in plant cells." },
-            { letter: "C", text: "Both processes release carbon dioxide into the water." },
-            { letter: "D", text: "Photosynthesis happens in the dark and respiration in the light." }
-          ],
-          correct: "A"
-        }
-      ]
-    },
-
-    {
-      id: "chem-yeast-balloons",
-      family: "CHEM",
-      title: "Yeast and Four Balloons",
-      kind: "Biochemistry · BIO.2",
-      blurb: "Yeast in sealed bottles of glucose, sucrose, starch or plain water inflate balloons by fermentation.",
-      level: 2,
-      passage: "<p>" + N(1) + "Yeast are single-celled fungi that can release energy from sugar with or without oxygen. " + N(2) + "With oxygen they carry out <strong>aerobic respiration</strong>, producing carbon dioxide, water and about 36 ATP per glucose; without oxygen they carry out alcoholic fermentation, producing carbon dioxide, ethanol and only 2 ATP. " + N(3) + "A student stirred one packet of dry yeast into each of four bottles of warm water, added a different sugar to three of them and nothing to the fourth, and stretched a balloon over each neck. " + N(4) + "Because the bottles were sealed, the oxygen ran out quickly and the yeast switched to fermentation. " + N(5) + "After 30 minutes she measured the circumference of each balloon.</p>" +
-        "<table><tr><th>Bottle contents</th><th>Balloon circumference (cm)</th></tr><tr><td>Glucose</td><td>24</td></tr><tr><td>Sucrose</td><td>21</td></tr><tr><td>Starch</td><td>6</td></tr><tr><td>No sugar</td><td>4</td></tr></table>" +
-        "<p>" + N(6) + "She noticed that the glucose bottle smelled faintly of alcohol. " + N(7) + "On the board she wrote the aerobic pathway as C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> + 6O<sub>2</sub> &rarr; 6CO<sub>2</sub> + 6H<sub>2</sub>O + energy (ATP).</p>",
-      claims: [
-        {
-          id: "balloon-trend",
-          sol: "BIO.2.e",
-          stem: "Which conclusion do the balloon measurements best support?",
-          choices: [
-            { letter: "A", text: "Yeast release the most gas from glucose and very little from starch." },
-            { letter: "B", text: "Starch is not a carbohydrate, so yeast cannot use it at all." },
-            { letter: "C", text: "Yeast produce gas at the same rate from every food source." },
-            { letter: "D", text: "The no-sugar balloon inflated because oxygen entered from the air." }
-          ],
-          correct: "A"
-        },
-        {
-          id: "aerobic-vocab",
-          sol: "BIO.2.e",
-          stem: "In sentence 2, aerobic respiration differs from fermentation because it —",
-          choices: [
-            { letter: "A", text: "takes place without oxygen and releases ethanol" },
-            { letter: "B", text: "requires oxygen and releases far more ATP per glucose" },
-            { letter: "C", text: "builds glucose from carbon dioxide and water" },
-            { letter: "D", text: "produces no carbon dioxide at all" }
-          ],
-          correct: "B"
-        },
-        {
-          id: "sucrose",
-          sol: "BIO.2.b",
-          stem: "Sucrose, the sugar in the second bottle, is a disaccharide, which means it is —",
-          choices: [
-            { letter: "A", text: "two simple sugars joined by dehydration synthesis" },
-            { letter: "B", text: "a long chain of many glucose units" },
-            { letter: "C", text: "a fatty acid attached to a glycerol molecule" },
-            { letter: "D", text: "a single sugar ring with six carbon atoms" }
-          ],
-          correct: "A"
-        },
-        {
-          id: "no-sugar-bottle",
-          sol: "BIO.2.e",
-          stem: "The bottle with no sugar was included in order to —",
-          choices: [
-            { letter: "A", text: "give the yeast a steady supply of oxygen" },
-            { letter: "B", text: "measure the temperature of the warm water" },
-            { letter: "C", text: "test whether the balloon leaks over 30 minutes" },
-            { letter: "D", text: "show how much gas forms when there is no sugar to break down" }
+            { letter: "A", text: "n = T − 240 − 6" },
+            { letter: "B", text: "n = (T + 240) ÷ 6" },
+            { letter: "C", text: "n = 6T − 240" },
+            { letter: "D", text: "n = (T − 240) ÷ 6" }
           ],
           correct: "D"
         },
         {
-          id: "starch-bottle",
-          sol: "BIO.2.c",
-          stem: "Which statement best explains the small balloon on the starch bottle?",
+          id: "new-prices",
+          sol: "A.EI.1.b",
+          stem: "With the new prices, the break-even equation is 10n = 396 + 4n. How many students are needed?",
           choices: [
-            { letter: "A", text: "Starch contains no glucose units, so it provides no energy to yeast." },
-            { letter: "B", text: "Starch absorbed the carbon dioxide before it could reach the balloon." },
-            { letter: "C", text: "Yeast lack most of the enzyme needed to break starch into usable sugars." },
-            { letter: "D", text: "Starch is a lipid, so yeast cannot digest it in any amount." }
+            { letter: "A", text: "40" },
+            { letter: "B", text: "100" },
+            { letter: "C", text: "66" },
+            { letter: "D", text: "29" }
           ],
           correct: "C"
         },
         {
-          id: "atp-yield",
-          sol: "BIO.2.e",
-          stem: "Why would the yeast in the sealed bottles gain less usable energy per glucose than yeast in an open, stirred flask?",
+          id: "explain",
+          sol: "A.EI.1.f",
+          stem: "In the break-even solution, the number 4 in 4n = 240 represents —",
           choices: [
-            { letter: "A", text: "The sealed bottles kept the yeast too cool to make ATP." },
-            { letter: "B", text: "Fermentation captures far less of the energy in glucose than aerobic respiration does." },
-            { letter: "C", text: "Ethanol is the molecule that yeast use in place of ATP." },
-            { letter: "D", text: "Without oxygen, yeast cannot break down glucose at all." }
+            { letter: "A", text: "the number of buses the school must rent" },
+            { letter: "B", text: "the amount each student pays for the trip" },
+            { letter: "C", text: "what each student pays beyond that student's ticket" },
+            { letter: "D", text: "the cost of one museum ticket per student" }
           ],
-          correct: "B"
+          correct: "C"
         }
       ]
     }

@@ -51,8 +51,12 @@ html, body {
   pointer-events: none !important;
 }
 
+.ver { color: var(--dim); font-size: 12px; letter-spacing: .08em; margin: 0 0 8px; text-align: center; }   /* v5.4.1: the build's version, so a screen recording says which build it is */
 .kicker { letter-spacing: .14em; text-transform: uppercase; color: var(--gold); font-size: 12px; margin: 0 0 8px; }
 h1 { font-size: clamp(36px, 6vw, 64px); margin: 0; letter-spacing: .02em; }
+/* v5.5.1: the logo on the start screens (its glow already carries the dark plate; the heading text lives in the alt) */
+h1.logo { margin: 2px 0 0; line-height: 0; }
+h1.logo img { width: min(300px, 60vw); height: auto; display: block; margin: 0 auto; filter: drop-shadow(0 6px 18px rgba(245, 200, 66, .18)); }
 .tag { color: var(--dim); margin: 6px 0 18px; max-width: 640px; text-align: center; }
 .row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 8px 0; }
 .packs { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 12px; }
@@ -561,9 +565,6 @@ h1 { font-size: clamp(36px, 6vw, 64px); margin: 0; letter-spacing: .02em; }
   border-radius: 999px; padding: 8px 12px; font: inherit; font-size: 13px; cursor: pointer; min-height: 40px;
 }
 .chip.selected { border-color: var(--gold); color: var(--gold); box-shadow: 0 0 0 2px rgba(245,200,66,.2); }
-/* v6.1: course tabs (Biology / Algebra I) above the unit cards */
-.course-tabs { margin: 0 0 12px; }
-.course-tabs .chip { font-size: 15px; font-weight: 700; padding: 10px 18px; min-width: 150px; }
 #btn-fs { right: 450px; }
 @media (max-width: 700px) {
   #btn-char { right: 12px; top: 128px; }
@@ -652,3 +653,32 @@ h1 { font-size: clamp(36px, 6vw, 64px); margin: 0; letter-spacing: .02em; }
 .state-card.selected::after { content: "Last time"; font: 700 11px/1 "Trebuchet MS", sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-top: 4px; }
 #btn-state { color: var(--dim); }
 @media (max-width: 720px) { .state-card { min-height: 160px; } .state-card .name { font-size: 34px; } }
+
+/* v5.6: the realm card at the top of the reading pop-up, and the realm/perk pip in the HUD */
+.realm-card {
+  margin: 0 0 10px; padding: 10px 14px; border-radius: 12px; border: 1px solid rgba(245,200,66,.35);
+  background: linear-gradient(135deg, rgba(40,34,18,.92), rgba(18,20,28,.92)); color: var(--ink); font-size: 14px; line-height: 1.4;
+}
+.realm-card.hidden { display: none; }
+.realm-card .rk { margin: 0; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+.realm-card h3 { margin: 2px 0 4px; font-size: 22px; color: var(--gold); }
+.realm-card h3 span { font-size: 14px; font-weight: 600; color: var(--ink); }
+.realm-card p { margin: 3px 0; }
+.realm-card .foe b { color: #ffcf8a; }
+.realm-card .boss { color: #ffd0c8; }
+.realm-card .boss b { color: #ff8b7a; }
+.realm-card .perks b { color: #9aefc0; }
+.realm-card.boss { border-color: rgba(255,120,100,.6); background: linear-gradient(135deg, rgba(60,14,10,.94), rgba(18,20,28,.94)); }
+.realm-card[data-realm="niflheim"] { border-color: rgba(160,210,255,.5); }
+.realm-card[data-realm="muspelheim"], .realm-card[data-realm="ragnarok"] { border-color: rgba(255,120,60,.55); }
+.realm-card[data-realm="vanaheim"], .realm-card[data-realm="midgard"] { border-color: rgba(140,210,120,.5); }
+.realm-card[data-realm="helheim"] { border-color: rgba(150,210,190,.45); }
+.pip.realm-pip { border-color: #8a6ad8; color: #d8c8ff; }
+.pip.realm-pip.boss { border-color: #ff6a4a; color: #ffb0a0; }
+.pip.realm-pip.hidden { display: none; }
+
+/* v5.7 shooter levels (js/modes.js): no minimap, FIRE on the big button, PULL only for Rune Rocks */
+#stage.mode-play #minimap { display: none; }
+#stage.mode-play #btn-shutter { display: none; }
+#stage.mode-play.mode-rocks #btn-shutter { display: inline-block; }
+.realm-card.mode-card { border-color: rgba(255,210,110,.6); background: linear-gradient(135deg, rgba(40,30,8,.94), rgba(18,20,28,.94)); }

@@ -26,6 +26,24 @@
     "chill-4":       { file: "assets/music/chill-4.mp3",       name: "Chill Vibe 4 · lo-fi hip hop" },
     "jazz-1":        { file: "assets/music/jazz-1.mp3",        name: "Jazz Piano · upbeat" }
   };
+  /* v5.6: one track per realm of ten levels (the same files, some slowed or
+     sped up so a realm has its own feel), and the boss track on every tenth
+     level. Not listed in the picker; "Surprise me" plays them. */
+  var REALM_TRACKS = [
+    { key: "realm-midgard",      file: "gloomy-piano",  rate: 1.00, name: "Midgard" },
+    { key: "realm-niflheim",     file: "gloomy-piano",  rate: 0.84, name: "Niflheim" },
+    { key: "realm-jotunheim",    file: "electricity",   rate: 0.90, name: "Jotunheim" },
+    { key: "realm-muspelheim",   file: "electricity",   rate: 1.10, name: "Muspelheim" },
+    { key: "realm-svartalfheim", file: "electricity",   rate: 0.80, name: "Svartalfheim" },
+    { key: "realm-vanaheim",     file: "spring-forest", rate: 1.00, name: "Vanaheim" },
+    { key: "realm-alfheim",      file: "spring-forest", rate: 1.12, name: "Alfheim" },
+    { key: "realm-helheim",      file: "gloomy-piano",  rate: 0.76, name: "Helheim" },
+    { key: "realm-asgard",       file: "gloomy-piano",  rate: 1.12, name: "Asgard" },
+    { key: "realm-ragnarok",     file: "boss-fight",    rate: 0.90, name: "Ragnarok" }
+  ];
+  var VARIANTS = {};
+  REALM_TRACKS.forEach(function (r) { VARIANTS[r.key] = { file: "assets/music/" + r.file + ".mp3", name: r.name, rate: r.rate }; });
+  function trackDef(key) { return TRACKS[key] || VARIANTS[key] || null; }
   /* Role aliases accepted by play(): the title screen, the builder, and the chase override. */
   var ROLES = { menu: "chill-1", builder: "jazz-1", chase: "boss-fight" };
   var CHASE_KEY = ROLES.chase;
@@ -108,9 +126,15 @@
     try {
       ch.el.pause();
       ch.key = key; ch.level = 0; ch.dur = 0; ch.done = null;
-      ch.el.src = TRACKS[key].file;
+      ch.el.src = trackDef(key).file;
       ch.el.loop = true;
       ch.el.load();
+      /* load() resets the rate, so set it afterwards; pitch follows the rate */
+      try {
+        var rate = trackDef(key).rate || 1;
+        ch.el.preservesPitch = false; ch.el.mozPreservesPitch = false; ch.el.webkitPreservesPitch = false;
+        ch.el.defaultPlaybackRate = rate; ch.el.playbackRate = rate;
+      } catch (eR) {}
       return true;
     } catch (e) { onDead(ch); return false; }
   }
@@ -172,7 +196,7 @@
   function resolve(key) {
     var i, start, k;
     if (ROLES[key]) key = ROLES[key];
-    if (!TRACKS[key]) { warn("unknown track key", key); return null; }
+    if (!trackDef(key)) { warn("unknown track key", key); return null; }
     if (!dead[key]) return key;
     if (key === CHASE_KEY) return null;
     start = CALM_CYCLE.indexOf(key);
@@ -186,7 +210,7 @@
     var key = ch.key;
     if (!key || dead[key]) return;
     dead[key] = true;
-    warn("track failed to load, skipping: " + key, TRACKS[key] && TRACKS[key].file);
+    warn("track failed to load, skipping: " + key, trackDef(key) && trackDef(key).file);
     silence(ch); ch.key = null;
     /* Fall back on a fresh tick: right after the "error" event the browser
        rejects this element's pending play() promises, so a play() issued
@@ -335,7 +359,8 @@
     if (pick !== "auto") return pick;
     n = Math.floor(Number(night));
     if (!(n > 0)) n = 1;
-    return SUSPENSE_CYCLE[Math.floor((n - 1) / 10) % SUSPENSE_CYCLE.length];
+    if (n % 10 === 0) return "boss-fight";
+    return REALM_TRACKS[Math.floor((n - 1) / 10) % REALM_TRACKS.length].key;
   }
 
   /* ── Mute button wiring ──────────────────────────────────────────────── */

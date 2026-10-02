@@ -5,91 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="dark" />
   <meta http-equiv="Cache-Control" content="no-cache" />
-  <title>SOL Lab · Virginia EOC Biology &amp; Algebra I</title>
-  <link rel="stylesheet" href="css/after-hours.css?v=6.1.0" />
-  <link rel="stylesheet" href="css/build.css?v=6.1.0" />
+  <title>SOL Lab · Virginia Algebra I</title>
+  <link rel="stylesheet" href="css/after-hours.css?v=1.0.0" />
+  <link rel="stylesheet" href="css/build.css?v=1.0.0" />
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/logo/favicon-64.png?v=1.0.0" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32.png?v=1.0.0" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/logo/favicon-180.png?v=1.0.0" />
 </head>
 <body>
   <div id="app">
     <section id="title-screen" class="screen">
-      <p class="kicker" id="title-kicker">Virginia EOC Biology SOL · 100 levels</p>
-      <h1>SOL Lab</h1>
-      <p class="tag">Pick a course, then tap a unit to choose your skill focus. Read the lab notes or the problem set in the side panel. Grab the matching letter. Walk it to EXIT · SAFE. The wolves do not know the answer — only you do.</p>
+      <p class="kicker" id="title-kicker">Virginia Algebra I SOL · 100 levels</p>
+      <h1 class="logo"><img src="assets/logo/sols-labyrinth-512.png?v=1.0.0" alt="Sol's Labyrinth — SOL Lab, Virginia Algebra I" width="512" height="512" /></h1>
+      <p class="ver">SOL Lab · Algebra I · v1.0.0</p>
+      <p class="tag">Tap a strand to pick your skill focus. Read the problem set in the side panel. Grab the matching letter. Walk it to EXIT · SAFE. The wolves do not know the answer — only you do.</p>
       <p id="save-line" class="save-line">No level saved on this Chromebook yet.</p>
-
-      <div class="chips course-tabs" id="course-tabs" role="tablist" aria-label="Course">
-        <button type="button" class="chip selected" role="tab" aria-selected="true" data-course="BIO">Biology · EOC</button>
-        <button type="button" class="chip" role="tab" aria-selected="false" data-course="MATH">Algebra I · EOC</button>
-      </div>
 
       <div class="packs unit-packs">
         <button type="button" class="card selected" data-family="ALL">
-          <span class="kind">All units</span>
-          <span class="name">Full review</span>
-          <span class="meta">Every unit mixed, leaning toward the standards you miss most. Best in the last weeks before the test.</span>
-        </button>
-        <button type="button" class="card" data-family="INV">
-          <span class="kind">BIO.1</span>
-          <span class="name">Scientific Investigation</span>
-          <span class="meta">Variables, controls, data tables, graphs, conclusions and models.</span>
-        </button>
-        <button type="button" class="card" data-family="CHEM">
-          <span class="kind">BIO.2</span>
-          <span class="name">Biochemistry</span>
-          <span class="meta">Water, macromolecules, enzymes, photosynthesis and cellular respiration.</span>
-        </button>
-        <button type="button" class="card" data-family="CELL">
-          <span class="kind">BIO.3</span>
-          <span class="name">Cell Structure &amp; Function</span>
-          <span class="meta">Cell theory, organelles, the membrane and transport, specialization.</span>
-        </button>
-        <button type="button" class="card" data-family="MICRO">
-          <span class="kind">BIO.4</span>
-          <span class="name">Bacteria &amp; Viruses</span>
-          <span class="meta">Structure, replication, roles in ecosystems and the germ theory of disease.</span>
-        </button>
-        <button type="button" class="card" data-family="GEN">
-          <span class="kind">BIO.5</span>
-          <span class="name">Genetics &amp; Heredity</span>
-          <span class="meta">Meiosis, Mendel, Punnett squares, pedigrees, mutations and biotechnology.</span>
-        </button>
-        <button type="button" class="card" data-family="DNA">
-          <span class="kind">BIO.2 · BIO.5</span>
-          <span class="name">DNA &amp; Protein Synthesis</span>
-          <span class="meta">DNA structure and replication, transcription, translation and the history of the DNA model.</span>
-        </button>
-        <button type="button" class="card" data-family="EVO">
-          <span class="kind">BIO.6 · BIO.7</span>
-          <span class="name">Evolution &amp; Classification</span>
-          <span class="meta">Cladograms, domains and kingdoms, fossils, natural selection and speciation.</span>
-        </button>
-        <button type="button" class="card" data-family="ECO">
-          <span class="kind">BIO.8</span>
-          <span class="name">Ecology</span>
-          <span class="meta">Populations, food webs, nutrient cycles, succession, human impact and Virginia ecosystems.</span>
-        </button>
-        <!-- Algebra I (hidden until the Algebra I tab is picked) -->
-        <button type="button" class="card hidden" data-family="ALG">
           <span class="kind">All strands</span>
           <span class="name">Full review</span>
           <span class="meta">Every Algebra I strand mixed, leaning toward the standards you miss most. Best in the last weeks before the test.</span>
         </button>
-        <button type="button" class="card hidden" data-family="EO">
+        <button type="button" class="card" data-family="EO">
           <span class="kind">A.EO</span>
           <span class="name">Expressions &amp; Operations</span>
           <span class="meta">Writing and evaluating expressions, polynomials and factoring, laws of exponents, radicals.</span>
         </button>
-        <button type="button" class="card hidden" data-family="EI">
+        <button type="button" class="card" data-family="EI">
           <span class="kind">A.EI</span>
           <span class="name">Equations &amp; Inequalities</span>
           <span class="meta">Multistep equations and inequalities, literal equations, systems, quadratic equations.</span>
         </button>
-        <button type="button" class="card hidden" data-family="FN">
+        <button type="button" class="card" data-family="FN">
           <span class="kind">A.F</span>
           <span class="name">Functions</span>
           <span class="meta">Linear functions, slope and intercepts, function notation, quadratic and exponential functions.</span>
         </button>
-        <button type="button" class="card hidden" data-family="ST">
+        <button type="button" class="card" data-family="ST">
           <span class="kind">A.ST</span>
           <span class="name">Statistics</span>
           <span class="meta">The data cycle, scatterplots, lines and curves of best fit, predictions and their limits.</span>
@@ -112,7 +65,7 @@
 
       <p class="howto">
         <strong>100 levels of stealth extract — not a quiz skin.</strong>
-        Pick Biology or Algebra I, tap a unit, then choose a skill (or All) and start. Questions follow the Virginia Biology (BIO.1–BIO.8) or Algebra I (A.EO, A.EI, A.F, A.ST) Standards of Learning.
+        Tap a strand — then choose a skill (or All) and start. Questions follow the 2023 Virginia Algebra I Standards of Learning (A.EO, A.EI, A.F, A.ST).
         Move quiet, grab the right letter on the map, extract at EXIT · SAFE. Correct letters call Sol's CHARIOT.
         START · SAFE is where you spawn; EXIT · SAFE is where you extract and read. Hati cannot see you in either booth.
         Catches and wrong letters both cost a life; three (then two) end a level. Win to unlock the next level on this Chromebook.
@@ -150,7 +103,7 @@
       <aside id="hud">
         <div class="eoc">
           <div class="eoc-bar">
-            <p class="sol" id="job-sol">SOL · BIO.1.c</p>
+            <p class="sol" id="job-sol">SOL · A.EO.1.a</p>
             <p class="round" id="round-flag">Level 1 / 100</p>
             <div class="scores">
               <span class="pip gold" id="score-pip">Extracts 0 / 5</span>
@@ -252,12 +205,12 @@
     </div>
   </div>
 
-  <div id="read-overlay" class="hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Read the notes">
+  <div id="read-overlay" class="hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Read the problem set">
     <div class="read-card" id="read-card">
       <div class="read-head">
         <div>
           <p class="tut-kicker" id="read-kicker">Read first</p>
-          <h2 id="read-title">Lab notes</h2>
+          <h2 id="read-title">Problem set</h2>
         </div>
         <span class="read-pause">GAME PAUSED</span>
       </div>
@@ -291,25 +244,21 @@
     try { console.error("[SOL]", (e && e.message) || "error", e && e.error && e.error.stack ? e.error.stack : ""); } catch (x) {}
   });
   </script>
-  <script src="js/vendor/phaser.min.js?v=6.1.0"></script>
-  <script src="js/vendor/peerjs.min.js?v=6.1.0"></script>
-  <script src="js/content.js?v=6.1.0"></script>
-  <script src="js/content2.js?v=6.1.0"></script>
-  <script src="js/content3.js?v=6.1.0"></script>
-  <script src="js/content4.js?v=6.1.0"></script>
-  <script src="js/content5.js?v=6.1.0"></script>
-  <script src="js/content6.js?v=6.1.0"></script>
-  <script src="js/content7.js?v=6.1.0"></script>
-  <script src="js/content8.js?v=6.1.0"></script>
-  <script src="js/content9.js?v=6.1.0"></script>
-  <script src="js/content10.js?v=6.1.0"></script>
-  <script src="js/content11.js?v=6.1.0"></script>
-  <script src="js/content12.js?v=6.1.0"></script>
-  <script src="js/content13.js?v=6.1.0"></script>
-  <script src="js/audio.js?v=6.1.0"></script>
-  <script src="js/music.js?v=6.1.0"></script>
-  <script src="js/net.js?v=6.1.0"></script>
-  <script src="js/build.js?v=6.1.0"></script>
-  <script src="js/game.js?v=6.1.0"></script>
+  <script src="js/vendor/phaser.min.js?v=1.0.0"></script>
+  <script src="js/vendor/peerjs.min.js?v=1.0.0"></script>
+  <script src="js/content.js?v=1.0.0"></script>
+  <script src="js/content2.js?v=1.0.0"></script>
+  <script src="js/content3.js?v=1.0.0"></script>
+  <script src="js/content4.js?v=1.0.0"></script>
+  <script src="js/content5.js?v=1.0.0"></script>
+  <script src="js/audio.js?v=1.0.0"></script>
+  <script src="js/music.js?v=1.0.0"></script>
+  <script src="js/net.js?v=1.0.0"></script>
+  <script src="js/vendor/three.min.js?v=1.0.0"></script>
+  <script src="js/build3d.js?v=1.0.0"></script>
+  <script src="js/build.js?v=1.0.0"></script>
+  <script src="js/realms.js?v=1.0.0"></script>
+  <script src="js/modes.js?v=1.0.0"></script>
+  <script src="js/game.js?v=1.0.0"></script>
 </body>
 </html>

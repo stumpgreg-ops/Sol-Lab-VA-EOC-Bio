@@ -1,925 +1,865 @@
-/* SOL Lab — Bacteria & Viruses (BIO.4). Original text only. */
+/* SOL Lab — Algebra I · Statistics: the data cycle with bivariate data (A.ST). Original data only.
+   Stems are plain text; the stimulus may use HTML. */
 (function (global) {
   var P = global.HEIST_PACKS;
   if (!P || !P.push) return;
   var N = function (i) { return '<span class="n">(' + i + ')</span> '; };   // numbered sentence
 
   var PACKS = [
-    /* ---------------------------------------------------------------- tiny (40–70 words) */
+
+    /* ---------- tiny · level 1 · A.ST.1 e–g ---------- */
     {
-      id: "micro-alive-checklist",
-      family: "MICRO",
-      title: "Is It a Cell?",
-      kind: "Bacteria & Viruses · BIO.4",
-      blurb: "A class compares a bacterium and a virus feature by feature.",
+      id: "st-study-hours",
+      family: "ST",
+      title: "Study Hours and Quiz Scores",
+      kind: "Statistics · A.ST.1",
+      blurb: "Hours studied against quiz score, with a line of best fit.",
       level: 1,
-      passage: "<p>" + N(1) + "A biology class was asked to decide whether a bacterium and a virus each count as a living cell. " + N(2) + "Students compared the two using a <strong>checklist</strong> of features and recorded what they found. " + N(3) + "Each row of the table says whether the feature is present.</p>" +
-        "<table><tr><th>Feature</th><th>Bacterium</th><th>Virus</th></tr>" +
-        "<tr><td>Ribosomes</td><td>Yes</td><td>No</td></tr>" +
-        "<tr><td>Own metabolism</td><td>Yes</td><td>No</td></tr>" +
-        "<tr><td>Genetic material</td><td>Yes</td><td>Yes</td></tr>" +
-        "<tr><td>Cell wall</td><td>Yes</td><td>No</td></tr>" +
-        "<tr><td>Protein capsid</td><td>No</td><td>Yes</td></tr>" +
-        "<tr><td>Size</td><td>2 µm</td><td>0.1 µm</td></tr></table>" +
-        "<p>" + N(4) + "The class concluded that only the bacterium meets all the rules for a cell, while the virus must borrow what it lacks from a host.</p>",
+      passage: "<p>" + N(1) + "Six students recorded how many hours they studied for a quiz and their scores. " + N(2) + "Using technology, the class found the <strong>line of best fit</strong> y = 6x + 58, where x is hours and y is the score.</p>" +
+        "<table><tr><th>Hours</th><th>1</th><th>2</th><th>2</th><th>3</th><th>4</th><th>5</th></tr><tr><th>Score</th><td>62</td><td>72</td><td>68</td><td>78</td><td>80</td><td>90</td></tr></table>",
       claims: [
         {
-          id: "capsid-only",
-          sol: "BIO.4.c",
-          stem: "Based on the table, which structure is found in the virus but not in the bacterium?",
+          id: "direction",
+          sol: "A.ST.1.f",
+          stem: "Which statement describes the relationship in the scatterplot?",
           choices: [
-            { letter: "A", text: "ribosomes" },
-            { letter: "B", text: "protein capsid" },
-            { letter: "C", text: "cell wall" },
-            { letter: "D", text: "genetic material" }
+            { letter: "A", text: "a negative association: more hours, lower scores" },
+            { letter: "B", text: "a positive association: more hours, higher scores" },
+            { letter: "C", text: "no association between hours and scores" },
+            { letter: "D", text: "a quadratic pattern that rises and then falls" }
           ],
           correct: "B"
         },
         {
-          id: "no-proteins",
-          sol: "BIO.4.a",
-          stem: "Which row of the table best explains why a virus cannot build its own proteins?",
+          id: "explanatory",
+          sol: "A.ST.1.b",
+          stem: "In this investigation, which variable is the explanatory (independent) variable?",
           choices: [
-            { letter: "A", text: "Genetic material" },
-            { letter: "B", text: "Cell wall" },
-            { letter: "C", text: "Ribosomes" },
-            { letter: "D", text: "Size" }
+            { letter: "A", text: "the quiz score" },
+            { letter: "B", text: "the number of students" },
+            { letter: "C", text: "the number of hours studied" },
+            { letter: "D", text: "the line of best fit" }
           ],
           correct: "C"
         },
         {
-          id: "not-alive",
-          sol: "BIO.4.a",
-          stem: "Which statement best explains why the class decided the virus is not a living cell?",
+          id: "predict",
+          sol: "A.ST.1.g",
+          stem: "Using the line of best fit, what score is predicted for a student who studies 4 hours?",
           choices: [
-            { letter: "A", text: "It carries no genetic material of its own." },
-            { letter: "B", text: "It is too small to see with a light microscope." },
-            { letter: "C", text: "It has no cell wall, and every living thing needs one." },
-            { letter: "D", text: "It has no metabolism and cannot reproduce on its own." }
-          ],
-          correct: "D"
-        },
-        {
-          id: "checklist-vocab",
-          sol: "BIO.4.c",
-          stem: "In sentence 2, the checklist is best described as —",
-          choices: [
-            { letter: "A", text: "a list of features used to compare two things" },
-            { letter: "B", text: "a set of steps for growing bacteria on agar" },
-            { letter: "C", text: "a graph of how fast each organism grows" },
-            { letter: "D", text: "a hypothesis about which one causes disease" }
+            { letter: "A", text: "82" },
+            { letter: "B", text: "80" },
+            { letter: "C", text: "64" },
+            { letter: "D", text: "88" }
           ],
           correct: "A"
         },
         {
-          id: "size-ratio",
-          sol: "BIO.4.c",
-          stem: "Using the sizes in the table, about how many virus particles laid end to end would equal the length of one bacterium?",
+          id: "slope",
+          sol: "A.ST.1.e",
+          stem: "What does the slope 6 mean in context?",
           choices: [
-            { letter: "A", text: "2" },
-            { letter: "B", text: "10" },
-            { letter: "C", text: "20" },
-            { letter: "D", text: "200" }
-          ],
-          correct: "C"
-        }
-      ]
-    },
-    {
-      id: "micro-yogurt-culture",
-      family: "MICRO",
-      title: "Yogurt in a Jar",
-      kind: "Bacteria & Viruses · BIO.4",
-      blurb: "Live bacteria turn warm milk into yogurt while students track the pH.",
-      level: 1,
-      passage: "<p>" + N(1) + "A food science class made yogurt by stirring a spoonful of live culture into warm milk. " + N(2) + "The culture contained bacteria that feed on milk sugar and release lactic acid. " + N(3) + "Students measured the pH every two hours as the bacteria multiplied by <strong>binary fission</strong>.</p>" +
-        "<table><tr><th>Time (h)</th><th>pH</th><th>Texture</th></tr>" +
-        "<tr><td>0</td><td>6.6</td><td>liquid</td></tr>" +
-        "<tr><td>2</td><td>6.3</td><td>liquid</td></tr>" +
-        "<tr><td>4</td><td>5.4</td><td>slightly thick</td></tr>" +
-        "<tr><td>6</td><td>4.8</td><td>thick gel</td></tr></table>" +
-        "<p>" + N(4) + "A second jar made with culture that had been boiled first stayed at pH 6.6 and never thickened.</p>",
-      claims: [
-        {
-          id: "acid-thickens",
-          sol: "BIO.4.d",
-          stem: "Which conclusion do the pH readings in the table best support?",
-          choices: [
-            { letter: "A", text: "The bacteria raise the pH of the milk as they grow." },
-            { letter: "B", text: "Milk thickens on its own if it is kept warm long enough." },
-            { letter: "C", text: "Boiling the culture is what causes yogurt to form." },
-            { letter: "D", text: "Acid released by the bacteria makes the milk thicken." }
-          ],
-          correct: "D"
-        },
-        {
-          id: "fission-vocab",
-          sol: "BIO.4.b",
-          stem: "In sentence 3, binary fission means the bacteria —",
-          choices: [
-            { letter: "A", text: "exchange plasmids through a pilus" },
-            { letter: "B", text: "split into two identical cells" },
-            { letter: "C", text: "burst open to release new viruses" },
-            { letter: "D", text: "join together to form a spore" }
-          ],
-          correct: "B"
-        },
-        {
-          id: "boiled-control",
-          sol: "BIO.4.d",
-          stem: "The jar made with boiled culture served as —",
-          choices: [
-            { letter: "A", text: "the independent variable in the investigation" },
-            { letter: "B", text: "a control showing that live bacteria are needed" },
-            { letter: "C", text: "a second trial using a different kind of milk" },
-            { letter: "D", text: "a test of whether the milk sugar had run out" }
-          ],
-          correct: "B"
-        },
-        {
-          id: "helpful-role",
-          sol: "BIO.4.d",
-          stem: "Which statement best describes the role of the bacteria in this investigation?",
-          choices: [
-            { letter: "A", text: "They are pathogens that spoil the milk." },
-            { letter: "B", text: "They are decomposers breaking down the jar." },
-            { letter: "C", text: "They are helpful microbes used to make a food." },
-            { letter: "D", text: "They are viruses that infect the milk cells." }
-          ],
-          correct: "C"
-        },
-        {
-          id: "biggest-drop",
-          sol: "BIO.4.d",
-          stem: "Between which two measurements did the pH drop the most?",
-          choices: [
-            { letter: "A", text: "2 h and 4 h" },
-            { letter: "B", text: "0 h and 2 h" },
-            { letter: "C", text: "4 h and 6 h" },
-            { letter: "D", text: "the pH dropped by the same amount each time" }
-          ],
-          correct: "A"
-        }
-      ]
-    },
-    {
-      id: "micro-phage-plaques",
-      family: "MICRO",
-      title: "Clear Spots on the Lawn",
-      kind: "Bacteria & Viruses · BIO.4",
-      blurb: "A bacteriophage leaves holes in a lawn of bacteria, but only where there are cells to infect.",
-      level: 2,
-      passage: "<p>" + N(1) + "A student spread a lawn of <em>Escherichia coli</em> on an agar plate and added a drop of liquid containing a <strong>bacteriophage</strong>, a virus that infects only bacteria. " + N(2) + "A day later the lawn was cloudy except for clear spots where cells had burst. " + N(3) + "Each phage is about 20 times smaller than a cell. " + N(4) + "A second plate given phage but no bacteria stayed clear, and its phage count did not change.</p>",
-      claims: [
-        {
-          id: "no-host-no-copies",
-          sol: "BIO.4.a",
-          stem: "Which statement best explains why the phage count did not change on the second plate?",
-          choices: [
-            { letter: "A", text: "The phage needs a host cell to make copies of itself." },
-            { letter: "B", text: "The phage died because the agar contained no sugar." },
-            { letter: "C", text: "The phage was too small to be counted accurately." },
-            { letter: "D", text: "The phage reproduces by binary fission very slowly." }
+            { letter: "A", text: "Each extra hour of study is associated with about 6 more points." },
+            { letter: "B", text: "Students who do not study score about 6 points." },
+            { letter: "C", text: "Six students took the quiz." },
+            { letter: "D", text: "The highest possible score is 6 points above 58." }
           ],
           correct: "A"
         },
         {
-          id: "clear-spots",
-          sol: "BIO.4.b",
-          stem: "The clear spots on the first plate are best explained by —",
+          id: "intercept",
+          sol: "A.ST.1.e",
+          stem: "What does the y-intercept 58 represent?",
           choices: [
-            { letter: "A", text: "bacteria dividing faster where the drop landed" },
-            { letter: "B", text: "the phage entering cells and bursting them open" },
-            { letter: "C", text: "the agar drying out near the centre of the plate" },
-            { letter: "D", text: "bacteria taking in the phage particles as food" }
-          ],
-          correct: "B"
-        },
-        {
-          id: "phage-vocab",
-          sol: "BIO.4.c",
-          stem: "In sentence 1, a bacteriophage is best described as —",
-          choices: [
-            { letter: "A", text: "a bacterium that feeds on other bacteria" },
-            { letter: "B", text: "a plasmid that carries resistance genes" },
-            { letter: "C", text: "a virus that infects bacterial cells" },
-            { letter: "D", text: "a cell that has no nucleus" }
-          ],
-          correct: "C"
-        },
-        {
-          id: "borrowed-ribosomes",
-          sol: "BIO.4.a",
-          stem: "Which structure does the phage lack and therefore must use from the host cell?",
-          choices: [
-            { letter: "A", text: "genetic material" },
-            { letter: "B", text: "a protein coat" },
-            { letter: "C", text: "tail fibres" },
-            { letter: "D", text: "ribosomes" }
+            { letter: "A", text: "the score gained per hour of study" },
+            { letter: "B", text: "the number of hours needed to pass" },
+            { letter: "C", text: "the average score of the six students" },
+            { letter: "D", text: "the predicted score for a student who studies 0 hours" }
           ],
           correct: "D"
         }
       ]
     },
 
-    /* ---------------------------------------------------------------- short (70–110 words) */
+    /* ---------- tiny · level 1 · A.ST.1 a–d ---------- */
     {
-      id: "micro-handwashing-clinic",
-      family: "MICRO",
-      title: "The Hand-Washing Rule",
-      kind: "Bacteria & Viruses · BIO.4",
-      blurb: "A clinic tracks wound infections before and after staff must wash their hands.",
+      id: "st-snow-cones",
+      family: "ST",
+      title: "Snow Cones and the Thermometer",
+      kind: "Statistics · A.ST.1",
+      blurb: "Planning a data investigation: question, variables, sample and graph.",
       level: 1,
-      passage: "<p>" + N(1) + "A small clinic noticed that many patients who came in for minor surgery developed wound infections afterwards. " + N(2) + "The clinic manager suspected that <strong>pathogens</strong>, disease-causing microbes, were being carried from one patient to the next on the hands of staff. " + N(3) + "Starting in March, every staff member was required to wash with soap and water before touching any patient. " + N(4) + "Nothing else about the clinic changed. " + N(5) + "The table shows the number of surgeries and wound infections each month.</p>" +
-        "<table><tr><th>Month</th><th>Surgeries</th><th>Infections</th><th>Rate (%)</th></tr>" +
-        "<tr><td>January</td><td>80</td><td>12</td><td>15</td></tr>" +
-        "<tr><td>February</td><td>75</td><td>12</td><td>16</td></tr>" +
-        "<tr><td>March</td><td>82</td><td>5</td><td>6</td></tr>" +
-        "<tr><td>April</td><td>78</td><td>3</td><td>4</td></tr></table>" +
-        "<p>" + N(6) + "The manager also swabbed unwashed hands and grew colonies of bacteria from every sample.</p>",
+      passage: "<p>" + N(1) + "Jaylen runs a snow-cone stand at the town pool. " + N(2) + "He thinks he sells more on hotter days and wants to plan the <strong>data cycle</strong>: ask a question, collect data, make a graph, and draw a conclusion. " + N(3) + "The pool is open every day from June to August.</p>",
       claims: [
         {
-          id: "rate-fell",
-          sol: "BIO.4.e",
-          stem: "Which conclusion do the data in the table best support?",
+          id: "question",
+          sol: "A.ST.1.a",
+          stem: "Which is the best investigative question for Jaylen's study?",
           choices: [
-            { letter: "A", text: "Infections dropped after hand-washing became required." },
-            { letter: "B", text: "Fewer patients had surgery once hand-washing began." },
-            { letter: "C", text: "Hand-washing removed every pathogen from the clinic." },
-            { letter: "D", text: "The infections were caused by cold winter weather." }
-          ],
-          correct: "A"
-        },
-        {
-          id: "colonies-evidence",
-          sol: "BIO.4.e",
-          stem: "Which observation gives the most direct evidence that microbes were being carried on hands?",
-          choices: [
-            { letter: "A", text: "The rate was higher in February than in January." },
-            { letter: "B", text: "Bacterial colonies grew from every unwashed hand." },
-            { letter: "C", text: "The number of surgeries stayed about the same." },
-            { letter: "D", text: "The clinic changed nothing else in March." }
+            { letter: "A", text: "What was the high temperature at the pool on July 4?" },
+            { letter: "B", text: "Is there a relationship between the day's high temperature and snow cones sold?" },
+            { letter: "C", text: "How many snow cones did Jaylen sell over the whole summer?" },
+            { letter: "D", text: "Which flavor of snow cone is the most popular at the pool?" }
           ],
           correct: "B"
         },
         {
-          id: "pathogen-vocab",
-          sol: "BIO.4.e",
-          stem: "In sentence 2, a pathogen is —",
+          id: "variables",
+          sol: "A.ST.1.b",
+          stem: "Which pair of variables should Jaylen record each day?",
           choices: [
-            { letter: "A", text: "any microbe that lives on the skin" },
-            { letter: "B", text: "a chemical in soap that kills germs" },
-            { letter: "C", text: "a microbe that causes disease" },
-            { letter: "D", text: "a patient who carries an infection" }
+            { letter: "A", text: "the date and the pool's opening time" },
+            { letter: "B", text: "the number of lifeguards and the number of swimmers" },
+            { letter: "C", text: "the high temperature and the number of snow cones sold" },
+            { letter: "D", text: "the price of a snow cone and the color of the sky" }
           ],
           correct: "C"
         },
         {
-          id: "nothing-else",
-          sol: "BIO.4.e",
-          stem: "Why is sentence 4 important to the investigation?",
+          id: "sample",
+          sol: "A.ST.1.c",
+          stem: "Which sample of days would give the most representative data?",
           choices: [
-            { letter: "A", text: "It shows that the sample size was large enough." },
-            { letter: "B", text: "It proves that soap works better than alcohol gel." },
-            { letter: "C", text: "It explains why the rate rose in February." },
-            { letter: "D", text: "It rules out other causes for the drop in infections." }
+            { letter: "A", text: "the ten hottest days of the summer" },
+            { letter: "B", text: "every day of one rainy week in June" },
+            { letter: "C", text: "only the days when the pool held a swim meet" },
+            { letter: "D", text: "twenty days chosen at random from the whole summer" }
           ],
           correct: "D"
         },
         {
-          id: "predict-may",
-          sol: "BIO.4.e",
-          stem: "If the April rate continued and the clinic performed 100 surgeries in May, about how many wound infections would be expected?",
+          id: "plot",
+          sol: "A.ST.1.d",
+          stem: "How should Jaylen set up his scatterplot?",
           choices: [
-            { letter: "A", text: "4" },
-            { letter: "B", text: "12" },
-            { letter: "C", text: "16" },
-            { letter: "D", text: "40" }
-          ],
-          correct: "A"
-        }
-      ]
-    },
-    {
-      id: "micro-antibiotic-discs",
-      family: "MICRO",
-      title: "One Disc, Two Microbes",
-      kind: "Bacteria & Viruses · BIO.4",
-      blurb: "An antibiotic disc is tested against a bacterium and a virus side by side.",
-      level: 2,
-      passage: "<p>" + N(1) + "A student tested whether an <strong>antibiotic</strong> could stop the growth of two microbes: a bacterium taken from spoiled soup and a cold virus grown in a thin layer of animal cells. " + N(2) + "Each sample was spread on its own dish, and a paper disc soaked in the antibiotic was placed in the centre. " + N(3) + "After two days the student measured the clear ring around each disc where nothing grew. " + N(4) + "A disc soaked in plain water was placed on a third dish of the bacterium.</p>" +
-        "<table><tr><th>Dish</th><th>Sample</th><th>Disc</th><th>Clear ring (mm)</th></tr>" +
-        "<tr><td>1</td><td>Bacterium</td><td>Antibiotic</td><td>18</td></tr>" +
-        "<tr><td>2</td><td>Virus in animal cells</td><td>Antibiotic</td><td>0</td></tr>" +
-        "<tr><td>3</td><td>Bacterium</td><td>Water</td><td>0</td></tr></table>" +
-        "<p>" + N(5) + "The antibiotic works by blocking the enzyme that builds the bacterial cell wall.</p>",
-      claims: [
-        {
-          id: "disc-result",
-          sol: "BIO.4.e",
-          stem: "Which conclusion do the clear-ring results in the table best support?",
-          choices: [
-            { letter: "A", text: "The antibiotic stopped the virus but not the bacterium." },
-            { letter: "B", text: "The antibiotic stopped the bacterium but not the virus." },
-            { letter: "C", text: "Water was as effective as the antibiotic on the bacterium." },
-            { letter: "D", text: "The virus killed the animal cells before the disc could act." }
-          ],
-          correct: "B"
-        },
-        {
-          id: "no-wall",
-          sol: "BIO.4.c",
-          stem: "Which statement best explains why the antibiotic had no effect on the virus?",
-          choices: [
-            { letter: "A", text: "Viruses have no cell wall for the antibiotic to attack." },
-            { letter: "B", text: "Viruses are too large for the drug to get inside them." },
-            { letter: "C", text: "The animal cells absorbed all of the antibiotic first." },
-            { letter: "D", text: "The virus had already become resistant to the drug." }
+            { letter: "A", text: "temperature on the horizontal axis, snow cones sold on the vertical axis, one point per day" },
+            { letter: "B", text: "snow cones sold on the horizontal axis, temperature on the vertical axis, one bar per week" },
+            { letter: "C", text: "days on the horizontal axis and both variables stacked on the vertical axis" },
+            { letter: "D", text: "a circle graph showing the share of sales on hot days" }
           ],
           correct: "A"
         },
         {
-          id: "water-disc",
-          sol: "BIO.4.e",
-          stem: "Dish 3 was included in order to —",
+          id: "extrapolate",
+          sol: "A.ST.1.g",
+          stem: "Jaylen's line of best fit predicts 190 snow cones for a 120°F day. Why is this prediction unreasonable?",
           choices: [
-            { letter: "A", text: "test whether plain water can kill viruses" },
-            { letter: "B", text: "give the bacteria extra moisture to grow" },
-            { letter: "C", text: "measure how quickly the bacteria divide" },
-            { letter: "D", text: "show that the paper disc alone does not stop growth" }
-          ],
-          correct: "D"
-        },
-        {
-          id: "flu-misconception",
-          sol: "BIO.4.e",
-          stem: "A classmate says this antibiotic should also cure the flu. Which response is most accurate?",
-          choices: [
-            { letter: "A", text: "Yes, because antibiotics kill every kind of microbe." },
-            { letter: "B", text: "Yes, as long as a large enough dose is taken." },
-            { letter: "C", text: "No, because the flu is caused by a virus, not a bacterium." },
-            { letter: "D", text: "No, because the flu is caused by a fungus, not a bacterium." }
-          ],
-          correct: "C"
-        },
-        {
-          id: "soup-role",
-          sol: "BIO.4.d",
-          stem: "The bacteria growing in the spoiled soup were acting as —",
-          choices: [
-            { letter: "A", text: "pathogens infecting a living host" },
-            { letter: "B", text: "decomposers breaking down food" },
-            { letter: "C", text: "producers making their own food" },
-            { letter: "D", text: "nitrogen fixers living in the soil" }
-          ],
-          correct: "B"
-        },
-        {
-          id: "antibiotic-vocab",
-          sol: "BIO.4.e",
-          stem: "In sentence 1, an antibiotic is best described as —",
-          choices: [
-            { letter: "A", text: "a chemical that kills bacteria or stops their growth" },
-            { letter: "B", text: "a vaccine that trains the body to fight infection" },
-            { letter: "C", text: "a virus that infects and destroys bacterial cells" },
-            { letter: "D", text: "a protein made by the body to attack viruses" }
-          ],
-          correct: "A"
-        }
-      ]
-    },
-    {
-      id: "micro-bacteria-jobs",
-      family: "MICRO",
-      title: "Four Sealed Samples",
-      kind: "Bacteria & Viruses · BIO.4",
-      blurb: "Students match four bacterial samples to the jobs the bacteria are doing.",
-      level: 1,
-      passage: "<p>" + N(1) + "A teacher set out four sealed samples and asked students to match each to the role its bacteria play. " + N(2) + "Sample W was soil from a creek bank where a boat had leaked diesel; its bacteria were breaking the fuel into carbon dioxide and water, a process called <strong>bioremediation</strong>. " + N(3) + "Sample X was a flask of engineered bacteria carrying a human gene and producing insulin for people with diabetes. " + N(4) + "Sample Y was a rotting log from the Blue Ridge, full of decomposers. " + N(5) + "Sample Z was a swab from a healthy person's gut, where bacteria help digest food and make vitamins. " + N(6) + "Every sample contained cells with a cell wall and no nucleus.</p>" +
-        "<table><tr><th>Sample</th><th>Source</th><th>Role</th></tr>" +
-        "<tr><td>W</td><td>Diesel-soaked soil</td><td>Bioremediation</td></tr>" +
-        "<tr><td>X</td><td>Engineered culture</td><td>Making insulin</td></tr>" +
-        "<tr><td>Y</td><td>Rotting log</td><td>Decomposition</td></tr>" +
-        "<tr><td>Z</td><td>Human gut</td><td>Digestion and vitamins</td></tr></table>",
-      claims: [
-        {
-          id: "biotech-sample",
-          sol: "BIO.4.d",
-          stem: "Which sample shows bacteria being used in biotechnology?",
-          choices: [
-            { letter: "A", text: "Sample W" },
-            { letter: "B", text: "Sample X" },
-            { letter: "C", text: "Sample Y" },
-            { letter: "D", text: "Sample Z" }
-          ],
-          correct: "B"
-        },
-        {
-          id: "bioremediation-vocab",
-          sol: "BIO.4.d",
-          stem: "In sentence 2, bioremediation means —",
-          choices: [
-            { letter: "A", text: "using microbes to clean up pollution" },
-            { letter: "B", text: "treating an infection with antibiotics" },
-            { letter: "C", text: "recycling nutrients from dead plants" },
-            { letter: "D", text: "adding bacteria to milk to make cheese" }
-          ],
-          correct: "A"
-        },
-        {
-          id: "log-role",
-          sol: "BIO.4.d",
-          stem: "Which statement best describes the role of the bacteria in sample Y?",
-          choices: [
-            { letter: "A", text: "They cause a disease that kills the tree." },
-            { letter: "B", text: "They fix nitrogen gas from the air." },
-            { letter: "C", text: "They break down dead matter, recycling nutrients." },
-            { letter: "D", text: "They produce insulin for the forest animals." }
-          ],
-          correct: "C"
-        },
-        {
-          id: "flask-growth",
-          sol: "BIO.4.b",
-          stem: "The engineered bacteria in sample X grew from a few cells into a full flask by —",
-          choices: [
-            { letter: "A", text: "conjugation with human cells" },
-            { letter: "B", text: "the lysogenic cycle" },
-            { letter: "C", text: "meiosis" },
-            { letter: "D", text: "binary fission" }
-          ],
-          correct: "D"
-        },
-        {
-          id: "prokaryote-clue",
-          sol: "BIO.4.c",
-          stem: "Sentence 6 tells the students that every sample contains —",
-          choices: [
-            { letter: "A", text: "eukaryotic cells" },
-            { letter: "B", text: "prokaryotic cells" },
-            { letter: "C", text: "virus particles" },
-            { letter: "D", text: "plant cells" }
-          ],
-          correct: "B"
-        },
-        {
-          id: "insulin-how",
-          sol: "BIO.4.d",
-          stem: "Which statement best explains why the bacteria in sample X can make a human protein?",
-          choices: [
-            { letter: "A", text: "Bacteria naturally produce insulin for their own use." },
-            { letter: "B", text: "The bacteria absorbed insulin from the growth medium." },
-            { letter: "C", text: "The bacteria use the inserted human gene to build the protein." },
-            { letter: "D", text: "Human cells were mixed into the culture with the bacteria." }
-          ],
-          correct: "C"
-        }
-      ]
-    },
-
-    /* ---------------------------------------------------------------- medium (110–160 words) */
-    {
-      id: "micro-lytic-lysogenic",
-      family: "MICRO",
-      title: "Hidden Phage, Sudden Burst",
-      kind: "Bacteria & Viruses · BIO.4",
-      blurb: "A model of the lytic and lysogenic cycles is tested with a flash of ultraviolet light.",
-      level: 2,
-      passage: "<p>" + N(1) + "A lab group built a model of how a <strong>bacteriophage</strong> reproduces inside a bacterial cell. " + N(2) + "The phage first attaches to the cell wall with its tail fibres and injects its DNA, leaving the protein <strong>capsid</strong> outside. " + N(3) + "In the <strong>lytic cycle</strong>, the phage DNA takes over the host's ribosomes and enzymes, hundreds of new phages are assembled, and the cell bursts within about 30 minutes. " + N(4) + "In the <strong>lysogenic cycle</strong>, the phage DNA instead joins the host chromosome and is copied each time the bacterium divides by binary fission, without harming the cell. " + N(5) + "Stress such as ultraviolet light can switch the hidden phage DNA into the lytic cycle. " + N(6) + "To test the model, the group infected a culture, split it into two flasks, and counted free phage particles over time, exposing one flask to UV light at 60 minutes.</p>" +
-        "<table><tr><th>Time (min)</th><th>Free phages, no UV</th><th>Free phages, UV at 60 min</th></tr>" +
-        "<tr><td>0</td><td>100</td><td>100</td></tr>" +
-        "<tr><td>30</td><td>120</td><td>120</td></tr>" +
-        "<tr><td>60</td><td>130</td><td>130</td></tr>" +
-        "<tr><td>90</td><td>140</td><td>9,000</td></tr>" +
-        "<tr><td>120</td><td>150</td><td>9,200</td></tr></table>" +
-        "<p>" + N(7) + "The slow rise without UV suggested that most infected cells were carrying the phage DNA silently.</p>",
-      claims: [
-        {
-          id: "uv-switch",
-          sol: "BIO.4.b",
-          stem: "Based on the table, what did the UV light most likely do?",
-          choices: [
-            { letter: "A", text: "Killed the phages so that fewer were free in the flask." },
-            { letter: "B", text: "Switched infected cells from the lysogenic to the lytic cycle." },
-            { letter: "C", text: "Caused the bacteria to divide faster and dilute the phages." },
-            { letter: "D", text: "Made the phages attach to the cell wall more tightly." }
-          ],
-          correct: "B"
-        },
-        {
-          id: "why-ribosomes",
-          sol: "BIO.4.a",
-          stem: "Which statement best explains why the phage needs the host's ribosomes?",
-          choices: [
-            { letter: "A", text: "Ribosomes copy the phage DNA into more DNA." },
-            { letter: "B", text: "Ribosomes cut the cell wall so the phage can enter." },
-            { letter: "C", text: "The phage has no ribosomes to build its capsid proteins." },
-            { letter: "D", text: "The phage uses the ribosomes to store energy." }
-          ],
-          correct: "C"
-        },
-        {
-          id: "lysogenic-vocab",
-          sol: "BIO.4.b",
-          stem: "In sentence 4, the lysogenic cycle is the stage in which the phage DNA —",
-          choices: [
-            { letter: "A", text: "is copied along with the host chromosome without bursting the cell" },
-            { letter: "B", text: "takes over the cell and assembles hundreds of phages at once" },
-            { letter: "C", text: "remains outside the cell, held in place by the tail fibres" },
-            { letter: "D", text: "is broken down by the host cell's protective enzymes" }
-          ],
-          correct: "A"
-        },
-        {
-          id: "capsid-outside",
-          sol: "BIO.4.c",
-          stem: "Which part of the phage stays outside the bacterium during infection?",
-          choices: [
-            { letter: "A", text: "the DNA" },
-            { letter: "B", text: "the ribosomes" },
-            { letter: "C", text: "the plasmid" },
-            { letter: "D", text: "the capsid" }
-          ],
-          correct: "D"
-        },
-        {
-          id: "slow-rise",
-          sol: "BIO.4.b",
-          stem: "Without UV, the count rose only from 100 to 150 over two hours. Which statement best explains this small rise?",
-          choices: [
-            { letter: "A", text: "A few infected cells went lytic while most stayed lysogenic." },
-            { letter: "B", text: "Every infected cell burst and released one new phage." },
-            { letter: "C", text: "The phages made copies of themselves in the liquid." },
-            { letter: "D", text: "The bacteria built new phages as a defence." }
-          ],
-          correct: "A"
-        },
-        {
-          id: "compare-reproduction",
-          sol: "BIO.4.b",
-          stem: "Which statement accurately compares how the bacterium and the phage make more of themselves?",
-          choices: [
-            { letter: "A", text: "Both divide by binary fission on their own." },
-            { letter: "B", text: "The bacterium divides on its own; the phage must use a host cell." },
-            { letter: "C", text: "The phage divides on its own; the bacterium must be infected first." },
-            { letter: "D", text: "Both need another cell's enzymes to reproduce." }
-          ],
-          correct: "B"
-        }
-      ]
-    },
-    {
-      id: "micro-clover-nodules",
-      family: "MICRO",
-      title: "Bumps on the Roots",
-      kind: "Bacteria & Viruses · BIO.4",
-      blurb: "Nitrogen-fixing bacteria in clover root nodules are put to the test in sterile sand.",
-      level: 2,
-      passage: "<p>" + N(1) + "A student noticed small bumps on the roots of clover growing in a pasture in the Shenandoah Valley. " + N(2) + "She learned that the bumps were <strong>root nodules</strong> housing <strong>nitrogen-fixing bacteria</strong>, which turn nitrogen gas from the air into ammonia the plant can use to build proteins. " + N(3) + "In return the plant supplies the bacteria with sugar. " + N(4) + "To test whether the bacteria really help the plant, she grew clover in sterilised sand with no nitrogen fertiliser. " + N(5) + "Half the pots were dusted with a powder containing the live bacteria; the other half received sterile powder. " + N(6) + "After six weeks she counted nodules and measured the dry mass of the plants.</p>" +
-        "<table><tr><th>Treatment</th><th>Pots</th><th>Nodules per plant</th><th>Dry mass (g)</th></tr>" +
-        "<tr><td>Live bacteria</td><td>6</td><td>24</td><td>1.8</td></tr>" +
-        "<tr><td>Sterile powder</td><td>6</td><td>0</td><td>0.6</td></tr></table>" +
-        "<p>" + N(7) + "Under the microscope the bacteria appeared as rod-shaped cells about 1 µm long with a cell wall but no nucleus. " + N(8) + "Some cells had a whip-like <strong>flagellum</strong> that they used to swim toward the root.</p>",
-      claims: [
-        {
-          id: "nodule-mass",
-          sol: "BIO.4.d",
-          stem: "Which conclusion about the clover is best supported by the table?",
-          choices: [
-            { letter: "A", text: "The bacteria caused a disease that shrank the plants." },
-            { letter: "B", text: "Clover with the bacteria grew larger than clover without them." },
-            { letter: "C", text: "The sterile powder supplied nitrogen to the plants." },
-            { letter: "D", text: "Nodules formed whether or not bacteria were present." }
-          ],
-          correct: "B"
-        },
-        {
-          id: "mutual-benefit",
-          sol: "BIO.4.d",
-          stem: "The relationship described in sentences 2 and 3 is one in which —",
-          choices: [
-            { letter: "A", text: "the bacteria harm the plant as pathogens" },
-            { letter: "B", text: "the plant decomposes the bacteria for food" },
-            { letter: "C", text: "both the plant and the bacteria benefit" },
-            { letter: "D", text: "the plant benefits and the bacteria are harmed" }
-          ],
-          correct: "C"
-        },
-        {
-          id: "why-sterile-sand",
-          sol: "BIO.4.d",
-          stem: "Why did the student use sterilised sand and no fertiliser?",
-          choices: [
-            { letter: "A", text: "So the only nitrogen available would be what the bacteria fixed." },
-            { letter: "B", text: "So the sand would hold more water around the roots." },
-            { letter: "C", text: "So the bacteria would grow faster in the pots." },
-            { letter: "D", text: "So the plants would all start with the same mass." }
-          ],
-          correct: "A"
-        },
-        {
-          id: "flagellum-vocab",
-          sol: "BIO.4.c",
-          stem: "In sentence 8, a flagellum is a structure used for —",
-          choices: [
-            { letter: "A", text: "attaching to other cells" },
-            { letter: "B", text: "swimming through liquid" },
-            { letter: "C", text: "building new proteins" },
-            { letter: "D", text: "storing the cell's DNA" }
-          ],
-          correct: "B"
-        },
-        {
-          id: "prokaryote-evidence",
-          sol: "BIO.4.c",
-          stem: "Sentence 7 shows that the bacteria are —",
-          choices: [
-            { letter: "A", text: "eukaryotic, because they have a cell wall" },
-            { letter: "B", text: "viruses, because they are so small" },
-            { letter: "C", text: "prokaryotic, because they lack a nucleus" },
-            { letter: "D", text: "fungi, because they are rod-shaped" }
-          ],
-          correct: "C"
-        },
-        {
-          id: "nodule-fission",
-          sol: "BIO.4.b",
-          stem: "The bacteria inside a nodule increase in number by —",
-          choices: [
-            { letter: "A", text: "the lytic cycle, bursting the root cells" },
-            { letter: "B", text: "meiosis, producing gametes" },
-            { letter: "C", text: "being built by the plant's ribosomes" },
-            { letter: "D", text: "binary fission, producing identical cells" }
-          ],
-          correct: "D"
-        }
-      ]
-    },
-    {
-      id: "micro-plasmid-resistance",
-      family: "MICRO",
-      title: "The Spreading Plasmid",
-      kind: "Bacteria & Viruses · BIO.4",
-      blurb: "A resistance gene on a plasmid spreads through two flasks, one with the antibiotic and one without.",
-      level: 3,
-      passage: "<p>" + N(1) + "A hospital lab tracked a strain of bacteria in which a small ring of DNA, a <strong>plasmid</strong>, carries a gene for resistance to the antibiotic cefrolin. " + N(2) + "Bacteria pass plasmids to neighbours through a bridge called a pilus in a process known as <strong>conjugation</strong>, so the gene can spread even to cells that were not born with it. " + N(3) + "The lab mixed resistant and non-resistant cells, divided the mixture into two flasks, and grew both for ten generations, adding cefrolin only to flask B.</p>" +
-        "<table><tr><th>Generation</th><th>Flask A (no drug), % resistant</th><th>Flask B (with drug), % resistant</th></tr>" +
-        "<tr><td>0</td><td>5</td><td>5</td></tr>" +
-        "<tr><td>4</td><td>9</td><td>62</td></tr>" +
-        "<tr><td>10</td><td>12</td><td>97</td></tr></table>" +
-        "<p>" + N(4) + "In flask B the drug killed most non-resistant cells, and the survivors divided by binary fission, each copying its plasmid. " + N(5) + "In flask A the slow rise came from conjugation alone. " + N(6) + "A later sample from flask B also carried a new <strong>mutation</strong> in a chromosomal gene that gave resistance to a second drug.</p>",
-      claims: [
-        {
-          id: "selection-97",
-          sol: "BIO.4.e",
-          stem: "Which statement best explains the rise to 97% resistant in flask B?",
-          choices: [
-            { letter: "A", text: "The drug caused the bacteria to mutate into resistant forms." },
-            { letter: "B", text: "The bacteria learned to resist the drug after repeated exposure." },
-            { letter: "C", text: "The drug switched on the resistance gene inside every cell." },
-            { letter: "D", text: "Resistant cells survived and reproduced while the others died." }
-          ],
-          correct: "D"
-        },
-        {
-          id: "flask-a-rise",
-          sol: "BIO.4.b",
-          stem: "Which statement best explains why the percentage rose in flask A even without the drug?",
-          choices: [
-            { letter: "A", text: "Non-resistant cells died of old age." },
-            { letter: "B", text: "Resistant cells reproduced much faster in the flask." },
-            { letter: "C", text: "Plasmids were passed to non-resistant cells by conjugation." },
-            { letter: "D", text: "The gene mutated in many cells at the same time." }
-          ],
-          correct: "C"
-        },
-        {
-          id: "conjugation-vocab",
-          sol: "BIO.4.b",
-          stem: "In sentence 2, conjugation is best described as —",
-          choices: [
-            { letter: "A", text: "a bacterium splitting into two identical daughter cells" },
-            { letter: "B", text: "the transfer of DNA from one bacterial cell to another" },
-            { letter: "C", text: "a virus inserting its DNA into a bacterial chromosome" },
-            { letter: "D", text: "a random change in a bacterium's DNA sequence" }
-          ],
-          correct: "B"
-        },
-        {
-          id: "variation-two",
-          sol: "BIO.4.b",
-          stem: "Select TWO processes described in the passage that are sources of genetic variation in bacteria.",
-          choices: [
-            { letter: "A", text: "conjugation" },
-            { letter: "B", text: "binary fission" },
-            { letter: "C", text: "mutation" },
-            { letter: "D", text: "the lytic cycle" }
-          ],
-          correct: ["A", "C"]
-        },
-        {
-          id: "plasmid-vs-chromosome",
-          sol: "BIO.4.c",
-          stem: "A plasmid differs from the bacterial chromosome because a plasmid —",
-          choices: [
-            { letter: "A", text: "is built from RNA instead of DNA" },
-            { letter: "B", text: "holds every gene the cell needs to live" },
-            { letter: "C", text: "is found only inside virus capsids" },
-            { letter: "D", text: "is a small extra ring that can be shared" }
-          ],
-          correct: "D"
-        },
-        {
-          id: "antibiotic-lesson",
-          sol: "BIO.4.e",
-          stem: "Which conclusion about antibiotic use is best supported by the data?",
-          choices: [
-            { letter: "A", text: "Antibiotics should be stopped after a single generation." },
-            { letter: "B", text: "Using an antibiotic selects for resistant bacteria in a population." },
-            { letter: "C", text: "Antibiotics cause plasmids to appear inside bacteria." },
-            { letter: "D", text: "Resistance disappears as soon as the drug is removed." }
+            { letter: "A", text: "Lines of best fit cannot be used for predictions." },
+            { letter: "B", text: "120°F is far outside his data, and the pool would likely be closed." },
+            { letter: "C", text: "The number 190 is not a whole number of snow cones." },
+            { letter: "D", text: "Sales always go down when it is hotter." }
           ],
           correct: "B"
         }
       ]
     },
 
-    /* ---------------------------------------------------------------- long (160–220 words) */
+    /* ---------- short · level 2 · A.ST.1 e–h ---------- */
     {
-      id: "micro-broth-flasks",
-      family: "MICRO",
-      title: "Four Flasks of Broth",
-      kind: "Bacteria & Viruses · BIO.4",
-      blurb: "A class rebuilds the bent-neck flask experiment that helped establish the germ theory.",
-      level: 3,
-      passage: "<p>" + N(1) + "Before the <strong>germ theory</strong> was accepted, many people believed that microbes appeared on their own inside spoiled food. " + N(2) + "A class repeated a classic experiment to test this idea. " + N(3) + "Four flasks were filled with clear meat broth, and three of them were boiled to kill any microbes already present. " + N(4) + "Flask 1 was then left open to the air. " + N(5) + "Flask 2 was sealed with a stopper. " + N(6) + "Flask 3 had a long neck bent into an S shape, so air could enter but dust and microbes settled in the bend and never reached the broth. " + N(7) + "Flask 4 was not boiled and was left open. " + N(8) + "The students checked each flask for cloudiness, a sign of microbial growth, after two days and after two weeks.</p>" +
-        "<table><tr><th>Flask</th><th>Treatment</th><th>2 days</th><th>2 weeks</th></tr>" +
-        "<tr><td>1</td><td>Boiled, open</td><td>Cloudy</td><td>Cloudy</td></tr>" +
-        "<tr><td>2</td><td>Boiled, sealed</td><td>Clear</td><td>Clear</td></tr>" +
-        "<tr><td>3</td><td>Boiled, S-neck</td><td>Clear</td><td>Clear</td></tr>" +
-        "<tr><td>4</td><td>Not boiled, open</td><td>Cloudy</td><td>Cloudy</td></tr></table>" +
-        "<p>" + N(9) + "When the students tipped flask 3 so the broth touched the dust in the bend, it turned cloudy within a day. " + N(10) + "The teacher explained that the same logic supports <strong>pasteurisation</strong>, in which milk is heated briefly to kill most microbes and then kept sealed and cold. " + N(11) + "To show that a particular microbe causes a particular disease, scientists later set out rules: the microbe must be found in every sick individual, be grown in pure culture, cause the same disease when given to a healthy host, and be recovered again from that host.</p>",
+      id: "st-used-cars",
+      family: "ST",
+      title: "Age and Price of Used Cars",
+      kind: "Statistics · A.ST.1",
+      blurb: "A negative association, an outlier, and an x-intercept that makes no sense.",
+      level: 2,
+      passage: "<p>" + N(1) + "A consumer class collected the age and asking price of 30 used cars of one model from online listings. " + N(2) + "The line of best fit is y = −1500x + 18000, where x is the age in years and y the price in dollars. " + N(3) + "Most points lie close to the line, but one 3-year-old car is listed at $4,000. " + N(4) + "The oldest car in the data is 9 years old.</p>",
       claims: [
         {
-          id: "air-not-broth",
-          sol: "BIO.4.e",
-          stem: "Which conclusion is best supported by the results for flasks 1, 2 and 3?",
+          id: "direction",
+          sol: "A.ST.1.f",
+          stem: "Which statement describes the association between age and price?",
           choices: [
-            { letter: "A", text: "Microbes appear on their own in any broth exposed to air." },
-            { letter: "B", text: "Boiling changes the broth so that microbes can no longer live in it." },
-            { letter: "C", text: "Microbes in the broth come from the air and dust, not from the broth itself." },
-            { letter: "D", text: "Sealing a flask causes microbes to form inside it." }
+            { letter: "A", text: "positive and strong" },
+            { letter: "B", text: "negative and strong" },
+            { letter: "C", text: "negative and weak" },
+            { letter: "D", text: "no association" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "predict",
+          sol: "A.ST.1.g",
+          stem: "What price does the line predict for a 5-year-old car?",
+          choices: [
+            { letter: "A", text: "$16,500" },
+            { letter: "B", text: "$7,500" },
+            { letter: "C", text: "$10,500" },
+            { letter: "D", text: "$12,000" }
           ],
           correct: "C"
         },
         {
-          id: "why-s-neck",
-          sol: "BIO.4.e",
-          stem: "Why was flask 3 the most important flask in the experiment?",
+          id: "slope",
+          sol: "A.ST.1.e",
+          stem: "What does the slope −1500 mean?",
           choices: [
-            { letter: "A", text: "It let air in but kept microbes out, separating the two explanations." },
-            { letter: "B", text: "It proved that boiling is unnecessary for keeping broth clear." },
-            { letter: "C", text: "It showed that microbes need fresh air in order to grow." },
-            { letter: "D", text: "It stayed clear because the broth inside it was never boiled." }
+            { letter: "A", text: "The predicted price drops about $1,500 per year of age." },
+            { letter: "B", text: "A brand-new car of this model costs $1,500." },
+            { letter: "C", text: "The oldest car in the data sells for $1,500." },
+            { letter: "D", text: "Fifteen hundred cars were included in the sample." }
           ],
           correct: "A"
         },
         {
-          id: "broth-decomposers",
-          sol: "BIO.4.d",
-          stem: "The microbes that clouded flasks 1 and 4 were breaking down the broth's proteins for energy. In nature this same activity makes many bacteria important as —",
+          id: "outlier",
+          sol: "A.ST.1.f",
+          stem: "The 3-year-old car listed at $4,000 is best described as —",
           choices: [
-            { letter: "A", text: "producers" },
-            { letter: "B", text: "nitrogen fixers" },
-            { letter: "C", text: "pathogens" },
-            { letter: "D", text: "decomposers" }
+            { letter: "A", text: "the y-intercept of the line" },
+            { letter: "B", text: "proof that the association is positive" },
+            { letter: "C", text: "a typical point, since the line predicts $4,000 at age 3" },
+            { letter: "D", text: "an outlier, far below the $13,500 the line predicts" }
           ],
           correct: "D"
         },
         {
-          id: "pasteurisation-vocab",
-          sol: "BIO.4.e",
-          stem: "In sentence 10, pasteurisation is best described as —",
+          id: "x-intercept",
+          sol: "A.ST.1.g",
+          stem: "The line reaches y = 0 at x = 12. Why should the class not conclude that a 12-year-old car is free?",
           choices: [
-            { letter: "A", text: "adding live bacteria to milk to make it thicker" },
-            { letter: "B", text: "sealing milk in bottles without heating it" },
-            { letter: "C", text: "heating milk briefly to kill most microbes" },
-            { letter: "D", text: "filtering milk through an S-shaped tube" }
+            { letter: "A", text: "Twelve years is beyond the oldest car in the data, so this is extrapolation." },
+            { letter: "B", text: "The slope should have been positive." },
+            { letter: "C", text: "The line of best fit is only valid at whole-number ages." },
+            { letter: "D", text: "A 12-year-old car would be worth more than a new one." }
+          ],
+          correct: "A"
+        }
+      ]
+    },
+
+    /* ---------- short · level 2 · A.ST.1 e ---------- */
+    {
+      id: "st-rocket-curve",
+      family: "ST",
+      title: "Curve of Best Fit for a Rocket",
+      kind: "Statistics · A.ST.1",
+      blurb: "Height data that rises and falls. Why a quadratic curve fits better than a line.",
+      level: 2,
+      passage: "<p>" + N(1) + "A physics class launched a water rocket and used a video to measure its height every half second. " + N(2) + "Plotted on a scatterplot, the points rise, level off and fall. " + N(3) + "Using technology, the class compared a linear fit and a quadratic fit and chose the <strong>quadratic curve of best fit</strong> h = −4.9t² + 19.6t + 0.5.</p>" +
+        "<table><tr><th>t (s)</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th></tr><tr><th>h (m)</th><td>0.5</td><td>15.1</td><td>20.3</td><td>15.4</td><td>0.6</td></tr></table>",
+      claims: [
+        {
+          id: "why-quadratic",
+          sol: "A.ST.1.e",
+          stem: "Why is a quadratic curve a better model than a line for these data?",
+          choices: [
+            { letter: "A", text: "The points rise and then fall, and a line cannot change direction." },
+            { letter: "B", text: "There are five data points, and a quadratic always fits five points exactly." },
+            { letter: "C", text: "The heights are measured in meters." },
+            { letter: "D", text: "A line would have a negative slope." }
+          ],
+          correct: "A"
+        },
+        {
+          id: "predict",
+          sol: "A.ST.1.g",
+          stem: "Using the curve, what height is predicted at t = 2 seconds?",
+          choices: [
+            { letter: "A", text: "39.7 m" },
+            { letter: "B", text: "20.1 m" },
+            { letter: "C", text: "10.3 m" },
+            { letter: "D", text: "29.9 m" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "peak",
+          sol: "A.ST.1.g",
+          stem: "About when does the model say the rocket reaches its greatest height?",
+          choices: [
+            { letter: "A", text: "t = 4 s, when it lands" },
+            { letter: "B", text: "t = 0 s, at launch" },
+            { letter: "C", text: "t = 2 s, at the vertex" },
+            { letter: "D", text: "t = 19.6 s, from the middle term" }
           ],
           correct: "C"
         },
         {
-          id: "postulates-two",
-          sol: "BIO.4.e",
-          stem: "A student wants to show that a particular bacterium causes a disease in fish at a Chesapeake Bay hatchery. Select TWO steps that follow the rules in sentence 11.",
+          id: "outside",
+          sol: "A.ST.1.h",
+          stem: "The curve gives h = −24 at t = 5 seconds. What should the class conclude?",
           choices: [
-            { letter: "A", text: "Grow the bacterium from a sick fish in pure culture." },
-            { letter: "B", text: "Show that healthy fish given the pure culture develop the disease." },
-            { letter: "C", text: "Treat the sick fish with antibiotics and see whether they recover." },
-            { letter: "D", text: "Count how many bacteria live in the hatchery water." }
+            { letter: "A", text: "The rocket goes underground after landing." },
+            { letter: "B", text: "The model does not apply after the rocket lands at about t = 4 s." },
+            { letter: "C", text: "The quadratic fit is wrong and a line should be used." },
+            { letter: "D", text: "The rocket was launched from 24 m below the ground." }
           ],
-          correct: ["A", "B"]
+          correct: "B"
         },
         {
-          id: "no-virus-broth",
-          sol: "BIO.4.a",
-          stem: "Which statement explains why this experiment could not be done with a virus in place of bacteria?",
+          id: "collect",
+          sol: "A.ST.1.d",
+          stem: "Which variable belongs on the horizontal axis of the scatterplot?",
           choices: [
-            { letter: "A", text: "Viruses are killed by air but not by boiling." },
-            { letter: "B", text: "Viruses cannot multiply in broth because it contains no living cells." },
-            { letter: "C", text: "Viruses are too large to pass through an S-shaped neck." },
-            { letter: "D", text: "Viruses make broth turn clear rather than cloudy." }
+            { letter: "A", text: "height, because it is what the class measured" },
+            { letter: "B", text: "the number of launches" },
+            { letter: "C", text: "the video frame rate" },
+            { letter: "D", text: "time, because height depends on time" }
+          ],
+          correct: "D"
+        }
+      ]
+    },
+
+    /* ---------- tiny · level 1 · A.ST.1 a–c ---------- */
+    {
+      id: "st-sleep-survey",
+      family: "ST",
+      title: "Planning a Sleep Survey",
+      kind: "Statistics · A.ST.1",
+      blurb: "The student council wants bivariate data on sleep. What should they ask and whom?",
+      level: 1,
+      passage: "<p>" + N(1) + "The student council wants to know whether students who ride the bus longer get less sleep. " + N(2) + "The school has 1,200 students in grades 9 through 12. " + N(3) + "The council can survey about 100 of them and wants results that represent the whole school.</p>",
+      claims: [
+        {
+          id: "question",
+          sol: "A.ST.1.a",
+          stem: "Which question requires bivariate data?",
+          choices: [
+            { letter: "A", text: "How many minutes do students spend on the bus?" },
+            { letter: "B", text: "How many students ride the bus?" },
+            { letter: "C", text: "Is bus ride time related to hours of sleep?" },
+            { letter: "D", text: "Do seniors sleep more than freshmen?" }
+          ],
+          correct: "C"
+        },
+        {
+          id: "variables",
+          sol: "A.ST.1.b",
+          stem: "Which two variables should each surveyed student report?",
+          choices: [
+            { letter: "A", text: "grade level and favorite subject" },
+            { letter: "B", text: "minutes on the bus and hours of sleep last night" },
+            { letter: "C", text: "bus number and homeroom teacher" },
+            { letter: "D", text: "hours of sleep and hours of homework" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "sample",
+          sol: "A.ST.1.c",
+          stem: "Which sampling method is most likely to represent the whole school?",
+          choices: [
+            { letter: "A", text: "surveying the first 100 students who arrive on one bus" },
+            { letter: "B", text: "surveying the entire football team" },
+            { letter: "C", text: "surveying 100 students whose names are drawn at random from the school roster" },
+            { letter: "D", text: "posting the survey online and using whoever answers first" }
+          ],
+          correct: "C"
+        },
+        {
+          id: "bias",
+          sol: "A.ST.1.c",
+          stem: "Why would surveying only students on one bus route give a poor sample?",
+          choices: [
+            { letter: "A", text: "Riders on one route have similar ride times, so bus time barely varies." },
+            { letter: "B", text: "One bus cannot hold 100 students at a time." },
+            { letter: "C", text: "Students who ride the bus never get enough sleep." },
+            { letter: "D", text: "The survey would take too long to hand out." }
+          ],
+          correct: "A"
+        },
+        {
+          id: "display",
+          sol: "A.ST.1.d",
+          stem: "After collecting the data, which display best shows whether the two variables are related?",
+          choices: [
+            { letter: "A", text: "a bar graph of the number of students in each grade" },
+            { letter: "B", text: "a scatterplot of bus minutes against sleep hours" },
+            { letter: "C", text: "a circle graph of favorite bus routes" },
+            { letter: "D", text: "a list of the 100 names" }
           ],
           correct: "B"
         }
       ]
     },
+
+    /* ---------- medium · level 2 · A.ST.1 e–h ---------- */
     {
-      id: "micro-vaccine-outbreak",
-      family: "MICRO",
-      title: "Outbreak at Two Schools",
-      kind: "Bacteria & Viruses · BIO.4",
-      blurb: "A health office compares illness rates in vaccinated and unvaccinated students during a viral outbreak.",
-      level: 3,
-      passage: "<p>" + N(1) + "A county health office investigated an outbreak of a viral illness that spread through two neighbouring high schools. " + N(2) + "The virus travels in droplets from coughs and, once inside a person, enters cells lining the throat and uses those cells' ribosomes and energy to make thousands of copies of itself. " + N(3) + "The virus is a strand of RNA inside a protein <strong>capsid</strong>, wrapped in a fatty <strong>envelope</strong> taken from the host cell membrane. " + N(4) + "Both schools had offered a <strong>vaccine</strong> in the autumn, which contains harmless pieces of the capsid protein so that the immune system learns to recognise the real virus and destroy it quickly. " + N(5) + "The table shows how many students in each group became ill.</p>" +
-        "<table><tr><th>Group</th><th>Students</th><th>Became ill</th><th>Rate (%)</th></tr>" +
-        "<tr><td>North HS, vaccinated</td><td>600</td><td>12</td><td>2</td></tr>" +
-        "<tr><td>North HS, unvaccinated</td><td>200</td><td>50</td><td>25</td></tr>" +
-        "<tr><td>South HS, vaccinated</td><td>300</td><td>6</td><td>2</td></tr>" +
-        "<tr><td>South HS, unvaccinated</td><td>500</td><td>120</td><td>24</td></tr></table>" +
-        "<p>" + N(6) + "The nurse also swabbed throats: the virus's RNA was detected in 96 of 100 swabs from ill students but in none of 100 swabs from healthy students. " + N(7) + "Several parents asked for antibiotics, but the office explained that antibiotics attack structures such as the bacterial cell wall, which this virus does not have. " + N(8) + "Instead, ill students were told to rest, and their healthy classmates were offered the vaccine.</p>",
+      id: "st-fertilizer-plants",
+      family: "ST",
+      title: "How Much Fertilizer?",
+      kind: "Statistics · A.ST.1",
+      blurb: "Plant growth rises with fertilizer, then drops. Choosing and using a quadratic fit.",
+      level: 2,
+      passage: "<p>" + N(1) + "An agriculture class grew tomato seedlings with different amounts of fertilizer, in grams per pot, and measured each plant's height after four weeks. " + N(2) + "The scatterplot rose at first, peaked, then fell as heavy fertilizer burned the roots. " + N(3) + "The class chose the quadratic curve of best fit <strong>h = −0.5g² + 6g + 12</strong>, where g is grams and h is height in centimeters. " + N(4) + "The data ran from 0 to 12 grams.</p>" +
+        "<table><tr><th>g</th><th>0</th><th>2</th><th>4</th><th>6</th><th>8</th><th>10</th><th>12</th></tr><tr><th>h (cm)</th><td>11</td><td>23</td><td>27</td><td>30</td><td>29</td><td>21</td><td>13</td></tr></table>",
       claims: [
         {
-          id: "vaccine-rate",
-          sol: "BIO.4.e",
-          stem: "Which conclusion do the rates in the table best support?",
+          id: "shape",
+          sol: "A.ST.1.f",
+          stem: "Which description of the relationship fits the data?",
           choices: [
-            { letter: "A", text: "The vaccine made students at both schools more likely to become ill." },
-            { letter: "B", text: "Vaccinated students became ill at a much lower rate than unvaccinated ones." },
-            { letter: "C", text: "South HS had a lower overall rate of illness than North HS did." },
-            { letter: "D", text: "The vaccine protected students at North HS but not at South HS." }
-          ],
-          correct: "B"
-        },
-        {
-          id: "swab-evidence",
-          sol: "BIO.4.e",
-          stem: "Which observation gives the strongest evidence that this particular virus caused the illness?",
-          choices: [
-            { letter: "A", text: "The outbreak spread through two schools at the same time." },
-            { letter: "B", text: "Several parents asked the office for antibiotics." },
-            { letter: "C", text: "The virus travels in droplets released by coughing." },
-            { letter: "D", text: "Viral RNA was found in ill students but not in healthy ones." }
-          ],
-          correct: "D"
-        },
-        {
-          id: "vaccine-vocab",
-          sol: "BIO.4.e",
-          stem: "In sentence 4, the vaccine works by —",
-          choices: [
-            { letter: "A", text: "killing the virus directly once it reaches the throat" },
-            { letter: "B", text: "forming a barrier that keeps the virus out of the body" },
-            { letter: "C", text: "training the immune system to recognise the virus before infection" },
-            { letter: "D", text: "replacing the throat cells that the virus has damaged" }
+            { letter: "A", text: "a linear positive association: more fertilizer, taller plants at every level" },
+            { letter: "B", text: "no association between fertilizer and height" },
+            { letter: "C", text: "a quadratic relationship: height rises to a peak near 6 grams and then falls" },
+            { letter: "D", text: "a linear negative association: more fertilizer, shorter plants" }
           ],
           correct: "C"
         },
         {
-          id: "not-alive-alone",
-          sol: "BIO.4.a",
-          stem: "Sentence 2 supports the idea that the virus is not alive on its own because the virus —",
+          id: "predict",
+          sol: "A.ST.1.g",
+          stem: "What height does the curve predict for 5 grams of fertilizer?",
           choices: [
-            { letter: "A", text: "cannot make copies without a host cell's ribosomes and energy" },
-            { letter: "B", text: "is spread by coughing rather than by direct touch" },
-            { letter: "C", text: "carries its genetic information as RNA rather than DNA" },
-            { letter: "D", text: "has an envelope that came from the host cell membrane" }
+            { letter: "A", text: "29.5 cm" },
+            { letter: "B", text: "42 cm" },
+            { letter: "C", text: "24.5 cm" },
+            { letter: "D", text: "54.5 cm" }
           ],
           correct: "A"
         },
         {
-          id: "why-no-antibiotics",
-          sol: "BIO.4.c",
-          stem: "Why was the office correct that antibiotics would not help the ill students?",
+          id: "best",
+          sol: "A.ST.1.g",
+          stem: "According to the model, which amount of fertilizer gives the greatest predicted height?",
           choices: [
-            { letter: "A", text: "Antibiotics only work in people who have already been vaccinated." },
-            { letter: "B", text: "The virus has no cell wall or other bacterial structure for the drug to target." },
-            { letter: "C", text: "Antibiotics attack the capsid, which the virus hides inside its envelope." },
-            { letter: "D", text: "The virus is too small for the antibiotic molecules to reach it." }
+            { letter: "A", text: "12 grams, the most fertilizer" },
+            { letter: "B", text: "6 grams, at the vertex of the curve" },
+            { letter: "C", text: "0 grams, because fertilizer burns roots" },
+            { letter: "D", text: "3 grams, half of 6" }
           ],
           correct: "B"
         },
         {
-          id: "vaccinate-healthy",
-          sol: "BIO.4.e",
-          stem: "Why did the office offer the vaccine to healthy classmates rather than to students who were already ill?",
+          id: "extrapolate",
+          sol: "A.ST.1.h",
+          stem: "A student uses the curve to predict the height for 20 grams and gets −68 cm. What is the best response?",
           choices: [
-            { letter: "A", text: "The vaccine cures the illness as soon as symptoms begin to appear." },
-            { letter: "B", text: "Healthy students carry a larger amount of the virus than ill ones." },
-            { letter: "C", text: "Vaccines take time to build immunity, so they protect people before exposure." },
-            { letter: "D", text: "The vaccine is a type of antibiotic that works only on healthy people." }
+            { letter: "A", text: "The plant would grow 68 cm downward." },
+            { letter: "B", text: "The data stop at 12 grams; 20 grams is far outside the model's range." },
+            { letter: "C", text: "The class should have used a line of best fit." },
+            { letter: "D", text: "Negative heights are fine because the curve is quadratic." }
+          ],
+          correct: "B"
+        },
+        {
+          id: "intercept",
+          sol: "A.ST.1.e",
+          stem: "What does the constant 12 in the model represent?",
+          choices: [
+            { letter: "A", text: "the predicted height of a plant given no fertilizer" },
+            { letter: "B", text: "the most fertilizer used in the study" },
+            { letter: "C", text: "the number of plants in the study" },
+            { letter: "D", text: "the height gained per gram of fertilizer" }
+          ],
+          correct: "A"
+        },
+        {
+          id: "variables",
+          sol: "A.ST.1.b",
+          stem: "Which other variable should the class have kept the same for every pot?",
+          choices: [
+            { letter: "A", text: "the amount of fertilizer" },
+            { letter: "B", text: "the final height" },
+            { letter: "C", text: "the sunlight and water each pot received" },
+            { letter: "D", text: "the number of weeks, which should vary by pot" }
           ],
           correct: "C"
+        }
+      ]
+    },
+
+    /* ---------- medium · level 2 · A.ST.1 e–h ---------- */
+    {
+      id: "st-screen-time",
+      family: "ST",
+      title: "Screen Time and Sleep",
+      kind: "Statistics · A.ST.1",
+      blurb: "A negative line of best fit, its meaning, and the difference between correlation and cause.",
+      level: 2,
+      passage: "<p>" + N(1) + "A health class asked 40 students how many hours they used screens after school and how many hours they slept that night. " + N(2) + "The scatterplot shows a moderate negative association. " + N(3) + "The line of best fit is <strong>y = −0.5x + 9.5</strong>, where x is screen hours and y is sleep hours. " + N(4) + "Screen time in the data ranged from 0 to 6 hours. " + N(5) + "One student concludes that screens cause students to lose sleep.</p>",
+      claims: [
+        {
+          id: "slope",
+          sol: "A.ST.1.e",
+          stem: "What does the slope −0.5 mean in context?",
+          choices: [
+            { letter: "A", text: "Each extra hour of screen time is associated with about half an hour less sleep." },
+            { letter: "B", text: "Students sleep half as long as they use screens." },
+            { letter: "C", text: "Half of the students use screens after school." },
+            { letter: "D", text: "Each extra hour of sleep causes half an hour less screen time." }
+          ],
+          correct: "A"
+        },
+        {
+          id: "predict",
+          sol: "A.ST.1.g",
+          stem: "How many hours of sleep does the line predict for a student with 3 hours of screen time?",
+          choices: [
+            { letter: "A", text: "9 hours" },
+            { letter: "B", text: "6.5 hours" },
+            { letter: "C", text: "8 hours" },
+            { letter: "D", text: "11 hours" }
+          ],
+          correct: "C"
+        },
+        {
+          id: "interpolate",
+          sol: "A.ST.1.g",
+          stem: "Which prediction from the line is most trustworthy?",
+          choices: [
+            { letter: "A", text: "sleep for 15 hours of screen time" },
+            { letter: "B", text: "sleep for 4 hours of screen time" },
+            { letter: "C", text: "sleep for 19 hours of screen time, when the line reaches 0" },
+            { letter: "D", text: "screen time for a student who slept 12 hours" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "causation",
+          sol: "A.ST.1.h",
+          stem: "Why is the student's conclusion in sentence 5 too strong?",
+          choices: [
+            { letter: "A", text: "The slope is negative, which means there is no relationship." },
+            { letter: "B", text: "A survey cannot measure how long students sleep." },
+            { letter: "C", text: "An association shows the variables move together, not that one causes the other." },
+            { letter: "D", text: "Forty students is too many for a valid survey result." }
+          ],
+          correct: "C"
+        },
+        {
+          id: "explanatory",
+          sol: "A.ST.1.b",
+          stem: "Which variable did the class treat as the explanatory variable?",
+          choices: [
+            { letter: "A", text: "hours of sleep" },
+            { letter: "B", text: "hours of screen time" },
+            { letter: "C", text: "the number of students" },
+            { letter: "D", text: "the y-intercept" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "y-int",
+          sol: "A.ST.1.e",
+          stem: "What does the y-intercept 9.5 represent?",
+          choices: [
+            { letter: "A", text: "the most sleep any student reported" },
+            { letter: "B", text: "the number of hours of screen time when sleep is 0" },
+            { letter: "C", text: "the average screen time of the class" },
+            { letter: "D", text: "the predicted sleep, in hours, for a student with no screen time" }
+          ],
+          correct: "D"
+        }
+      ]
+    },
+
+    /* ---------- short · level 2 · A.ST.1 f ---------- */
+    {
+      id: "st-four-plots",
+      family: "ST",
+      title: "Four Scatterplots",
+      kind: "Statistics · A.ST.1",
+      blurb: "Match each described scatterplot to its association: positive, negative, none, or curved.",
+      level: 2,
+      passage: "<p>" + N(1) + "Four scatterplots are described. " + N(2) + "Plot 1: shoe size against score on a history test; the points are scattered evenly with no pattern. " + N(3) + "Plot 2: years of experience against hourly pay for 25 electricians; the points climb steadily from lower left to upper right and lie close to a line. " + N(4) + "Plot 3: outdoor temperature against heating cost; the points fall from upper left to lower right. " + N(5) + "Plot 4: seconds after a bounce against a ball's height; the points rise and then fall.</p>",
+      claims: [
+        {
+          id: "none",
+          sol: "A.ST.1.f",
+          stem: "Which plot shows no association?",
+          choices: [
+            { letter: "A", text: "Plot 1" },
+            { letter: "B", text: "Plot 2" },
+            { letter: "C", text: "Plot 3" },
+            { letter: "D", text: "Plot 4" }
+          ],
+          correct: "A"
+        },
+        {
+          id: "strong-positive",
+          sol: "A.ST.1.f",
+          stem: "Which plot shows a strong positive linear association?",
+          choices: [
+            { letter: "A", text: "Plot 1" },
+            { letter: "B", text: "Plot 2" },
+            { letter: "C", text: "Plot 3" },
+            { letter: "D", text: "Plot 4" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "negative",
+          sol: "A.ST.1.f",
+          stem: "For Plot 3, which line of best fit is possible?",
+          choices: [
+            { letter: "A", text: "y = 3x + 40" },
+            { letter: "B", text: "y = 3x² + 40" },
+            { letter: "C", text: "y = −3x + 240" },
+            { letter: "D", text: "y = x² − 40" }
+          ],
+          correct: "C"
+        },
+        {
+          id: "curve",
+          sol: "A.ST.1.e",
+          stem: "Which plot calls for a quadratic curve of best fit rather than a line?",
+          choices: [
+            { letter: "A", text: "Plot 1" },
+            { letter: "B", text: "Plot 2" },
+            { letter: "C", text: "Plot 3" },
+            { letter: "D", text: "Plot 4" }
+          ],
+          correct: "D"
+        },
+        {
+          id: "meaning",
+          sol: "A.ST.1.h",
+          stem: "What can be concluded from Plot 1?",
+          choices: [
+            { letter: "A", text: "Larger shoes cause lower history scores." },
+            { letter: "B", text: "Shoe size is not useful for predicting a history score." },
+            { letter: "C", text: "The line of best fit has a steep positive slope." },
+            { letter: "D", text: "Students with the same shoe size have the same score." }
+          ],
+          correct: "B"
+        }
+      ]
+    },
+
+    /* ---------- medium · level 3 · A.ST.1 e–h ---------- */
+    {
+      id: "st-concession-price",
+      family: "ST",
+      title: "Pricing the Concession Stand",
+      kind: "Statistics · A.ST.1",
+      blurb: "Price against revenue: a quadratic model tells the boosters what to charge.",
+      level: 3,
+      passage: "<p>" + N(1) + "The booster club tried a different price for a hot dog at each of eight home games and recorded the revenue. " + N(2) + "As the price rose, revenue rose at first and then fell as fewer fans bought. " + N(3) + "Using technology, the club found the quadratic curve of best fit <strong>R = −20p² + 200p</strong>, where p is the price in dollars and R the revenue. " + N(4) + "Prices in the data ranged from $1 to $8.</p>" +
+        "<table><tr><th>p ($)</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr><tr><th>R ($)</th><td>185</td><td>315</td><td>425</td><td>475</td><td>505</td><td>470</td><td>395</td><td>330</td></tr></table>",
+      claims: [
+        {
+          id: "question",
+          sol: "A.ST.1.a",
+          stem: "Which investigative question did the club set out to answer?",
+          choices: [
+            { letter: "A", text: "How many hot dogs were sold at the third game?" },
+            { letter: "B", text: "How is hot dog price related to revenue, and which price earns the most?" },
+            { letter: "C", text: "Which home game had the largest crowd this season?" },
+            { letter: "D", text: "Do fans prefer hot dogs or nachos at the stand?" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "best-price",
+          sol: "A.ST.1.g",
+          stem: "According to the model, which price maximizes revenue?",
+          choices: [
+            { letter: "A", text: "$8" },
+            { letter: "B", text: "$10" },
+            { letter: "C", text: "$5" },
+            { letter: "D", text: "$2.50" }
+          ],
+          correct: "C"
+        },
+        {
+          id: "predict",
+          sol: "A.ST.1.g",
+          stem: "What revenue does the model predict at a price of $3?",
+          choices: [
+            { letter: "A", text: "$420" },
+            { letter: "B", text: "$540" },
+            { letter: "C", text: "$180" },
+            { letter: "D", text: "$600" }
+          ],
+          correct: "A"
+        },
+        {
+          id: "linear-wrong",
+          sol: "A.ST.1.e",
+          stem: "Why would a line of best fit be a poor model for these data?",
+          choices: [
+            { letter: "A", text: "The revenue values are too large for a line." },
+            { letter: "B", text: "There are eight points, and a line needs exactly two." },
+            { letter: "C", text: "The data rise and then fall, so no single slope describes them." },
+            { letter: "D", text: "Prices are whole dollars." }
+          ],
+          correct: "C"
+        },
+        {
+          id: "zero",
+          sol: "A.ST.1.h",
+          stem: "The model gives R = 0 at p = 10. What is the most reasonable interpretation?",
+          choices: [
+            { letter: "A", text: "Few would buy at $10, but $10 is outside the tested prices, so be cautious." },
+            { letter: "B", text: "At $10 the club would earn its greatest revenue of the season." },
+            { letter: "C", text: "The model is wrong, because revenue can never be zero." },
+            { letter: "D", text: "At $10 each fan would buy exactly one hot dog." }
+          ],
+          correct: "A"
+        },
+        {
+          id: "limits",
+          sol: "A.ST.1.h",
+          stem: "Which factor most limits the conclusions the club can draw?",
+          choices: [
+            { letter: "A", text: "Each price was tried at one game, so crowd size and weather also varied." },
+            { letter: "B", text: "The prices were listed in dollars instead of cents." },
+            { letter: "C", text: "A quadratic model can only be used for projectiles." },
+            { letter: "D", text: "Revenue is not a numerical variable." }
+          ],
+          correct: "A"
+        }
+      ]
+    },
+
+    /* ---------- long · level 3 · A.ST.1 a–h ---------- */
+    {
+      id: "st-oyster-harvest",
+      family: "ST",
+      title: "Oysters on the Rappahannock",
+      kind: "Statistics · A.ST.1",
+      blurb: "Years of oyster harvest data from Virginia reefs: a full pass through the data cycle.",
+      level: 3,
+      passage: "<p>" + N(1) + "A marine science club studied how the oyster harvest on restored reefs in the Rappahannock River has changed. " + N(2) + "Each fall they sampled 10 reefs chosen at random from the 60 restored reefs and recorded the harvest in bushels per reef. " + N(3) + "Let x be years since 2015 and y the average bushels per reef. " + N(4) + "Technology gave the line of best fit <strong>y = 12.5x + 40</strong>. " + N(5) + "The 2018 value, 55 bushels, sits well below the line because a tropical storm buried part of the reefs that summer. " + N(6) + "A club member wants to use the line to predict the harvest in 2050. " + N(7) + "Another argues that the restoration work caused the increase.</p>" +
+        "<table><tr><th>Year</th><th>2015</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th></tr><tr><th>Bushels</th><td>42</td><td>50</td><td>68</td><td>55</td><td>92</td><td>101</td><td>117</td></tr></table>",
+      claims: [
+        {
+          id: "question",
+          sol: "A.ST.1.a",
+          stem: "Which investigative question best matches the club's study?",
+          choices: [
+            { letter: "A", text: "How many oysters live in the Rappahannock River?" },
+            { letter: "B", text: "How has the average harvest per restored reef changed over the years since 2015?" },
+            { letter: "C", text: "Which reef had the largest harvest in 2021?" },
+            { letter: "D", text: "Are oysters more common in rivers or in the Chesapeake Bay?" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "sample",
+          sol: "A.ST.1.c",
+          stem: "Why did the club choose 10 reefs at random each year instead of the 10 reefs closest to the dock?",
+          choices: [
+            { letter: "A", text: "Random reefs are easier to reach." },
+            { letter: "B", text: "The reefs near the dock have no oysters." },
+            { letter: "C", text: "A random sample better represents all 60 reefs, near and far." },
+            { letter: "D", text: "Ten is the largest number of reefs a boat can visit." }
+          ],
+          correct: "C"
+        },
+        {
+          id: "slope",
+          sol: "A.ST.1.e",
+          stem: "What does the slope 12.5 mean in context?",
+          choices: [
+            { letter: "A", text: "The average harvest per reef grew about 12.5 bushels a year." },
+            { letter: "B", text: "Each reef produced 12.5 bushels in 2015." },
+            { letter: "C", text: "The club sampled 12.5 reefs per year." },
+            { letter: "D", text: "The harvest doubled every 12.5 years." }
+          ],
+          correct: "A"
+        },
+        {
+          id: "predict",
+          sol: "A.ST.1.g",
+          stem: "What harvest does the line predict for 2025?",
+          choices: [
+            { letter: "A", text: "125 bushels per reef" },
+            { letter: "B", text: "165 bushels per reef" },
+            { letter: "C", text: "290 bushels per reef" },
+            { letter: "D", text: "52.5 bushels per reef" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "storm",
+          sol: "A.ST.1.f",
+          stem: "How should the club treat the 2018 data point?",
+          choices: [
+            { letter: "A", text: "Delete it, because it proves the line is wrong." },
+            { letter: "B", text: "Keep it, and report it as an outlier with a known cause." },
+            { letter: "C", text: "Move it up to the line so the fit looks better." },
+            { letter: "D", text: "Use it as the y-intercept." }
+          ],
+          correct: "B"
+        },
+        {
+          id: "extrapolate",
+          sol: "A.ST.1.h",
+          stem: "Which statement best evaluates the 2050 prediction and the causation claim?",
+          choices: [
+            { letter: "A", text: "Both are sound: the line is a good fit, so it works for any year, and the increase proves restoration caused it." },
+            { letter: "B", text: "The 2050 prediction is reliable, but restoration cannot have caused the increase." },
+            { letter: "C", text: "2050 is too far out to trust; restoration is plausible, but the data show only an association." },
+            { letter: "D", text: "Neither can be discussed without more reefs." }
+          ],
+          correct: "C"
+        }
+      ]
+    },
+
+    /* ---------- medium · level 2 · A.ST.1 c–g ---------- */
+    {
+      id: "st-heart-rate",
+      family: "ST",
+      title: "Exercise and Heart Rate",
+      kind: "Statistics · A.ST.1",
+      blurb: "Minutes on the treadmill against heart rate, and where a line stops being sensible.",
+      level: 2,
+      passage: "<p>" + N(1) + "A P.E. class measured each student's heart rate after 0, 2, 4, 6, 8 and 10 minutes on a treadmill at a steady jog. " + N(2) + "For the class averages, the line of best fit is <strong>y = 8x + 70</strong>, where x is minutes and y is beats per minute. " + N(3) + "The teacher points out that no one jogged longer than 10 minutes, and that a healthy heart rate rarely goes above about 200 beats per minute.</p>" +
+        "<table><tr><th>Minutes</th><th>0</th><th>2</th><th>4</th><th>6</th><th>8</th><th>10</th></tr><tr><th>Avg. bpm</th><td>72</td><td>84</td><td>104</td><td>116</td><td>136</td><td>148</td></tr></table>",
+      claims: [
+        {
+          id: "direction",
+          sol: "A.ST.1.f",
+          stem: "Which statement describes the association?",
+          choices: [
+            { letter: "A", text: "strong positive: heart rate rises steadily with minutes jogged" },
+            { letter: "B", text: "strong negative: heart rate falls as minutes increase" },
+            { letter: "C", text: "no association between minutes and heart rate" },
+            { letter: "D", text: "quadratic: heart rate rises then falls" }
+          ],
+          correct: "A"
+        },
+        {
+          id: "predict",
+          sol: "A.ST.1.g",
+          stem: "What heart rate does the line predict after 5 minutes?",
+          choices: [
+            { letter: "A", text: "75 bpm" },
+            { letter: "B", text: "110 bpm" },
+            { letter: "C", text: "120 bpm" },
+            { letter: "D", text: "40 bpm" }
+          ],
+          correct: "B"
+        },
+        {
+          id: "extrapolate",
+          sol: "A.ST.1.g",
+          stem: "The line predicts 550 bpm after 60 minutes. Why is this prediction not reasonable?",
+          choices: [
+            { letter: "A", text: "The slope should be negative for long runs." },
+            { letter: "B", text: "Sixty minutes is far beyond the data; heart rate levels off well below 550." },
+            { letter: "C", text: "Heart rate is not related to exercise." },
+            { letter: "D", text: "The line of best fit only works for even numbers of minutes." }
+          ],
+          correct: "B"
+        },
+        {
+          id: "intercept",
+          sol: "A.ST.1.e",
+          stem: "What does the y-intercept 70 represent?",
+          choices: [
+            { letter: "A", text: "the increase in heart rate each minute" },
+            { letter: "B", text: "the number of students measured" },
+            { letter: "C", text: "the predicted resting heart rate, before jogging begins" },
+            { letter: "D", text: "the number of minutes to reach 148 bpm" }
+          ],
+          correct: "C"
+        },
+        {
+          id: "sample",
+          sol: "A.ST.1.c",
+          stem: "The teacher wants results that apply to all ninth graders at the school. Which change would most improve the sample?",
+          choices: [
+            { letter: "A", text: "measuring the same class again the next day" },
+            { letter: "B", text: "a random selection from every ninth-grade P.E. class" },
+            { letter: "C", text: "measuring only students on the track team" },
+            { letter: "D", text: "using a longer treadmill" }
+          ],
+          correct: "B"
         }
       ]
     }
