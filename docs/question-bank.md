@@ -3551,7 +3551,7 @@ Standards in this unit:
    - D. Animalia only
    - **Key: B**
 
-3. **[BIO.6.a]** In sentence 2, <strong>cell type</strong> refers to whether a cell is —
+3. **[BIO.6.a]** In sentence 2, cell type refers to whether a cell is —
    - A. unicellular or multicellular
    - B. autotrophic or heterotrophic
    - C. prokaryotic or eukaryotic
@@ -3603,7 +3603,7 @@ Standards in this unit:
    - D. a mayfly nymph
    - **Key: A**
 
-4. **[BIO.6.a]** In sentence 1, a <strong>dichotomous key</strong> is best described as a tool that —
+4. **[BIO.6.a]** In sentence 1, a dichotomous key is best described as a tool that —
    - A. lists every species found in a stream
    - B. sorts organisms by their DNA sequences
    - C. ranks organisms from simplest to most complex
@@ -3637,14 +3637,14 @@ Standards in this unit:
    - D. three trees equally, because all share a kingdom
    - **Key: B**
 
-2. **[BIO.6.a]** In the name <em>Quercus alba</em>, the word <em>alba</em> is the —
+2. **[BIO.6.a]** In the name Quercus alba, the word alba is the —
    - A. family name
    - B. genus name
    - C. species name
    - D. order name
    - **Key: C**
 
-3. **[BIO.6.a]** In sentence 3, the <strong>taxonomic hierarchy</strong> is a system of ranks in which —
+3. **[BIO.6.a]** In sentence 3, the taxonomic hierarchy is a system of ranks in which —
    - A. each lower rank holds fewer, more similar organisms
    - B. each lower rank holds more, less similar organisms
    - C. every rank holds the same set of organisms
@@ -3658,7 +3658,7 @@ Standards in this unit:
    - D. phylum and class
    - **Key: D**
 
-5. **[BIO.6.a]** Why do scientists use a binomial name such as <em>Quercus alba</em> rather than a common name?
+5. **[BIO.6.a]** Why do scientists use a binomial name such as Quercus alba rather than a common name?
    - A. One name refers to one species in every language
    - B. Latin names describe how a plant is used
    - C. Scientific names are shorter than common names
@@ -3691,7 +3691,7 @@ Standards in this unit:
    - D. jointed-fin fish, ray-fin fish, reptiles, amphibians
    - **Key: B**
 
-3. **[BIO.7.a]** In sentence 4, a <strong>transitional form</strong> is a fossil that —
+3. **[BIO.7.a]** In sentence 4, a transitional form is a fossil that —
    - A. shows traits of an older group and of a group that appeared later
    - B. is found only in the youngest layer of rock at a site
    - C. belongs to a species that is still alive somewhere today
@@ -3742,7 +3742,7 @@ Standards in this unit:
    - D. fur
    - **Key: A**
 
-3. **[BIO.6.a]** In sentence 2, a <strong>derived trait</strong> is best described as a feature that —
+3. **[BIO.6.a]** In sentence 2, a derived trait is best described as a feature that —
    - A. is found in every living organism
    - B. arose in an ancestor and is shared by its descendants
    - C. appears only in the oldest group on the diagram
@@ -3796,7 +3796,7 @@ Standards in this unit:
    - D. Deep-beaked birds survived the drought at a higher rate
    - **Key: D**
 
-3. **[BIO.7.b]** The researchers focused on <strong>beak depth</strong> (sentence 2) because it is a trait that —
+3. **[BIO.7.b]** The researchers focused on beak depth (sentence 2) because it is a trait that —
    - A. varies among individuals and is passed to offspring
    - B. is identical in every finch on the island
    - C. changes each time a bird eats a hard seed
@@ -3851,7 +3851,7 @@ Standards in this unit:
    - D. was the same in every plant in the plot
    - **Key: B**
 
-3. **[BIO.7.c]** In sentence 4, <strong>artificial selection</strong> differs from natural selection mainly in —
+3. **[BIO.7.c]** In sentence 4, artificial selection differs from natural selection mainly in —
    - A. whether the trait can be inherited
    - B. whether the population shows variation
    - C. how many generations are required
@@ -3884,7 +3884,7 @@ Standards in this unit:
    - D. The pesticide created the resistance allele
    - **Key: C**
 
-2. **[BIO.7.b]** In sentence 4, a <strong>resistance allele</strong> is best described as —
+2. **[BIO.7.b]** In sentence 4, a resistance allele is best described as —
    - A. a gene version that helps a beetle survive the spray
    - B. a chemical that breaks down the pesticide in soil
    - C. a behavior beetles learn by watching others
@@ -3924,7 +3924,7 @@ Standards in this unit:
    - D. have bones of exactly the same length
    - **Key: B**
 
-2. **[BIO.6.a]** In sentence 5, <strong>analogous</strong> structures are alike in —
+2. **[BIO.6.a]** In sentence 5, analogous structures are alike in —
    - A. function but not in ancestry
    - B. ancestry but not in function
    - C. both function and ancestry
@@ -3989,7 +3989,7 @@ Standards in this unit:
    - D. It has the fewest differences of any species listed
    - **Key: B**
 
-3. **[BIO.6.d]** In sentence 6, <strong>biochemical evidence</strong> refers to comparisons of —
+3. **[BIO.6.d]** In sentence 6, biochemical evidence refers to comparisons of —
    - A. bone shape and body size
    - B. embryos at early stages
    - C. protein and DNA sequences
@@ -4036,7 +4036,7 @@ Standards in this unit:
    - D. their streams differ in temperature
    - **Key: C**
 
-3. **[BIO.7.d]** In sentence 9, <strong>reproductive isolation</strong> means that the two forms —
+3. **[BIO.7.d]** In sentence 9, reproductive isolation means that the two forms —
    - A. live on opposite sides of a barrier
    - B. reproduce at different times of the day
    - C. have stopped reproducing entirely
@@ -4083,7 +4083,7 @@ Standards in this unit:
    - D. 2,000
    - **Key: A**
 
-2. **[BIO.7.b]** In sentence 6, a <strong>high-fecundity strategy</strong> is one in which an organism —
+2. **[BIO.7.b]** In sentence 6, a high-fecundity strategy is one in which an organism —
    - A. produces few offspring and cares for each one
    - B. produces many offspring and invests little in each
    - C. reproduces only once in its lifetime

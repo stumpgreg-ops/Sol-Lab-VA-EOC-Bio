@@ -47,7 +47,7 @@
         {
           id: "cell-type",
           sol: "BIO.6.a",
-          stem: "In sentence 2, <strong>cell type</strong> refers to whether a cell is —",
+          stem: "In sentence 2, cell type refers to whether a cell is —",
           choices: [
             { letter: "A", text: "unicellular or multicellular" },
             { letter: "B", text: "autotrophic or heterotrophic" },
@@ -138,7 +138,7 @@
         {
           id: "key-term",
           sol: "BIO.6.a",
-          stem: "In sentence 1, a <strong>dichotomous key</strong> is best described as a tool that —",
+          stem: "In sentence 1, a dichotomous key is best described as a tool that —",
           choices: [
             { letter: "A", text: "lists every species found in a stream" },
             { letter: "B", text: "sorts organisms by their DNA sequences" },
@@ -193,7 +193,7 @@
         {
           id: "alba",
           sol: "BIO.6.a",
-          stem: "In the name <em>Quercus alba</em>, the word <em>alba</em> is the —",
+          stem: "In the name Quercus alba, the word alba is the —",
           choices: [
             { letter: "A", text: "family name" },
             { letter: "B", text: "genus name" },
@@ -205,7 +205,7 @@
         {
           id: "hierarchy",
           sol: "BIO.6.a",
-          stem: "In sentence 3, the <strong>taxonomic hierarchy</strong> is a system of ranks in which —",
+          stem: "In sentence 3, the taxonomic hierarchy is a system of ranks in which —",
           choices: [
             { letter: "A", text: "each lower rank holds fewer, more similar organisms" },
             { letter: "B", text: "each lower rank holds more, less similar organisms" },
@@ -229,7 +229,7 @@
         {
           id: "why-binomial",
           sol: "BIO.6.a",
-          stem: "Why do scientists use a binomial name such as <em>Quercus alba</em> rather than a common name?",
+          stem: "Why do scientists use a binomial name such as Quercus alba rather than a common name?",
           choices: [
             { letter: "A", text: "One name refers to one species in every language" },
             { letter: "B", text: "Latin names describe how a plant is used" },
@@ -284,7 +284,7 @@
         {
           id: "derived",
           sol: "BIO.6.a",
-          stem: "In sentence 2, a <strong>derived trait</strong> is best described as a feature that —",
+          stem: "In sentence 2, a derived trait is best described as a feature that —",
           choices: [
             { letter: "A", text: "is found in every living organism" },
             { letter: "B", text: "arose in an ancestor and is shared by its descendants" },
@@ -375,7 +375,7 @@
         {
           id: "biochemical",
           sol: "BIO.6.d",
-          stem: "In sentence 6, <strong>biochemical evidence</strong> refers to comparisons of —",
+          stem: "In sentence 6, biochemical evidence refers to comparisons of —",
           choices: [
             { letter: "A", text: "bone shape and body size" },
             { letter: "B", text: "embryos at early stages" },
@@ -465,7 +465,7 @@
         {
           id: "transitional",
           sol: "BIO.7.a",
-          stem: "In sentence 4, a <strong>transitional form</strong> is a fossil that —",
+          stem: "In sentence 4, a transitional form is a fossil that —",
           choices: [
             { letter: "A", text: "shows traits of an older group and of a group that appeared later" },
             { letter: "B", text: "is found only in the youngest layer of rock at a site" },
@@ -543,7 +543,7 @@
         {
           id: "beak-trait",
           sol: "BIO.7.b",
-          stem: "The researchers focused on <strong>beak depth</strong> (sentence 2) because it is a trait that —",
+          stem: "The researchers focused on beak depth (sentence 2) because it is a trait that —",
           choices: [
             { letter: "A", text: "varies among individuals and is passed to offspring" },
             { letter: "B", text: "is identical in every finch on the island" },
@@ -634,7 +634,7 @@
         {
           id: "artificial",
           sol: "BIO.7.c",
-          stem: "In sentence 4, <strong>artificial selection</strong> differs from natural selection mainly in —",
+          stem: "In sentence 4, artificial selection differs from natural selection mainly in —",
           choices: [
             { letter: "A", text: "whether the trait can be inherited" },
             { letter: "B", text: "whether the population shows variation" },
@@ -695,7 +695,7 @@
         {
           id: "allele",
           sol: "BIO.7.b",
-          stem: "In sentence 4, a <strong>resistance allele</strong> is best described as —",
+          stem: "In sentence 4, a resistance allele is best described as —",
           choices: [
             { letter: "A", text: "a gene version that helps a beetle survive the spray" },
             { letter: "B", text: "a chemical that breaks down the pesticide in soil" },
@@ -780,7 +780,7 @@
         {
           id: "repro-isolation",
           sol: "BIO.7.d",
-          stem: "In sentence 9, <strong>reproductive isolation</strong> means that the two forms —",
+          stem: "In sentence 9, reproductive isolation means that the two forms —",
           choices: [
             { letter: "A", text: "live on opposite sides of a barrier" },
             { letter: "B", text: "reproduce at different times of the day" },
@@ -853,7 +853,7 @@
         {
           id: "analogous",
           sol: "BIO.6.a",
-          stem: "In sentence 5, <strong>analogous</strong> structures are alike in —",
+          stem: "In sentence 5, analogous structures are alike in —",
           choices: [
             { letter: "A", text: "function but not in ancestry" },
             { letter: "B", text: "ancestry but not in function" },
@@ -943,7 +943,7 @@
         {
           id: "fecundity",
           sol: "BIO.7.b",
-          stem: "In sentence 6, a <strong>high-fecundity strategy</strong> is one in which an organism —",
+          stem: "In sentence 6, a high-fecundity strategy is one in which an organism —",
           choices: [
             { letter: "A", text: "produces few offspring and cares for each one" },
             { letter: "B", text: "produces many offspring and invests little in each" },

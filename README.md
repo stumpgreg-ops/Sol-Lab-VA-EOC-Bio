@@ -8,6 +8,11 @@ Play: `index.html`. Teacher monitor: `admin.html` (PIN lock; FERPA nicknames onl
 
 Progress saves in this browser profile (`afterHours.v1.night`). Itch login does not store progress.
 
+## v6.2.1 (2026-10-02) — clean question stems, Google Docs review copy
+
+- Fourteen Evolution & Classification stems carried literal `<strong>` / `<em>` tags that showed as raw text in the side panel; the tags are gone (the lab notes, which render as HTML, keep their bold terms and italic species names).
+- The question bank is also published as one Google Doc per unit plus an index doc for the reviewing teacher; the same content stays in `docs/question-bank.md` and `docs/question-bank.html`.
+
 ## v6.2 (2026-09-28) — the v5.7.1 engine: realms, Fenrir, shooter levels, the 3D castle
 
 Everything SOL Labyrinth gained between v5.1.1 and v5.7.1 is in the Biology game now, with the questions untouched:
