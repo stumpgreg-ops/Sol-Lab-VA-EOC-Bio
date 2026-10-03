@@ -8,6 +8,22 @@ Play: `index.html`. Teacher monitor: `admin.html` (PIN lock; FERPA nicknames onl
 
 Progress saves in this browser profile (`afterHours.v1.night`). Itch login does not store progress.
 
+## v6.3.1 (2026-10-03) — the Canvas version: a starter page and its data files, nothing hosted outside the school
+
+For a course in Canvas where the game cannot be hosted on GitHub or any other outside site. `node tools/build-canvas.js` (after `node tools/build-appsscript.js`) writes `dist/canvas/BIO/` and the same files zipped as **`dist/canvas/SOLLab-VA-Bio-Canvas.zip`** (about 5 MB). The 3D castle is in; the music is not. It mirrors SOL Labyrinth v5.8.1–v5.8.2, which found in a real course that Canvas runs the scripts of a small uploaded HTML page but not of a 7 MB one, and that a small page can read files next to it in the same Canvas folder.
+
+- `SOLLab-VA-Bio.html`: the starter page (3 KB), the loading screen and one `<script src>`.
+- `SOLLab-VA-Bio-game.js`: the loader, the manifest and the list of data files.
+- `SOLLab-VA-Bio-data-01.js` … : the gzip bundle as base64, 576 KB per file. Each file calls `solPart(i, hash, base64)`; a file from another version is refused and a missing or renamed file is named on screen.
+- **In Canvas:**
+  1. Upload the zip to one folder in **Files** and let Canvas expand it (or upload the files one by one into the same folder).
+  2. Embed `SOLLab-VA-Bio.html` in a Page: `<iframe src="/courses/<course>/files/<file id>/preview" width="100%" height="700" allowfullscreen></iframe>`.
+  3. If the page never gets past "Loading the game…", that spot in Canvas does not run scripts. Upload `tools/canvas-check.html` (also at https://stumpgreg-ops.github.io/Sol-Lab-VA-EOC-Bio/canvas-check.html) the same way: it says whether a page's code can run there and whether progress can be saved.
+- **Saves:** Canvas serves every uploaded file from one shared domain, so this build prefixes the game's localStorage keys with `solLab.bio:`; the reading game (`solReading.va:`) or any other game on the same Canvas cannot read or overwrite them. An update replaces only the `.js` files, so the starter page and every student's progress stay.
+- **Not included:** class sessions and the teacher page need the Apps Script server.
+- **Smaller bundle (Apps Script version too):** a castle model that differs from an earlier one by one word in its name (the four colours) is stored as a delta of it, and PNGs travel as lossless WebP when that is smaller (`tools/webp-cache.py`, needs Pillow; without it PNGs stay PNG).
+- **Test:** `node tools/smoke-canvas.js` serves the files from a Canvas-like folder path (with a space in it) and embeds the starter page in a "course page" on another origin. It checks that the page reads only its own files, that every file is read, that a level starts and the 3D castle draws in all four colours, that music is off, that saves keep their prefix and other games' saves are untouched, and that a missing data file is named.
+
 ## v6.3 (2026-10-02) — the Google Apps Script version, class sessions, and the v5.8.0 engine
 
 **For schools that block GitHub Pages and itch.io.** The teacher pastes one small file into a new project on script.google.com and deploys it as a web app; students open the `/exec` link (or the teacher embeds it in Google Sites). The page only ever talks to script.google.com: the script fetches the game from this repository's `gh-pages` branch on Google's servers, where the school's filter never sees the request. The 3D castle is included; the music is not.
@@ -71,7 +87,7 @@ Everything SOL Labyrinth gained between v5.1.1 and v5.7.1 is in the Biology game
 - `tools/CONTENT-GUIDE.md` — pack format, the standards table and the writing rules. `node tools/validate-content.js` checks every file (codes, units, keys, lengths, duplicates); `node tools/validate-content.js js/content9.js` checks one.
 - `tools/smoke.js` — headless Playwright run of the title screen, the pools, the builder (2D and 3D), the shop, a level, the ten realms and their creatures, Fenrir, the perks and the four shooter levels (screenshots in `tools/shots/`). `tools/smoke-appsscript.js` does the same for the Apps Script build.
 - `js/classes.js` — class sessions for the Apps Script version (`?class=CODE`): hides or rewords regular questions and adds the class's own sets. Does nothing without a class.
-- `tools/build-appsscript.js` and `tools/appsscript/` — the Google Apps Script version (see v6.3 above).
+- `tools/build-appsscript.js` and `tools/appsscript/` — the Google Apps Script version (see v6.3 above). `tools/build-canvas.js` and `tools/smoke-canvas.js` — the Canvas version (v6.3.1); `tools/canvas-check.html` tells a teacher whether a spot in Canvas runs scripts.
 - `tools/question-bank.js` — writes `docs/question-bank.md`, the teacher review copy of every question.
 - `tools/make-itch-zip.sh` — builds the itch.io HTML5 upload (`sh tools/make-itch-zip.sh`): index.html at the zip root, about 500 files and 33 MB, under itch.io's 1,000-file limit.
 - `tools/publish-pages.sh` — pushes the game and the Apps Script bundle to the `gh-pages` branch for GitHub Pages: https://stumpgreg-ops.github.io/Sol-Lab-VA-EOC-Bio/ (turn Pages on once under Settings → Pages, branch `gh-pages`, folder `/`). Upload it to https://gstump.itch.io/sols-labyrinth-va-bio as an HTML project with "This file will be played in the browser" ticked.

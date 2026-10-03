@@ -16,7 +16,7 @@
 
    The body markup travels inside the bundle as __page.html, so the markup, styles and scripts a Chromebook
    runs always come from the same version.
-   Bundle format (before gzip): 4-byte big-endian header length, header JSON [[path, offset, length], …], bytes.
+   Bundle format (before gzip): 4-byte big-endian header length, header JSON [[path, offset, length(, delta base)], …], bytes.
    The loader keeps the unpacked bundle in IndexedDB, so a Chromebook downloads it once per version. */
 var fs = require("fs"), path = require("path"), zlib = require("zlib"), crypto = require("crypto");
 var root = path.join(__dirname, ".."), dist = path.join(root, "dist");
@@ -66,12 +66,63 @@ headCss.forEach(function (c) { if (files.indexOf(c) === -1) throw new Error("too
 
 /* ── pack: the files, plus the body markup as __page.html (so page and scripts always come from one bundle) ── */
 var header = [], bufs = [], off = 0;
-function add(f, b) { header.push([f, off, b.length]); bufs.push(b); off += b.length; }
+function add(f, b, base) { header.push(base ? [f, off, b.length, base] : [f, off, b.length]); bufs.push(b); off += b.length; }
 add("__page.html", Buffer.from(body.trim()));
 /* the teacher page (?admin=1) — run by the loader after the content files, instead of the game */
 add("__admin.js", fs.readFileSync(path.join(__dirname, "appsscript", "admin.js")));
 add("__admin.css", fs.readFileSync(path.join(__dirname, "appsscript", "admin.css")));
-files.forEach(function (f) { add(f, fs.readFileSync(path.join(src, f))); });
+/* v6.3.1 (SOL Labyrinth v5.8.1): the castle's 3D models come in four colours that are nearly the same bytes, but
+   each is ~140 KB and gzip only looks 32 KB back, so it can't see that. A model whose name differs from an earlier
+   one's only by a word (blue → red) is stored as a delta of it (see delta()); header entry [path, offset, length, base]. */
+/* PNGs travel as lossless WebP when that is smaller (same pixels; the loader gives the blob the right type).
+   tools/webp-cache.py does the encoding once per image and keeps it in dist/.webp-cache. */
+var WEBP = path.join(dist, ".webp-cache"), pngs = files.filter(function (f) { return /\.png$/i.test(f); });
+try {
+  require("child_process").execFileSync("python3", [path.join(__dirname, "webp-cache.py"), WEBP].concat(pngs.map(function (f) { return path.join(src, f); })), { stdio: ["ignore", "inherit", "pipe"] });
+} catch (e) { console.warn("tools/build-appsscript.js: no WebP (" + String(e.stderr || e.message).split("\n").filter(Boolean).pop() + "); PNGs stay PNG"); }
+function smaller(f, b) {
+  if (!/\.png$/i.test(f)) return b;
+  var w = path.join(WEBP, crypto.createHash("sha1").update(b).digest("hex") + ".webp");
+  if (!fs.existsSync(w)) return b;
+  var wb = fs.readFileSync(w);
+  return wb.length < b.length ? wb : b;
+}
+var plain = {};
+files.forEach(function (f) {
+  var b = smaller(f, fs.readFileSync(path.join(src, f)));
+  if (!/\.(glb|gltf|obj)$/i.test(f)) { add(f, b); return; }
+  var dir = f.replace(/[^/]*$/, ""), stem = f.slice(dir.length).replace(/[^a-z]+/gi, " ").split(" ");
+  var best = null;
+  (plain[dir] || []).forEach(function (o) {
+    var same = 0, n = Math.max(stem.length, o.stem.length);
+    for (var i = 0; i < n; i++) if (stem[i] === o.stem[i]) same++;
+    if (same < n - 1 || stem.length !== o.stem.length) return;   /* one word apart */
+    var d = delta(o.b, b);
+    if (d.length < b.length / 3 && (!best || d.length < best.d.length)) best = { f: o.f, d: d };
+  });
+  if (best) { add(f, best.d, best.f); return; }
+  (plain[dir] = plain[dir] || []).push({ f: f, b: b, stem: stem });
+  add(f, b);
+});
+/* b as runs copied from a plus new bytes: [varint new-length, new bytes, varint copy-length, varint copy-offset]…
+   (tools/appsscript/loader.js undelta() reverses it) */
+function delta(a, b) {
+  var K = 24, map = new Map(), out = [], lit = 0, i = 0, j;
+  for (j = 0; j + K <= a.length; j += 4) { var k = a.toString("latin1", j, j + K); if (!map.has(k)) map.set(k, j); }
+  function v(n) { while (n > 127) { out.push((n & 127) | 128); n = Math.floor(n / 128); } out.push(n); }
+  function flush(copyLen, copyOff) { v(i - lit); for (var q = lit; q < i; q++) out.push(b[q]); v(copyLen); v(copyOff); }
+  while (i < b.length) {
+    var at = i + K <= b.length ? map.get(b.toString("latin1", i, i + K)) : undefined;
+    if (at === undefined) { i++; continue; }
+    var s = i, t = at;
+    while (s > lit && t > 0 && b[s - 1] === a[t - 1]) { s--; t--; }   /* reach back into the new bytes */
+    var e = i + K, u = at + K;
+    while (e < b.length && u < a.length && b[e] === a[u]) { e++; u++; }
+    var save = i; i = s; flush(e - s, t); i = e; lit = e;
+  }
+  if (lit < b.length || !out.length) { i = b.length; flush(0, 0); }
+  return Buffer.from(out);
+}
 var hj = Buffer.from(JSON.stringify(header)), hl = Buffer.alloc(4); hl.writeUInt32BE(hj.length, 0);
 var raw = Buffer.concat([hl, hj].concat(bufs));
 var gz = zlib.gzipSync(raw, { level: 9 });
