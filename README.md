@@ -48,23 +48,28 @@ Codes follow the **2023 Virginia Mathematics Standards of Learning** for Algebra
 - `tools/smoke.js` — headless Playwright run of the whole game (screenshots in `tools/shots/`).
 - `tools/question-bank.js` — writes `docs/question-bank.md` and `docs/question-bank.html`, the teacher review copy of every question.
 - `tools/make-itch-zip.sh` — builds the itch.io HTML5 upload (`sh tools/make-itch-zip.sh`): index.html at the zip root, under itch.io's 1,000-file limit. Upload it as an HTML project with "This file will be played in the browser" ticked.
-- `tools/make-single-file.js` — builds **one self-contained HTML file** of the game (`dist/sol-lab-va-algebra.html`, about 10 MB; `--with-music` adds the nine tracks, about 35 MB) for places that cannot serve a folder or reach GitHub: an LMS file area such as Canvas Files, a shared drive, a USB stick. Styles, scripts and images are inlined and a small shim points the game's loaders at the inlined copies; the 3D castle kit is left out, so the builder shows its 2D view. `node tools/check-single-file.js` opens the file from disk in headless Chromium and plays into a level with no network requests allowed.
+- `tools/build-canvas.js` — the **Canvas build** (`dist/canvas/`, `dist/SOLLab-VA-Algebra-Canvas.zip`): starter page + loader + data files, see *Hosting* below. `tools/canvas-loader.js` is the in-page loader, `tools/canvas-starter.html` the starter template, `tools/png2webp.py` the lossless-WebP step.
+- `tools/make-single-file.js` — builds **one self-contained HTML file** of the game (`dist/sol-lab-va-algebra.html`, about 10 MB; `--with-music` adds the nine tracks, about 35 MB) for places that cannot serve a folder or reach GitHub: an LMS file area such as Canvas Files, a shared drive, a USB stick. Styles, scripts and images are inlined and a small shim points the game's loaders at the inlined copies; the 3D castle kit is left out, so the builder shows its 2D view. `node tools/check-single-file.js [file | dist/canvas]` opens the file from disk, or serves the Canvas folder, in headless Chromium and plays into a level with no outside request allowed.
 - `tools/publish-pages.sh` — pushes the game to the `gh-pages` branch for GitHub Pages: https://stumpgreg-ops.github.io/Sol-Lab-VA-EOC-Algebra/ (turn Pages on once under Settings → Pages, branch `gh-pages`, folder `/`).
 
 ## Hosting where GitHub is blocked (Canvas and other LMSs)
 
-The game is static files and needs no server, login or build step, so any host that serves files over HTTPS works: itch.io (`tools/make-itch-zip.sh`), GitHub Pages (`tools/publish-pages.sh`), Netlify, Vercel, Cloudflare Pages or a school web server. Where students cannot reach GitHub, use the single-file build instead:
+The game is static files and needs no server, login or build step, so any host that serves files over HTTPS works: itch.io (`tools/make-itch-zip.sh`), GitHub Pages (`tools/publish-pages.sh`), Netlify, Vercel, Cloudflare Pages or a school web server. Where students cannot reach GitHub, upload the **Canvas build** to the course's Files, the same way the SOL Labyrinth Reading game is delivered:
 
-1. `node tools/make-single-file.js` (add `--with-music` if the 35 MB file is acceptable).
-2. Upload `dist/sol-lab-va-algebra.html` to the course's **Files** in Canvas (any folder; here `course files`).
-3. On a Canvas page, assignment or module item, open the HTML editor (`</>`) and paste, replacing `COURSE_ID` with the number in the course URL:
+1. `node tools/build-canvas.js` writes `dist/canvas/` and `dist/SOLLab-VA-Algebra-Canvas.zip` (about 6.5 MB): a small starter page `SOLLab-VA-Algebra.html`, the loader `SOLLab-VA-Algebra-game.js` and the game in data files `SOLLab-VA-Algebra-data-01.js` … `-09.js`. Canvas runs the scripts of a small page but not of a big one, so the game travels in the data files: one gzip bundle of every file it needs (markup, CSS, scripts, 3D kit, art), base64 and split. PNGs travel as lossless WebP and near-copy models as deltas, which is why 37 MB of game fits in 6.5 MB. Music stays out (`--with-music` adds it). Needs Pillow for the WebP step (`python3 -m pip install pillow`; `--no-webp` skips it).
+2. Unzip and upload **all eleven files into one Canvas folder**, names unchanged (Files → the folder → Upload).
+3. Link or frame the `.html`: as a module item (Files → the page), or on a page in the HTML editor (`</>`), replacing `COURSE_ID` with the number in the course URL and the folder path with yours:
 
    ```html
-   <p><a href="/courses/COURSE_ID/file_contents/course%20files/sol-lab-va-algebra.html" target="_blank" rel="noopener">Open SOL Lab: Algebra I in a new tab</a></p>
-   <iframe src="/courses/COURSE_ID/file_contents/course%20files/sol-lab-va-algebra.html" title="SOL Lab: Virginia Algebra I" width="100%" height="760" style="border:0; display:block;" allow="fullscreen; autoplay" allowfullscreen loading="lazy"></iframe>
+   <p><a href="/courses/COURSE_ID/file_contents/course%20files/SOLLab-VA-Algebra.html" target="_blank" rel="noopener">Open SOL Lab: Algebra I in a new tab</a></p>
+   <iframe src="/courses/COURSE_ID/file_contents/course%20files/SOLLab-VA-Algebra.html" title="SOL Lab: Virginia Algebra I" width="100%" height="760" style="border:0; display:block;" allow="fullscreen; autoplay" allowfullscreen loading="lazy"></iframe>
    ```
 
-Canvas strips `<script>` from page bodies, so the game cannot be pasted into a page directly; it has to be a file the page frames. Keys reach the maze only after the student clicks inside the frame, which is why the new-tab link is there. Progress saves in the browser profile per origin, as on every host; the teacher monitor (`admin.html`) is not part of the single-file build.
+The loader (`tools/canvas-loader.js`, shared with the backbone) gunzips the bundle in memory and answers every request the game makes for `assets/…`, `js/…` or `css/…` from it (fetch, XMLHttpRequest, `<img src>`, `<audio src>`, CSS `url()`), hands out `data:` URLs because Canvas's file domain may refuse `blob:` ones, and prefixes the saves in localStorage with `solReading.algebra:` so the Reading, Biology and Algebra games can share Canvas's one file domain without overwriting each other's progress. `node tools/check-single-file.js dist/canvas` serves the folder over http and plays into a level with no request allowed outside it.
+
+Canvas strips `<script>` from page bodies, so no game can be pasted into a page directly. Keys reach the maze only after the student clicks inside the frame, which is why the new-tab link is there. The teacher monitor (`admin.html`) is not part of the Canvas build.
+
+**One-file alternative** for a shared drive or USB stick: `node tools/make-single-file.js` writes `dist/sol-lab-va-algebra.html` (about 10 MB, no music, 2D castle); it runs from `file://`. Canvas may show a file that large as a preview that cannot run, so prefer the Canvas build there.
 
 ## Engine history
 

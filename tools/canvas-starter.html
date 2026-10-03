@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>{{TITLE}}</title>
+<style>
+#btn-music, #music-pick, #btn-music-hud, #music-vol-hud { display: none !important; }
+#sol-boot { position: fixed; inset: 0; z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 18px; background: #0d0b1a; color: #efe6ff; font: 600 18px/1.4 system-ui, sans-serif; text-align: center; padding: 16px; }
+#sol-boot .bar { width: min(420px, 80vw); height: 14px; border-radius: 7px; background: #2a2440; overflow: hidden; }
+#sol-boot .fill { height: 100%; width: 0; background: linear-gradient(90deg, #7c5cff, #37d6c4); transition: width .25s; }
+#sol-boot .msg { font-weight: 400; font-size: 15px; opacity: .85; max-width: 520px; }
+#sol-boot button { font: inherit; padding: 8px 18px; border-radius: 8px; border: 0; background: #7c5cff; color: #fff; cursor: pointer; }
+</style>
+</head>
+<body>
+<div id="sol-boot"><div>{{TITLE}}</div><div class="bar"><div class="fill"></div></div><div class="msg">Loading the game…</div><div class="msg" id="sol-noscript" style="font-size:13px;opacity:.7">If this message never changes, the page is not allowed to run the game here (Canvas shows some files as a preview that cannot run games).</div></div>
+<script>(function(){var n=document.getElementById('sol-noscript');if(n)n.parentNode.removeChild(n);var blocked=[];document.addEventListener('securitypolicyviolation',function(e){var k=(e.effectiveDirective||e.violatedDirective)+' '+String(e.blockedURI).slice(0,12);if(blocked.indexOf(k)>=0)return;blocked.push(k);var d=document.getElementById('sol-blocked');if(!d){d=document.createElement('div');d.id='sol-blocked';d.setAttribute('style','position:fixed;left:8px;bottom:8px;z-index:100000;background:#3a1a14;color:#ffd8c8;border:1px solid #ff8b7a;border-radius:8px;padding:6px 10px;font:13px system-ui,sans-serif;max-width:90vw');document.body.appendChild(d);}d.textContent='Canvas blocked part of the game: '+blocked.join(', ');});window.addEventListener('error',function(e){var m=document.querySelector('#sol-boot .msg');if(m&&document.getElementById('sol-boot'))m.textContent='The game hit an error: '+(e.message||e)+' (line '+(e.lineno||'?')+')';});window.solMissing=function(f){var m=document.querySelector('#sol-boot .msg');if(m)m.textContent='Can\'t find '+f+'. Upload it to the same Canvas folder as this page, with the same name.';};})();</script>
+<script src="{{NAME}}-game.js" onerror="solMissing('{{NAME}}-game.js')"></script>
+</body>
+</html>
