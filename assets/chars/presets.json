@@ -1,0 +1,74 @@
+[
+  {
+    "id": "sol_a",
+    "label": "Alex",
+    "sheet": "assets/chars/sol_a_sheet.png",
+    "preview": "assets/chars/sol_a_preview.png",
+    "skin": "v01",
+    "outfit": "fstr_v01",
+    "hair": "bob1_v01"
+  },
+  {
+    "id": "sol_b",
+    "label": "Jordan",
+    "sheet": "assets/chars/sol_b_sheet.png",
+    "preview": "assets/chars/sol_b_preview.png",
+    "skin": "v02",
+    "outfit": "fstr_v02",
+    "hair": "dap1_v02"
+  },
+  {
+    "id": "sol_c",
+    "label": "Sam",
+    "sheet": "assets/chars/sol_c_sheet.png",
+    "preview": "assets/chars/sol_c_preview.png",
+    "skin": "v03",
+    "outfit": "fstr_v03",
+    "hair": "bob1_v04"
+  },
+  {
+    "id": "sol_d",
+    "label": "Riley",
+    "sheet": "assets/chars/sol_d_sheet.png",
+    "preview": "assets/chars/sol_d_preview.png",
+    "skin": "v04",
+    "outfit": "pfpn_v01",
+    "hair": "dap1_v05"
+  },
+  {
+    "id": "sol_e",
+    "label": "Casey",
+    "sheet": "assets/chars/sol_e_sheet.png",
+    "preview": "assets/chars/sol_e_preview.png",
+    "skin": "v05",
+    "outfit": "fstr_v04",
+    "hair": "bob1_v07"
+  },
+  {
+    "id": "sol_f",
+    "label": "Morgan",
+    "sheet": "assets/chars/sol_f_sheet.png",
+    "preview": "assets/chars/sol_f_preview.png",
+    "skin": "v00",
+    "outfit": "pfpn_v03",
+    "hair": "dap1_v08"
+  },
+  {
+    "id": "sol_g",
+    "label": "Taylor",
+    "sheet": "assets/chars/sol_g_sheet.png",
+    "preview": "assets/chars/sol_g_preview.png",
+    "skin": "v06",
+    "outfit": "fstr_v05",
+    "hair": "bob1_v10"
+  },
+  {
+    "id": "sol_h",
+    "label": "Quinn",
+    "sheet": "assets/chars/sol_h_sheet.png",
+    "preview": "assets/chars/sol_h_preview.png",
+    "skin": "v07",
+    "outfit": "pfpn_v05",
+    "hair": "dap1_v12"
+  }
+]

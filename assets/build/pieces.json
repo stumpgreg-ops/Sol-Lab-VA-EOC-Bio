@@ -1,0 +1,7969 @@
+{
+ "v": 2,
+ "sceneW": 1120,
+ "sceneH": 630,
+ "drawScale": 0.8,
+ "lots": [
+  {
+   "k": 2,
+   "u": 1,
+   "v": 0,
+   "kind": "side"
+  },
+  {
+   "k": 3,
+   "u": 0,
+   "v": 1,
+   "kind": "side"
+  },
+  {
+   "k": 4,
+   "u": -1,
+   "v": 0,
+   "kind": "back"
+  },
+  {
+   "k": 5,
+   "u": 0,
+   "v": -1,
+   "kind": "back"
+  },
+  {
+   "k": 6,
+   "u": 1,
+   "v": -1,
+   "kind": "side"
+  },
+  {
+   "k": 7,
+   "u": -1,
+   "v": 1,
+   "kind": "side"
+  },
+  {
+   "k": 8,
+   "u": 1,
+   "v": 1,
+   "kind": "front"
+  },
+  {
+   "k": 9,
+   "u": -1,
+   "v": -1,
+   "kind": "far"
+  },
+  {
+   "k": 10,
+   "u": 2,
+   "v": 0,
+   "kind": "side"
+  },
+  {
+   "k": 11,
+   "u": 0,
+   "v": 2,
+   "kind": "side"
+  },
+  {
+   "k": 12,
+   "u": -2,
+   "v": 0,
+   "kind": "back"
+  },
+  {
+   "k": 13,
+   "u": 0,
+   "v": -2,
+   "kind": "back"
+  },
+  {
+   "k": 14,
+   "u": 2,
+   "v": -1,
+   "kind": "side"
+  },
+  {
+   "k": 15,
+   "u": -1,
+   "v": 2,
+   "kind": "side"
+  },
+  {
+   "k": 16,
+   "u": -2,
+   "v": 1,
+   "kind": "back"
+  },
+  {
+   "k": 17,
+   "u": 1,
+   "v": -2,
+   "kind": "back"
+  },
+  {
+   "k": 18,
+   "u": 2,
+   "v": 1,
+   "kind": "front"
+  },
+  {
+   "k": 19,
+   "u": 1,
+   "v": 2,
+   "kind": "front"
+  },
+  {
+   "k": 20,
+   "u": -2,
+   "v": -2,
+   "kind": "far"
+  },
+  {
+   "k": 21,
+   "u": 3,
+   "v": 0,
+   "kind": "side"
+  },
+  {
+   "k": 22,
+   "u": 0,
+   "v": 3,
+   "kind": "side"
+  },
+  {
+   "k": 23,
+   "u": -3,
+   "v": 0,
+   "kind": "back"
+  },
+  {
+   "k": 24,
+   "u": 0,
+   "v": -3,
+   "kind": "back"
+  },
+  {
+   "k": 25,
+   "u": 3,
+   "v": -1,
+   "kind": "side"
+  },
+  {
+   "k": 26,
+   "u": -1,
+   "v": 3,
+   "kind": "side"
+  },
+  {
+   "k": 27,
+   "u": -3,
+   "v": 1,
+   "kind": "back"
+  },
+  {
+   "k": 28,
+   "u": 1,
+   "v": -3,
+   "kind": "back"
+  },
+  {
+   "k": 29,
+   "u": 3,
+   "v": 1,
+   "kind": "front"
+  },
+  {
+   "k": 30,
+   "u": 1,
+   "v": 3,
+   "kind": "front"
+  },
+  {
+   "k": 31,
+   "u": -3,
+   "v": -1,
+   "kind": "far"
+  },
+  {
+   "k": 32,
+   "u": -1,
+   "v": -3,
+   "kind": "far"
+  },
+  {
+   "k": 33,
+   "u": 3,
+   "v": -2,
+   "kind": "side"
+  },
+  {
+   "k": 34,
+   "u": -2,
+   "v": 3,
+   "kind": "side"
+  },
+  {
+   "k": 35,
+   "u": -3,
+   "v": 2,
+   "kind": "back"
+  },
+  {
+   "k": 36,
+   "u": 2,
+   "v": -3,
+   "kind": "back"
+  },
+  {
+   "k": 37,
+   "u": 3,
+   "v": 2,
+   "kind": "front"
+  },
+  {
+   "k": 38,
+   "u": 2,
+   "v": 3,
+   "kind": "front"
+  },
+  {
+   "k": 39,
+   "u": -3,
+   "v": -2,
+   "kind": "far"
+  },
+  {
+   "k": 40,
+   "u": -2,
+   "v": -3,
+   "kind": "far"
+  }
+ ],
+ "themes": {
+  "village": {
+   "name": "Town",
+   "desc": "A cottage that grows into a whole town: wings, a bakery, mills and a market.",
+   "drawScale": 0.8,
+   "pitch": 150,
+   "wallLevel": 8,
+   "styles": [
+    {
+     "id": "tile",
+     "name": "Red Tile",
+     "desc": "Stucco walls and a red tile roof.",
+     "dir": "",
+     "pairs": [
+      "thatch"
+     ]
+    },
+    {
+     "id": "slate",
+     "name": "Slate",
+     "desc": "White plaster and a blue slate roof.",
+     "dir": "styles/slate/",
+     "pairs": [
+      "tile"
+     ]
+    },
+    {
+     "id": "thatch",
+     "name": "Thatch",
+     "desc": "Warm timber walls and a golden straw roof.",
+     "dir": "styles/thatch/",
+     "pairs": [
+      "slate"
+     ]
+    }
+   ],
+   "ring": {
+    "seg": "fence",
+    "corner": null,
+    "gate": null,
+    "extent": 3.75
+   },
+   "cell": 40,
+   "unitPx": 30
+  },
+  "castle": {
+   "name": "Castle",
+   "desc": "A modest keep that grows into a grand castle: towers and gates first, walls that turn corners, flags in your colour.",
+   "kit": true,
+   "cell": 151,
+   "cellH": 87.2,
+   "unitPx": 1,
+   "drawScale": 1,
+   "wallLevel": 8,
+   "growAt": [
+    1,
+    4,
+    8,
+    13
+   ],
+   "tabs": [
+    [
+     "core",
+     "Keep"
+    ],
+    [
+     "tower",
+     "Towers"
+    ],
+    [
+     "wall",
+     "Walls & gates"
+    ],
+    [
+     "house",
+     "Buildings"
+    ],
+    [
+     "nature",
+     "Nature"
+    ],
+    [
+     "statue",
+     "Statues"
+    ],
+    [
+     "village",
+     "Village"
+    ],
+    [
+     "animal",
+     "Animals"
+    ],
+    [
+     "people",
+     "People & siege"
+    ],
+    [
+     "flag",
+     "Flags"
+    ]
+   ],
+   "styles": [
+    {
+     "id": "blue",
+     "name": "Royal Blue",
+     "desc": "Blue roofs, flags and bands.",
+     "dir": "",
+     "pairs": [
+      "gold"
+     ]
+    },
+    {
+     "id": "red",
+     "name": "Crimson",
+     "desc": "Red roofs, flags and bands.",
+     "dir": "red/",
+     "pairs": [
+      "gold"
+     ]
+    },
+    {
+     "id": "green",
+     "name": "Forest",
+     "desc": "Green roofs, flags and bands.",
+     "dir": "green/",
+     "pairs": [
+      "blue"
+     ]
+    },
+    {
+     "id": "gold",
+     "name": "Gold",
+     "desc": "Gold roofs, flags and bands.",
+     "dir": "gold/",
+     "pairs": [
+      "red"
+     ]
+    }
+   ],
+   "ranks": [
+    [
+     0,
+     "Camp"
+    ],
+    [
+     120,
+     "Fort"
+    ],
+    [
+     300,
+     "Stronghold"
+    ],
+    [
+     600,
+     "Castle"
+    ],
+    [
+     1000,
+     "Fortress"
+    ],
+    [
+     1600,
+     "Citadel"
+    ],
+    [
+     2400,
+     "Royal Seat"
+    ]
+   ],
+   "packs": [
+    {
+     "id": "walls",
+     "name": "Wall pack",
+     "desc": "Four lengths of curtain wall, 25% off. They turn corners by themselves.",
+     "items": [
+      "wall",
+      "wall",
+      "wall",
+      "wall"
+     ],
+     "discount": 0.25
+    },
+    {
+     "id": "gatehouse",
+     "name": "Gatehouse pack",
+     "desc": "A gate with a square tower either side, 15% off.",
+     "items": [
+      "square-tower",
+      "gate",
+      "square-tower"
+     ],
+     "discount": 0.15
+    },
+    {
+     "id": "tower",
+     "name": "Tower pack",
+     "desc": "A round tower with a flag on top, 15% off.",
+     "items": [
+      "round-tower",
+      "flag"
+     ],
+     "discount": 0.15
+    },
+    {
+     "id": "siege",
+     "name": "Siege pack",
+     "desc": "A catapult and a ballista for the courtyard, 20% off.",
+     "items": [
+      "catapult",
+      "ballista"
+     ],
+     "discount": 0.2
+    },
+    {
+     "id": "garden",
+     "name": "Garden pack",
+     "desc": "Flowers, an oak, bushes and a hedge, 25% off.",
+     "items": [
+      "flowers-mixed",
+      "flowers-red",
+      "oak",
+      "bushes",
+      "hedge"
+     ],
+     "discount": 0.25
+    },
+    {
+     "id": "farm",
+     "name": "Farm pack",
+     "desc": "A stable, a rail fence, a cow, a horse and a chicken, 20% off.",
+     "items": [
+      "stable",
+      "rail-fence",
+      "cow",
+      "horse",
+      "chicken"
+     ],
+     "discount": 0.2
+    },
+    {
+     "id": "village",
+     "name": "Village pack",
+     "desc": "A cottage, a market stall, a cart, a lantern and a bench, 20% off.",
+     "items": [
+      "c-cottage",
+      "stall-red",
+      "cart",
+      "lantern",
+      "bench"
+     ],
+     "discount": 0.2
+    },
+    {
+     "id": "monuments",
+     "name": "Monument pack",
+     "desc": "A fountain, an obelisk, a column and a knight statue, 20% off.",
+     "items": [
+      "fountain",
+      "obelisk",
+      "column",
+      "knight-statue"
+     ],
+     "discount": 0.2
+    },
+    {
+     "id": "town",
+     "name": "Town pack",
+     "desc": "A town hall, two houses, a well and a market hall, 20% off.",
+     "items": [
+      "k-townhall",
+      "k-home-a",
+      "k-home-b",
+      "k-well",
+      "k-market"
+     ],
+     "discount": 0.2
+    },
+    {
+     "id": "garrison",
+     "name": "Garrison pack",
+     "desc": "Barracks, an archery range, a soldier, a banner and a weapon rack, 20% off.",
+     "items": [
+      "k-barracks",
+      "k-archery",
+      "k-soldier",
+      "k-banner",
+      "k-weapons"
+     ],
+     "discount": 0.2
+    },
+    {
+     "id": "mills",
+     "name": "Mill pack",
+     "desc": "A lumber mill, a stone windmill and a water mill, 15% off.",
+     "items": [
+      "k-lumbermill",
+      "k-windmill",
+      "k-watermill"
+     ],
+     "discount": 0.15
+    },
+    {
+     "id": "stone-towers",
+     "name": "Stone tower pack",
+     "desc": "A stone tower, a squat tower and a wooden watchtower, 15% off.",
+     "items": [
+      "k-tower-a",
+      "k-tower-base",
+      "k-watchtower"
+     ],
+     "discount": 0.15
+    }
+   ]
+  }
+ },
+ "pieces": [
+  {
+   "id": "cottage",
+   "theme": "village",
+   "name": "Cottage",
+   "role": "core",
+   "tier": 1,
+   "desc": "A snug one-room home to start from.",
+   "img": "assets/build/village-cottage.png",
+   "w": 106,
+   "h": 149,
+   "ax": 0.4978,
+   "ay": 0.769,
+   "unitPx": 30,
+   "price": 40,
+   "cells": 2
+  },
+  {
+   "id": "stone-cottage",
+   "theme": "village",
+   "name": "Stone cottage",
+   "role": "core",
+   "tier": 1,
+   "desc": "Thick stone walls, one storey, warm inside.",
+   "img": "assets/build/village-stone-cottage.png",
+   "w": 113,
+   "h": 153,
+   "ax": 0.4998,
+   "ay": 0.763,
+   "unitPx": 30,
+   "price": 40,
+   "cells": 3
+  },
+  {
+   "id": "house",
+   "theme": "village",
+   "name": "Two-storey house",
+   "role": "core",
+   "tier": 1,
+   "desc": "Windows upstairs and a chimney.",
+   "img": "assets/build/village-house.png",
+   "w": 148,
+   "h": 193,
+   "ax": 0.4999,
+   "ay": 0.7588,
+   "unitPx": 30,
+   "price": 40,
+   "cells": 3
+  },
+  {
+   "id": "stall",
+   "theme": "village",
+   "name": "Market stall",
+   "role": "module",
+   "tier": 1,
+   "desc": "A canopy, crates and goods to sell.",
+   "img": "assets/build/village-stall.png",
+   "w": 98,
+   "h": 118,
+   "ax": 0.4953,
+   "ay": 0.726,
+   "fits": [
+    "front",
+    "side"
+   ],
+   "unitPx": 30,
+   "price": 40,
+   "cells": 2
+  },
+  {
+   "id": "steps",
+   "theme": "village",
+   "name": "Stone steps",
+   "role": "module",
+   "tier": 1,
+   "desc": "Steps with a railing up to the door.",
+   "img": "assets/build/village-steps.png",
+   "w": 85,
+   "h": 85,
+   "ax": 0.4997,
+   "ay": 0.6601,
+   "fits": [
+    "front",
+    "side"
+   ],
+   "unitPx": 30,
+   "price": 40,
+   "cells": 2
+  },
+  {
+   "id": "cottage-wing",
+   "theme": "village",
+   "name": "Cottage wing",
+   "role": "module",
+   "tier": 1,
+   "desc": "A second cottage joined to the first.",
+   "img": "assets/build/village-cottage.png",
+   "w": 106,
+   "h": 149,
+   "ax": 0.4978,
+   "ay": 0.769,
+   "fits": [
+    "side",
+    "back"
+   ],
+   "unitPx": 30,
+   "price": 40,
+   "cells": 2
+  },
+  {
+   "id": "stone-wing",
+   "theme": "village",
+   "name": "Stone wing",
+   "role": "module",
+   "tier": 1,
+   "desc": "A stone room added on.",
+   "img": "assets/build/village-stone-cottage.png",
+   "w": 113,
+   "h": 153,
+   "ax": 0.4998,
+   "ay": 0.763,
+   "fits": [
+    "side",
+    "back"
+   ],
+   "unitPx": 30,
+   "price": 40,
+   "cells": 3
+  },
+  {
+   "id": "lamp-path",
+   "theme": "village",
+   "name": "Lamp-lit lane",
+   "role": "module",
+   "tier": 2,
+   "desc": "Cobbles and two lamps to the door.",
+   "img": "assets/build/village-lamp-path.png",
+   "w": 144,
+   "h": 131,
+   "ax": 0.4975,
+   "ay": 0.6509,
+   "fits": [
+    "front"
+   ],
+   "unitPx": 30,
+   "price": 80,
+   "cells": 3
+  },
+  {
+   "id": "house-wing",
+   "theme": "village",
+   "name": "House wing",
+   "role": "module",
+   "tier": 2,
+   "desc": "A two-storey wing with its own chimney.",
+   "img": "assets/build/village-house.png",
+   "w": 148,
+   "h": 193,
+   "ax": 0.4999,
+   "ay": 0.7588,
+   "fits": [
+    "side",
+    "back"
+   ],
+   "unitPx": 30,
+   "price": 80,
+   "cells": 3
+  },
+  {
+   "id": "bakery",
+   "theme": "village",
+   "name": "Bakery",
+   "role": "module",
+   "tier": 2,
+   "desc": "Round windows, big chimney, fresh bread.",
+   "img": "assets/build/village-bakery.png",
+   "w": 157,
+   "h": 198,
+   "ax": 0.4981,
+   "ay": 0.752,
+   "fits": [
+    "side",
+    "back"
+   ],
+   "unitPx": 30,
+   "price": 80,
+   "cells": 4
+  },
+  {
+   "id": "dock",
+   "theme": "village",
+   "name": "Boat dock",
+   "role": "module",
+   "tier": 2,
+   "desc": "A wooden pier with a rowing boat.",
+   "img": "assets/build/village-dock.png",
+   "w": 162,
+   "h": 125,
+   "ax": 0.4974,
+   "ay": 0.5959,
+   "fits": [
+    "front",
+    "side"
+   ],
+   "unitPx": 30,
+   "price": 80,
+   "cells": 4
+  },
+  {
+   "id": "chapel",
+   "theme": "village",
+   "name": "Chapel",
+   "role": "module",
+   "tier": 2,
+   "desc": "A bell over the door.",
+   "img": "assets/build/village-chapel.png",
+   "w": 113,
+   "h": 178,
+   "ax": 0.4998,
+   "ay": 0.7962,
+   "fits": [
+    "side",
+    "back",
+    "far"
+   ],
+   "unitPx": 30,
+   "price": 80,
+   "cells": 3
+  },
+  {
+   "id": "arch",
+   "theme": "village",
+   "name": "Stone arch",
+   "role": "module",
+   "tier": 2,
+   "desc": "A grand gate into the yard.",
+   "img": "assets/build/village-arch.png",
+   "w": 112,
+   "h": 146,
+   "ax": 0.4976,
+   "ay": 0.7548,
+   "fits": [
+    "front"
+   ],
+   "unitPx": 30,
+   "price": 80,
+   "cells": 3
+  },
+  {
+   "id": "tavern",
+   "theme": "village",
+   "name": "Tavern",
+   "role": "module",
+   "tier": 3,
+   "desc": "A sign, a lamp and a warm door.",
+   "img": "assets/build/village-tavern.png",
+   "w": 171,
+   "h": 187,
+   "ax": 0.4987,
+   "ay": 0.7137,
+   "fits": [
+    "side",
+    "back"
+   ],
+   "unitPx": 30,
+   "price": 140,
+   "cells": 4
+  },
+  {
+   "id": "windmill",
+   "theme": "village",
+   "name": "Windmill",
+   "role": "module",
+   "tier": 3,
+   "desc": "Sails turning over the fields.",
+   "img": "assets/build/village-windmill.png",
+   "w": 129,
+   "h": 212,
+   "ax": 0.4978,
+   "ay": 0.8051,
+   "fits": [
+    "back",
+    "far"
+   ],
+   "unitPx": 30,
+   "price": 140,
+   "cells": 3
+  },
+  {
+   "id": "watermill",
+   "theme": "village",
+   "name": "Watermill",
+   "role": "module",
+   "tier": 3,
+   "desc": "A wheel turned by the stream.",
+   "img": "assets/build/village-watermill.png",
+   "w": 190,
+   "h": 229,
+   "ax": 0.4983,
+   "ay": 0.7413,
+   "fits": [
+    "side",
+    "far"
+   ],
+   "unitPx": 30,
+   "price": 140,
+   "cells": 5
+  },
+  {
+   "id": "square",
+   "theme": "village",
+   "name": "Market square",
+   "role": "module",
+   "tier": 3,
+   "desc": "Cobbles, two stalls and the old well.",
+   "img": "assets/build/village-square.png",
+   "w": 222,
+   "h": 197,
+   "ax": 0.4986,
+   "ay": 0.6548,
+   "fits": [
+    "front"
+   ],
+   "unitPx": 30,
+   "price": 140,
+   "cells": 5
+  },
+  {
+   "id": "harbour",
+   "theme": "village",
+   "name": "Harbour",
+   "role": "module",
+   "tier": 3,
+   "desc": "Two boats, a long pier and a lamp.",
+   "img": "assets/build/village-harbour.png",
+   "w": 216,
+   "h": 180,
+   "ax": 0.4989,
+   "ay": 0.6289,
+   "fits": [
+    "front",
+    "side"
+   ],
+   "unitPx": 30,
+   "price": 140,
+   "cells": 5
+  },
+  {
+   "id": "manor",
+   "theme": "village",
+   "name": "Manor house",
+   "role": "module",
+   "tier": 4,
+   "desc": "Three storeys of stucco and red tile.",
+   "img": "assets/build/village-manor.png",
+   "w": 199,
+   "h": 247,
+   "ax": 0.4996,
+   "ay": 0.7516,
+   "fits": [
+    "side",
+    "back"
+   ],
+   "unitPx": 30,
+   "price": 220,
+   "cells": 5
+  },
+  {
+   "id": "town-hall",
+   "theme": "village",
+   "name": "Town hall",
+   "role": "module",
+   "tier": 4,
+   "desc": "Steps, a bell and an ornate door.",
+   "img": "assets/build/village-town-hall.png",
+   "w": 183,
+   "h": 224,
+   "ax": 0.4992,
+   "ay": 0.745,
+   "fits": [
+    "back",
+    "far"
+   ],
+   "unitPx": 30,
+   "price": 220,
+   "cells": 4
+  },
+  {
+   "id": "bell-tower",
+   "theme": "village",
+   "name": "Bell tower",
+   "role": "module",
+   "tier": 4,
+   "desc": "The tallest thing in town.",
+   "img": "assets/build/village-bell-tower.png",
+   "w": 99,
+   "h": 220,
+   "ax": 0.4966,
+   "ay": 0.8531,
+   "fits": [
+    "back",
+    "far"
+   ],
+   "unitPx": 30,
+   "price": 220,
+   "cells": 2
+  },
+  {
+   "id": "grand-mill",
+   "theme": "village",
+   "name": "Grand windmill",
+   "role": "module",
+   "tier": 4,
+   "desc": "A stone mill with huge sails.",
+   "img": "assets/build/village-grand-mill.png",
+   "w": 174,
+   "h": 289,
+   "ax": 0.4992,
+   "ay": 0.8114,
+   "fits": [
+    "back",
+    "far"
+   ],
+   "unitPx": 30,
+   "price": 220,
+   "cells": 4
+  },
+  {
+   "id": "fence",
+   "theme": "village",
+   "name": "Wooden fence",
+   "role": "wall",
+   "tier": 0,
+   "desc": "Posts and rails around the estate.",
+   "img": "assets/build/village-fence.png",
+   "w": 87,
+   "h": 82,
+   "ax": 0.4999,
+   "ay": 0.6456,
+   "unitPx": 30,
+   "cells": 2
+  },
+  {
+   "id": "well",
+   "theme": "village",
+   "name": "Village well",
+   "role": "deco",
+   "tier": 0,
+   "price": 30,
+   "desc": "Fresh water in the yard.",
+   "img": "assets/build/village-well.png",
+   "w": 69,
+   "h": 84,
+   "ax": 0.4928,
+   "ay": 0.7153,
+   "unitPx": 30,
+   "nostyle": true,
+   "cells": 1
+  },
+  {
+   "id": "lamp",
+   "theme": "village",
+   "name": "Street lamp",
+   "role": "deco",
+   "tier": 0,
+   "price": 15,
+   "desc": "A little light for the path.",
+   "img": "assets/build/village-lamp.png",
+   "w": 43,
+   "h": 62,
+   "ax": 0.4895,
+   "ay": 0.7436,
+   "unitPx": 30,
+   "nostyle": true,
+   "cells": 1
+  },
+  {
+   "id": "barrels",
+   "theme": "village",
+   "name": "Barrel stack",
+   "role": "deco",
+   "tier": 0,
+   "price": 15,
+   "desc": "Three barrels by the door.",
+   "img": "assets/build/village-barrels.png",
+   "w": 51,
+   "h": 61,
+   "ax": 0.4929,
+   "ay": 0.6947,
+   "unitPx": 30,
+   "nostyle": true,
+   "cells": 1
+  },
+  {
+   "id": "crates",
+   "theme": "village",
+   "name": "Crates and hay",
+   "role": "deco",
+   "tier": 0,
+   "price": 20,
+   "desc": "Supplies for the household.",
+   "img": "assets/build/village-crates.png",
+   "w": 95,
+   "h": 112,
+   "ax": 0.4983,
+   "ay": 0.7226,
+   "unitPx": 30,
+   "nostyle": true,
+   "cells": 2
+  },
+  {
+   "id": "hay-cart",
+   "theme": "village",
+   "name": "Hay cart",
+   "role": "deco",
+   "tier": 0,
+   "price": 25,
+   "desc": "A farmer's cart full of hay.",
+   "img": "assets/build/village-hay-cart.png",
+   "w": 126,
+   "h": 112,
+   "ax": 0.4983,
+   "ay": 0.6397,
+   "unitPx": 30,
+   "nostyle": true,
+   "cells": 3
+  },
+  {
+   "id": "barrel-cart",
+   "theme": "village",
+   "name": "Merchant cart",
+   "role": "deco",
+   "tier": 0,
+   "price": 25,
+   "desc": "Barrels bound for market.",
+   "img": "assets/build/village-barrel-cart.png",
+   "w": 126,
+   "h": 112,
+   "ax": 0.4983,
+   "ay": 0.6397,
+   "unitPx": 30,
+   "nostyle": true,
+   "cells": 3
+  },
+  {
+   "id": "haystacks",
+   "theme": "village",
+   "name": "Haystacks",
+   "role": "deco",
+   "tier": 0,
+   "price": 20,
+   "desc": "Harvest piled high.",
+   "img": "assets/build/village-haystacks.png",
+   "w": 85,
+   "h": 84,
+   "ax": 0.4957,
+   "ay": 0.661,
+   "unitPx": 30,
+   "nostyle": true,
+   "cells": 2
+  },
+  {
+   "id": "cobbles",
+   "theme": "village",
+   "name": "Cobbled corner",
+   "role": "deco",
+   "tier": 0,
+   "price": 20,
+   "desc": "A paved patch of yard.",
+   "img": "assets/build/village-cobbles.png",
+   "w": 103,
+   "h": 91,
+   "ax": 0.4999,
+   "ay": 0.6339,
+   "unitPx": 30,
+   "nostyle": true,
+   "cells": 2
+  },
+  {
+   "id": "signpost",
+   "theme": "village",
+   "name": "Sign post",
+   "role": "deco",
+   "tier": 0,
+   "price": 15,
+   "desc": "Which way to the market?",
+   "img": "assets/build/village-signpost.png",
+   "w": 71,
+   "h": 104,
+   "ax": 0.4979,
+   "ay": 0.7671,
+   "unitPx": 30,
+   "nostyle": true,
+   "cells": 2
+  },
+  {
+   "id": "keep",
+   "theme": "castle",
+   "name": "Keep",
+   "desc": "A modest square keep with a tiled roof. It grows taller as your castle grows.",
+   "role": "core",
+   "kind": "core",
+   "tier": 1,
+   "price": 80,
+   "score": 40,
+   "cells": 1,
+   "cat": "core",
+   "parts": [
+    "towerSquareBase_NE",
+    "towerSquareTopRoof_NE"
+   ],
+   "grow": [
+    [
+     "towerSquareBase_NE",
+     "towerSquareTopRoof_NE"
+    ],
+    [
+     "towerSquareBase_NE",
+     "towerSquareMidWindows_NE",
+     "towerSquareTopRoof_NE"
+    ],
+    [
+     "towerSquareBaseColor_NE",
+     "towerSquareMidWindows_NE",
+     "towerSquareMidColor_NE",
+     "towerSquareTopRoofHigh_NE"
+    ],
+    [
+     "towerSquareBaseColor_NE",
+     "towerSquareMidWindows_NE",
+     "towerSquareMidColor_NE",
+     "towerSquareMidWindows_NE",
+     "towerSquareTopRoofHigh_NE"
+    ]
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "round-keep",
+   "theme": "castle",
+   "name": "Round keep",
+   "desc": "A small round keep with a pointed roof. It grows taller as your castle grows.",
+   "role": "core",
+   "kind": "core",
+   "tier": 1,
+   "price": 80,
+   "score": 40,
+   "cells": 1,
+   "cat": "core",
+   "parts": [
+    "towerBase_NE",
+    "towerTopRoof_NE"
+   ],
+   "grow": [
+    [
+     "towerBase_NE",
+     "towerTopRoof_NE"
+    ],
+    [
+     "towerBase_NE",
+     "towerTop_NE",
+     "towerTopRoof_NE"
+    ],
+    [
+     "towerBase_NE",
+     "towerBase_NE",
+     "towerBalcony_NE",
+     "towerTopRoof_NE"
+    ],
+    [
+     "towerBase_NE",
+     "towerBase_NE",
+     "towerBalcony_NE",
+     "towerTop_NE",
+     "towerTopRoof_NE"
+    ]
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "watch-keep",
+   "theme": "castle",
+   "name": "Watch keep",
+   "desc": "A squat keep with battlements. It grows a lookout as your castle grows.",
+   "role": "core",
+   "kind": "core",
+   "tier": 1,
+   "price": 80,
+   "score": 38,
+   "cells": 1,
+   "cat": "core",
+   "parts": [
+    "towerSquareBase_NE",
+    "towerSquareTop_NE"
+   ],
+   "grow": [
+    [
+     "towerSquareBase_NE",
+     "towerSquareTop_NE"
+    ],
+    [
+     "towerSquareBase_NE",
+     "towerSquareMidOpen_NE",
+     "towerSquareTop_NE"
+    ],
+    [
+     "towerSquareBase_NE",
+     "towerSquareMid_NE",
+     "towerSquareMidOpen_NE",
+     "towerSquareTop_NE",
+     "towerSquarePoles_NE"
+    ],
+    [
+     "towerSquareBaseColor_NE",
+     "towerSquareMidColor_NE",
+     "towerSquareMidOpen_NE",
+     "towerSquareMidWindows_NE",
+     "towerSquareTop_NE",
+     "towerSquarePoles_NE"
+    ]
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "wall",
+   "theme": "castle",
+   "name": "Wall",
+   "desc": "One length of curtain wall. It turns corners by itself.",
+   "role": "module",
+   "kind": "wall",
+   "tier": 2,
+   "price": 15,
+   "score": 8,
+   "cells": 1,
+   "cat": "wall",
+   "auto": {
+    "u": "wall_NE",
+    "v": "wall_NW",
+    "corner": {
+     "-u+v": "wallCorner_NE",
+     "-u-v": "wallCorner_SE",
+     "+u-v": "wallCorner_SW",
+     "+u+v": "wallCorner_NW"
+    }
+   },
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "gate",
+   "theme": "castle",
+   "name": "Portcullis gate",
+   "desc": "A wall with an iron portcullis.",
+   "role": "module",
+   "kind": "wall",
+   "tier": 1,
+   "price": 30,
+   "score": 14,
+   "cells": 1,
+   "cat": "wall",
+   "auto": {
+    "u": [
+     "wallDoor_NE",
+     "metalGate_NE"
+    ],
+    "v": [
+     "wallDoor_NW",
+     "metalGate_NW"
+    ]
+   },
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "doorway",
+   "theme": "castle",
+   "name": "Open gate",
+   "desc": "A wall with an open archway through it.",
+   "role": "module",
+   "kind": "wall",
+   "tier": 1,
+   "price": 25,
+   "score": 12,
+   "cells": 1,
+   "cat": "wall",
+   "auto": {
+    "u": "wallDoor_NE",
+    "v": "wallDoor_NW"
+   },
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stairs-wall",
+   "theme": "castle",
+   "name": "Wall stairs",
+   "desc": "A wall with steps up to the walkway.",
+   "role": "module",
+   "kind": "wall",
+   "tier": 2,
+   "price": 25,
+   "score": 10,
+   "cells": 1,
+   "cat": "wall",
+   "auto": {
+    "u": "wallNarrowStairs_NE",
+    "v": "wallNarrowStairs_NW"
+   },
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "corner-tower",
+   "theme": "castle",
+   "name": "Corner turret",
+   "desc": "A turret built into a corner of the wall.",
+   "role": "module",
+   "kind": "wall",
+   "tier": 2,
+   "price": 40,
+   "score": 18,
+   "cells": 1,
+   "cat": "wall",
+   "auto": {
+    "u": "wallCornerHalfTower_NE",
+    "v": "wallCornerHalfTower_NW",
+    "corner": {
+     "-u+v": "wallCornerHalfTower_NE",
+     "-u-v": "wallCornerHalfTower_SE",
+     "+u-v": "wallCornerHalfTower_SW",
+     "+u+v": "wallCornerHalfTower_NW"
+    }
+   },
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "round-tower",
+   "theme": "castle",
+   "name": "Round tower",
+   "desc": "A round tower with a pointed roof.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 1,
+   "price": 45,
+   "score": 25,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "towerBase_NE",
+    "towerTop_NE",
+    "towerTopRoof_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "square-tower",
+   "theme": "castle",
+   "name": "Square tower",
+   "desc": "A square tower with battlements.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 1,
+   "price": 45,
+   "score": 25,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "towerSquareBase_NE",
+    "towerSquareTop_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "gate-tower",
+   "theme": "castle",
+   "name": "Gate tower",
+   "desc": "A tower with an archway through its foot — a gate with battlements.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 1,
+   "price": 50,
+   "score": 28,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "towerSquareArch_NE",
+    "towerSquareTop_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "roof-tower",
+   "theme": "castle",
+   "name": "Roofed tower",
+   "desc": "A square tower with a tiled roof.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 2,
+   "price": 70,
+   "score": 35,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "towerSquareBase_NE",
+    "towerSquareMid_NE",
+    "towerSquareTopRoof_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "balcony-tower",
+   "theme": "castle",
+   "name": "Balcony tower",
+   "desc": "A round tower with a balcony under the roof.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 2,
+   "price": 70,
+   "score": 35,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "towerBase_NE",
+    "towerBalcony_NE",
+    "towerTopRoof_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "watchtower",
+   "theme": "castle",
+   "name": "Watchtower",
+   "desc": "A tall open tower with a lookout deck.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 2,
+   "price": 75,
+   "score": 38,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "towerSquareBase_NE",
+    "towerSquareMid_NE",
+    "towerSquareTop_NE",
+    "towerSquarePoles_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "grand-tower",
+   "theme": "castle",
+   "name": "Grand tower",
+   "desc": "Three storeys with coloured bands and a high roof.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 3,
+   "price": 120,
+   "score": 60,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "towerSquareBaseColor_NE",
+    "towerSquareMidColor_NE",
+    "towerSquareMidWindows_NE",
+    "towerSquareTopRoofHigh_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "arch-tower",
+   "theme": "castle",
+   "name": "Gatehouse tower",
+   "desc": "A tall gate tower with an open gallery above the archway.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 2,
+   "price": 110,
+   "score": 55,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "towerSquareArch_NE",
+    "towerSquareMidOpen_NE",
+    "towerSquareTopColor_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "great-tower",
+   "theme": "castle",
+   "name": "Great round tower",
+   "desc": "The tallest round tower, four storeys high.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 4,
+   "price": 160,
+   "score": 80,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "towerBase_NE",
+    "towerBase_NE",
+    "towerBalcony_NE",
+    "towerTop_NE",
+    "towerTopRoof_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "royal-tower",
+   "theme": "castle",
+   "name": "Royal tower",
+   "desc": "Five storeys with a roof to see for miles.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 4,
+   "price": 180,
+   "score": 90,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "towerSquareBaseColor_NE",
+    "towerSquareMidWindows_NE",
+    "towerSquareMidColor_NE",
+    "towerSquareMidWindows_NE",
+    "towerSquareTopRoofHigh_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "flag",
+   "theme": "castle",
+   "name": "Flag",
+   "desc": "A flag in your colour on top of a tower.",
+   "role": "deco",
+   "kind": "topper",
+   "tier": 1,
+   "price": 12,
+   "score": 6,
+   "cells": 1,
+   "cat": "flag",
+   "parts": [
+    "flagBlue_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "flag-wide",
+   "theme": "castle",
+   "name": "Wide flag",
+   "desc": "A big banner flag for the tallest tower.",
+   "role": "deco",
+   "kind": "topper",
+   "tier": 2,
+   "price": 18,
+   "score": 8,
+   "cells": 1,
+   "cat": "flag",
+   "parts": [
+    "flagBlueWide_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "banner-long",
+   "theme": "castle",
+   "name": "Long banner",
+   "desc": "A long hanging banner.",
+   "role": "deco",
+   "kind": "topper",
+   "tier": 2,
+   "price": 18,
+   "score": 8,
+   "cells": 1,
+   "cat": "flag",
+   "parts": [
+    "flagBannerLong_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "banner-short",
+   "theme": "castle",
+   "name": "Short banner",
+   "desc": "A short hanging banner.",
+   "role": "deco",
+   "kind": "topper",
+   "tier": 1,
+   "price": 12,
+   "score": 6,
+   "cells": 1,
+   "cat": "flag",
+   "parts": [
+    "flagBannerShort_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "bridge",
+   "theme": "castle",
+   "name": "Bridge",
+   "desc": "A wooden bridge over the moat.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 25,
+   "score": 10,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "bridge_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stone-stairs",
+   "theme": "castle",
+   "name": "Stone stairs",
+   "desc": "Stone steps up to a doorway.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 6,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "stairsStone_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "knight",
+   "theme": "castle",
+   "name": "Knight",
+   "desc": "A knight of your colour standing guard.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 20,
+   "score": 8,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "knightBlue_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "knight-red",
+   "theme": "castle",
+   "name": "Red knight",
+   "desc": "A knight in red on patrol.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 20,
+   "score": 8,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "knightRed_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "king",
+   "theme": "castle",
+   "name": "The king",
+   "desc": "The king himself, come to inspect the castle.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 3,
+   "price": 60,
+   "score": 25,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "king_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "ballista",
+   "theme": "castle",
+   "name": "Ballista",
+   "desc": "A giant crossbow on the walls.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 45,
+   "score": 18,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "siegeBallista_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "catapult",
+   "theme": "castle",
+   "name": "Catapult",
+   "desc": "A catapult in the courtyard.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 55,
+   "score": 22,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "siegeCatapult_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "ram",
+   "theme": "castle",
+   "name": "Battering ram",
+   "desc": "A covered battering ram.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 3,
+   "price": 60,
+   "score": 24,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "siegeRam_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "trebuchet",
+   "theme": "castle",
+   "name": "Trebuchet",
+   "desc": "The biggest siege engine of all.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 3,
+   "price": 90,
+   "score": 40,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "siegeTrebuchet_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "siege-tower",
+   "theme": "castle",
+   "name": "Siege tower",
+   "desc": "A rolling tower for storming walls.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 4,
+   "price": 110,
+   "score": 45,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "siegeTower_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "c-cottage",
+   "theme": "castle",
+   "name": "Cottage",
+   "desc": "A stone cottage with a gabled roof.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 60,
+   "score": 30,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallBlock_NE",
+    "t_roofGable_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "hut",
+   "theme": "castle",
+   "name": "Wooden hut",
+   "desc": "A small timber hut with a pointed roof.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 50,
+   "score": 26,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallWoodBlock_NE",
+    "t_roofPoint_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stable",
+   "theme": "castle",
+   "name": "Stable",
+   "desc": "A timber stable with a wide roof.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 65,
+   "score": 30,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallWoodBlock_NE",
+    "t_roof_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "barn",
+   "theme": "castle",
+   "name": "Barn",
+   "desc": "A tall barn for hay and horses.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 90,
+   "score": 40,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallWoodBlock_NE",
+    "t_roofHigh_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "c-tavern",
+   "theme": "castle",
+   "name": "Tavern",
+   "desc": "A timber tavern with a high gabled roof.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 95,
+   "score": 42,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallWoodBlock_NE",
+    "t_roofHighGable_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stone-hall",
+   "theme": "castle",
+   "name": "Stone hall",
+   "desc": "Two storeys of stone under a steep roof.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 110,
+   "score": 48,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallBlock_NE",
+    "t_wallBlock_NE",
+    "t_roofHigh_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "c-chapel",
+   "theme": "castle",
+   "name": "Chapel",
+   "desc": "A tall chapel with a pointed roof.",
+   "role": "module",
+   "kind": "house",
+   "tier": 3,
+   "price": 130,
+   "score": 55,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallBlock_NE",
+    "t_wallBlock_NE",
+    "t_roofHighPoint_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "c-manor",
+   "theme": "castle",
+   "name": "Manor",
+   "desc": "A grand stone house with a windowed roof.",
+   "role": "module",
+   "kind": "house",
+   "tier": 3,
+   "price": 150,
+   "score": 60,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallBlock_NE",
+    "t_wallBlock_NE",
+    "t_roofHighWindow_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "c-windmill",
+   "theme": "castle",
+   "name": "Windmill",
+   "desc": "A windmill on a stone tower.",
+   "role": "module",
+   "kind": "house",
+   "tier": 3,
+   "price": 140,
+   "score": 55,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallBlock_NE",
+    "t_wallBlock_NE",
+    "t_windmill_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stall-red",
+   "theme": "castle",
+   "name": "Market stall",
+   "desc": "A red market stall.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 30,
+   "score": 12,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "t_stallRed_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stall-green",
+   "theme": "castle",
+   "name": "Green stall",
+   "desc": "A green market stall.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 30,
+   "score": 12,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "t_stallGreen_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "cart",
+   "theme": "castle",
+   "name": "Cart",
+   "desc": "A wooden cart.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 20,
+   "score": 8,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "t_cart_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "c-hay-cart",
+   "theme": "castle",
+   "name": "Hay cart",
+   "desc": "A cart piled with hay.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 25,
+   "score": 10,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "t_cartHigh_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "lantern",
+   "theme": "castle",
+   "name": "Lantern post",
+   "desc": "A lantern on a post.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 6,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "t_lantern_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "lamp-post",
+   "theme": "castle",
+   "name": "Lamp post",
+   "desc": "An iron lamp post.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 20,
+   "score": 8,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "g_lightpostSingle_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "lamp-double",
+   "theme": "castle",
+   "name": "Double lamp",
+   "desc": "A lamp post with two lanterns.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 25,
+   "score": 10,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "g_lightpostDouble_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "bench",
+   "theme": "castle",
+   "name": "Bench",
+   "desc": "A wooden bench.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 6,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "g_bench_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "fountain",
+   "theme": "castle",
+   "name": "Fountain",
+   "desc": "A round stone fountain.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 70,
+   "score": 30,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "t_fountainRound_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "pool",
+   "theme": "castle",
+   "name": "Pool",
+   "desc": "A square pool of water.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 80,
+   "score": 32,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "t_fountainSquare_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "waterwheel",
+   "theme": "castle",
+   "name": "Water wheel",
+   "desc": "A big wooden water wheel.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 60,
+   "score": 24,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "t_watermill_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "planks",
+   "theme": "castle",
+   "name": "Wooden deck",
+   "desc": "A deck of planks.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 4,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "t_planks_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stone-path",
+   "theme": "castle",
+   "name": "Stone path",
+   "desc": "Flat stones to walk on.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "n_path_stone_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "well-sign",
+   "theme": "castle",
+   "name": "Signpost",
+   "desc": "A wooden signpost.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "n_sign_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "campfire",
+   "theme": "castle",
+   "name": "Campfire",
+   "desc": "A ring of stones with a fire.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 6,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "n_campfire_stones_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "tent",
+   "theme": "castle",
+   "name": "Tent",
+   "desc": "A red camp tent.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 25,
+   "score": 10,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "n_tent_detailedOpen_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "log-pile",
+   "theme": "castle",
+   "name": "Log pile",
+   "desc": "A stack of logs.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 4,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "n_log_stack_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "wheat",
+   "theme": "castle",
+   "name": "Wheat",
+   "desc": "A patch of wheat.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 5,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_crops_wheatStageB_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "pumpkins",
+   "theme": "castle",
+   "name": "Pumpkin patch",
+   "desc": "Pumpkins on the vine.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 5,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_crop_pumpkin_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "pot",
+   "theme": "castle",
+   "name": "Clay pot",
+   "desc": "A big clay pot.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "n_pot_large_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "urn",
+   "theme": "castle",
+   "name": "Stone urn",
+   "desc": "A carved stone urn.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 20,
+   "score": 8,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "g_urn_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "wood-bridge",
+   "theme": "castle",
+   "name": "Wooden bridge",
+   "desc": "A little wooden bridge.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 25,
+   "score": 10,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "n_bridge_wood_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "hedge",
+   "theme": "castle",
+   "name": "Hedge",
+   "desc": "A trimmed hedge. It turns corners by itself.",
+   "role": "deco",
+   "kind": "wall",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "nature",
+   "auto": {
+    "u": "t_hedge_NE",
+    "v": "t_hedge_NW",
+    "corner": {
+     "-u+v": "t_hedgeCurved_NE",
+     "-u-v": "t_hedgeCurved_SE",
+     "+u-v": "t_hedgeCurved_SW",
+     "+u+v": "t_hedgeCurved_NW"
+    }
+   },
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "hedge-gate",
+   "theme": "castle",
+   "name": "Hedge gate",
+   "desc": "A gap in the hedge.",
+   "role": "deco",
+   "kind": "wall",
+   "tier": 1,
+   "price": 12,
+   "score": 4,
+   "cells": 1,
+   "cat": "nature",
+   "auto": {
+    "u": "t_hedgeGate_NE",
+    "v": "t_hedgeGate_NW"
+   },
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "c-fence",
+   "theme": "castle",
+   "name": "Wooden fence",
+   "desc": "A wooden fence. It turns corners by itself.",
+   "role": "deco",
+   "kind": "wall",
+   "tier": 1,
+   "price": 8,
+   "score": 3,
+   "cells": 1,
+   "cat": "village",
+   "auto": {
+    "u": "t_fence_NE",
+    "v": "t_fence_NW",
+    "corner": {
+     "-u+v": "t_fenceCurved_NE",
+     "-u-v": "t_fenceCurved_SE",
+     "+u-v": "t_fenceCurved_SW",
+     "+u+v": "t_fenceCurved_NW"
+    }
+   },
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "fence-gate",
+   "theme": "castle",
+   "name": "Fence gate",
+   "desc": "A gate in the fence.",
+   "role": "deco",
+   "kind": "wall",
+   "tier": 1,
+   "price": 10,
+   "score": 3,
+   "cells": 1,
+   "cat": "village",
+   "auto": {
+    "u": "t_fenceGate_NE",
+    "v": "t_fenceGate_NW"
+   },
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "rail-fence",
+   "theme": "castle",
+   "name": "Rail fence",
+   "desc": "A simple rail fence for the animals.",
+   "role": "deco",
+   "kind": "wall",
+   "tier": 1,
+   "price": 8,
+   "score": 3,
+   "cells": 1,
+   "cat": "village",
+   "auto": {
+    "u": "n_fence_simple_NE",
+    "v": "n_fence_simple_NW",
+    "corner": {
+     "-u+v": "n_fence_corner_NE",
+     "-u-v": "n_fence_corner_SE",
+     "+u-v": "n_fence_corner_SW",
+     "+u+v": "n_fence_corner_NW"
+    }
+   },
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "oak",
+   "theme": "castle",
+   "name": "Oak tree",
+   "desc": "A round oak.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 8,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_tree_oak_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "pine",
+   "theme": "castle",
+   "name": "Pine tree",
+   "desc": "A tall pine.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 8,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_tree_pineDefaultA_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "round-pine",
+   "theme": "castle",
+   "name": "Round pine",
+   "desc": "A bushy pine.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 8,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_tree_pineRoundA_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "autumn-tree",
+   "theme": "castle",
+   "name": "Autumn tree",
+   "desc": "A tree in orange autumn leaves.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 18,
+   "score": 8,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_tree_default_fall_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "tall-tree",
+   "theme": "castle",
+   "name": "Tall tree",
+   "desc": "A tall leafy tree.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 8,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_tree_tall_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "small-tree",
+   "theme": "castle",
+   "name": "Small tree",
+   "desc": "A young tree.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 5,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_tree_small_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "fir",
+   "theme": "castle",
+   "name": "Fir tree",
+   "desc": "A dark green fir.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 8,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "t_tree_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "tall-fir",
+   "theme": "castle",
+   "name": "Tall fir",
+   "desc": "A very tall fir.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 18,
+   "score": 9,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "t_treeHigh_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "poplar",
+   "theme": "castle",
+   "name": "Poplar",
+   "desc": "A tall rounded tree.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 18,
+   "score": 9,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "t_treeHighRound_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "bush",
+   "theme": "castle",
+   "name": "Bush",
+   "desc": "A leafy bush.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 8,
+   "score": 3,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_plant_bushLarge_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "bushes",
+   "theme": "castle",
+   "name": "Bushes",
+   "desc": "A clump of bushes.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 5,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_bushes"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "flowers-red",
+   "theme": "castle",
+   "name": "Red flowers",
+   "desc": "A bed of red flowers.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 5,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_flowerbed_red"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "flowers-yellow",
+   "theme": "castle",
+   "name": "Yellow flowers",
+   "desc": "A bed of yellow flowers.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 5,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_flowerbed_yellow"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "flowers-purple",
+   "theme": "castle",
+   "name": "Purple flowers",
+   "desc": "A bed of purple flowers.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 5,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_flowerbed_purple"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "flowers-mixed",
+   "theme": "castle",
+   "name": "Mixed flowers",
+   "desc": "A bed of every colour.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 6,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_flowerbed_mixed"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "mushrooms",
+   "theme": "castle",
+   "name": "Red mushrooms",
+   "desc": "A group of red mushrooms.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 8,
+   "score": 3,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_mushroom_redGroup_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "tan-mushrooms",
+   "theme": "castle",
+   "name": "Tan mushrooms",
+   "desc": "A group of tan mushrooms.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 8,
+   "score": 3,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_mushroom_tanGroup_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "boulder",
+   "theme": "castle",
+   "name": "Boulder",
+   "desc": "A big grey boulder.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_rock_largeA_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "rocks",
+   "theme": "castle",
+   "name": "Rocks",
+   "desc": "A few small rocks.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 6,
+   "score": 2,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_rock_smallA_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "tall-rock",
+   "theme": "castle",
+   "name": "Tall rock",
+   "desc": "A tall standing rock.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_rock_tallA_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "crag",
+   "theme": "castle",
+   "name": "Crag",
+   "desc": "A jagged outcrop of rock.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 20,
+   "score": 8,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "t_rockLarge_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stump",
+   "theme": "castle",
+   "name": "Tree stump",
+   "desc": "An old stump.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 5,
+   "score": 2,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_stump_round_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "lily-pads",
+   "theme": "castle",
+   "name": "Lily pads",
+   "desc": "Lily pads for a pond.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 6,
+   "score": 2,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_lily_large_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "obelisk",
+   "theme": "castle",
+   "name": "Obelisk",
+   "desc": "A tall stone obelisk.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 40,
+   "score": 18,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_obelisk_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "column",
+   "theme": "castle",
+   "name": "Stone column",
+   "desc": "A carved stone column.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 40,
+   "score": 18,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_column_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "great-column",
+   "theme": "castle",
+   "name": "Great column",
+   "desc": "A towering column.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 3,
+   "price": 60,
+   "score": 26,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "g_columnLarge_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stone-head",
+   "theme": "castle",
+   "name": "Stone head",
+   "desc": "A giant carved head.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 3,
+   "price": 60,
+   "score": 26,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_head_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stone-ring",
+   "theme": "castle",
+   "name": "Stone ring",
+   "desc": "A ring of carved stone.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 3,
+   "price": 55,
+   "score": 24,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_ring_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "pedestal",
+   "theme": "castle",
+   "name": "Pedestal",
+   "desc": "A stone pedestal.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 6,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "knight-statue",
+   "theme": "castle",
+   "name": "Knight statue",
+   "desc": "A stone knight on a pedestal.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 50,
+   "score": 22,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE",
+    "s_knight_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "king-statue",
+   "theme": "castle",
+   "name": "King statue",
+   "desc": "A stone king on a pedestal.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 3,
+   "price": 80,
+   "score": 34,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE",
+    "s_king_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stone-pillar",
+   "theme": "castle",
+   "name": "Stone pillar",
+   "desc": "A slim stone pillar.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 6,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "t_pillarStone_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "small-obelisk",
+   "theme": "castle",
+   "name": "Small obelisk",
+   "desc": "A small pointed pillar.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 30,
+   "score": 12,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "g_pillarObelisk_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "glass-lantern",
+   "theme": "castle",
+   "name": "Glass lantern",
+   "desc": "A lantern in a glass case.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 5,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "g_lanternGlass_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "cow",
+   "theme": "castle",
+   "name": "Cow",
+   "desc": "A cow for the meadow.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 20,
+   "score": 6,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_cow"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "horse",
+   "theme": "castle",
+   "name": "Horse",
+   "desc": "A horse for the stable.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 25,
+   "score": 8,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_horse"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "pig",
+   "theme": "castle",
+   "name": "Pig",
+   "desc": "A pink pig.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 5,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_pig"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "goat",
+   "theme": "castle",
+   "name": "Goat",
+   "desc": "A goat with horns.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 5,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_goat"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "chicken",
+   "theme": "castle",
+   "name": "Chicken",
+   "desc": "A hen for the yard.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_chicken"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "dog",
+   "theme": "castle",
+   "name": "Dog",
+   "desc": "A loyal hound.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 5,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_dog"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "rabbit",
+   "theme": "castle",
+   "name": "Rabbit",
+   "desc": "A rabbit in the grass.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_rabbit"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "duck",
+   "theme": "castle",
+   "name": "Duck",
+   "desc": "A duck for the pond.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_duck"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "owl",
+   "theme": "castle",
+   "name": "Owl",
+   "desc": "An owl for the tower.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 15,
+   "score": 5,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_owl"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-castle",
+   "theme": "castle",
+   "name": "Great castle",
+   "desc": "A grand stone castle with a tower at every corner and roofs in your colour. Three cells wide.",
+   "role": "module",
+   "kind": "house",
+   "tier": 4,
+   "price": 260,
+   "score": 120,
+   "cells": 3,
+   "cat": "house",
+   "parts": [
+    "k_castle_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-townhall",
+   "theme": "castle",
+   "name": "Town hall",
+   "desc": "A tall timbered hall for the town council. Two cells wide.",
+   "role": "module",
+   "kind": "house",
+   "tier": 3,
+   "price": 160,
+   "score": 70,
+   "cells": 2,
+   "cat": "house",
+   "parts": [
+    "k_townhall_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-barracks",
+   "theme": "castle",
+   "name": "Barracks",
+   "desc": "Where the soldiers sleep and drill. Two cells wide.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 120,
+   "score": 50,
+   "cells": 2,
+   "cat": "house",
+   "parts": [
+    "k_barracks_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-archery",
+   "theme": "castle",
+   "name": "Archery range",
+   "desc": "Targets and a shelter for the archers. Two cells wide.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 100,
+   "score": 44,
+   "cells": 2,
+   "cat": "house",
+   "parts": [
+    "k_archeryrange_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-market",
+   "theme": "castle",
+   "name": "Market hall",
+   "desc": "A covered market with stalls all round. Two cells wide.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 100,
+   "score": 44,
+   "cells": 2,
+   "cat": "house",
+   "parts": [
+    "k_market_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-mine",
+   "theme": "castle",
+   "name": "Mine",
+   "desc": "A mine shaft with its winch and carts. Two cells wide.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 110,
+   "score": 46,
+   "cells": 2,
+   "cat": "house",
+   "parts": [
+    "k_mine_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-shipyard",
+   "theme": "castle",
+   "name": "Shipyard",
+   "desc": "A boat under construction on the slipway. Two cells wide.",
+   "role": "module",
+   "kind": "house",
+   "tier": 3,
+   "price": 130,
+   "score": 56,
+   "cells": 2,
+   "cat": "house",
+   "parts": [
+    "k_shipyard_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-stables",
+   "theme": "castle",
+   "name": "Stables",
+   "desc": "Long stables with stalls for the horses. Two cells wide.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 90,
+   "score": 38,
+   "cells": 2,
+   "cat": "house",
+   "parts": [
+    "k_stables_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-tent",
+   "theme": "castle",
+   "name": "Army tent",
+   "desc": "A big army tent in your colour. Two cells wide.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 45,
+   "score": 18,
+   "cells": 2,
+   "cat": "house",
+   "parts": [
+    "k_tent_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-workshop",
+   "theme": "castle",
+   "name": "Workshop",
+   "desc": "A carpenter's workshop with a lumber yard. Two cells wide.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 100,
+   "score": 44,
+   "cells": 2,
+   "cat": "house",
+   "parts": [
+    "k_workshop_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-blacksmith",
+   "theme": "castle",
+   "name": "Blacksmith",
+   "desc": "A forge with a chimney and an anvil.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 80,
+   "score": 36,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "k_blacksmith_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-church",
+   "theme": "castle",
+   "name": "Church",
+   "desc": "A stone church with a steeple.",
+   "role": "module",
+   "kind": "house",
+   "tier": 3,
+   "price": 120,
+   "score": 52,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "k_church_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-home-a",
+   "theme": "castle",
+   "name": "Small house",
+   "desc": "A snug house with a chimney.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 45,
+   "score": 20,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "k_home_A_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-home-b",
+   "theme": "castle",
+   "name": "Tall house",
+   "desc": "A two-storey timbered house.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 55,
+   "score": 26,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "k_home_B_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-lumbermill",
+   "theme": "castle",
+   "name": "Lumber mill",
+   "desc": "A saw mill with a stack of logs.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 90,
+   "score": 40,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "k_lumbermill_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-shrine",
+   "theme": "castle",
+   "name": "Shrine",
+   "desc": "A small shrine with a bell.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 70,
+   "score": 30,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "k_shrine_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-inn",
+   "theme": "castle",
+   "name": "Inn",
+   "desc": "A timbered inn with a sign over the door.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 90,
+   "score": 40,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "k_tavern_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-watermill",
+   "theme": "castle",
+   "name": "Water mill",
+   "desc": "A mill with a big wooden wheel.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 90,
+   "score": 40,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "k_watermill_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-windmill",
+   "theme": "castle",
+   "name": "Stone windmill",
+   "desc": "A stone windmill with cloth sails.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 95,
+   "score": 42,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "k_windmill_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-tower-a",
+   "theme": "castle",
+   "name": "Stone tower",
+   "desc": "A round stone tower with a pointed roof in your colour.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 1,
+   "price": 60,
+   "score": 30,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "k_tower_A_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-tower-b",
+   "theme": "castle",
+   "name": "Grand stone tower",
+   "desc": "A taller stone tower with a wide roof.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 2,
+   "price": 85,
+   "score": 40,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "k_tower_B_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-tower-base",
+   "theme": "castle",
+   "name": "Squat tower",
+   "desc": "A short stone tower with an open top.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 1,
+   "price": 45,
+   "score": 22,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "k_tower_base_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-tower-cannon",
+   "theme": "castle",
+   "name": "Cannon tower",
+   "desc": "A stone tower with a cannon on top.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 3,
+   "price": 110,
+   "score": 48,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "k_tower_cannon_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-tower-catapult",
+   "theme": "castle",
+   "name": "Catapult tower",
+   "desc": "A stone tower with a catapult on top.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 3,
+   "price": 110,
+   "score": 48,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "k_tower_catapult_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-watchtower",
+   "theme": "castle",
+   "name": "Wooden watchtower",
+   "desc": "A timber lookout tower.",
+   "role": "module",
+   "kind": "tower",
+   "tier": 1,
+   "price": 40,
+   "score": 18,
+   "cells": 1,
+   "cat": "tower",
+   "parts": [
+    "k_watchtower_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-well",
+   "theme": "castle",
+   "name": "Stone well",
+   "desc": "A well with a roof in your colour.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 30,
+   "score": 12,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_well_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-grain",
+   "theme": "castle",
+   "name": "Grain field",
+   "desc": "A field of ripe grain. Two cells wide.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 25,
+   "score": 10,
+   "cells": 2,
+   "cat": "nature",
+   "parts": [
+    "k_grain_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-site",
+   "theme": "castle",
+   "name": "Building site",
+   "desc": "Scaffolding round a building going up. Two cells wide.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 30,
+   "score": 10,
+   "cells": 2,
+   "cat": "village",
+   "parts": [
+    "k_scaffolding_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-ruins",
+   "theme": "castle",
+   "name": "Ruins",
+   "desc": "The broken walls of an old building. Two cells wide.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 25,
+   "score": 8,
+   "cells": 2,
+   "cat": "village",
+   "parts": [
+    "k_destroyed_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-stage",
+   "theme": "castle",
+   "name": "Wooden stage",
+   "desc": "A low wooden platform.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 20,
+   "score": 6,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_stage_A_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-platform",
+   "theme": "castle",
+   "name": "Tall stage",
+   "desc": "A wooden platform with steps.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 25,
+   "score": 8,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_stage_C_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-barrels",
+   "theme": "castle",
+   "name": "Barrels",
+   "desc": "Three wooden barrels.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 5,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_barrels_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-crates",
+   "theme": "castle",
+   "name": "Crates",
+   "desc": "A few wooden crates.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 5,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_crates_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-supplies",
+   "theme": "castle",
+   "name": "Supplies",
+   "desc": "Lumber, stone and a sack of grain.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 14,
+   "score": 6,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_supplies_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-hay",
+   "theme": "castle",
+   "name": "Hay bales",
+   "desc": "Two bales of hay.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 5,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_haybales_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-wheelbarrow",
+   "theme": "castle",
+   "name": "Wheelbarrow",
+   "desc": "A wooden wheelbarrow.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 4,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_wheelbarrow_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-target",
+   "theme": "castle",
+   "name": "Archery target",
+   "desc": "A straw target for the archers.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 5,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "k_target_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-weapons",
+   "theme": "castle",
+   "name": "Weapon rack",
+   "desc": "A rack of spears and shields.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 6,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "k_weaponrack_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-trough",
+   "theme": "castle",
+   "name": "Water trough",
+   "desc": "A long trough for the horses.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_trough_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-cannonballs",
+   "theme": "castle",
+   "name": "Cannonballs",
+   "desc": "A pallet of cannonballs.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 6,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "k_cannonballs_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-camp-tent",
+   "theme": "castle",
+   "name": "Camp tent",
+   "desc": "A small canvas tent.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 20,
+   "score": 8,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_small_tent_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-bucket",
+   "theme": "castle",
+   "name": "Bucket",
+   "desc": "A bucket of water.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 6,
+   "score": 2,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_bucket_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-pallet",
+   "theme": "castle",
+   "name": "Pallet",
+   "desc": "An empty wooden pallet.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 6,
+   "score": 2,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_pallet_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-cart",
+   "theme": "castle",
+   "name": "Farm cart",
+   "desc": "A cart with wooden wheels.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 20,
+   "score": 8,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_cart_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-merchant-cart",
+   "theme": "castle",
+   "name": "Merchant cart",
+   "desc": "A covered cart full of goods.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 30,
+   "score": 12,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_merchant_cart_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-catapult",
+   "theme": "castle",
+   "name": "Wheeled catapult",
+   "desc": "A catapult on wheels.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 55,
+   "score": 22,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "k_catapult_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-cannon",
+   "theme": "castle",
+   "name": "Cannon",
+   "desc": "A bronze cannon on a carriage.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 60,
+   "score": 24,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "k_cannon_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-warhorse",
+   "theme": "castle",
+   "name": "Warhorse",
+   "desc": "A saddled horse ready to ride.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 25,
+   "score": 8,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "k_horse_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-soldier",
+   "theme": "castle",
+   "name": "Soldier",
+   "desc": "A soldier in your colour standing guard.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 20,
+   "score": 8,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "k_soldier_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-banner",
+   "theme": "castle",
+   "name": "War banner",
+   "desc": "A tall banner in your colour.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 18,
+   "score": 8,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "k_banner_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-flag",
+   "theme": "castle",
+   "name": "Ground flag",
+   "desc": "A small flag in your colour on a pole.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "people",
+   "parts": [
+    "k_flag_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-tree-a",
+   "theme": "castle",
+   "name": "Leafy tree",
+   "desc": "A tall leafy tree.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 8,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "k_tree_A_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-tree-b",
+   "theme": "castle",
+   "name": "Round tree",
+   "desc": "A round bushy tree.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 8,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "k_tree_B_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-grove-a",
+   "theme": "castle",
+   "name": "Grove",
+   "desc": "A grove of leafy trees. Two cells wide.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 30,
+   "score": 14,
+   "cells": 2,
+   "cat": "nature",
+   "parts": [
+    "k_grove_A_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-grove-b",
+   "theme": "castle",
+   "name": "Pine grove",
+   "desc": "A grove of pines. Two cells wide.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 30,
+   "score": 14,
+   "cells": 2,
+   "cat": "nature",
+   "parts": [
+    "k_grove_B_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-rock",
+   "theme": "castle",
+   "name": "Rock",
+   "desc": "A big grey rock.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 8,
+   "score": 3,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "k_rock_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-stones",
+   "theme": "castle",
+   "name": "Stone pile",
+   "desc": "A few stones on the grass.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "k_rocks_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "trophy-midgard",
+   "theme": "castle",
+   "name": "Hero of Midgard",
+   "desc": "A knight on a double plinth, raised for beating Fenrir in Midgard. Only beating Fenrir gives it.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 4,
+   "price": 150,
+   "score": 60,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE",
+    "n_statue_block_NE",
+    "s_knight_NE"
+   ],
+   "img": "",
+   "nostyle": true,
+   "boss": "midgard"
+  },
+  {
+   "id": "trophy-niflheim",
+   "theme": "castle",
+   "name": "Frost Obelisk",
+   "desc": "A tall obelisk from the mists of Niflheim, won by beating Fenrir there. Only beating Fenrir gives it.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 4,
+   "price": 150,
+   "score": 60,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE",
+    "g_pillarObelisk_NE"
+   ],
+   "img": "",
+   "nostyle": true,
+   "boss": "niflheim"
+  },
+  {
+   "id": "trophy-jotunheim",
+   "theme": "castle",
+   "name": "Giant's Head",
+   "desc": "A stone giant's head from Jotunheim, won by beating Fenrir there. Only beating Fenrir gives it.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 4,
+   "price": 150,
+   "score": 60,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE",
+    "n_statue_head_NE"
+   ],
+   "img": "",
+   "nostyle": true,
+   "boss": "jotunheim"
+  },
+  {
+   "id": "trophy-muspelheim",
+   "theme": "castle",
+   "name": "Fire Beacon",
+   "desc": "A beacon on a high plinth, lit with fire from Muspelheim. Only beating Fenrir gives it.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 4,
+   "price": 150,
+   "score": 60,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE",
+    "n_statue_block_NE",
+    "t_lantern_NE"
+   ],
+   "img": "",
+   "nostyle": true,
+   "boss": "muspelheim"
+  },
+  {
+   "id": "trophy-svartalfheim",
+   "theme": "castle",
+   "name": "Dwarf-Forged Urn",
+   "desc": "A dwarf-forged urn on a carved column from Svartalfheim. Only beating Fenrir gives it.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 4,
+   "price": 150,
+   "score": 60,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE",
+    "n_statue_column_NE",
+    "g_urn_NE"
+   ],
+   "img": "",
+   "nostyle": true,
+   "boss": "svartalfheim"
+  },
+  {
+   "id": "trophy-vanaheim",
+   "theme": "castle",
+   "name": "Sun Ring",
+   "desc": "A standing ring of stone from Vanaheim, won by beating Fenrir there. Only beating Fenrir gives it.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 4,
+   "price": 150,
+   "score": 60,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE",
+    "n_statue_ring_NE"
+   ],
+   "img": "",
+   "nostyle": true,
+   "boss": "vanaheim"
+  },
+  {
+   "id": "trophy-alfheim",
+   "theme": "castle",
+   "name": "Light Spire",
+   "desc": "A spire of pale stone from Alfheim, the tallest obelisk in the land. Only beating Fenrir gives it.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 4,
+   "price": 150,
+   "score": 60,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE",
+    "n_statue_block_NE",
+    "g_pillarObelisk_NE"
+   ],
+   "img": "",
+   "nostyle": true,
+   "boss": "alfheim"
+  },
+  {
+   "id": "trophy-helheim",
+   "theme": "castle",
+   "name": "Ward Stone",
+   "desc": "A rune-cut ward stone and urn from Helheim, to keep the draugr away. Only beating Fenrir gives it.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 4,
+   "price": 150,
+   "score": 60,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE",
+    "t_pillarStone_NE",
+    "g_urn_NE"
+   ],
+   "img": "",
+   "nostyle": true,
+   "boss": "helheim"
+  },
+  {
+   "id": "trophy-asgard",
+   "theme": "castle",
+   "name": "King of Asgard",
+   "desc": "A king on a double plinth, raised for beating Fenrir in Asgard. Only beating Fenrir gives it.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 4,
+   "price": 150,
+   "score": 60,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE",
+    "n_statue_block_NE",
+    "s_king_NE"
+   ],
+   "img": "",
+   "nostyle": true,
+   "boss": "asgard"
+  },
+  {
+   "id": "trophy-ragnarok",
+   "theme": "castle",
+   "name": "Wolf-Slayer's Column",
+   "desc": "A king atop a great column: the last Fenrir is beaten. Only beating Fenrir gives it.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 4,
+   "price": 150,
+   "score": 60,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "g_columnLarge_NE",
+    "s_king_NE"
+   ],
+   "img": "",
+   "nostyle": true,
+   "boss": "ragnarok"
+  }
+ ],
+ "decoLots": [
+  {
+   "k": 1,
+   "u": 0.5,
+   "v": 0.5
+  },
+  {
+   "k": 2,
+   "u": 1.5,
+   "v": 0.5
+  },
+  {
+   "k": 3,
+   "u": 0.5,
+   "v": 1.5
+  },
+  {
+   "k": 4,
+   "u": -0.5,
+   "v": 0.5
+  },
+  {
+   "k": 5,
+   "u": 0.5,
+   "v": -0.5
+  },
+  {
+   "k": 6,
+   "u": 1.5,
+   "v": -0.5
+  },
+  {
+   "k": 7,
+   "u": -0.5,
+   "v": 1.5
+  },
+  {
+   "k": 8,
+   "u": 1.5,
+   "v": 1.5
+  },
+  {
+   "k": 9,
+   "u": -0.5,
+   "v": -0.5
+  },
+  {
+   "k": 10,
+   "u": 2.5,
+   "v": 0.5
+  },
+  {
+   "k": 11,
+   "u": 0.5,
+   "v": 2.5
+  },
+  {
+   "k": 12,
+   "u": -1.5,
+   "v": 0.5
+  },
+  {
+   "k": 13,
+   "u": 0.5,
+   "v": -1.5
+  },
+  {
+   "k": 14,
+   "u": 2.5,
+   "v": -0.5
+  },
+  {
+   "k": 15,
+   "u": -0.5,
+   "v": 2.5
+  },
+  {
+   "k": 16,
+   "u": -1.5,
+   "v": 1.5
+  },
+  {
+   "k": 17,
+   "u": 1.5,
+   "v": -1.5
+  },
+  {
+   "k": 18,
+   "u": 2.5,
+   "v": 1.5
+  },
+  {
+   "k": 19,
+   "u": 1.5,
+   "v": 2.5
+  },
+  {
+   "k": 20,
+   "u": -1.5,
+   "v": -1.5
+  },
+  {
+   "k": 21,
+   "u": 3.5,
+   "v": 0.5
+  },
+  {
+   "k": 22,
+   "u": 0.5,
+   "v": 3.5
+  },
+  {
+   "k": 23,
+   "u": -2.5,
+   "v": 0.5
+  },
+  {
+   "k": 24,
+   "u": 0.5,
+   "v": -2.5
+  },
+  {
+   "k": 25,
+   "u": 3.5,
+   "v": -0.5
+  },
+  {
+   "k": 26,
+   "u": -0.5,
+   "v": 3.5
+  },
+  {
+   "k": 27,
+   "u": -2.5,
+   "v": 1.5
+  },
+  {
+   "k": 28,
+   "u": 1.5,
+   "v": -2.5
+  },
+  {
+   "k": 29,
+   "u": 3.5,
+   "v": 1.5
+  },
+  {
+   "k": 30,
+   "u": 1.5,
+   "v": 3.5
+  },
+  {
+   "k": 31,
+   "u": -2.5,
+   "v": -0.5
+  },
+  {
+   "k": 32,
+   "u": -0.5,
+   "v": -2.5
+  },
+  {
+   "k": 33,
+   "u": 3.5,
+   "v": -1.5
+  },
+  {
+   "k": 34,
+   "u": -1.5,
+   "v": 3.5
+  },
+  {
+   "k": 35,
+   "u": -2.5,
+   "v": 2.5
+  },
+  {
+   "k": 36,
+   "u": 2.5,
+   "v": -2.5
+  },
+  {
+   "k": 37,
+   "u": 3.5,
+   "v": 2.5
+  },
+  {
+   "k": 38,
+   "u": 2.5,
+   "v": 3.5
+  },
+  {
+   "k": 39,
+   "u": -2.5,
+   "v": -1.5
+  },
+  {
+   "k": 40,
+   "u": -1.5,
+   "v": -2.5
+  }
+ ],
+ "packs": [
+  {
+   "id": "yard",
+   "name": "Yard pack",
+   "desc": "Three decorations picked for you, 25% off.",
+   "kind": "deco",
+   "count": 3,
+   "discount": 0.25
+  },
+  {
+   "id": "builder",
+   "name": "Builder pack",
+   "desc": "One building for your next lot plus a decoration, 15% off.",
+   "kind": "build",
+   "count": 1,
+   "decos": 1,
+   "discount": 0.15
+  },
+  {
+   "id": "grand",
+   "name": "Grand pack",
+   "desc": "Two buildings and two decorations, 20% off.",
+   "kind": "build",
+   "count": 2,
+   "decos": 2,
+   "discount": 0.2
+  }
+ ],
+ "economy": {
+  "answer": 10,
+  "perfectNight": 25,
+  "bonusMin": 3,
+  "bonusMax": 12,
+  "bonusPer": 500
+ },
+ "kit": {
+  "dir": "assets/build/kit/",
+  "cellW": 151,
+  "cellH": 87.2,
+  "sprites": {
+   "wall_NE": {
+    "w": 151,
+    "h": 206,
+    "lift": 119,
+    "coloured": true
+   },
+   "wallCorner_NE": {
+    "w": 151,
+    "h": 202,
+    "lift": 115,
+    "coloured": true
+   },
+   "wallDoor_NE": {
+    "w": 113,
+    "h": 169,
+    "lift": 104,
+    "coloured": true
+   },
+   "metalGate_NE": {
+    "w": 55,
+    "h": 91,
+    "lift": 59,
+    "coloured": true
+   },
+   "wallNarrowStairs_NE": {
+    "w": 148,
+    "h": 169,
+    "lift": 84,
+    "coloured": true
+   },
+   "wallCornerHalfTower_NE": {
+    "w": 205,
+    "h": 206,
+    "lift": 88,
+    "coloured": true
+   },
+   "wallHalf_NE": {
+    "w": 151,
+    "h": 196,
+    "lift": 109,
+    "coloured": true
+   },
+   "towerBase_NE": {
+    "w": 107,
+    "h": 174,
+    "lift": 112,
+    "coloured": true
+   },
+   "towerTop_NE": {
+    "w": 107,
+    "h": 85,
+    "lift": 23,
+    "coloured": true
+   },
+   "towerTopRoof_NE": {
+    "w": 120,
+    "h": 116,
+    "lift": 47,
+    "coloured": true
+   },
+   "towerBalcony_NE": {
+    "w": 142,
+    "h": 174,
+    "lift": 92,
+    "coloured": true
+   },
+   "towerSquareBase_NE": {
+    "w": 151,
+    "h": 180,
+    "lift": 93,
+    "coloured": true
+   },
+   "towerSquareBaseColor_NE": {
+    "w": 151,
+    "h": 180,
+    "lift": 93,
+    "coloured": true
+   },
+   "towerSquareMid_NE": {
+    "w": 140,
+    "h": 175,
+    "lift": 94,
+    "coloured": true
+   },
+   "towerSquareMidWindows_NE": {
+    "w": 140,
+    "h": 175,
+    "lift": 94,
+    "coloured": true
+   },
+   "towerSquareMidOpen_NE": {
+    "w": 140,
+    "h": 175,
+    "lift": 94,
+    "coloured": true
+   },
+   "towerSquareMidColor_NE": {
+    "w": 141,
+    "h": 115,
+    "lift": 34,
+    "coloured": true
+   },
+   "towerSquareArch_NE": {
+    "w": 140,
+    "h": 175,
+    "lift": 94,
+    "coloured": true
+   },
+   "towerSquareTop_NE": {
+    "w": 151,
+    "h": 126,
+    "lift": 39,
+    "coloured": true
+   },
+   "towerSquareTopRoof_NE": {
+    "w": 151,
+    "h": 129,
+    "lift": 42,
+    "coloured": true
+   },
+   "towerSquareTopRoofHigh_NE": {
+    "w": 151,
+    "h": 155,
+    "lift": 68,
+    "coloured": true
+   },
+   "towerSquareTopColor_NE": {
+    "w": 151,
+    "h": 132,
+    "lift": 45,
+    "coloured": true
+   },
+   "towerSquareRoof_NE": {
+    "w": 151,
+    "h": 209,
+    "lift": 122,
+    "coloured": true
+   },
+   "towerSquarePoles_NE": {
+    "w": 140,
+    "h": 175,
+    "lift": 94,
+    "coloured": true
+   },
+   "flagBlue_NE": {
+    "w": 42,
+    "h": 79,
+    "lift": 55,
+    "coloured": true
+   },
+   "flagBlueWide_NE": {
+    "w": 31,
+    "h": 76,
+    "lift": 58,
+    "coloured": true
+   },
+   "flagBannerLong_NE": {
+    "w": 51,
+    "h": 183,
+    "lift": 154,
+    "coloured": true
+   },
+   "flagBannerShort_NE": {
+    "w": 51,
+    "h": 78,
+    "lift": 49,
+    "coloured": true
+   },
+   "shieldBlue_NE": {
+    "w": 23,
+    "h": 27,
+    "lift": 14,
+    "coloured": true
+   },
+   "bridge_NE": {
+    "w": 138,
+    "h": 101,
+    "lift": 21,
+    "coloured": true
+   },
+   "stairsStone_NE": {
+    "w": 80,
+    "h": 67,
+    "lift": 21,
+    "coloured": true
+   },
+   "king_NE": {
+    "w": 45,
+    "h": 67,
+    "lift": 41,
+    "coloured": true
+   },
+   "knightBlue_NE": {
+    "w": 45,
+    "h": 67,
+    "lift": 41,
+    "coloured": true
+   },
+   "knightRed_NE": {
+    "w": 45,
+    "h": 67,
+    "lift": 41,
+    "coloured": true
+   },
+   "siegeBallista_NE": {
+    "w": 135,
+    "h": 129,
+    "lift": 51,
+    "coloured": true
+   },
+   "siegeCatapult_NE": {
+    "w": 182,
+    "h": 186,
+    "lift": 81,
+    "coloured": true
+   },
+   "siegeRam_NE": {
+    "w": 173,
+    "h": 169,
+    "lift": 69,
+    "coloured": true
+   },
+   "siegeTower_NE": {
+    "w": 202,
+    "h": 277,
+    "lift": 160,
+    "coloured": true
+   },
+   "siegeTrebuchet_NE": {
+    "w": 199,
+    "h": 245,
+    "lift": 130,
+    "coloured": true
+   },
+   "t_wallBlock_NE": {
+    "w": 151,
+    "h": 168,
+    "lift": 81,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_wallWoodBlock_NE": {
+    "w": 151,
+    "h": 168,
+    "lift": 81,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_roofGable_NE": {
+    "w": 165,
+    "h": 114,
+    "lift": 27,
+    "oy": 2,
+    "coloured": false
+   },
+   "t_roofHigh_NE": {
+    "w": 163,
+    "h": 186,
+    "lift": 99,
+    "oy": 5,
+    "coloured": false
+   },
+   "t_roofHighPoint_NE": {
+    "w": 158,
+    "h": 143,
+    "lift": 56,
+    "oy": 2,
+    "coloured": false
+   },
+   "t_roofPoint_NE": {
+    "w": 158,
+    "h": 98,
+    "lift": 11,
+    "oy": 2,
+    "coloured": false
+   },
+   "t_roofHighGable_NE": {
+    "w": 170,
+    "h": 168,
+    "lift": 81,
+    "oy": 7,
+    "coloured": false
+   },
+   "t_roof_NE": {
+    "w": 160,
+    "h": 137,
+    "lift": 50,
+    "oy": 3,
+    "coloured": false
+   },
+   "t_roofHighWindow_NE": {
+    "w": 163,
+    "h": 186,
+    "lift": 99,
+    "oy": 5,
+    "coloured": false
+   },
+   "t_stallRed_NE": {
+    "w": 151,
+    "h": 172,
+    "lift": 85,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_stallGreen_NE": {
+    "w": 151,
+    "h": 172,
+    "lift": 85,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_cart_NE": {
+    "w": 153,
+    "h": 112,
+    "lift": 25,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_cartHigh_NE": {
+    "w": 153,
+    "h": 132,
+    "lift": 45,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_lantern_NE": {
+    "w": 26,
+    "h": 185,
+    "lift": 98,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_fountainRound_NE": {
+    "w": 214,
+    "h": 134,
+    "lift": 47,
+    "oy": 16,
+    "coloured": false
+   },
+   "t_fountainSquare_NE": {
+    "w": 302,
+    "h": 175,
+    "lift": 88,
+    "oy": 37,
+    "coloured": false
+   },
+   "t_tree_NE": {
+    "w": 109,
+    "h": 260,
+    "lift": 173,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_treeHigh_NE": {
+    "w": 109,
+    "h": 311,
+    "lift": 224,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_treeHighRound_NE": {
+    "w": 109,
+    "h": 296,
+    "lift": 209,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_rockLarge_NE": {
+    "w": 181,
+    "h": 167,
+    "lift": 80,
+    "oy": 7,
+    "coloured": false
+   },
+   "t_pillarStone_NE": {
+    "w": 21,
+    "h": 135,
+    "lift": 48,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_planks_NE": {
+    "w": 151,
+    "h": 81,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_hedge_NE": {
+    "w": 151,
+    "h": 95,
+    "lift": 8,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_hedgeGate_NE": {
+    "w": 151,
+    "h": 95,
+    "lift": 8,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_fence_NE": {
+    "w": 151,
+    "h": 110,
+    "lift": 23,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_fenceGate_NE": {
+    "w": 151,
+    "h": 110,
+    "lift": 23,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_hedgeCurved_NE": {
+    "w": 151,
+    "h": 84,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_fenceCurved_NE": {
+    "w": 151,
+    "h": 100,
+    "lift": 13,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_windmill_NE": {
+    "w": 235,
+    "h": 360,
+    "lift": 273,
+    "oy": 0,
+    "coloured": false
+   },
+   "t_watermill_NE": {
+    "w": 186,
+    "h": 215,
+    "lift": 128,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_oak_NE": {
+    "w": 77,
+    "h": 159,
+    "lift": 72,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_pineDefaultA_NE": {
+    "w": 58,
+    "h": 180,
+    "lift": 93,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_default_fall_NE": {
+    "w": 79,
+    "h": 195,
+    "lift": 108,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_detailed_NE": {
+    "w": 88,
+    "h": 173,
+    "lift": 86,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_small_NE": {
+    "w": 44,
+    "h": 141,
+    "lift": 54,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_tall_NE": {
+    "w": 49,
+    "h": 197,
+    "lift": 110,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tree_pineRoundA_NE": {
+    "w": 74,
+    "h": 166,
+    "lift": 79,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_plant_bush_NE": {
+    "w": 33,
+    "h": 69,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_plant_bushLarge_NE": {
+    "w": 39,
+    "h": 67,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_mushroom_redGroup_NE": {
+    "w": 35,
+    "h": 64,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_mushroom_tanGroup_NE": {
+    "w": 35,
+    "h": 64,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_rock_largeA_NE": {
+    "w": 100,
+    "h": 80,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_rock_smallA_NE": {
+    "w": 46,
+    "h": 60,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_rock_tallA_NE": {
+    "w": 102,
+    "h": 135,
+    "lift": 48,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_statue_column_NE": {
+    "w": 46,
+    "h": 138,
+    "lift": 51,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_statue_obelisk_NE": {
+    "w": 46,
+    "h": 118,
+    "lift": 31,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_statue_head_NE": {
+    "w": 72,
+    "h": 137,
+    "lift": 50,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_statue_ring_NE": {
+    "w": 77,
+    "h": 115,
+    "lift": 28,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_log_stack_NE": {
+    "w": 84,
+    "h": 87,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_campfire_stones_NE": {
+    "w": 63,
+    "h": 55,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_tent_detailedOpen_NE": {
+    "w": 109,
+    "h": 101,
+    "lift": 14,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_sign_NE": {
+    "w": 33,
+    "h": 81,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_pot_large_NE": {
+    "w": 58,
+    "h": 71,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_crops_wheatStageB_NE": {
+    "w": 65,
+    "h": 92,
+    "lift": 5,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_crop_pumpkin_NE": {
+    "w": 51,
+    "h": 71,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_bridge_wood_NE": {
+    "w": 158,
+    "h": 114,
+    "lift": 27,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_path_stone_NE": {
+    "w": 95,
+    "h": 69,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_lily_large_NE": {
+    "w": 33,
+    "h": 50,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_stump_round_NE": {
+    "w": 39,
+    "h": 64,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_fence_simple_NE": {
+    "w": 151,
+    "h": 108,
+    "lift": 21,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_fence_gate_NE": {
+    "w": 151,
+    "h": 108,
+    "lift": 21,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_fence_corner_NE": {
+    "w": 151,
+    "h": 108,
+    "lift": 21,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_statue_block_NE": {
+    "w": 53,
+    "h": 86,
+    "lift": 34,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_flowerbed_red": {
+    "w": 114,
+    "h": 112,
+    "lift": 25,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_flowerbed_purple": {
+    "w": 114,
+    "h": 103,
+    "lift": 16,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_flowerbed_yellow": {
+    "w": 114,
+    "h": 96,
+    "lift": 9,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_flowerbed_mixed": {
+    "w": 114,
+    "h": 112,
+    "lift": 25,
+    "oy": 0,
+    "coloured": false
+   },
+   "n_bushes": {
+    "w": 114,
+    "h": 89,
+    "lift": 2,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_bench_NE": {
+    "w": 147,
+    "h": 139,
+    "lift": 52,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_lightpostSingle_NE": {
+    "w": 97,
+    "h": 257,
+    "lift": 170,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_lightpostDouble_NE": {
+    "w": 97,
+    "h": 257,
+    "lift": 170,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_urn_NE": {
+    "w": 46,
+    "h": 103,
+    "lift": 16,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_columnLarge_NE": {
+    "w": 97,
+    "h": 226,
+    "lift": 139,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_lanternGlass_NE": {
+    "w": 39,
+    "h": 87,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "g_pillarObelisk_NE": {
+    "w": 54,
+    "h": 188,
+    "lift": 101,
+    "oy": 0,
+    "coloured": false
+   },
+   "a_cow": {
+    "w": 78,
+    "h": 70,
+    "lift": 0,
+    "oy": -28,
+    "coloured": false
+   },
+   "a_horse": {
+    "w": 78,
+    "h": 84,
+    "lift": 0,
+    "oy": -28,
+    "coloured": false
+   },
+   "a_pig": {
+    "w": 78,
+    "h": 71,
+    "lift": 0,
+    "oy": -28,
+    "coloured": false
+   },
+   "a_goat": {
+    "w": 78,
+    "h": 73,
+    "lift": 0,
+    "oy": -28,
+    "coloured": false
+   },
+   "a_chicken": {
+    "w": 78,
+    "h": 87,
+    "lift": 0,
+    "oy": -28,
+    "coloured": false
+   },
+   "a_dog": {
+    "w": 78,
+    "h": 92,
+    "lift": 0,
+    "oy": -28,
+    "coloured": false
+   },
+   "a_rabbit": {
+    "w": 78,
+    "h": 102,
+    "lift": 0,
+    "oy": -28,
+    "coloured": false
+   },
+   "a_duck": {
+    "w": 78,
+    "h": 77,
+    "lift": 0,
+    "oy": -28,
+    "coloured": false
+   },
+   "a_owl": {
+    "w": 78,
+    "h": 78,
+    "lift": 0,
+    "oy": -28,
+    "coloured": false
+   },
+   "s_knight_NE": {
+    "w": 45,
+    "h": 67,
+    "lift": 41,
+    "coloured": false
+   },
+   "s_king_NE": {
+    "w": 45,
+    "h": 67,
+    "lift": 41,
+    "coloured": false
+   },
+   "k_castle_NE": {
+    "w": 451,
+    "h": 818,
+    "lift": 731,
+    "oy": 0,
+    "coloured": true
+   },
+   "k_townhall_NE": {
+    "w": 383,
+    "h": 404,
+    "lift": 317,
+    "oy": 8,
+    "coloured": true
+   },
+   "k_barracks_NE": {
+    "w": 372,
+    "h": 404,
+    "lift": 317,
+    "oy": 6,
+    "coloured": true
+   },
+   "k_archeryrange_NE": {
+    "w": 383,
+    "h": 339,
+    "lift": 252,
+    "oy": 0,
+    "coloured": true
+   },
+   "k_market_NE": {
+    "w": 365,
+    "h": 268,
+    "lift": 181,
+    "oy": 1,
+    "coloured": true
+   },
+   "k_mine_NE": {
+    "w": 355,
+    "h": 331,
+    "lift": 244,
+    "oy": 12,
+    "coloured": true
+   },
+   "k_shipyard_NE": {
+    "w": 395,
+    "h": 267,
+    "lift": 180,
+    "oy": 14,
+    "coloured": true
+   },
+   "k_stables_NE": {
+    "w": 407,
+    "h": 292,
+    "lift": 205,
+    "oy": 29,
+    "coloured": true
+   },
+   "k_tent_NE": {
+    "w": 367,
+    "h": 273,
+    "lift": 186,
+    "oy": 15,
+    "coloured": true
+   },
+   "k_workshop_NE": {
+    "w": 360,
+    "h": 302,
+    "lift": 215,
+    "oy": 0,
+    "coloured": true
+   },
+   "k_blacksmith_NE": {
+    "w": 190,
+    "h": 172,
+    "lift": 85,
+    "oy": 7,
+    "coloured": true
+   },
+   "k_church_NE": {
+    "w": 195,
+    "h": 203,
+    "lift": 116,
+    "oy": 0,
+    "coloured": true
+   },
+   "k_home_A_NE": {
+    "w": 188,
+    "h": 196,
+    "lift": 109,
+    "oy": 0,
+    "coloured": true
+   },
+   "k_home_B_NE": {
+    "w": 197,
+    "h": 242,
+    "lift": 155,
+    "oy": 8,
+    "coloured": true
+   },
+   "k_lumbermill_NE": {
+    "w": 204,
+    "h": 237,
+    "lift": 150,
+    "oy": 0,
+    "coloured": true
+   },
+   "k_shrine_NE": {
+    "w": 188,
+    "h": 167,
+    "lift": 80,
+    "oy": 12,
+    "coloured": true
+   },
+   "k_tavern_NE": {
+    "w": 184,
+    "h": 227,
+    "lift": 140,
+    "oy": 7,
+    "coloured": true
+   },
+   "k_tower_A_NE": {
+    "w": 179,
+    "h": 340,
+    "lift": 253,
+    "oy": 6,
+    "coloured": true
+   },
+   "k_tower_B_NE": {
+    "w": 177,
+    "h": 319,
+    "lift": 232,
+    "oy": 0,
+    "coloured": true
+   },
+   "k_tower_base_NE": {
+    "w": 179,
+    "h": 310,
+    "lift": 223,
+    "oy": 7,
+    "coloured": true
+   },
+   "k_tower_cannon_NE": {
+    "w": 179,
+    "h": 354,
+    "lift": 267,
+    "oy": 7,
+    "coloured": true
+   },
+   "k_tower_catapult_NE": {
+    "w": 190,
+    "h": 345,
+    "lift": 258,
+    "oy": 10,
+    "coloured": true
+   },
+   "k_watchtower_NE": {
+    "w": 179,
+    "h": 217,
+    "lift": 130,
+    "oy": 0,
+    "coloured": true
+   },
+   "k_watermill_NE": {
+    "w": 200,
+    "h": 215,
+    "lift": 128,
+    "oy": 0,
+    "coloured": true
+   },
+   "k_well_NE": {
+    "w": 181,
+    "h": 202,
+    "lift": 115,
+    "oy": 0,
+    "coloured": true
+   },
+   "k_windmill_NE": {
+    "w": 184,
+    "h": 220,
+    "lift": 133,
+    "oy": 0,
+    "coloured": true
+   },
+   "k_soldier_NE": {
+    "w": 63,
+    "h": 139,
+    "lift": 52,
+    "oy": 0,
+    "coloured": true
+   },
+   "k_banner_NE": {
+    "w": 58,
+    "h": 196,
+    "lift": 109,
+    "oy": 0,
+    "coloured": true
+   },
+   "k_flag_NE": {
+    "w": 60,
+    "h": 107,
+    "lift": 20,
+    "oy": 0,
+    "coloured": true
+   },
+   "k_grain_NE": {
+    "w": 332,
+    "h": 216,
+    "lift": 129,
+    "oy": 1,
+    "coloured": false
+   },
+   "k_scaffolding_NE": {
+    "w": 351,
+    "h": 294,
+    "lift": 207,
+    "oy": 6,
+    "coloured": false
+   },
+   "k_destroyed_NE": {
+    "w": 365,
+    "h": 329,
+    "lift": 242,
+    "oy": 14,
+    "coloured": false
+   },
+   "k_stage_A_NE": {
+    "w": 204,
+    "h": 159,
+    "lift": 72,
+    "oy": 10,
+    "coloured": false
+   },
+   "k_stage_C_NE": {
+    "w": 167,
+    "h": 213,
+    "lift": 126,
+    "oy": 3,
+    "coloured": false
+   },
+   "k_barrels_NE": {
+    "w": 72,
+    "h": 85,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "k_crates_NE": {
+    "w": 81,
+    "h": 81,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "k_supplies_NE": {
+    "w": 100,
+    "h": 84,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "k_haybales_NE": {
+    "w": 86,
+    "h": 76,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "k_wheelbarrow_NE": {
+    "w": 93,
+    "h": 94,
+    "lift": 7,
+    "oy": 0,
+    "coloured": false
+   },
+   "k_target_NE": {
+    "w": 67,
+    "h": 120,
+    "lift": 33,
+    "oy": 0,
+    "coloured": false
+   },
+   "k_weaponrack_NE": {
+    "w": 60,
+    "h": 110,
+    "lift": 23,
+    "oy": 0,
+    "coloured": false
+   },
+   "k_trough_NE": {
+    "w": 74,
+    "h": 84,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "k_cannonballs_NE": {
+    "w": 60,
+    "h": 84,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "k_small_tent_NE": {
+    "w": 93,
+    "h": 107,
+    "lift": 20,
+    "oy": 0,
+    "coloured": false
+   },
+   "k_bucket_NE": {
+    "w": 35,
+    "h": 76,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "k_pallet_NE": {
+    "w": 67,
+    "h": 73,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   },
+   "k_cart_NE": {
+    "w": 125,
+    "h": 137,
+    "lift": 50,
+    "oy": 0,
+    "coloured": false
+   },
+   "k_merchant_cart_NE": {
+    "w": 130,
+    "h": 156,
+    "lift": 69,
+    "oy": 0,
+    "coloured": false
+   },
+   "k_catapult_NE": {
+    "w": 149,
+    "h": 120,
+    "lift": 33,
+    "oy": 0,
+    "coloured": false
+   },
+   "k_cannon_NE": {
+    "w": 125,
+    "h": 114,
+    "lift": 27,
+    "oy": 0,
+    "coloured": false
+   },
+   "k_horse_NE": {
+    "w": 91,
+    "h": 115,
+    "lift": 28,
+    "oy": 0,
+    "coloured": false
+   },
+   "k_tree_A_NE": {
+    "w": 170,
+    "h": 302,
+    "lift": 215,
+    "oy": 0,
+    "coloured": false
+   },
+   "k_tree_B_NE": {
+    "w": 151,
+    "h": 257,
+    "lift": 170,
+    "oy": 0,
+    "coloured": false
+   },
+   "k_grove_A_NE": {
+    "w": 339,
+    "h": 348,
+    "lift": 261,
+    "oy": 0,
+    "coloured": false
+   },
+   "k_grove_B_NE": {
+    "w": 355,
+    "h": 294,
+    "lift": 207,
+    "oy": 0,
+    "coloured": false
+   },
+   "k_rock_NE": {
+    "w": 77,
+    "h": 94,
+    "lift": 7,
+    "oy": 0,
+    "coloured": false
+   },
+   "k_rocks_NE": {
+    "w": 86,
+    "h": 79,
+    "lift": 0,
+    "oy": 0,
+    "coloured": false
+   }
+  },
+  "atlas": {
+   "": {
+    "k_castle_NE": [
+     0,
+     0,
+     0
+    ],
+    "k_townhall_NE": [
+     0,
+     453,
+     0
+    ],
+    "k_barracks_NE": [
+     0,
+     838,
+     0
+    ],
+    "t_windmill_NE": [
+     0,
+     1212,
+     0
+    ],
+    "k_tower_cannon_NE": [
+     0,
+     1449,
+     0
+    ],
+    "k_grove_A_NE": [
+     0,
+     1630,
+     0
+    ],
+    "k_tower_catapult_NE": [
+     0,
+     0,
+     820
+    ],
+    "k_tower_A_NE": [
+     0,
+     192,
+     820
+    ],
+    "k_archeryrange_NE": [
+     0,
+     373,
+     820
+    ],
+    "k_mine_NE": [
+     0,
+     758,
+     820
+    ],
+    "k_destroyed_NE": [
+     0,
+     1115,
+     820
+    ],
+    "k_tower_B_NE": [
+     0,
+     1482,
+     820
+    ],
+    "t_treeHigh_NE": [
+     0,
+     1661,
+     820
+    ],
+    "k_tower_base_NE": [
+     0,
+     1772,
+     820
+    ],
+    "k_workshop_NE": [
+     0,
+     0,
+     1167
+    ],
+    "k_tree_A_NE": [
+     0,
+     362,
+     1167
+    ],
+    "t_treeHighRound_NE": [
+     0,
+     534,
+     1167
+    ],
+    "k_grove_B_NE": [
+     0,
+     645,
+     1167
+    ],
+    "k_scaffolding_NE": [
+     0,
+     1002,
+     1167
+    ],
+    "k_stables_NE": [
+     0,
+     1355,
+     1167
+    ],
+    "siegeTower_NE": [
+     0,
+     1764,
+     1167
+    ],
+    "k_tent_NE": [
+     0,
+     0,
+     1471
+    ],
+    "k_market_NE": [
+     0,
+     369,
+     1471
+    ],
+    "k_shipyard_NE": [
+     0,
+     736,
+     1471
+    ],
+    "t_tree_NE": [
+     0,
+     1133,
+     1471
+    ],
+    "k_tree_B_NE": [
+     0,
+     1244,
+     1471
+    ],
+    "g_lightpostDouble_NE": [
+     0,
+     1397,
+     1471
+    ],
+    "g_lightpostSingle_NE": [
+     0,
+     1496,
+     1471
+    ],
+    "siegeTrebuchet_NE": [
+     0,
+     1595,
+     1471
+    ],
+    "k_home_B_NE": [
+     0,
+     1796,
+     1471
+    ],
+    "k_lumbermill_NE": [
+     0,
+     0,
+     1746
+    ],
+    "k_tavern_NE": [
+     0,
+     206,
+     1746
+    ],
+    "g_columnLarge_NE": [
+     0,
+     392,
+     1746
+    ],
+    "k_windmill_NE": [
+     0,
+     491,
+     1746
+    ],
+    "k_watchtower_NE": [
+     0,
+     677,
+     1746
+    ],
+    "k_grain_NE": [
+     0,
+     858,
+     1746
+    ],
+    "k_watermill_NE": [
+     0,
+     1192,
+     1746
+    ],
+    "t_watermill_NE": [
+     0,
+     1394,
+     1746
+    ],
+    "k_stage_C_NE": [
+     0,
+     1582,
+     1746
+    ],
+    "towerSquareRoof_NE": [
+     0,
+     1751,
+     1746
+    ],
+    "wallCornerHalfTower_NE": [
+     1,
+     0,
+     0
+    ],
+    "wall_NE": [
+     1,
+     207,
+     0
+    ],
+    "k_church_NE": [
+     1,
+     360,
+     0
+    ],
+    "k_well_NE": [
+     1,
+     557,
+     0
+    ],
+    "wallCorner_NE": [
+     1,
+     740,
+     0
+    ],
+    "n_tree_tall_NE": [
+     0,
+     1971,
+     0
+    ],
+    "k_home_A_NE": [
+     1,
+     893,
+     0
+    ],
+    "wallHalf_NE": [
+     1,
+     1083,
+     0
+    ],
+    "k_banner_NE": [
+     0,
+     1953,
+     820
+    ],
+    "n_tree_default_fall_NE": [
+     0,
+     1904,
+     1746
+    ],
+    "g_pillarObelisk_NE": [
+     0,
+     1968,
+     1167
+    ],
+    "siegeCatapult_NE": [
+     1,
+     1236,
+     0
+    ],
+    "t_roofHighWindow_NE": [
+     1,
+     1420,
+     0
+    ],
+    "t_roofHigh_NE": [
+     1,
+     1585,
+     0
+    ],
+    "t_lantern_NE": [
+     0,
+     2013,
+     820
+    ],
+    "flagBannerLong_NE": [
+     0,
+     1995,
+     1471
+    ],
+    "towerSquareBaseColor_NE": [
+     1,
+     1750,
+     0
+    ],
+    "towerSquareBase_NE": [
+     1,
+     0,
+     208
+    ],
+    "n_tree_pineDefaultA_NE": [
+     0,
+     1985,
+     1746
+    ],
+    "t_fountainSquare_NE": [
+     1,
+     153,
+     208
+    ],
+    "towerSquareArch_NE": [
+     1,
+     1903,
+     0
+    ],
+    "towerSquareMidOpen_NE": [
+     1,
+     457,
+     208
+    ],
+    "towerSquareMidWindows_NE": [
+     1,
+     599,
+     208
+    ],
+    "towerSquareMid_NE": [
+     1,
+     741,
+     208
+    ],
+    "towerSquarePoles_NE": [
+     1,
+     883,
+     208
+    ],
+    "towerBalcony_NE": [
+     1,
+     1025,
+     208
+    ],
+    "towerBase_NE": [
+     1,
+     1169,
+     208
+    ],
+    "n_tree_detailed_NE": [
+     1,
+     1278,
+     208
+    ],
+    "k_blacksmith_NE": [
+     1,
+     1368,
+     208
+    ],
+    "t_stallGreen_NE": [
+     1,
+     1560,
+     208
+    ],
+    "t_stallRed_NE": [
+     1,
+     1713,
+     208
+    ],
+    "siegeRam_NE": [
+     1,
+     1866,
+     208
+    ],
+    "wallNarrowStairs_NE": [
+     1,
+     0,
+     390
+    ],
+    "wallDoor_NE": [
+     1,
+     150,
+     390
+    ],
+    "t_roofHighGable_NE": [
+     1,
+     265,
+     390
+    ],
+    "t_wallBlock_NE": [
+     1,
+     437,
+     390
+    ],
+    "t_wallWoodBlock_NE": [
+     1,
+     590,
+     390
+    ],
+    "k_shrine_NE": [
+     1,
+     743,
+     390
+    ],
+    "t_rockLarge_NE": [
+     1,
+     933,
+     390
+    ],
+    "n_tree_pineRoundA_NE": [
+     1,
+     1116,
+     390
+    ],
+    "k_stage_A_NE": [
+     1,
+     1192,
+     390
+    ],
+    "n_tree_oak_NE": [
+     1,
+     1398,
+     390
+    ],
+    "k_merchant_cart_NE": [
+     1,
+     1477,
+     390
+    ],
+    "towerSquareTopRoofHigh_NE": [
+     1,
+     1609,
+     390
+    ],
+    "t_roofHighPoint_NE": [
+     1,
+     1762,
+     390
+    ],
+    "n_tree_small_NE": [
+     1,
+     1922,
+     390
+    ],
+    "g_bench_NE": [
+     1,
+     0,
+     561
+    ],
+    "k_soldier_NE": [
+     1,
+     1968,
+     390
+    ],
+    "n_statue_column_NE": [
+     1,
+     149,
+     561
+    ],
+    "t_roof_NE": [
+     1,
+     197,
+     561
+    ],
+    "k_cart_NE": [
+     1,
+     359,
+     561
+    ],
+    "n_statue_head_NE": [
+     1,
+     486,
+     561
+    ],
+    "n_rock_tallA_NE": [
+     1,
+     560,
+     561
+    ],
+    "t_pillarStone_NE": [
+     0,
+     2022,
+     0
+    ],
+    "t_fountainRound_NE": [
+     1,
+     664,
+     561
+    ],
+    "t_cartHigh_NE": [
+     1,
+     880,
+     561
+    ],
+    "towerSquareTopColor_NE": [
+     1,
+     1035,
+     561
+    ],
+    "towerSquareTopRoof_NE": [
+     1,
+     1188,
+     561
+    ],
+    "siegeBallista_NE": [
+     1,
+     1341,
+     561
+    ],
+    "towerSquareTop_NE": [
+     1,
+     1478,
+     561
+    ],
+    "k_catapult_NE": [
+     1,
+     1631,
+     561
+    ],
+    "k_target_NE": [
+     1,
+     1782,
+     561
+    ],
+    "n_statue_obelisk_NE": [
+     1,
+     1851,
+     561
+    ],
+    "towerTopRoof_NE": [
+     1,
+     1899,
+     561
+    ],
+    "towerSquareMidColor_NE": [
+     1,
+     0,
+     702
+    ],
+    "k_horse_NE": [
+     1,
+     143,
+     702
+    ],
+    "n_statue_ring_NE": [
+     1,
+     236,
+     702
+    ],
+    "t_roofGable_NE": [
+     1,
+     315,
+     702
+    ],
+    "n_bridge_wood_NE": [
+     1,
+     482,
+     702
+    ],
+    "k_cannon_NE": [
+     1,
+     642,
+     702
+    ],
+    "t_cart_NE": [
+     1,
+     769,
+     702
+    ],
+    "n_flowerbed_mixed": [
+     1,
+     924,
+     702
+    ],
+    "n_flowerbed_red": [
+     1,
+     1040,
+     702
+    ],
+    "t_fenceGate_NE": [
+     1,
+     1156,
+     702
+    ],
+    "t_fence_NE": [
+     1,
+     1309,
+     702
+    ],
+    "k_weaponrack_NE": [
+     1,
+     1462,
+     702
+    ],
+    "n_fence_corner_NE": [
+     1,
+     1524,
+     702
+    ],
+    "n_fence_gate_NE": [
+     1,
+     1677,
+     702
+    ],
+    "n_fence_simple_NE": [
+     1,
+     1830,
+     702
+    ],
+    "k_small_tent_NE": [
+     1,
+     0,
+     819
+    ],
+    "k_flag_NE": [
+     1,
+     1983,
+     702
+    ],
+    "n_flowerbed_purple": [
+     1,
+     95,
+     819
+    ],
+    "g_urn_NE": [
+     1,
+     211,
+     819
+    ],
+    "a_rabbit": [
+     1,
+     259,
+     819
+    ],
+    "bridge_NE": [
+     1,
+     339,
+     819
+    ],
+    "n_tent_detailedOpen_NE": [
+     1,
+     479,
+     819
+    ],
+    "t_fenceCurved_NE": [
+     1,
+     590,
+     819
+    ],
+    "t_roofPoint_NE": [
+     1,
+     743,
+     819
+    ],
+    "n_flowerbed_yellow": [
+     1,
+     903,
+     819
+    ],
+    "t_hedgeGate_NE": [
+     1,
+     1019,
+     819
+    ],
+    "t_hedge_NE": [
+     1,
+     1172,
+     819
+    ],
+    "k_wheelbarrow_NE": [
+     1,
+     1325,
+     819
+    ],
+    "k_rock_NE": [
+     1,
+     1420,
+     819
+    ],
+    "a_dog": [
+     1,
+     1499,
+     819
+    ],
+    "n_crops_wheatStageB_NE": [
+     1,
+     1579,
+     819
+    ],
+    "metalGate_NE": [
+     1,
+     1646,
+     819
+    ],
+    "n_bushes": [
+     1,
+     1703,
+     819
+    ],
+    "n_log_stack_NE": [
+     1,
+     1819,
+     819
+    ],
+    "a_chicken": [
+     1,
+     1905,
+     819
+    ],
+    "g_lanternGlass_NE": [
+     1,
+     1985,
+     819
+    ],
+    "n_statue_block_NE": [
+     1,
+     0,
+     928
+    ],
+    "towerTop_NE": [
+     1,
+     55,
+     928
+    ],
+    "k_barrels_NE": [
+     1,
+     164,
+     928
+    ],
+    "t_hedgeCurved_NE": [
+     1,
+     238,
+     928
+    ],
+    "k_supplies_NE": [
+     1,
+     391,
+     928
+    ],
+    "a_horse": [
+     1,
+     493,
+     928
+    ],
+    "k_trough_NE": [
+     1,
+     573,
+     928
+    ],
+    "k_cannonballs_NE": [
+     1,
+     649,
+     928
+    ],
+    "t_planks_NE": [
+     1,
+     711,
+     928
+    ],
+    "k_crates_NE": [
+     1,
+     864,
+     928
+    ],
+    "n_sign_NE": [
+     1,
+     947,
+     928
+    ],
+    "n_rock_largeA_NE": [
+     1,
+     982,
+     928
+    ],
+    "k_rocks_NE": [
+     1,
+     1084,
+     928
+    ],
+    "flagBlue_NE": [
+     1,
+     1172,
+     928
+    ],
+    "a_owl": [
+     1,
+     1216,
+     928
+    ],
+    "flagBannerShort_NE": [
+     1,
+     1296,
+     928
+    ],
+    "a_duck": [
+     1,
+     1349,
+     928
+    ],
+    "k_haybales_NE": [
+     1,
+     1429,
+     928
+    ],
+    "k_bucket_NE": [
+     1,
+     1517,
+     928
+    ],
+    "flagBlueWide_NE": [
+     1,
+     1554,
+     928
+    ],
+    "a_goat": [
+     1,
+     1587,
+     928
+    ],
+    "k_pallet_NE": [
+     1,
+     1667,
+     928
+    ],
+    "a_pig": [
+     1,
+     1736,
+     928
+    ],
+    "n_pot_large_NE": [
+     1,
+     1816,
+     928
+    ],
+    "n_crop_pumpkin_NE": [
+     1,
+     1876,
+     928
+    ],
+    "a_cow": [
+     1,
+     1929,
+     928
+    ],
+    "n_path_stone_NE": [
+     1,
+     0,
+     1016
+    ],
+    "n_plant_bush_NE": [
+     1,
+     2009,
+     928
+    ],
+    "stairsStone_NE": [
+     1,
+     97,
+     1016
+    ],
+    "king_NE": [
+     1,
+     179,
+     1016
+    ],
+    "knightBlue_NE": [
+     1,
+     226,
+     1016
+    ],
+    "knightRed_NE": [
+     1,
+     273,
+     1016
+    ],
+    "s_king_NE": [
+     1,
+     320,
+     1016
+    ],
+    "s_knight_NE": [
+     1,
+     367,
+     1016
+    ],
+    "n_plant_bushLarge_NE": [
+     1,
+     414,
+     1016
+    ],
+    "n_stump_round_NE": [
+     1,
+     455,
+     1016
+    ],
+    "n_mushroom_redGroup_NE": [
+     1,
+     496,
+     1016
+    ],
+    "n_mushroom_tanGroup_NE": [
+     1,
+     533,
+     1016
+    ],
+    "n_rock_smallA_NE": [
+     0,
+     0,
+     1985
+    ],
+    "n_campfire_stones_NE": [
+     0,
+     48,
+     1985
+    ],
+    "n_lily_large_NE": [
+     0,
+     113,
+     1985
+    ],
+    "shieldBlue_NE": [
+     0,
+     148,
+     1985
+    ]
+   },
+   "red/": {
+    "k_castle_NE": [
+     0,
+     0,
+     0
+    ],
+    "k_townhall_NE": [
+     0,
+     453,
+     0
+    ],
+    "k_barracks_NE": [
+     0,
+     838,
+     0
+    ],
+    "k_tower_cannon_NE": [
+     0,
+     1212,
+     0
+    ],
+    "k_tower_catapult_NE": [
+     0,
+     1393,
+     0
+    ],
+    "k_tower_A_NE": [
+     0,
+     1585,
+     0
+    ],
+    "k_archeryrange_NE": [
+     0,
+     0,
+     820
+    ],
+    "k_mine_NE": [
+     0,
+     385,
+     820
+    ],
+    "k_tower_B_NE": [
+     0,
+     1766,
+     0
+    ],
+    "k_tower_base_NE": [
+     0,
+     742,
+     820
+    ],
+    "k_workshop_NE": [
+     0,
+     923,
+     820
+    ],
+    "k_stables_NE": [
+     0,
+     1285,
+     820
+    ],
+    "siegeTower_NE": [
+     0,
+     1694,
+     820
+    ],
+    "k_tent_NE": [
+     0,
+     0,
+     1161
+    ],
+    "k_market_NE": [
+     0,
+     369,
+     1161
+    ],
+    "k_shipyard_NE": [
+     0,
+     736,
+     1161
+    ],
+    "siegeTrebuchet_NE": [
+     0,
+     1133,
+     1161
+    ],
+    "k_home_B_NE": [
+     0,
+     1334,
+     1161
+    ],
+    "k_lumbermill_NE": [
+     0,
+     1533,
+     1161
+    ],
+    "k_tavern_NE": [
+     0,
+     1739,
+     1161
+    ],
+    "k_windmill_NE": [
+     0,
+     0,
+     1436
+    ],
+    "k_watchtower_NE": [
+     0,
+     186,
+     1436
+    ],
+    "k_watermill_NE": [
+     0,
+     367,
+     1436
+    ],
+    "towerSquareRoof_NE": [
+     0,
+     569,
+     1436
+    ],
+    "wallCornerHalfTower_NE": [
+     0,
+     722,
+     1436
+    ],
+    "wall_NE": [
+     0,
+     929,
+     1436
+    ],
+    "k_church_NE": [
+     0,
+     1082,
+     1436
+    ],
+    "k_well_NE": [
+     0,
+     1279,
+     1436
+    ],
+    "wallCorner_NE": [
+     0,
+     1462,
+     1436
+    ],
+    "k_home_A_NE": [
+     0,
+     1615,
+     1436
+    ],
+    "wallHalf_NE": [
+     0,
+     1805,
+     1436
+    ],
+    "k_banner_NE": [
+     0,
+     1945,
+     0
+    ],
+    "siegeCatapult_NE": [
+     0,
+     0,
+     1658
+    ],
+    "flagBannerLong_NE": [
+     0,
+     1898,
+     820
+    ],
+    "towerSquareBaseColor_NE": [
+     0,
+     184,
+     1658
+    ],
+    "towerSquareBase_NE": [
+     0,
+     337,
+     1658
+    ],
+    "towerSquareArch_NE": [
+     0,
+     490,
+     1658
+    ],
+    "towerSquareMidOpen_NE": [
+     0,
+     632,
+     1658
+    ],
+    "towerSquareMidWindows_NE": [
+     0,
+     774,
+     1658
+    ],
+    "towerSquareMid_NE": [
+     0,
+     916,
+     1658
+    ],
+    "towerSquarePoles_NE": [
+     0,
+     1058,
+     1658
+    ],
+    "towerBalcony_NE": [
+     0,
+     1200,
+     1658
+    ],
+    "towerBase_NE": [
+     0,
+     1925,
+     1161
+    ],
+    "k_blacksmith_NE": [
+     0,
+     1344,
+     1658
+    ],
+    "siegeRam_NE": [
+     0,
+     1536,
+     1658
+    ],
+    "wallNarrowStairs_NE": [
+     0,
+     1711,
+     1658
+    ],
+    "wallDoor_NE": [
+     0,
+     1861,
+     1658
+    ],
+    "k_shrine_NE": [
+     0,
+     0,
+     1846
+    ],
+    "towerSquareTopRoofHigh_NE": [
+     0,
+     190,
+     1846
+    ],
+    "k_soldier_NE": [
+     0,
+     1951,
+     820
+    ],
+    "towerSquareTopColor_NE": [
+     0,
+     343,
+     1846
+    ],
+    "towerSquareTopRoof_NE": [
+     0,
+     496,
+     1846
+    ],
+    "siegeBallista_NE": [
+     0,
+     649,
+     1846
+    ],
+    "towerSquareTop_NE": [
+     0,
+     786,
+     1846
+    ],
+    "towerTopRoof_NE": [
+     0,
+     939,
+     1846
+    ],
+    "towerSquareMidColor_NE": [
+     0,
+     1061,
+     1846
+    ],
+    "k_flag_NE": [
+     0,
+     1958,
+     1436
+    ],
+    "bridge_NE": [
+     0,
+     1204,
+     1846
+    ],
+    "metalGate_NE": [
+     0,
+     1976,
+     1658
+    ],
+    "towerTop_NE": [
+     0,
+     1344,
+     1846
+    ],
+    "flagBlue_NE": [
+     0,
+     1453,
+     1846
+    ],
+    "flagBannerShort_NE": [
+     0,
+     1497,
+     1846
+    ],
+    "flagBlueWide_NE": [
+     0,
+     2005,
+     0
+    ],
+    "stairsStone_NE": [
+     0,
+     1550,
+     1846
+    ],
+    "king_NE": [
+     0,
+     1632,
+     1846
+    ],
+    "knightBlue_NE": [
+     0,
+     1679,
+     1846
+    ],
+    "knightRed_NE": [
+     0,
+     1726,
+     1846
+    ],
+    "shieldBlue_NE": [
+     0,
+     2016,
+     820
+    ]
+   },
+   "green/": {
+    "k_castle_NE": [
+     0,
+     0,
+     0
+    ],
+    "k_townhall_NE": [
+     0,
+     453,
+     0
+    ],
+    "k_barracks_NE": [
+     0,
+     838,
+     0
+    ],
+    "k_tower_cannon_NE": [
+     0,
+     1212,
+     0
+    ],
+    "k_tower_catapult_NE": [
+     0,
+     1393,
+     0
+    ],
+    "k_tower_A_NE": [
+     0,
+     1585,
+     0
+    ],
+    "k_archeryrange_NE": [
+     0,
+     0,
+     820
+    ],
+    "k_mine_NE": [
+     0,
+     385,
+     820
+    ],
+    "k_tower_B_NE": [
+     0,
+     1766,
+     0
+    ],
+    "k_tower_base_NE": [
+     0,
+     742,
+     820
+    ],
+    "k_workshop_NE": [
+     0,
+     923,
+     820
+    ],
+    "k_stables_NE": [
+     0,
+     1285,
+     820
+    ],
+    "siegeTower_NE": [
+     0,
+     1694,
+     820
+    ],
+    "k_tent_NE": [
+     0,
+     0,
+     1161
+    ],
+    "k_market_NE": [
+     0,
+     369,
+     1161
+    ],
+    "k_shipyard_NE": [
+     0,
+     736,
+     1161
+    ],
+    "siegeTrebuchet_NE": [
+     0,
+     1133,
+     1161
+    ],
+    "k_home_B_NE": [
+     0,
+     1334,
+     1161
+    ],
+    "k_lumbermill_NE": [
+     0,
+     1533,
+     1161
+    ],
+    "k_tavern_NE": [
+     0,
+     1739,
+     1161
+    ],
+    "k_windmill_NE": [
+     0,
+     0,
+     1436
+    ],
+    "k_watchtower_NE": [
+     0,
+     186,
+     1436
+    ],
+    "k_watermill_NE": [
+     0,
+     367,
+     1436
+    ],
+    "towerSquareRoof_NE": [
+     0,
+     569,
+     1436
+    ],
+    "wallCornerHalfTower_NE": [
+     0,
+     722,
+     1436
+    ],
+    "wall_NE": [
+     0,
+     929,
+     1436
+    ],
+    "k_church_NE": [
+     0,
+     1082,
+     1436
+    ],
+    "k_well_NE": [
+     0,
+     1279,
+     1436
+    ],
+    "wallCorner_NE": [
+     0,
+     1462,
+     1436
+    ],
+    "k_home_A_NE": [
+     0,
+     1615,
+     1436
+    ],
+    "wallHalf_NE": [
+     0,
+     1805,
+     1436
+    ],
+    "k_banner_NE": [
+     0,
+     1945,
+     0
+    ],
+    "siegeCatapult_NE": [
+     0,
+     0,
+     1658
+    ],
+    "flagBannerLong_NE": [
+     0,
+     1898,
+     820
+    ],
+    "towerSquareBaseColor_NE": [
+     0,
+     184,
+     1658
+    ],
+    "towerSquareBase_NE": [
+     0,
+     337,
+     1658
+    ],
+    "towerSquareArch_NE": [
+     0,
+     490,
+     1658
+    ],
+    "towerSquareMidOpen_NE": [
+     0,
+     632,
+     1658
+    ],
+    "towerSquareMidWindows_NE": [
+     0,
+     774,
+     1658
+    ],
+    "towerSquareMid_NE": [
+     0,
+     916,
+     1658
+    ],
+    "towerSquarePoles_NE": [
+     0,
+     1058,
+     1658
+    ],
+    "towerBalcony_NE": [
+     0,
+     1200,
+     1658
+    ],
+    "towerBase_NE": [
+     0,
+     1925,
+     1161
+    ],
+    "k_blacksmith_NE": [
+     0,
+     1344,
+     1658
+    ],
+    "siegeRam_NE": [
+     0,
+     1536,
+     1658
+    ],
+    "wallNarrowStairs_NE": [
+     0,
+     1711,
+     1658
+    ],
+    "wallDoor_NE": [
+     0,
+     1861,
+     1658
+    ],
+    "k_shrine_NE": [
+     0,
+     0,
+     1846
+    ],
+    "towerSquareTopRoofHigh_NE": [
+     0,
+     190,
+     1846
+    ],
+    "k_soldier_NE": [
+     0,
+     1951,
+     820
+    ],
+    "towerSquareTopColor_NE": [
+     0,
+     343,
+     1846
+    ],
+    "towerSquareTopRoof_NE": [
+     0,
+     496,
+     1846
+    ],
+    "siegeBallista_NE": [
+     0,
+     649,
+     1846
+    ],
+    "towerSquareTop_NE": [
+     0,
+     786,
+     1846
+    ],
+    "towerTopRoof_NE": [
+     0,
+     939,
+     1846
+    ],
+    "towerSquareMidColor_NE": [
+     0,
+     1061,
+     1846
+    ],
+    "k_flag_NE": [
+     0,
+     1958,
+     1436
+    ],
+    "bridge_NE": [
+     0,
+     1204,
+     1846
+    ],
+    "metalGate_NE": [
+     0,
+     1976,
+     1658
+    ],
+    "towerTop_NE": [
+     0,
+     1344,
+     1846
+    ],
+    "flagBlue_NE": [
+     0,
+     1453,
+     1846
+    ],
+    "flagBannerShort_NE": [
+     0,
+     1497,
+     1846
+    ],
+    "flagBlueWide_NE": [
+     0,
+     2005,
+     0
+    ],
+    "stairsStone_NE": [
+     0,
+     1550,
+     1846
+    ],
+    "king_NE": [
+     0,
+     1632,
+     1846
+    ],
+    "knightBlue_NE": [
+     0,
+     1679,
+     1846
+    ],
+    "knightRed_NE": [
+     0,
+     1726,
+     1846
+    ],
+    "shieldBlue_NE": [
+     0,
+     2016,
+     820
+    ]
+   },
+   "gold/": {
+    "k_castle_NE": [
+     0,
+     0,
+     0
+    ],
+    "k_townhall_NE": [
+     0,
+     453,
+     0
+    ],
+    "k_barracks_NE": [
+     0,
+     838,
+     0
+    ],
+    "k_tower_cannon_NE": [
+     0,
+     1212,
+     0
+    ],
+    "k_tower_catapult_NE": [
+     0,
+     1393,
+     0
+    ],
+    "k_tower_A_NE": [
+     0,
+     1585,
+     0
+    ],
+    "k_archeryrange_NE": [
+     0,
+     0,
+     820
+    ],
+    "k_mine_NE": [
+     0,
+     385,
+     820
+    ],
+    "k_tower_B_NE": [
+     0,
+     1766,
+     0
+    ],
+    "k_tower_base_NE": [
+     0,
+     742,
+     820
+    ],
+    "k_workshop_NE": [
+     0,
+     923,
+     820
+    ],
+    "k_stables_NE": [
+     0,
+     1285,
+     820
+    ],
+    "siegeTower_NE": [
+     0,
+     1694,
+     820
+    ],
+    "k_tent_NE": [
+     0,
+     0,
+     1161
+    ],
+    "k_market_NE": [
+     0,
+     369,
+     1161
+    ],
+    "k_shipyard_NE": [
+     0,
+     736,
+     1161
+    ],
+    "siegeTrebuchet_NE": [
+     0,
+     1133,
+     1161
+    ],
+    "k_home_B_NE": [
+     0,
+     1334,
+     1161
+    ],
+    "k_lumbermill_NE": [
+     0,
+     1533,
+     1161
+    ],
+    "k_tavern_NE": [
+     0,
+     1739,
+     1161
+    ],
+    "k_windmill_NE": [
+     0,
+     0,
+     1436
+    ],
+    "k_watchtower_NE": [
+     0,
+     186,
+     1436
+    ],
+    "k_watermill_NE": [
+     0,
+     367,
+     1436
+    ],
+    "towerSquareRoof_NE": [
+     0,
+     569,
+     1436
+    ],
+    "wallCornerHalfTower_NE": [
+     0,
+     722,
+     1436
+    ],
+    "wall_NE": [
+     0,
+     929,
+     1436
+    ],
+    "k_church_NE": [
+     0,
+     1082,
+     1436
+    ],
+    "k_well_NE": [
+     0,
+     1279,
+     1436
+    ],
+    "wallCorner_NE": [
+     0,
+     1462,
+     1436
+    ],
+    "k_home_A_NE": [
+     0,
+     1615,
+     1436
+    ],
+    "wallHalf_NE": [
+     0,
+     1805,
+     1436
+    ],
+    "k_banner_NE": [
+     0,
+     1945,
+     0
+    ],
+    "siegeCatapult_NE": [
+     0,
+     0,
+     1658
+    ],
+    "flagBannerLong_NE": [
+     0,
+     1898,
+     820
+    ],
+    "towerSquareBaseColor_NE": [
+     0,
+     184,
+     1658
+    ],
+    "towerSquareBase_NE": [
+     0,
+     337,
+     1658
+    ],
+    "towerSquareArch_NE": [
+     0,
+     490,
+     1658
+    ],
+    "towerSquareMidOpen_NE": [
+     0,
+     632,
+     1658
+    ],
+    "towerSquareMidWindows_NE": [
+     0,
+     774,
+     1658
+    ],
+    "towerSquareMid_NE": [
+     0,
+     916,
+     1658
+    ],
+    "towerSquarePoles_NE": [
+     0,
+     1058,
+     1658
+    ],
+    "towerBalcony_NE": [
+     0,
+     1200,
+     1658
+    ],
+    "towerBase_NE": [
+     0,
+     1925,
+     1161
+    ],
+    "k_blacksmith_NE": [
+     0,
+     1344,
+     1658
+    ],
+    "siegeRam_NE": [
+     0,
+     1536,
+     1658
+    ],
+    "wallNarrowStairs_NE": [
+     0,
+     1711,
+     1658
+    ],
+    "wallDoor_NE": [
+     0,
+     1861,
+     1658
+    ],
+    "k_shrine_NE": [
+     0,
+     0,
+     1846
+    ],
+    "towerSquareTopRoofHigh_NE": [
+     0,
+     190,
+     1846
+    ],
+    "k_soldier_NE": [
+     0,
+     1951,
+     820
+    ],
+    "towerSquareTopColor_NE": [
+     0,
+     343,
+     1846
+    ],
+    "towerSquareTopRoof_NE": [
+     0,
+     496,
+     1846
+    ],
+    "siegeBallista_NE": [
+     0,
+     649,
+     1846
+    ],
+    "towerSquareTop_NE": [
+     0,
+     786,
+     1846
+    ],
+    "towerTopRoof_NE": [
+     0,
+     939,
+     1846
+    ],
+    "towerSquareMidColor_NE": [
+     0,
+     1061,
+     1846
+    ],
+    "k_flag_NE": [
+     0,
+     1958,
+     1436
+    ],
+    "bridge_NE": [
+     0,
+     1204,
+     1846
+    ],
+    "metalGate_NE": [
+     0,
+     1976,
+     1658
+    ],
+    "towerTop_NE": [
+     0,
+     1344,
+     1846
+    ],
+    "flagBlue_NE": [
+     0,
+     1453,
+     1846
+    ],
+    "flagBannerShort_NE": [
+     0,
+     1497,
+     1846
+    ],
+    "flagBlueWide_NE": [
+     0,
+     2005,
+     0
+    ],
+    "stairsStone_NE": [
+     0,
+     1550,
+     1846
+    ],
+    "king_NE": [
+     0,
+     1632,
+     1846
+    ],
+    "knightBlue_NE": [
+     0,
+     1679,
+     1846
+    ],
+    "knightRed_NE": [
+     0,
+     1726,
+     1846
+    ],
+    "shieldBlue_NE": [
+     0,
+     2016,
+     820
+    ]
+   }
+  },
+  "sheets": {
+   "": 2,
+   "red/": 1,
+   "green/": 1,
+   "gold/": 1
+  }
+ }
+}

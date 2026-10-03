@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Canvas check · can a game run here?</title>
+<style>
+  html, body { margin: 0; background: #12111f; color: #ece6fb; font: 18px/1.5 system-ui, sans-serif; }
+  main { max-width: 640px; margin: 0 auto; padding: 24px 16px; text-align: center; }
+  .big { font-size: 28px; font-weight: 700; margin: 12px 0; }
+  .no { color: #ff9a8a; }
+  .yes { color: #9aefc0; }
+  ul { text-align: left; display: inline-block; margin: 8px 0 0; padding-left: 20px; }
+  small { color: #a7a0c4; }
+</style>
+</head>
+<body>
+<main>
+  <!-- v5.8.1 (tools/canvas-check.html): a tiny page that tells a teacher whether this place in Canvas lets a page run
+       its code. Without scripts only the first line shows; with scripts it is replaced by the checks below. -->
+  <div id="out">
+    <div class="big no">✗ Games can't run here</div>
+    <p>This spot shows the page as a picture only: its code is switched off. Try the next way in the instructions.</p>
+  </div>
+</main>
+<script>
+(function () {
+  var rows = [];
+  function row(ok, text) { rows.push('<li class="' + (ok ? "yes" : "no") + '">' + (ok ? "✓ " : "✗ ") + text + "</li>"); }
+  var saves = false;
+  try { localStorage.setItem("canvasCheck", "1"); saves = localStorage.getItem("canvasCheck") === "1"; localStorage.removeItem("canvasCheck"); } catch (e) {}
+  row(true, "The page's code runs");
+  row(saves, saves ? "Progress can be saved" : "Progress can't be saved here (students would start over each time)");
+  row(typeof DecompressionStream !== "undefined", "This Chrome can unpack the game");
+  var gl = false;
+  try { var c = document.createElement("canvas"); gl = !!(c.getContext("webgl2") || c.getContext("webgl")); } catch (e) {}
+  row(gl, "3D graphics work");
+  document.getElementById("out").innerHTML =
+    '<div class="big ' + (saves ? "yes" : "no") + '">' + (saves ? "✓ The game can run here" : "Almost: the game runs but can't save") + "</div>" +
+    "<ul>" + rows.join("") + "</ul><p><small>" + location.origin + "</small></p>";
+})();
+</script>
+</body>
+</html>

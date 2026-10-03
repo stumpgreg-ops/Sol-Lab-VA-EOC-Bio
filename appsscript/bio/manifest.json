@@ -1,0 +1,84 @@
+{
+ "state": "BIO",
+ "version": "6.3.1",
+ "hash": "0d6678a174b3",
+ "bytes": 5277896,
+ "files": 503,
+ "parts": [
+  "sol-0d6678a174b3-0.bin",
+  "sol-0d6678a174b3-1.bin"
+ ],
+ "body": "",
+ "css": [
+  "css/after-hours.css",
+  "css/build.css"
+ ],
+ "scripts": [
+  {
+   "code": "\n  /* Any error that escapes the game loop is logged, never shown to a student. */\n  window.addEventListener(\"error\", function (e) {\n    try { console.error(\"[SOL]\", (e && e.message) || \"error\", e && e.error && e.error.stack ? e.error.stack : \"\"); } catch (x) {}\n  });\n  "
+  },
+  {
+   "src": "js/vendor/phaser.min.js"
+  },
+  {
+   "src": "js/vendor/peerjs.min.js"
+  },
+  {
+   "src": "js/content.js"
+  },
+  {
+   "src": "js/content2.js"
+  },
+  {
+   "src": "js/content3.js"
+  },
+  {
+   "src": "js/content4.js"
+  },
+  {
+   "src": "js/content5.js"
+  },
+  {
+   "src": "js/content6.js"
+  },
+  {
+   "src": "js/content7.js"
+  },
+  {
+   "src": "js/content8.js"
+  },
+  {
+   "src": "js/content9.js"
+  },
+  {
+   "src": "js/classes.js"
+  },
+  {
+   "src": "js/audio.js"
+  },
+  {
+   "src": "js/music.js"
+  },
+  {
+   "src": "js/net.js"
+  },
+  {
+   "src": "js/vendor/three.min.js"
+  },
+  {
+   "src": "js/build3d.js"
+  },
+  {
+   "src": "js/build.js"
+  },
+  {
+   "src": "js/realms.js"
+  },
+  {
+   "src": "js/modes.js"
+  },
+  {
+   "src": "js/game.js"
+  }
+ ]
+}
