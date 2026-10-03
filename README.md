@@ -8,6 +8,12 @@ Play: `index.html`. Teacher monitor: `admin.html` (PIN lock; FERPA nicknames onl
 
 Progress saves in this browser profile (`afterHours.v1.night`). Itch login does not store progress.
 
+## Algebra I 1.0.2 (2026-10-03)
+
+- **Full review's skill cards read in one line each.** The ten standard cards carried every lettered statement (up to 1,100 characters a card); they now show a one-line blurb (`blurb` in `HEIST_STANDARDS`); the full letters stay in `keys` for the validator, the question bank and the content guide.
+- **Tall screens scroll from the top.** The title, skill and state screens centred their content and clipped the top when it was taller than the window, which inside a 760-pixel LMS frame hid the heading and the first rows of cards. They now centre when the content fits and scroll from the top when it does not (`.screen` in `css/after-hours.css`).
+- Canvas build (`tools/build-canvas.js`) and the one-file build rebuilt from this version.
+
 ## Algebra I 1.0.1 (2026-10-02)
 
 - **Standards map corrected to the published 2023 letters.** The 1.0.0 map was written from memory of the standards; checked against the published text, A.EO.1–4, A.EI.1 and A.EI.3 matched, but A.EI.2 d–g, A.F.1, A.F.2 and A.ST.1 did not (the published A.F.1 has eight letters, not twelve; A.F.2 eight, not nine; A.ST.1 nine, not eight; and A.EI.2 d/f are *create* an inequality / a system of inequalities, g is *graph* the system). `HEIST_STANDARDS` now carries the published wording, 93 items were recoded to the letters they actually assess, and the Statistics skill cards split A.ST.1 as a–c + h (data cycle and reading scatterplots) and d–g + i (best fit, predictions, conclusions). No stems, choices or keys changed. `docs/question-bank.*` regenerated.

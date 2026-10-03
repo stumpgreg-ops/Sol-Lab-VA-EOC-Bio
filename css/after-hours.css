@@ -30,9 +30,13 @@ html, body {
     radial-gradient(ellipse at 50% 20%, rgba(245,200,66,.08), transparent 50%),
     linear-gradient(180deg, rgba(7,8,13,.94), rgba(7,8,13,.82)),
     repeating-linear-gradient(90deg, #161922 0 18px, #10131a 18px 36px);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
   padding: 16px; overflow: auto; touch-action: pan-y;
 }
+/* v1.0.2: centre the content when it fits, scroll from the top when it does not (justify-content: center
+   clips the top of a tall screen, e.g. the ten Full-review cards inside a 760px LMS frame) */
+.screen::before, .screen::after { content: ""; display: block; flex: 1 0 0; }
+.screen > * { flex-shrink: 0; }
 #title-screen { z-index: 20; }
 #state-screen { z-index: 22; }
 
