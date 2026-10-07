@@ -5,11 +5,12 @@
   /* v5.2: a build made for one state (tools/build-games.js sets window.SOL_STATE) has no
      gateway at all — the title screen for that state is the first thing on screen. */
   try {
-    var _gw = document.getElementById("state-screen"), _ts = document.getElementById("title-screen"), _ss = document.getElementById("skill-screen");
+    var _gw = document.getElementById("state-screen"), _ts = document.getElementById("title-screen"), _ss = document.getElementById("skill-screen"), _ms = document.getElementById("mode-screen");
     var _locked = !!(typeof window !== "undefined" && window.SOL_STATE);
     if (_gw) _gw.classList.toggle("hidden", _locked);
     if (_ts) _ts.classList.toggle("hidden", !_locked);
     if (_ss) _ss.classList.add("hidden");
+    if (_ms) _ms.classList.add("hidden");
   } catch (eGw) {}
   var WORLD_W = 2400;
   var WORLD_H = 2000;
@@ -40,6 +41,7 @@
   var LS_CLASS = "afterHours.v1.class";
   var LS_FAMILY = "afterHours.v1.family";
   var LS_STRAND = "afterHours.v1.strand";
+  var LS_GAMEMODE = "afterHours.v1.gameMode";   /* v5.8.3: "ALL", "maze" or a shooter's id */
   var LS_CHAR = "afterHours.v1.charPreset";
   var LS_STATE = "afterHours.v1.state";
   var LS_ADAPT = "afterHours.v1.adapt.";
@@ -2994,6 +2996,8 @@
   }
   function saveAdapt(family, a) { try { localStorage.setItem(LS_ADAPT + family, JSON.stringify(a)); } catch (e) {} }
   function adaptEvent(scene, kind, claim) {
+    /* v5.13: every answer and wrong pick also goes to the progress record (js/progress.js) */
+    if (window.SolProgress) { try { SolProgress.answer(kind, claim); } catch (eP) {} }
     var a = scene.adapt;
     if (!a) return;
     var st = (claim && claim.strand) || "BIO.1";
@@ -3904,14 +3908,33 @@
     return NIGHT_THEMES[Math.floor((n - 1) / 10) % NIGHT_THEMES.length];
   }
 
-  function readSavedNight() {
-    var v = parseInt(localStorage.getItem(LS_NIGHT) || "1", 10);
+  /* v5.15: each game mode keeps its own level (afterHours.v1.night.<mode>: ALL for Mixed, maze, raid ...), so a
+     student can be on level 40 in Eagle Swoop and level 12 in the Labyrinth. LS_NIGHT still holds the level last
+     played (in any mode). An older save had one level for every mode: it moves to the mode last picked. */
+  function nightKey(m) { return LS_NIGHT + "." + (m || (cfg && cfg.gameMode) || "ALL"); }
+  function migrateNight() {
+    try {
+      if (localStorage.getItem(LS_NIGHT + ".migrated")) return;
+      var old = localStorage.getItem(LS_NIGHT), m = localStorage.getItem(LS_GAMEMODE) || "ALL";
+      if (old && !localStorage.getItem(LS_NIGHT + "." + m)) localStorage.setItem(LS_NIGHT + "." + m, old);
+      localStorage.setItem(LS_NIGHT + ".migrated", "1");
+    } catch (e) {}
+  }
+  function hasSavedNight(m) {
+    migrateNight();
+    try { return !!localStorage.getItem(nightKey(m)); } catch (e) { return false; }
+  }
+  function readSavedNight(m) {
+    migrateNight();
+    var v = 1;
+    try { v = parseInt(localStorage.getItem(nightKey(m)) || "1", 10); } catch (e) {}
     if (!(v >= 1 && v <= 100)) v = 1;
     return v;
   }
-  function writeSavedNight(n) {
+  function writeSavedNight(n, m) {
     n = clamp(n, 1, 100);
-    try { localStorage.setItem(LS_NIGHT, String(n)); } catch (e) {}
+    migrateNight();
+    try { localStorage.setItem(nightKey(m), String(n)); localStorage.setItem(LS_NIGHT, String(n)); } catch (e) {}
   }
 
   function texRect(scene, key, w, h, fill, stroke, sw) {
@@ -4483,6 +4506,7 @@
 
     create() {
       playScene = this;
+      progressLevelStart(this);
       /* Local-dev hook only (never on itch): lets a test harness read the maze,
          rail graph and scene without reaching into closures. */
       try {
@@ -6913,6 +6937,17 @@
       /* v4.9: an NJSLA Part B (evidence) item always follows its Part A. */
       if (this.claim && this.claim.partB) {
         for (i = 0; i < claims.length; i++) if (claims[i].id === this.claim.partB) { pick = i; break; }   /* v5.7.1: also when a Part A is asked again */
+      }
+      /* v5.12.2: the Odyssey reads in story order. The pack's claims arrive sorted by story position (content.js
+         ODY_STORY), so the next question is the first one not yet asked: a passage stays on screen until its questions
+         are done, then the story moves on. After the last passage the story starts again from the beginning. */
+      if (pick < 0 && claims[0] && claims[0].seq != null) {
+        for (i = 0; i < claims.length; i++) if (!claims[i].isPartB && unused(claims[i])) { pick = i; break; }
+        if (pick < 0) {
+          this.usedClaims = [];
+          saveUsedClaims(this.family, this.strand, this.usedClaims);
+          for (i = 0; i < claims.length; i++) if (!claims[i].isPartB) { pick = i; break; }
+        }
       }
       if (pick < 0) {
         var pool = [], fresh = [];
@@ -17348,6 +17383,7 @@
     }
 
     endRun(win) {
+      if (window.SolProgress && !this.ended) { try { SolProgress.levelEnd(!!win); } catch (eP) {} }   /* v5.13: the progress record */
       this.ended = true;
       this.player.setVelocity(0, 0);
       /* Cycle 18 refine-0547: restore timeScale on overlay */
@@ -26703,7 +26739,7 @@
     try {
       ModeScene = SolModes.install(NightScene, {
         Input: Input,
-        setPlayScene: function (sc) { playScene = sc; },
+        setPlayScene: function (sc) { playScene = sc; progressLevelStart(sc); },   /* ModeScene.create() calls it first */
         adaptEvent: adaptEvent, pingTeacher: function (sc, st) { pingTeacher(sc, st); },
         loadUsedClaims: loadUsedClaims, loadAdapt: loadAdapt,
         readingIsVisible: readingIsVisible, hideReading: hideReading,
@@ -26712,6 +26748,35 @@
         installSafeCamFlash: installSafeCamFlash
       });
     } catch (eModes) { ModeScene = null; if (window.console) console.warn("[modes] install failed", eModes); }
+  }
+  /* v5.13: the progress record (js/progress.js) — a level starts when its scene is created (a retry is a new start) */
+  function progressLevelStart(sc) {
+    if (!window.SolProgress || !sc) return;
+    try {
+      SolProgress.levelStart({ family: sc.family, night: sc.night, campaign: cfg.gameMode || "ALL",
+        mode: sc.mode && sc.mode.id ? sc.mode.id : (sc.isBossLevel ? "boss" : "maze") });
+    } catch (eP) {}
+  }
+  /* play time counts only while a level is on screen and nothing pauses it */
+  function progressActive() {
+    var sc = playScene;
+    if (!sc || sc.ended || sc._finishing) return false;
+    if (sc.readOpen || sc.tutOpen || sc.codexOpen || sc.trapOpen || sc.helpOpen || sc._tabHidden) return false;
+    var play = document.getElementById("play");
+    if (!play || play.classList.contains("hidden")) return false;
+    var cards = ["overlay", "read-overlay", "tut-overlay", "codex-overlay", "trap-overlay", "char-overlay", "build-overlay", "progress-overlay", "restore-overlay", "badge-overlay", "teacher-overlay"];
+    for (var i = 0; i < cards.length; i++) { var c = document.getElementById(cards[i]); if (c && !c.classList.contains("hidden")) return false; }
+    try { if (sc.scene && sc.scene.isPaused && sc.scene.isPaused()) return false; } catch (e) {}
+    return true;
+  }
+  if (window.SolProgress) {
+    SolProgress.hook({
+      state: function () { return "BIO"; },   /* v6.4: this game's progress record and codes (SOL3-BIO-…) */
+      nick: function () { var n = document.getElementById("join-nick"); return n ? n.value : ""; },
+      active: progressActive,
+      modes: function () { return gameModeDefs().map(function (d) { return d.id; }); },
+      modeName: modeLabel
+    });
   }
   function sceneKeyFor(n) {
     try { if (ModeScene && window.SolModes && SolModes.modeFor(n)) return "mode"; } catch (e) {}
@@ -26740,6 +26805,8 @@
     document.getElementById("title-screen").classList.toggle("hidden", on);
     var skill = document.getElementById("skill-screen");
     if (skill) skill.classList.add("hidden");
+    var modeScr = document.getElementById("mode-screen");
+    if (modeScr) modeScr.classList.add("hidden");
     var stateScreen = document.getElementById("state-screen");
     if (stateScreen) {
       if (!on && !cfg.state && !LOCKED_STATE) { stateScreen.classList.remove("hidden"); document.getElementById("title-screen").classList.add("hidden"); }
@@ -26766,6 +26833,9 @@
 
   /* v6: skill cards per unit come from js/content.js (HEIST_SKILLS). */
   var SKILL_DEFS = window.HEIST_SKILLS || {};
+
+  /* v5.9: the Odyssey game's "skill" is an episode; each one tests the unit's skills
+     (character, plot and setting, theme, word choice and tone, vocabulary in context). */
 
   function gradeLabel(family) {
     var f = (typeof heistFamilyDef === "function") ? heistFamilyDef(family) : null;
@@ -26815,6 +26885,8 @@
   function showStateScreen() {
     /* v6: no gateway — go straight to the title screen with the unit cards. */
     var skill = document.getElementById("skill-screen");
+    var modeScr = document.getElementById("mode-screen");
+    if (modeScr) modeScr.classList.add("hidden");
     if (skill) skill.classList.add("hidden");
     applyState("VA");
   }
@@ -26829,14 +26901,14 @@
     var line = document.getElementById("skill-save-line");
     var cont = document.getElementById("btn-skill-continue");
     if (!line || !cont) return;
-    if (!localStorage.getItem(LS_NIGHT)) {
-      line.textContent = "No level saved on this Chromebook yet. Start Level 1.";
+    if (!hasSavedNight()) {
+      line.textContent = "No level saved in " + modeLabel(cfg.gameMode) + " on this Chromebook yet. Start Level 1. Each game mode keeps its own level.";
       cont.classList.add("hidden");
       return;
     }
-    line.textContent = "Level " + n + " saved on this Chromebook. Itch login does not store progress.";
+    line.textContent = "Level " + n + " saved in " + modeLabel(cfg.gameMode) + " on this Chromebook. Each game mode keeps its own level.";
     cont.textContent = n > 1 ? ("Continue Level " + n) : "Continue";
-    cont.classList.toggle("hidden", n <= 1 && !localStorage.getItem(LS_NIGHT));
+    cont.classList.toggle("hidden", n <= 1 && !hasSavedNight());
   }
 
   function renderSkillCards(family) {
@@ -26862,6 +26934,84 @@
     });
   }
 
+  /* ── v5.8.3: the game mode screen, between the grade and the skill ── */
+  var GAME_MODE_DEFS = [
+    { id: "ALL", kind: "All modes", name: "Mixed", meta: "The full campaign: the maze on odd levels and Fenrir's boss levels, a shooter level on the even ones." },
+    { id: "maze", kind: "Maze", name: "Labyrinth", meta: "Sneak past Hati, grab the right letter and get out through EXIT · SAFE. Every level is the maze." },
+    { id: "raid", kind: "Galaga style", name: "Eagle Swoop", meta: "Shoot the eagle carrying the right letter while the flock dives at you." },
+    { id: "rocks", kind: "Asteroids style", name: "Rune Rocks", meta: "Pull the rock with the right letter in with your beam and blast the rest." },
+    { id: "sky", kind: "Flying shooter", name: "Sun Chariot", meta: "Fly the sun's chariot and shoot the right orb through the gap in its shield." },
+    { id: "ring", kind: "Arena", name: "Wolf Ring", meta: "Keep the wolves off and shoot the right runestone when it rises." },
+    /* v5.12: Virginia and New Jersey only (js/modes.js, MODES.worms) */
+    { id: "worms", kind: "Centipede style", name: "Root Worms", meta: "Shoot the glowing worm segment with the right letter as the worms wind down through the mushrooms.", noOdy: true }
+  ];
+  /* v5.10: the Odyssey build only (window.SOL_STATE === "ODY") */
+  GAME_MODE_DEFS.push({ id: "strait", kind: "Steer the strait", name: "Scylla and Charybdis", meta: "Steer Odysseus's ship through the gaps in the rocks and the gate with the right letter, to the end of the strait, while Charybdis pulls and Scylla strikes.", ody: true });
+  /* v5.11: four more Odyssey modes, each in its own file (js/mode-ram.js, mode-bow.js, mode-raft.js, mode-row.js) */
+  GAME_MODE_DEFS.push(
+    { id: "ram", kind: "Sneak out of the cave", name: "Under the Ram", meta: "Cling under a ram and slip out of the Cyclops's cave past blind Polyphemus's groping hands — ride out on the ram with the right letter.", ody: true },
+    { id: "bow", kind: "Archery", name: "Bend the Bow", meta: "String Odysseus's great bow and shoot an arrow through the twelve axe heads — the row with the right letter.", ody: true },
+    { id: "raft", kind: "Ride the waves", name: "Calypso's Raft", meta: "Sail the raft from Ogygia, steer by the stars and ride Poseidon's waves to the right letter.", ody: true },
+    { id: "row", kind: "Keep the beat", name: "Row Past the Sirens", meta: "Keep the crew rowing to the beat while Odysseus, tied to the mast, strains toward the Sirens — row to the right letter.", ody: true }
+  );
+  /* the cards this build offers: the Odyssey-only modes appear only in the Odyssey build, and the modes
+     marked noOdy (v5.12: Root Worms) only in the others; a saved pick of a card not offered falls back to All */
+  function gameModeDefs() {
+    var ody = typeof window !== "undefined" && window.SOL_STATE === "ODY";
+    return GAME_MODE_DEFS.filter(function (d) { return ody ? !d.noOdy : !d.ody; });
+  }
+  function readGameMode() {
+    var m = "ALL";
+    try { m = localStorage.getItem(LS_GAMEMODE) || "ALL"; } catch (e) {}
+    return gameModeDefs().some(function (d) { return d.id === m; }) ? m : "ALL";
+  }
+  function applyGameMode(m) {
+    if (!gameModeDefs().some(function (d) { return d.id === m; })) m = "ALL";
+    cfg.gameMode = m;
+    if (window.SolModes) SolModes.only = m === "ALL" ? null : m;
+  }
+  applyGameMode(readGameMode());
+  function gameModeName(m) {
+    var d = GAME_MODE_DEFS.filter(function (x) { return x.id === m; })[0];
+    return d && d.id !== "ALL" ? d.name : "All modes";
+  }
+  /* v5.15: a mode's name in a sentence ("Level 5 saved in Eagle Swoop") */
+  function modeLabel(m) { var d = GAME_MODE_DEFS.filter(function (x) { return x.id === m; })[0]; return d ? (d.id === "ALL" ? "Mixed (all modes)" : d.name) : "Mixed (all modes)"; }
+  function showModeScreen() {
+    cfg.family = selectedFamily();
+    var title = document.getElementById("title-screen"), skill = document.getElementById("skill-screen"), scr = document.getElementById("mode-screen");
+    if (title) title.classList.add("hidden");
+    if (skill) skill.classList.add("hidden");
+    if (scr) scr.classList.remove("hidden");
+    var kicker = document.getElementById("mode-kicker");
+    if (kicker) kicker.textContent = gradeLabel(cfg.family) + " · game mode";
+    var host = document.getElementById("mode-packs");
+    if (!host) return;
+    var want = readGameMode();
+    host.innerHTML = "";
+    gameModeDefs().forEach(function (d) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = d.id === want ? "card selected" : "card";
+      btn.setAttribute("data-gamemode", d.id);
+      btn.innerHTML = '<span class="kind">' + d.kind + '</span><span class="name">' + d.name + '</span><span class="meta">' + d.meta + '</span>';
+      bindTap(btn, function () {
+        host.querySelectorAll(".card").forEach(function (c) { c.classList.remove("selected"); });
+        btn.classList.add("selected");
+        try { localStorage.setItem(LS_GAMEMODE, d.id); } catch (e) {}
+        applyGameMode(d.id);
+        showSkillScreen(1);
+      });
+      host.appendChild(btn);
+    });
+  }
+  function hideModeScreen() {
+    var scr = document.getElementById("mode-screen"), title = document.getElementById("title-screen");
+    if (scr) scr.classList.add("hidden");
+    if (title) title.classList.remove("hidden");
+    refreshSaveLine();
+  }
+
   function showSkillScreen(nightHint) {
     pendingNight = nightHint || 1;
     cfg.family = selectedFamily();
@@ -26872,20 +27022,17 @@
     } catch (e2) {}
     var title = document.getElementById("title-screen");
     var skill = document.getElementById("skill-screen");
+    var modeScr = document.getElementById("mode-screen");
     if (title) title.classList.add("hidden");
+    if (modeScr) modeScr.classList.add("hidden");
     if (skill) skill.classList.remove("hidden");
     var kicker = document.getElementById("skill-kicker");
-    if (kicker) kicker.textContent = gradeLabel(cfg.family) + " · skill focus";
+    var ody = cfg.family === "ODY", skT = document.getElementById("skill-title"), skG = document.getElementById("skill-tag");
+    if (kicker) kicker.textContent = gradeLabel(cfg.family) + " · " + gameModeName(cfg.gameMode) + " · skill focus";
+    if (skT) skT.textContent = ody ? "Pick an episode" : "Pick a skill";
+    if (skG) skG.textContent = "Choose a standard to focus on for this level, or play with the whole unit mixed.";
     renderSkillCards(cfg.family);
     refreshSkillSaveLine();
-  }
-
-  function hideSkillScreen() {
-    var skill = document.getElementById("skill-screen");
-    var title = document.getElementById("title-screen");
-    if (skill) skill.classList.add("hidden");
-    if (title) title.classList.remove("hidden");
-    refreshSaveLine();
   }
 
   function bootPhaser() {
@@ -27297,15 +27444,15 @@
     var line = document.getElementById("save-line");
     var cont = document.getElementById("btn-continue");
     if (!line) return;
-    if (!localStorage.getItem(LS_NIGHT)) {
-      line.textContent = "No level saved on this Chromebook yet. Tap a unit to start Level 1. Itch login does not store progress.";
+    if (!hasSavedNight()) {
+      line.textContent = "No level saved on this Chromebook yet. Tap a unit to start Level 1. Each game mode keeps its own level.";
       if (cont) cont.classList.add("hidden");
       return;
     }
-    line.textContent = "Level " + n + " saved on this Chromebook. Tap a unit, then Continue on the skill screen. Itch login does not store progress.";
+    line.textContent = "Level " + n + " saved in " + modeLabel(cfg.gameMode) + " on this Chromebook. Tap a unit, then pick a game mode: each mode keeps its own level.";
     if (cont) {
       cont.textContent = n > 1 ? ("Continue Level " + n) : "Continue";
-      cont.classList.toggle("hidden", n <= 1 && !localStorage.getItem(LS_NIGHT));
+      cont.classList.toggle("hidden", n <= 1 && !hasSavedNight());
     }
   }
 
@@ -27482,14 +27629,16 @@
   });
 
   /* Title Start/Continue removed — grade card opens skill screen. */
-  bindTap(document.getElementById("btn-skill-back"), function () { hideSkillScreen(); });
+  /* v5.8.3: Back on the skill screen goes to the game mode screen; Back there goes to the grades */
+  bindTap(document.getElementById("btn-skill-back"), function () { showModeScreen(); });
+  bindTap(document.getElementById("btn-mode-back"), function () { hideModeScreen(); });
   document.querySelectorAll("#title-screen .card[data-family]").forEach(function (card) {
     bindTap(card, function () {
       document.querySelectorAll("#title-screen .card[data-family]").forEach(function (c) { c.classList.remove("selected"); });
       card.classList.add("selected");
       cfg.family = card.getAttribute("data-family") || "ALL";
       try { localStorage.setItem(LS_FAMILY, cfg.family); } catch (e) {}
-      showSkillScreen(1);
+      showModeScreen();
     });
   });
   bindTap(document.getElementById("btn-skill-start"), function () { openCharPicker(1, false); });

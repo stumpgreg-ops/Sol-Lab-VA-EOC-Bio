@@ -6,5 +6,6 @@ set -e
 cd "$(dirname "$0")/.."
 OUT="${1:-sol-lab-va-bio.zip}"
 rm -f "$OUT"
-zip -q -r -X "$OUT" index.html admin.html css js assets -x '*.DS_Store' -x '*Thumbs.db'
+node tools/build-teacher.js BIO >/dev/null   # v6.4: teacher/BIO.html, the game's Teacher screen
+zip -q -r -X "$OUT" index.html admin.html css js assets teacher -x '*.DS_Store' -x '*Thumbs.db'
 echo "$OUT: $(unzip -l "$OUT" | tail -1)"

@@ -10,11 +10,12 @@
 # Turn Pages on once: repository Settings → Pages → Source "Deploy from a branch", branch gh-pages, folder / (root).
 set -e
 cd "$(dirname "$0")/.."
+node tools/build-teacher.js BIO   # v6.4: teacher/BIO.html, the game's Teacher screen
 node tools/build-appsscript.js
 node tools/build-canvas.js   # v6.3.1: dist/canvas/BIO/ and its zip — uploaded to Canvas by the teacher, never published here
 site=$(mktemp -d)
 cp index.html admin.html CREDITS.md "$site/"; cp tools/canvas-check.html "$site/canvas-check.html"
-cp -r css js assets "$site/"
+cp -r css js assets teacher "$site/"
 mkdir -p "$site/appsscript"; cp -r dist/appsscript/bio "$site/appsscript/bio"; cp dist/appsscript/Code.gs "$site/appsscript/Code.gs"
 find "$site" -name .DS_Store -delete
 touch "$site/.nojekyll"

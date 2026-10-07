@@ -9,6 +9,7 @@ var path = require("path"), fs = require("fs"), http = require("http"), url = re
 var { chromium } = require("/opt/node22/lib/node_modules/playwright");
 var dir = path.join(__dirname, "..", "dist", "canvas", "BIO"), base = "SOLLab-VA-Bio";
 var start = base + ".html", uploaded = fs.readdirSync(dir), hide = null;
+var K = "afterHours.v1.";   /* the game's own save keys */
 var FOLDER = "/courses/1~2/files/1~3/course files/SOL Test/";
 var shots = path.join(__dirname, "shots");
 fs.mkdirSync(shots, { recursive: true });
@@ -66,6 +67,8 @@ var lms = http.createServer(function (req, res) {
   await page.screenshot({ path: path.join(shots, "cv-01-title.png") });
 
   await f.click('#title-screen .card[data-family="ECO"]');
+  await f.waitForSelector("#mode-screen:not(.hidden)");   /* v5.8.3: the game mode screen */
+  await f.click('#mode-packs .card[data-gamemode="ALL"]');
   await f.waitForSelector("#skill-screen:not(.hidden)");
   await f.click("#btn-skill-start");
   await page.waitForTimeout(400);
@@ -115,6 +118,42 @@ var lms = http.createServer(function (req, res) {
   check(bare.length === 0 && keys.some(function (k) { return k.indexOf("solLab.bio:afterHours.v1.build") === 0; }), "the game's saves carry their own prefix (solLab.bio:)" + (bare.length ? ": bare " + bare.join(",") : ""));
   var other = await f.evaluate(function () { return [localStorage["afterHours.v1.night"], localStorage["solReading.va:afterHours.v1.night"]]; });
   check(other[0] === "57" && other[1] === "33", "the other games' saves are untouched");
+
+  /* v5.14 restore, inside Canvas: the code from this castle brings it back on a cleared Chromebook (the page reloads) */
+  var made = await f.evaluate(function (K) {
+    localStorage.setItem(K + "night", "14");
+    return { code: SolProgress.code(), picks: JSON.parse(localStorage.getItem(K + "build")).picks.length };
+  }, K);
+  await f.evaluate(function (pre) {
+    Object.keys(localStorage).filter(function (k) { return k.indexOf(pre) === 0; }).forEach(function (k) { localStorage.removeItem(k.slice(pre.length)); });
+  }, "solLab.bio:");
+  await page.reload();
+  f = await frame();
+  await f.waitForSelector("#title-screen:not(.hidden)", { timeout: 60000 });
+  var gone = await f.evaluate(function (K) { return localStorage.getItem(K + "build"); }, K);
+  await f.click("#btn-restore");
+  await f.waitForSelector("#restore-overlay:not(.hidden)");
+  await f.fill("#restore-code", made.code);
+  await f.click("#restore-check");
+  await f.waitForSelector("#restore-go:not(.hidden)");
+  await f.click("#restore-go");
+  await page.waitForTimeout(2500);
+  f = await frame();
+  await f.waitForSelector("#title-screen:not(.hidden)", { timeout: 60000 });
+  var back = await f.evaluate(function (K) { var b = JSON.parse(localStorage.getItem(K + "build") || "null"); return { night: localStorage.getItem(K + "night"), picks: b && b.picks.length, theme: b && b.theme }; }, K);
+  check(!gone && back.night === "14" && back.picks === made.picks && back.theme === "castle", "Restore my progress works inside Canvas: level 14 and the " + made.picks + "-piece castle come back after the page reloads (" + JSON.stringify(back) + ")");
+  /* v5.15: the Teacher screen opens inside the Canvas game (its page comes out of the game's own files) */
+  page.on("dialog", function (d) { d.accept(); });
+  check(!(await f.isVisible("#btn-teacher-screen")), "the Teacher link is hidden until a teacher turns it on");
+  await f.fill("#join-nick", "teacher");
+  await f.waitForSelector("#teacher-overlay:not(.hidden) iframe", { timeout: 20000 });
+  var tfr = f.childFrames().pop();
+  await tfr.waitForSelector("h1", { timeout: 20000 });
+  var th1 = await tfr.evaluate(function () { return { h1: document.querySelector("h1").textContent, close: !document.getElementById("close-teacher").hidden }; });
+  check(/teacher progress page/.test(th1.h1) && th1.close, "the Teacher link opens the teacher screen inside the Canvas game: " + th1.h1);
+  await tfr.click("#close-teacher");
+    var other2 = await f.evaluate(function () { return [localStorage["afterHours.v1.night"], localStorage["solReading.va:afterHours.v1.night"]]; });
+  check(other2[0] === "57" && other2[1] === "33", "the restore leaves the other games' saves alone");
 
   function own(p) { return p === "/blank" || (p.indexOf(FOLDER) === 0 && uploaded.indexOf(p.slice(FOLDER.length)) >= 0); }
   check(served.every(own), "the page asked its server for nothing but its own files: " + served.filter(function (p) { return !own(p); }).join(", "));

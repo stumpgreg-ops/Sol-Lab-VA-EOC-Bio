@@ -56,6 +56,8 @@ var srv = http.createServer(function (req, res) {
   /* a level */
   async function startLevel(fr, fam) {
     await fr.click('#title-screen .card[data-family="' + fam + '"]');
+    await fr.waitForSelector("#mode-screen:not(.hidden)");   /* v5.8.3: the game mode screen */
+    await fr.click('#mode-packs .card[data-gamemode="ALL"]');
     await fr.waitForSelector("#skill-screen:not(.hidden)");
     await fr.click("#btn-skill-start");
     await page.waitForTimeout(400);

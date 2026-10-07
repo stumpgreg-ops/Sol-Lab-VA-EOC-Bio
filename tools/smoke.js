@@ -296,7 +296,35 @@ var srv = http.createServer(function (req, res) {
 
   /* start an Ecology level */
   await page.click('#title-screen .card[data-family="ECO"]');
+  /* v5.8.3: the game mode screen comes after the unit: all modes, or one mode on every level */
+  await page.waitForSelector("#mode-screen:not(.hidden)");
+  var gm = await page.evaluate(function () {
+    return { cards: Array.prototype.map.call(document.querySelectorAll("#mode-packs .card"), function (c) { return c.getAttribute("data-gamemode"); }).join(","),
+      sel: (document.querySelector("#mode-packs .card.selected") || {}).getAttribute && document.querySelector("#mode-packs .card.selected").getAttribute("data-gamemode"),
+      skill: !document.getElementById("skill-screen").classList.contains("hidden"), kick: document.getElementById("mode-kicker").textContent };
+  });
+  await shot("10a-game-mode");
+  await page.click('#mode-packs .card[data-gamemode="raid"]');
   await page.waitForSelector("#skill-screen:not(.hidden)");
+  gm.one = await page.evaluate(function () { return { kick: document.getElementById("skill-kicker").textContent, l1: (SolModes.modeFor(1) || {}).id, l10: (SolModes.modeFor(10) || {}).id, saved: localStorage.getItem("afterHours.v1.gameMode"), modeHidden: document.getElementById("mode-screen").classList.contains("hidden") }; });
+  await page.click("#btn-skill-back");
+  await page.waitForSelector("#mode-screen:not(.hidden)");
+  gm.backSel = await page.evaluate(function () { return document.querySelector("#mode-packs .card.selected").getAttribute("data-gamemode"); });
+  await page.click('#mode-packs .card[data-gamemode="maze"]');
+  await page.waitForSelector("#skill-screen:not(.hidden)");
+  gm.maze = await page.evaluate(function () { return [2, 4, 10].map(function (n) { return SolModes.modeFor(n) ? "x" : "-"; }).join(""); });
+  await page.waitForTimeout(500);   /* a button ignores a second tap within 450 ms */
+  await page.click("#btn-skill-back"); await page.waitForSelector("#mode-screen:not(.hidden)");
+  await page.click("#btn-mode-back"); await page.waitForTimeout(300);
+  gm.backToUnits = await page.isVisible('#title-screen .card[data-family="ECO"]') && !(await page.isVisible("#mode-screen"));
+  await page.click('#title-screen .card[data-family="ECO"]');
+  await page.waitForSelector("#mode-screen:not(.hidden)");
+  await page.click('#mode-packs .card[data-gamemode="ALL"]');
+  await page.waitForSelector("#skill-screen:not(.hidden)");
+  gm.all = await page.evaluate(function () { return (SolModes.modeFor(2) || {}).id + "," + (SolModes.modeFor(1) ? "x" : "-"); });
+  check(gm.cards === "ALL,maze,raid,rocks,sky,ring,worms" && !gm.skill && /Ecology/.test(gm.kick), "after the unit, a game mode screen: all modes, the maze, or one of the five shooters (Root Worms too): " + JSON.stringify(gm));
+  check(gm.one.l1 === "raid" && gm.one.l10 === "raid" && /Eagle Swoop/.test(gm.one.kick) && gm.one.saved === "raid" && gm.one.modeHidden && gm.backSel === "raid", "one mode: every level (a boss level too) is that mode, the skill screen names it, and it is remembered: " + JSON.stringify(gm.one));
+  check(gm.maze === "---" && gm.backToUnits && gm.all === "raid,-", "maze only: no shooter levels; Back goes skill → mode → units; All modes brings the rotation back: " + JSON.stringify(gm));
   check((await page.$$eval("#skill-packs .card", function (l) { return l.length; })) === 5, "five Ecology skill cards (BIO.8 a–d + All)");
   check(/Ecology/.test(await page.textContent("#skill-kicker")), "skill kicker names the unit");
   await shot("10-skills-eco");
@@ -544,8 +572,24 @@ var srv = http.createServer(function (req, res) {
   await page.evaluate(function () { localStorage.removeItem("afterHours.v1.build"); SolBuild._reload(); });
 
   /* v5.7: shooter levels on 2, 4, 6 and 8 of each realm, reached through the real Next level button */
-  var rot = await page.evaluate(function () { var o = []; for (var n = 1; n <= 20; n++) { var m = SolModes.modeFor(n); o.push(m ? m.id : "-"); } return o.join(","); });
-  check(rot === "-,raid,-,rocks,-,sky,-,ring,-,-,-,raid,-,rocks,-,sky,-,ring,-,-", "shooter rotation: raid, rocks, sky, ring on even levels; maze on odd levels and bosses: " + rot);
+  /* v5.12: five shooters share the four shooter levels of a realm; the order turns one place every realm (realm 1 keeps
+     raid, rocks, sky, ring), so each shooter plays in eight realms of the ten and Root Worms first comes on level 18 */
+  var rot = await page.evaluate(function () {
+    function ids(a, b) { var o = []; for (var n = a; n <= b; n++) { var m = SolModes.modeFor(n); o.push(m ? m.id : "-"); } return o.join(","); }
+    var count = {}; for (var n = 1; n <= 100; n++) { var m = SolModes.modeFor(n); if (m) count[m.id] = (count[m.id] || 0) + 1; }
+    return { first: ids(1, 20), r5: ids(41, 50), r10: ids(91, 100), count: count };
+  });
+  check(rot.first === "-,raid,-,rocks,-,sky,-,ring,-,-,-,rocks,-,sky,-,ring,-,worms,-,-", "shooter rotation (v5.12): realm 1 is raid, rocks, sky, ring on even levels, realm 2 turns one place and brings Root Worms on 18; maze on odd levels and bosses: " + rot.first);
+  check(rot.r5 === "-,worms,-,raid,-,rocks,-,sky,-,-" && rot.r10 === "-,worms,-,raid,-,rocks,-,sky,-,-" && ["raid", "rocks", "sky", "ring", "worms"].every(function (k) { return rot.count[k] === 8; }) && Object.keys(rot.count).length === 5,
+    "shooter rotation (v5.12): realms 5 and 10 play worms, raid, rocks, sky; over 100 levels each of the five shooters plays 8 times: " + JSON.stringify(rot));
+  /* v5.8.3: with one game mode picked, an odd level plays as that mode */
+  await page.evaluate(function () { SolModes.only = "rocks"; });
+  await page.evaluate(function () { var b = document.getElementById("btn-next"); b.dataset.goto = "3"; b.click(); });
+  await page.waitForFunction(function () { var s = window.SolScene; return s && s.night === 3 && s.claim; }, null, { timeout: 15000 }).catch(function () {});
+  var only3 = await page.evaluate(function () { var s = SolScene; return { key: s.sys.settings.key, mode: s.mode && s.mode.id }; });
+  await page.evaluate(function () { SolModes.only = null; if (SolScene.readOpen) { var g = document.getElementById("read-go"); if (g) g.click(); } });
+  await page.waitForTimeout(500);
+  check(only3.key === "mode" && only3.mode === "rocks", "Rune Rocks only: level 3 (a maze level in the mix) plays as Rune Rocks: " + JSON.stringify(only3));
   async function gotoLevel(n) {
     await page.evaluate(function (n) { var b = document.getElementById("btn-next"); b.dataset.goto = String(n); b.click(); }, n);
     await page.waitForTimeout(1500);
@@ -578,38 +622,81 @@ var srv = http.createServer(function (req, res) {
   modeRuns.click = { moved: Math.abs(click1.x - click0.x), fired: click1.fired - click0.fired };
   modeRuns.raid = await page.evaluate(async function () {
     var s = SolScene, o = { key: s.sys.settings.key, mode: s.mode.id, fire: document.getElementById("btn-action").textContent, mini: getComputedStyle(document.getElementById("minimap")).display, hud: document.getElementById("score-pip").textContent };
+    /* v5.12: wait on the game, not the clock, with room for a loaded machine (the game runs much slower than real
+       time there: a fixed 8 s wait once ran out before the freed Sol had landed, and the test crashed on the missing
+       second Sol). A step that never happens is reported in o.err instead of crashing the run. */
+    function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+    async function until(f, ms) { var t0 = Date.now(); while (!f() && Date.now() - t0 < (ms || 30000)) await wait(50); return !!f(); }
+    async function readGo() {
+      await until(function () { return !s._between && !s._readPending; }, 20000);
+      var g = document.getElementById("read-go"); if (s.readOpen && g && g.offsetParent) g.click();
+      await until(function () { return !s.readOpen; }, 10000);
+    }
     s.spareLives = 0; s.perks = {};
     /* the click test's arrows may have hit birds: a fresh wave, no lives spent */
     var R = s.raid;
-    if (s._between) {   /* an arrow answered the question: let the next one load, then close its reading pop-up */
-      await new Promise(function (r) { setTimeout(r, 1300); });
-      var rgo = document.getElementById("read-go"); if (rgo && rgo.offsetParent) rgo.click();
-      await new Promise(function (r) { setTimeout(r, 300); });
-    }
+    if (s._between || s._readPending || s.readOpen) await readGo();   /* an arrow answered the question: let the next one load, then close its reading pop-up */
     R.arrows.forEach(function (a) { a.spr.destroy(); }); R.arrows = [];
-    if (s.ended || s._finishing) { o.endedEarly = true; }
+    if (s.ended || s._finishing) { o.endedEarly = true; return o; }
     s.answers_raid(); s.strikes = 0; s.iframeMs = 0; s.claimWrong = 0; s.score = 0; s.paintHud();
+    /* the birds stay out of the sky for these checks (a dive or a beam would muddle the counts) */
+    R.ravens.forEach(function (q) { q.delay = 1e9; });
+    R.feathers.forEach(function (f) { f.spr.destroy(); }); R.feathers = [];
     o.hud = document.getElementById("score-pip").textContent;
     var eagles = R.ravens.filter(function (q) { return q.letter; });
     o.eagles = eagles.length; o.ravens = R.ravens.filter(function (q) { return !q.letter && !q.guard; }).length;
     var wrong = eagles.filter(function (q) { return s.need.indexOf(q.letter) === -1; })[0];
+    if (!wrong) { o.err = "no eagle with a wrong letter"; return o; }
     wrong.hp = 2; s.strikes = 0; s.iframeMs = 0;   /* the mouse test's arrows may have hit it */
     s.raidHit(wrong); o.afterOne = s.strikes + (wrong.alive ? 0 : 10);
     s.raidHit(wrong); o.wrong = s.strikes; s.strikes = 0; s.iframeMs = 0;
+    /* (earlier random play may have left two Sols: then a feather takes one Sol, not a life — start from one) */
+    if (R.wing) { try { R.wing.destroy(); } catch (eW) {} R.wing = null; }
     R.feathers.push({ x: s.player.x, y: s.player.y - 20, vx: 0, t: 0, spr: s.add.image(s.player.x, s.player.y - 20, "md-poo") });
-    await new Promise(function (r) { setTimeout(r, 600); }); o.feather = s.strikes; s.strikes = 0; s.iframeMs = 0;
+    await until(function () { return s.strikes > 0 && !R.feathers.length; }, 15000); o.feather = s.strikes; s.strikes = 0; s.iframeMs = 0;
     /* an eagle's beam over Sol catches him */
     var bm = R.ravens.filter(function (q) { return q.alive && q.letter && q.state !== "wait"; })[0] || R.ravens.filter(function (q) { return q.alive && q.letter; })[0];
+    if (!bm) { o.err = "no eagle left for the beam test"; return o; }
     bm.state = "beam"; bm.beamMs = 900; bm.path = null; bm.x = s.player.x; bm.hoverY = s.H * 0.4; bm.y = bm.hoverY; bm.lead = true;
-    await new Promise(function (r) { setTimeout(r, 700); }); o.beam = s.strikes; s.strikes = 0; s.iframeMs = 0;
+    await until(function () { return !!R.capt; }); o.beam = s.strikes; s.strikes = 0;
+    /* v5.8.2: Galaga's capture — the eagle carries Sol off; an arrow on it frees him and he stands next to Sol.
+       Nothing may hit either Sol while he rises, drops and lands (iframes); the checks below take them off again. */
+    s.iframeMs = 1e9;
+    await until(function () { return R.capt && R.capt.held; });
+    var cap = R.capt;
+    o.capt = { caught: !!cap && cap.held && cap.eagle === bm, hp: bm.hp };
+    if (!cap || !cap.held) { o.err = "the beam never carried Sol up to the eagle"; return o; }
+    s.raidHit(bm);
+    o.capt.freedNoHurt = bm.alive && bm.hp === o.capt.hp && s.strikes === 0;
+    await until(function () { return !!R.wing && !R.capt; });
+    o.capt.double = !!R.wing && !R.capt && Math.abs(R.wing.x - s.player.x - 40) < 1;
+    if (!R.wing) { o.err = "the freed Sol never landed next to Sol (no second Sol)"; return o; }
+    R.arrows.forEach(function (a) { a.spr.destroy(); }); R.arrows = [];
+    var wasReady = R.ready; R.ready = true; R.cd = 0;
+    s.keys.SPACE.isDown = true; await until(function () { return R.arrows.length > 0; }, 10000); s.keys.SPACE.isDown = false;
+    o.capt.twoArrows = R.arrows.length; R.ready = wasReady;
+    R.arrows.forEach(function (a) { a.spr.destroy(); }); R.arrows = [];
+    /* with two Sols, poo on the second one takes him away, not a life */
+    if (!R.wing) { o.err = "the second Sol was lost before the poo test"; return o; }
+    s.iframeMs = 0;
+    R.feathers.push({ x: R.wing.x, y: s.player.y - 20, vx: 0, t: 0, spr: s.add.image(R.wing.x, s.player.y - 20, "md-poo") });
+    await until(function () { return !R.wing || s.strikes > 0; }, 15000);
+    o.capt.lostOne = !R.wing && s.strikes === 0;
+    s.iframeMs = 0;
+    R.arrows.forEach(function (a) { a.spr.destroy(); }); R.arrows = [];
+    /* v5.8.3: a Sol still held when the question is answered costs a life then */
+    var ke = R.ravens.filter(function (q) { return q.alive && q.letter && s.need.indexOf(q.letter) === -1; })[0];
+    if (ke && !R.capt) { s.raidCapture(ke); R.capt.held = true; R.capt.t = 1; }
+    s.strikes = 0; s.iframeMs = 0;
     var coins = s.nightCoins;
     R.ravens.filter(function (q) { return q.alive && q.letter && s.need.indexOf(q.letter) !== -1; }).forEach(function (q) { s.raidHit(q); s.raidHit(q); });
-    o.score = s.score; o.coins = s.nightCoins > coins;
-    await new Promise(function (r) { setTimeout(r, 1800); });
+    o.score = s.score; o.coins = s.nightCoins > coins; o.capt.kept = ke ? s.strikes : -1; o.capt.keptGone = !R.capt;
+    await until(function () { return R.ravens.some(function (q) { return q.alive && q.letter; }); }, 20000);
     o.newWave = R.ravens.filter(function (q) { return q.alive && q.letter; }).length;
     var pip = document.getElementById("realm-pip"); o.pip = pip ? pip.textContent : "";
     return o;
   });
+  check(!modeRuns.raid.err && !modeRuns.raid.endedEarly, "Eagle Swoop: the scripted run reached every step: " + (modeRuns.raid.err || (modeRuns.raid.endedEarly ? "the level ended early" : "ok")));
   if (await page.isVisible("#read-go")) await page.click("#read-go");
   await page.waitForTimeout(3500);
   modeRuns.raid.flying = await page.evaluate(function () { return SolScene.raid.ravens.filter(function (q) { return q.state !== "wait"; }).length; });
@@ -623,6 +710,17 @@ var srv = http.createServer(function (req, res) {
   });
   await page.waitForFunction(function () { return SolScene.raid.ravens.some(function (q) { return q.state === "beam" && q.beamMs > 700; }); }, null, { timeout: 20000 }).catch(function () {});
   await shot("16b-eagle-beam");
+  /* v5.8.2: pictures of a caught Sol over his eagle, then the two Sols */
+  await page.evaluate(function () {
+    var s = SolScene, R = s.raid, e = R.ravens.filter(function (q) { return q.alive && q.letter && q.state === "form" && !q.captive; })[0];
+    s.iframeMs = 60000;
+    if (e && !R.capt && !R.wing) s.raidCapture(e);
+  });
+  await page.waitForTimeout(1600);
+  await shot("16c-eagle-caught-sol");
+  await page.evaluate(function () { var R = SolScene.raid; if (R.capt && R.capt.held) SolScene.raidHit(R.capt.eagle); });
+  await page.waitForTimeout(1400);
+  await shot("16d-two-sols");
   await page.evaluate(function () { SolScene.iframeMs = 0; });
   await gotoLevel(4);
   /* v5.7.3: the "how to pull a rock in" card comes up once the reading pop-up closes, and pauses the level */
@@ -668,11 +766,44 @@ var srv = http.createServer(function (req, res) {
     await new Promise(function (r) { setTimeout(r, 500); }); o.hit = s.strikes; s.strikes = 0; s.iframeMs = 0;
     /* a right rock that was in the beam a moment ago and hits the ship: named, and still costs a life */
     var rr = rockOf(true); s.strikes = 0; s.iframeMs = 0;
+    /* v5.10: nothing else may hit the ship first (on a busy machine a stray rock sometimes did) */
+    R.rocks.filter(function (q) { return !q.letter; }).slice().forEach(function (q) { s.rockRemove(q); }); R.spawnCd = 1e9; R.saucerCd = 1e9;
+    R.saucers.forEach(function (u) { u.spr.destroy(); }); R.saucers = []; R.sBullets.forEach(function (q) { q.spr.destroy(); }); R.sBullets = [];
+    R.rocks.forEach(function (q) { if (q.letter && q !== rr) { q.x = R.ship.x - 300; q.y = R.ship.y - 200; q.vx = 0; q.vy = 0; } });
     if (rr) { rr.x = R.ship.x + 10; rr.y = R.ship.y; rr.vx = 0; rr.vy = 0; rr.beamT = s.time.now; }
     await new Promise(function (r) { setTimeout(r, 500); }); o.early = s.strikes; o.earlyLabel = s._lastHitLabel; s.strikes = 0; s.iframeMs = 0;
     s.need.forEach(function (N) { var q = R.rocks.filter(function (z) { return z.letter === N; })[0]; if (q) s.rockCaught(q); });
     o.score = s.score;
     try { o.learned = localStorage.getItem("afterHours.v1.beamLearned"); } catch (e) {}
+    /* v5.8.5: a rock held in the beam stays locked: a plain rock drifting into the beam nearer the ship, and the
+       ship turning so the pulled rock leaves the narrow cone, no longer drop it (it used to hit the ship as
+       "let go too soon" with the beam still held).
+       v5.12: wait on the game, not the clock: on a loaded machine the next question's reading pop-up opened after the
+       fixed 1.3 s wait, paused the level, and the pull below never happened */
+    async function until(f, ms) { var t0 = Date.now(); while (!f() && Date.now() - t0 < (ms || 30000)) await new Promise(function (r) { setTimeout(r, 50); }); return !!f(); }
+    await until(function () { return !s._between && !s._readPending; }, 20000);
+    var rgo2 = document.getElementById("read-go"); if (s.readOpen && rgo2 && rgo2.offsetParent) rgo2.click();
+    await until(function () { return !s.readOpen; }, 10000);
+    R.rocks.filter(function (q) { return !q.letter; }).slice().forEach(function (q) { s.rockRemove(q); });
+    R.spawnCd = 1e9; R.saucerCd = 1e9;
+    var S = R.ship; S.x = s.W / 2; S.y = s.H / 2; S.vx = 0; S.vy = 0; S.ang = 0;
+    var lr = R.rocks.filter(function (q) { return q.letter && s.need.indexOf(q.letter) !== -1 && s.extracted.indexOf(q.letter) === -1; })[0];
+    o.lock = { found: !!lr };
+    if (lr) {
+      R.rocks.filter(function (q) { return q.letter && q !== lr; }).forEach(function (q) { q.x = S.x - 300; q.y = S.y - 200; q.vx = 0; q.vy = 0; });
+      lr.x = S.x + 220; lr.y = S.y; lr.vx = 0; lr.vy = 0;
+      var L2 = lr.letter, sc0 = s.score, ex0 = s.extracted.length;
+      s.strikes = 0; s.iframeMs = 0; s.spareLives = 0;
+      s.keys.SHIFT.isDown = true;
+      o.lock.lockedFirst = await until(function () { return R.lock === lr; }, 10000);
+      var thief = s.rockMake(1, null, S.x + 70, S.y + 18, 0, 0);
+      S.ang = 0.55;
+      await until(function () { return R.rocks.indexOf(lr) < 0 || s.strikes > 0; }, 30000);
+      s.keys.SHIFT.isDown = false;
+      o.lock.caught = R.rocks.indexOf(lr) < 0 && (s.score > sc0 || s.extracted.length > ex0 || s.extracted.indexOf(L2) !== -1);
+      o.lock.strikes = s.strikes; o.lock.label = s._lastHitLabel || "";
+      if (R.rocks.indexOf(thief) >= 0) s.rockRemove(thief);
+    }
     return o;
   });
   await shot("17-rune-rocks");
@@ -762,7 +893,8 @@ var srv = http.createServer(function (req, res) {
   console.log("modes", JSON.stringify(modeRuns));
   var mr = modeRuns;
   check(mr.raid.key === "mode" && mr.raid.mode === "raid" && mr.raid.fire === "FIRE" && mr.raid.mini === "none" && /^Answers 0/.test(mr.raid.hud), "level 2 is Eagle Swoop in the shooter scene (FIRE button, no minimap, Answers on the HUD)");
-  check(mr.raid.eagles >= 2 && mr.raid.ravens >= 12 && mr.raid.afterOne === 0 && mr.raid.wrong === 1 && mr.raid.feather === 1 && mr.raid.beam === 1 && mr.raid.score === 1 && mr.raid.coins && mr.raid.newWave > 0 && mr.raid.flying > 0 && !/Fenrir/.test(mr.raid.pip), "Eagle Swoop: eagles carry the letters above a raven guard; an eagle takes two arrows; a wrong letter, a feather and an eagle's beam each cost a life; the right eagle answers, pays coins and a new wave flies in: " + JSON.stringify(mr.raid));
+  check(mr.raid.capt && mr.raid.capt.caught && mr.raid.capt.freedNoHurt && mr.raid.capt.double && mr.raid.capt.twoArrows === 2 && mr.raid.capt.lostOne && mr.raid.capt.kept === 1 && mr.raid.capt.keptGone, "Eagle Swoop (v5.8.2/3): the beam carries Sol off to the eagle (no life yet); an arrow on that eagle frees him without hurting it; two Sols shoot two arrows; poo on one takes him away, not a life; a Sol still held when the question is answered costs a life then: " + JSON.stringify(mr.raid.capt));
+  check(mr.raid.eagles >= 2 && mr.raid.ravens >= 12 && mr.raid.afterOne === 0 && mr.raid.wrong === 1 && mr.raid.feather === 1 && mr.raid.beam === 0 && mr.raid.score === 1 && mr.raid.coins && mr.raid.newWave > 0 && mr.raid.flying > 0 && !/Fenrir/.test(mr.raid.pip), "Eagle Swoop: eagles carry the letters above a raven guard; an eagle takes two arrows; a wrong letter and a feather each cost a life, an eagle's beam catches Sol; the right eagle answers, pays coins and a new wave flies in: " + JSON.stringify(mr.raid));
   check(mr.raidPre && mr.raidPre.ready === false && mr.raidPre.firedEarly === 0 && mr.raidPre.after.ready, "Eagle Swoop: no shooting until the flock has formed: " + JSON.stringify(mr.raidPre));
   check(mr.raidPre && mr.raidPre.guards === 2 * mr.raidPre.eagles && mr.raidPre.after.flying >= 1, "Eagle Swoop: two guard ravens under every eagle, and once shooting starts a bird is always flying: " + JSON.stringify(mr.raidPre));
   check(mr.click && mr.click.moved < 2 && mr.click.fired >= 2, "Eagle Swoop: left and right mouse buttons shoot without moving Sol: " + JSON.stringify(mr.click));
@@ -770,6 +902,7 @@ var srv = http.createServer(function (req, res) {
   check(mr.beamHelp && mr.beamHelp.shown && mr.beamHelp.paused && mr.beamHelp.right && mr.beamHelp.closed, "Rune Rocks: a one-card beam tutorial shows after the reading pop-up, pauses the level and closes with Got it: " + JSON.stringify({ shown: mr.beamHelp.shown, paused: mr.beamHelp.paused, closed: mr.beamHelp.closed }));
   check(mr.beamHelp && mr.beamHelp.rightBtn.rightPulls && mr.beamHelp.rightBtn.leftFires, "Rune Rocks: the right mouse button holds the beam; the left button fires");
   check(mr.rockMouse && mr.rockMouse.turned < 0.01 && mr.rockMouse.moved < 3 && mr.rockMouse.fired >= 1, "Rune Rocks: clicking fires without turning or moving the ship: " + JSON.stringify(mr.rockMouse));
+  check(mr.rocks.lock && mr.rocks.lock.found && mr.rocks.lock.lockedFirst && mr.rocks.lock.caught && mr.rocks.lock.strikes === 0, "Rune Rocks (v5.8.5): a rock held in the beam stays locked — a nearer rock drifting into the beam and the ship turning don't drop it, so it is pulled in with no life lost: " + JSON.stringify(mr.rocks.lock));
   check(mr.rocks.early === 1 && mr.rocks.earlyLabel === "YOU LET GO OF THE BEAM TOO SOON", "Rune Rocks: a rock let go of early that hits the ship costs a life and says why: " + mr.rocks.earlyLabel);
   var cv = mr.sky.curve || {};
   check(cv.spawn6 < 1100 && cv.spawn96 <= 400 && cv.throw6 > 0.3 && cv.throw96 > cv.throw6 && cv.spark6 === 0 && cv.spark96 > 0 && cv.guards6 === 0 && cv.guards16 === 1 && cv.guards56 === 3 && cv.bob56 > cv.bob6, "Sun Chariot: harder from the first one (level 6) and harder every time after: " + JSON.stringify(cv));
@@ -790,9 +923,342 @@ var srv = http.createServer(function (req, res) {
   var back = await page.evaluate(function () { var s = SolScene; return { key: s.sys.settings.key, night: s.night, slips: (s.slips || []).length, act: document.getElementById("btn-action").textContent, mini: getComputedStyle(document.getElementById("minimap")).display, stage: document.getElementById("stage").className }; });
   console.log("back to maze", JSON.stringify(back));
   check(back.key === "night" && back.night === 9 && back.slips === 4 && back.act === "SPRINT" && back.mini !== "none" && back.stage.indexOf("mode") === -1, "Next level goes from the shooter back to the maze with its own controls");
-  /* v5.7.9: every time a mode comes round (once a realm) it adds something; the Ragnarok levels have it all */
+  /* ── v5.12 (from the Chemistry build): Eagle Swoop's birds, Root Worms, and the teacher's rule for both: answering
+     the level's last question doesn't win it — the rest of the flock / every worm segment has to be shot first. ──
+     Helpers that run in the page: they wait on the game, not the clock (a loaded machine runs the game slower). */
+  var pageHelpers = "window.__wait = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };" +
+    "window.__until = async function (f, ms) { var t0 = Date.now(); while (!f() && Date.now() - t0 < (ms || 30000)) await __wait(50); return !!f(); };" +
+    "window.__readGo = async function () { var s = SolScene; await __until(function () { return !s._between && !s._readPending; }, 20000);" +
+    " var g = document.getElementById('read-go'); if (s.readOpen && g && g.offsetParent) g.click(); await __until(function () { return !s.readOpen; }, 10000); };" +
+    "window.__gameWait = async function (ms) { var s = SolScene, t0 = s.time.now; await __until(function () { return s.time.now - t0 >= ms; }, 60000); };";
+  async function retryLevel(n) {
+    await page.click("#btn-retry");
+    await page.waitForFunction(function (n) { var s = window.SolScene; return s && s.night === n && s.claim && s.readOpen && !s.ended; }, n, { timeout: 30000 }).catch(function () {});
+    if (await page.isVisible("#read-go")) await page.click("#read-go");
+    await page.waitForFunction(function () { var s = window.SolScene; return s && !s.readOpen; }, null, { timeout: 10000 }).catch(function () {});
+  }
+  var birds = {};
+  birds.table = await page.evaluate(function () {
+    var rows = []; for (var t = 0; t <= 9; t++) rows.push(SolModes.raidKindsFor(t).join("+"));
+    var B = SolModes.BIRDS;
+    return { rows: rows.join(" | "), hp: Object.keys(B).map(function (k) { return k + ":" + B[k].hp; }).join(","), owl: B.owl.drops(3), raven0: B.raven.drops(0), raven1: B.raven.drops(1),
+      steer: B.hawk.steer > 0 && B.falcon.steer > B.hawk.steer && !B.raven.steer, fast: B.falcon.dur < B.magpie.dur && B.magpie.dur < 1, wobble: B.magpie.wobble > 0 };
+  });
+  console.log("birds table", JSON.stringify(birds.table));
+  check(birds.table.rows === "raven+raven | magpie+raven | hawk+raven | hawk+magpie | hawk+owl+raven | hawk+owl+magpie | falcon+hawk+raven | falcon+owl+magpie | falcon+hawk+owl | raven+magpie+hawk+owl+falcon" &&
+    birds.table.hp === "raven:1,magpie:1,hawk:2,owl:1,falcon:1" && birds.table.owl === 3 && birds.table.raven0 === 1 && birds.table.raven1 === 2 && birds.table.steer && birds.table.fast && birds.table.wobble,
+    "Eagle Swoop (v5.12): each realm's rows are their own kinds of bird (Ragnarok mixes all five); a hawk has two lives, an owl drops three, hawks and falcons steer, magpies zig-zag: " + JSON.stringify(birds.table));
+  /* level 28 (realm 3): hawks over ravens; the card names the birds and what came in while Eagle Swoop was away (realm 2) */
+  await gotoLevel(28);
+  await page.evaluate(pageHelpers);
+  birds.run = await page.evaluate(async function () {
+    var s = SolScene, R = s.raid, o = { mode: s.mode.id, tier: s.tier, card: (document.getElementById("mode-card") || {}).textContent || "" };
+    s.spareLives = 9; s.perks = {}; s.iframeMs = 1e9;
+    o.kinds = R.ravSlots.map(function (q) { return q.bird; }).filter(function (k, i, a) { return a.indexOf(k) === i; }).join("+");
+    o.toldBirds = !!R.told.birds;
+    o.tex = R.ravens.filter(function (q) { return q.bird === "hawk"; }).every(function (q) { return q.spr.texture.key.indexOf("md-hawk-") === 0; });
+    R.ravens.forEach(function (q) { if (q.state === "wait") q.delay = 0; });
+    await __until(function () { return R.ready; });
+    var rowBirds = function () { return R.ravens.filter(function (q) { return q.alive && q.kind === "raven" && !q.guard; }); };
+    var hawk = rowBirds().filter(function (q) { return q.bird === "hawk"; })[0];
+    if (!hawk) { o.err = "no hawk in the rows"; return o; }
+    var k0 = s.kills;
+    s.raidHit(hawk); o.hawk1 = { alive: hawk.alive, hp: hawk.hp, kills: s.kills - k0 };
+    s.raidHit(hawk); o.hawk2 = { alive: hawk.alive, kills: s.kills - k0, strikes: s.strikes };
+    /* rows never refill: shoot down six row birds; nothing flies in to replace them (the old code sent four more every 5 s) */
+    rowBirds().slice(0, 6).forEach(function (q) { var n = 0; while (q.alive && n++ < 4) s.raidHit(q); });
+    var after = rowBirds().length, total = R.ravSlots.length;
+    await __gameWait(7000);
+    o.refill = { slots: total, after: after, after7s: rowBirds().length };
+    return o;
+  });
+  await page.waitForTimeout(1500);
+  await shot("22a-eagle-swoop-realm3-hawks");
+  /* the teacher's rule: the last answer leaves the rest of the flock to clear */
+  birds.clear = await page.evaluate(async function () {
+    var s = SolScene, R = s.raid, o = {};
+    s.spareLives = 0; s.perks = {}; s.iframeMs = 1e9; s.strikes = 0; s.claimWrong = 0;
+    /* one bird is still off-screen when the last answer comes: the clearing must fly it in */
+    var off = R.ravens.filter(function (q) { return q.alive && q.kind === "raven" && !q.guard && q.state === "form"; })[0];
+    if (off) { off.state = "wait"; off.delay = 1e9; off.path = null; off.x = -99; off.y = -99; off.spr.setPosition(-99, -99); }
+    s.score = s.needExtracts - 1; s.extracted = [];
+    var waiting = R.ravens.filter(function (q) { return q.alive && q.state === "wait"; }).length;
+    R.ravens.filter(function (q) { return q.alive && q.letter && s.need.indexOf(q.letter) !== -1; }).forEach(function (q) { var n = 0; while (q.alive && n++ < 5) s.raidHit(q); });
+    o.after = { score: s.score, need: s.needExtracts, ended: s.ended, finishing: s._finishing, mop: !!s._mopup, left: R.ravens.filter(function (q) { return q.alive; }).length,
+      letters: R.ravens.filter(function (q) { return q.alive && q.letter; }).length, labels: R.ravens.filter(function (q) { return q.label || q.shield; }).length, waiting: waiting };
+    await __until(function () { return s._mopup && s._mopup.left > 0 && !!s._mopBanner; }, 15000);
+    o.banner = s._mopBanner ? s._mopBanner.t.text : "";
+    /* the side panel says it too, once the "+10 coins" note for the answer has had its moment */
+    await __until(function () { return /clear the sky/.test((document.getElementById("carry-flag") || {}).textContent || ""); }, 60000);
+    o.flag = (document.getElementById("carry-flag") || {}).textContent || "";
+    o.hp1 = R.ravens.every(function (q) { return q.hp === 1; });
+    await __gameWait(1500);
+    o.stillWaiting = R.ravens.filter(function (q) { return q.alive && q.state === "wait"; }).length;
+    o.oneShot = (function () { var e = R.ravens.filter(function (q) { return q.alive && q.kind === "eagle"; })[0]; if (!e) return "no eagle"; s.raidHit(e); return !e.alive; })();
+    return o;
+  });
+  await page.waitForTimeout(800);
+  await shot("22b-eagle-swoop-clear-the-sky");
+  /* losing the last life while clearing still loses the level */
+  birds.lose = await page.evaluate(async function () {
+    var s = SolScene; s.iframeMs = 0; s.spareLives = 0; s.perks = {}; s.strikes = s.needStrikes - 1;
+    var mop = !!s._mopup;
+    s.loseLife("hit", "A RAVEN CRASHED INTO YOU");
+    await __until(function () { return s.ended; }, 20000);
+    return { mop: mop, ended: s.ended, title: document.getElementById("win-title").textContent, retry: !document.getElementById("btn-retry").classList.contains("hidden") };
+  });
+  await retryLevel(28);
+  await page.evaluate(pageHelpers);
+  birds.win = await page.evaluate(async function () {
+    var s = SolScene, R = s.raid, o = {};
+    s.spareLives = 0; s.perks = {}; s.iframeMs = 1e9; s.strikes = 0; s.claimWrong = 0;
+    R.ravens.forEach(function (q) { if (q.state === "wait") q.delay = 0; });
+    await __until(function () { return R.ready; });
+    s.score = s.needExtracts - 1; s.extracted = [];
+    R.ravens.filter(function (q) { return q.alive && q.letter && s.need.indexOf(q.letter) !== -1; }).forEach(function (q) { var n = 0; while (q.alive && n++ < 5) s.raidHit(q); });
+    o.mop = !!s._mopup && !s.ended;
+    /* everything but one guard (guards never dive, so it can't crash into Sol) */
+    var keep = R.ravens.filter(function (q) { return q.alive && q.guard; })[0] || R.ravens.filter(function (q) { return q.alive && q.kind === "eagle"; })[0];
+    R.ravens.filter(function (q) { return q.alive && q !== keep; }).forEach(function (q) { var n = 0; while (q.alive && n++ < 4) s.raidHit(q); });
+    await __until(function () { return s._mopup && s._mopup.left === 1; }, 15000);
+    await __gameWait(1500);
+    o.oneLeft = { left: s._mopup && s._mopup.left, ended: s.ended, finishing: s._finishing, banner: s._mopBanner ? s._mopBanner.t.text : "" };
+    var coins = s.nightCoins;
+    s.raidHit(keep);
+    await __until(function () { return s.ended; }, 20000);
+    o.end = { ended: s.ended, title: document.getElementById("win-title").textContent, msg: document.getElementById("win-msg").textContent, coins: s.nightCoins - coins, hit: s._mopup && s._mopup.hit };
+    return o;
+  });
+  console.log("birds", JSON.stringify(birds));
+  var br = birds.run || {};
+  check(!br.err && br.mode === "raid" && br.tier === 2 && br.kinds === "hawk+raven" && br.tex && br.toldBirds && /Birds in the rows:.*Hawks \(take two arrows/.test(br.card) && /New this time:.*Magpies.*Hawks take the top row/.test(br.card),
+    "Eagle Swoop at level 28 (v5.12): hawks over ravens, drawn as hawks; the card lists the birds in the rows and what came in while the mode was away (magpies, realm 2): " + JSON.stringify({ err: br.err, kinds: br.kinds, tier: br.tier, card: (br.card || "").slice(-300) }));
+  check(br.hawk1 && br.hawk1.alive && br.hawk1.hp === 1 && br.hawk1.kills === 0 && br.hawk2.alive === false && br.hawk2.kills === 1 && br.hawk2.strikes === 0, "Eagle Swoop (v5.12): a hawk takes two arrows: " + JSON.stringify({ h1: br.hawk1, h2: br.hawk2 }));
+  check(br.refill && br.refill.after <= br.refill.slots - 6 && br.refill.after7s <= br.refill.after, "Eagle Swoop (v5.12): the rows never refill — a bird shot down stays down: " + JSON.stringify(br.refill));
+  var bc = birds.clear || {}, bca = bc.after || {};
+  check(bca.score === bca.need && !bca.ended && !bca.finishing && bca.mop && bca.left > 0 && bca.letters === 0 && bca.labels === 0 && bca.waiting > 0 && bc.stillWaiting === 0 && bc.hp1 && bc.oneShot === true,
+    "Eagle Swoop (v5.12, the teacher's rule): answering the last question doesn't win — the eagles drop their letters, every bird falls to one arrow, and a bird still off-screen flies in to be shot: " + JSON.stringify(bc));
+  check(/All questions answered — now clear the sky!/.test(bc.banner || "") && /\d+ birds? left/.test(bc.banner || "") && /clear the sky/.test(bc.flag || ""), "Eagle Swoop (v5.12): a banner says to clear the sky and counts the birds left (and the side panel says it too): " + JSON.stringify({ banner: bc.banner, flag: bc.flag }));
+  check(birds.lose && birds.lose.mop && birds.lose.ended && birds.lose.title === "Run over" && birds.lose.retry, "Eagle Swoop (v5.12): losing the last life while clearing the sky still loses the level: " + JSON.stringify(birds.lose));
+  var bw = birds.win || {};
+  check(bw.mop && bw.oneLeft && bw.oneLeft.left === 1 && !bw.oneLeft.ended && !bw.oneLeft.finishing && /1 bird left/.test(bw.oneLeft.banner) && bw.end && bw.end.ended && bw.end.title === "Eagle Swoop cleared" && /You earned \d+ coins/.test(bw.end.msg) && bw.end.coins >= 3 && bw.end.hit === false,
+    "Eagle Swoop (v5.12): with one bird left the level goes on; shooting the last one wins it, with the usual end screen and a clean-sweep bonus: " + JSON.stringify(bw));
+  /* realm 7 (Eagle Swoop picked alone: the Mixed rotation skips it in realm 7) and realm 8 (Mixed): the other birds, for the pictures */
+  await page.evaluate(function () { SolModes.only = "raid"; });
+  await gotoLevel(64);
+  await page.evaluate(pageHelpers);
+  birds.r7 = await page.evaluate(async function () {
+    var s = SolScene, R = s.raid; s.iframeMs = 1e9; s.spareLives = 9;
+    R.ravens.forEach(function (q) { if (q.state === "wait") q.delay = 0; });
+    await __until(function () { return R.ready; }); await __gameWait(2500);
+    return { tier: s.tier, kinds: R.ravSlots.map(function (q) { return q.bird; }).filter(function (k, i, a) { return a.indexOf(k) === i; }).join("+") };
+  });
+  await shot("22c-eagle-swoop-realm7-falcons");
+  await page.evaluate(function () { SolModes.only = null; });
+  await gotoLevel(78);
+  await page.evaluate(pageHelpers);
+  birds.r8 = await page.evaluate(async function () {
+    var s = SolScene, R = s.raid; s.iframeMs = 1e9; s.spareLives = 9;
+    R.ravens.forEach(function (q) { if (q.state === "wait") q.delay = 0; });
+    await __until(function () { return R.ready; }); await __gameWait(2500);
+    return { mode: s.mode.id, tier: s.tier, kinds: R.ravSlots.map(function (q) { return q.bird; }).filter(function (k, i, a) { return a.indexOf(k) === i; }).join("+"), card: (document.getElementById("mode-card") || {}).textContent || "" };
+  });
+  await shot("22d-eagle-swoop-realm8-owls-magpies");
+  console.log("birds r7/r8", JSON.stringify({ r7: birds.r7, r8: { mode: birds.r8.mode, tier: birds.r8.tier, kinds: birds.r8.kinds } }));
+  check(birds.r7.tier === 6 && birds.r7.kinds === "falcon+hawk+raven" && birds.r8.mode === "raid" && birds.r8.tier === 7 && birds.r8.kinds === "falcon+owl+magpie" && /New this time:.*Falcons take the top row.*formation drop poo/.test(birds.r8.card),
+    "Eagle Swoop (v5.12): realm 7 brings falcons over hawks and ravens; realm 8 (level 78, after a realm away) falcons, owls and magpies, and its card tells both realms' news: " + JSON.stringify({ r7: birds.r7, r8: birds.r8.kinds }));
+
+  /* Root Worms (centipede): first in the Mixed rotation on level 18 */
+  await gotoLevel(18);
+  await page.evaluate(pageHelpers);
+  var worms = {};
+  await page.waitForTimeout(2500);
+  await shot("23a-root-worms-18");
+  await page.evaluate(function () {
+    /* the scripted checks: no hazards, no mushrooms, the worms frozen and laid out in plain rows */
+    window.__wq = function () {
+      var s = SolScene, wm = s.wm;
+      wm.spiderCd = wm.fleaCd = wm.wispCd = 1e9;
+      ["spider", "flea", "wisp"].forEach(function (k) { if (wm[k] && wm[k].spr) wm[k].spr.destroy(); wm[k] = null; });
+      wm.arrows.forEach(function (a) { a.spr.destroy(); }); wm.arrows = [];
+      Object.keys(wm.shrooms).forEach(function (k) { s.wormShroomRemove(wm.shrooms[k]); });
+      wm.worms.forEach(function (w, k) {
+        w.stepMs = 1e9; w.acc = 0; w.dir = 1; w.vdir = 1; w.plunge = false;
+        var n = w.segs.length; w.segs.forEach(function (e, i) { e.c = e.pc = 1 + n - 1 - i; e.r = e.pr = 3 + 2 * k; });
+      });
+    };
+    window.__ws = async function (e) {   /* an arrow just under segment e */
+      var wm = SolScene.wm;
+      wm.arrows.forEach(function (a) { a.spr.destroy(); }); wm.arrows = [];
+      wm.arrows.push({ x: e.x, y: e.y + 30, spr: SolScene.add.image(e.x, e.y + 30, "md-arrow") });
+      await __until(function () { return !wm.arrows.length; }, 15000);
+    };
+    window.__wsegs = function () { var out = []; SolScene.wm.worms.forEach(function (w) { w.segs.forEach(function (e, j) { out.push({ e: e, w: w, j: j }); }); }); return out; };
+  });
+  worms.run = await page.evaluate(async function () {
+    var s = SolScene, wm = s.wm, p = s.player, o = { key: s.sys.settings.key, mode: s.mode.id, tier: s.tier, act: document.getElementById("btn-action").textContent, card: (document.getElementById("mode-card") || {}).textContent || "",
+      hint: (document.getElementById("read-hint") || {}).textContent || "" };
+    s.spareLives = 0; s.perks = {}; s.strikes = 0; s.iframeMs = 0; s.claimWrong = 0;
+    __wq();
+    var lead = wm.worms[0];
+    await __until(function () { var h = lead.segs[0]; return h && Math.abs(h.x - s.wormCellX(h.c)) < 1 && Math.abs(h.y - s.wormCellY(h.r)) < 1; }, 15000);
+    o.len = lead.segs.length; o.letters = lead.segs.filter(function (e) { return e.letter; }).map(function (e) { return e.letter; }).join("");
+    o.choices = s.choiceLetters().slice().sort().join("");
+    var need = s.need.slice();
+    /* a wrong glowing segment: a life; it is gone, a mushroom grows where it was, and the worm is split */
+    var ws = lead.segs.filter(function (e) { return e.letter && need.indexOf(e.letter) === -1; })[0];
+    if (!ws) { o.err = "no wrong letter on the worm"; return o; }
+    var wc = ws.c, wr = ws.r, wL = ws.letter, nW = wm.worms.length;
+    await __ws(ws);
+    o.wrong = { strikes: s.strikes, gone: !__wsegs().some(function (q) { return q.e.letter === wL; }), shroom: !!wm.shrooms[s.wormKey(wc, wr)], split: wm.worms.length - nW };
+    s.strikes = 0; s.iframeMs = 0; s.claimWrong = 0;
+    /* a plain segment: no life; it becomes a mushroom and the worm splits in two */
+    var pick = null;
+    wm.worms.forEach(function (q) { q.segs.forEach(function (e, j) { if (!pick && j >= 1 && j < q.segs.length - 1 && !e.letter) pick = { w: q, j: j }; }); });
+    if (!pick) { o.err = "no plain segment in the middle of a worm to split"; return o; }
+    var w = pick.w, e1 = w.segs[pick.j], c1 = e1.c, r1 = e1.r, n1 = wm.worms.length, k1 = s.kills;
+    await __ws(e1);
+    o.split = { worms: wm.worms.length - n1, shroom: !!wm.shrooms[s.wormKey(c1, r1)], kills: s.kills - k1, front: w.segs.length, at: pick.j, strikes: s.strikes };
+    /* a worm that reaches Sol bites: a life; a plain segment that bit is eaten, a glowing one stays */
+    var bc = clamp0(Math.round((p.x - wm.x0) / wm.cs), 3, wm.cols - 2), brow = wm.zone + 2;
+    function clamp0(v, a, b) { return v < a ? a : v > b ? b : v; }
+    p.x = s.wormCellX(bc); p.y = s.wormCellY(brow) + 8;
+    var bw = s.wormMake(3, brow, true, [], 0, false); bw.stepMs = 1e9; bw.acc = 0;
+    bw.segs.forEach(function (e, i) { e.c = e.pc = bc - i; e.r = e.pr = brow; });
+    s.strikes = 0; s.iframeMs = 0;
+    await __until(function () { return s.strikes > 0; }, 15000);
+    o.bite = { strikes: s.strikes, label: s._lastHitLabel, eaten: bw.segs.length < 3 };
+    wm.worms.filter(function (q) { return q === bw || q.segs.some(function (e) { return e.r === brow; }); }).forEach(function (q) { q.segs.forEach(function (e) { e.spr.destroy(); if (e.label) e.label.destroy(); }); q.segs.length = 0; });
+    wm.worms = wm.worms.filter(function (q) { return q.segs.length; });
+    var gw = s.wormMake(3, brow, true, ["Q"], 0, false); gw.stepMs = 1e9; gw.acc = 0;
+    gw.segs.forEach(function (e, i) { e.c = e.pc = bc + 2 - i; e.r = e.pr = brow; });   /* its glowing segment (the third) on Sol */
+    s.strikes = 0; s.iframeMs = 0;
+    await __until(function () { return s.strikes > 0; }, 15000);
+    o.biteGlow = { strikes: s.strikes, kept: gw.segs.some(function (e) { return e.letter === "Q"; }) };
+    gw.segs.forEach(function (e) { e.spr.destroy(); if (e.label) e.label.destroy(); }); gw.segs.length = 0; wm.worms = wm.worms.filter(function (q) { return q.segs.length; });
+    p.y = s.H - 60; s.strikes = 0; s.iframeMs = 0;
+    /* the field can't trap a worm: one at the bottom turns and keeps moving inside the clearing; a piece split off
+       before it came in walks onto the field (the Chemistry code let it walk away for good) */
+    var segs = [], i, okR = true, okC = true;
+    for (i = 0; i < 6; i++) segs.push({ c: wm.cols - 1 - i, r: wm.rows - 1, pc: 0, pr: 0 });
+    var tw = { segs: segs, dir: 1, vdir: 1, plunge: false };
+    for (i = 0; i < 400; i++) { s.wormStep(tw); tw.segs.forEach(function (e) { if (e.r < wm.zone || e.r >= wm.rows) okR = false; if (e.c < 0 || e.c >= wm.cols) okC = false; }); }
+    var og = { segs: [{ c: -3, r: 2, pc: -3, pr: 2 }, { c: -4, r: 2, pc: -4, pr: 2 }], dir: -1, vdir: 1, plunge: false };
+    for (i = 0; i < 6; i++) s.wormStep(og);
+    o.field = { bottomStays: okR && okC, offEdgeComesIn: og.segs[0].c >= 0 && og.segs[0].c < wm.cols };
+    /* a Select TWO question: the first right segment is half the answer (it shows a tick), the second answers it */
+    var live = __wsegs().filter(function (q) { return q.e.letter && !q.e.dead; });
+    var two = live.map(function (q) { return q.e.letter; }).slice(0, 2);
+    if (two.length < 2) { o.err = "fewer than two letters left for the Select TWO check"; return o; }
+    s.need = two.slice(); s.extracted = []; var sc0 = s.score, coins0 = s.nightCoins;
+    var first = live.filter(function (q) { return q.e.letter === two[0]; })[0].e;
+    await __ws(first);
+    o.two = { first: s.score - sc0, found: s.extracted.join(""), tick: first.dead && first.label && first.label.text === "✓", strikes: s.strikes };
+    var second = __wsegs().filter(function (q) { return q.e.letter === two[1] && !q.e.dead; })[0];
+    if (!second) { o.err = "the second letter vanished"; return o; }
+    await __ws(second.e);
+    o.two.second = s.score - sc0; o.two.coins = s.nightCoins > coins0; o.two.strikes = s.strikes;
+    /* the next question: its own fresh worm; the right glowing segment (or two) answers it */
+    await __readGo();
+    __wq();
+    await __until(function () { var h = wm.worms[0] && wm.worms[0].segs[0]; return h && Math.abs(h.x - s.wormCellX(h.c)) < 1; }, 15000);
+    var sc1 = s.score; o.nextNeed = s.need.length; s.strikes = 0;
+    for (var j = 0; j < s.need.length; j++) { var q = __wsegs().filter(function (z) { return z.e.letter === s.need[j] && !z.e.dead; })[0]; if (q) await __ws(q.e); }
+    o.right = s.score - sc1; o.rightStrikes = s.strikes;
+    return o;
+  });
+  /* the teacher's rule in Root Worms: the last answer leaves every worm segment to shoot */
+  await page.evaluate(function () { return __readGo(); });
+  worms.clear = await page.evaluate(async function () {
+    var s = SolScene, wm = s.wm, o = {};
+    s.spareLives = 0; s.perks = {}; s.iframeMs = 1e9; s.strikes = 0;
+    __wq();
+    await __until(function () { var h = wm.worms[0] && wm.worms[0].segs[0]; return h && Math.abs(h.x - s.wormCellX(h.c)) < 1; }, 15000);
+    s.score = s.needExtracts - 1; s.extracted = [];
+    s.need.slice().forEach(function (L) { var q = __wsegs().filter(function (z) { return z.e.letter === L && !z.e.dead; })[0]; if (q) s.wormShot(q.w, q.j); });
+    var segs = __wsegs();
+    o.after = { score: s.score, need: s.needExtracts, ended: s.ended, finishing: s._finishing, mop: !!s._mopup, left: segs.length,
+      letters: segs.filter(function (q) { return q.e.letter; }).length, labels: segs.filter(function (q) { return q.e.label; }).length };
+    await __until(function () { return s._mopup && s._mopup.left > 0 && !!s._mopBanner; }, 15000);
+    o.banner = s._mopBanner ? s._mopBanner.t.text : "";
+    await __until(function () { return /clear the field/.test((document.getElementById("carry-flag") || {}).textContent || ""); }, 60000);
+    o.flag = (document.getElementById("carry-flag") || {}).textContent || "";
+    /* one arrow takes a segment down now */
+    var e = __wsegs()[0] && __wsegs()[0].e, before = __wsegs().length;
+    if (e) await __ws(e);
+    o.oneShot = before - __wsegs().length;
+    /* let them move again for the picture */
+    wm.worms.forEach(function (w) { w.stepMs = wm.P.stepMs; });
+    return o;
+  });
+  await page.waitForTimeout(1800);
+  await shot("23b-root-worms-clear-the-field");
+  worms.lose = await page.evaluate(async function () {
+    var s = SolScene; s.iframeMs = 0; s.spareLives = 0; s.perks = {}; s.strikes = s.needStrikes - 1;
+    var mop = !!s._mopup;
+    s.loseLife("hit", "A WORM BIT YOU");
+    await __until(function () { return s.ended; }, 20000);
+    return { mop: mop, ended: s.ended, title: document.getElementById("win-title").textContent, retry: !document.getElementById("btn-retry").classList.contains("hidden") };
+  });
+  await retryLevel(18);
+  await page.evaluate(pageHelpers);
+  worms.win = await page.evaluate(async function () {
+    var s = SolScene, wm = s.wm, o = {};
+    s.spareLives = 0; s.perks = {}; s.iframeMs = 1e9; s.strikes = 0; s.claimWrong = 0;
+    __wq();
+    await __until(function () { var h = wm.worms[0] && wm.worms[0].segs[0]; return h && Math.abs(h.x - s.wormCellX(h.c)) < 1; }, 15000);
+    s.score = s.needExtracts - 1; s.extracted = [];
+    s.need.slice().forEach(function (L) { var q = __wsegs().filter(function (z) { return z.e.letter === L && !z.e.dead; })[0]; if (q) s.wormShot(q.w, q.j); });
+    o.mop = !!s._mopup && !s.ended;
+    var keep = __wsegs()[0] && __wsegs()[0].e, guard = 0;
+    while (__wsegs().length > 1 && guard++ < 300) { var q = __wsegs().filter(function (z) { return z.e !== keep; })[0]; if (!q) break; s.wormShot(q.w, q.j); }
+    await __until(function () { return s._mopup && s._mopup.left === 1; }, 15000);
+    await __gameWait(1500);
+    o.oneLeft = { left: s._mopup && s._mopup.left, ended: s.ended, finishing: s._finishing, banner: s._mopBanner ? s._mopBanner.t.text : "" };
+    var coins = s.nightCoins, last = __wsegs()[0];
+    if (last) s.wormShot(last.w, last.j);
+    await __until(function () { return s.ended; }, 20000);
+    o.end = { ended: s.ended, title: document.getElementById("win-title").textContent, msg: document.getElementById("win-msg").textContent, coins: s.nightCoins - coins };
+    return o;
+  });
+  console.log("worms", JSON.stringify(worms));
+  var wr = worms.run || {};
+  check(!wr.err && wr.key === "mode" && wr.mode === "worms" && wr.tier === 1 && wr.act === "FIRE" && /Root Worms/.test(wr.card) && /New this time:.*wolf prowls/.test(wr.card) && /Controls:/.test(wr.card) && /passage stays in the side panel|both glowing segments/.test(wr.hint) && !/lab notes/i.test(wr.card + wr.hint),
+    "Root Worms (v5.12): level 18 plays it in the shooter scene, and its card explains it with this realm's news (a wolf): " + JSON.stringify({ err: wr.err, key: wr.key, mode: wr.mode, tier: wr.tier, act: wr.act }));
+  check(wr.letters && wr.letters.split("").sort().join("") === wr.choices && wr.len >= 11, "Root Worms: the lead worm carries every answer letter on its glowing segments: " + JSON.stringify({ len: wr.len, letters: wr.letters, choices: wr.choices }));
+  check(wr.wrong && wr.wrong.strikes === 1 && wr.wrong.gone && wr.wrong.shroom && wr.wrong.split === 1, "Root Worms: a wrong glowing segment costs a life, is gone, leaves a mushroom and splits the worm: " + JSON.stringify(wr.wrong));
+  check(wr.split && wr.split.worms === 1 && wr.split.shroom && wr.split.kills === 1 && wr.split.front === wr.split.at && wr.split.strikes === 0, "Root Worms: shooting a plain segment splits the worm in two and leaves a mushroom, at no cost: " + JSON.stringify(wr.split));
+  check(wr.bite && wr.bite.strikes === 1 && wr.bite.label === "A WORM BIT YOU" && wr.bite.eaten && wr.biteGlow && wr.biteGlow.strikes === 1 && wr.biteGlow.kept, "Root Worms: a worm reaching Sol costs a life; the plain segment that bit is eaten, a glowing one stays to be shot: " + JSON.stringify({ bite: wr.bite, glow: wr.biteGlow }));
+  check(wr.field && wr.field.bottomStays && wr.field.offEdgeComesIn, "Root Worms (no soft-lock): a worm at the bottom keeps moving inside the clearing where it can be shot; a piece still off the edge walks onto the field: " + JSON.stringify(wr.field));
+  check(wr.two && wr.two.first === 0 && wr.two.found.length === 1 && wr.two.tick && wr.two.second === 1 && wr.two.coins && wr.two.strikes === 0 && wr.right === 1 && wr.rightStrikes === 0,
+    "Root Worms: a Select TWO question needs both right segments (the first shows a tick), and the right segment answers the next question: " + JSON.stringify({ two: wr.two, right: wr.right, need: wr.nextNeed }));
+  var wc = worms.clear || {}, wca = wc.after || {};
+  check(wca.score === wca.need && !wca.ended && !wca.finishing && wca.mop && wca.left > 0 && wca.letters === 0 && wca.labels === 0 && wc.oneShot === 1,
+    "Root Worms (v5.12, the teacher's rule): answering the last question doesn't win — the segments lose their letters and every one left has to be shot (one arrow each): " + JSON.stringify(wc));
+  check(/All questions answered — now clear the field!/.test(wc.banner || "") && /\d+ worm segments? left/.test(wc.banner || "") && /clear the field/.test(wc.flag || ""), "Root Worms (v5.12): a banner says to clear the field and counts the segments left: " + JSON.stringify({ banner: wc.banner, flag: wc.flag }));
+  check(worms.lose && worms.lose.mop && worms.lose.ended && worms.lose.title === "Run over" && worms.lose.retry, "Root Worms (v5.12): losing the last life while clearing still loses the level: " + JSON.stringify(worms.lose));
+  var ww = worms.win || {};
+  check(ww.mop && ww.oneLeft && ww.oneLeft.left === 1 && !ww.oneLeft.ended && !ww.oneLeft.finishing && /1 worm segment left/.test(ww.oneLeft.banner) && ww.end && ww.end.ended && ww.end.title === "Root Worms cleared" && /You earned \d+ coins/.test(ww.end.msg) && ww.end.coins >= 3,
+    "Root Worms (v5.12): with one segment left the level goes on; shooting the last one wins it, with the usual end screen and coins: " + JSON.stringify(ww));
+
+  /* v5.7.9: every time a mode comes round (once a realm) it adds something; the Ragnarok levels have it all.
+     v5.12: realm 10 of the Mixed rotation is 92 Root Worms, 94 Eagle Swoop, 96 Rune Rocks, 98 Sun Chariot; Wolf Ring
+     sits that realm out, so it is picked alone for its Ragnarok check (level 99) */
   var tiers = {};
   await gotoLevel(92);
+  await page.evaluate(pageHelpers);
+  tiers.worms = await page.evaluate(async function () {
+    var s = SolScene, wm = s.wm; s.iframeMs = 1e9; s.spareLives = 9;
+    var o = { mode: s.mode.id, tier: s.tier, card: (document.getElementById("mode-card") || {}).textContent || "", worms: wm.worms.length,
+      helm: !!(wm.worms[0] && wm.worms[0].segs[0] && wm.worms[0].segs[0].hp === 2), len: wm.worms[0] ? wm.worms[0].segs.length : 0, seen: {} };
+    wm.spiderCd = 0; wm.fleaCd = 0; wm.wispCd = 0;
+    var t0 = s.time.now;
+    await __until(function () { ["spider", "flea", "wisp"].forEach(function (k) { if (wm[k]) o.seen[k] = true; }); return (o.seen.spider && o.seen.flea && o.seen.wisp) || s.time.now - t0 > 6000; }, 60000);
+    await __gameWait(1500);
+    return o;
+  });
+  await shot("23c-root-worms-ragnarok");
+  await gotoLevel(94);
   tiers.raid = await page.evaluate(async function () {
     var s = SolScene, R = s.raid; s.iframeMs = 1e9; s.spareLives = 9;
     R.ravens.forEach(function (e) { if (e.state === "wait" || e.state === "enter") { e.state = "form"; e.path = null; } });
@@ -802,7 +1268,7 @@ var srv = http.createServer(function (req, res) {
       helm: R.ravens.filter(function (o) { return o.kind === "eagle"; }).every(function (o) { return o.hp === 3; }), rows: R.ravSlots.length };
   });
   await shot("20a-eagle-swoop-ragnarok");
-  await gotoLevel(94);
+  await gotoLevel(96);
   tiers.rocks = await page.evaluate(async function () {
     var s = SolScene, R = s.rk; s.iframeMs = 1e9; s.spareLives = 9; s._beamHelpDone = true; s.helpOpen = false; s.hideBeamHelp();
     R.cometCd = 0; R.valkCd = 0; R.showerCd = 0;
@@ -810,25 +1276,98 @@ var srv = http.createServer(function (req, res) {
     var o = { tier: s.tier, warned: R.warns.length > 0, valk: !!R.valk, guards: R.rocks.filter(function (q) { return q.orbitOf; }).length, iron: R.rocks.some(function (q) { return q.hp === 2; }) };
     await new Promise(function (r) { setTimeout(r, 1300); });
     o.comet = R.rocks.some(function (q) { return q.comet; }) || o.warned;
+    /* v5.8.4: harder every level — more, faster rocks, fuller fields, waves within a level, saucers */
+    var lv = [], k, ok = true;
+    for (k = 1; k <= 100; k++) lv.push(s.rkParams(k, 1));
+    for (k = 1; k < 100; k++) {
+      var a = lv[k - 1], b = lv[k];
+      if (!(b.speed > a.speed && b.speedAdd > a.speedAdd && b.spawnMs <= a.spawnMs && b.start >= a.start && b.cap >= a.cap && b.saucerMs <= a.saucerMs)) ok = false;
+      if (!(b.spawnMs < a.spawnMs || b.start > a.start || b.cap > a.cap || b.speed > a.speed)) ok = false;
+    }
+    o.ramp = { ok: ok, start: [lv[0].start, lv[49].start, lv[99].start], cap: [lv[0].cap, lv[49].cap, lv[99].cap], saucer: [lv[4].saucer, lv[5].saucer], small: [lv[14].smallShare, lv[15].smallShare] };
+    var w1 = s.rkParams(40, 1), w3 = s.rkParams(40, 3);
+    o.waves = w3.cap > w1.cap && w3.speed > w1.speed && w3.waveAdd > 0 && w1.waveAdd === 0;
+    var big0 = R.rocks.filter(function (q) { return q.size === 3 && !q.letter; }).length, wv = R.wave;
+    s.answers_rocks();
+    o.waveRocks = R.wave === wv + 1 && R.rocks.filter(function (q) { return q.size === 3 && !q.letter; }).length >= big0 + s.rkParams(s.night, R.wave).waveAdd;
+    /* a saucer flies in, shoots, and can be shot down for a bonus */
+    R.saucers.forEach(function (u) { u.spr.destroy(); }); R.saucers = []; R.saucerCd = 0;
+    await new Promise(function (r) { setTimeout(r, 900); });
+    o.saucer = R.saucers.length === 1;
+    await new Promise(function (r) { setTimeout(r, 1400); });
+    o.saucerShot = R.sBullets.length > 0 || (R.saucers[0] && R.saucers[0].fireCd < 1300);
+    var u0 = R.saucers[0];
+    if (u0) s.saucerDown(u0, true);
+    o.saucerDown = !!u0 && R.saucers.length === 0;
+    /* a saucer's shot costs a life */
+    s.iframeMs = 0; var st0 = s.strikes, sp0 = s.spareLives;
+    R.sBullets.push({ x: R.ship.x + 4, y: R.ship.y, vx: 0, vy: 0, life: 1, spr: s.add.image(R.ship.x, R.ship.y, "md-bolt") });
+    await new Promise(function (r) { setTimeout(r, 200); });
+    o.saucerHurts = s.strikes > st0 || s.spareLives < sp0;
+    s.iframeMs = 1e9;
     return o;
   });
   await shot("20b-rune-rocks-ragnarok");
-  await gotoLevel(96);
+  await gotoLevel(98);
   tiers.sky = await page.evaluate(async function () {
     var s = SolScene; s.iframeMs = 1e9; s.spareLives = 9;
     await new Promise(function (r) { setTimeout(r, 2500); });
     return { tier: s.tier, flip: s.sky.P.flip, gap: s.sky.P.gapHalf, orbs: s.sky.orbs.length };
   });
   await shot("20c-sun-chariot-ragnarok");
-  await gotoLevel(98);
+  await page.evaluate(function () { SolModes.only = "ring"; });
+  await gotoLevel(99);
+  await page.evaluate(function () { SolModes.only = null; });
   tiers.ring = await page.evaluate(async function () {
     var s = SolScene, G = s.rg; s.iframeMs = 1e9; s.spareLives = 9; G.alphaCd = 0; G.ravCd = 0;
     await new Promise(function (r) { setTimeout(r, 2600); });
     return { tier: s.tier, alpha: G.wolves.some(function (w) { return w.alpha; }), raven: !!G.rav || G.drops.length > 0, ammo: G.ammo, short: G.upMs };
   });
   await shot("20d-wolf-ring-ragnarok");
+  /* v5.8.4: every mode is harder at every level than at the one before (never easier on any setting) */
+  var ramp = await page.evaluate(function () {
+    var s = SolScene, out = {};
+    function chk(name, f, up, down) {
+      var easier = [], flat = [], n;
+      for (n = 1; n < 100; n++) {
+        var a = f(n), b = f(n + 1), harder = false, worse = false;
+        up.forEach(function (k) { if (b[k] > a[k] + 1e-9) harder = true; if (b[k] < a[k] - 1e-9) worse = true; });
+        down.forEach(function (k) { if (b[k] < a[k] - 1e-9) harder = true; if (b[k] > a[k] + 1e-9) worse = true; });
+        if (worse) easier.push(n + 1); if (!harder) flat.push(n + 1);
+      }
+      out[name] = { easier: easier.slice(0, 6), flat: flat.slice(0, 6) };
+    }
+    chk("maze", function (n) { return window.__sol.nightConfig(n); }, ["coneRange", "coneHalf", "janPatrol", "janHurry", "janChase", "chaseMs", "cameraCount", "mazeCount", "extracts"], ["iframe", "strikes"]);
+    chk("raid", function (n) { return s.raidParams(n); }, ["maxDivers", "diveSpd", "featherSp", "beamP"], ["diveCdMul"]);
+    chk("rocks", function (n) { return s.rkParams(n, 1); }, ["start", "cap", "speed", "speedAdd", "smallShare"], ["spawnMs", "saucerMs", "aimErr", "saucerFireMs"]);
+    chk("sky", function (n) { return s.skyParams(n); }, ["eff", "ravenSp", "featherSp", "orbSp", "throwP", "guards", "spin"], ["spawnMs", "gapHalf"]);
+    chk("ring", function (n) { return s.ringParams(n); }, ["eff", "cap", "wolfSp", "packP", "packMax"], ["spawnMs", "upMs", "headStart", "alphaMs"]);
+    /* v5.10: Scylla and Charybdis (the Odyssey build) */
+    /* v5.12: Root Worms */
+    chk("worms", function (n) { return s.wormsParams(n); }, ["worms", "len", "extraLen", "shrooms", "shroomHp", "spider", "spiderSp", "flea", "fleaSp", "fleaPlant", "wisp", "wispSp", "helm"], ["stepMs", "spiderMs", "fleaMs", "wispMs"]);
+    out.wormsEnds = { l4: s.wormsParams(4), l18: s.wormsParams(18), l50: s.wormsParams(50), l99: s.wormsParams(99) };
+    var r1 = s.ringParams(1), r8 = s.ringParams(8);
+    out.ringStart = { cap: r1.cap, spawnMs: r1.spawnMs, wolfSp: r1.wolfSp, packP: r1.packP, l8: { cap: r8.cap, spawnMs: r8.spawnMs, wolfSp: r8.wolfSp } };
+    return out;
+  });
+  console.log("ramp", JSON.stringify(ramp));
+  ["maze", "raid", "rocks", "sky", "ring", "worms"].forEach(function (m) {
+    check(ramp[m] && ramp[m].easier.length === 0 && ramp[m].flat.length === 0, "v5.8.4: " + m + " is harder at every level 2-100 than at the level before, and never easier: " + JSON.stringify(ramp[m]));
+  });
+  check(ramp.ringStart.cap >= 4 && ramp.ringStart.spawnMs < 1500 && ramp.ringStart.wolfSp > 180 && ramp.ringStart.packP > 0, "v5.8.4: Wolf Ring starts harder (4 wolves at once, sooner and faster, packs from the start): " + JSON.stringify(ramp.ringStart));
   console.log("tiers", JSON.stringify(tiers));
+  var we = ramp.wormsEnds;
+  console.log("wormsParams 4/18/50/99", JSON.stringify(we));
+  check(we.l18.worms === 1 && we.l18.stepMs >= 160 && !we.l18.flea && !we.l18.wisp && !we.l18.helm && we.l18.spider === 1 && we.l4.spider === 0 && we.l4.stepMs > we.l18.stepMs,
+    "Root Worms (v5.12): fair where it first comes (level 18: one slow worm and a wolf; level 4, picked alone: no wolf yet): " + JSON.stringify({ l4: we.l4, l18: we.l18 }));
+  check(we.l99.worms === 3 && we.l99.stepMs <= 95 && we.l99.helm && we.l99.wisp && we.l99.flea && we.l99.len > we.l18.len && we.l99.shroomHp === 4 && we.l99.spiderMs < we.l18.spiderMs / 1.5,
+    "Root Worms (v5.12): intense at level 99 (three fast worms, an iron helm, the wisp, falling ravens, a quicker wolf, tougher mushrooms): " + JSON.stringify(we.l99));
+  var tw9 = tiers.worms || {};
+  check(tw9.mode === "worms" && tw9.tier === 9 && /New this time/.test(tw9.card) && tw9.worms >= 3 && tw9.helm && tw9.seen.spider && tw9.seen.flea && tw9.seen.wisp,
+    "Root Worms in Ragnarok (level 92): three worms, the iron helm, the wolf, falling ravens and the wisp, and the card says what's new: " + JSON.stringify({ mode: tw9.mode, tier: tw9.tier, worms: tw9.worms, helm: tw9.helm, seen: tw9.seen, len: tw9.len }));
   check(tiers.raid.tier === 9 && /New this time/.test(tiers.raid.card) && tiers.raid.clouds >= 1 && tiers.raid.swapped && tiers.raid.helm && tiers.raid.rows > 12, "Eagle Swoop in Ragnarok: storm clouds, eagles trading places, iron helms, three raven rows, and the card says what's new: " + JSON.stringify(tiers.raid).slice(0, 200));
+  check(tiers.rocks.ramp && tiers.rocks.ramp.ok && tiers.rocks.ramp.start[2] > tiers.rocks.ramp.start[0] && tiers.rocks.ramp.cap[2] > tiers.rocks.ramp.cap[0] && !tiers.rocks.ramp.saucer[0] && tiers.rocks.ramp.saucer[1] && tiers.rocks.ramp.small[0] === 0 && tiers.rocks.ramp.small[1] > 0, "Rune Rocks (v5.8.4): every level is harder than the one before (faster rocks, faster respawns, never fewer rocks), saucers from level 6, small aiming saucers from 16: " + JSON.stringify(tiers.rocks.ramp));
+  check(tiers.rocks.waves && tiers.rocks.waveRocks && tiers.rocks.saucer && tiers.rocks.saucerShot && tiers.rocks.saucerDown && tiers.rocks.saucerHurts, "Rune Rocks (v5.8.4): each new question sends a wave of big rocks; a dark-elf saucer flies in, fires, can be shot down, and its shot costs a life: " + JSON.stringify({ w: tiers.rocks.waves, wr: tiers.rocks.waveRocks, s: tiers.rocks.saucer, f: tiers.rocks.saucerShot, d: tiers.rocks.saucerDown, h: tiers.rocks.saucerHurts }));
   check(tiers.rocks.tier === 9 && tiers.rocks.comet && tiers.rocks.valk && tiers.rocks.guards >= 2 && tiers.rocks.iron, "Rune Rocks in Ragnarok: comets, a valkyrie, guard stones and iron rocks: " + JSON.stringify(tiers.rocks));
   check(tiers.sky.tier === 9 && tiers.sky.flip && tiers.sky.orbs > 0, "Sun Chariot in Ragnarok runs with reversing shields: " + JSON.stringify(tiers.sky));
   check(tiers.ring.tier === 9 && tiers.ring.alpha && tiers.ring.raven && tiers.ring.ammo <= 6, "Wolf Ring in Ragnarok: the alpha wolf, poo-dropping ravens and the quiver: " + JSON.stringify(tiers.ring));

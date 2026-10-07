@@ -223,7 +223,13 @@
   function priceOf(p) { return p ? (p.price || [0, 40, 80, 140, 220][p.tier || 1] || 40) : 0; }
   /* v5.7.6: Fenrir's monuments (pieces with "boss": realm id) are never sold — only beating Fenrir gives one */
   function isTrophy(p) { return !!(p && p.boss); }
-  function realmName(id) { id = String(id || ""); return id ? id.charAt(0).toUpperCase() + id.slice(1) : "a realm"; }
+  function realmName(id) {
+    id = String(id || "");
+    /* v5.10: the realm's shown name (the Odyssey build renames the realms to islands in js/odyssey.js) */
+    var R = window.SolRealms && window.SolRealms.REALMS, i;
+    if (R) for (i = 0; i < R.length; i++) if (R[i].id === id && R[i].name) return R[i].name;
+    return id ? id.charAt(0).toUpperCase() + id.slice(1) : "a realm";
+  }
   function bandFor(k) { return Math.max(1, Math.min(4, Math.ceil(k / 5))); }   /* reward 1-5 → tier 1 … 16-20 → tier 4 */
   function nextRewardNight() { var n; for (n = EVERY; n <= EVERY * TOTAL; n += EVERY) if (!save.rewards[n]) return n; return null; }
   function wallLevel() { var t = themeDef(save.theme); return (t && t.wallLevel) || 8; }

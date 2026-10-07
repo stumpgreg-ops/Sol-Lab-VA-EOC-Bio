@@ -6,18 +6,18 @@
   <meta name="color-scheme" content="dark" />
   <meta http-equiv="Cache-Control" content="no-cache" />
   <title>SOL Lab · Virginia EOC Biology</title>
-  <link rel="stylesheet" href="css/after-hours.css?v=6.3.1" />
-  <link rel="stylesheet" href="css/build.css?v=6.3.1" />
-  <link rel="icon" type="image/png" sizes="64x64" href="assets/logo/favicon-64.png?v=6.3.1" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32.png?v=6.3.1" />
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/logo/favicon-180.png?v=6.3.1" />
+  <link rel="stylesheet" href="css/after-hours.css?v=6.4.0" />
+  <link rel="stylesheet" href="css/build.css?v=6.4.0" />
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/logo/favicon-64.png?v=6.4.0" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32.png?v=6.4.0" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/logo/favicon-180.png?v=6.4.0" />
 </head>
 <body>
   <div id="app">
     <section id="title-screen" class="screen">
       <p class="kicker" id="title-kicker">Virginia EOC Biology SOL · 100 levels</p>
-      <h1 class="logo"><img src="assets/logo/sols-labyrinth-512.png?v=6.3.1" alt="Sol's Labyrinth — SOL Lab, Virginia EOC Biology" width="512" height="512" /></h1>
-      <p class="ver">SOL Lab · Biology · v6.3.1</p>
+      <h1 class="logo"><img src="assets/logo/sols-labyrinth-512.png?v=6.4.0" alt="Sol's Labyrinth — SOL Lab, Virginia EOC Biology" width="512" height="512" /></h1>
+      <p class="ver">SOL Lab · Biology · v6.4.0</p>
       <p class="tag">Tap a unit to pick your skill focus. Read the lab notes in the side panel. Grab the matching letter. Walk it to EXIT · SAFE. The wolves do not know the answer — only you do.</p>
       <p id="save-line" class="save-line">No level saved on this Chromebook yet.</p>
 
@@ -72,6 +72,9 @@
       <div class="row title-tools">
         <button type="button" class="btn" id="btn-town" title="See the town or castle you have built">My Town</button>
         <button type="button" class="btn" id="btn-music" aria-pressed="true" title="Background music on/off">♪ Music on</button>
+        <button type="button" class="btn" id="btn-progress" title="Copy your progress code and turn it in to your Canvas assignment">Submit my progress</button>
+        <button type="button" class="btn" id="btn-badges" title="See the badges you have earned and how to earn the rest">My badges</button>
+        <button type="button" class="btn" id="btn-restore" title="New Chromebook? Bring back your level and your town or castle from your last progress code">Restore my progress</button>
       </div>
 
       <div class="join-row">
@@ -93,10 +96,25 @@
       </p>
     </section>
 
+    <!-- v5.8.3: after the grade, the game mode: every mode in turn, or one mode on every level -->
+    <section id="mode-screen" class="screen hidden">
+      <p class="kicker" id="mode-kicker">Selection · game mode</p>
+      <h1>Pick a game mode</h1>
+      <p class="tag">Play every mode in turn, or pick one mode to play on every level.</p>
+
+      <div class="packs" id="mode-packs">
+        <!-- filled by game.js -->
+      </div>
+
+      <div class="row">
+        <button type="button" class="btn" id="btn-mode-back">Back</button>
+      </div>
+    </section>
+
     <section id="skill-screen" class="screen hidden">
       <p class="kicker" id="skill-kicker">Selection · skill focus</p>
-      <h1>Pick a skill</h1>
-      <p class="tag">Choose a standard to focus on for this level, or play with the whole unit mixed.</p>
+      <h1 id="skill-title">Pick a skill</h1>
+      <p class="tag" id="skill-tag">Choose a standard to focus on for this level, or play with the whole unit mixed.</p>
       <p id="skill-save-line" class="save-line">No level saved on this Chromebook yet.</p>
 
       <div class="packs" id="skill-packs">
@@ -176,6 +194,7 @@
           <button type="button" class="btn primary hidden" id="btn-next">Next level</button>
           <button type="button" class="btn primary hidden" id="btn-retry">Retry this level</button>
           <button type="button" class="btn hidden" id="btn-shop" data-night="1">Shop</button>
+          <button type="button" class="btn" id="btn-progress-end" title="Copy your progress code and turn it in to your Canvas assignment">Submit my progress</button>
           <button type="button" class="btn" id="btn-again">Title</button>
         </div>
       </div>
@@ -264,26 +283,30 @@
     try { console.error("[SOL]", (e && e.message) || "error", e && e.error && e.error.stack ? e.error.stack : ""); } catch (x) {}
   });
   </script>
-  <script src="js/vendor/phaser.min.js?v=6.3.1"></script>
-  <script src="js/vendor/peerjs.min.js?v=6.3.1"></script>
-  <script src="js/content.js?v=6.3.1"></script>
-  <script src="js/content2.js?v=6.3.1"></script>
-  <script src="js/content3.js?v=6.3.1"></script>
-  <script src="js/content4.js?v=6.3.1"></script>
-  <script src="js/content5.js?v=6.3.1"></script>
-  <script src="js/content6.js?v=6.3.1"></script>
-  <script src="js/content7.js?v=6.3.1"></script>
-  <script src="js/content8.js?v=6.3.1"></script>
-  <script src="js/content9.js?v=6.3.1"></script>
-  <script src="js/classes.js?v=6.3.1"></script>
-  <script src="js/audio.js?v=6.3.1"></script>
-  <script src="js/music.js?v=6.3.1"></script>
-  <script src="js/net.js?v=6.3.1"></script>
-  <script src="js/vendor/three.min.js?v=6.3.1"></script>
-  <script src="js/build3d.js?v=6.3.1"></script>
-  <script src="js/build.js?v=6.3.1"></script>
-  <script src="js/realms.js?v=6.3.1"></script>
-  <script src="js/modes.js?v=6.3.1"></script>
-  <script src="js/game.js?v=6.3.1"></script>
+  <script src="js/vendor/phaser.min.js?v=6.4.0"></script>
+  <script src="js/vendor/peerjs.min.js?v=6.4.0"></script>
+  <script src="js/content.js?v=6.4.0"></script>
+  <script src="js/content2.js?v=6.4.0"></script>
+  <script src="js/content3.js?v=6.4.0"></script>
+  <script src="js/content4.js?v=6.4.0"></script>
+  <script src="js/content5.js?v=6.4.0"></script>
+  <script src="js/content6.js?v=6.4.0"></script>
+  <script src="js/content7.js?v=6.4.0"></script>
+  <script src="js/content8.js?v=6.4.0"></script>
+  <script src="js/content9.js?v=6.4.0"></script>
+  <script src="js/classes.js?v=6.4.0"></script>
+  <script src="js/audio.js?v=6.4.0"></script>
+  <script src="js/music.js?v=6.4.0"></script>
+  <script src="js/net.js?v=6.4.0"></script>
+  <script src="js/vendor/three.min.js?v=6.4.0"></script>
+  <script src="js/build3d.js?v=6.4.0"></script>
+  <script src="js/build.js?v=6.4.0"></script>
+  <script src="js/realms.js?v=6.4.0"></script>
+  <script src="js/modes.js?v=6.4.0"></script>
+  <script src="js/progress-code.js?v=6.4.0"></script>
+  <script src="js/progress.js?v=6.4.0"></script>
+  <script src="js/badges.js?v=6.4.0"></script>
+  <script src="js/teacher-screen.js?v=6.4.0"></script>
+  <script src="js/game.js?v=6.4.0"></script>
 </body>
 </html>

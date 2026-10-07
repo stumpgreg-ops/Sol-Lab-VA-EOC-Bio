@@ -30,7 +30,7 @@ var html = fs.readFileSync(path.join(src, "index.html"), "utf8");
 var version = (html.match(/\?v=([0-9.]+)/) || [0, "0"])[1];
 
 /* ── the files: the game as the itch.io zip ships it (index.html, css, js, assets), minus music, docs and the page ── */
-var SKIP_DIRS = { tools: 1, dist: 1, docs: 1, ".git": 1, node_modules: 1, ".claude": 1 };
+var SKIP_DIRS = { tools: 1, dist: 1, docs: 1, ".git": 1, node_modules: 1, ".claude": 1, teacher: 1 };
 var files = [];
 (function walk(d) {
   fs.readdirSync(d).sort().forEach(function (n) {
@@ -71,6 +71,8 @@ add("__page.html", Buffer.from(body.trim()));
 /* the teacher page (?admin=1) — run by the loader after the content files, instead of the game */
 add("__admin.js", fs.readFileSync(path.join(__dirname, "appsscript", "admin.js")));
 add("__admin.css", fs.readFileSync(path.join(__dirname, "appsscript", "admin.css")));
+/* v6.4: the game's Teacher screen (js/teacher-screen.js) fetches teacher/BIO.html; it is built fresh into the bundle */
+add("teacher/BIO.html", Buffer.from(require("./build-teacher").build("BIO", version)));
 /* v6.3.1 (SOL Labyrinth v5.8.1): the castle's 3D models come in four colours that are nearly the same bytes, but
    each is ~140 KB and gzip only looks 32 KB back, so it can't see that. A model whose name differs from an earlier
    one's only by a word (blue → red) is stored as a delta of it (see delta()); header entry [path, offset, length, base]. */
