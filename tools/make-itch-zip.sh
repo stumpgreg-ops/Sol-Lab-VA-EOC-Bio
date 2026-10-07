@@ -6,5 +6,5 @@ set -e
 cd "$(dirname "$0")/.."
 OUT="${1:-sol-lab-va-algebra.zip}"
 rm -f "$OUT"
-zip -q -r -X "$OUT" index.html admin.html css js assets -x '*.DS_Store' -x '*Thumbs.db'
+zip -q -r -X "$OUT" index.html admin.html css js assets teacher -x '*.DS_Store' -x '*Thumbs.db'
 echo "$OUT: $(unzip -l "$OUT" | tail -1)"

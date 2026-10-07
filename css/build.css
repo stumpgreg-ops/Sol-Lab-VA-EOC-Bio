@@ -166,3 +166,6 @@
   .build-sub { font-size: 12px; }
   .build-opt .pic { height: 60px; }
 }
+/* v5.7.6: Fenrir's monuments in the palette */
+.build-pitem.trophy .tag { color: #ffd84a; font-weight: 700; }
+.build-pitem.trophy.locked { outline: 1px dashed #ffd84a; }

@@ -8,6 +8,19 @@ Play: `index.html`. Teacher monitor: `admin.html` (PIN lock; FERPA nicknames onl
 
 Progress saves in this browser profile (`afterHours.v1.night`). Itch login does not store progress.
 
+## Algebra I 1.1.0 (2026-10-07) — engine synced to SOL Labyrinth v5.16.0
+
+The engine files are now the ones the Reading game ships at v5.16.0 (taken from its Canvas update of 2026-10-07 and unpacked); the Algebra bank, the standards map, the unit cards and the course wording are unchanged. New for students and teachers:
+
+- **A game-mode screen** between the unit and the skill: *Mixed* (the campaign as before: maze on odd levels, a shooter on even ones, Fenrir every tenth) or one mode on every level — Labyrinth, Eagle Swoop, Rune Rocks, Sun Chariot, Wolf Ring or the new Root Worms. **Each mode keeps its own level** (`afterHours.v1.night.<mode>`); an older save moves to the mode last played.
+- **Progress codes.** The game cannot send anything out of Canvas, so *Submit my progress* (title screen and end-of-level card) copies a code like `SOL3-ALG-4110-…` that a student pastes into a Canvas assignment. It carries days and minutes played, levels, questions answered and right on the first try, each standard practised (A.EO.1.a … A.ST.1.i), each game mode's level, streaks, badges, and everything needed to **Restore my progress** on a new Chromebook (level, town or castle, coins, Fangs). The format is `js/progress-code.js`, shared with the Reading game; this game is build `ALG` (id 4) with the ten standards as its skills.
+- **Badges** (`js/badges.js`, *My badges* on the title screen) for levels in each mode, questions, streaks, perfect levels, standards, days and time.
+- **The teacher screen inside the game** (`teacher/ALG.html`, opened by `js/teacher-screen.js`). The *Teacher* link is hidden: type `teacher` in the nickname box on the title screen and confirm, once per computer. Drop the assignment's *Download Submissions* zip (or the gradebook CSV) on it to see every student's numbers, a suggested grade, a leaderboard, a standards report and a Canvas gradebook import file; *Finish this grading round* makes the next round count only new work. `node tools/build-teacher.js` rebuilds the page from `tools/teacher-page.html` with `js/progress-code.js` inlined.
+- Engine fixes since v5.7.1 the Algebra build had not had: Fenrir stalks the whole maze and pants between charges, Fenrir's Fangs (+1 coin an answer per realm freed) and a monument in the castle for each realm beaten, Sol rides the chariot while the power lasts, the wrong-letter screen says which letter was picked, the town builder holds the view still while a piece is dragged, Eagle Swoop's birds and clouds, Rune Rocks' comets, the Wolf Ring's rising runestones.
+- Four Odyssey-only modes (`js/mode-*.js`) ride along inert, as in the Reading build, so the engine files stay identical to the backbone for the next sync.
+
+Two Algebra-marked lines in the engine: `js/progress.js` takes a claim's skill from `claim.standard` (A.EO.1) before `claim.strand` (A.EO.1.B), and lets a non-Reading unit fall back to the game's state for the record; `js/progress-code.js` gains the ALG build and the Algebra codes in its standards list. `index.html` sets `window.SOL_STATE = "ALG"`, the engine's own single-game switch, so the old state gateway never shows.
+
 ## Algebra I 1.0.2 (2026-10-03)
 
 - **Full review's skill cards read in one line each.** The ten standard cards carried every lettered statement (up to 1,100 characters a card); they now show a one-line blurb (`blurb` in `HEIST_STANDARDS`); the full letters stay in `keys` for the validator, the question bank and the content guide.
@@ -52,6 +65,7 @@ Codes follow the **2023 Virginia Mathematics Standards of Learning** for Algebra
 - `js/content2.js` Expressions & Operations (A.EO) · `content3.js` Equations & Inequalities (A.EI) · `content4.js` Functions (A.F) · `content5.js` Statistics (A.ST).
 - `tools/CONTENT-GUIDE.md` — pack format, the standards table, math notation conventions and the writing rules. `node tools/validate-content.js` checks every file (codes, units, keys, lengths, duplicates); `node tools/validate-content.js js/content4.js` checks one.
 - `tools/smoke.js` — headless Playwright run of the whole game (screenshots in `tools/shots/`).
+- `tools/build-teacher.js` + `tools/teacher-page.html` — writes `teacher/ALG.html`, the teacher screen (see *1.1.0*). `js/progress-code.js` is the progress-code format shared with the Reading game; `js/progress.js`, `js/badges.js`, `js/teacher-screen.js`, `js/classes.js` and `js/mode-*.js` are engine files from the backbone.
 - `tools/question-bank.js` — writes `docs/question-bank.md` and `docs/question-bank.html`, the teacher review copy of every question.
 - `tools/make-itch-zip.sh` — builds the itch.io HTML5 upload (`sh tools/make-itch-zip.sh`): index.html at the zip root, under itch.io's 1,000-file limit. Upload it as an HTML project with "This file will be played in the browser" ticked.
 - `tools/build-canvas.js` — the **Canvas build** (`dist/canvas/`, `dist/SOLLab-VA-Algebra-Canvas.zip`): starter page + loader + data files, see *Hosting* below. `tools/canvas-loader.js` is the in-page loader, `tools/canvas-starter.html` the starter template, `tools/png2webp.py` the lossless-WebP step.
@@ -64,7 +78,7 @@ The game is static files and needs no server, login or build step, so any host t
 
 1. `node tools/build-canvas.js` writes `dist/canvas/` and `dist/SOLLab-VA-Algebra-Canvas.zip` (about 6.5 MB): a small starter page `SOLLab-VA-Algebra.html`, the loader `SOLLab-VA-Algebra-game.js` and the game in data files `SOLLab-VA-Algebra-data-01.js` … `-09.js`. Canvas runs the scripts of a small page but not of a big one, so the game travels in the data files: one gzip bundle of every file it needs (markup, CSS, scripts, 3D kit, art), base64 and split. PNGs travel as lossless WebP and near-copy models as deltas, which is why 37 MB of game fits in 6.5 MB. Music stays out (`--with-music` adds it). Needs Pillow for the WebP step (`python3 -m pip install pillow`; `--no-webp` skips it).
 2. Unzip and upload **all eleven files into one Canvas folder**, names unchanged (Files → the folder → Upload).
-3. Link or frame the `.html`: as a module item (Files → the page), or on a page in the HTML editor (`</>`), replacing `COURSE_ID` with the number in the course URL and the folder path with yours:
+3. Link or frame the `.html`: as a module item (Files → the page), or on a page in the HTML editor (`</>`), replacing `COURSE_ID` with the number in the course URL and the folder path with yours (the Reading game's README gives the other working form, `/courses/COURSE_ID/files/FILE_ID/preview`, where FILE_ID is the number Canvas shows in the address bar after clicking the `.html` once in Files):
 
    ```html
    <p><a href="/courses/COURSE_ID/file_contents/course%20files/SOLLab-VA-Algebra.html" target="_blank" rel="noopener">Open SOL Lab: Algebra I in a new tab</a></p>
@@ -72,6 +86,8 @@ The game is static files and needs no server, login or build step, so any host t
    ```
 
 The loader (`tools/canvas-loader.js`, shared with the backbone) gunzips the bundle in memory and answers every request the game makes for `assets/…`, `js/…` or `css/…` from it (fetch, XMLHttpRequest, `<img src>`, `<audio src>`, CSS `url()`), hands out `data:` URLs because Canvas's file domain may refuse `blob:` ones, and prefixes the saves in localStorage with `solReading.algebra:` so the Reading, Biology and Algebra games can share Canvas's one file domain without overwriting each other's progress. `node tools/check-single-file.js dist/canvas` serves the folder over http and plays into a level with no request allowed outside it.
+
+**Updating a game already in Canvas:** upload the new `-game.js` and `-data-NN.js` files into the same folder and choose *Replace* for each; the `.html` can stay (it does not change between versions), so the page link and students' progress keep working. Delete any `-data-NN.js` with a number the new build no longer has.
 
 Canvas strips `<script>` from page bodies, so no game can be pasted into a page directly. Keys reach the maze only after the student clicks inside the frame, which is why the new-tab link is there. The teacher monitor (`admin.html`) is not part of the Canvas build.
 

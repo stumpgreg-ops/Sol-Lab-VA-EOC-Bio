@@ -281,6 +281,10 @@ var srv = http.createServer(function (req, res) {
 
   /* start a Functions level */
   await page.click('#title-screen .card[data-family="FN"]');
+  /* v1.1.0 (engine v5.8.3+): the game-mode screen sits between the unit and the skill */
+  await page.waitForSelector("#mode-screen:not(.hidden)");
+  check((await page.$$eval("#mode-packs .card[data-gamemode]", function (l) { return l.length; })) === 7, "seven game-mode cards (Mixed + 6 modes, no Odyssey ones)");
+  await page.click('#mode-packs .card[data-gamemode="ALL"]');
   await page.waitForSelector("#skill-screen:not(.hidden)");
   check((await page.$$eval("#skill-packs .card", function (l) { return l.length; })) === 3, "three Functions skill cards (A.F.1, A.F.2 + All)");
   check(/Functions/.test(await page.textContent("#skill-kicker")), "skill kicker names the unit");
@@ -456,7 +460,7 @@ var srv = http.createServer(function (req, res) {
     return o;
   });
   console.log("boss", JSON.stringify(boss));
-  check(boss.fenrir && boss.chains === boss.need && boss.hati === 2 && /Fenrir/.test(boss.pip), "level 20: Fenrir guards a gate with one chain per question, and one Hati fewer");
+  check(boss.fenrir && boss.chains === boss.need && boss.hati >= 2 && /Fenrir/.test(boss.pip), "level 20: Fenrir guards a gate with one chain per question; every Hati stays (v5.7.6)");
   check(boss.provoked === "windup" && boss.after === boss.chains - 1, "a wrong letter sets Fenrir off; a banked answer breaks a chain");
   /* castle perks: buildings on the field grant perks in the maze */
   await page.evaluate(function () {
@@ -480,7 +484,7 @@ var srv = http.createServer(function (req, res) {
 
   /* v5.7: shooter levels on 2, 4, 6 and 8 of each realm, reached through the real Next level button */
   var rot = await page.evaluate(function () { var o = []; for (var n = 1; n <= 20; n++) { var m = SolModes.modeFor(n); o.push(m ? m.id : "-"); } return o.join(","); });
-  check(rot === "-,raid,-,rocks,-,sky,-,ring,-,-,-,raid,-,rocks,-,sky,-,ring,-,-", "shooter rotation: raid, rocks, sky, ring on even levels; maze on odd levels and bosses: " + rot);
+  check(rot === "-,raid,-,rocks,-,sky,-,ring,-,-,-,rocks,-,sky,-,ring,-,worms,-,-", "shooter rotation (v5.12): raid, rocks, sky, ring in realm 1, then Root Worms joins; maze on odd levels and bosses: " + rot);
   async function gotoLevel(n) {
     await page.evaluate(function (n) { var b = document.getElementById("btn-next"); b.dataset.goto = String(n); b.click(); }, n);
     await page.waitForTimeout(1500);
@@ -489,13 +493,15 @@ var srv = http.createServer(function (req, res) {
     if (await page.isVisible("#read-go")) await page.click("#read-go");
     await page.waitForFunction(function () { var s = window.SolScene; return s && !s.readOpen; }, null, { timeout: 5000 }).catch(function () {});
     await page.waitForTimeout(300);
+    /* v5.7.3+: Rune Rocks opens a one-time "how to pull a rock in" card that pauses the level until OK */
+    for (var k = 0; k < 10; k++) { if (await page.isVisible("#beam-help-ok")) { await page.click("#beam-help-ok"); await page.waitForTimeout(300); break; } await page.waitForTimeout(100); }
   }
   function tickWait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
   var modeRuns = {};
   await gotoLevel(2);
   /* a mouse button (left or right) shoots without moving Sol */
   var cbox = await page.evaluate(function () { var r = SolScene.game.canvas.getBoundingClientRect(); return { x: r.left, y: r.top, width: r.width, height: r.height }; });
-  var click0 = await page.evaluate(function () { var s = SolScene; s.tutLockUntil = 0; return { x: s.player.x, fired: s.raid.fired }; });
+  var click0 = await page.evaluate(function () { var s = SolScene; s.tutLockUntil = 0; s.raid.ready = true; /* v5.8+: no firing until the flock is in formation */ return { x: s.player.x, fired: s.raid.fired }; });
   await page.mouse.move(cbox.x + cbox.width * 0.2, cbox.y + cbox.height * 0.55);
   await page.mouse.down({ button: "right" }); await page.waitForTimeout(700);
   await page.mouse.up({ button: "right" });
@@ -513,10 +519,11 @@ var srv = http.createServer(function (req, res) {
     s.raidHit(wrong); o.wrong = s.strikes; s.strikes = 0; s.iframeMs = 0;
     R.feathers.push({ x: s.player.x, y: s.player.y - 20, vx: 0, t: 0, spr: s.add.image(s.player.x, s.player.y - 20, "md-feather") });
     await new Promise(function (r) { setTimeout(r, 600); }); o.feather = s.strikes; s.strikes = 0; s.iframeMs = 0;
-    /* an eagle's beam over Sol catches him */
-    var bm = R.ravens.filter(function (q) { return q.alive && q.letter && q.state !== "wait"; })[0] || R.ravens.filter(function (q) { return q.alive && q.letter; })[0];
+    /* an eagle's beam over Sol carries him off (v5.8+: no life lost; an arrow on that eagle frees him) */
+    var bm = R.ravens.filter(function (q) { return q.alive && q.letter && s.need.indexOf(q.letter) === -1; })[0];
     bm.state = "beam"; bm.beamMs = 900; bm.path = null; bm.x = s.player.x; bm.hoverY = s.H * 0.4; bm.y = bm.hoverY; bm.lead = true;
-    await new Promise(function (r) { setTimeout(r, 700); }); o.beam = s.strikes; s.strikes = 0; s.iframeMs = 0;
+    await new Promise(function (r) { setTimeout(r, 700); }); o.beam = s.strikes; o.caught = !!(R.capt && R.capt.eagle === bm); s.strikes = 0; s.iframeMs = 0;
+    if (R.capt) { s.raidFree(bm); for (var k = 0; k < 50 && R.capt; k++) await new Promise(function (r) { setTimeout(r, 100); }); } o.freed = !R.capt && !!R.wing;
     var coins = s.nightCoins;
     R.ravens.filter(function (q) { return q.alive && q.letter && s.need.indexOf(q.letter) !== -1; }).forEach(function (q) { s.raidHit(q); s.raidHit(q); });
     o.score = s.score; o.coins = s.nightCoins > coins;
@@ -551,7 +558,8 @@ var srv = http.createServer(function (req, res) {
     await new Promise(function (r) { setTimeout(r, 2600); });
     o.back = R.rocks.some(function (q) { return q.letter === L; });
     var blank = s.rockMake(2, null, R.ship.x, R.ship.y, 0, 0); s.iframeMs = 0;
-    await new Promise(function (r) { setTimeout(r, 500); }); o.hit = s.strikes; s.strikes = 0; s.iframeMs = 0;
+    for (var k = 0; k < 15 && !s.strikes; k++) { s.iframeMs = 0; blank.x = R.ship.x; blank.y = R.ship.y; await new Promise(function (r) { setTimeout(r, 100); }); }
+    o.hit = s.strikes; o.hitDbg = { between: s._between, iframe: s.iframeMs, d: Math.round(Math.hypot(blank.x - R.ship.x, blank.y - R.ship.y)), target: R.target === blank }; s.strikes = 0; s.iframeMs = 0;
     s.need.forEach(function (N) { var q = R.rocks.filter(function (z) { return z.letter === N; })[0]; if (q) s.rockCaught(q); });
     o.score = s.score;
     return o;
@@ -561,7 +569,7 @@ var srv = http.createServer(function (req, res) {
   modeRuns.sky = await page.evaluate(async function () {
     var s = SolScene, K = s.sky, o = { mode: s.mode.id };
     s.spareLives = 0; s.perks = {};
-    K.orbs.forEach(function (q, i) { q.x = s.W * 0.6 + i * 60; q.vx = 0; });   /* bring the orbs on screen */
+    K.orbs.forEach(function (q, i) { q.x = s.W * 0.6 + i * 60; q.vx = 0; q.gap = Math.PI; });   /* bring the orbs on screen; v5.8+: turn each shield's gap toward the bolt */
     function bolt(x, y) { K.bolts.push({ x: x - 40, y: y, spr: s.add.image(x - 40, y, "md-bolt") }); }
     var w = K.orbs.filter(function (q) { return s.need.indexOf(q.letter) === -1; })[0];
     bolt(w.x, w.y); await new Promise(function (r) { setTimeout(r, 400); }); o.wrong = s.strikes; s.strikes = 0; s.iframeMs = 0;
@@ -577,12 +585,14 @@ var srv = http.createServer(function (req, res) {
     var s = SolScene, G = s.rg, p = s.player, o = { mode: s.mode.id };
     s.spareLives = 0; s.perks = {};
     function arrowAt(x, y) { G.arrows.push({ x: x, y: y, vx: 0, vy: 0, spr: s.add.image(x, y, "md-arrow") }); }
+    /* v5.8+: the stones are sunk until they rise; raise one and shoot it while it is up */
+    function raise(q) { s.ringRaise(q); q.state = "up"; q.t = 0; s.ringDrawStone(q); }
     var w = G.stones.filter(function (q) { return s.need.indexOf(q.letter) === -1; })[0];
-    arrowAt(w.x, w.y); await new Promise(function (r) { setTimeout(r, 400); }); o.wrong = s.strikes; o.crossed = w.dead; s.strikes = 0; s.iframeMs = 0;
+    raise(w); arrowAt(w.x, w.y); await new Promise(function (r) { setTimeout(r, 400); }); o.wrong = s.strikes; o.crossed = w.dead; s.strikes = 0; s.iframeMs = 0;
     G.wolves.push({ x: p.x + 10, y: p.y, state: "run", sp: 0, spr: s.add.image(p.x, p.y, "hati1").setScale(0.5) });
     await new Promise(function (r) { setTimeout(r, 400); }); o.bitten = s.strikes; s.strikes = 0; s.iframeMs = 0;
     s.score = s.needExtracts - 1;
-    G.stones.filter(function (q) { return s.need.indexOf(q.letter) !== -1; }).forEach(function (q) { arrowAt(q.x, q.y); });
+    G.stones.filter(function (q) { return s.need.indexOf(q.letter) !== -1; }).forEach(function (q) { raise(q); arrowAt(q.x, q.y); });
     await new Promise(function (r) { setTimeout(r, 2200); });
     o.ended = s.ended; o.title = document.getElementById("win-title").textContent; o.msg = document.getElementById("win-msg").textContent; o.goto = document.getElementById("btn-next").dataset.goto;
     return o;
@@ -591,11 +601,11 @@ var srv = http.createServer(function (req, res) {
   console.log("modes", JSON.stringify(modeRuns));
   var mr = modeRuns;
   check(mr.raid.key === "mode" && mr.raid.mode === "raid" && mr.raid.fire === "FIRE" && mr.raid.mini === "none" && /^Answers 0/.test(mr.raid.hud), "level 2 is Eagle Swoop in the shooter scene (FIRE button, no minimap, Answers on the HUD)");
-  check(mr.raid.eagles >= 2 && mr.raid.ravens >= 12 && mr.raid.afterOne === 0 && mr.raid.wrong === 1 && mr.raid.feather === 1 && mr.raid.beam === 1 && mr.raid.score === 1 && mr.raid.coins && mr.raid.newWave > 0 && mr.raid.flying > 0 && !/Fenrir/.test(mr.raid.pip), "Eagle Swoop: eagles carry the letters above a raven guard; an eagle takes two arrows; a wrong letter, a feather and an eagle's beam each cost a life; the right eagle answers, pays coins and a new wave flies in: " + JSON.stringify(mr.raid));
+  check(mr.raid.eagles >= 2 && mr.raid.ravens >= 12 && mr.raid.afterOne === 0 && mr.raid.wrong === 1 && mr.raid.feather === 1 && mr.raid.beam === 0 && mr.raid.caught && mr.raid.freed && mr.raid.score === 1 && mr.raid.coins && mr.raid.newWave > 0 && mr.raid.flying > 0 && !/Fenrir/.test(mr.raid.pip), "Eagle Swoop: eagles carry the letters above a raven guard; an eagle takes two arrows; a wrong letter and bird poo cost a life; an eagle's beam carries Sol off and an arrow frees him (double Sol); the right eagle answers, pays coins and a new wave flies in: " + JSON.stringify(mr.raid));
   check(mr.click && mr.click.moved < 2 && mr.click.fired >= 2, "Eagle Swoop: left and right mouse buttons shoot without moving Sol: " + JSON.stringify(mr.click));
   check(mr.rocks.mode === "rocks" && mr.rocks.pull !== "none" && mr.rocks.pullWrong === 1 && mr.rocks.blastRight === 1 && mr.rocks.blastWrong === 0 && mr.rocks.back && mr.rocks.hit === 1 && mr.rocks.score === 1, "Rune Rocks: pulling a wrong letter, blasting the right one and a rock hit cost a life; blasting a wrong letter is free; the right rock returns; beaming it in answers");
   check(mr.sky.mode === "sky" && mr.sky.wrong === 1 && mr.sky.crash === 1 && mr.sky.score === 1, "Sun Chariot: a wrong orb and a crash cost a life; the right orb answers");
-  check(mr.ring.mode === "ring" && mr.ring.wrong === 1 && mr.ring.crossed && mr.ring.bitten === 1, "Wolf Ring: a wrong stone is crossed out and costs a life; a wolf reaching Sol costs a life");
+  check(mr.ring.mode === "ring" && mr.ring.wrong === 1 && mr.ring.crossed && mr.ring.bitten === 1, "Wolf Ring: a wrong stone (shot while up) is crossed out and costs a life; a wolf reaching Sol costs a life");
   check(mr.ring.ended && mr.ring.title === "Wolf Ring cleared" && mr.ring.goto === "9" && /back to the maze/.test(mr.ring.msg), "the last right answer clears the level and points to the maze next");
   await page.evaluate(function () { document.getElementById("btn-next").click(); });
   await page.waitForTimeout(3000);

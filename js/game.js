@@ -5,11 +5,12 @@
   /* v5.2: a build made for one state (tools/build-games.js sets window.SOL_STATE) has no
      gateway at all — the title screen for that state is the first thing on screen. */
   try {
-    var _gw = document.getElementById("state-screen"), _ts = document.getElementById("title-screen"), _ss = document.getElementById("skill-screen");
+    var _gw = document.getElementById("state-screen"), _ts = document.getElementById("title-screen"), _ss = document.getElementById("skill-screen"), _ms = document.getElementById("mode-screen");
     var _locked = !!(typeof window !== "undefined" && window.SOL_STATE);
     if (_gw) _gw.classList.toggle("hidden", _locked);
     if (_ts) _ts.classList.toggle("hidden", !_locked);
     if (_ss) _ss.classList.add("hidden");
+    if (_ms) _ms.classList.add("hidden");
   } catch (eGw) {}
   var WORLD_W = 2400;
   var WORLD_H = 2000;
@@ -40,13 +41,15 @@
   var LS_CLASS = "afterHours.v1.class";
   var LS_FAMILY = "afterHours.v1.family";
   var LS_STRAND = "afterHours.v1.strand";
+  var LS_GAMEMODE = "afterHours.v1.gameMode";   /* v5.8.3: "ALL", "maze" or a shooter's id */
   var LS_CHAR = "afterHours.v1.charPreset";
   var LS_STATE = "afterHours.v1.state";
   var LS_ADAPT = "afterHours.v1.adapt.";
-  /* v6 (one course, Algebra I): The unit cards on the title screen are the families defined in
-     js/content.js (HEIST_FAMILIES); the old New Jersey / Virginia gateway is gone. */
+  /* v6 (one course, Algebra I): the unit cards on the title screen are the families defined in js/content.js
+     (HEIST_FAMILIES); index.html sets window.SOL_STATE = "ALG", so the state is locked and the old New Jersey /
+     Virginia gateway never shows. ALG is also the game's tag in progress codes (js/progress-code.js BUILDS). */
   var STATE_DEFS = {
-    VA: { name: "Virginia", kicker: "Virginia Algebra I SOL · 100 levels", families: (window.HEIST_FAMILIES || []).map(function (f) { return f.id; }), def: "ALL", hud: "SOL" }
+    ALG: { name: "Algebra I", kicker: "Virginia Algebra I SOL · 100 levels", families: (window.HEIST_FAMILIES || []).map(function (f) { return f.id; }), def: "ALL", hud: "SOL" }
   };
   /* v5.2: the New Jersey and Virginia games are separate builds. tools/build-games.js writes
      window.SOL_STATE into each build's index.html; that build never shows the gateway, never
@@ -2994,6 +2997,8 @@
   }
   function saveAdapt(family, a) { try { localStorage.setItem(LS_ADAPT + family, JSON.stringify(a)); } catch (e) {} }
   function adaptEvent(scene, kind, claim) {
+    /* v5.13: every answer and wrong pick also goes to the progress record (js/progress.js) */
+    if (window.SolProgress) { try { SolProgress.answer(kind, claim); } catch (eP) {} }
     var a = scene.adapt;
     if (!a) return;
     var st = (claim && claim.strand) || "A.EO.1";
@@ -3904,14 +3909,33 @@
     return NIGHT_THEMES[Math.floor((n - 1) / 10) % NIGHT_THEMES.length];
   }
 
-  function readSavedNight() {
-    var v = parseInt(localStorage.getItem(LS_NIGHT) || "1", 10);
+  /* v5.15: each game mode keeps its own level (afterHours.v1.night.<mode>: ALL for Mixed, maze, raid ...), so a
+     student can be on level 40 in Eagle Swoop and level 12 in the Labyrinth. LS_NIGHT still holds the level last
+     played (in any mode). An older save had one level for every mode: it moves to the mode last picked. */
+  function nightKey(m) { return LS_NIGHT + "." + (m || (cfg && cfg.gameMode) || "ALL"); }
+  function migrateNight() {
+    try {
+      if (localStorage.getItem(LS_NIGHT + ".migrated")) return;
+      var old = localStorage.getItem(LS_NIGHT), m = localStorage.getItem(LS_GAMEMODE) || "ALL";
+      if (old && !localStorage.getItem(LS_NIGHT + "." + m)) localStorage.setItem(LS_NIGHT + "." + m, old);
+      localStorage.setItem(LS_NIGHT + ".migrated", "1");
+    } catch (e) {}
+  }
+  function hasSavedNight(m) {
+    migrateNight();
+    try { return !!localStorage.getItem(nightKey(m)); } catch (e) { return false; }
+  }
+  function readSavedNight(m) {
+    migrateNight();
+    var v = 1;
+    try { v = parseInt(localStorage.getItem(nightKey(m)) || "1", 10); } catch (e) {}
     if (!(v >= 1 && v <= 100)) v = 1;
     return v;
   }
-  function writeSavedNight(n) {
+  function writeSavedNight(n, m) {
     n = clamp(n, 1, 100);
-    try { localStorage.setItem(LS_NIGHT, String(n)); } catch (e) {}
+    migrateNight();
+    try { localStorage.setItem(nightKey(m), String(n)); localStorage.setItem(LS_NIGHT, String(n)); } catch (e) {}
   }
 
   function texRect(scene, key, w, h, fill, stroke, sw) {
@@ -4483,6 +4507,7 @@
 
     create() {
       playScene = this;
+      progressLevelStart(this);
       /* Local-dev hook only (never on itch): lets a test harness read the maze,
          rail graph and scene without reaching into closures. */
       try {
@@ -6912,7 +6937,18 @@
       var unused = function (c) { return self.usedClaims.indexOf(c.id) === -1; };
       /* v4.9: an NJSLA Part B (evidence) item always follows its Part A. */
       if (this.claim && this.claim.partB) {
-        for (i = 0; i < claims.length; i++) if (claims[i].id === this.claim.partB && unused(claims[i])) { pick = i; break; }
+        for (i = 0; i < claims.length; i++) if (claims[i].id === this.claim.partB) { pick = i; break; }   /* v5.7.1: also when a Part A is asked again */
+      }
+      /* v5.12.2: the Odyssey reads in story order. The pack's claims arrive sorted by story position (content.js
+         ODY_STORY), so the next question is the first one not yet asked: a passage stays on screen until its questions
+         are done, then the story moves on. After the last passage the story starts again from the beginning. */
+      if (pick < 0 && claims[0] && claims[0].seq != null) {
+        for (i = 0; i < claims.length; i++) if (!claims[i].isPartB && unused(claims[i])) { pick = i; break; }
+        if (pick < 0) {
+          this.usedClaims = [];
+          saveUsedClaims(this.family, this.strand, this.usedClaims);
+          for (i = 0; i < claims.length; i++) if (!claims[i].isPartB) { pick = i; break; }
+        }
       }
       if (pick < 0) {
         var pool = [], fresh = [];
@@ -6931,8 +6967,8 @@
         var wantWords = (typeof heistTargetWords === "function") ? heistTargetWords(this.night) : 250;
         /* v4.9.6: when the pool has enough stimuli inside the level's length band (60%–160% of the
            target) only those are drawn, so level 90 never serves a 60-word note; thin pools fall back.
-           v6 (Biology): a unit pool is far smaller than the old grade pools, and a science item set
-           normally asks several questions on one set of lab notes, so a level prefers notes it has not
+           v6 (Biology / Algebra): a unit pool is far smaller than the old grade pools, and an item set
+           normally asks several questions on one problem set, so a level prefers sets it has not
            used yet but may come back to a stimulus when that keeps the length band honest. */
         var inBand = function (idx) { var cw = claims[idx].words; return !cw || (cw >= wantWords * 0.6 && cw <= wantWords * 1.6); };
         var bandFresh = fresh.filter(inBand), bandAll = pool.filter(inBand), BAND_MIN = 8;
@@ -6943,6 +6979,7 @@
         for (i = 0; i < pool.length; i++) {
           var c = claims[pool[i]];
           w = Math.exp(-Math.abs((c.level || 2) - target) * 1.3);
+          if (!unused(c)) w *= 0.35;   /* a question asked before only when the fresh ones are far off */
           if (c.words) w *= Math.exp(-Math.abs(c.words - wantWords) / (0.18 * wantWords));
           if (allStrands && a) {
             rec = a.strands[c.strand || "A.EO.1"];
@@ -7011,6 +7048,17 @@
       var ex = this.player.carryExtra || [], i;
       for (i = 0; i < ex.length; i++) if (ex[i]) out.push(ex[i]);
       return out;
+    }
+    /* v5.7.9: remember a wrong pick so the end screen can say which letter was picked and which the
+       question's key wants (a teacher checking a question sees at once what the game expected). */
+    noteWrongLetter(L) {
+      this._lastWrongLetter = L || "";
+      try { console.log("[SOL] wrong letter " + L + " on " + (this.claim && this.claim.id) + "; key: " + (this.need || []).join("+")); } catch (e) {}
+    }
+    wrongLetterNote() {
+      var L = this._lastWrongLetter, need = this.need || [];
+      if (!L || !need.length) return "";
+      return "You picked " + L + "; the answer to that question was " + need.join(" and ") + ". ";
     }
     carriedLetters() {
       return this.carriedSlips().map(function (s) { return s.letter; }).join(" + ");
@@ -8412,6 +8460,29 @@
         try { this.expiryRim.clear(); this.expiryRim.setVisible(false); } catch (e) {}
       }
     }
+    /* v5.7.9: Sol rides the sun's chariot, pulled by two horses, while the CHARIOT power lasts (the Sun Chariot
+       level's own art): the car covers Sol's legs, the horses lead the way Sol runs, and it sheds sparks. It fades out in the
+       last half second so the end of the power is easy to see. */
+    tickChariotRide() {
+      var on = (this.lockerPowerMs || 0) > 0 && this.player && !this.ended, spr = this.chariotRide;
+      if (!on) { if (spr) spr.setVisible(false); return; }
+      if (!spr || !spr.active) {
+        if (window.SolModes && SolModes.ensureChariotArt) SolModes.ensureChariotArt(this);
+        if (!this.textures.exists("md-team-0")) return;
+        spr = this.chariotRide = this.add.image(0, 0, "md-team-0").setScale(0.62).setDepth(12.5);
+      }
+      /* the horses lead the way Sol runs (left or right; up and down keep the last way) */
+      var face = this.playerFaceDir || "down", t = (this.time && this.time.now) || 0, T = (window.SolModes && SolModes.TEAM) || { w: 200, car: 45 };
+      if (face === "left") spr.setFlipX(true); else if (face === "right") spr.setFlipX(false);
+      var dir = spr.flipX ? -1 : 1, off = (T.w / 2 - T.car) * spr.scaleX;
+      spr.setVisible(true).setTexture("md-team-" + (Math.floor(t / 140) % 2));
+      spr.setAlpha(this.lockerPowerMs < 500 ? Math.max(0.2, this.lockerPowerMs / 500) : 1);
+      spr.setPosition(this.player.x + dir * off, this.player.y + 4 + Math.sin(t / 110) * 1.5);
+      this._chariotSparkAcc = (this._chariotSparkAcc || 0) + 1;
+      if (this.sparks && this._chariotSparkAcc % 6 === 0) {
+        try { this.sparks.emitParticleAt(this.player.x - dir * 30, this.player.y + 16, 1); } catch (e) {}
+      }
+    }
     tickLockerPower(step) {
       if ((this.frightWanderFlash || 0) > 0) {
         var _fwPrev = this.frightWanderFlash;
@@ -8429,6 +8500,7 @@
           if (rj && (rj.roleFlipMs || 0) > 0) rj.roleFlipMs = Math.max(0, rj.roleFlipMs - step);
         }
       }
+      this.tickChariotRide();
       if ((this.lockerPowerMs || 0) <= 0) {
         if ((this.lockerPowerFlash || 0) > 0) {
           this.lockerPowerFlash = Math.max(0, this.lockerPowerFlash - step);
@@ -15244,7 +15316,8 @@
       }
       if (this.caughtFlashTag) {
         var camW = this.cameras && this.cameras.main, livesLeftW = Math.max(0, (this.needStrikes || 3) - (this.strikes || 0));
-        this.caughtFlashTag.setText(spendSpare ? "WRONG LETTER · 1UP saved you" : (livesLeftW > 0 ? "WRONG LETTER · " + livesLeftW + " left" : "WRONG LETTER"));
+        var wlTag = this._lastWrongLetter ? "WRONG LETTER (" + this._lastWrongLetter + ")" : "WRONG LETTER";   /* v5.7.9: says which letter was picked */
+        this.caughtFlashTag.setText(spendSpare ? wlTag + " · 1UP saved you" : (livesLeftW > 0 ? wlTag + " · " + livesLeftW + " left" : wlTag));
         this.caughtFlashTag.setPosition((camW && camW.width ? camW.width : 1280) / 2, (camW && camW.height ? camW.height : 720) * 0.38);
         this.caughtFlashTag.setAlpha(1);
         this.caughtFlashTag.setVisible(true);
@@ -15349,6 +15422,7 @@
       if (!best) return;
       var ok = this.need.indexOf(best.letter) !== -1;
       if (!ok) {
+        this.noteWrongLetter(best.letter);
         this.flagWrongAlarm({ x: best.homeX != null ? best.homeX : best.x, y: best.homeY != null ? best.homeY : best.y });
         return;
       }
@@ -17041,6 +17115,7 @@
         LC = carried[ci].letter;
         if (this.need.indexOf(LC) === -1) {
           var bad = carried[ci];
+          this.noteWrongLetter(LC);
           this.flagWrongAlarm({ x: bad && bad.homeX != null ? bad.homeX : this.player.x, y: bad && bad.homeY != null ? bad.homeY : this.player.y });
           return;
         }
@@ -17309,6 +17384,7 @@
     }
 
     endRun(win) {
+      if (window.SolProgress && !this.ended) { try { SolProgress.levelEnd(!!win); } catch (eP) {} }   /* v5.13: the progress record */
       this.ended = true;
       this.player.setVelocity(0, 0);
       /* Cycle 18 refine-0547: restore timeScale on overlay */
@@ -17353,7 +17429,7 @@
       } else {
         writeSavedNight(this.night);
         document.getElementById("win-title").textContent = "Run over";
-        document.getElementById("win-msg").textContent = (this.lastStrikeReason === "wrong" ? "That wrong letter used your last life. " : "Caught in the cone. ") +
+        document.getElementById("win-msg").textContent = (this.lastStrikeReason === "wrong" ? "That wrong letter used your last life. " + this.wrongLetterNote() : "Caught in the cone. ") +
           "Wrong letters and catches both cost a life. Retry this level — the campaign stays here.";
         retryBtn.classList.remove("hidden");
         retryBtn.textContent = "Retry this level";
@@ -26664,7 +26740,7 @@
     try {
       ModeScene = SolModes.install(NightScene, {
         Input: Input,
-        setPlayScene: function (sc) { playScene = sc; },
+        setPlayScene: function (sc) { playScene = sc; progressLevelStart(sc); },   /* ModeScene.create() calls it first */
         adaptEvent: adaptEvent, pingTeacher: function (sc, st) { pingTeacher(sc, st); },
         loadUsedClaims: loadUsedClaims, loadAdapt: loadAdapt,
         readingIsVisible: readingIsVisible, hideReading: hideReading,
@@ -26674,12 +26750,42 @@
       });
     } catch (eModes) { ModeScene = null; if (window.console) console.warn("[modes] install failed", eModes); }
   }
+  /* v5.13: the progress record (js/progress.js) — a level starts when its scene is created (a retry is a new start) */
+  function progressLevelStart(sc) {
+    if (!window.SolProgress || !sc) return;
+    try {
+      SolProgress.levelStart({ family: sc.family, night: sc.night, campaign: cfg.gameMode || "ALL",
+        mode: sc.mode && sc.mode.id ? sc.mode.id : (sc.isBossLevel ? "boss" : "maze") });
+    } catch (eP) {}
+  }
+  /* play time counts only while a level is on screen and nothing pauses it */
+  function progressActive() {
+    var sc = playScene;
+    if (!sc || sc.ended || sc._finishing) return false;
+    if (sc.readOpen || sc.tutOpen || sc.codexOpen || sc.trapOpen || sc.helpOpen || sc._tabHidden) return false;
+    var play = document.getElementById("play");
+    if (!play || play.classList.contains("hidden")) return false;
+    var cards = ["overlay", "read-overlay", "tut-overlay", "codex-overlay", "trap-overlay", "char-overlay", "build-overlay", "progress-overlay", "restore-overlay", "badge-overlay", "teacher-overlay"];
+    for (var i = 0; i < cards.length; i++) { var c = document.getElementById(cards[i]); if (c && !c.classList.contains("hidden")) return false; }
+    try { if (sc.scene && sc.scene.isPaused && sc.scene.isPaused()) return false; } catch (e) {}
+    return true;
+  }
+  if (window.SolProgress) {
+    SolProgress.hook({
+      state: function () { return cfg.state || LOCKED_STATE; },
+      nick: function () { var n = document.getElementById("join-nick"); return n ? n.value : ""; },
+      active: progressActive,
+      modes: function () { return gameModeDefs().map(function (d) { return d.id; }); },
+      modeName: modeLabel
+    });
+  }
   function sceneKeyFor(n) {
     try { if (ModeScene && window.SolModes && SolModes.modeFor(n)) return "mode"; } catch (e) {}
     return "night";
   }
 
   function pingTeacher(scene, status) {
+    if (window.SolClass && SolClass.report) { try { SolClass.report(scene, status, adaptLevelLabel(scene.adapt)); } catch (eC) {} }
     var tokenEl = document.getElementById("token-pip");
     var tok = makeToken(scene.night, scene.score, scene.strikes);
     if (tokenEl) tokenEl.textContent = "Token " + tok;
@@ -26700,6 +26806,8 @@
     document.getElementById("title-screen").classList.toggle("hidden", on);
     var skill = document.getElementById("skill-screen");
     if (skill) skill.classList.add("hidden");
+    var modeScr = document.getElementById("mode-screen");
+    if (modeScr) modeScr.classList.add("hidden");
     var stateScreen = document.getElementById("state-screen");
     if (stateScreen) {
       if (!on && !cfg.state && !LOCKED_STATE) { stateScreen.classList.remove("hidden"); document.getElementById("title-screen").classList.add("hidden"); }
@@ -26732,31 +26840,35 @@
     return f ? (f.label + " · " + f.kind) : "Full review";
   }
 
+  /* v5.8: a class session (Apps Script ?class=CODE, js/classes.js) plays one grade */
+  function classGrade() { var C = window.SOL_CLASS; return C && /^(G9|G10|G11|NJ5|ODY)$/.test(C.grade || "") ? C.grade : null; }
   function selectedFamily() {
+    if (classGrade()) return classGrade();
     var el = document.querySelector("#title-screen .card.selected[data-family]:not(.hidden)");
     var st = STATE_DEFS[cfg.state];
     return (el && el.getAttribute("data-family")) || (st && st.def) || "ALL";
   }
 
-  /* v6: a single course (Virginia Algebra I). applyState keeps the family cards in sync and shows the title screen. */
+  /* v4.9: state gateway (New Jersey / Virginia). Chooses which grade cards the title screen shows. */
   function applyState(st, silent) {
     if (LOCKED_STATE) st = LOCKED_STATE;
-    if (!STATE_DEFS[st]) st = "VA";
+    if (!STATE_DEFS[st]) st = "ALG";
     cfg.state = st;
     try { localStorage.setItem(LS_STATE, st); } catch (e) {}
-    var def = STATE_DEFS[st], any = false;
+    var def = STATE_DEFS[st], any = false, cg = classGrade();
+    if (cg && def.families.indexOf(cg) !== -1) cfg.family = cg;
     document.querySelectorAll("#title-screen .card[data-family]").forEach(function (c) {
-      var fam = c.getAttribute("data-family"), ok = def.families.indexOf(fam) !== -1;
+      var fam = c.getAttribute("data-family"), ok = def.families.indexOf(fam) !== -1 && (!cg || fam === cg);
       c.classList.toggle("hidden", !ok);
       if (!ok) c.classList.remove("selected");
       if (ok && c.classList.contains("selected")) any = true;
     });
     if (!any || def.families.indexOf(cfg.family) === -1) {
-      cfg.family = def.def;
+      cfg.family = (cg && def.families.indexOf(cg) !== -1) ? cg : def.def;
       document.querySelectorAll("#title-screen .card[data-family]").forEach(function (c) { c.classList.toggle("selected", c.getAttribute("data-family") === cfg.family); });
     }
     var kick = document.getElementById("title-kicker");
-    if (kick) kick.textContent = def.kicker;
+    if (kick) kick.textContent = def.kicker + (window.SOL_CLASS ? " · Class: " + (window.SOL_CLASS.name || window.SOL_CLASS.code) : "");
     var sw = document.getElementById("btn-state");
     if (sw) { sw.textContent = def.name + " · change"; sw.classList.toggle("hidden", !!LOCKED_STATE); }
     var stateScreen = document.getElementById("state-screen"), title = document.getElementById("title-screen");
@@ -26766,10 +26878,13 @@
     }
   }
   function showStateScreen() {
-    /* v6: no gateway — go straight to the title screen with the unit cards. */
-    var skill = document.getElementById("skill-screen");
+    var stateScreen = document.getElementById("state-screen"), title = document.getElementById("title-screen"), skill = document.getElementById("skill-screen");
+    var modeScr = document.getElementById("mode-screen");
+    if (modeScr) modeScr.classList.add("hidden");
+    if (LOCKED_STATE) { if (skill) skill.classList.add("hidden"); if (stateScreen) stateScreen.classList.add("hidden"); applyState(LOCKED_STATE); return; }
+    if (title) title.classList.add("hidden");
     if (skill) skill.classList.add("hidden");
-    applyState("VA");
+    if (stateScreen) stateScreen.classList.remove("hidden");
   }
 
   function selectedStrand() {
@@ -26782,14 +26897,14 @@
     var line = document.getElementById("skill-save-line");
     var cont = document.getElementById("btn-skill-continue");
     if (!line || !cont) return;
-    if (!localStorage.getItem(LS_NIGHT)) {
-      line.textContent = "No level saved on this Chromebook yet. Start Level 1.";
+    if (!hasSavedNight()) {
+      line.textContent = "No level saved in " + modeLabel(cfg.gameMode) + " on this Chromebook yet. Start Level 1. Each game mode keeps its own level.";
       cont.classList.add("hidden");
       return;
     }
-    line.textContent = "Level " + n + " saved on this Chromebook. Itch login does not store progress.";
+    line.textContent = "Level " + n + " saved in " + modeLabel(cfg.gameMode) + " on this Chromebook. Each game mode keeps its own level.";
     cont.textContent = n > 1 ? ("Continue Level " + n) : "Continue";
-    cont.classList.toggle("hidden", n <= 1 && !localStorage.getItem(LS_NIGHT));
+    cont.classList.toggle("hidden", n <= 1 && !hasSavedNight());
   }
 
   function renderSkillCards(family) {
@@ -26815,6 +26930,84 @@
     });
   }
 
+  /* ── v5.8.3: the game mode screen, between the grade and the skill ── */
+  var GAME_MODE_DEFS = [
+    { id: "ALL", kind: "All modes", name: "Mixed", meta: "The full campaign: the maze on odd levels and Fenrir's boss levels, a shooter level on the even ones." },
+    { id: "maze", kind: "Maze", name: "Labyrinth", meta: "Sneak past Hati, grab the right letter and get out through EXIT · SAFE. Every level is the maze." },
+    { id: "raid", kind: "Galaga style", name: "Eagle Swoop", meta: "Shoot the eagle carrying the right letter while the flock dives at you." },
+    { id: "rocks", kind: "Asteroids style", name: "Rune Rocks", meta: "Pull the rock with the right letter in with your beam and blast the rest." },
+    { id: "sky", kind: "Flying shooter", name: "Sun Chariot", meta: "Fly the sun's chariot and shoot the right orb through the gap in its shield." },
+    { id: "ring", kind: "Arena", name: "Wolf Ring", meta: "Keep the wolves off and shoot the right runestone when it rises." },
+    /* v5.12: Virginia and New Jersey only (js/modes.js, MODES.worms) */
+    { id: "worms", kind: "Centipede style", name: "Root Worms", meta: "Shoot the glowing worm segment with the right letter as the worms wind down through the mushrooms.", noOdy: true }
+  ];
+  /* v5.10: the Odyssey build only (window.SOL_STATE === "ODY") */
+  GAME_MODE_DEFS.push({ id: "strait", kind: "Steer the strait", name: "Scylla and Charybdis", meta: "Steer Odysseus's ship through the gaps in the rocks and the gate with the right letter, to the end of the strait, while Charybdis pulls and Scylla strikes.", ody: true });
+  /* v5.11: four more Odyssey modes, each in its own file (js/mode-ram.js, mode-bow.js, mode-raft.js, mode-row.js) */
+  GAME_MODE_DEFS.push(
+    { id: "ram", kind: "Sneak out of the cave", name: "Under the Ram", meta: "Cling under a ram and slip out of the Cyclops's cave past blind Polyphemus's groping hands — ride out on the ram with the right letter.", ody: true },
+    { id: "bow", kind: "Archery", name: "Bend the Bow", meta: "String Odysseus's great bow and shoot an arrow through the twelve axe heads — the row with the right letter.", ody: true },
+    { id: "raft", kind: "Ride the waves", name: "Calypso's Raft", meta: "Sail the raft from Ogygia, steer by the stars and ride Poseidon's waves to the right letter.", ody: true },
+    { id: "row", kind: "Keep the beat", name: "Row Past the Sirens", meta: "Keep the crew rowing to the beat while Odysseus, tied to the mast, strains toward the Sirens — row to the right letter.", ody: true }
+  );
+  /* the cards this build offers: the Odyssey-only modes appear only in the Odyssey build, and the modes
+     marked noOdy (v5.12: Root Worms) only in the others; a saved pick of a card not offered falls back to All */
+  function gameModeDefs() {
+    var ody = typeof window !== "undefined" && window.SOL_STATE === "ODY";
+    return GAME_MODE_DEFS.filter(function (d) { return ody ? !d.noOdy : !d.ody; });
+  }
+  function readGameMode() {
+    var m = "ALL";
+    try { m = localStorage.getItem(LS_GAMEMODE) || "ALL"; } catch (e) {}
+    return gameModeDefs().some(function (d) { return d.id === m; }) ? m : "ALL";
+  }
+  function applyGameMode(m) {
+    if (!gameModeDefs().some(function (d) { return d.id === m; })) m = "ALL";
+    cfg.gameMode = m;
+    if (window.SolModes) SolModes.only = m === "ALL" ? null : m;
+  }
+  applyGameMode(readGameMode());
+  function gameModeName(m) {
+    var d = GAME_MODE_DEFS.filter(function (x) { return x.id === m; })[0];
+    return d && d.id !== "ALL" ? d.name : "All modes";
+  }
+  /* v5.15: a mode's name in a sentence ("Level 5 saved in Eagle Swoop") */
+  function modeLabel(m) { var d = GAME_MODE_DEFS.filter(function (x) { return x.id === m; })[0]; return d ? (d.id === "ALL" ? "Mixed (all modes)" : d.name) : "Mixed (all modes)"; }
+  function showModeScreen() {
+    cfg.family = selectedFamily();
+    var title = document.getElementById("title-screen"), skill = document.getElementById("skill-screen"), scr = document.getElementById("mode-screen");
+    if (title) title.classList.add("hidden");
+    if (skill) skill.classList.add("hidden");
+    if (scr) scr.classList.remove("hidden");
+    var kicker = document.getElementById("mode-kicker");
+    if (kicker) kicker.textContent = gradeLabel(cfg.family) + " · game mode";
+    var host = document.getElementById("mode-packs");
+    if (!host) return;
+    var want = readGameMode();
+    host.innerHTML = "";
+    gameModeDefs().forEach(function (d) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = d.id === want ? "card selected" : "card";
+      btn.setAttribute("data-gamemode", d.id);
+      btn.innerHTML = '<span class="kind">' + d.kind + '</span><span class="name">' + d.name + '</span><span class="meta">' + d.meta + '</span>';
+      bindTap(btn, function () {
+        host.querySelectorAll(".card").forEach(function (c) { c.classList.remove("selected"); });
+        btn.classList.add("selected");
+        try { localStorage.setItem(LS_GAMEMODE, d.id); } catch (e) {}
+        applyGameMode(d.id);
+        showSkillScreen(1);
+      });
+      host.appendChild(btn);
+    });
+  }
+  function hideModeScreen() {
+    var scr = document.getElementById("mode-screen"), title = document.getElementById("title-screen");
+    if (scr) scr.classList.add("hidden");
+    if (title) title.classList.remove("hidden");
+    refreshSaveLine();
+  }
+
   function showSkillScreen(nightHint) {
     pendingNight = nightHint || 1;
     cfg.family = selectedFamily();
@@ -26825,20 +27018,17 @@
     } catch (e2) {}
     var title = document.getElementById("title-screen");
     var skill = document.getElementById("skill-screen");
+    var modeScr = document.getElementById("mode-screen");
     if (title) title.classList.add("hidden");
+    if (modeScr) modeScr.classList.add("hidden");
     if (skill) skill.classList.remove("hidden");
     var kicker = document.getElementById("skill-kicker");
-    if (kicker) kicker.textContent = gradeLabel(cfg.family) + " · skill focus";
+    var ody = cfg.family === "ODY", skT = document.getElementById("skill-title"), skG = document.getElementById("skill-tag");
+    if (kicker) kicker.textContent = gradeLabel(cfg.family) + " · " + gameModeName(cfg.gameMode) + (ody ? " · episode" : " · skill focus");
+    if (skT) skT.textContent = ody ? "Pick an episode" : "Pick a skill";
+    if (skG) skG.textContent = ody ? "Choose the episode your class is reading, or play them all mixed." : "Choose a standard to focus on for this level, or play with the whole unit mixed.";
     renderSkillCards(cfg.family);
     refreshSkillSaveLine();
-  }
-
-  function hideSkillScreen() {
-    var skill = document.getElementById("skill-screen");
-    var title = document.getElementById("title-screen");
-    if (skill) skill.classList.add("hidden");
-    if (title) title.classList.remove("hidden");
-    refreshSaveLine();
   }
 
   function bootPhaser() {
@@ -27250,15 +27440,15 @@
     var line = document.getElementById("save-line");
     var cont = document.getElementById("btn-continue");
     if (!line) return;
-    if (!localStorage.getItem(LS_NIGHT)) {
-      line.textContent = "No level saved on this Chromebook yet. Tap a unit to start Level 1. Itch login does not store progress.";
+    if (!hasSavedNight()) {
+      line.textContent = "No level saved on this Chromebook yet. Tap a unit to start Level 1. Each game mode keeps its own level.";
       if (cont) cont.classList.add("hidden");
       return;
     }
-    line.textContent = "Level " + n + " saved on this Chromebook. Tap a unit, then Continue on the skill screen. Itch login does not store progress.";
+    line.textContent = "Level " + n + " saved in " + modeLabel(cfg.gameMode) + " on this Chromebook. Tap a unit, then pick a game mode: each mode keeps its own level.";
     if (cont) {
       cont.textContent = n > 1 ? ("Continue Level " + n) : "Continue";
-      cont.classList.toggle("hidden", n <= 1 && !localStorage.getItem(LS_NIGHT));
+      cont.classList.toggle("hidden", n <= 1 && !hasSavedNight());
     }
   }
 
@@ -27424,6 +27614,12 @@
     el.addEventListener("pointerup", go);
   }
 
+  /* v4.9: state gateway */
+  document.querySelectorAll("#state-screen .card[data-state]").forEach(function (card) {
+    bindTap(card, function () { applyState(card.getAttribute("data-state")); refreshSaveLine(); });
+  });
+  var btnState = document.getElementById("btn-state");
+  if (btnState) bindTap(btnState, function () { showStateScreen(); });
   var btnShop = document.getElementById("btn-shop");
   if (btnShop) bindTap(btnShop, function () {
     if (!window.SolBuild || !SolBuild.showShop) return;
@@ -27435,14 +27631,16 @@
   });
 
   /* Title Start/Continue removed — grade card opens skill screen. */
-  bindTap(document.getElementById("btn-skill-back"), function () { hideSkillScreen(); });
+  /* v5.8.3: Back on the skill screen goes to the game mode screen; Back there goes to the grades */
+  bindTap(document.getElementById("btn-skill-back"), function () { showModeScreen(); });
+  bindTap(document.getElementById("btn-mode-back"), function () { hideModeScreen(); });
   document.querySelectorAll("#title-screen .card[data-family]").forEach(function (card) {
     bindTap(card, function () {
       document.querySelectorAll("#title-screen .card[data-family]").forEach(function (c) { c.classList.remove("selected"); });
       card.classList.add("selected");
       cfg.family = card.getAttribute("data-family") || "ALL";
       try { localStorage.setItem(LS_FAMILY, cfg.family); } catch (e) {}
-      showSkillScreen(1);
+      showModeScreen();
     });
   });
   bindTap(document.getElementById("btn-skill-start"), function () { openCharPicker(1, false); });
@@ -27495,9 +27693,18 @@
     }
     var strand = localStorage.getItem(LS_STRAND);
     if (strand) cfg.strand = strand;
+    /* v4.9.1: the gateway is always the first screen; the last choice is only pre-highlighted. */
+    var savedState = localStorage.getItem(LS_STATE);
+    if (!(savedState && STATE_DEFS[savedState])) savedState = fam === "NJ5" ? "NJ" : fam === "ODY" ? "ODY" : (fam ? "VA" : null);
+    if (LOCKED_STATE) savedState = null;
+    if (savedState) {
+      applyState(savedState, true);
+      cfg.state = null;
+      document.querySelectorAll("#state-screen .card[data-state]").forEach(function (c) { c.classList.toggle("selected", c.getAttribute("data-state") === savedState); });
+    }
   } catch (e) {}
   showStateScreen();
-  if (LOCKED_STATE) { try { document.title = "SOL Labyrinth · " + STATE_DEFS[LOCKED_STATE].name; } catch (eT) {} }
+  if (LOCKED_STATE) { try { document.title = "SOL Lab · " + STATE_DEFS[LOCKED_STATE].name; } catch (eT) {} }
 
   bindPads();
   bindVisibilityResume();

@@ -221,6 +221,15 @@
   function packsList() { return (data && data.packs) || []; }
   function economy() { var e = (data && data.economy) || {}; return { answer: e.answer || 10, perfectNight: e.perfectNight || 25, bonusMin: e.bonusMin || 3, bonusMax: e.bonusMax || 12, bonusPer: e.bonusPer || 500 }; }
   function priceOf(p) { return p ? (p.price || [0, 40, 80, 140, 220][p.tier || 1] || 40) : 0; }
+  /* v5.7.6: Fenrir's monuments (pieces with "boss": realm id) are never sold — only beating Fenrir gives one */
+  function isTrophy(p) { return !!(p && p.boss); }
+  function realmName(id) {
+    id = String(id || "");
+    /* v5.10: the realm's shown name (the Odyssey build renames the realms to islands in js/odyssey.js) */
+    var R = window.SolRealms && window.SolRealms.REALMS, i;
+    if (R) for (i = 0; i < R.length; i++) if (R[i].id === id && R[i].name) return R[i].name;
+    return id ? id.charAt(0).toUpperCase() + id.slice(1) : "a realm";
+  }
   function bandFor(k) { return Math.max(1, Math.min(4, Math.ceil(k / 5))); }   /* reward 1-5 → tier 1 … 16-20 → tier 4 */
   function nextRewardNight() { var n; for (n = EVERY; n <= EVERY * TOTAL; n += EVERY) if (!save.rewards[n]) return n; return null; }
   function wallLevel() { var t = themeDef(save.theme); return (t && t.wallLevel) || 8; }
@@ -647,7 +656,8 @@
       it = { p: p, pk: pk, style: style, x: c.x, y: c.y + n * cellH() / 2, a: 1, depth: ctr.u + ctr.v + n - 1 + (isTopper(p) ? 0.5 : 0), cx: cx, cy: cy, n: n, kit: true, base: base, ign: ignore || null, parts: partsFor(p, cx, cy, ignore, pk ? pk.rot : 0),
         key: keyOf(pk) || ("g" + cx + "," + cy), prot: pk ? (pk.rot || 0) : 0, run: isRun(p), hostKey: host ? keyOf(host) : "" };
     } else {
-      it = { p: p, pk: pk, style: style, x: c.x, y: c.y, a: 1, depth: ctr.u + ctr.v + n, cx: cx, cy: cy, n: n };
+      /* v5.7.9: a town piece is one picture, so it has two ways to face: its turn mirrors it */
+      it = { p: p, pk: pk, style: style, x: c.x, y: c.y, a: 1, depth: ctr.u + ctr.v + n, cx: cx, cy: cy, n: n, flip: !!(pk && (pk.rot || 0) % 2) };
     }
     if (extra) for (k in extra) it[k] = extra[k];
     return it;
@@ -899,7 +909,7 @@
     if (it.n && (it.ghost || it.sel)) drawFootprint(ctx, it, fit);
     if (c.ok) {
       iw = c.img.naturalWidth || p.w || 1; ih = c.img.naturalHeight || p.h || 1; dw = iw * s / fit.base; dh = ih * s / fit.base;
-      if (!it.flip) { ctx.fillStyle = "rgba(0,0,0,.16)"; ellipse(ctx, x, y + 2, dw * 0.4, dw * 0.1); }
+      if (!(it.ring && it.flip)) { ctx.fillStyle = "rgba(0,0,0,.16)"; ellipse(ctx, x, y + 2, dw * 0.4, dw * 0.1); }
       if (it.flip) { ctx.translate(x, y); ctx.scale(-1, 1); ctx.drawImage(c.img, -dw * (1 - ax), -dh * ay, dw, dh); }
       else ctx.drawImage(c.img, x - dw * ax, y - dh * ay, dw, dh);
     } else if (c.ok === false || !it.flip) {
@@ -921,7 +931,9 @@
     paintBg(ctx, W, H, save.theme || "village");
     if (!save.theme) { banner(ctx, W, H, loadState === "ok" ? "Choose a Town or a Castle to start building" : "Build data not available"); lastFit = null; return; }
     items = sceneItems();
-    fit = lastFit = fitScene(items, W, H);
+    /* v5.7.9: the view fits the pieces, so a dragged piece used to pull the whole view along with it (a lone
+       house stayed put while the ground slid under it). While a piece is dragged the view holds still. */
+    fit = lastFit = (cur && cur.drag && cur.drag.fit) ? cur.drag.fit : fitScene(items, W, H);
     drawGround(ctx, fit);
     /* v5.5: a kit theme draws its pieces in 3D when it can (js/build3d.js), so they turn with the map by the degree */
     var td = window.SolBuild3D, use3d = isKit() && td && td.ready() && !redraw.force2d;
@@ -984,6 +996,18 @@
     });
     return bestFoot || bestBox;
   }
+  /* where a piece's footprint centre lands on the canvas under a fit */
+  function pickScreenPos(pk, cx, cy, fit) {
+    var p = pieceById(pk.piece), n = cellsOf(p), ctr = rotPt(cx + n / 2, cy + n / 2), c = cellXY(ctr.u, ctr.v);
+    return fit ? { x: fit.ox + c.x * fit.s / fit.base, y: fit.oy + c.y * fit.s / fit.base } : null;
+  }
+  /* after a drop the view refits to the pieces; pan it so the dropped piece stays where the student let go */
+  function holdOnScreen(pk, was) {
+    if (!was || !ui || !ui.canvas) return;
+    var cv = ui.canvas, nf = fitScene(sceneItems(), cv._w || 1, cv._h || 1), now = pickScreenPos(pk, pk.cx, pk.cy, nf);
+    if (!now) return;
+    view().px = (view().px || 0) + (was.x - now.x); view().py = (view().py || 0) + (was.y - now.y);
+  }
   function dragStep() { return step === "place" || step === "done" || step === "gallery" || step === "shop"; }
   function draggable(pk) { return !!pk && !!cur && dragStep(); }
   function onPointerDown(e) {
@@ -992,7 +1016,7 @@
     if (e.button === 2) return;                                             /* right button: contextmenu turns the piece */
     var pk = hitPick(pt), cell = pxToCell(pt.x, pt.y), wpt = unrotPt(cell.u, cell.v);
     if (pk) {
-      cur.drag = { pk: pk, id: e.pointerId, du: wpt.x - pk.cx, dv: wpt.y - pk.cy, cx: pk.cx, cy: pk.cy, ok: true, moved: false, sx: e.clientX, sy: e.clientY };
+      cur.drag = { pk: pk, id: e.pointerId, du: wpt.x - pk.cx, dv: wpt.y - pk.cy, cx: pk.cx, cy: pk.cy, ok: true, moved: false, sx: e.clientX, sy: e.clientY, fit: lastFit };
     } else {
       cur.pan = { id: e.pointerId, sx: e.clientX, sy: e.clientY, px: view().px || 0, py: view().py || 0, moved: false };
     }
@@ -1031,7 +1055,7 @@
     if (!cur.drag || cur.drag.id !== e.pointerId) return;
     var d = cur.drag; cur.drag = null;
     if (!d.moved) { cur.sel = cur.sel === d.pk ? null : d.pk; fillPieceBar(); redraw(); return; }
-    if (d.ok && (d.cx !== d.pk.cx || d.cy !== d.pk.cy)) { d.pk.cx = d.cx; d.pk.cy = d.cy; persist(); ui.note.textContent = joinedNote(d.pk); if (step === "gallery") ui.badge.textContent = galleryBadge(); }
+    if (d.ok && (d.cx !== d.pk.cx || d.cy !== d.pk.cy)) { var was = pickScreenPos(d.pk, d.cx, d.cy, d.fit); d.pk.cx = d.cx; d.pk.cy = d.cy; holdOnScreen(d.pk, was); persist(); ui.note.textContent = joinedNote(d.pk); if (step === "gallery") ui.badge.textContent = galleryBadge(); }
     else if (!d.ok) ui.note.textContent = isTopper(pieceById(d.pk.piece)) ? "Flags and banners go on top of a tower that has none — it went back." : "That spot is taken — the piece went back.";
     redraw();
   }
@@ -1058,11 +1082,13 @@
   var TWO_WAY = { wall: 1, gate: 1, doorway: 1, hedge: 1, "hedge-gate": 1, "c-fence": 1, "fence-gate": 1, "rail-fence": 1 };
   function turnPick(pk) {
     if (!pk) return;
-    var p = pieceById(pk.piece), two = !!(p && p.auto && TWO_WAY[p.id]);
-    pk.rot = two ? ((pk.rot || 0) + 1) & 1 : ((pk.rot || 0) + 1) & 3;
+    var p = pieceById(pk.piece), two = !!(p && p.auto && TWO_WAY[p.id]), pic = !isKit();
+    pk.rot = (two || pic) ? ((pk.rot || 0) + 1) & 1 : ((pk.rot || 0) + 1) & 3;
     cur.sel = pk; persist(); fillPieceBar(); redraw();
     var joined = two && isRun(p) && runDirs(p, pk.cx, pk.cy, pk).length > 0;
-    ui.note.textContent = joined
+    ui.note.textContent = pic
+      ? ((p ? p.name : "Piece") + " now faces the other way. Town buildings are pictures, so each has two ways to face; right-click (or Turn) again to switch back.")
+      : joined
       ? (p.name + " follows the pieces it joins, so it keeps its line" + (p.id === "stairs-wall" ? "; its stairs moved to the other side." : ". Move it away from them to run it the other way."))
       : two ? (p.name + " now runs the other way. A wall or gate looks the same from behind, so it has two ways to face; right-click (or Turn) again to switch back.")
       : ((p ? p.name : "Piece") + " turned. Right-click (or Turn) again for the next quarter turn.");
@@ -1317,12 +1343,14 @@
     items.forEach(function (p) {
       var have = owned(p.id), b = btn("build-pitem" + (have ? "" : " locked"));
       b.appendChild(picFor(p, dom)); b.appendChild(el("span", "name", p.name || p.id));
-      b.appendChild(el("span", "tag", have ? "Tap to place" : priceOf(p) + " coins"));
+      b.appendChild(el("span", "tag", have ? "Tap to place" : isTrophy(p) ? "Beat Fenrir in " + realmName(p.boss) : priceOf(p) + " coins"));
+      if (isTrophy(p)) b.classList.add("trophy");
       if (perkOf(p.id)) { b.appendChild(el("span", "perkmark", "★ " + perkOf(p.id).name)); b.classList.add("has-perk"); }
       b.title = (p.desc || "") + (perkOf(p.id) ? " " + perkLine(p) : "");
       b.addEventListener("click", function () {
         if (step !== "gallery") return;
         if (have) { addPiece(p, null, "free"); return; }
+        if (isTrophy(p)) { ui.note.textContent = "The " + p.name + " can't be bought. Beat Fenrir on the last level of " + realmName(p.boss) + " to win it."; return; }
         ui.note.textContent = (p.name || "That") + " is in the shop for " + priceOf(p) + " coins. Buy it once, place it as often as you like.";
         openShopFromGallery(p.role === "deco" ? "deco" : "build");
       });
@@ -1481,7 +1509,7 @@
     if (cur.shop) {
       if (!owned(cur.piece.id)) {
         var cost = priceOf(cur.piece);
-        if (save.coins < cost) { ui.note.textContent = "Not enough coins."; return; }
+        if (isTrophy(cur.piece) || save.coins < cost) { ui.note.textContent = "Not enough coins."; return; }
         save.coins -= cost;
       }
     } else if (save.rewards[cur.night]) return;
@@ -1553,7 +1581,7 @@
       builds = [pieceById("wall"), pieceById("gate")].filter(Boolean)
         .concat(piecesOf(save.theme, "module").filter(function (p) { return p.id !== "wall" && p.id !== "gate" && (p.tier || 1) <= band; }).sort(order))
         .concat(piecesOf(save.theme, "core").filter(function (p) { return !owned(p.id); }));
-      decos = piecesOf(save.theme, "deco").filter(function (p) { return (p.tier || 1) <= band; }).sort(order);
+      decos = piecesOf(save.theme, "deco").filter(function (p) { return (p.tier || 1) <= band && !isTrophy(p); }).sort(order);
     } else {
       builds = piecesOf(save.theme, "module").filter(function (p) { return (p.tier || 1) <= band; }).sort(order);
       decos = piecesOf(save.theme, "deco").slice().sort(order);
@@ -1571,6 +1599,7 @@
   function buyDeco(p) {
     if (owned(p.id)) { var pk = addPiece(p, null, "free"); return !!pk; }
     var cost = priceOf(p);
+    if (isTrophy(p)) { ui.note.textContent = "Only beating Fenrir gives the " + p.name + "."; return false; }
     if (save.coins < cost) { ui.note.textContent = "Not enough coins for the " + p.name + "."; return false; }
     var pos = autoPlace(cellsOf(p), null, p);
     if (!pos) { ui.note.textContent = "Every tower already has a flag — build another tower first."; return false; }
@@ -1757,6 +1786,24 @@
     return save.coins;
   }
   function coins() { if (!save) save = loadSave(); return save.coins || 0; }
+  /* v5.7.6: beating Fenrir in a realm unlocks that realm's monument and sets one on the field.
+     Returns the monument's name, or null (no Castle yet, a Town, or build data not loaded). */
+  function grantTrophy(realmId) {
+    if (!save) save = loadSave();
+    if (loadState !== "ok" || !data || !isKit()) return null;
+    var p = ((data && data.pieces) || []).filter(function (q) { return q.boss === realmId && q.theme === save.theme; })[0];
+    if (!p) return null;
+    if (!owned(p.id)) {
+      var pos = autoPlace(cellsOf(p), null, p) || autoPlace(1, null, null);
+      if (pos) save.picks.push({ night: 0, piece: p.id, style: "", src: "boss", deco: true, ord: save.picks.length, cx: pos.cx, cy: pos.cy });
+      unlock(p.id); persist();
+    }
+    return p.name;
+  }
+  function trophies() {
+    if (!save) save = loadSave();
+    return ((data && data.pieces) || []).filter(function (q) { return q.boss && q.theme === save.theme; }).map(function (q) { return { id: q.id, realm: q.boss, name: q.name, owned: owned(q.id) }; });
+  }
   function state() {
     if (!save) save = loadSave();
     var nm = save.theme ? themeName(save.theme) : null, nb = save.picks.filter(function (p) { return !p.deco; }).length;
@@ -1771,6 +1818,8 @@
   window.SolBuild = {
     init: init, rewardDue: rewardDue, showReward: showReward, showGallery: showGallery, showShop: showShop,
     addCoins: addCoins, coins: coins, economy: economy,
+    grantTrophy: grantTrophy, trophies: trophies,
+    _shopDecos: function () { if (!save) save = loadSave(); return save.theme ? shopOffers().decos.map(function (p) { return p.id; }) : []; },
     close: closeOverlay, isOpen: function () { return !!mode; },
     exportCode: exportCode, importCode: importCode, state: state,
     perks: activePerks, perkOf: perkOf, perkTable: function () { return PERKS.slice(); },

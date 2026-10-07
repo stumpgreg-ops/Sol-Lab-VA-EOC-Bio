@@ -10,7 +10,7 @@ var fs = require("fs"), path = require("path");
 var root = path.join(__dirname, "..");
 var args = process.argv.slice(2), withMusic = args.indexOf("--with-music") !== -1;
 var out = args.filter(function (a) { return a[0] !== "-"; })[0] || path.join(root, "dist", "sol-lab-va-algebra.html");
-var MIME = { png: "image/png", jpg: "image/jpeg", jpeg: "image/jpeg", gif: "image/gif", svg: "image/svg+xml", json: "application/json", mp3: "audio/mpeg", webp: "image/webp" };
+var MIME = { html: "text/html", png: "image/png", jpg: "image/jpeg", jpeg: "image/jpeg", gif: "image/gif", svg: "image/svg+xml", json: "application/json", mp3: "audio/mpeg", webp: "image/webp" };
 var SKIP = [/^assets\/build\/models\//, /\.(glb|obj|mtl)$/];
 if (!withMusic) SKIP.push(/^assets\/music\//);
 var DROP_SCRIPTS = [/js\/vendor\/three\.min\.js/];
@@ -27,6 +27,7 @@ walk(path.join(root, "assets"), []).forEach(function (f) {
   files[r] = dataUri(f); bytes += fs.statSync(f).size; count++;
 });
 
+walk(path.join(root, "teacher"), []).forEach(function (f) { files[rel(f)] = dataUri(f); count++; });   /* the teacher screen (js/teacher-screen.js fetches teacher/<STATE>.html) */
 var html = fs.readFileSync(path.join(root, "index.html"), "utf8");
 /* stylesheets */
 html = html.replace(/<link rel="stylesheet" href="([^"]+)"\s*\/?>/g, function (m, href) {

@@ -83,6 +83,10 @@ var isDir = fs.existsSync(target) && fs.statSync(target).isDirectory();
 
   /* a Functions level */
   await page.click('#title-screen .card[data-family="FN"]');
+  /* v1.1.0 (engine v5.8.3+): the game-mode screen sits between the unit and the skill */
+  await page.waitForSelector("#mode-screen:not(.hidden)");
+  check((await page.$$eval("#mode-packs .card[data-gamemode]", function (l) { return l.length; })) === 7, "seven game-mode cards (Mixed + 6 modes, no Odyssey ones)");
+  await page.click('#mode-packs .card[data-gamemode="ALL"]');
   await page.waitForSelector("#skill-screen:not(.hidden)");
   await page.click("#btn-skill-start");
   await page.waitForTimeout(300);

@@ -33,6 +33,7 @@ var files = {};   /* path -> Buffer */
 files["__page.html"] = Buffer.from(page, "utf8");
 css.forEach(function (p) { files[p] = fs.readFileSync(path.join(root, p)); });
 scripts.forEach(function (s) { if (s.src) files[s.src] = fs.readFileSync(path.join(root, s.src)); });
+walk(path.join(root, "teacher"), []).forEach(function (f) { files[rel(f)] = fs.readFileSync(f); });   /* teacher/<STATE>.html, fetched by js/teacher-screen.js */
 walk(path.join(root, "assets"), []).forEach(function (f) {
   var r = rel(f);
   if (!withMusic && /^assets\/music\//.test(r)) return;
@@ -116,11 +117,14 @@ fs.writeFileSync(path.join(outDir, NAME + "-game.js"),
 var starter = fs.readFileSync(path.join(__dirname, "canvas-starter.html"), "utf8").split("{{TITLE}}").join(TITLE).split("{{NAME}}").join(NAME);
 fs.writeFileSync(path.join(outDir, NAME + ".html"), starter);
 
+/* the teacher's READ ME (tools/canvas-readme.txt) goes in the zip, not in Canvas */
+fs.writeFileSync(path.join(outDir, "READ ME FIRST - Canvas.txt"), fs.readFileSync(path.join(__dirname, "canvas-readme.txt"), "utf8")
+  .split("{{NAME}}").join(NAME).split("{{VERSION}}").join(version).split("{{LAST}}").join(String(parts.length).padStart(2, "0")));
 /* one zip to hand a teacher: unzip, upload every file to one Canvas folder */
 var zipPath = path.join(path.dirname(outDir), NAME + "-Canvas.zip");
 try { fs.rmSync(zipPath, { force: true }); cp.execFileSync("zip", ["-q", "-j", "-X", zipPath].concat(fs.readdirSync(outDir).map(function (f) { return path.join(outDir, f); }))); console.log(rel(zipPath) + ": " + (fs.statSync(zipPath).size / 1048576).toFixed(1) + " MB"); }
 catch (e) { console.warn("zip not written (" + e.message.split("\n")[0] + ")"); }
 var total = fs.readdirSync(outDir).reduce(function (n, f) { return n + fs.statSync(path.join(outDir, f)).size; }, 0);
-console.log(rel(outDir) + "/: " + (parts.length + 2) + " files, " + (total / 1048576).toFixed(1) + " MB on disk");
+console.log(rel(outDir) + "/: " + (parts.length + 3) + " files (one is the READ ME), " + (total / 1048576).toFixed(1) + " MB on disk");
 console.log("  bundle: " + order.length + " game files, " + (raw.length / 1048576).toFixed(1) + " MB raw -> " + (gz.length / 1048576).toFixed(1) + " MB gzip (hash " + hash + ")");
 console.log("  webp: " + webpN + " PNGs converted, saved " + (webpSaved / 1048576).toFixed(1) + " MB · deltas: " + Object.keys(deltas).length + " models, saved " + (deltaSaved / 1048576).toFixed(1) + " MB" + (withMusic ? " · with music" : " · no music"));
