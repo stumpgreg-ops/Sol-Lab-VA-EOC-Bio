@@ -1223,7 +1223,7 @@ var srv = http.createServer(function (req, res) {
   });
   console.log("worms", JSON.stringify(worms));
   var wr = worms.run || {};
-  check(!wr.err && wr.key === "mode" && wr.mode === "worms" && wr.tier === 1 && wr.act === "FIRE" && /Root Worms/.test(wr.card) && /New this time:.*wolf prowls/.test(wr.card) && /Controls:/.test(wr.card) && /passage stays in the side panel|both glowing segments/.test(wr.hint) && !/lab notes/i.test(wr.card + wr.hint),
+  check(!wr.err && wr.key === "mode" && wr.mode === "worms" && wr.tier === 1 && wr.act === "FIRE" && /Root Worms/.test(wr.card) && /New this time:.*wolf prowls/.test(wr.card) && /Controls:/.test(wr.card) && /lab notes stay in the side panel|passage stays in the side panel|both glowing segments/.test(wr.hint) && !/lab notes/i.test(wr.card + wr.hint),
     "Root Worms (v5.12): level 18 plays it in the shooter scene, and its card explains it with this realm's news (a wolf): " + JSON.stringify({ err: wr.err, key: wr.key, mode: wr.mode, tier: wr.tier, act: wr.act }));
   check(wr.letters && wr.letters.split("").sort().join("") === wr.choices && wr.len >= 11, "Root Worms: the lead worm carries every answer letter on its glowing segments: " + JSON.stringify({ len: wr.len, letters: wr.letters, choices: wr.choices }));
   check(wr.wrong && wr.wrong.strikes === 1 && wr.wrong.gone && wr.wrong.shroom && wr.wrong.split === 1, "Root Worms: a wrong glowing segment costs a life, is gone, leaves a mushroom and splits the worm: " + JSON.stringify(wr.wrong));
