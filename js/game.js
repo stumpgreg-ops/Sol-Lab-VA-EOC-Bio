@@ -3369,51 +3369,24 @@
     return "N" + pad3(night) + "E" + (extracts || 0) + "S" + (strikes || 0);
   }
 
-  /* One idea per card. The old tutorial was a single card with five sentences of
-     rules jammed together, which is unreadable at a glance and taught nothing.
-     Traps are deliberately NOT explained here — that is what the TAB field guide
-     is for, and the last card teaches TAB instead. */
+  /* v6.5: the whole tutorial on ONE card. It used to be nine cards behind "Tap to continue", and students clicked
+     Skip intro on the first one and never learned how to play. Each line is one rule; the field guide (TAB) still
+     explains the traps. The card fits the 500-pixel Canvas frame (js/fit.js shrinks it if a frame is tighter). */
   function tutorialCards(scene) {
     var need = (scene && scene.needExtracts) || 5;
     var strikes = (scene && scene.needStrikes) || 3;
-    return [
-      {
-        title: "You are Sol",
-        body: "You are in the school after dark. Move with the arrow keys, WASD, or the pad on screen."
-      },
-      {
-        title: "Read the question",
-        body: "The lab notes and the question are in the panel on the left. Read them before you move — the answer is the only thing that gets you out."
-      },
-      {
-        title: "Go get your answer",
-        body: "Letters A, B, C and D are sitting out on the map. Walk onto the one you think is right and press SPACE to pick it up."
-      },
-      {
-        title: "Carry it to the EXIT",
-        body: "Take your letter to the green EXIT · SAFE booth. That banks one extract. You need " + need + " to finish the level."
-      },
-      {
-        title: "Right answer, real reward",
-        body: "A correct letter calls Sol's CHARIOT — for a few seconds you can run straight over the wolves. A wrong letter sets off the alarm and costs you a life, just like a catch."
-      },
-      {
-        title: "The Hati hunt you",
-        body: "Wolves patrol the halls. If one catches you, that is a strike. " + strikes + " strikes and the level is over."
-      },
-      {
-        title: "Two safe booths",
-        body: "START and EXIT are safe. The Hati cannot see you inside either one. Duck in when a chase gets close."
-      },
-      {
-        title: "Sprint is loud",
-        body: "Hold SPRINT to run. You are faster, but the wolves hear you coming — so save it for when you are already caught out."
-      },
-      {
-        title: "Press TAB any time",
-        body: "The halls are full of pads and pickups. Press TAB to open your field guide: it lists everything you have unlocked, what each one does to you, and what is still coming. The game pauses while it is open — check it whenever you see something new."
-      }
-    ];
+    return [{
+      title: "How to play",
+      html: '<ul class="tut-list">' +
+        "<li><b>Move</b> with the arrow keys, WASD, or the pad on screen.</li>" +
+        "<li><b>Read</b> the lab notes and the question in the panel on the left.</li>" +
+        "<li><b>Grab the right letter</b> (A, B, C or D) on the map: walk onto it and press SPACE.</li>" +
+        "<li><b>Carry it to the green EXIT · SAFE booth.</b> " + need + " right answers finish the level.</li>" +
+        "<li><b>A right letter</b> calls Sol's CHARIOT: run over the wolves for a few seconds. <b>A wrong letter</b> costs a life.</li>" +
+        "<li><b>The Hati wolves hunt you.</b> A catch is a strike; " + strikes + " strikes end the level. START and EXIT are safe booths.</li>" +
+        "<li><b>SPRINT</b> is fast but loud. <b>TAB</b> opens the field guide (the game pauses). <b>Menu</b> (in this side panel) or <b>Esc</b> pauses or leaves the level.</li>" +
+        "</ul>"
+    }];
   }
 
   /* Preferred security-cam mounts: corridor junctions / pathDots / tunnel mouths /
@@ -25820,13 +25793,11 @@
       revealTutDom(card, this.tutIndex, this.tutList.length, false);
       var total = (this.tutList && this.tutList.length) || 1;
       var step = this.tutIndex + 1;
-      if (kicker) kicker.textContent = "How to play · " + step + " of " + total;
+      if (kicker) kicker.textContent = total > 1 ? "How to play · " + step + " of " + total : "Level " + (this.night || 1) + " · before you start";
       if (title) title.textContent = card.title;
-      if (body) body.textContent = card.body;
-      if (skip) skip.classList.remove("hidden");
-      /* Show progress so the player knows how much is left — the old single card
-         just said "Tap to play" with no sense of length. */
-      if (hint) hint.textContent = (step >= total) ? "Tap to start Level 1" : "Tap to continue";
+      if (body) { if (card.html) body.innerHTML = card.html; else body.textContent = card.body; }
+      if (skip) { skip.classList.remove("hidden"); skip.textContent = step >= total ? "Got it — play" : "Next"; }
+      if (hint) hint.textContent = "";
     }
     advanceTut() {
       if (tutClosed || this.tutDone) { hideTut(); return; }
@@ -26011,7 +25982,10 @@
        killing the run for a student. */
     update(t, dt) {
       try {
-        this._updateInner(t, dt);
+        /* v6.5 (SOL Labyrinth v5.18): the "slower game" accommodation (js/accommodations.js) */
+        var accK = window.SolAcc ? SolAcc.speedK() : 1;
+        if (this._accK !== accK) { this._accK = accK; SolAcc.applyScene(this, accK); }
+        this._updateInner(t, dt * accK);
       } catch (err) {
         this._reportCrash(err);
       }
@@ -27215,11 +27189,11 @@
     var skip = document.getElementById("tut-skip");
     var kicker = document.getElementById("tut-kicker");
     var hint = document.getElementById("tut-hint");
-    if (kicker) kicker.textContent = "Level 1 · How to play";
+    if (kicker) kicker.textContent = "Level 1 · before you start";
     if (title && card) title.textContent = card.title;
-    if (body && card) body.textContent = card.body;
-    if (skip) skip.classList.remove("hidden");
-    if (hint) hint.textContent = "Tap to play";
+    if (body && card) { if (card.html) body.innerHTML = card.html; else body.textContent = card.body; }
+    if (skip) { skip.classList.remove("hidden"); skip.textContent = "Got it — play"; }
+    if (hint) hint.textContent = "";
   }
   var tutBound = false;
   var codexBound = false;
@@ -27667,6 +27641,73 @@
     if (gameRef) { gameRef.destroy(true); gameRef = null; }
     refreshSaveLine();
   });
+  /* ── v6.5: Menu / Esc during a level ───────────────────────────────────────────
+     The Menu button in the side panel (or Esc when no other window is open) pauses the level and asks: keep
+     playing, or leave the level for the title screen. Leaving does what the level-end "Title" button does; the
+     saved level and the progress record stay as they were (a level left half-way is not a loss). */
+  var leaveTimer = null;
+  function leaveScene() { return window.SolScene || playScene; }
+  function leaveIsOpen() { var o = document.getElementById("leave-overlay"); return !!o && !o.classList.contains("hidden"); }
+  function otherWindowOpen() {
+    var ids = ["overlay", "tut-overlay", "read-overlay", "codex-overlay", "trap-overlay", "char-overlay", "build-overlay",
+      "progress-overlay", "restore-overlay", "badge-overlay", "teacher-overlay", "acc-overlay", "beam-help"];
+    return ids.some(function (id) {
+      var e = document.getElementById(id);
+      if (!e || e.classList.contains("hidden")) return false;
+      var cs = getComputedStyle(e);
+      return cs.display !== "none" && cs.visibility !== "hidden";
+    });
+  }
+  function holdPaused() {
+    var s = leaveScene();
+    try { if (s && s.scene && !s.scene.isPaused()) s.scene.pause(); } catch (e) {}
+  }
+  function openLeave() {
+    var play = document.getElementById("play"), s = leaveScene();
+    if (!play || play.classList.contains("hidden") || !s || s.ended || leaveIsOpen()) return;
+    var n = (s.night || cfg.night || 1), saved = readSavedNight();
+    document.getElementById("leave-body").textContent = "Leave Level " + n + " and go back to the title screen? " +
+      "This level's letters and strikes are not kept. Your saved level stays at Level " + saved + ".";
+    if (s.player && s.player.setVelocity) { try { s.player.setVelocity(0, 0); } catch (e) {} }
+    holdPaused(); setTimeout(holdPaused, 0);   /* Phaser can queue a pause asked for mid-step: ask again next tick */
+    leaveTimer = setInterval(holdPaused, 400);   /* coming back to the tab must not un-pause it */
+    var o = document.getElementById("leave-overlay");
+    o.classList.remove("hidden"); o.setAttribute("aria-hidden", "false");
+    setTimeout(function () { try { document.getElementById("btn-leave-stay").focus(); } catch (e) {} }, 30);
+  }
+  function closeLeave() {
+    if (leaveTimer) { clearInterval(leaveTimer); leaveTimer = null; }
+    var o = document.getElementById("leave-overlay");
+    if (o) { o.classList.add("hidden"); o.setAttribute("aria-hidden", "true"); }
+    Input.actEdge = false; Input.shutterEdge = false;
+  }
+  function stayInLevel() {
+    closeLeave();
+    var s = leaveScene();
+    try { if (s && s.scene && s.scene.isPaused()) s.scene.resume(); } catch (e) {}
+  }
+  function leaveLevel() {
+    closeLeave();
+    if (window.SolAcc && SolAcc.stop) SolAcc.stop();
+    try { if (window.speechSynthesis) speechSynthesis.cancel(); } catch (e) {}
+    document.getElementById("overlay").classList.add("hidden");
+    document.getElementById("btn-again").click();   /* the level-end "Title" button: back to the title screen */
+  }
+  bindTap(document.getElementById("btn-menu"), openLeave);
+  bindTap(document.getElementById("btn-leave-stay"), stayInLevel);
+  bindTap(document.getElementById("btn-leave-go"), leaveLevel);
+  /* on window, capturing: this runs before the field guide's and the word pop-up's own Esc handlers, so it can see
+     that one of them is open (and leave Esc to it) */
+  window.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape" && e.code !== "Escape") return;
+    if (leaveIsOpen()) { e.preventDefault(); e.stopPropagation(); stayInLevel(); return; }
+    if (otherWindowOpen()) return;   /* Esc closes that window instead (the field guide, a word pop-up) */
+    if (document.getElementById("acc-pop") && document.getElementById("acc-pop").style.display === "block") return;
+    var play = document.getElementById("play");
+    if (!play || play.classList.contains("hidden")) return;
+    e.preventDefault(); openLeave();
+  }, true);
+  window.SolLeave = { open: openLeave, stay: stayInLevel, leave: leaveLevel, isOpen: leaveIsOpen };
   document.getElementById("btn-next").addEventListener("click", function () {
     var n = parseInt(document.getElementById("btn-next").dataset.goto || "1", 10);
     restartNight(n);

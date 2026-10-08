@@ -25,7 +25,7 @@ var files = http.createServer(function (req, res) {
 var lms = http.createServer(function (req, res) {
   res.writeHead(200, { "Content-Type": "text/html" });
   res.end('<!DOCTYPE html><html><body style="margin:0;background:#fff"><h1 style="font:20px sans-serif">Course page</h1>' +
-    '<iframe id="app" src="' + lms.gameUrl + '" style="width:100%;height:640px;border:0" allowfullscreen></iframe></body></html>');
+    '<iframe id="app" src="' + lms.gameUrl + '" width="100%" height="500" style="border:0;display:block" allowfullscreen></iframe></body></html>');   /* v5.17.2: the READ ME's embed code */
 });
 (async function () {
   await new Promise(function (r) { files.listen(0, r); });
@@ -70,6 +70,11 @@ var lms = http.createServer(function (req, res) {
   await f.waitForSelector("#mode-screen:not(.hidden)");   /* v5.8.3: the game mode screen */
   await f.click('#mode-packs .card[data-gamemode="ALL"]');
   await f.waitForSelector("#skill-screen:not(.hidden)");
+  await page.waitForTimeout(400);
+  /* v5.17.2: the embed is 500 pixels tall: the skill screen's buttons are in view without scrolling */
+  var inView = function (sel) { var e = document.querySelector(sel); if (!e) return null; var r = e.getBoundingClientRect(); return { h: innerHeight, top: Math.round(r.top), bottom: Math.round(r.bottom), ok: r.top >= 0 && r.bottom <= innerHeight + 1 && r.height > 0 }; };
+  var sv = await f.evaluate(inView, "#btn-skill-start");
+  check(sv && sv.h === 500 && sv.ok, "in the 500-pixel Canvas frame the skill screen's start button is in view: " + JSON.stringify(sv));
   await f.click("#btn-skill-start");
   await page.waitForTimeout(400);
   if (await f.isVisible("#btn-char-confirm")) await f.click("#btn-char-confirm");
@@ -77,6 +82,13 @@ var lms = http.createServer(function (req, res) {
   for (var i = 0; i < 12; i++) { if (await f.isVisible("#tut-skip")) { await f.click("#tut-skip"); break; } await page.waitForTimeout(300); }
   await page.waitForTimeout(1500);
   var hud = await f.evaluate(function () { return { stem: document.getElementById("eoc-stem").textContent, sol: document.getElementById("job-sol").textContent, music: window.SolMusic.state() }; });
+  if (await f.isVisible("#read-go")) { await f.click("#read-go"); await page.waitForTimeout(600); }
+  var lastAnswer = await f.evaluate(function () {
+    var li = document.querySelectorAll("#eoc-choices li"), e = li[li.length - 1]; if (!e) return null;
+    var r = e.getBoundingClientRect(), box = e.closest(".eoc").getBoundingClientRect();
+    return { n: li.length, ok: r.bottom <= Math.min(innerHeight, box.bottom) + 1 && r.top >= 0 };
+  });
+  check(lastAnswer && lastAnswer.ok, "in the 500-pixel frame the HUD shows every answer (A-D): " + JSON.stringify(lastAnswer));
   check(hud.stem.length > 10 && /BIO\.8/.test(hud.sol), "a level starts with an Ecology question: " + hud.sol);
   check(!hud.music.key, "no music track is playing");
   if (await f.isVisible("#read-go")) await f.click("#read-go");

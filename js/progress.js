@@ -373,7 +373,7 @@
   var STYLE = [
     "#progress-overlay{position:fixed;inset:0;z-index:9000;display:flex;align-items:center;justify-content:center;background:rgba(8,10,14,.72);padding:12px;overflow:auto}",
     "#progress-overlay.hidden{display:none!important}",
-    "#progress-overlay .tut-card{max-width:560px;width:min(560px,96%);user-select:text;-webkit-user-select:text}",
+    "#progress-overlay .tut-card{max-width:560px;width:min(560px,96%);user-select:text;-webkit-user-select:text;max-height:calc(100vh - 24px);overflow:auto}",
     "#progress-overlay h2{margin:0 0 10px;font-size:26px}",
     ".prog-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 14px;padding:0;list-style:none}",
     ".prog-stats li{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:8px 10px;text-align:center}",
@@ -494,7 +494,7 @@
   var RSTYLE = [
     "#restore-overlay{position:fixed;inset:0;z-index:9000;display:flex;align-items:center;justify-content:center;background:rgba(8,10,14,.72);padding:12px;overflow:auto}",
     "#restore-overlay.hidden{display:none!important}",
-    "#restore-overlay .tut-card{max-width:600px;width:min(600px,96%)}",
+    "#restore-overlay .tut-card{max-width:600px;width:min(600px,96%);max-height:calc(100vh - 24px);overflow:auto}",
     "#restore-overlay h2{margin:0 0 10px;font-size:26px}",
     "#restore-overlay textarea{width:100%;box-sizing:border-box;min-height:96px;font:600 15px/1.4 Consolas,'Courier New',monospace;padding:8px 10px;border-radius:10px;border:2px solid var(--gold);background:#fffbea;color:#1a1408;resize:vertical}",
     ".rest-how{margin:0 0 8px;font-size:17px;line-height:1.4}",

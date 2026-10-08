@@ -77,6 +77,7 @@ var gameName = "SOL Lab Biology (Virginia EOC)";
 var teacherBuild = require("./build-teacher"), PB = require("../js/progress-code.js").BUILDS[st];
 var teacherName = teacherBuild.fileName(st), teacherPath = path.join(outAll, teacherName);
 fs.writeFileSync(teacherPath, teacherBuild.build(st, man.version));
+/* v6.4.2 / v6.5 (SOL Labyrinth v5.17.2): as wide as the Canvas page and 500 pixels tall; every screen fits (js/fit.js) */
 var EMBED = '<iframe src="/courses/COURSE/files/NUMBER/preview" width="100%" height="500" allowfullscreen="allowfullscreen"></iframe>';
 var RULE = "================================================================================";
 var THIN = "--------------------------------------------------------------------------------";
@@ -140,7 +141,8 @@ function S_embed() {
     "   With the example numbers it would be:",
     "   " + EMBED.replace("COURSE", "152432").replace("NUMBER", "60512345"),
     "",
-    "Too small or too tall? Change height=\"700\" (try 600 or 800).",
+    "The game fits completely in 500 pixels of height: every screen, window and button. Want it bigger? Change",
+    "height=\"500\" (try 600 or 700), or have students use the game's full-screen button.",
     "",
     "There is no separate embed code for the teacher screen: it is inside the game (the hidden Teacher link,",
     "SECTION 4.0)."
@@ -250,7 +252,8 @@ function S_trouble() {
     "- The game never gets past \"Loading the game...\": that spot in Canvas does not run scripts. Upload",
     "  canvas-check.html (https://stumpgreg-ops.github.io/Sol-Lab-VA-EOC-Bio/canvas-check.html) the same way: it",
     "  says whether a page's code can run there and whether progress can be saved.",
-    "- The game is too small or too tall: change height=\"700\" in the embed code (try 600 or 800).",
+    "- The game looks small: it is made to fit height=\"500\". Change it to 600 or 700 in the embed code, or use",
+    "  the game's full-screen button.",
     "- Students want it bigger: the game has its own full-screen button.",
     "- Download CSV or the import file doesn't download inside Canvas: open " + teacherName + " from this zip on your",
     "  computer (double-click it) and drop the files there. It is the same teacher screen.",
@@ -258,13 +261,41 @@ function S_trouble() {
     "- A student lost their progress: see SECTION 5, Restore my progress."
   ];
 }
+/* v6.5 (SOL Labyrinth v5.18): accommodations, turned on by a teacher one Chromebook at a time (js/accommodations.js) */
+function S_acc() {
+  return [
+    "Accommodations are NOT on for anyone until you turn them on, one Chromebook at a time. They are for the",
+    "student who uses that Chromebook (that browser profile) and stay until you turn them off or their end date",
+    "passes, so a support meant to fade can be planned (pick an \"Ends after\" date).",
+  ].concat(sub("Turn them on for a student"), [
+    "1. On the student's Chromebook, open the game. On the title screen type the word  accommodations  in the",
+    "   nickname box (it is cleared again).",
+    "2. Enter the teacher PIN:  4826   (keep it from students; \"Change the PIN on this Chromebook\" sets",
+    "   another one for that Chromebook).",
+    "3. Tick what the student needs, pick the language or speed, add an end date if you want one, and click Save.",
+    "   The title screen then shows \"Accommodations on: ...\" so you can see at a glance what is on.",
+    "4. To change or stop them later, do the same and untick, or click Turn all off."
+  ], sub("What each one does"), [
+    "- Tap a word for its meaning: harder everyday words in the passage, question and answers (like vineyard or",
+    "  culvert) are underlined; a click shows a short definition. Biology and science terms are never defined, so",
+    "  a definition never gives an answer away.",
+    "- Word-to-word dictionary (questions and answers only): a click on any word in the question or the answers,",
+    "  science terms included, shows it in Spanish, Arabic, Farsi or Russian. One word, never a definition: the",
+    "  kind of bilingual dictionary Virginia allows on its science tests.",
+    "- Read aloud: speaker buttons read the passage (sentence by sentence, highlighted), the question and each",
+    "  answer, with the Chromebook's own voice (no internet needed). A slower voice can be chosen.",
+    "- Larger text: bigger text in the side panel and the reading pop-up.",
+    "- Slower game: the whole game runs at 85, 75 or 60 % speed (enemies, timers, rhythms, throws)."
+  ]);
+}
 function readme(update) {
   var order = update
     ? [["What's in this zip", S_inZip], ["Update the game already in Canvas", S_update], ["The embed codes (copy and paste)", S_embed],
-       ["Grading with progress codes (easiest: the ZIP download)", S_grading], ["Students: progress codes and Restore", S_students], ["Troubleshooting", S_trouble]]
+       ["Grading with progress codes (easiest: the ZIP download)", S_grading], ["Students: progress codes and Restore", S_students],
+       ["Accommodations for a student (teacher PIN)", S_acc], ["Troubleshooting", S_trouble]]
     : [["What's in this zip", S_inZip], ["Set up the game in Canvas (first time)", S_setup], ["The embed codes (copy and paste)", S_embed],
        ["Grading with progress codes (easiest: the ZIP download)", S_grading], ["Students: progress codes and Restore", S_students],
-       ["Updating to a new version", S_update], ["Troubleshooting", S_trouble]];
+       ["Updating to a new version", S_update], ["Accommodations for a student (teacher PIN)", S_acc], ["Troubleshooting", S_trouble]];
   var L = [gameName + " - version " + man.version + (update ? " - UPDATE" : " - FIRST-TIME SETUP"), RULE, "",
     update ? "This zip UPDATES a game that is already in Canvas." : "This zip SETS UP the game in Canvas for the first time.",
     "Jump to a section with Ctrl+F (Cmd+F on a Mac) and its name, like SECTION 4.", "", "CONTENTS"];

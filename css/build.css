@@ -166,6 +166,23 @@
   .build-sub { font-size: 12px; }
   .build-opt .pic { height: 60px; }
 }
+/* v5.17.2: the 500-pixel Canvas frame: small cards several to a row, a one-line note, a smaller preview */
+@media (max-height: 620px) {
+  .build-card { padding: 6px 10px; gap: 6px; }
+  .build-sub { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .build-themes { grid-template-columns: 1fr 1fr; }
+  .build-theme canvas { max-height: 26vh; }
+  .build-options, .build-shop { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 6px; }
+  .build-opt { min-height: 0; padding: 6px; gap: 3px; }
+  .build-opt .pic, .build-shop .build-opt .pic, .build-styles .build-opt .pic { height: 44px; }
+  .build-opt .name, .build-theme .name { font-size: 14px; }
+  .build-opt .meta { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .build-styles { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 6px; }
+  .build-card.step-shop .build-main { flex: 0 0 104px; min-height: 104px; }
+  .build-main { min-height: 120px; }
+  .build-tab { padding: 5px 12px; }
+  #build-overlay .btn { min-height: 36px; padding: 6px 12px; }
+}
 /* v5.7.6: Fenrir's monuments in the palette */
 .build-pitem.trophy .tag { color: #ffd84a; font-weight: 700; }
 .build-pitem.trophy.locked { outline: 1px dashed #ffd84a; }

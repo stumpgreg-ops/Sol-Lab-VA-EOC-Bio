@@ -6,18 +6,18 @@
   <meta name="color-scheme" content="dark" />
   <meta http-equiv="Cache-Control" content="no-cache" />
   <title>SOL Lab · Virginia EOC Biology</title>
-  <link rel="stylesheet" href="css/after-hours.css?v=6.4.2" />
-  <link rel="stylesheet" href="css/build.css?v=6.4.2" />
-  <link rel="icon" type="image/png" sizes="64x64" href="assets/logo/favicon-64.png?v=6.4.2" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32.png?v=6.4.2" />
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/logo/favicon-180.png?v=6.4.2" />
+  <link rel="stylesheet" href="css/after-hours.css?v=6.5.0" />
+  <link rel="stylesheet" href="css/build.css?v=6.5.0" />
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/logo/favicon-64.png?v=6.5.0" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32.png?v=6.5.0" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/logo/favicon-180.png?v=6.5.0" />
 </head>
 <body>
   <div id="app">
     <section id="title-screen" class="screen">
       <p class="kicker" id="title-kicker">Virginia EOC Biology SOL · 100 levels</p>
-      <h1 class="logo"><img src="assets/logo/sols-labyrinth-512.png?v=6.4.2" alt="Sol's Labyrinth — SOL Lab, Virginia EOC Biology" width="512" height="512" /></h1>
-      <p class="ver">SOL Lab · Biology · v6.4.2</p>
+      <h1 class="logo"><img src="assets/logo/sols-labyrinth-512.png?v=6.5.0" alt="Sol's Labyrinth — SOL Lab, Virginia EOC Biology" width="512" height="512" /></h1>
+      <p class="ver">SOL Lab · Biology · v6.5.0</p>
       <p class="tag">Tap a unit to pick your skill focus. Read the lab notes in the side panel. Grab the matching letter. Walk it to EXIT · SAFE. The wolves do not know the answer — only you do.</p>
       <p id="save-line" class="save-line">No level saved on this Chromebook yet.</p>
 
@@ -148,6 +148,7 @@
               <span class="pip strike" id="strike-pip">Strikes 0 / 3</span>
               <span class="pip bonus" id="bonus-pip">Coins 0</span>
               <span class="pip" id="token-pip">Token N001E0S0</span>
+              <button type="button" class="pip pip-menu" id="btn-menu" title="Pause, or leave this level (Esc)" aria-haspopup="dialog">☰ Menu</button>
             </div>
           </div>
           <div class="eoc-body">
@@ -217,11 +218,24 @@
 
   <div id="tut-overlay" class="hidden" aria-hidden="true">
     <div class="tut-card" id="tut-card">
-      <p class="tut-kicker" id="tut-kicker">How to play · 1 of 9</p>
-      <h2 id="tut-title">You are Sol</h2>
-      <p id="tut-body">You are in the school after dark. Move with the arrow keys, WASD, or the pad on screen.</p>
-      <p class="tut-hint" id="tut-hint">Tap to continue</p>
-      <button type="button" id="tut-skip" class="btn">Skip intro</button>
+      <p class="tut-kicker" id="tut-kicker">Level 1 · before you start</p>
+      <h2 id="tut-title">How to play</h2>
+      <div id="tut-body"></div>
+      <p class="tut-hint" id="tut-hint"></p>
+      <button type="button" id="tut-skip" class="btn primary">Got it — play</button>
+    </div>
+  </div>
+
+  <!-- v6.5: Menu / Esc during a level: pause, keep playing, or go back to the title screen -->
+  <div id="leave-overlay" class="hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="leave-title">
+    <div class="tut-card">
+      <p class="tut-kicker">Game paused</p>
+      <h2 id="leave-title">Menu</h2>
+      <p id="leave-body">Leave this level and go back to the title screen?</p>
+      <div class="row">
+        <button type="button" class="btn primary" id="btn-leave-stay">Keep playing</button>
+        <button type="button" class="btn" id="btn-leave-go">Leave the level</button>
+      </div>
     </div>
   </div>
 
@@ -283,30 +297,33 @@
     try { console.error("[SOL]", (e && e.message) || "error", e && e.error && e.error.stack ? e.error.stack : ""); } catch (x) {}
   });
   </script>
-  <script src="js/vendor/phaser.min.js?v=6.4.2"></script>
-  <script src="js/vendor/peerjs.min.js?v=6.4.2"></script>
-  <script src="js/content.js?v=6.4.2"></script>
-  <script src="js/content2.js?v=6.4.2"></script>
-  <script src="js/content3.js?v=6.4.2"></script>
-  <script src="js/content4.js?v=6.4.2"></script>
-  <script src="js/content5.js?v=6.4.2"></script>
-  <script src="js/content6.js?v=6.4.2"></script>
-  <script src="js/content7.js?v=6.4.2"></script>
-  <script src="js/content8.js?v=6.4.2"></script>
-  <script src="js/content9.js?v=6.4.2"></script>
-  <script src="js/classes.js?v=6.4.2"></script>
-  <script src="js/audio.js?v=6.4.2"></script>
-  <script src="js/music.js?v=6.4.2"></script>
-  <script src="js/net.js?v=6.4.2"></script>
-  <script src="js/vendor/three.min.js?v=6.4.2"></script>
-  <script src="js/build3d.js?v=6.4.2"></script>
-  <script src="js/build.js?v=6.4.2"></script>
-  <script src="js/realms.js?v=6.4.2"></script>
-  <script src="js/modes.js?v=6.4.2"></script>
-  <script src="js/progress-code.js?v=6.4.2"></script>
-  <script src="js/progress.js?v=6.4.2"></script>
-  <script src="js/badges.js?v=6.4.2"></script>
-  <script src="js/teacher-screen.js?v=6.4.2"></script>
-  <script src="js/game.js?v=6.4.2"></script>
+  <script src="js/vendor/phaser.min.js?v=6.5.0"></script>
+  <script src="js/vendor/peerjs.min.js?v=6.5.0"></script>
+  <script src="js/content.js?v=6.5.0"></script>
+  <script src="js/content2.js?v=6.5.0"></script>
+  <script src="js/content3.js?v=6.5.0"></script>
+  <script src="js/content4.js?v=6.5.0"></script>
+  <script src="js/content5.js?v=6.5.0"></script>
+  <script src="js/content6.js?v=6.5.0"></script>
+  <script src="js/content7.js?v=6.5.0"></script>
+  <script src="js/content8.js?v=6.5.0"></script>
+  <script src="js/content9.js?v=6.5.0"></script>
+  <script src="js/classes.js?v=6.5.0"></script>
+  <script src="js/audio.js?v=6.5.0"></script>
+  <script src="js/music.js?v=6.5.0"></script>
+  <script src="js/net.js?v=6.5.0"></script>
+  <script src="js/vendor/three.min.js?v=6.5.0"></script>
+  <script src="js/build3d.js?v=6.5.0"></script>
+  <script src="js/build.js?v=6.5.0"></script>
+  <script src="js/realms.js?v=6.5.0"></script>
+  <script src="js/modes.js?v=6.5.0"></script>
+  <script src="js/progress-code.js?v=6.5.0"></script>
+  <script src="js/progress.js?v=6.5.0"></script>
+  <script src="js/badges.js?v=6.5.0"></script>
+  <script src="js/teacher-screen.js?v=6.5.0"></script>
+  <script src="js/acc-bio.js?v=6.5.0"></script>
+  <script src="js/accommodations.js?v=6.5.0"></script>
+  <script src="js/fit.js?v=6.5.0"></script>
+  <script src="js/game.js?v=6.5.0"></script>
 </body>
 </html>
