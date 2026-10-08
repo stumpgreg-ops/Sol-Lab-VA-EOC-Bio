@@ -6,18 +6,18 @@
   <meta name="color-scheme" content="dark" />
   <meta http-equiv="Cache-Control" content="no-cache" />
   <title>SOL Lab · Virginia Algebra I</title>
-  <link rel="stylesheet" href="css/after-hours.css?v=1.1.2" />
-  <link rel="stylesheet" href="css/build.css?v=1.1.2" />
-  <link rel="icon" type="image/png" sizes="64x64" href="assets/logo/favicon-64.png?v=1.1.2" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32.png?v=1.1.2" />
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/logo/favicon-180.png?v=1.1.2" />
+  <link rel="stylesheet" href="css/after-hours.css?v=1.1.3" />
+  <link rel="stylesheet" href="css/build.css?v=1.1.3" />
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/logo/favicon-64.png?v=1.1.3" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32.png?v=1.1.3" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/logo/favicon-180.png?v=1.1.3" />
 </head>
 <body>
   <div id="app">
     <section id="title-screen" class="screen">
       <p class="kicker" id="title-kicker">Virginia Algebra I SOL · 100 levels</p>
-      <h1 class="logo"><img src="assets/logo/sols-labyrinth-512.png?v=1.1.2" alt="Sol's Labyrinth — SOL Lab, Virginia Algebra I" width="512" height="512" /></h1>
-      <p class="ver">SOL Lab · Algebra I · v1.1.2</p>
+      <h1 class="logo"><img src="assets/logo/sols-labyrinth-512.png?v=1.1.3" alt="Sol's Labyrinth — SOL Lab, Virginia Algebra I" width="512" height="512" /></h1>
+      <p class="ver">SOL Lab · Algebra I · v1.1.3</p>
       <p class="tag">Tap a strand to pick your skill focus. Read the problem set in the side panel. Grab the matching letter. Walk it to EXIT · SAFE. The wolves do not know the answer — only you do.</p>
       <p id="save-line" class="save-line">No level saved on this Chromebook yet.</p>
 
@@ -150,6 +150,7 @@
         <button type="button" id="btn-music-hud" class="btn" aria-pressed="true" title="Background music on/off">♪</button>
         <input type="range" id="music-vol-hud" class="music-vol" min="0" max="100" step="5" value="55" title="Music volume" aria-label="Music volume" />
         <button type="button" id="btn-fs" class="btn hidden">Exit full screen</button>
+        <button type="button" id="btn-leave" class="btn" title="Leave this level and go back to the title screen (Esc)">⏏ Leave</button>
         <canvas id="minimap" width="200" height="112" aria-label="Minimap"></canvas>
         <div id="controls">
           <div class="dpad" aria-label="Move">
@@ -197,11 +198,11 @@
 
   <div id="tut-overlay" class="hidden" aria-hidden="true">
     <div class="tut-card" id="tut-card">
-      <p class="tut-kicker" id="tut-kicker">How to play · 1 of 9</p>
-      <h2 id="tut-title">You are Sol</h2>
-      <p id="tut-body">You are in the school after dark. Move with the arrow keys, WASD, or the pad on screen.</p>
-      <p class="tut-hint" id="tut-hint">Tap to continue</p>
-      <button type="button" id="tut-skip" class="btn">Skip intro</button>
+      <p class="tut-kicker" id="tut-kicker">Level 1 · How to play</p>
+      <h2 id="tut-title">How to play</h2>
+      <div id="tut-body"></div>
+      <p class="tut-hint" id="tut-hint">Tap anywhere to start Level 1</p>
+      <button type="button" id="tut-skip" class="btn primary">Got it — start</button>
     </div>
   </div>
 
@@ -245,6 +246,18 @@
     </div>
   </div>
 
+  <!-- v1.1.3: leave a level in progress (the ⏏ Leave button on the stage, or Esc) -->
+  <div id="leave-overlay" class="hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Leave this level?">
+    <div class="tut-card leave-card">
+      <p class="tut-kicker">Leave this level?</p>
+      <h2 id="leave-title">Back to the title screen</h2>
+      <p id="leave-body">This level starts over next time. Your saved level, coins, town or castle and progress stay.</p>
+      <div class="row">
+        <button type="button" id="leave-stay" class="btn primary">Keep playing</button>
+        <button type="button" id="leave-go" class="btn">Leave the level</button>
+      </div>
+    </div>
+  </div>
   <div id="trap-overlay" class="hidden" aria-hidden="true">
     <div class="tut-card trap-card" id="trap-card">
       <p class="tut-kicker" id="trap-kicker">New on the map</p>
@@ -264,30 +277,30 @@
     try { console.error("[SOL]", (e && e.message) || "error", e && e.error && e.error.stack ? e.error.stack : ""); } catch (x) {}
   });
   </script>
-  <script src="js/vendor/phaser.min.js?v=1.1.2"></script>
-  <script src="js/vendor/peerjs.min.js?v=1.1.2"></script>
-  <script src="js/content.js?v=1.1.2"></script>
-  <script src="js/content2.js?v=1.1.2"></script>
-  <script src="js/content3.js?v=1.1.2"></script>
-  <script src="js/content4.js?v=1.1.2"></script>
-  <script src="js/content5.js?v=1.1.2"></script>
-  <script src="js/classes.js?v=1.1.2"></script>
-  <script src="js/audio.js?v=1.1.2"></script>
-  <script src="js/music.js?v=1.1.2"></script>
-  <script src="js/net.js?v=1.1.2"></script>
-  <script src="js/vendor/three.min.js?v=1.1.2"></script>
-  <script src="js/build3d.js?v=1.1.2"></script>
-  <script src="js/build.js?v=1.1.2"></script>
-  <script src="js/realms.js?v=1.1.2"></script>
-  <script src="js/modes.js?v=1.1.2"></script>
-  <script src="js/mode-ram.js?v=1.1.2"></script>
-  <script src="js/mode-bow.js?v=1.1.2"></script>
-  <script src="js/mode-raft.js?v=1.1.2"></script>
-  <script src="js/mode-row.js?v=1.1.2"></script>
-  <script src="js/progress-code.js?v=1.1.2"></script>
-  <script src="js/progress.js?v=1.1.2"></script>
-  <script src="js/badges.js?v=1.1.2"></script>
-  <script src="js/teacher-screen.js?v=1.1.2"></script>
-  <script src="js/game.js?v=1.1.2"></script>
+  <script src="js/vendor/phaser.min.js?v=1.1.3"></script>
+  <script src="js/vendor/peerjs.min.js?v=1.1.3"></script>
+  <script src="js/content.js?v=1.1.3"></script>
+  <script src="js/content2.js?v=1.1.3"></script>
+  <script src="js/content3.js?v=1.1.3"></script>
+  <script src="js/content4.js?v=1.1.3"></script>
+  <script src="js/content5.js?v=1.1.3"></script>
+  <script src="js/classes.js?v=1.1.3"></script>
+  <script src="js/audio.js?v=1.1.3"></script>
+  <script src="js/music.js?v=1.1.3"></script>
+  <script src="js/net.js?v=1.1.3"></script>
+  <script src="js/vendor/three.min.js?v=1.1.3"></script>
+  <script src="js/build3d.js?v=1.1.3"></script>
+  <script src="js/build.js?v=1.1.3"></script>
+  <script src="js/realms.js?v=1.1.3"></script>
+  <script src="js/modes.js?v=1.1.3"></script>
+  <script src="js/mode-ram.js?v=1.1.3"></script>
+  <script src="js/mode-bow.js?v=1.1.3"></script>
+  <script src="js/mode-raft.js?v=1.1.3"></script>
+  <script src="js/mode-row.js?v=1.1.3"></script>
+  <script src="js/progress-code.js?v=1.1.3"></script>
+  <script src="js/progress.js?v=1.1.3"></script>
+  <script src="js/badges.js?v=1.1.3"></script>
+  <script src="js/teacher-screen.js?v=1.1.3"></script>
+  <script src="js/game.js?v=1.1.3"></script>
 </body>
 </html>

@@ -8,6 +8,12 @@ Play: `index.html`. Teacher monitor: `admin.html` (PIN lock; FERPA nicknames onl
 
 Progress saves in this browser profile (`afterHours.v1.night`). Itch login does not store progress.
 
+## Algebra I 1.1.3 (2026-10-08) — leave a level; the title screen in one 500px screen
+
+- **Leave a level in progress.** A **⏏ Leave** button at the top left of the maze or shooter stage, or the Esc key, pauses the level and asks "Leave this level?"; *Keep playing* resumes, *Leave the level* returns to the title screen the way the end card's *Title* does. The saved level, coins, town or castle and the progress record are untouched, and the level is not counted as lost. (`leaveToTitle` / `openLeave` in `js/game.js`, `#leave-overlay` in `index.html`.)
+- **One-card tutorial.** The nine "How to play" cards are one screen: read, move and pick up a letter, carry it to EXIT · SAFE, the chariot and the lives, the safe booths and TAB. Students tapped *Skip intro* on card 1 of 9 and started without knowing how to play; now one tap starts the level with everything read. The button reads *Got it — start* (`tutorialCards` in `js/game.js`).
+- **The title screen fits a 500px frame without scrolling** at 1000 and 1280 wide: in a short frame the long blurbs are hidden, the logo is small, the five unit cards sit in one compact row and the buttons and nickname box are tighter; the mode cards drop their descriptions. Measured: title, mode and skill screens each scroll 0px at 1000×500 and 1280×500.
+
 ## Algebra I 1.1.2 (2026-10-08) — fits a 500-pixel-tall frame
 
 - **Short frames.** The Canvas embed is now `width="100%" height="500"`, and the game fits it: below 560px of height the start screens use a small logo and tighter cards so the five unit cards show without scrolling, the play screen keeps the problem set beside the maze whenever the frame is at least 760px wide (stacking it on top left a 280px maze), and a narrow *and* short frame stacks with a taller panel so the notes and all four choices stay readable. End-of-level and shop cards scroll inside the frame instead of clipping (`@media (max-height: 560px)` in `css/after-hours.css`).

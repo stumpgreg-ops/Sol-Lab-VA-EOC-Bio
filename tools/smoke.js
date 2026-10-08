@@ -293,7 +293,9 @@ var srv = http.createServer(function (req, res) {
   await page.waitForTimeout(300);
   if (await page.isVisible("#btn-char-confirm")) await page.click("#btn-char-confirm");
   await page.waitForTimeout(3000);
-  for (var i = 0; i < 12; i++) { if (await page.isVisible("#tut-skip")) { await page.click("#tut-skip"); break; } await page.waitForTimeout(300); }
+  var tut = null;
+  for (var i = 0; i < 12; i++) { if (await page.isVisible("#tut-skip")) { tut = await page.evaluate(function () { return { kicker: document.getElementById("tut-kicker").textContent, items: document.querySelectorAll("#tut-body li").length, btn: document.getElementById("tut-skip").textContent }; }); await shot("10b-tutorial"); await page.click("#tut-skip"); break; } await page.waitForTimeout(300); }
+  check(tut && tut.items >= 4 && !/ of /.test(tut.kicker) && /start/i.test(tut.btn), "the tutorial is one card: " + JSON.stringify(tut));
   await page.waitForTimeout(1500);
   var hud = await page.evaluate(function () { return { sol: document.getElementById("job-sol").textContent, coins: document.getElementById("bonus-pip").textContent, stem: document.getElementById("eoc-stem").textContent, kick: document.getElementById("read-kicker") && document.getElementById("read-kicker").textContent }; });
   console.log("hud", JSON.stringify(hud));
@@ -523,7 +525,11 @@ var srv = http.createServer(function (req, res) {
     var bm = R.ravens.filter(function (q) { return q.alive && q.letter && s.need.indexOf(q.letter) === -1; })[0];
     bm.state = "beam"; bm.beamMs = 900; bm.path = null; bm.x = s.player.x; bm.hoverY = s.H * 0.4; bm.y = bm.hoverY; bm.lead = true;
     await new Promise(function (r) { setTimeout(r, 700); }); o.beam = s.strikes; o.caught = !!(R.capt && R.capt.eagle === bm); s.strikes = 0; s.iframeMs = 0;
-    if (R.capt) { s.raidFree(bm); for (var k = 0; k < 50 && R.capt; k++) await new Promise(function (r) { setTimeout(r, 100); }); } o.freed = !R.capt && !!R.wing;
+    o.freed = false;
+    if (R.capt) {
+      s.raidFree(bm); bm.beamMs = 0; bm.state = "form";   /* and the eagle stops beaming, or it catches Sol again as he lands */
+      for (var k = 0; k < 100; k++) { if (!R.capt || R.wing) { o.freed = true; break; } await new Promise(function (r) { setTimeout(r, 100); }); }   /* the rescue animation runs on frame time: up to 10 s headless */
+    }
     var coins = s.nightCoins;
     R.ravens.filter(function (q) { return q.alive && q.letter && s.need.indexOf(q.letter) !== -1; }).forEach(function (q) { s.raidHit(q); s.raidHit(q); });
     o.score = s.score; o.coins = s.nightCoins > coins;
@@ -624,6 +630,20 @@ var srv = http.createServer(function (req, res) {
   retry.after = await page.evaluate(function () { var s = SolScene; return { key: s.sys.settings.key, night: s.night, strikes: s.strikes, mode: s.mode && s.mode.id }; });
   console.log("mode retry", JSON.stringify(retry));
   check(retry.ended && retry.title === "Run over" && /Eagle Swoop/.test(retry.msg) && retry.retry && retry.after.key === "mode" && retry.after.night === 2 && retry.after.strikes === 0, "losing a shooter level offers Retry, which restarts the same shooter");
+
+  /* v1.1.3: leaving a level in progress — Esc (or ⏏ Leave) asks first; Keep playing resumes; Leave returns to the title */
+  if (await page.isVisible("#read-go")) await page.click("#read-go");   /* the read pop-up owns Esc while it is up */
+  await page.waitForTimeout(600);
+  await page.keyboard.press("Escape"); await page.waitForTimeout(300);
+  var lv = { open: await page.isVisible("#leave-overlay"), paused: await page.evaluate(function () { return SolScene.scene.isPaused(); }) };
+  await page.click("#leave-stay"); await page.waitForTimeout(300);
+  lv.stayed = !(await page.isVisible("#leave-overlay")); lv.resumed = await page.evaluate(function () { return !SolScene.scene.isPaused(); });
+  await page.click("#btn-leave"); await page.waitForTimeout(300);
+  lv.open2 = await page.isVisible("#leave-overlay");
+  await page.click("#leave-go"); await page.waitForTimeout(800);
+  lv.title = await page.isVisible("#title-screen"); lv.playHidden = !(await page.isVisible("#play")); lv.gone = await page.evaluate(function () { return !document.querySelector("#game-root canvas"); });
+  console.log("leave", JSON.stringify(lv));
+  check(lv.open && lv.paused && lv.stayed && lv.resumed && lv.open2 && lv.title && lv.playHidden && lv.gone, "Esc or ⏏ Leave asks to leave the level; Keep playing resumes it; Leave the level returns to the title screen");
 
   console.log("errors:", errors.length ? errors : "none");
   check(errors.length === 0, "no page errors");

@@ -115,6 +115,9 @@ the assignment Start Assignment (or New Attempt), paste with Ctrl+V, Submit. Alw
 Game modes and levels: each game mode (Mixed, Labyrinth, Eagle Swoop, Rune Rocks, Sun Chariot, Wolf Ring,
 Root Worms) keeps its own level 1 to 100. "My badges" on the title screen shows the badges earned.
 
+Leaving a level: the "Leave" button at the top left of the maze (or the Esc key) pauses the level and asks;
+"Leave the level" goes back to the title screen. The saved level, coins and town stay; the level restarts next time.
+
 Restore my progress (new Chromebook or lost progress): on the title screen tap Restore my progress, paste the
 last code (it is in the student's submission), Check code, Restore. Level, town or castle, coins and totals
 come back.

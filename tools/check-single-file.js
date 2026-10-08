@@ -97,7 +97,9 @@ var isDir = fs.existsSync(target) && fs.statSync(target).isDirectory();
     await page.click("#btn-char-confirm");
   }
   await page.waitForTimeout(3000);
-  for (var i = 0; i < 12; i++) { if (await page.isVisible("#tut-skip")) { await page.click("#tut-skip"); break; } await page.waitForTimeout(300); }
+  var tut = null;
+  for (var i = 0; i < 12; i++) { if (await page.isVisible("#tut-skip")) { tut = await page.evaluate(function () { return { kicker: document.getElementById("tut-kicker").textContent, items: document.querySelectorAll("#tut-body li").length, btn: document.getElementById("tut-skip").textContent }; }); await page.click("#tut-skip"); break; } await page.waitForTimeout(300); }
+  check(tut && tut.items >= 4 && !/ of /.test(tut.kicker) && /start/i.test(tut.btn), "the tutorial is one card (" + JSON.stringify(tut) + ")");
   await page.waitForTimeout(1500);
   var hud = await page.evaluate(function () { return { sol: document.getElementById("job-sol").textContent, stem: document.getElementById("eoc-stem").textContent }; });
   check(/^SOL · A\.F\.[12]\.[a-h] · Level [123]/.test(hud.sol), "HUD shows a SOL code: " + hud.sol);
@@ -114,6 +116,10 @@ var isDir = fs.existsSync(target) && fs.statSync(target).isDirectory();
   });
   check(tex && tex.n > 20 && tex.missing.length === 0, "Phaser textures loaded through the shim (" + (tex && tex.n) + " keys, missing: " + (tex && tex.missing.join(",")) + ")");
   check(await page.evaluate(function () { return !!document.querySelector("#game canvas, canvas"); }), "game canvas is on the page");
+  await page.keyboard.press("Escape"); await page.waitForTimeout(300);
+  var lvOpen = await page.isVisible("#leave-overlay");
+  await page.click("#leave-go"); await page.waitForTimeout(800);
+  check(lvOpen && await page.isVisible("#title-screen") && !(await page.isVisible("#play")), "Esc asks to leave the level and Leave returns to the title screen");
   await page.screenshot({ path: path.join(root, "tools", "shots", (isDir ? "canvas" : "single-file") + "-level.png") });
 
   console.log("requests outside the " + (isDir ? "folder" : "file") + ": " + (requests.length ? requests.slice(0, 5).join(" | ") : "none"));
