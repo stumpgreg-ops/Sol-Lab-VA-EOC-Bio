@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{TITLE}}</title>
+<style>
+:root {
+  --bg: {{BG}}; --panel: {{PANEL}}; --panel2: {{PANEL2}}; --line: {{LINE}};
+  --gold: {{GOLD}}; --ink: #f1ede4; --dim: #c2bcae; --ok: #86e3a0; --bad: #ff9a88; --warn: #ffd27a;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink); }
+body { font: 17px/1.5 "Trebuchet MS", "Segoe UI", system-ui, sans-serif; padding: 18px; }
+main { max-width: 1440px; margin: 0 auto; }
+h1 { font-size: 30px; margin: 0; color: var(--gold); }
+h2 { font-size: 22px; margin: 0 0 10px; color: var(--gold); }
+.sub { color: var(--dim); margin: 2px 0 14px; }
+.panel { background: var(--panel); border: 2px solid var(--line); border-radius: 14px; padding: 16px 18px; margin: 0 0 16px; }
+.panel p { margin: 6px 0; }
+details summary { cursor: pointer; font-weight: 700; color: var(--gold); font-size: 18px; }
+details ol { margin: 8px 0 4px; padding-left: 24px; }
+details li { margin: 6px 0; }
+.btn { appearance: none; font: inherit; font-weight: 700; min-height: 46px; padding: 8px 16px; border-radius: 10px; border: 2px solid var(--line);
+  background: var(--panel2); color: var(--ink); cursor: pointer; }
+.btn:hover, .btn:focus-visible { border-color: var(--gold); }
+.btn.primary { background: var(--gold); color: #1a1206; border-color: var(--gold); }
+.btn:disabled { opacity: .5; cursor: default; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 10px 0 0; }
+input[type=number] { font: inherit; width: 96px; min-height: 42px; padding: 4px 8px; border-radius: 8px; border: 2px solid var(--line); background: #fffdf6; color: #1a1408; }
+textarea { font: 16px/1.4 Consolas, "Courier New", monospace; width: 100%; min-height: 130px; padding: 10px; border-radius: 10px; border: 2px solid var(--line); background: #fffdf6; color: #1a1408; }
+table.goals { border-collapse: collapse; margin: 6px 0; }
+table.goals th, table.goals td { padding: 6px 12px 6px 0; text-align: left; vertical-align: middle; }
+table.goals th { color: var(--dim); font-size: 14px; font-weight: 700; }
+.hint { color: var(--dim); font-size: 15px; }
+.drop { border: 3px dashed var(--line); border-radius: 14px; padding: 18px; text-align: center; margin: 0 0 12px; background: var(--panel2); }
+.drop.over { border-color: var(--gold); background: rgba(255, 255, 255, .06); }
+.drop b { color: var(--gold); }
+#msg { min-height: 24px; font-weight: 700; margin: 10px 0 0; }
+#msg.bad { color: var(--bad); } #msg.ok { color: var(--ok); }
+.counts { font-size: 18px; margin: 0 0 8px; }
+.counts span { margin-right: 18px; white-space: nowrap; }
+.wrap { overflow: auto; max-height: 70vh; border: 2px solid var(--line); border-radius: 10px; margin-top: 10px; }
+table.res { border-collapse: collapse; width: 100%; font-size: 15px; }
+table.res th, table.res td { padding: 7px 10px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
+table.res th { position: sticky; top: 0; background: var(--panel2); color: var(--gold); cursor: pointer; user-select: none; z-index: 2; vertical-align: bottom; white-space: normal; min-width: 70px; }
+table.res th:hover { text-decoration: underline; }
+table.res th .arr { color: var(--ink); }
+table.res td.l, table.res th.l { text-align: left; }
+table.res td.name { font-weight: 700; position: sticky; left: 0; background: var(--panel); z-index: 1; }
+table.res th.name { left: 0; z-index: 3; }
+table.res tr.invalid td { color: var(--bad); }
+table.res tr.other td { color: var(--warn); }
+table.res td.status { white-space: normal; min-width: 170px; max-width: 240px; text-align: left; }
+table.res td.grade { font-weight: 700; color: var(--gold); font-size: 17px; }
+.st-ok { color: var(--ok); font-weight: 700; } .st-bad { color: var(--bad); font-weight: 700; } .st-other { color: var(--warn); font-weight: 700; }
+.small { font-size: 13px; color: var(--dim); white-space: normal; }
+ul.notes { margin: 10px 0 0; padding-left: 22px; color: var(--dim); }
+#copybox { margin-top: 10px; }
+.empty { color: var(--dim); padding: 18px; text-align: center; }
+.top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+.small-sum { font-size: 16px !important; margin: 8px 0; }
+.roster { margin: 6px 0 4px; font-size: 16px; }
+.roster b { color: var(--gold); }
+.goal-line { margin: 8px 0 0; color: var(--dim); }
+.round { background: var(--panel2); border: 2px solid var(--gold); border-radius: 12px; padding: 10px 14px; margin: 0 0 12px; }
+.round p { margin: 0; }
+.round b { color: var(--gold); }
+select { font: inherit; min-height: 42px; padding: 4px 8px; border-radius: 8px; border: 2px solid var(--line); background: #fffdf6; color: #1a1408; }
+.summary { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 0 0 12px; }
+.summary .st { background: var(--panel2); border: 2px solid var(--line); border-radius: 12px; padding: 8px 10px; text-align: center; }
+.summary .st b { display: block; font-size: 26px; color: var(--gold); }
+.summary .st span { font-size: 13px; color: var(--dim); }
+.summary .wide { grid-column: 1 / -1; text-align: left; font-size: 15px; }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 6px; }
+.tab { appearance: none; font: inherit; font-weight: 700; padding: 8px 16px; border-radius: 10px 10px 0 0; border: 2px solid var(--line); border-bottom: none; background: var(--panel2); color: var(--dim); cursor: pointer; min-height: 44px; }
+.tab.on { background: var(--gold); color: #1a1206; border-color: var(--gold); }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px; margin-top: 10px; }
+.card { background: var(--panel2); border: 2px solid var(--line); border-radius: 14px; padding: 12px; }
+.card.g-hi { border-color: #3fa864; } .card.g-mid { border-color: #c9a227; } .card.g-lo { border-color: #c4553f; } .card.g-none { opacity: .75; }
+.card h3 { margin: 0; font-size: 18px; }
+.card .nick { color: var(--dim); font-size: 13px; }
+.card .gr { font-size: 30px; font-weight: 800; margin: 4px 0; }
+.card.g-hi .gr { color: var(--ok); } .card.g-mid .gr { color: var(--warn); } .card.g-lo .gr { color: var(--bad); }
+.card .bar { height: 9px; border-radius: 6px; background: rgba(255,255,255,.1); overflow: hidden; margin: 2px 0 6px; }
+.card .bar i { display: block; height: 100%; background: var(--gold); }
+.card .lbl { display: flex; justify-content: space-between; font-size: 13px; color: var(--dim); }
+.card .meta { font-size: 13px; color: var(--dim); margin-top: 4px; }
+.card.missing { border-style: dashed; }
+.board { margin-top: 10px; }
+.board ol { list-style: none; margin: 0; padding: 0; counter-reset: r; }
+.board li { display: flex; align-items: center; gap: 14px; background: var(--panel2); border: 2px solid var(--line); border-radius: 12px; padding: 10px 14px; margin: 0 0 8px; font-size: 22px; }
+.board li .rk { width: 52px; height: 52px; flex: 0 0 auto; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; background: var(--panel); border: 2px solid var(--line); }
+.board li:nth-child(1) .rk { background: #d9a520; color: #1a1206; } .board li:nth-child(2) .rk { background: #c0c6cf; color: #1a1206; } .board li:nth-child(3) .rk { background: #b06a2a; color: #fff; }
+.board li .nm { flex: 1 1 auto; font-weight: 700; }
+.board li .val { font-weight: 800; color: var(--gold); }
+.board li .hide { font-size: 13px; min-height: 32px; padding: 2px 10px; }
+.board.full { position: fixed; inset: 0; z-index: 50; background: var(--bg); padding: 30px 6vw; overflow: auto; margin: 0; }
+.board.full li { font-size: 30px; }
+.board .board-title { font-size: 30px; color: var(--gold); margin: 0 0 16px; }
+.board.full .hide { display: none; }
+.std-wrap { overflow: auto; max-height: 75vh; border: 2px solid var(--line); border-radius: 10px; margin-top: 10px; }
+table.std { border-collapse: collapse; font-size: 14px; }
+table.std th, table.std td { padding: 6px 9px; border-bottom: 1px solid var(--line); text-align: center; white-space: nowrap; }
+table.std th { position: sticky; top: 0; background: var(--panel2); color: var(--gold); z-index: 2; }
+table.std td.l, table.std th.l { text-align: left; position: sticky; left: 0; background: var(--panel); z-index: 1; }
+table.std th.l { z-index: 3; background: var(--panel2); }
+table.std td.c-hi { background: rgba(63,168,100,.35); } table.std td.c-mid { background: rgba(201,162,39,.32); } table.std td.c-lo { background: rgba(196,85,63,.38); }
+table.std tr.cls td { font-weight: 700; border-bottom: 2px solid var(--gold); }
+.std-key { font-size: 14px; color: var(--dim); margin: 8px 0; }
+.sbar { display: inline-block; width: 70px; height: 8px; background: rgba(255,255,255,.1); border-radius: 5px; vertical-align: middle; overflow: hidden; margin-left: 6px; }
+.sbar i { display: block; height: 100%; }
+.sbar i.c-hi { background: #3fa864; } .sbar i.c-mid { background: #c9a227; } .sbar i.c-lo { background: #c4553f; }
+.c-hi-t { color: var(--ok) !important; } .c-mid-t { color: var(--warn) !important; } .c-lo-t { color: var(--bad) !important; }
+table.std tr.sk td.l { padding-left: 26px; font-weight: 400; color: var(--dim); }
+table.std tr.sd td { font-weight: 700; background: var(--panel2); }
+.lv { display: inline-block; font-size: 11px; font-weight: 700; border-radius: 4px; padding: 1px 5px; margin-right: 6px; vertical-align: 1px; }
+.lv-L { background: #2f5d8a; color: #fff; } .lv-H { background: #7a3f8f; color: #fff; }
+table.std td.skl, table.std th.skl { text-align: left; white-space: normal; min-width: 220px; max-width: 360px; }
+.focus { background: var(--panel2); border-left: 4px solid var(--bad); border-radius: 8px; padding: 8px 12px; margin: 8px 0; }
+.sortby { margin-left: auto; align-self: center; font-size: 15px; }
+
+@media print {
+  @page { size: landscape; margin: 10mm; }
+  body { background: #fff; color: #000; padding: 0; font-size: 11px; }
+  .noprint, #how, .drop, textarea, .row, #msg, .tabs { display: none !important; }
+  .view[hidden] { display: none !important; }
+  .card { break-inside: avoid; background: #fff; color: #000; }
+  .board li { background: #fff; color: #000; }
+  .panel { border: none; padding: 0; background: #fff; }
+  h1, h2 { color: #000; }
+  .wrap { max-height: none; overflow: visible; border: none; }
+  table.res { font-size: 10px; }
+  table.res th, table.res td { color: #000 !important; background: #fff !important; border-bottom: 1px solid #999; position: static; padding: 3px 5px; }
+  table.goals td input { border: none; }
+}
+</style>
+</head>
+<body>
+<main>
+  <div class="top">
+    <div>
+      <h1>{{HEADING}}</h1>
+      <p class="sub">For the teacher only · made for game version {{VERSION}} · everything stays on this computer: this page sends nothing anywhere</p>
+    </div>
+    <div class="row noprint" style="margin:0">
+      <button type="button" class="btn noprint" id="hide-link" hidden title="Students never see the Teacher link; this hides it on this computer too">Hide the Teacher link on this computer</button>
+      <button type="button" class="btn noprint" id="close-teacher" hidden>Close the teacher screen</button>
+    </div>
+  </div>
+
+  <section class="panel noprint">
+    <details id="how">
+      <summary>How this works</summary>
+      <ol>
+        <li><b>Students</b> tap <b>Submit my progress</b> in the game, tap <b>Copy code</b>, and turn the code in to your Canvas assignment
+          <b>“{{ASSIGNMENT}}”</b> (Online, <b>Text Entry</b>). Putting the game in that assignment puts both on one page.</li>
+        <li><b>The easiest way to grade:</b> on the assignment's page click <b>Download Submissions</b>, then drop that .zip file in box 2 below.
+          Nothing to unzip or type.</li>
+        <li><b>Real names (once a term):</b> in Canvas open <b>Grades</b>, click <b>Export</b> → <b>Export Entire Gradebook</b>, and drop that .csv file
+          in box 2 too. The page then shows names like <b>Ann S.</b>, lists who hasn't turned in, and can make a file that puts every grade into the
+          Canvas gradebook at once (<b>Grades → Import</b>). The class list is kept on this computer only (<b>Forget the class list</b> removes it).</li>
+        <li>Set your scoring criteria in box 1: every suggested grade updates. Then look at the students, the leaderboard or the standards report.</li>
+        <li><b>Only the new work counts:</b> after you enter the grades, click <b>Submit codes</b>. Next time, drop the new .zip and the page counts only the work
+          students did after those codes (put each round's grades in a new assignment column). Before you first submit codes, everything counts.</li>
+      </ol>
+      <p class="hint">Each code holds everything a student has done on one Chromebook up to the moment it was made (a running total); the page subtracts
+        the codes you submitted last, so a student never gets credit twice. Codes from before version 5.15 have no standards detail.</p>
+    </details>
+  </section>
+
+  <section class="panel" id="goals-panel">
+    <details id="goals-box" open>
+      <summary>1. Scoring criteria</summary>
+      <table class="goals">
+        <thead><tr><th>Goal</th><th>Full credit at</th><th>How much it counts</th></tr></thead>
+        <tbody id="goal-rows"></tbody>
+      </table>
+      <div class="row">
+        <label>Points possible <input type="number" id="points" min="1" max="1000" step="1" /></label>
+        <button type="button" class="btn noprint" id="goals-reset">Back to the usual goals</button>
+      </div>
+      <p class="hint" id="goal-explain">Each goal gives full credit when the student reaches it, and part credit on the way. “How much it counts” weighs the goals against each other (0 leaves a goal out). Remembered on this computer.</p>
+    </details>
+    <p class="goal-line" id="goal-line"></p>
+  </section>
+
+  <section class="panel noprint">
+    <h2>2. Add the codes (and your class list)</h2>
+    <div class="drop" id="drop">
+      <p><b>Drop the Canvas “Download Submissions” .zip here</b><br><span class="hint">and, for real names, your gradebook export (.csv)</span></p>
+      <button type="button" class="btn" id="choose">Choose files…</button>
+      <input type="file" id="file" multiple accept=".zip,.csv,.txt,.html,.htm,text/plain,text/html,text/csv,application/zip" hidden />
+    </div>
+    <p class="roster" id="roster-line"></p>
+    <details>
+      <summary class="small-sum">Or paste codes (from SpeedGrader)</summary>
+      <textarea id="paste" spellcheck="false" placeholder="Any text works: one code per line, or a name, a colon and the code, like&#10;Ann Smith: SOL3-{{ST}}-…"></textarea>
+      <div class="row">
+        <button type="button" class="btn primary" id="read">Read the codes</button>
+      </div>
+    </details>
+    <div class="row">
+      <button type="button" class="btn" id="clear">Clear the codes</button>
+      <button type="button" class="btn" id="forget">Forget the class list</button>
+    </div>
+    <p id="msg" aria-live="polite"></p>
+    <div class="round noprint">
+      <p id="round-line"></p>
+      <div class="row noprint">
+        <button type="button" class="btn primary" id="finish-round">Submit codes</button>
+        <button type="button" class="btn" id="undo-round" hidden>Undo: return to the previous codes</button>
+        <button type="button" class="btn" id="base-choose" title="Grading on a different computer? Choose the Download Submissions .zip you graded last time">Use an earlier .zip as the starting point…</button>
+        <input type="file" id="base-file" multiple accept=".zip,.txt,.html,.htm,text/plain,text/html,application/zip" hidden />
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="results">
+    <h2>3. Your class</h2>
+    <div class="summary" id="summary"></div>
+    <div class="tabs noprint" role="tablist">
+      <button type="button" class="tab on" data-view="cards" role="tab">Students</button>
+      <button type="button" class="tab" data-view="table" role="tab">Table</button>
+      <button type="button" class="tab" data-view="board" role="tab">Leaderboard</button>
+      <button type="button" class="tab" data-view="std" role="tab">Standards report</button>
+    </div>
+    <div class="row noprint" id="actions">
+      <a class="btn" id="csv" download="progress.csv" href="#">Download the table (CSV)</a>
+      <a class="btn" id="import" download="canvas-import.csv" href="#">Canvas gradebook import file</a>
+      <button type="button" class="btn" id="copy">Copy the table</button>
+      <button type="button" class="btn" id="print">Print</button>
+    </div>
+    <p class="hint noprint" id="import-hint"></p>
+    <div id="copybox" class="noprint" hidden>
+      <p class="hint" id="copyhint">The table is selected below: press Ctrl+C to copy it, then paste it into a spreadsheet.</p>
+      <textarea id="copytext" readonly></textarea>
+    </div>
+
+    <div class="view" id="view-cards"><div class="cards" id="cards"></div></div>
+    <div class="view" id="view-table" hidden><div class="wrap"><table class="res" id="table"></table></div></div>
+    <div class="view" id="view-board" hidden>
+      <div class="row noprint board-ctl">
+        <label>Rank by <select id="board-by"></select></label>
+        <label>Show <select id="board-n"><option value="10">Top 10</option><option value="5">Top 5</option><option value="25">Top 25</option><option value="0">Everyone</option></select></label>
+        <label>Names <select id="board-names"><option value="first">First name + last initial (Ann S.)</option><option value="nick">Nicknames only</option><option value="none">No names (ranks only)</option></select></label>
+        <button type="button" class="btn" id="board-full">Show to the class (full screen)</button>
+        <button type="button" class="btn" id="board-unhide" hidden>Show hidden students</button>
+      </div>
+      <div class="board" id="board"></div>
+      <p class="hint noprint" id="board-hint"></p>
+    </div>
+    <div class="view" id="view-std" hidden>
+      <div class="row noprint">
+        <a class="btn" id="std-csv" download="standards.csv" href="#">Download the standards report (CSV)</a>
+      </div>
+      <div id="std"></div>
+    </div>
+    <ul class="notes" id="notes"></ul>
+  </section>
+</main>
+<script>window.TEACHER_STATE = "{{ST}}";</script>
+<script>
+{{STD_JS}}
+</script>
+<script>
+{{CODE_JS}}
+</script>
+<script>
+{{APP_JS}}
+</script>
+</body>
+</html>
