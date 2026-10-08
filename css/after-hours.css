@@ -720,3 +720,36 @@ h1.logo img { width: min(300px, 60vw); height: auto; display: block; margin: 0 a
 .passage ol, .passage ul { margin: 4px 0 8px 22px; padding: 0; }
 .passage li { margin: 2px 0; }
 .unit-packs .card { min-width: 150px; max-width: 200px; }
+
+/* v1.1.2: a short frame (an LMS embed 500px tall). The start screens drop to a small logo and tighter cards so
+   the unit cards show without scrolling; the play screen keeps the side panel beside the maze whenever the
+   frame is at least 760px wide, because stacking the panel on top of a 500px frame leaves the maze 280px tall;
+   a narrow AND short frame stacks with a taller panel so the notes and all four choices stay readable. */
+@media (max-height: 560px) {
+  .screen { padding: 10px 16px; }
+  h1.logo img { width: min(120px, 30vw); }
+  .kicker { margin-bottom: 4px; }
+  .ver { margin-bottom: 4px; }
+  .tag { margin: 2px 0 8px; font-size: 14px; }
+  .save-line { margin-bottom: 6px; font-size: 13px; }
+  .packs { gap: 8px; margin-bottom: 8px; }
+  .card { padding: 8px 12px; min-height: 40px; }
+  .card .meta { font-size: 12px; margin-top: 2px; }
+  .row { margin: 4px 0; }
+  .join-row { margin: 4px 0 8px; }
+  .teacher-link { margin-top: 6px; }
+  #title-screen .tag, #mode-screen .tag, #skill-screen .tag { max-width: 820px; }
+  #skill-screen h1, #mode-screen h1 { font-size: clamp(22px, 4vw, 32px); }
+  #overlay { overflow: auto; }
+  #overlay .box { max-height: 96vh; overflow: auto; padding: 14px 18px; }
+}
+@media (max-width: 1099px) and (min-width: 760px) and (max-height: 560px) {
+  #play { flex-direction: row; }
+  #hud { flex: 0 0 var(--hud); width: var(--hud); height: 100%; max-height: none; border-right: 2px solid #c9b48a; border-bottom: none; }
+  .eoc-body { display: flex; }
+  #eoc-passage-wrap { min-height: 80px; }
+  .choices { grid-template-columns: 1fr; }
+}
+@media (max-width: 759px) and (max-height: 560px) {
+  #hud { flex: 0 0 48vh; height: 48vh; max-height: 48vh; }
+}

@@ -55,14 +55,14 @@ Paste the embed code with the </> button (HTML Editor) while editing an assignme
 By folder path - replace COURSE with your course number (the number after /courses/ in the address bar) and
 "Algebra%20Game" with your folder's name (a space is written %20):
 
-   <iframe src="/courses/COURSE/file_contents/course%20files/Algebra%20Game/{{NAME}}.html" width="500" height="100%" allowfullscreen="allowfullscreen"></iframe>
+   <iframe src="/courses/COURSE/file_contents/course%20files/Algebra%20Game/{{NAME}}.html" width="100%" height="500" allowfullscreen="allowfullscreen"></iframe>
 
 Or by file number - click {{NAME}}.html once in Files and read NUMBER from the address bar
 (.../courses/COURSE/files/NUMBER?...):
 
-   <iframe src="/courses/COURSE/files/NUMBER/preview" width="500" height="100%" allowfullscreen="allowfullscreen"></iframe>
+   <iframe src="/courses/COURSE/files/NUMBER/preview" width="100%" height="500" allowfullscreen="allowfullscreen"></iframe>
 
-A percentage height only works when Canvas gives the frame a box with a height of its own; if the game shows as a thin strip, use a number instead (height="900" suits a 500-wide frame). The game has its own full-screen button.
+The game fits a 500-pixel-tall frame; raise height for more room (700 or 800). The game has its own full-screen button.
 Keys reach the maze only after the student clicks inside the frame once.
 
 ================================================================================

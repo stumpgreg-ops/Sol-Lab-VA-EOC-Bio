@@ -8,6 +8,10 @@ Play: `index.html`. Teacher monitor: `admin.html` (PIN lock; FERPA nicknames onl
 
 Progress saves in this browser profile (`afterHours.v1.night`). Itch login does not store progress.
 
+## Algebra I 1.1.2 (2026-10-08) — fits a 500-pixel-tall frame
+
+- **Short frames.** The Canvas embed is now `width="100%" height="500"`, and the game fits it: below 560px of height the start screens use a small logo and tighter cards so the five unit cards show without scrolling, the play screen keeps the problem set beside the maze whenever the frame is at least 760px wide (stacking it on top left a 280px maze), and a narrow *and* short frame stacks with a taller panel so the notes and all four choices stay readable. End-of-level and shop cards scroll inside the frame instead of clipping (`@media (max-height: 560px)` in `css/after-hours.css`).
+
 ## Algebra I 1.1.1 (2026-10-08) — engine v5.17.1
 
 - **Standards report with LOTS / HOTS.** The backbone's v5.17 gives each game a standards file for the teacher screen; `tools/build-standards.js` writes ours, `js/standards-alg.js`, from `HEIST_STANDARDS`: each standard's name and its lettered statements as skills, each lower-order (solve, simplify, graph, write) or higher-order (analyze, compare, justify, verify, interpret in context, conclude). The teacher screen groups every code's results under its standard, shows the LOTS/HOTS split and flags a gap. Rebuild it after editing the standards map.
@@ -88,7 +92,7 @@ The game is static files and needs no server, login or build step, so any host t
 
    ```html
    <p><a href="/courses/COURSE_ID/file_contents/course%20files/SOLLab-VA-Algebra.html" target="_blank" rel="noopener">Open SOL Lab: Algebra I in a new tab</a></p>
-   <iframe src="/courses/COURSE_ID/file_contents/course%20files/SOLLab-VA-Algebra.html" title="SOL Lab: Virginia Algebra I" width="500" height="100%" style="border:0; display:block;" allow="fullscreen; autoplay" allowfullscreen loading="lazy"></iframe>
+   <iframe src="/courses/COURSE_ID/file_contents/course%20files/SOLLab-VA-Algebra.html" title="SOL Lab: Virginia Algebra I" width="100%" height="500" style="border:0; display:block;" allow="fullscreen; autoplay" allowfullscreen loading="lazy"></iframe>
    ```
 
 The loader (`tools/canvas-loader.js`, shared with the backbone) gunzips the bundle in memory and answers every request the game makes for `assets/…`, `js/…` or `css/…` from it (fetch, XMLHttpRequest, `<img src>`, `<audio src>`, CSS `url()`), hands out `data:` URLs because Canvas's file domain may refuse `blob:` ones, and prefixes the saves in localStorage with `solReading.algebra:` so the Reading, Biology and Algebra games can share Canvas's one file domain without overwriting each other's progress. `node tools/check-single-file.js dist/canvas` serves the folder over http and plays into a level with no request allowed outside it.
