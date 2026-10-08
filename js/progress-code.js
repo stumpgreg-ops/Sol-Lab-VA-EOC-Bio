@@ -78,7 +78,34 @@
     "BIO.1.a", "BIO.1.b", "BIO.1.c", "BIO.1.d", "BIO.1.e", "BIO.1.f", "BIO.2.a", "BIO.2.b", "BIO.2.c", "BIO.2.d", "BIO.2.e",
     "BIO.3.a", "BIO.3.b", "BIO.3.c", "BIO.3.d", "BIO.4.a", "BIO.4.b", "BIO.4.c", "BIO.4.d", "BIO.4.e",
     "BIO.5.a", "BIO.5.b", "BIO.5.c", "BIO.5.d", "BIO.5.e", "BIO.5.f", "BIO.6.a", "BIO.6.b", "BIO.6.c", "BIO.6.d", "BIO.6.e",
-    "BIO.7.a", "BIO.7.b", "BIO.7.c", "BIO.7.d", "BIO.7.e", "BIO.8.a", "BIO.8.b", "BIO.8.c", "BIO.8.d"
+    "BIO.7.a", "BIO.7.b", "BIO.7.c", "BIO.7.d", "BIO.7.e", "BIO.8.a", "BIO.8.b", "BIO.8.c", "BIO.8.d",
+    /* the reading game's v5.17 skill codes (js/standards-va.js there): here only so its codes still decode as "Other game";
+       their places differ from the reading game's table, so a reading-game code's standards are never shown on this page */
+    "9.DSR.A", "9.DSR.A.1", "9.DSR.A.2", "9.DSR.B", "9.DSR.B.1", "9.DSR.C", "9.DSR.C.1", "9.DSR.C.2", "9.DSR.C.3",
+    "9.DSR.D.1", "9.DSR.D.2", "9.DSR.E.1", "9.RV.1.A", "9.RV.1.A.1", "9.RV.1.A.2", "9.RV.1.B.1", "9.RV.1.C.1",
+    "9.RV.1.D", "9.RV.1.D.1", "9.RV.1.D.2", "9.RV.1.E.1", "9.RV.1.E.2", "9.RV.1.F.1", "9.RV.1.F.2", "9.RV.1.G",
+    "9.RV.1.G.1", "9.RL.1.A.1", "9.RL.1.A.2", "9.RL.1.B.1", "9.RL.1.B.2", "9.RL.1.C.1", "9.RL.1.D.1", "9.RL.1.D.2",
+    "9.RL.2.A.1", "9.RL.2.A.2", "9.RL.2.B.1", "9.RL.2.B.2", "9.RL.2.C.1", "9.RL.2.C.2", "9.RL.3.A.1", "9.RL.3.B.1",
+    "9.RI.1.A.1", "9.RI.1.A.2", "9.RI.1.B.1", "9.RI.1.B.2", "9.RI.1.C.1", "9.RI.1.C.2", "9.RI.2.A.1", "9.RI.2.B.1",
+    "9.RI.2.B.2", "9.RI.2.C", "9.RI.2.C.1", "9.RI.2.C.2", "9.RI.3.A.1", "9.RI.3.B", "9.RI.3.B.1", "9.RI.3.B.2",
+    "10.DSR.A", "10.DSR.A.1", "10.DSR.A.2", "10.DSR.B", "10.DSR.B.1", "10.DSR.C", "10.DSR.C.1", "10.DSR.C.2",
+    "10.DSR.C.3", "10.DSR.D.1", "10.DSR.D.2", "10.DSR.E.1", "10.RV.1.A.1", "10.RV.1.A.2", "10.RV.1.B.1",
+    "10.RV.1.C.1", "10.RV.1.D.1", "10.RV.1.D.2", "10.RV.1.E", "10.RV.1.E.1", "10.RV.1.E.2", "10.RV.1.F",
+    "10.RV.1.F.1", "10.RV.1.F.2", "10.RV.1.G", "10.RV.1.G.1", "10.RL.1.A.1", "10.RL.1.A.2", "10.RL.1.B.1",
+    "10.RL.1.B.2", "10.RL.1.C.1", "10.RL.1.D", "10.RL.1.D.1", "10.RL.1.D.2", "10.RL.2.A.1", "10.RL.2.A.2",
+    "10.RL.2.A.3", "10.RL.2.B.1", "10.RL.2.B.2", "10.RL.2.C.1", "10.RL.2.C.2", "10.RL.2.D", "10.RL.2.D.1",
+    "10.RL.2.D.2", "10.RL.3.A.1", "10.RL.3.A.2", "10.RL.3.B", "10.RL.3.B.1", "10.RL.3.C", "10.RL.3.C.1",
+    "10.RI.1.A.1", "10.RI.1.B.1", "10.RI.1.B.2", "10.RI.1.C.1", "10.RI.1.C.2", "10.RI.2.A.1", "10.RI.2.A.2",
+    "10.RI.2.B.1", "10.RI.2.B.2", "10.RI.2.C.1", "10.RI.2.C.2", "10.RI.3.A", "10.RI.3.A.1", "10.RI.3.B",
+    "10.RI.3.B.1", "11.DSR.A", "11.DSR.A.1", "11.DSR.A.2", "11.DSR.B", "11.DSR.B.1", "11.DSR.C", "11.DSR.C.1",
+    "11.DSR.C.2", "11.DSR.C.3", "11.DSR.D.1", "11.DSR.D.2", "11.DSR.E.1", "11.RV.1.A.1", "11.RV.1.A.2", "11.RV.1.B.1",
+    "11.RV.1.C.1", "11.RV.1.D", "11.RV.1.D.1", "11.RV.1.E", "11.RV.1.E.1", "11.RV.1.E.2", "11.RV.1.F", "11.RV.1.F.1",
+    "11.RV.1.F.2", "11.RV.1.G", "11.RV.1.G.1", "11.RL.1.A.1", "11.RL.1.A.2", "11.RL.1.B.1", "11.RL.1.C.1",
+    "11.RL.1.C.2", "11.RL.1.D", "11.RL.1.D.1", "11.RL.1.D.2", "11.RL.2.A.1", "11.RL.2.A.2", "11.RL.2.B.1",
+    "11.RL.2.B.2", "11.RL.2.C.1", "11.RL.2.C.2", "11.RL.2.D", "11.RL.2.D.1", "11.RL.2.D.2", "11.RL.3.A.1",
+    "11.RL.3.B", "11.RL.3.B.1", "11.RL.3.C", "11.RL.3.C.1", "11.RI.1.A.1", "11.RI.1.A.2", "11.RI.1.B.1",
+    "11.RI.1.B.2", "11.RI.1.C.1", "11.RI.1.C.2", "11.RI.2.A.1", "11.RI.2.A.2", "11.RI.2.B.1", "11.RI.2.B.2",
+    "11.RI.2.C.1", "11.RI.2.C.2", "11.RI.3.A", "11.RI.3.A.1", "11.RI.3.B", "11.RI.3.B.1"
   ];
   var STD_CHARS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ.abcdefghijklmnopqrstuvwxyz-_", STD_MAX = 24;
   /* format 3: the badges, by number. APPEND ONLY. "m-<mode>-<level>" = win that level in that game mode. */

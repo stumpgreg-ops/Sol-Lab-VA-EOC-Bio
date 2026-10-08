@@ -526,8 +526,13 @@ function makeZip(files) {
   await page.keyboard.press("Escape");
   await page.click('.tab[data-view="std"]');
   var sd = await page.evaluate(function () { return { text: document.getElementById("std").innerText, rows: document.querySelectorAll("#std table.std").length, csv: TeacherPage.stdCsv() }; });
-  check(sd.rows === 2 && /BIO\.\d\.[a-f]/.test(sd.text) && /Ecology|Investigation/.test(sd.text) && /Class/.test(sd.text) && /Ann Smith/.test(sd.text) && /from before version 5\.15/.test(sd.text) && /^\ufeff?Student,Nickname,BIO\./.test(sd.csv.replace(/^\ufeff/, "")),
-    "the standards report: each key idea with its unit, for the class and student by student, older codes noted, and a CSV");
+  check(sd.rows === 1 && /Class total/.test(sd.text) && /BIO\.\d\.[a-f]/.test(sd.text) && /Students 80%\+/.test(sd.text) && /Below 60%/.test(sd.text) && /from before version 5\.15/.test(sd.text) && /(Ecology|Scientific investigation|Cells|Heredity) \(\d+ questions\)/.test(sd.text) && /Reteach first/.test(sd.text) && /Dynamic equilibria|Scientific investigation|Cell structure|Mechanisms of inheritance/.test(sd.text),
+    "the standards report opens on the Class total page: every key idea with its text and the class's %, the students at 80%+ / 60-79% / below 60%, the units, the weakest to reteach first");
+  await page.click('#std .tab[data-sp="students"]');
+  var sd2 = await page.evaluate(function () { return document.getElementById("std").innerText; });
+  check(/Ann Smith/.test(sd2) && /Class total/.test(sd2), "Student by student shows each student and the class total row");
+  check(/^CLASS TOTAL/.test(sd.csv.replace(/^\ufeff/, "")) && /STUDENT BY STUDENT/.test(sd.csv) && /\nStudent,Nickname,BIO\./.test(sd.csv) && /Ecology/.test(sd.csv), "the standards CSV has the class total (with each key idea's unit), then student by student");
+  await page.click('#std .tab[data-sp="class"]');
   await page.screenshot({ path: path.join(shots, "pg-12-standards.png"), fullPage: true });
   await page.click('.tab[data-view="table"]');
   /* more students for the picture, then CSV and Copy */
@@ -553,7 +558,7 @@ function makeZip(files) {
   /* v5.15.1: grading rounds — only the work since last time counts */
   page.on("dialog", function (d) { d.accept(); });
   var r0 = await page.evaluate(function () { var a = TeacherPage.rows().filter(function (r) { return r.userId === "123456"; })[0]; return { won: a.data.won, ans: a.data.answered, line: document.getElementById("round-line").innerText }; });
-  check(/First grading round/.test(r0.line), "the first grading round counts everything: " + r0.line.slice(0, 60));
+  check(/No codes submitted yet/.test(r0.line), "before any codes are submitted everything counts: " + r0.line.slice(0, 60));
   await page.click("#finish-round");
   await page.waitForTimeout(200);
   var newer = C.encode("BIO", { first: "2026-09-01", last: "2026-10-09", days: 4, minutes: 80, started: 20, won: 17, lost: 3, hiReached: 18, hiWon: 17, answered: r0.ans + 40, right: 30 + 8, wrong: 20, modes: 3,
@@ -571,7 +576,7 @@ function makeZip(files) {
     var a = TeacherPage.rows().filter(function (r) { return r.userId === "123456"; })[0], b = TeacherPage.rows().filter(function (r) { return r.userId === "234567"; })[0];
     return { a: a.data, b: b.data, bReset: b.reset, line: document.getElementById("round-line").innerText, notes: document.getElementById("notes").innerText, imp: TeacherPage.importCsv(), undo: !document.getElementById("undo-round").hidden };
   });
-  check(/This grading round: since/.test(r1.line) && r1.undo, "after Finish this grading round, the page says the round runs since then, with Undo");
+  check(/Counting the work since/.test(r1.line) && r1.undo, "after Submit codes, the page counts the work since then, with Undo: return to the previous codes");
   check(r1.a.won === 15 && r1.a.answered === 40 && r1.a.minutes === 80 && r1.a.hiReached === 18 && r1.a.badges.join() === "q25",
     "the next round counts only the new work: 15 levels won, 40 questions, 80 minutes, 1 new badge (highest level stays 18): " + JSON.stringify({ won: r1.a.won, ans: r1.a.answered, min: r1.a.minutes, b: r1.a.badges }));
   check(r1.bReset && r1.b.won === 1 && /totals went down since last round/.test(r1.notes), "a student whose totals went down (new Chromebook) is counted from the new code alone, and noted");
@@ -580,7 +585,7 @@ function makeZip(files) {
   await page.click("#undo-round");
   await page.waitForTimeout(200);
   var r2 = await page.evaluate(function () { var a = TeacherPage.rows().filter(function (r) { return r.userId === "123456"; })[0]; return { won: a.data.won, line: document.getElementById("round-line").innerText }; });
-  check(r2.won === 17 && /First grading round/.test(r2.line), "Undo goes back to the round before (everything counts again)");
+  check(r2.won === 17 && /No codes submitted yet/.test(r2.line), "Undo goes back to the previous codes (everything counts again)");
   await page.evaluate(function () { document.getElementById("copybox").hidden = true; window.scrollTo(0, 0); });
   await page.screenshot({ path: path.join(shots, "pg-04-teacher-va.png"), fullPage: true });
   await page.emulateMedia({ media: "print" });

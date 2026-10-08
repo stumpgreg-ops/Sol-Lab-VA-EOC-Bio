@@ -43,13 +43,17 @@ function build(st, version) {
   var tpl = fs.readFileSync(path.join(__dirname, "teacher", "teacher.html"), "utf8");
   var code = fs.readFileSync(path.join(root, "js", "progress-code.js"), "utf8");
   var app = fs.readFileSync(path.join(__dirname, "teacher", "teacher.js"), "utf8");
-  [code, app].forEach(function (js) { if (/<\/script/i.test(js)) throw new Error("tools/build-teacher.js: a script holds </script"); });
+  /* v5.17: the standards and their text for the standards report (Virginia: js/standards-va.js with LOTS/HOTS skills;
+     v6.4.1 Biology: js/standards-bio.js, the 2018 Biology SOL and their key ideas, made by tools/make-standards-bio.js) */
+  var stdFile = st === "BIO" ? "standards-bio.js" : st === "VA" ? "standards-va.js" : "";
+  var stds = stdFile && fs.existsSync(path.join(root, "js", stdFile)) ? fs.readFileSync(path.join(root, "js", stdFile), "utf8") : "";
+  [code, app, stds].forEach(function (js) { if (/<\/script/i.test(js)) throw new Error("tools/build-teacher.js: a script holds </script"); });
   var esc = function (s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;"); };
   var vals = Object.assign({
     TITLE: esc(B.short + " · teacher progress page"),
     HEADING: esc(B.name) + " · teacher progress page",
     VERSION: esc(version || "?"), ASSIGNMENT: esc(B.assignment), ST: st,
-    CODE_JS: minifyJs(code), APP_JS: minifyJs(app)
+    CODE_JS: minifyJs(code), APP_JS: minifyJs(app), STD_JS: stds ? minifyJs(stds) : ""
   }, LOOK[st]);
   var html = tpl.replace(/\{\{([A-Z0-9_]+)\}\}/g, function (m, k) {
     if (!(k in vals)) throw new Error("tools/build-teacher.js: no value for " + m);

@@ -8,6 +8,13 @@ Play: `index.html`. Teacher monitor: `admin.html` (PIN lock; FERPA nicknames onl
 
 Progress saves in this browser profile (`afterHours.v1.night`). Itch login does not store progress.
 
+## v6.4.1 (2026-10-08) — the teacher screen from SOL Labyrinth v5.16.1 to v5.17.1
+
+- **The standards report opens on a Class total page:** every student's answers added together, key idea by key idea (BIO.8.a with its text from the standards map), with the class's % right and a bar, how many students are at 80%+, 60–79% and below 60% on it, the units in total, the three weakest key ideas under *Reteach first*, and an order by standard or weakest first. *Student by student* is the second page, with a Class total row. The standards CSV starts with the class total. `js/standards-bio.js` (made by `node tools/make-standards-bio.js` from the standards map in `js/content.js`) gives the report each key idea's text; the English game's LOTS/HOTS skill split does not apply here, since Biology questions carry a key idea and no sub-skill.
+- **The teacher screen's order:** box 1 is *Scoring criteria* (open by default; the one-line summary shows only when it is folded), box 2 *Add the codes*, box 3 *Your class*. *Finish this grading round* is now **Submit codes** inside box 2, and *Undo: back to the round before* is **Undo: return to the previous codes**. The READ MEs in the Canvas zips say the same.
+- `js/progress.js` records a question's skill (`sub`) when one is given, as the English game does; Biology questions have none, so nothing changes in the codes. `js/progress-code.js` also lists the reading game's v5.17 skill codes after the Biology ones, so a `SOL3-VA` code made by the newest English game still reads as "Other game" here.
+- Not carried over: the English game's 2024 reading standards file and the skill tags on its 10,562 questions.
+
 ## v6.4 (2026-10-07) — progress codes and the Teacher screen, badges, a level per mode, Root Worms (the v5.16.0 engine)
 
 The Biology game now carries everything SOL Labyrinth gained between v5.8.2 and v5.16.0 that is not Odyssey-only. The 510 Biology questions are untouched.
