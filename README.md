@@ -88,7 +88,7 @@ The game is static files and needs no server, login or build step, so any host t
 
    ```html
    <p><a href="/courses/COURSE_ID/file_contents/course%20files/SOLLab-VA-Algebra.html" target="_blank" rel="noopener">Open SOL Lab: Algebra I in a new tab</a></p>
-   <iframe src="/courses/COURSE_ID/file_contents/course%20files/SOLLab-VA-Algebra.html" title="SOL Lab: Virginia Algebra I" width="100%" height="760" style="border:0; display:block;" allow="fullscreen; autoplay" allowfullscreen loading="lazy"></iframe>
+   <iframe src="/courses/COURSE_ID/file_contents/course%20files/SOLLab-VA-Algebra.html" title="SOL Lab: Virginia Algebra I" width="500" height="100%" style="border:0; display:block;" allow="fullscreen; autoplay" allowfullscreen loading="lazy"></iframe>
    ```
 
 The loader (`tools/canvas-loader.js`, shared with the backbone) gunzips the bundle in memory and answers every request the game makes for `assets/…`, `js/…` or `css/…` from it (fetch, XMLHttpRequest, `<img src>`, `<audio src>`, CSS `url()`), hands out `data:` URLs because Canvas's file domain may refuse `blob:` ones, and prefixes the saves in localStorage with `solReading.algebra:` so the Reading, Biology and Algebra games can share Canvas's one file domain without overwriting each other's progress. `node tools/check-single-file.js dist/canvas` serves the folder over http and plays into a level with no request allowed outside it.
