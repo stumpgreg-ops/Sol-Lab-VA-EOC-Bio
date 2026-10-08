@@ -31,7 +31,9 @@ SECTION 2  FIRST TIME: PUT THE GAME IN CANVAS
 1. Unzip this file on your computer.
 2. In Canvas, open Files, make a folder (for example "Algebra Game") and open it.
 3. Click Upload and select the .html file and ALL the .js files from the unzipped folder.
-4. Add the game to a Page, an assignment or a module item (SECTION 4).
+4. Add the game to an assignment (recommended: Assignments > + Assignment, submission type Online with Text
+   Entry, so the game and the box students paste their progress code into are on one page), or to a Page or a
+   module item (SECTION 4).
 5. Open it once yourself: a purple loading bar, then the title screen.
 
 ================================================================================
@@ -84,9 +86,10 @@ and the TEACHER SCREEN inside the game reads every code at once and suggests a p
    3. Drag the .zip onto the teacher screen (or click Choose files). Every student appears with their numbers
       and a suggested grade.
 
-5.2  Grading rounds
-   A code is a running total. After entering a round's grades click "Finish this grading round": the next
-   round counts only new minutes, levels, questions and badges. Put each round's grades in a new column.
+5.2  Only the new work counts
+   A code is a running total. After entering the grades in Canvas click "Submit codes" (box 2): next time, drop
+   the new .zip and the page counts only the work done after those codes. Put each round's grades in a new
+   column. "Undo: return to the previous codes" takes a round back.
 
 5.3  Real names and grades straight into Canvas
    Grades > Export > Export Entire Gradebook gives a .csv; drop it on the teacher screen too. You then see real
@@ -94,12 +97,13 @@ and the TEACHER SCREEN inside the game reads every code at once and suggests a p
 
 5.4  What the teacher screen shows
    Students (cards with the suggested grade), Table (every number, CSV), Leaderboard (levels, questions,
-   accuracy, badges, minutes, streaks), Standards report (% right on the first try for each standard,
-   A.EO.1.a ... A.ST.1.i, for the class and each student).
+   accuracy, badges, minutes, streaks), Standards report (% right on the first try for each standard A.EO.1 ...
+   A.ST.1 and each lettered skill under it, marked LOTS (lower-order: solve, simplify, graph) or HOTS
+   (higher-order: analyze, compare, justify), for the class and each student).
 
-5.5  Your goals and the suggested grade
-   Box 2 of the teacher screen sets the goals (minutes, levels, questions, days, % right), their weights and the
-   points possible; it remembers them on your computer.
+5.5  Scoring criteria and the suggested grade
+   Box 1 of the teacher screen (Scoring criteria) sets the goals (minutes, levels, questions, days, % right), how
+   much each counts and the points possible; it remembers them on your computer.
 
 ================================================================================
 SECTION 6  STUDENTS: PROGRESS CODES AND RESTORE

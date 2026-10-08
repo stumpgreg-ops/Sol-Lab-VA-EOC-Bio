@@ -185,7 +185,8 @@
   function answer(kind, claim) {
     try {
       var st = cur ? cur.st : stateNow(), rec = load(st), sk = skillOf(claim);
-      var code = claim && claim.sol ? String(claim.sol).replace(/[^0-9A-Za-z.]/g, "").slice(0, 24) : "";
+      /* v5.17: a question names its skill (claim.sub, 9.RL.2.A.2: js/standards-va.js) or only its standard (claim.sol) */
+      var tag = claim ? claim.sub || claim.sol : "", code = tag ? String(tag).replace(/[^0-9A-Za-z.]/g, "").slice(0, 24) : "";
       if (kind === "wrong") {
         rec.q.wrong++;
         rec.streak = 0;

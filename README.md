@@ -8,6 +8,12 @@ Play: `index.html`. Teacher monitor: `admin.html` (PIN lock; FERPA nicknames onl
 
 Progress saves in this browser profile (`afterHours.v1.night`). Itch login does not store progress.
 
+## Algebra I 1.1.1 (2026-10-08) — engine v5.17.1
+
+- **Standards report with LOTS / HOTS.** The backbone's v5.17 gives each game a standards file for the teacher screen; `tools/build-standards.js` writes ours, `js/standards-alg.js`, from `HEIST_STANDARDS`: each standard's name and its lettered statements as skills, each lower-order (solve, simplify, graph, write) or higher-order (analyze, compare, justify, verify, interpret in context, conclude). The teacher screen groups every code's results under its standard, shows the LOTS/HOTS split and flags a gap. Rebuild it after editing the standards map.
+- `js/progress.js` takes a question's skill from `claim.sub` before `claim.sol` (v5.17; Algebra questions have no `sub`, their `sol` is the skill). `js/progress-code.js` appends the backbone's Reading skill list after the Algebra codes (append only, so yesterday's Algebra codes still read).
+- Teacher page rebuilt from the v5.17.1 page: *Scoring criteria* is box 1, codes are box 2, *Submit codes* replaces *Finish this grading round*.
+
 ## Algebra I 1.1.0 (2026-10-07) — engine synced to SOL Labyrinth v5.16.0
 
 The engine files are now the ones the Reading game ships at v5.16.0 (taken from its Canvas update of 2026-10-07 and unpacked); the Algebra bank, the standards map, the unit cards and the course wording are unchanged. New for students and teachers:
@@ -65,7 +71,7 @@ Codes follow the **2023 Virginia Mathematics Standards of Learning** for Algebra
 - `js/content2.js` Expressions & Operations (A.EO) · `content3.js` Equations & Inequalities (A.EI) · `content4.js` Functions (A.F) · `content5.js` Statistics (A.ST).
 - `tools/CONTENT-GUIDE.md` — pack format, the standards table, math notation conventions and the writing rules. `node tools/validate-content.js` checks every file (codes, units, keys, lengths, duplicates); `node tools/validate-content.js js/content4.js` checks one.
 - `tools/smoke.js` — headless Playwright run of the whole game (screenshots in `tools/shots/`).
-- `tools/build-teacher.js` + `tools/teacher-page.html` — writes `teacher/ALG.html`, the teacher screen (see *1.1.0*). `js/progress-code.js` is the progress-code format shared with the Reading game; `js/progress.js`, `js/badges.js`, `js/teacher-screen.js`, `js/classes.js` and `js/mode-*.js` are engine files from the backbone.
+- `tools/build-teacher.js` + `tools/teacher-page.html` — writes `teacher/ALG.html`, the teacher screen (see *1.1.0*), with `js/progress-code.js` and `js/standards-alg.js` (from `tools/build-standards.js`) inlined. `js/progress-code.js` is the progress-code format shared with the Reading game; `js/progress.js`, `js/badges.js`, `js/teacher-screen.js`, `js/classes.js` and `js/mode-*.js` are engine files from the backbone.
 - `tools/question-bank.js` — writes `docs/question-bank.md` and `docs/question-bank.html`, the teacher review copy of every question.
 - `tools/make-itch-zip.sh` — builds the itch.io HTML5 upload (`sh tools/make-itch-zip.sh`): index.html at the zip root, under itch.io's 1,000-file limit. Upload it as an HTML project with "This file will be played in the browser" ticked.
 - `tools/build-canvas.js` — the **Canvas build** (`dist/canvas/`, `dist/SOLLab-VA-Algebra-Canvas.zip`): starter page + loader + data files, see *Hosting* below. `tools/canvas-loader.js` is the in-page loader, `tools/canvas-starter.html` the starter template, `tools/png2webp.py` the lossless-WebP step.
