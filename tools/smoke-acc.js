@@ -162,6 +162,12 @@ var NEVER = ["photosynthesis", "respiration", "enzyme", "enzymes", "catalase", "
   check(side >= 16.5, "larger text in the side panel: " + side + "px");
   await shot("4-play");
 
+  /* the slower game survives anything that puts the clock back to full speed (a slow-motion effect ending, a tab
+     coming back, the next level) */
+  await page.evaluate(function () { var s = SolScene; s.time.timeScale = 1; s.physics.world.timeScale = 1; });
+  await page.waitForTimeout(300);
+  var again = await page.evaluate(function () { var s = SolScene; return { t: s.time.timeScale, ph: s.physics.world.timeScale }; });
+  check(again.t === 0.75 && Math.abs(again.ph - 1 / 0.75) < 1e-6, "the slower game comes back after the clock is reset to full speed: " + JSON.stringify(again));
   /* an end date that has passed switches an option off; Turn all off clears everything */
   await page.evaluate(function () { var s = SolAcc.settings(); s.slow.until = "2020-01-01"; SolAcc.set(s); });
   check(await page.evaluate(function () { return !SolAcc.on("slow") && SolAcc.speedK() === 1 && SolAcc.on("audio"); }), "an option whose end date has passed is off (the others stay on)");

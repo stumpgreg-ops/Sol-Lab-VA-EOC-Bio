@@ -25984,7 +25984,7 @@
       try {
         /* v6.5 (SOL Labyrinth v5.18): the "slower game" accommodation (js/accommodations.js) */
         var accK = window.SolAcc ? SolAcc.speedK() : 1;
-        if (this._accK !== accK) { this._accK = accK; SolAcc.applyScene(this, accK); }
+        if (this._accK !== accK || (accK !== 1 && this.time && this.time.timeScale === 1)) { this._accK = accK; SolAcc.applyScene(this, accK); }   /* again after anything puts the clock back to full speed (a slow-motion effect ending, a tab coming back, the next level) */
         this._updateInner(t, dt * accK);
       } catch (err) {
         this._reportCrash(err);
@@ -27295,9 +27295,13 @@
     playScene.reflexMs = 0;
     playScene.reflexQueued = false;
     playScene._timeScaleStuckMs = 0;
-    if (playScene.time) playScene.time.timeScale = 1;
+    /* v6.5: the Menu window keeps the level paused; coming back to the tab (or clicking into the Canvas frame,
+       which fires "focus") must not start it again behind the window */
+    var leaveOv = document.getElementById("leave-overlay");
+    if (leaveOv && !leaveOv.classList.contains("hidden")) return;
+    if (playScene.time) playScene.time.timeScale = (window.SolAcc ? SolAcc.speedK() : 1);
     if (playScene.physics && playScene.physics.world) {
-      playScene.physics.world.timeScale = 1;
+      playScene.physics.world.timeScale = 1 / (window.SolAcc ? SolAcc.speedK() : 1);
       try { playScene.physics.resume(); } catch (e3) {}
     }
     try {
@@ -27658,9 +27662,10 @@
       return cs.display !== "none" && cs.visibility !== "hidden";
     });
   }
+  /* the scene's own systems pause at once (scene.pause() waits for Phaser's next frame); a click never lands mid-frame */
   function holdPaused() {
     var s = leaveScene();
-    try { if (s && s.scene && !s.scene.isPaused()) s.scene.pause(); } catch (e) {}
+    try { if (s && s.scene && !s.scene.isPaused()) { if (s.sys && s.sys.pause) s.sys.pause(); else s.scene.pause(); } } catch (e) {}
   }
   function openLeave() {
     var play = document.getElementById("play"), s = leaveScene();
@@ -27669,7 +27674,7 @@
     document.getElementById("leave-body").textContent = "Leave Level " + n + " and go back to the title screen? " +
       "This level's letters and strikes are not kept. Your saved level stays at Level " + saved + ".";
     if (s.player && s.player.setVelocity) { try { s.player.setVelocity(0, 0); } catch (e) {} }
-    holdPaused(); setTimeout(holdPaused, 0);   /* Phaser can queue a pause asked for mid-step: ask again next tick */
+    holdPaused();
     leaveTimer = setInterval(holdPaused, 400);   /* coming back to the tab must not un-pause it */
     var o = document.getElementById("leave-overlay");
     o.classList.remove("hidden"); o.setAttribute("aria-hidden", "false");
@@ -27684,7 +27689,7 @@
   function stayInLevel() {
     closeLeave();
     var s = leaveScene();
-    try { if (s && s.scene && s.scene.isPaused()) s.scene.resume(); } catch (e) {}
+    try { if (s && s.scene && s.scene.isPaused()) { if (s.sys && s.sys.resume) s.sys.resume(); else s.scene.resume(); } } catch (e) {}
   }
   function leaveLevel() {
     closeLeave();

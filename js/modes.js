@@ -1047,7 +1047,7 @@
         if (dt > 50) dt = 50;
         /* v6.5 (SOL Labyrinth v5.18): the "slower game" accommodation (js/accommodations.js) */
         var accK = window.SolAcc ? SolAcc.speedK() : 1;
-        if (this._accK !== accK) { this._accK = accK; SolAcc.applyScene(this, accK); }
+        if (this._accK !== accK || (accK !== 1 && this.time && this.time.timeScale === 1)) { this._accK = accK; SolAcc.applyScene(this, accK); }   /* again after anything puts the clock back to full speed (a slow-motion effect ending, a tab coming back, the next level) */
         dt *= accK;
         if (this.readOpen && !K.readingIsVisible()) this.readOpen = false;
         if (this._readPending && this.claim && !this.ended) {
