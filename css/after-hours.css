@@ -31,6 +31,7 @@ html, body {
     linear-gradient(180deg, rgba(7,8,13,.94), rgba(7,8,13,.82)),
     repeating-linear-gradient(90deg, #161922 0 18px, #10131a 18px 36px);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
+  justify-content: safe center;   /* v6.4.2: in a short frame (a 500 px Canvas embed) the screen scrolls from its top instead of clipping the logo */
   padding: 16px; overflow: auto; touch-action: pan-y;
 }
 #title-screen { z-index: 20; }
@@ -60,7 +61,7 @@ html, body {
 h1 { font-size: clamp(36px, 6vw, 64px); margin: 0; letter-spacing: .02em; }
 /* v5.5.1: the logo on the start screens (its glow already carries the dark plate; the heading text lives in the alt) */
 h1.logo { margin: 2px 0 0; line-height: 0; }
-h1.logo img { width: min(300px, 60vw); height: auto; display: block; margin: 0 auto; filter: drop-shadow(0 6px 18px rgba(245, 200, 66, .18)); }
+h1.logo img { width: min(300px, 60vw, 48vh); height: auto; display: block; margin: 0 auto; filter: drop-shadow(0 6px 18px rgba(245, 200, 66, .18)); }
 .tag { color: var(--dim); margin: 6px 0 18px; max-width: 640px; text-align: center; }
 .row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 8px 0; }
 .packs { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 12px; }
@@ -308,7 +309,9 @@ h1.logo img { width: min(300px, 60vw); height: auto; display: block; margin: 0 a
 }
 #overlay h2 { margin: 0 0 8px; }
 
-@media (max-width: 1099px) {
+/* v6.4.2: the side panel goes above the maze only when the frame is both narrow and tall enough for a 28vh panel;
+   a short frame (a 500 px Canvas embed on a Chromebook) keeps the panel beside the maze down to 740 px wide */
+@media (max-width: 1099px) and (min-height: 601px), (max-width: 739px) {
   #play { flex-direction: column; }
   #hud {
     flex: 0 0 28vh;

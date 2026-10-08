@@ -8,6 +8,10 @@ Play: `index.html`. Teacher monitor: `admin.html` (PIN lock; FERPA nicknames onl
 
 Progress saves in this browser profile (`afterHours.v1.night`). Itch login does not store progress.
 
+## v6.4.2 (2026-10-08) — a 500 px tall Canvas embed
+
+- **The embed code in the Canvas READ ME is now `width="100%" height="500"`** (was 700), and the game fits that frame: on a frame under 1100 px wide the side panel used to move above the maze as a 28 vh strip, which at 500 px tall left the lab notes and the question unreadable. Now that stacking happens only when the frame is both narrow and at least 601 px tall; a short frame keeps the panel beside the maze down to 740 px wide (`css/after-hours.css`). The menu screens scroll from their top in a short frame (`justify-content: safe center`) instead of clipping the logo and heading above the frame where no scroll reached them, and the logo shrinks to fit (`48vh`).
+
 ## v6.4.1 (2026-10-08) — the teacher screen from SOL Labyrinth v5.16.1 to v5.17.1
 
 - **The standards report opens on a Class total page:** every student's answers added together, key idea by key idea (BIO.8.a with its text from the standards map), with the class's % right and a bar, how many students are at 80%+, 60–79% and below 60% on it, the units in total, the three weakest key ideas under *Reteach first*, and an order by standard or weakest first. *Student by student* is the second page, with a Class total row. The standards CSV starts with the class total. `js/standards-bio.js` (made by `node tools/make-standards-bio.js` from the standards map in `js/content.js`) gives the report each key idea's text; the English game's LOTS/HOTS skill split does not apply here, since Biology questions carry a key idea and no sub-skill.
@@ -38,7 +42,7 @@ For a course in Canvas where the game cannot be hosted on GitHub or any other ou
 - `SOLLab-VA-Bio-data-01.js` … : the gzip bundle as base64, 576 KB per file. Each file calls `solPart(i, hash, base64)`; a file from another version is refused and a missing or renamed file is named on screen.
 - **In Canvas:**
   1. Upload the zip to one folder in **Files** and let Canvas expand it (or upload the files one by one into the same folder).
-  2. Embed `SOLLab-VA-Bio.html` in a Page: `<iframe src="/courses/<course>/files/<file id>/preview" width="100%" height="700" allowfullscreen></iframe>`.
+  2. Embed `SOLLab-VA-Bio.html` in a Page: `<iframe src="/courses/<course>/files/<file id>/preview" width="100%" height="500" allowfullscreen></iframe>`.
   3. If the page never gets past "Loading the game…", that spot in Canvas does not run scripts. Upload `tools/canvas-check.html` (also at https://stumpgreg-ops.github.io/Sol-Lab-VA-EOC-Bio/canvas-check.html) the same way: it says whether a page's code can run there and whether progress can be saved.
 - **Saves:** Canvas serves every uploaded file from one shared domain, so this build prefixes the game's localStorage keys with `solLab.bio:`; the reading game (`solReading.va:`) or any other game on the same Canvas cannot read or overwrite them. An update replaces only the `.js` files, so the starter page and every student's progress stay.
 - **Not included:** class sessions and the teacher page need the Apps Script server.

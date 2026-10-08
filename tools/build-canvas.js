@@ -77,7 +77,7 @@ var gameName = "SOL Lab Biology (Virginia EOC)";
 var teacherBuild = require("./build-teacher"), PB = require("../js/progress-code.js").BUILDS[st];
 var teacherName = teacherBuild.fileName(st), teacherPath = path.join(outAll, teacherName);
 fs.writeFileSync(teacherPath, teacherBuild.build(st, man.version));
-var EMBED = '<iframe src="/courses/COURSE/files/NUMBER/preview" width="100%" height="700" allowfullscreen="allowfullscreen"></iframe>';
+var EMBED = '<iframe src="/courses/COURSE/files/NUMBER/preview" width="100%" height="500" allowfullscreen="allowfullscreen"></iframe>';
 var RULE = "================================================================================";
 var THIN = "--------------------------------------------------------------------------------";
 function sec(n, title) { return ["", RULE, "SECTION " + n + "  " + title.toUpperCase(), RULE, ""]; }
