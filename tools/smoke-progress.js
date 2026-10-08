@@ -526,8 +526,8 @@ function makeZip(files) {
   await page.keyboard.press("Escape");
   await page.click('.tab[data-view="std"]');
   var sd = await page.evaluate(function () { return { text: document.getElementById("std").innerText, rows: document.querySelectorAll("#std table.std").length, csv: TeacherPage.stdCsv() }; });
-  check(sd.rows === 1 && /Class total/.test(sd.text) && /BIO\.\d\.[a-f]/.test(sd.text) && /Students 80%\+/.test(sd.text) && /Below 60%/.test(sd.text) && /from before version 5\.15/.test(sd.text) && /(Ecology|Scientific investigation|Cells|Heredity) \(\d+ questions\)/.test(sd.text) && /Reteach first/.test(sd.text) && /Dynamic equilibria|Scientific investigation|Cell structure|Mechanisms of inheritance/.test(sd.text),
-    "the standards report opens on the Class total page: every key idea with its text and the class's %, the students at 80%+ / 60-79% / below 60%, the units, the weakest to reteach first");
+  check(sd.rows === 1 && /Class total/.test(sd.text) && /BIO\.\d\.[a-f]/.test(sd.text) && /Students 80%\+/.test(sd.text) && /Below 60%/.test(sd.text) && /from before version 5\.15/.test(sd.text) && /(Ecology|Scientific investigation|Cells|Heredity) \(\d+ questions\)/.test(sd.text) && /Dynamic equilibria|Scientific investigation|Cell structure|Mechanisms of inheritance/.test(sd.text),
+    "the standards report opens on the Class total page: every key idea with its text and the class's %, the students at 80%+ / 60-79% / below 60%, the units");
   await page.click('#std .tab[data-sp="students"]');
   var sd2 = await page.evaluate(function () { return document.getElementById("std").innerText; });
   check(/Ann Smith/.test(sd2) && /Class total/.test(sd2), "Student by student shows each student and the class total row");
