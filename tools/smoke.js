@@ -202,21 +202,58 @@ var srv = http.createServer(function (req, res) {
   });
   check(rt.ok && rt.same, "build code round trip " + JSON.stringify(rt));
 
-  /* short town pass: three rewards on the village theme still work */
+  /* town pass (Algebra 1.1.4: the town is a kit theme on the castle's models): eight rewards raise the fence, the home grows,
+     the 3D view is on with every model loaded, and an old sprite town maps onto the kit */
   await page.evaluate(function () { localStorage.setItem("smoke.castleCode", SolBuild.exportCode()); localStorage.removeItem("afterHours.v1.build"); });
   await page.reload({ waitUntil: "load" }); await page.waitForTimeout(800);
-  for (var tn = 5; tn <= 15; tn += 5) {
+  for (var tn = 5; tn <= 40; tn += 5) {
     await page.evaluate(function (n) { window.__done = false; SolBuild.showReward(n, function () { window.__done = true; }); }, tn);
     await page.waitForSelector("#build-overlay:not(.hidden)", { timeout: 5000 });
     if (tn === 5) { await page.waitForSelector(".build-theme"); await page.click(".build-theme:nth-child(1)"); await page.click("#build-overlay .btn.primary"); }
     await page.waitForSelector(".build-options .build-opt"); await page.click(".build-options .build-opt:nth-child(1)"); await page.click("#build-overlay .btn.primary");
-    await page.waitForSelector(".build-styles .build-opt"); await page.click(".build-styles .build-opt:nth-child(1)"); await page.click("#build-overlay .btn.primary");
+    await page.waitForSelector(".build-styles:not(.hidden) .build-opt, .build-note:not(.hidden)");
+    if (await page.isVisible(".build-styles:not(.hidden) .build-opt")) { await page.click(".build-styles .build-opt:nth-child(1)"); await page.click("#build-overlay .btn.primary"); }
     await page.waitForSelector(".build-note:not(.hidden)"); await page.click("#build-overlay .btn.primary"); await page.waitForSelector(".build-note:not(.hidden)");
     await page.click("#build-overlay .btn.primary"); await page.waitForFunction(function () { return window.__done === true; });
   }
-  var townSt = await page.evaluate(function () { return SolBuild.state(); });
-  check(townSt.theme === "village" && townSt.buildings === 3, "town theme still builds: " + JSON.stringify({ theme: townSt.theme, b: townSt.buildings }));
+  var townSt = await page.evaluate(function () {
+    var st = SolBuild.state(), s = JSON.parse(localStorage.getItem("afterHours.v1.build")), P = null;
+    var xhr = new XMLHttpRequest(); xhr.open("GET", "assets/build/pieces.json", false); xhr.send(); P = JSON.parse(xhr.responseText);
+    function pc(id) { return P.pieces.filter(function (x) { return x.id === id && x.theme === "village"; })[0]; }
+    var auto = s.picks.filter(function (p) { return p.src === "auto"; }), bad = s.picks.filter(function (p) { return !pc(p.piece); }).map(function (p) { return p.piece; });
+    return { theme: s.theme, kit: s.kit, b: st.buildings, walls: st.walls, stage: SolBuild._coreStage(), rank: st.rating && st.rating.rank, auto: auto.length,
+      fence: auto.filter(function (p) { return p.piece === "c-fence"; }).length, gate: auto.filter(function (p) { return p.piece === "fence-gate"; }).length,
+      unknown: bad, themeKit: !!P.themes.village.kit, townPieces: P.pieces.filter(function (x) { return x.theme === "village"; }).length };
+  });
+  console.log("town", JSON.stringify(townSt));
+  check(townSt.theme === "village" && townSt.kit === 3 && townSt.themeKit && townSt.b === 8 && townSt.unknown.length === 0 && townSt.townPieces > 100, "the town is a kit theme and eight rewards built: " + JSON.stringify({ theme: townSt.theme, kit: townSt.kit, b: townSt.b, unknown: townSt.unknown }));
+  check(townSt.walls === true && townSt.fence >= 12 && townSt.gate === 1 && townSt.stage === 2, "the fence (with one gate) went up at the 8th building and the home has grown: " + JSON.stringify({ walls: townSt.walls, fence: townSt.fence, gate: townSt.gate, stage: townSt.stage }));
+  await page.evaluate(function () { SolBuild.showGallery(); });
+  await page.waitForSelector("#build-overlay:not(.hidden)"); await page.waitForTimeout(2500);
   await shot("09c-town");
+  var td3 = await page.evaluate(function () { return { probe: SolBuild._probe(1, 1, 0), loads: SolBuild._loads3d() }; });
+  console.log("town 3d", JSON.stringify(td3));
+  check(td3.probe && td3.probe.use3d, "the town draws in 3D");
+  check(td3.loads && td3.loads.models === "ok" && td3.loads.failed === 0 && td3.loads.loaded === td3.loads.total && td3.loads.total > 3, "every 3D model the town needs loaded: " + JSON.stringify(td3.loads));
+  await page.click("#build-overlay .btn.primary"); await page.waitForTimeout(300);
+  /* an old sprite town (v4 save, 40 px grid, old piece ids and the tile style) loads as a kit town with every piece mapped and placed afresh */
+  await page.evaluate(function () {
+    var old = { v: 4, theme: "village", salt: 12345, coins: 30, kit: 0, owned: { cottage: 1, "house-wing": 1, bakery: 1, well: 1, "town-hall": 1, fence: 1 },
+      rewards: { 5: "cottage", 10: "house-wing", 15: "bakery", 20: "town-hall" },
+      picks: [{ night: 5, piece: "cottage", style: "tile", src: "reward", cx: 0, cy: 0 }, { night: 10, piece: "house-wing", style: "tile", src: "reward", cx: 2, cy: 0 },
+        { night: 15, piece: "bakery", style: "thatch", src: "reward", cx: 0, cy: 3 }, { night: 20, piece: "town-hall", style: "slate", src: "reward", cx: 4, cy: 4 },
+        { night: 20, piece: "well", style: "tile", src: "shop", deco: true, cx: 1, cy: 1 }, { night: 20, piece: "signpost", style: "tile", src: "shop", deco: true, cx: 1, cy: 2 }],
+      view: { a: 0, z: 1, px: 0, py: 0 }, code: "" };
+    localStorage.setItem("afterHours.v1.build", JSON.stringify(old));
+  });
+  await page.reload({ waitUntil: "load" }); await page.waitForTimeout(1200);
+  var oldTown = await page.evaluate(function () {
+    var s = JSON.parse(localStorage.getItem("afterHours.v1.build")), st = SolBuild.state();
+    return { kit: s.kit, picks: s.picks.map(function (p) { return p.piece + ":" + p.style + ":" + (p.cx != null) + ":" + p.deco; }), rewards: s.rewards, coins: s.coins, b: st.buildings, d: st.decorations, style: st.style };
+  });
+  console.log("old town", JSON.stringify(oldTown));
+  check(oldTown.kit === 3 && oldTown.picks.length === 6 && oldTown.picks.join(" ") === "cottage:tile:true:false hut:tile:true:false bakery:thatch:true:false k-townhall:slate:true:false k-well:tile:true:true well-sign:tile:true:true"
+    && oldTown.rewards[10] === "hut" && oldTown.rewards[20] === "k-townhall" && oldTown.coins === 30 && oldTown.b === 4 && oldTown.d === 2, "an old sprite town maps onto the kit town: " + JSON.stringify(oldTown));
   await page.evaluate(function () { SolBuild.importCode(localStorage.getItem("smoke.castleCode")); });
   await page.reload({ waitUntil: "load" }); await page.waitForTimeout(800);
 

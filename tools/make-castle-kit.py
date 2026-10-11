@@ -8,6 +8,8 @@ the first argument. Writes:
   assets/build/kit/<color>/<sprite>_<orient>.png  red / green / gold recolours
                                                    (only sprites that carry blue)
 and rewrites the "castle" theme in assets/build/pieces.json with kit modules.
+Run tools/make-town-kit.py afterwards: the "village" (Town) theme is built from
+the castle kit's pieces and shares its sprites and models.
 
 Geometry: every kit tile is one isometric cell, 151 px wide and 87 px tall
 (true 30° isometric). A sprite's bottom-centre pixel is the cell's front apex.

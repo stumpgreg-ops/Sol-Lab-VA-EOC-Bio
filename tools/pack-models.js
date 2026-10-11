@@ -25,7 +25,7 @@ if (!sizes.castle) throw new Error("sizes.json from tools/render-kaykit.js not f
 /* ── which sprites the pieces draw (walls, gates, hedges and fences are geometry since v5.4, so not those) ── */
 var names = {};
 pieces.pieces.forEach(function (p) {
-  if (p.theme !== "castle") return;
+  if (!(pieces.themes[p.theme] || {}).kit) return;                           /* the castle and (Algebra 1.1.4) the town, which shares its models */
   (p.parts || []).forEach(function (n) { names[n] = 1; });
   (p.grow || []).forEach(function (g) { g.forEach(function (n) { names[n] = 1; }); });
 });

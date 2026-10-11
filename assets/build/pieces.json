@@ -242,47 +242,207 @@
  "themes": {
   "village": {
    "name": "Town",
-   "desc": "A cottage that grows into a whole town: wings, a bakery, mills and a market.",
-   "drawScale": 0.8,
-   "pitch": 150,
+   "desc": "A cottage that grows into a whole town: houses, mills, a market and a town hall, fences that turn corners, roofs in your colour.",
+   "kit": true,
+   "cell": 151,
+   "cellH": 87.2,
+   "unitPx": 1,
+   "drawScale": 1,
    "wallLevel": 8,
+   "growAt": [
+    1,
+    4,
+    8,
+    13
+   ],
+   "tabs": [
+    [
+     "core",
+     "Home"
+    ],
+    [
+     "house",
+     "Buildings"
+    ],
+    [
+     "village",
+     "Village life"
+    ],
+    [
+     "nature",
+     "Nature"
+    ],
+    [
+     "animal",
+     "Animals"
+    ],
+    [
+     "statue",
+     "Monuments"
+    ]
+   ],
    "styles": [
     {
-     "id": "tile",
-     "name": "Red Tile",
-     "desc": "Stucco walls and a red tile roof.",
+     "id": "slate",
+     "name": "Slate",
+     "desc": "Blue slate roofs and awnings.",
      "dir": "",
      "pairs": [
       "thatch"
      ]
     },
     {
-     "id": "slate",
-     "name": "Slate",
-     "desc": "White plaster and a blue slate roof.",
-     "dir": "styles/slate/",
+     "id": "tile",
+     "name": "Red Tile",
+     "desc": "Red tile roofs and awnings.",
+     "dir": "red/",
      "pairs": [
-      "tile"
+      "thatch"
+     ]
+    },
+    {
+     "id": "green",
+     "name": "Forest",
+     "desc": "Green roofs and awnings.",
+     "dir": "green/",
+     "pairs": [
+      "slate"
      ]
     },
     {
      "id": "thatch",
      "name": "Thatch",
-     "desc": "Warm timber walls and a golden straw roof.",
-     "dir": "styles/thatch/",
+     "desc": "Golden straw roofs and awnings.",
+     "dir": "gold/",
      "pairs": [
-      "slate"
+      "tile"
      ]
     }
    ],
+   "ranks": [
+    [
+     0,
+     "Camp"
+    ],
+    [
+     120,
+     "Hamlet"
+    ],
+    [
+     300,
+     "Village"
+    ],
+    [
+     600,
+     "Town"
+    ],
+    [
+     1000,
+     "Market Town"
+    ],
+    [
+     1600,
+     "Borough"
+    ],
+    [
+     2400,
+     "City"
+    ]
+   ],
    "ring": {
-    "seg": "fence",
-    "corner": null,
-    "gate": null,
-    "extent": 3.75
+    "seg": "c-fence",
+    "gate": "fence-gate"
    },
-   "cell": 40,
-   "unitPx": 30
+   "packs": [
+    {
+     "id": "lane",
+     "name": "Lane pack",
+     "desc": "Two lamp posts, a bench and two stone paths, 25% off.",
+     "items": [
+      "lamp-post",
+      "lamp-post",
+      "bench",
+      "stone-path",
+      "stone-path"
+     ],
+     "discount": 0.25
+    },
+    {
+     "id": "market",
+     "name": "Market pack",
+     "desc": "A market hall, two stalls, a cart and a well, 20% off.",
+     "items": [
+      "k-market",
+      "stall-red",
+      "stall-green",
+      "cart",
+      "k-well"
+     ],
+     "discount": 0.2
+    },
+    {
+     "id": "garden",
+     "name": "Garden pack",
+     "desc": "Flowers, an oak, bushes and a hedge, 25% off.",
+     "items": [
+      "flowers-mixed",
+      "flowers-red",
+      "oak",
+      "bushes",
+      "hedge"
+     ],
+     "discount": 0.25
+    },
+    {
+     "id": "farm",
+     "name": "Farm pack",
+     "desc": "A stable, a rail fence, a cow, a horse and a chicken, 20% off.",
+     "items": [
+      "stable",
+      "rail-fence",
+      "cow",
+      "horse",
+      "chicken"
+     ],
+     "discount": 0.2
+    },
+    {
+     "id": "town",
+     "name": "Town pack",
+     "desc": "A town hall, two houses, a well and a market hall, 20% off.",
+     "items": [
+      "k-townhall",
+      "k-home-a",
+      "k-home-b",
+      "k-well",
+      "k-market"
+     ],
+     "discount": 0.2
+    },
+    {
+     "id": "mills",
+     "name": "Mill pack",
+     "desc": "A lumber mill, a stone windmill and a water mill, 15% off.",
+     "items": [
+      "k-lumbermill",
+      "k-windmill",
+      "k-watermill"
+     ],
+     "discount": 0.15
+    },
+    {
+     "id": "monuments",
+     "name": "Monument pack",
+     "desc": "A fountain, an obelisk, a column and a knight statue, 20% off.",
+     "items": [
+      "fountain",
+      "obelisk",
+      "column",
+      "knight-statue"
+     ],
+     "discount": 0.2
+    }
+   ]
   },
   "castle": {
    "name": "Castle",
@@ -556,600 +716,6 @@
   }
  },
  "pieces": [
-  {
-   "id": "cottage",
-   "theme": "village",
-   "name": "Cottage",
-   "role": "core",
-   "tier": 1,
-   "desc": "A snug one-room home to start from.",
-   "img": "assets/build/village-cottage.png",
-   "w": 106,
-   "h": 149,
-   "ax": 0.4978,
-   "ay": 0.769,
-   "unitPx": 30,
-   "price": 40,
-   "cells": 2
-  },
-  {
-   "id": "stone-cottage",
-   "theme": "village",
-   "name": "Stone cottage",
-   "role": "core",
-   "tier": 1,
-   "desc": "Thick stone walls, one storey, warm inside.",
-   "img": "assets/build/village-stone-cottage.png",
-   "w": 113,
-   "h": 153,
-   "ax": 0.4998,
-   "ay": 0.763,
-   "unitPx": 30,
-   "price": 40,
-   "cells": 3
-  },
-  {
-   "id": "house",
-   "theme": "village",
-   "name": "Two-storey house",
-   "role": "core",
-   "tier": 1,
-   "desc": "Windows upstairs and a chimney.",
-   "img": "assets/build/village-house.png",
-   "w": 148,
-   "h": 193,
-   "ax": 0.4999,
-   "ay": 0.7588,
-   "unitPx": 30,
-   "price": 40,
-   "cells": 3
-  },
-  {
-   "id": "stall",
-   "theme": "village",
-   "name": "Market stall",
-   "role": "module",
-   "tier": 1,
-   "desc": "A canopy, crates and goods to sell.",
-   "img": "assets/build/village-stall.png",
-   "w": 98,
-   "h": 118,
-   "ax": 0.4953,
-   "ay": 0.726,
-   "fits": [
-    "front",
-    "side"
-   ],
-   "unitPx": 30,
-   "price": 40,
-   "cells": 2
-  },
-  {
-   "id": "steps",
-   "theme": "village",
-   "name": "Stone steps",
-   "role": "module",
-   "tier": 1,
-   "desc": "Steps with a railing up to the door.",
-   "img": "assets/build/village-steps.png",
-   "w": 85,
-   "h": 85,
-   "ax": 0.4997,
-   "ay": 0.6601,
-   "fits": [
-    "front",
-    "side"
-   ],
-   "unitPx": 30,
-   "price": 40,
-   "cells": 2
-  },
-  {
-   "id": "cottage-wing",
-   "theme": "village",
-   "name": "Cottage wing",
-   "role": "module",
-   "tier": 1,
-   "desc": "A second cottage joined to the first.",
-   "img": "assets/build/village-cottage.png",
-   "w": 106,
-   "h": 149,
-   "ax": 0.4978,
-   "ay": 0.769,
-   "fits": [
-    "side",
-    "back"
-   ],
-   "unitPx": 30,
-   "price": 40,
-   "cells": 2
-  },
-  {
-   "id": "stone-wing",
-   "theme": "village",
-   "name": "Stone wing",
-   "role": "module",
-   "tier": 1,
-   "desc": "A stone room added on.",
-   "img": "assets/build/village-stone-cottage.png",
-   "w": 113,
-   "h": 153,
-   "ax": 0.4998,
-   "ay": 0.763,
-   "fits": [
-    "side",
-    "back"
-   ],
-   "unitPx": 30,
-   "price": 40,
-   "cells": 3
-  },
-  {
-   "id": "lamp-path",
-   "theme": "village",
-   "name": "Lamp-lit lane",
-   "role": "module",
-   "tier": 2,
-   "desc": "Cobbles and two lamps to the door.",
-   "img": "assets/build/village-lamp-path.png",
-   "w": 144,
-   "h": 131,
-   "ax": 0.4975,
-   "ay": 0.6509,
-   "fits": [
-    "front"
-   ],
-   "unitPx": 30,
-   "price": 80,
-   "cells": 3
-  },
-  {
-   "id": "house-wing",
-   "theme": "village",
-   "name": "House wing",
-   "role": "module",
-   "tier": 2,
-   "desc": "A two-storey wing with its own chimney.",
-   "img": "assets/build/village-house.png",
-   "w": 148,
-   "h": 193,
-   "ax": 0.4999,
-   "ay": 0.7588,
-   "fits": [
-    "side",
-    "back"
-   ],
-   "unitPx": 30,
-   "price": 80,
-   "cells": 3
-  },
-  {
-   "id": "bakery",
-   "theme": "village",
-   "name": "Bakery",
-   "role": "module",
-   "tier": 2,
-   "desc": "Round windows, big chimney, fresh bread.",
-   "img": "assets/build/village-bakery.png",
-   "w": 157,
-   "h": 198,
-   "ax": 0.4981,
-   "ay": 0.752,
-   "fits": [
-    "side",
-    "back"
-   ],
-   "unitPx": 30,
-   "price": 80,
-   "cells": 4
-  },
-  {
-   "id": "dock",
-   "theme": "village",
-   "name": "Boat dock",
-   "role": "module",
-   "tier": 2,
-   "desc": "A wooden pier with a rowing boat.",
-   "img": "assets/build/village-dock.png",
-   "w": 162,
-   "h": 125,
-   "ax": 0.4974,
-   "ay": 0.5959,
-   "fits": [
-    "front",
-    "side"
-   ],
-   "unitPx": 30,
-   "price": 80,
-   "cells": 4
-  },
-  {
-   "id": "chapel",
-   "theme": "village",
-   "name": "Chapel",
-   "role": "module",
-   "tier": 2,
-   "desc": "A bell over the door.",
-   "img": "assets/build/village-chapel.png",
-   "w": 113,
-   "h": 178,
-   "ax": 0.4998,
-   "ay": 0.7962,
-   "fits": [
-    "side",
-    "back",
-    "far"
-   ],
-   "unitPx": 30,
-   "price": 80,
-   "cells": 3
-  },
-  {
-   "id": "arch",
-   "theme": "village",
-   "name": "Stone arch",
-   "role": "module",
-   "tier": 2,
-   "desc": "A grand gate into the yard.",
-   "img": "assets/build/village-arch.png",
-   "w": 112,
-   "h": 146,
-   "ax": 0.4976,
-   "ay": 0.7548,
-   "fits": [
-    "front"
-   ],
-   "unitPx": 30,
-   "price": 80,
-   "cells": 3
-  },
-  {
-   "id": "tavern",
-   "theme": "village",
-   "name": "Tavern",
-   "role": "module",
-   "tier": 3,
-   "desc": "A sign, a lamp and a warm door.",
-   "img": "assets/build/village-tavern.png",
-   "w": 171,
-   "h": 187,
-   "ax": 0.4987,
-   "ay": 0.7137,
-   "fits": [
-    "side",
-    "back"
-   ],
-   "unitPx": 30,
-   "price": 140,
-   "cells": 4
-  },
-  {
-   "id": "windmill",
-   "theme": "village",
-   "name": "Windmill",
-   "role": "module",
-   "tier": 3,
-   "desc": "Sails turning over the fields.",
-   "img": "assets/build/village-windmill.png",
-   "w": 129,
-   "h": 212,
-   "ax": 0.4978,
-   "ay": 0.8051,
-   "fits": [
-    "back",
-    "far"
-   ],
-   "unitPx": 30,
-   "price": 140,
-   "cells": 3
-  },
-  {
-   "id": "watermill",
-   "theme": "village",
-   "name": "Watermill",
-   "role": "module",
-   "tier": 3,
-   "desc": "A wheel turned by the stream.",
-   "img": "assets/build/village-watermill.png",
-   "w": 190,
-   "h": 229,
-   "ax": 0.4983,
-   "ay": 0.7413,
-   "fits": [
-    "side",
-    "far"
-   ],
-   "unitPx": 30,
-   "price": 140,
-   "cells": 5
-  },
-  {
-   "id": "square",
-   "theme": "village",
-   "name": "Market square",
-   "role": "module",
-   "tier": 3,
-   "desc": "Cobbles, two stalls and the old well.",
-   "img": "assets/build/village-square.png",
-   "w": 222,
-   "h": 197,
-   "ax": 0.4986,
-   "ay": 0.6548,
-   "fits": [
-    "front"
-   ],
-   "unitPx": 30,
-   "price": 140,
-   "cells": 5
-  },
-  {
-   "id": "harbour",
-   "theme": "village",
-   "name": "Harbour",
-   "role": "module",
-   "tier": 3,
-   "desc": "Two boats, a long pier and a lamp.",
-   "img": "assets/build/village-harbour.png",
-   "w": 216,
-   "h": 180,
-   "ax": 0.4989,
-   "ay": 0.6289,
-   "fits": [
-    "front",
-    "side"
-   ],
-   "unitPx": 30,
-   "price": 140,
-   "cells": 5
-  },
-  {
-   "id": "manor",
-   "theme": "village",
-   "name": "Manor house",
-   "role": "module",
-   "tier": 4,
-   "desc": "Three storeys of stucco and red tile.",
-   "img": "assets/build/village-manor.png",
-   "w": 199,
-   "h": 247,
-   "ax": 0.4996,
-   "ay": 0.7516,
-   "fits": [
-    "side",
-    "back"
-   ],
-   "unitPx": 30,
-   "price": 220,
-   "cells": 5
-  },
-  {
-   "id": "town-hall",
-   "theme": "village",
-   "name": "Town hall",
-   "role": "module",
-   "tier": 4,
-   "desc": "Steps, a bell and an ornate door.",
-   "img": "assets/build/village-town-hall.png",
-   "w": 183,
-   "h": 224,
-   "ax": 0.4992,
-   "ay": 0.745,
-   "fits": [
-    "back",
-    "far"
-   ],
-   "unitPx": 30,
-   "price": 220,
-   "cells": 4
-  },
-  {
-   "id": "bell-tower",
-   "theme": "village",
-   "name": "Bell tower",
-   "role": "module",
-   "tier": 4,
-   "desc": "The tallest thing in town.",
-   "img": "assets/build/village-bell-tower.png",
-   "w": 99,
-   "h": 220,
-   "ax": 0.4966,
-   "ay": 0.8531,
-   "fits": [
-    "back",
-    "far"
-   ],
-   "unitPx": 30,
-   "price": 220,
-   "cells": 2
-  },
-  {
-   "id": "grand-mill",
-   "theme": "village",
-   "name": "Grand windmill",
-   "role": "module",
-   "tier": 4,
-   "desc": "A stone mill with huge sails.",
-   "img": "assets/build/village-grand-mill.png",
-   "w": 174,
-   "h": 289,
-   "ax": 0.4992,
-   "ay": 0.8114,
-   "fits": [
-    "back",
-    "far"
-   ],
-   "unitPx": 30,
-   "price": 220,
-   "cells": 4
-  },
-  {
-   "id": "fence",
-   "theme": "village",
-   "name": "Wooden fence",
-   "role": "wall",
-   "tier": 0,
-   "desc": "Posts and rails around the estate.",
-   "img": "assets/build/village-fence.png",
-   "w": 87,
-   "h": 82,
-   "ax": 0.4999,
-   "ay": 0.6456,
-   "unitPx": 30,
-   "cells": 2
-  },
-  {
-   "id": "well",
-   "theme": "village",
-   "name": "Village well",
-   "role": "deco",
-   "tier": 0,
-   "price": 30,
-   "desc": "Fresh water in the yard.",
-   "img": "assets/build/village-well.png",
-   "w": 69,
-   "h": 84,
-   "ax": 0.4928,
-   "ay": 0.7153,
-   "unitPx": 30,
-   "nostyle": true,
-   "cells": 1
-  },
-  {
-   "id": "lamp",
-   "theme": "village",
-   "name": "Street lamp",
-   "role": "deco",
-   "tier": 0,
-   "price": 15,
-   "desc": "A little light for the path.",
-   "img": "assets/build/village-lamp.png",
-   "w": 43,
-   "h": 62,
-   "ax": 0.4895,
-   "ay": 0.7436,
-   "unitPx": 30,
-   "nostyle": true,
-   "cells": 1
-  },
-  {
-   "id": "barrels",
-   "theme": "village",
-   "name": "Barrel stack",
-   "role": "deco",
-   "tier": 0,
-   "price": 15,
-   "desc": "Three barrels by the door.",
-   "img": "assets/build/village-barrels.png",
-   "w": 51,
-   "h": 61,
-   "ax": 0.4929,
-   "ay": 0.6947,
-   "unitPx": 30,
-   "nostyle": true,
-   "cells": 1
-  },
-  {
-   "id": "crates",
-   "theme": "village",
-   "name": "Crates and hay",
-   "role": "deco",
-   "tier": 0,
-   "price": 20,
-   "desc": "Supplies for the household.",
-   "img": "assets/build/village-crates.png",
-   "w": 95,
-   "h": 112,
-   "ax": 0.4983,
-   "ay": 0.7226,
-   "unitPx": 30,
-   "nostyle": true,
-   "cells": 2
-  },
-  {
-   "id": "hay-cart",
-   "theme": "village",
-   "name": "Hay cart",
-   "role": "deco",
-   "tier": 0,
-   "price": 25,
-   "desc": "A farmer's cart full of hay.",
-   "img": "assets/build/village-hay-cart.png",
-   "w": 126,
-   "h": 112,
-   "ax": 0.4983,
-   "ay": 0.6397,
-   "unitPx": 30,
-   "nostyle": true,
-   "cells": 3
-  },
-  {
-   "id": "barrel-cart",
-   "theme": "village",
-   "name": "Merchant cart",
-   "role": "deco",
-   "tier": 0,
-   "price": 25,
-   "desc": "Barrels bound for market.",
-   "img": "assets/build/village-barrel-cart.png",
-   "w": 126,
-   "h": 112,
-   "ax": 0.4983,
-   "ay": 0.6397,
-   "unitPx": 30,
-   "nostyle": true,
-   "cells": 3
-  },
-  {
-   "id": "haystacks",
-   "theme": "village",
-   "name": "Haystacks",
-   "role": "deco",
-   "tier": 0,
-   "price": 20,
-   "desc": "Harvest piled high.",
-   "img": "assets/build/village-haystacks.png",
-   "w": 85,
-   "h": 84,
-   "ax": 0.4957,
-   "ay": 0.661,
-   "unitPx": 30,
-   "nostyle": true,
-   "cells": 2
-  },
-  {
-   "id": "cobbles",
-   "theme": "village",
-   "name": "Cobbled corner",
-   "role": "deco",
-   "tier": 0,
-   "price": 20,
-   "desc": "A paved patch of yard.",
-   "img": "assets/build/village-cobbles.png",
-   "w": 103,
-   "h": 91,
-   "ax": 0.4999,
-   "ay": 0.6339,
-   "unitPx": 30,
-   "nostyle": true,
-   "cells": 2
-  },
-  {
-   "id": "signpost",
-   "theme": "village",
-   "name": "Sign post",
-   "role": "deco",
-   "tier": 0,
-   "price": 15,
-   "desc": "Which way to the market?",
-   "img": "assets/build/village-signpost.png",
-   "w": 71,
-   "h": 104,
-   "ax": 0.4979,
-   "ay": 0.7671,
-   "unitPx": 30,
-   "nostyle": true,
-   "cells": 2
-  },
   {
    "id": "keep",
    "theme": "castle",
@@ -4321,6 +3887,2318 @@
   {
    "id": "k-stones",
    "theme": "castle",
+   "name": "Stone pile",
+   "desc": "A few stones on the grass.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "k_rocks_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "cottage",
+   "theme": "village",
+   "name": "Cottage",
+   "desc": "A snug stone cottage with a gabled roof. It grows a storey as your town grows.",
+   "role": "core",
+   "kind": "core",
+   "tier": 1,
+   "price": 80,
+   "score": 40,
+   "cells": 1,
+   "cat": "core",
+   "parts": [
+    "t_wallBlock_NE",
+    "t_roofGable_NE"
+   ],
+   "grow": [
+    [
+     "t_wallBlock_NE",
+     "t_roofGable_NE"
+    ],
+    [
+     "t_wallBlock_NE",
+     "t_wallBlock_NE",
+     "t_roofGable_NE"
+    ],
+    [
+     "t_wallBlock_NE",
+     "t_wallBlock_NE",
+     "t_roofHighWindow_NE"
+    ],
+    [
+     "t_wallBlock_NE",
+     "t_wallBlock_NE",
+     "t_wallBlock_NE",
+     "t_roofHighWindow_NE"
+    ]
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "house",
+   "theme": "village",
+   "name": "Timber house",
+   "desc": "A timber house with a pointed roof. It grows a storey as your town grows.",
+   "role": "core",
+   "kind": "core",
+   "tier": 1,
+   "price": 80,
+   "score": 40,
+   "cells": 1,
+   "cat": "core",
+   "parts": [
+    "t_wallWoodBlock_NE",
+    "t_roofPoint_NE"
+   ],
+   "grow": [
+    [
+     "t_wallWoodBlock_NE",
+     "t_roofPoint_NE"
+    ],
+    [
+     "t_wallWoodBlock_NE",
+     "t_wallWoodBlock_NE",
+     "t_roofPoint_NE"
+    ],
+    [
+     "t_wallWoodBlock_NE",
+     "t_wallWoodBlock_NE",
+     "t_roofHighGable_NE"
+    ],
+    [
+     "t_wallWoodBlock_NE",
+     "t_wallWoodBlock_NE",
+     "t_wallWoodBlock_NE",
+     "t_roofHighGable_NE"
+    ]
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stone-cottage",
+   "theme": "village",
+   "name": "Village home",
+   "desc": "A small house in your colour. It becomes a tall house, then an inn, as your town grows.",
+   "role": "core",
+   "kind": "core",
+   "tier": 1,
+   "price": 80,
+   "score": 40,
+   "cells": 1,
+   "cat": "core",
+   "parts": [
+    "k_home_A_NE"
+   ],
+   "grow": [
+    [
+     "k_home_A_NE"
+    ],
+    [
+     "k_home_B_NE"
+    ],
+    [
+     "k_tavern_NE"
+    ]
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "bakery",
+   "theme": "village",
+   "name": "Bakery",
+   "desc": "A stone bakery with a dormer over the ovens.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 85,
+   "score": 35,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallBlock_NE",
+    "t_roofHighWindow_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "bell-tower",
+   "theme": "village",
+   "name": "Bell tower",
+   "desc": "A stone tower with an open bell loft and a tiled roof.",
+   "role": "module",
+   "kind": "house",
+   "tier": 3,
+   "price": 120,
+   "score": 50,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "towerSquareBase_NE",
+    "towerSquareMidOpen_NE",
+    "towerSquareTopRoof_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "c-cottage",
+   "theme": "village",
+   "name": "Stone cottage",
+   "desc": "A stone cottage with a gabled roof.",
+   "role": "module",
+   "kind": "house",
+   "tier": 1,
+   "price": 60,
+   "score": 30,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallBlock_NE",
+    "t_roofGable_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "hut",
+   "theme": "village",
+   "name": "Wooden hut",
+   "desc": "A small timber hut with a pointed roof.",
+   "role": "module",
+   "kind": "house",
+   "tier": 1,
+   "price": 50,
+   "score": 26,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallWoodBlock_NE",
+    "t_roofPoint_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stable",
+   "theme": "village",
+   "name": "Stable",
+   "desc": "A timber stable with a wide roof.",
+   "role": "module",
+   "kind": "house",
+   "tier": 1,
+   "price": 65,
+   "score": 30,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallWoodBlock_NE",
+    "t_roof_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "barn",
+   "theme": "village",
+   "name": "Barn",
+   "desc": "A tall barn for hay and horses.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 90,
+   "score": 40,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallWoodBlock_NE",
+    "t_roofHigh_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "c-tavern",
+   "theme": "village",
+   "name": "Tavern",
+   "desc": "A timber tavern with a tall gabled roof.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 95,
+   "score": 42,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallWoodBlock_NE",
+    "t_roofHighGable_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stone-hall",
+   "theme": "village",
+   "name": "Stone hall",
+   "desc": "Two storeys of stone under a steep roof.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 110,
+   "score": 48,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallBlock_NE",
+    "t_wallBlock_NE",
+    "t_roofHigh_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "c-chapel",
+   "theme": "village",
+   "name": "Chapel",
+   "desc": "A stone chapel with a steeple.",
+   "role": "module",
+   "kind": "house",
+   "tier": 3,
+   "price": 130,
+   "score": 55,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallBlock_NE",
+    "t_wallBlock_NE",
+    "t_roofHighPoint_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "c-manor",
+   "theme": "village",
+   "name": "Manor house",
+   "desc": "A two-storey manor with a dormer window.",
+   "role": "module",
+   "kind": "house",
+   "tier": 3,
+   "price": 150,
+   "score": 60,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallBlock_NE",
+    "t_wallBlock_NE",
+    "t_roofHighWindow_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "c-windmill",
+   "theme": "village",
+   "name": "Windmill",
+   "desc": "A stone tower with sails on top.",
+   "role": "module",
+   "kind": "house",
+   "tier": 3,
+   "price": 140,
+   "score": 55,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "t_wallBlock_NE",
+    "t_wallBlock_NE",
+    "t_windmill_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stall-red",
+   "theme": "village",
+   "name": "Market stall",
+   "desc": "A red market stall.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 30,
+   "score": 12,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "t_stallRed_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stall-green",
+   "theme": "village",
+   "name": "Green stall",
+   "desc": "A green market stall.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 30,
+   "score": 12,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "t_stallGreen_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "cart",
+   "theme": "village",
+   "name": "Cart",
+   "desc": "A wooden cart.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 20,
+   "score": 8,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "t_cart_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "c-hay-cart",
+   "theme": "village",
+   "name": "Hay cart",
+   "desc": "A cart piled with hay.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 25,
+   "score": 10,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "t_cartHigh_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "lantern",
+   "theme": "village",
+   "name": "Lantern post",
+   "desc": "A lantern on a post.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 6,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "t_lantern_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "lamp-post",
+   "theme": "village",
+   "name": "Lamp post",
+   "desc": "An iron lamp post.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 20,
+   "score": 8,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "g_lightpostSingle_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "lamp-double",
+   "theme": "village",
+   "name": "Double lamp",
+   "desc": "A lamp post with two lanterns.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 25,
+   "score": 10,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "g_lightpostDouble_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "bench",
+   "theme": "village",
+   "name": "Bench",
+   "desc": "A wooden bench.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 6,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "g_bench_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "fountain",
+   "theme": "village",
+   "name": "Fountain",
+   "desc": "A round stone fountain.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 70,
+   "score": 30,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "t_fountainRound_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "pool",
+   "theme": "village",
+   "name": "Pool",
+   "desc": "A square pool of water.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 80,
+   "score": 32,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "t_fountainSquare_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "waterwheel",
+   "theme": "village",
+   "name": "Water wheel",
+   "desc": "A big wooden water wheel.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 60,
+   "score": 24,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "t_watermill_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "planks",
+   "theme": "village",
+   "name": "Wooden deck",
+   "desc": "A deck of planks.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 4,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "t_planks_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stone-path",
+   "theme": "village",
+   "name": "Stone path",
+   "desc": "Flat stones to walk on.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "n_path_stone_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "well-sign",
+   "theme": "village",
+   "name": "Signpost",
+   "desc": "A wooden signpost.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "n_sign_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "campfire",
+   "theme": "village",
+   "name": "Campfire",
+   "desc": "A ring of stones with a fire.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 6,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "n_campfire_stones_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "tent",
+   "theme": "village",
+   "name": "Tent",
+   "desc": "A red camp tent.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 25,
+   "score": 10,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "n_tent_detailedOpen_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "log-pile",
+   "theme": "village",
+   "name": "Log pile",
+   "desc": "A stack of logs.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 4,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "n_log_stack_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "wheat",
+   "theme": "village",
+   "name": "Wheat",
+   "desc": "A patch of wheat.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 5,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_crops_wheatStageB_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "pumpkins",
+   "theme": "village",
+   "name": "Pumpkin patch",
+   "desc": "Pumpkins on the vine.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 5,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_crop_pumpkin_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "pot",
+   "theme": "village",
+   "name": "Clay pot",
+   "desc": "A big clay pot.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "n_pot_large_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "urn",
+   "theme": "village",
+   "name": "Stone urn",
+   "desc": "A carved stone urn.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 20,
+   "score": 8,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "g_urn_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "wood-bridge",
+   "theme": "village",
+   "name": "Wooden bridge",
+   "desc": "A little wooden bridge.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 25,
+   "score": 10,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "n_bridge_wood_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "hedge",
+   "theme": "village",
+   "name": "Hedge",
+   "desc": "A trimmed hedge. It turns corners by itself.",
+   "role": "deco",
+   "kind": "wall",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "nature",
+   "auto": {
+    "u": "t_hedge_NE",
+    "v": "t_hedge_NW",
+    "corner": {
+     "-u+v": "t_hedgeCurved_NE",
+     "-u-v": "t_hedgeCurved_SE",
+     "+u-v": "t_hedgeCurved_SW",
+     "+u+v": "t_hedgeCurved_NW"
+    }
+   },
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "hedge-gate",
+   "theme": "village",
+   "name": "Hedge gate",
+   "desc": "A gap in the hedge.",
+   "role": "deco",
+   "kind": "wall",
+   "tier": 1,
+   "price": 12,
+   "score": 4,
+   "cells": 1,
+   "cat": "nature",
+   "auto": {
+    "u": "t_hedgeGate_NE",
+    "v": "t_hedgeGate_NW"
+   },
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "c-fence",
+   "theme": "village",
+   "name": "Wooden fence",
+   "desc": "A wooden fence. It turns corners by itself.",
+   "role": "deco",
+   "kind": "wall",
+   "tier": 1,
+   "price": 8,
+   "score": 3,
+   "cells": 1,
+   "cat": "village",
+   "auto": {
+    "u": "t_fence_NE",
+    "v": "t_fence_NW",
+    "corner": {
+     "-u+v": "t_fenceCurved_NE",
+     "-u-v": "t_fenceCurved_SE",
+     "+u-v": "t_fenceCurved_SW",
+     "+u+v": "t_fenceCurved_NW"
+    }
+   },
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "fence-gate",
+   "theme": "village",
+   "name": "Fence gate",
+   "desc": "A gate in the fence.",
+   "role": "deco",
+   "kind": "wall",
+   "tier": 1,
+   "price": 10,
+   "score": 3,
+   "cells": 1,
+   "cat": "village",
+   "auto": {
+    "u": "t_fenceGate_NE",
+    "v": "t_fenceGate_NW"
+   },
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "rail-fence",
+   "theme": "village",
+   "name": "Rail fence",
+   "desc": "A simple rail fence for the animals.",
+   "role": "deco",
+   "kind": "wall",
+   "tier": 1,
+   "price": 8,
+   "score": 3,
+   "cells": 1,
+   "cat": "village",
+   "auto": {
+    "u": "n_fence_simple_NE",
+    "v": "n_fence_simple_NW",
+    "corner": {
+     "-u+v": "n_fence_corner_NE",
+     "-u-v": "n_fence_corner_SE",
+     "+u-v": "n_fence_corner_SW",
+     "+u+v": "n_fence_corner_NW"
+    }
+   },
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "oak",
+   "theme": "village",
+   "name": "Oak tree",
+   "desc": "A round oak.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 8,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_tree_oak_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "pine",
+   "theme": "village",
+   "name": "Pine tree",
+   "desc": "A tall pine.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 8,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_tree_pineDefaultA_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "round-pine",
+   "theme": "village",
+   "name": "Round pine",
+   "desc": "A bushy pine.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 8,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_tree_pineRoundA_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "autumn-tree",
+   "theme": "village",
+   "name": "Autumn tree",
+   "desc": "A tree in orange autumn leaves.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 18,
+   "score": 8,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_tree_default_fall_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "tall-tree",
+   "theme": "village",
+   "name": "Tall tree",
+   "desc": "A tall leafy tree.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 8,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_tree_tall_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "small-tree",
+   "theme": "village",
+   "name": "Small tree",
+   "desc": "A young tree.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 5,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_tree_small_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "fir",
+   "theme": "village",
+   "name": "Fir tree",
+   "desc": "A dark green fir.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 8,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "t_tree_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "tall-fir",
+   "theme": "village",
+   "name": "Tall fir",
+   "desc": "A very tall fir.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 18,
+   "score": 9,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "t_treeHigh_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "poplar",
+   "theme": "village",
+   "name": "Poplar",
+   "desc": "A tall rounded tree.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 18,
+   "score": 9,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "t_treeHighRound_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "bush",
+   "theme": "village",
+   "name": "Bush",
+   "desc": "A leafy bush.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 8,
+   "score": 3,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_plant_bushLarge_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "bushes",
+   "theme": "village",
+   "name": "Bushes",
+   "desc": "A clump of bushes.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 5,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_bushes"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "flowers-red",
+   "theme": "village",
+   "name": "Red flowers",
+   "desc": "A bed of red flowers.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 5,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_flowerbed_red"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "flowers-yellow",
+   "theme": "village",
+   "name": "Yellow flowers",
+   "desc": "A bed of yellow flowers.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 5,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_flowerbed_yellow"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "flowers-purple",
+   "theme": "village",
+   "name": "Purple flowers",
+   "desc": "A bed of purple flowers.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 5,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_flowerbed_purple"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "flowers-mixed",
+   "theme": "village",
+   "name": "Mixed flowers",
+   "desc": "A bed of every colour.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 6,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_flowerbed_mixed"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "mushrooms",
+   "theme": "village",
+   "name": "Red mushrooms",
+   "desc": "A group of red mushrooms.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 8,
+   "score": 3,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_mushroom_redGroup_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "tan-mushrooms",
+   "theme": "village",
+   "name": "Tan mushrooms",
+   "desc": "A group of tan mushrooms.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 8,
+   "score": 3,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_mushroom_tanGroup_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "boulder",
+   "theme": "village",
+   "name": "Boulder",
+   "desc": "A big grey boulder.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_rock_largeA_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "rocks",
+   "theme": "village",
+   "name": "Rocks",
+   "desc": "A few small rocks.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 6,
+   "score": 2,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_rock_smallA_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "tall-rock",
+   "theme": "village",
+   "name": "Tall rock",
+   "desc": "A tall standing rock.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_rock_tallA_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "crag",
+   "theme": "village",
+   "name": "Crag",
+   "desc": "A jagged outcrop of rock.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 20,
+   "score": 8,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "t_rockLarge_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stump",
+   "theme": "village",
+   "name": "Tree stump",
+   "desc": "An old stump.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 5,
+   "score": 2,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_stump_round_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "lily-pads",
+   "theme": "village",
+   "name": "Lily pads",
+   "desc": "Lily pads for a pond.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 6,
+   "score": 2,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "n_lily_large_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "obelisk",
+   "theme": "village",
+   "name": "Obelisk",
+   "desc": "A tall stone obelisk.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 40,
+   "score": 18,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_obelisk_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "column",
+   "theme": "village",
+   "name": "Stone column",
+   "desc": "A carved stone column.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 40,
+   "score": 18,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_column_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "great-column",
+   "theme": "village",
+   "name": "Great column",
+   "desc": "A towering column.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 3,
+   "price": 60,
+   "score": 26,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "g_columnLarge_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stone-head",
+   "theme": "village",
+   "name": "Stone head",
+   "desc": "A giant carved head.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 3,
+   "price": 60,
+   "score": 26,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_head_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stone-ring",
+   "theme": "village",
+   "name": "Stone ring",
+   "desc": "A ring of carved stone.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 3,
+   "price": 55,
+   "score": 24,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_ring_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "pedestal",
+   "theme": "village",
+   "name": "Pedestal",
+   "desc": "A stone pedestal.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 6,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "knight-statue",
+   "theme": "village",
+   "name": "Knight statue",
+   "desc": "A stone knight on a pedestal.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 50,
+   "score": 22,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE",
+    "s_knight_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "king-statue",
+   "theme": "village",
+   "name": "King statue",
+   "desc": "A stone king on a pedestal.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 3,
+   "price": 80,
+   "score": 34,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "n_statue_block_NE",
+    "s_king_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "stone-pillar",
+   "theme": "village",
+   "name": "Stone pillar",
+   "desc": "A slim stone pillar.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 6,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "t_pillarStone_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "small-obelisk",
+   "theme": "village",
+   "name": "Small obelisk",
+   "desc": "A small pointed pillar.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 30,
+   "score": 12,
+   "cells": 1,
+   "cat": "statue",
+   "parts": [
+    "g_pillarObelisk_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "glass-lantern",
+   "theme": "village",
+   "name": "Glass lantern",
+   "desc": "A lantern in a glass case.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 5,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "g_lanternGlass_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "cow",
+   "theme": "village",
+   "name": "Cow",
+   "desc": "A cow for the meadow.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 20,
+   "score": 6,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_cow"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "horse",
+   "theme": "village",
+   "name": "Horse",
+   "desc": "A horse for the stable.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 25,
+   "score": 8,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_horse"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "pig",
+   "theme": "village",
+   "name": "Pig",
+   "desc": "A pink pig.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 5,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_pig"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "goat",
+   "theme": "village",
+   "name": "Goat",
+   "desc": "A goat with horns.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 5,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_goat"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "chicken",
+   "theme": "village",
+   "name": "Chicken",
+   "desc": "A hen for the yard.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_chicken"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "dog",
+   "theme": "village",
+   "name": "Dog",
+   "desc": "A loyal hound.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 5,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_dog"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "rabbit",
+   "theme": "village",
+   "name": "Rabbit",
+   "desc": "A rabbit in the grass.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_rabbit"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "duck",
+   "theme": "village",
+   "name": "Duck",
+   "desc": "A duck for the pond.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_duck"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "owl",
+   "theme": "village",
+   "name": "Owl",
+   "desc": "An owl for the tower.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 2,
+   "price": 15,
+   "score": 5,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "a_owl"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-townhall",
+   "theme": "village",
+   "name": "Town hall",
+   "desc": "A tall timbered hall for the town council. Two cells wide.",
+   "role": "module",
+   "kind": "house",
+   "tier": 4,
+   "price": 160,
+   "score": 70,
+   "cells": 2,
+   "cat": "house",
+   "parts": [
+    "k_townhall_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-market",
+   "theme": "village",
+   "name": "Market hall",
+   "desc": "A covered market with stalls all round. Two cells wide.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 100,
+   "score": 44,
+   "cells": 2,
+   "cat": "house",
+   "parts": [
+    "k_market_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-mine",
+   "theme": "village",
+   "name": "Mine",
+   "desc": "A mine shaft with its winch and carts. Two cells wide.",
+   "role": "module",
+   "kind": "house",
+   "tier": 3,
+   "price": 110,
+   "score": 46,
+   "cells": 2,
+   "cat": "house",
+   "parts": [
+    "k_mine_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-shipyard",
+   "theme": "village",
+   "name": "Shipyard",
+   "desc": "A boat under construction on the slipway. Two cells wide.",
+   "role": "module",
+   "kind": "house",
+   "tier": 4,
+   "price": 130,
+   "score": 56,
+   "cells": 2,
+   "cat": "house",
+   "parts": [
+    "k_shipyard_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-stables",
+   "theme": "village",
+   "name": "Stables",
+   "desc": "Long stables with stalls for the horses. Two cells wide.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 90,
+   "score": 38,
+   "cells": 2,
+   "cat": "house",
+   "parts": [
+    "k_stables_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-workshop",
+   "theme": "village",
+   "name": "Workshop",
+   "desc": "A carpenter's workshop with a lumber yard. Two cells wide.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 100,
+   "score": 44,
+   "cells": 2,
+   "cat": "house",
+   "parts": [
+    "k_workshop_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-blacksmith",
+   "theme": "village",
+   "name": "Blacksmith",
+   "desc": "A forge with a chimney and an anvil.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 80,
+   "score": 36,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "k_blacksmith_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-church",
+   "theme": "village",
+   "name": "Church",
+   "desc": "A stone church with a steeple.",
+   "role": "module",
+   "kind": "house",
+   "tier": 3,
+   "price": 120,
+   "score": 52,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "k_church_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-home-a",
+   "theme": "village",
+   "name": "Small house",
+   "desc": "A snug house with a chimney.",
+   "role": "module",
+   "kind": "house",
+   "tier": 1,
+   "price": 45,
+   "score": 20,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "k_home_A_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-home-b",
+   "theme": "village",
+   "name": "Tall house",
+   "desc": "A two-storey timbered house.",
+   "role": "module",
+   "kind": "house",
+   "tier": 1,
+   "price": 55,
+   "score": 26,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "k_home_B_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-lumbermill",
+   "theme": "village",
+   "name": "Lumber mill",
+   "desc": "A saw mill with a stack of logs.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 90,
+   "score": 40,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "k_lumbermill_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-shrine",
+   "theme": "village",
+   "name": "Shrine",
+   "desc": "A small shrine with a bell.",
+   "role": "module",
+   "kind": "house",
+   "tier": 3,
+   "price": 70,
+   "score": 30,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "k_shrine_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-inn",
+   "theme": "village",
+   "name": "Inn",
+   "desc": "A timbered inn with a sign over the door.",
+   "role": "module",
+   "kind": "house",
+   "tier": 2,
+   "price": 90,
+   "score": 40,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "k_tavern_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-watermill",
+   "theme": "village",
+   "name": "Water mill",
+   "desc": "A mill with a big wooden wheel.",
+   "role": "module",
+   "kind": "house",
+   "tier": 3,
+   "price": 90,
+   "score": 40,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "k_watermill_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-windmill",
+   "theme": "village",
+   "name": "Stone windmill",
+   "desc": "A stone windmill with cloth sails.",
+   "role": "module",
+   "kind": "house",
+   "tier": 3,
+   "price": 95,
+   "score": 42,
+   "cells": 1,
+   "cat": "house",
+   "parts": [
+    "k_windmill_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-well",
+   "theme": "village",
+   "name": "Stone well",
+   "desc": "A well with a roof in your colour.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 30,
+   "score": 12,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_well_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-grain",
+   "theme": "village",
+   "name": "Grain field",
+   "desc": "A field of ripe grain. Two cells wide.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 25,
+   "score": 10,
+   "cells": 2,
+   "cat": "nature",
+   "parts": [
+    "k_grain_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-site",
+   "theme": "village",
+   "name": "Building site",
+   "desc": "Scaffolding round a building going up. Two cells wide.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 30,
+   "score": 10,
+   "cells": 2,
+   "cat": "village",
+   "parts": [
+    "k_scaffolding_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-ruins",
+   "theme": "village",
+   "name": "Ruins",
+   "desc": "The broken walls of an old building. Two cells wide.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 25,
+   "score": 8,
+   "cells": 2,
+   "cat": "village",
+   "parts": [
+    "k_destroyed_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-stage",
+   "theme": "village",
+   "name": "Wooden stage",
+   "desc": "A low wooden platform.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 20,
+   "score": 6,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_stage_A_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-platform",
+   "theme": "village",
+   "name": "Tall stage",
+   "desc": "A wooden platform with steps.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 25,
+   "score": 8,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_stage_C_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-barrels",
+   "theme": "village",
+   "name": "Barrels",
+   "desc": "Three wooden barrels.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 5,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_barrels_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-crates",
+   "theme": "village",
+   "name": "Crates",
+   "desc": "A few wooden crates.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 5,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_crates_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-supplies",
+   "theme": "village",
+   "name": "Supplies",
+   "desc": "Lumber, stone and a sack of grain.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 14,
+   "score": 6,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_supplies_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-hay",
+   "theme": "village",
+   "name": "Hay bales",
+   "desc": "Two bales of hay.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 5,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_haybales_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-wheelbarrow",
+   "theme": "village",
+   "name": "Wheelbarrow",
+   "desc": "A wooden wheelbarrow.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 12,
+   "score": 4,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_wheelbarrow_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-trough",
+   "theme": "village",
+   "name": "Water trough",
+   "desc": "A long trough for the horses.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 10,
+   "score": 4,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_trough_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-camp-tent",
+   "theme": "village",
+   "name": "Camp tent",
+   "desc": "A small canvas tent.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 20,
+   "score": 8,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_small_tent_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-bucket",
+   "theme": "village",
+   "name": "Bucket",
+   "desc": "A bucket of water.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 6,
+   "score": 2,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_bucket_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-pallet",
+   "theme": "village",
+   "name": "Pallet",
+   "desc": "An empty wooden pallet.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 6,
+   "score": 2,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_pallet_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-cart",
+   "theme": "village",
+   "name": "Farm cart",
+   "desc": "A cart with wooden wheels.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 20,
+   "score": 8,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_cart_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-merchant-cart",
+   "theme": "village",
+   "name": "Merchant cart",
+   "desc": "A covered cart full of goods.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 30,
+   "score": 12,
+   "cells": 1,
+   "cat": "village",
+   "parts": [
+    "k_merchant_cart_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-warhorse",
+   "theme": "village",
+   "name": "Warhorse",
+   "desc": "A saddled horse ready to ride.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 25,
+   "score": 8,
+   "cells": 1,
+   "cat": "animal",
+   "parts": [
+    "k_horse_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-tree-a",
+   "theme": "village",
+   "name": "Leafy tree",
+   "desc": "A tall leafy tree.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 8,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "k_tree_A_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-tree-b",
+   "theme": "village",
+   "name": "Round tree",
+   "desc": "A round bushy tree.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 15,
+   "score": 8,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "k_tree_B_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-grove-a",
+   "theme": "village",
+   "name": "Grove",
+   "desc": "A grove of leafy trees. Two cells wide.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 30,
+   "score": 14,
+   "cells": 2,
+   "cat": "nature",
+   "parts": [
+    "k_grove_A_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-grove-b",
+   "theme": "village",
+   "name": "Pine grove",
+   "desc": "A grove of pines. Two cells wide.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 30,
+   "score": 14,
+   "cells": 2,
+   "cat": "nature",
+   "parts": [
+    "k_grove_B_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-rock",
+   "theme": "village",
+   "name": "Rock",
+   "desc": "A big grey rock.",
+   "role": "deco",
+   "kind": "prop",
+   "tier": 1,
+   "price": 8,
+   "score": 3,
+   "cells": 1,
+   "cat": "nature",
+   "parts": [
+    "k_rock_NE"
+   ],
+   "img": "",
+   "nostyle": false
+  },
+  {
+   "id": "k-stones",
+   "theme": "village",
    "name": "Stone pile",
    "desc": "A few stones on the grass.",
    "role": "deco",
