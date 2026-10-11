@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <title>SOL Lab · Teacher</title>
+  <link rel="stylesheet" href="css/after-hours.css" />
+</head>
+<body class="admin-body">
+  <div id="app" class="admin-app">
+    <section id="admin-setup" class="screen hidden">
+      <p class="kicker">Teacher Chromebook only · FERPA</p>
+      <h1>Set up this class</h1>
+      <p class="tag">Students never see this page. You pick a teacher PIN (keeps kids out) and a class code (kids type that on the game). First visit on this Chromebook only.</p>
+      <form id="setup-form" autocomplete="off">
+        <label for="setup-pin">Teacher PIN (4–8 digits)</label>
+        <input id="setup-pin" type="password" inputmode="numeric" maxlength="8" autocomplete="new-password" />
+        <label for="setup-pin2">Confirm PIN</label>
+        <input id="setup-pin2" type="password" inputmode="numeric" maxlength="8" autocomplete="new-password" />
+        <div class="admin-code-box" style="margin:16px 0">
+          <span class="kind">Class code (students type this on After Hours)</span>
+          <strong id="setup-code">----</strong>
+          <button type="button" class="btn" id="btn-setup-reroll">New code</button>
+        </div>
+        <div class="row">
+          <button type="submit" class="btn primary" id="btn-setup">Save and open class</button>
+        </div>
+      </form>
+      <p id="setup-err" class="tag"></p>
+      <p class="howto">Write the PIN down. It stays on this Chromebook profile. Itch login does not store it. Not 1234.</p>
+    </section>
+
+    <section id="admin-lock" class="screen hidden">
+      <p class="kicker">Teacher Chromebook only · FERPA</p>
+      <h1>Teacher lock</h1>
+      <p class="tag">Enter the teacher PIN you set on this Chromebook. This is not the class code students use.</p>
+      <form id="pin-form" autocomplete="off">
+        <label for="pin-in">PIN</label>
+        <input id="pin-in" type="password" inputmode="numeric" maxlength="8" autocomplete="off" />
+        <div class="row">
+          <button type="submit" class="btn primary" id="btn-pin">Unlock</button>
+        </div>
+      </form>
+      <p id="pin-err" class="tag"></p>
+      <p class="howto"><button type="button" class="btn" id="btn-forgot">Forgot PIN — reset this Chromebook</button></p>
+    </section>
+
+    <section id="admin-dash" class="hidden admin-dash">
+      <header class="admin-head">
+        <div>
+          <p class="kicker">NNPS Biology · SOL Lab</p>
+          <h1>Class monitor</h1>
+        </div>
+        <div class="admin-code-box">
+          <span class="kind">Class code (students type this)</span>
+          <strong id="class-code">----</strong>
+          <span class="meta" id="listen-state">Starting live…</span>
+        </div>
+        <div class="row">
+          <button type="button" class="btn" id="btn-new-code">New class code</button>
+          <button type="button" class="btn" id="btn-lock">Lock</button>
+          <button type="button" class="btn" id="btn-export">Export CSV</button>
+          <button type="button" class="btn" id="btn-clear">Clear class</button>
+        </div>
+      </header>
+      <p class="ferpa-note">FERPA: nicknames only — not legal names, email, student ID, or photos. Roster stays on this Chromebook profile. Itch login does not store progress. Map nicknames in your gradebook off this app. No questions or answers are stored here.</p>
+      <div class="agg" id="agg"></div>
+      <div class="token-row">
+        <form id="token-form" autocomplete="off">
+          <label>Add / update from progress token (offline fallback)</label>
+          <input id="token-nick" maxlength="16" placeholder="nickname, not legal name" autocomplete="off" />
+          <input id="token-val" maxlength="16" placeholder="N047E3S1" autocomplete="off" />
+          <button type="submit" class="btn primary">Enter token</button>
+        </form>
+      </div>
+      <div class="table-wrap">
+        <table id="roster">
+          <thead>
+            <tr>
+              <th>Nickname</th>
+              <th>Level</th>
+              <th>Extracts</th>
+              <th>Strikes</th>
+              <th>Last ping</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="howto">Keep this tab open on the teacher Chromebook while the class plays. Students open After Hours, type this class code + the nickname you assigned (Table 4, Blue-12). Live pings use an opaque peer id — not a school username.</p>
+    </section>
+  </div>
+  <script src="js/vendor/peerjs.min.js"></script>
+  <script src="js/net.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
