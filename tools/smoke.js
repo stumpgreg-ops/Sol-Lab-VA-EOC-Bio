@@ -210,12 +210,19 @@ var srv = http.createServer(function (req, res) {
     await page.waitForSelector("#build-overlay:not(.hidden)", { timeout: 5000 });
     if (tn === 5) { await page.waitForSelector(".build-theme"); await page.click(".build-theme:nth-child(1)"); await page.click("#build-overlay .btn.primary"); }
     await page.waitForSelector(".build-options .build-opt"); await page.click(".build-options .build-opt:nth-child(1)"); await page.click("#build-overlay .btn.primary");
-    await page.waitForSelector(".build-styles .build-opt"); await page.click(".build-styles .build-opt:nth-child(1)"); await page.click("#build-overlay .btn.primary");
+    /* v6.6: a 3D town piece with no coloured part skips the colour step, as the castle's props do */
+    await page.waitForSelector(".build-styles:not(.hidden) .build-opt, .build-note:not(.hidden)");
+    if (await page.isVisible(".build-styles .build-opt")) { await page.click(".build-styles .build-opt:nth-child(1)"); await page.click("#build-overlay .btn.primary"); }
     await page.waitForSelector(".build-note:not(.hidden)"); await page.click("#build-overlay .btn.primary"); await page.waitForSelector(".build-note:not(.hidden)");
     await page.click("#build-overlay .btn.primary"); await page.waitForFunction(function () { return window.__done === true; });
   }
-  var townSt = await page.evaluate(function () { return SolBuild.state(); });
+  var townSt = await page.evaluate(function () {
+    var s = SolBuild.state(), sv = JSON.parse(localStorage.getItem("afterHours.v1.build"));
+    return { theme: s.theme, buildings: s.buildings, kit3d: !!(window.SolBuild3D && SolBuild3D.ready()), kit: sv.kit, core: sv.picks[0] && sv.picks[0].piece, positioned: sv.picks.every(function (p) { return p.cx != null; }) };
+  });
   check(townSt.theme === "village" && townSt.buildings === 3, "town theme still builds: " + JSON.stringify({ theme: townSt.theme, b: townSt.buildings }));
+  /* v6.6: the Town is drawn with the castle's 3D models */
+  check(townSt.kit3d && townSt.kit === 3 && townSt.positioned && /cottage|house/.test(townSt.core), "the town is a 3D kit build on the castle's models: " + JSON.stringify(townSt));
   await shot("09c-town");
   /* v5.7.9: dragging a town piece holds the view still (the ground used to slide under a lone house), the piece
      lands where it is let go, and Turn mirrors a town picture (two ways to face) */
@@ -230,7 +237,24 @@ var srv = http.createServer(function (req, res) {
   var tMoved = tB.pk.cx !== tA.pk.cx || tB.pk.cy !== tA.pk.cy;
   check(Math.abs(tMid.x2 - tA.g.x2) < 1 && Math.abs(tMid.y2 - tA.g.y2) < 1, "town: the ground holds still while a piece is dragged");
   check(!tMoved || Math.hypot(tB.pk.x - (tA.pk.x - 176), tB.pk.y - (tA.pk.y + 88)) < 60, "town: a dragged piece lands where it is let go: " + JSON.stringify({ moved: tMoved, from: [Math.round(tA.pk.x), Math.round(tA.pk.y)], to: [Math.round(tB.pk.x), Math.round(tB.pk.y)] }));
-  check(tB.r1 === 1 && tB.r2 === 0 && /faces the other way/.test(tB.note), "town: Turn flips a town building to face the other way and back: " + JSON.stringify({ r1: tB.r1, r2: tB.r2 }));
+  check(tB.r1 === 1 && tB.r2 === 2 && /turned/.test(tB.note), "town: Turn gives a 3D town building a quarter turn, like the castle's: " + JSON.stringify({ r1: tB.r1, r2: tB.r2, note: tB.note.slice(0, 60) }));
+  /* a town saved before v6.6 (2D pictures, paint colours, lots) loads as a 3D town with every piece kept */
+  var keepSave = await page.evaluate(function () {
+    var k = localStorage.getItem("afterHours.v1.build");
+    localStorage.setItem("afterHours.v1.build", JSON.stringify({ v: 4, theme: "village", salt: 7, coins: 30, kit: 2, owned: { cottage: 1, bakery: 1, well: 1 }, rewards: { 5: "cottage", 10: "bakery" },
+      picks: [{ night: 5, piece: "cottage", style: "tile", src: "reward", deco: false, ord: 0, cx: 0, cy: 0 }, { night: 10, piece: "bakery", style: "slate", src: "reward", deco: false, ord: 1, cx: 3, cy: 0 },
+        { night: 10, piece: "well", style: "", src: "shop", deco: true, ord: 2, cx: 1, cy: 4 }] }));
+    return k;
+  });
+  await page.reload({ waitUntil: "load" }); await page.waitForTimeout(800);
+  await page.evaluate(function () { SolBuild.init(); }); await page.waitForTimeout(1200);
+  var oldTown = await page.evaluate(function () {
+    var sv = JSON.parse(localStorage.getItem("afterHours.v1.build"));
+    return { kit: sv.kit, pieces: sv.picks.map(function (p) { return p.piece + ":" + p.style; }).join(","), placed: sv.picks.every(function (p) { return p.cx != null; }), buildings: SolBuild.state().buildings };
+  });
+  await page.evaluate(function (k) { localStorage.setItem("afterHours.v1.build", k); }, keepSave);
+  await page.reload({ waitUntil: "load" }); await page.waitForTimeout(800);
+  check(oldTown.kit === 3 && oldTown.pieces === "cottage:red,bakery:blue,well:" && oldTown.placed, "a town saved before the 3D town keeps every piece, in the kit's colours: " + JSON.stringify(oldTown));
   await page.evaluate(function () { SolBuild.close(); });
   await page.evaluate(function () { SolBuild.importCode(localStorage.getItem("smoke.castleCode")); });
   await page.reload({ waitUntil: "load" }); await page.waitForTimeout(800);

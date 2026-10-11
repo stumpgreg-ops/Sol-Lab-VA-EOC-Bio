@@ -8,6 +8,17 @@ Play: `index.html`. Teacher monitor: `admin.html` (PIN lock; FERPA nicknames onl
 
 Progress saves in this browser profile (`afterHours.v1.night`). Itch login does not store progress.
 
+## v6.6.0 (2026-10-11) — the Town is built from the same 3D models as the Castle
+
+- **The Town builder is a 3D kit theme on the castle's models.** It used to be 32 flat pictures; now `js/build3d.js` draws it from the same models as the Castle (`assets/build/models`: the KayKit buildings, the town kit, the nature, graveyard and castle kits), in the castle's four colours (Royal Blue, Crimson, Forest, Gold), turning with the map by the degree. `python3 tools/make-town-kit.py` rebuilds the town in `assets/build/pieces.json` from the castle's pieces:
+  - every old town piece keeps its id, name and description (saved towns, progress codes and the maze perks still find them) and gets the matching 3D model: the tavern is the KayKit tavern, the chapel the church, the windmill and watermill the KayKit mills, the market stall the market hall, the harbour the shipyard, the town hall the KayKit town hall, the manor, bakery, wings and bell tower are stacked town-kit and castle-kit parts;
+  - the three cottages are the cores and grow a storey at each growth step, like the keep;
+  - at the wall level a wooden fence with one gate goes up round the town (`theme.ring`), not curtain walls; the town's words ("Your cottage grew a storey", "A fence went up round your town") come from `theme.notes`;
+  - every other castle model is in the town's palette and shop too (144 shared pieces: trees, flowers, animals, statues, market props, towers, flags, people, Fenrir's trophies), so both builds share all the models. The castle's towers and military buildings, and the fence, are shop-only in a town (`shopOnly`), so the free reward offers build a town, not a fort.
+- **A town saved before v6.6** keeps every piece: its paint colours become the kit's (red tile → Crimson, slate → Royal Blue, thatch → Gold) and the pieces are laid out afresh on the kit's grid (`save.kit` 3).
+- `js/build.js`: the wall-level ring, the shop's first row and the messages follow the theme (`ringIds()`, `themeNote()`); `themePiece()` never falls back to the other theme's piece of the same id.
+- **Test:** `tools/smoke.js` checks the town is a 3D kit build, turns a quarter at a time like the castle, and that a pre-v6.6 town loads with every piece kept.
+
 ## v6.5.0 (2026-10-08) — every screen fits 100% × 500, a one-card tutorial, a Menu to leave a level, and accommodations (SOL Labyrinth v5.17.2 and v5.18.0)
 
 - **Every screen fits the Canvas embed (width 100%, height 500) without scrolling** (from SOL Labyrinth v5.17.2, merged over v6.4.2's first pass). Short frames (620 px or less) tighten the start screens, windows, builder and shop (`css/after-hours.css` and `css/build.css`, "short frames"); `js/fit.js` shrinks any screen or window that still doesn't fit (CSS zoom, down to a floor) and undoes it in full screen; the play HUD stays on the left so the passage, question and all four answers show. `node tools/audit-500.js [WxH …]` opens every screen and window (title, progress, Restore, badges, accommodations, town, shop, teacher screen, game mode, skill, look, tutorial, reading, play, Menu, level end, a shooter) and fails if anything is cut off or makes the page scroll: all fit at 640, 700, 1000 and 1280 × 500 and at 1280 × 720 and 1366 × 768. `tools/smoke-canvas.js` embeds the game the READ ME's way (100% × 500).
